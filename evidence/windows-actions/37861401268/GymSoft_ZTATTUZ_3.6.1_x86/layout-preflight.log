@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\layout_consistency_ui_smoke.py", line 80, in <module>
+    if __name__ == '__main__': main()
+                               ~~~~^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\layout_consistency_ui_smoke.py", line 44, in main
+    assert not root.content_area._bars[1], (f'Dashboard no cabe en ventana mediana: {factor}, solicitado={size}, '
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Dashboard no cabe en ventana mediana: 1.25, solicitado=1280x800, real=1280x800+320+120, monitor=(0, 0, 1920, 1040), visor=967, mínimo=976
