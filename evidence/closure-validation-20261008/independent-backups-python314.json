@@ -1,0 +1,34 @@
+[
+  {
+    "file": "AtlanticGym_FUENTES_EN_DESARROLLO_20261008.zip",
+    "sha256": "88d82e35f787d535083bb826e1f247bc3139259ee857e7976824345e53e36912",
+    "status": "PASS",
+    "files_matched_against_sources": 1000,
+    "source_commit": "7874bee128db69633f87ed72a02d28560dca3767",
+    "python": "3.14.7",
+    "checks": [
+      "ZIP CRC",
+      "SHA256",
+      "All archived source bytes match checkout",
+      "Isolated imports from independent extracted folders",
+      "Launchers and preparation helpers present"
+    ],
+    "scope": "Linux x64 source/packaging checks. No Windows batch or hardware execution."
+  },
+  {
+    "file": "ZTATTUZ_FUENTES_EN_DESARROLLO_20261008.zip",
+    "sha256": "a689db3f12a93574c2b3d12958eeb3b4fd92bde43e165f99c90e26246bc253d6",
+    "status": "PASS",
+    "files_matched_against_sources": 1152,
+    "source_commit": "7874bee128db69633f87ed72a02d28560dca3767",
+    "python": "3.14.7",
+    "checks": [
+      "ZIP CRC",
+      "SHA256",
+      "All archived source bytes match checkout",
+      "Isolated imports from independent extracted folders",
+      "Launchers and preparation helpers present"
+    ],
+    "scope": "Linux x64 source/packaging checks. No Windows batch or hardware execution."
+  }
+]
