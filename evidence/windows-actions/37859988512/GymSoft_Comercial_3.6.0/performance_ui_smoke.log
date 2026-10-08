@@ -1,0 +1,17 @@
+COORDINADOR DE CARGA: a1865228a026
+CARGA: GymSoftApp / dashboard
+CARGA: GymSoftApp / checkin
+CARGA: GymSoftApp / clients
+CARGA: GymSoftApp / shop
+CARGA: GymSoftApp / finance
+CARGA: GymSoftApp / statistics
+CARGA: GymSoftApp / routines
+CARGA: GymSoftApp / classes
+CARGA: GymSoftApp / staff
+CARGA: GymSoftApp / marketing
+CARGA: GymSoftApp / settings
+CARGA: ReceptionApp / access
+CARGA: ReceptionApp / clients
+CARGA: ReceptionApp / shop
+PASS: 14 páginas con consultas fuera de Tk; recepción sin Dashboard; respuestas vigentes, ráfagas agrupadas, modales y selección conservados, barras condicionales y tarjetas reutilizadas.
+MEDICIÓN LOCAL: despacho de consulta 0.12 ms; tabla sin cambios de 1.000 filas 3.79 ms; 0 borrados y 0 inserciones.

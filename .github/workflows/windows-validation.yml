@@ -9,6 +9,7 @@ on:
       - 'GymSoft_*/**'
       - 'common/**'
       - 'backend/**'
+      - 'tools/windows_frozen_probe.py'
 
 permissions:
   contents: write
@@ -67,18 +68,39 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cmd /d /c PREPARAR_PRUEBAS.bat
           exit $LASTEXITCODE
+      - name: Prepare the desktop for medium and large window checks
+        run: |
+          New-Item -ItemType Directory -Force salida\validacion | Out-Null
+          Start-Transcript -Path salida\validacion\display-setup.log
+          try {
+            & powershell.exe -NoProfile -NonInteractive -Command "Set-DisplayResolution -Width 1920 -Height 1080 -Force -ErrorAction Stop"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            & .\.venv\Scripts\python.exe -c "import tkinter as tk,json; from responsive_ui import enable_dpi_awareness,work_area; enable_dpi_awareness(); r=tk.Tk(); area=work_area(r); print('Test work area:',area); open('salida/validacion/display-windows.json','w').write(json.dumps({'work_area':area,'scope':'Actual Windows desktop geometry for UI tests'})); r.destroy(); assert area[2]>=1600 and area[3]>=1000, 'The Windows desktop cannot display the required large test windows.'"
+            exit $LASTEXITCODE
+          } finally {
+            Stop-Transcript
+          }
+      - name: Recheck the failing dashboard layout first
+        run: |
+          & .\.venv\Scripts\python.exe tests/layout_consistency_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\layout-preflight.log
+          exit $LASTEXITCODE
       - name: Run the complete offline validation
         run: |
           & .\.venv\Scripts\python.exe run_validation.py
           exit $LASTEXITCODE
       - name: Freeze and run a Windows component probe
         run: |
-          & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths . --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon icono.ico --add-data "icono.ico;." --add-data "icono_recepcion.ico;." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & .\.venv\Scripts\python.exe -c "from build_windows import verify_executable_icon; verify_executable_icon('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe')"
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json
-          exit $LASTEXITCODE
+          Start-Transcript -Path salida\validacion\frozen-probe.log
+          try {
+            & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths . --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon icono.ico --add-data "icono.ico;." --add-data "icono_recepcion.ico;." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            & .\.venv\Scripts\python.exe -c "from pathlib import Path; from build_windows import verify_executable_icon; verify_executable_icon(Path('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe'))"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json
+            exit $LASTEXITCODE
+          } finally {
+            Stop-Transcript
+          }
       - name: Check the final release remains blocked without acceptance
         run: |
           New-Item -ItemType Directory -Force salida\validacion | Out-Null

@@ -14,6 +14,9 @@ import realtime
 import supabase
 from PIL import Image, ImageTk
 from desktop_ui import configure_dark_styles, decorate_window
+import app
+import reception_app
+from product_config import PRODUCT_NAME
 
 
 def main():
@@ -21,6 +24,15 @@ def main():
     parser.add_argument('--report', type=Path, required=True)
     args = parser.parse_args()
     assert sys.platform == 'win32', 'This probe must run on Windows.'
+    assert callable(app.GymSoftApp) and callable(reception_app.ReceptionApp)
+    if PRODUCT_NAME == 'Atlantic Gym':
+        import owner_panel
+        assert callable(owner_panel.OwnerPanel)
+    else:
+        import serial
+        from serial.tools import list_ports
+        from door_access import RELAY_ON, RELAY_OFF
+        assert len(RELAY_ON) == len(RELAY_OFF) == 4
     root = tk.Tk()
     root.withdraw()
     try:
@@ -33,7 +45,8 @@ def main():
         assert ZoneInfo('America/Bogota').key == 'America/Bogota'
         report = {'status': 'PASS', 'python': sys.version, 'process_bits': struct.calcsize('P') * 8,
                   'tk': root.tk.call('info', 'patchlevel'), 'frozen': bool(getattr(sys, 'frozen', False)),
-                  'checks': ['Tk and Atlantic dark styles', 'Role window icons', 'Pillow ImageTk',
+                  'checks': ['Frozen Admin and Reception module imports', 'Product-specific module imports',
+                             'Tk and Atlantic dark styles', 'Role window icons', 'Pillow ImageTk',
                              'Supabase/realtime/httpx imports', 'Excel import', 'SSL certificates', 'Bogota timezone'],
                   'scope': 'Windows frozen component probe only. No account, hardware, installer or final release acceptance.'}
         assert report['frozen'], 'Run the generated Windows probe executable.'

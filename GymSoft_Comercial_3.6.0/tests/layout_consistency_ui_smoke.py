@@ -41,7 +41,9 @@ def main():
                             assert {(int(v.master.grid_info()['row']), int(v.master.grid_info()['column'])) for v in page.ticket_dashboard.counts.values()} == {(r, c) for r in range(2) for c in range(3)}
                             assert {int(card.grid_info()['row']) for card in page.birthday_cards.values()} == {0}
                             if size != '900x620':
-                                assert not root.content_area._bars[1], f'Dashboard no cabe en ventana mediana: {factor}, {size}, mínimo={layout.minimum_layout_width(root.content_area.body)}'
+                                assert not root.content_area._bars[1], (f'Dashboard no cabe en ventana mediana: {factor}, solicitado={size}, '
+                                    f'real={root.winfo_geometry()}, monitor={layout.work_area(root)}, '
+                                    f'visor={root.content_area.canvas.winfo_width()}, mínimo={layout.minimum_layout_width(root.content_area.body)}')
                             checks += 6
                         else:
                             page._render_refresh({
