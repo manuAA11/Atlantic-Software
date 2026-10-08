@@ -1,0 +1,9 @@
+ZTATTUZ 3.6.0 — Corrección WinError 32 (29 septiembre 2026)
+Extrae este paquete en una carpeta NUEVA. No lo mezcles con la anterior.
+Ejecuta CREAR_INSTALADORES.bat desde esa carpeta nueva.
+Incluye juntos el módulo door_access.py corregido y su prueba de regresión.
+La conexión SQLite se cierra al guardar, detectar duplicados y fallar.
+No requiere SQL nuevo ni conectar el lector o el relé para compilar.
+117 pruebas Python aprobadas en Linux; compilación Windows pendiente.
+El informe original VERIFICACION_3.6.0 describe la entrega anterior;
+esta corrección añade una prueba y modifica únicamente el cierre SQLite.

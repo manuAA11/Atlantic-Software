@@ -1,0 +1,391 @@
+Continúa trabajando sobre el paquete recuperado de Multi-Gym y toma este mensaje como la instrucción definitiva para cerrar esta actualización.
+NO vuelvas a implementar desde cero funcionalidades que ya existen. NO reviertas cambios recuperados. NO generes instaladores finales hasta completar todas las validaciones indicadas abajo.
+El objetivo ahora es:
+RECUPERAR → VERIFICAR → COMPLETAR → UNIFICAR VISUALMENTE → PROBAR → ENTREGAR LOS DOS PROGRAMAS COMPLETOS.
+1. ESTA ACTUALIZACIÓN APLICA A LOS DOS PROGRAMAS
+Todo cambio de esta actualización que corresponda funcionalmente debe revisarse e implementarse en ambos productos:
+- ZTATTUZ
+- Gym Soft / Atlantic Gym comercial
+No quiero que una corrección quede solamente en uno de los productos.
+Revisa explícitamente las diferencias entre ambas bases de código y confirma que las funciones comunes estén sincronizadas.
+Si una función es exclusiva de uno de los productos, documenta claramente por qué.
+2. ATLANTIC UI KIT ES OBLIGATORIO A PARTIR DE AHORA
+Desde esta actualización, debes utilizar SIEMPRE la identidad visual oficial de Atlantic Tech Software.
+No quiero que sigan apareciendo componentes visuales antiguos, inconsistentes o diseñados independientemente.
+Usa el Atlantic UI Kit ya aprobado como sistema visual base.
+El Atlantic UI Kit debe derivarse del diseño actual aprobado de Gym Soft e incluir de manera consistente:
+- sidebar;
+- tarjetas;
+- tablas;
+- formularios;
+- botones;
+- modales;
+- alertas;
+- badges/estados;
+- espaciado;
+- jerarquía visual;
+- componentes de navegación;
+- inputs;
+- menús;
+- diálogos de confirmación;
+- pantallas de configuración;
+- login;
+- splash;
+- branding.
+La apariencia debe ser:
+- minimalista;
+- limpia;
+- moderna;
+- profesional;
+- fácil de utilizar;
+- consistente entre productos.
+Usa las fuentes nativas del sistema:
+- macOS: system/SF;
+- Windows: Segoe UI/system.
+No distribuyas fuentes propietarias.
+3. NUEVO BRANDING E ICONOS ATLANTIC
+Debes aplicar la identidad aprobada de Atlantic Tech Software al producto REAL, no solamente a documentación o material promocional.
+Usa los iconos oficiales nuevos que ya fueron aprobados y/o están presentes en los recursos del proyecto.
+En particular, conserva correctamente la diferenciación visual aprobada para:
+- Atlantic Gym Administrador;
+- Atlantic Gym Recepción.
+Usa los colores e iconos oficiales existentes.
+NO inventes iconos nuevos si los oficiales ya están disponibles.
+NO reemplaces assets aprobados por placeholders.
+Revisa que la identidad esté aplicada donde corresponda:
+- ejecutables;
+- ventana principal;
+- login;
+- splash;
+- sidebar;
+- About/Acerca de;
+- instaladores futuros;
+- accesos directos;
+- iconos de ventana;
+- branding interno.
+La firma de Atlantic Tech debe mantenerse discretamente donde corresponda:
+© Atlantic Tech Software — All rights reserved. By Manuel Cuellar
+4. FUNCIONALIDADES RECUPERADAS QUE DEBES CONSERVAR
+Debes preservar y verificar como mínimo:
+- congelación de membresía por 7 días;
+- extensión correcta de vencimiento;
+- máximo una congelación por membresía salvo excepción administrativa;
+- motivo obligatorio para excepciones;
+- bloqueo de acceso durante congelación;
+- reactivación correcta al terminar la congelación;
+- tiqueteras conservan sus entradas;
+- una sola entrada descontada por día;
+- extensión correcta de vigencia cuando corresponda;
+- timezone correcto;
+- America/Bogota para ZTATTUZ;
+- corrección de horas falsas 00:00;
+- logs;
+- scheduler;
+- eventos;
+- importación Excel sin inventar horas;
+- Marketing;
+- automatizaciones;
+- recordatorios;
+- chatbot;
+- WhatsApp;
+- pagos online/Wompi;
+- estados provenientes del servidor;
+- bloqueo del relé basado en estado real del servidor.
+No dupliques en la UI cálculos que ya realiza correctamente el servidor.
+Para congelación, vigencia, acceso, vencimientos y otros estados sensibles:
+EL SERVIDOR ES LA FUENTE DE VERDAD.
+5. WHATSAPP NO PUEDE QUEDAR A MEDIAS
+Quiero que la implementación de WhatsApp quede TERMINADA.
+No considero terminado:
+- botones que no hacen nada;
+- mocks;
+- placeholders;
+- funciones comentadas;
+- endpoints sin conectar;
+- pantallas sin backend;
+- respuestas simuladas presentadas como reales.
+Debes terminar el flujo completo de WhatsApp que ya estaba siendo desarrollado.
+Revisa:
+- configuración;
+- autenticación;
+- variables de entorno;
+- almacenamiento seguro de credenciales;
+- envío de mensajes;
+- recepción de mensajes;
+- webhooks;
+- asociación de mensajes con clientes;
+- logs;
+- manejo de errores;
+- reintentos;
+- estados de entrega cuando estén disponibles;
+- plantillas cuando corresponda;
+- automatizaciones;
+- recordatorios;
+- vencimientos;
+- congelaciones;
+- links de pago;
+- seguridad;
+- idempotencia.
+6. CHATBOT DE WHATSAPP DEBE QUEDAR COMPLETO
+No quiero solamente “integración de WhatsApp”.
+El chatbot también debe quedar funcional.
+Debe completar los flujos que ya estaban definidos para permitir al cliente consultar información correspondiente mediante WhatsApp.
+Revisa especialmente:
+- identificación segura del cliente;
+- búsqueda por los datos permitidos;
+- consulta de estado de membresía;
+- fecha de vencimiento;
+- estado de congelación;
+- tiquetera/entradas cuando corresponda;
+- próximos pagos;
+- generación/envío de link de pago;
+- respuestas claras;
+- manejo de cliente no encontrado;
+- manejo de datos ambiguos;
+- protección de información;
+- logs;
+- errores;
+- mensajes desconocidos;
+- fallback;
+- automatizaciones.
+El chatbot debe consultar datos REALES del backend.
+NO dupliques información en otra base local para responder.
+7. AUTOMATIZACIONES DE WHATSAPP
+Termina las automatizaciones que estaban en desarrollo.
+Incluye y verifica, según la configuración existente:
+- recordatorios antes del vencimiento;
+- recordatorio el día del vencimiento;
+- recordatorios posteriores cuando corresponda;
+- mensajes configurables;
+- congelaciones;
+- vencimiento modificado por congelación;
+- links de pago;
+- scheduler;
+- timezone del gimnasio;
+- prevención de mensajes duplicados;
+- idempotencia;
+- auditoría.
+Un job que se ejecute dos veces NO debe enviar dos mensajes al mismo cliente cuando la operación deba ocurrir una sola vez.
+8. WOMPI / PAGOS ONLINE DEBE QUEDAR TERMINADO
+La integración de Wompi tampoco puede quedar como código parcial.
+Revisa y completa:
+- creación de links/transacciones;
+- referencia única;
+- asociación con cliente;
+- asociación con membresía/factura correspondiente;
+- estado pendiente;
+- aprobado;
+- rechazado;
+- cancelado cuando aplique;
+- webhook;
+- validación de eventos;
+- seguridad;
+- idempotencia;
+- prevención de pagos duplicados;
+- logs;
+- actualización automática de estado;
+- activación/renovación solamente cuando el pago sea válido;
+- recibo/registro;
+- auditoría.
+WhatsApp + chatbot + Wompi deben trabajar juntos correctamente.
+Ejemplo esperado:
+Cliente pregunta por vencimiento
+→ chatbot consulta backend
+→ responde estado real
+→ ofrece opción de pago
+→ genera link Wompi
+→ cliente paga
+→ Wompi confirma mediante webhook
+→ backend valida
+→ membresía/pago se actualiza
+→ WhatsApp puede confirmar el pago.
+Todo debe utilizar la zona horaria correcta.
+9. NO CONSIDERES WHATSAPP/WOMPI TERMINADOS SIN PRUEBA END-TO-END
+Lleva la implementación hasta el máximo punto posible automáticamente.
+Si para completar una prueba real necesitas:
+- cuenta Meta;
+- número de WhatsApp;
+- token;
+- App Secret;
+- configuración de webhook;
+- cuenta Wompi;
+- llaves sandbox/producción;
+- Supabase;
+- autorización externa;
+dime EXACTAMENTE qué dato o acción necesito realizar.
+No me digas simplemente “falta configurar WhatsApp”.
+Quiero instrucciones concretas como:
+Necesito que abras X → configures Y → copies Z → me des este valor.
+Después continúa desde ahí.
+NO marques WhatsApp, chatbot o Wompi como terminados hasta que exista una prueba end-to-end satisfactoria en el entorno disponible.
+10. RECUPERACIÓN DEL ÚLTIMO ESTADO
+Compara:
+1. ZIP original recuperado;
+2. paquete reconstruido;
+3. historial disponible;
+4. archivos parciales;
+5. evidencia de ejecuciones anteriores;
+6. cambios posteriores registrados.
+Confirma que no se haya perdido ningún cambio importante del último entorno remoto.
+Si existe evidencia suficiente de un cambio perdido, recupéralo.
+Si no puedes reconstruirlo con seguridad, NO inventes.
+Repórtalo.
+11. REGRESIÓN COMPLETA EN LOS DOS PRODUCTOS
+Ejecuta TODAS las pruebas disponibles.
+No te limites a las 56 pruebas actualmente mencionadas.
+Antes de la pérdida del entorno existían más pruebas/regresiones ejecutadas, por lo que debes localizar las suites existentes y volver a ejecutarlas.
+Revisa en ambos productos:
+- backend;
+- clientes;
+- membresías;
+- mensualidades;
+- tiqueteras;
+- congelación;
+- fechas;
+- timezone;
+- logs;
+- scheduler;
+- importación;
+- permisos;
+- administración;
+- recepción;
+- WhatsApp;
+- chatbot;
+- automatizaciones;
+- Wompi;
+- acceso;
+- relé;
+- lector;
+- UI;
+- branding;
+- Atlantic UI Kit.
+Corrige las regresiones encontradas.
+12. PRUEBAS DE FECHA/HORA
+Revisa cuidadosamente:
+- inicio de congelación;
+- último día congelado;
+- reactivación;
+- extensión de vencimiento;
+- medianoche;
+- cambio de día;
+- timezone;
+- scheduler;
+- timestamps almacenados;
+- timestamps mostrados;
+- importaciones;
+- recordatorios;
+- logs;
+- chatbot;
+- Wompi;
+- webhooks.
+Los datos deben almacenarse y convertirse correctamente.
+No dependas del reloj local del computador para lógica sensible cuando el servidor ya puede ser la fuente de tiempo.
+13. HARDWARE
+Verifica por software todo lo posible sobre:
+- lector;
+- detección automática;
+- código;
+- huella;
+- relé;
+- apertura;
+- denegación;
+- congelación;
+- permisos;
+- errores de conexión.
+Las pruebas físicas reales se harán en Windows con el hardware conectado.
+Si la prueba requiere hardware real, deja un procedimiento exacto para ejecutarla.
+14. NO GENERES BUILDS FINALES TODAVÍA
+Primero completa:
+- código;
+- UI Atlantic;
+- branding;
+- iconos;
+- WhatsApp;
+- chatbot;
+- automatizaciones;
+- Wompi;
+- regresiones;
+- sincronización entre productos;
+- correcciones.
+Después de que TODO lo verificable esté terminado y las pruebas pasen, prepara la entrega completa.
+15. ENTREGA FINAL QUE NECESITO
+Cuando la actualización esté realmente terminada, necesito que me entregues LOS ARCHIVOS COMPLETOS DE LOS DOS PROGRAMAS, no solamente parches ni archivos modificados.
+Genera paquetes completos separados y claramente identificados para:
+ZTATTUZ
+y
+Gym Soft / Atlantic Gym
+Cada paquete debe contener todo lo necesario para continuar con:
+- generación de .exe;
+- instaladores;
+- actualizadores;
+- pruebas Windows;
+- distribución.
+Incluye:
+- código fuente completo;
+- assets;
+- iconos oficiales;
+- configuración;
+- requirements/dependencias;
+- migraciones;
+- scripts;
+- tests;
+- documentación necesaria;
+- .env.example;
+- instrucciones de build;
+- versión;
+- changelog;
+- cualquier recurso requerido.
+NO incluyas:
+- secretos;
+- tokens;
+- contraseñas;
+- claves privadas.
+Verifica que los paquetes puedan abrirse de manera independiente y que no dependan accidentalmente de archivos ubicados fuera de ellos.
+16. NO ME ENTREGUES SOLAMENTE UN DIFF
+Al terminar quiero paquetes completos.
+No quiero tener que reconstruir manualmente:
+- qué archivo es nuevo;
+- cuál reemplaza cuál;
+- qué carpeta falta;
+- qué versión corresponde.
+Prepara una entrega limpia y completa.
+17. CRITERIO PARA DECIR “TERMINADO”
+NO digas que la actualización está terminada simplemente porque el código compila.
+Solamente considera terminado cuando:
+- ambos programas contienen los cambios correspondientes;
+- Atlantic UI Kit está aplicado;
+- branding Atlantic está aplicado;
+- iconos oficiales están aplicados;
+- congelación funciona;
+- tiqueteras funcionan;
+- timezone/logs funcionan;
+- scheduler funciona;
+- WhatsApp funciona;
+- chatbot funciona;
+- automatizaciones funcionan;
+- Wompi funciona;
+- pruebas automáticas pasan;
+- no existen regresiones conocidas críticas;
+- los archivos completos están preparados para entrega.
+Si existe un bloqueo externo que impide validar una integración real, indícame exactamente qué debo hacer y continúa con todo lo demás.
+18. INFORME FINAL
+Cuando realmente hayas terminado, entrégame:
+ACTUALIZACIÓN COMPLETADA
+ZTATTUZ — ESTADO
+GYM SOFT / ATLANTIC GYM — ESTADO
+ATLANTIC UI KIT / BRANDING
+ICONOS
+CONGELACIÓN / TIQUETERAS
+TIMEZONE / LOGS / SCHEDULER
+WHATSAPP
+CHATBOT
+AUTOMATIZACIONES
+WOMPI
+PRUEBAS EJECUTADAS Y RESULTADOS
+PRUEBAS FÍSICAS PENDIENTES
+BLOQUEOS EXTERNOS, SI EXISTEN
+PAQUETE COMPLETO ZTATTUZ
+PAQUETE COMPLETO GYM SOFT / ATLANTIC GYM
+INSTRUCCIONES PARA GENERAR EXE / INSTALADORES
+No me entregues los paquetes finales hasta haber ejecutado primero todas las validaciones que puedas realizar.
+Empieza ahora desde el estado recuperado y continúa trabajando hasta completar todo lo anterior. No te detengas después de hacer solamente un análisis o un plan.

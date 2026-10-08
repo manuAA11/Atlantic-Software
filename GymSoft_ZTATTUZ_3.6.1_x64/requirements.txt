@@ -1,0 +1,8 @@
+supabase==2.31.0
+Pillow==12.3.0
+openpyxl==3.1.5
+tzdata==2026.3
+pyserial==3.5
+
+# Versión conservada entre las ediciones x86 y x64.
+cryptography==48.0.1

@@ -1,0 +1,8 @@
+supabase==2.31.0
+Pillow==12.3.0
+openpyxl==3.1.5
+tzdata==2026.3
+pyserial==3.5
+
+# Última versión con wheel win32 resuelta para esta entrega.
+cryptography==48.0.1

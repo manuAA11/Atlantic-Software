@@ -1,0 +1,22 @@
+{
+  "commercial": {
+    "audit_rows": 30,
+    "audit_hash": "7d9bd2600866575504877e5557019ab9",
+    "memberships_hash": "46ba5388220bcd069c6a8e800c8dcc8e",
+    "checkins_hash": "686744624e7e8250b022d5a7dc308aa1",
+    "colombia_example": "07/10/2026 21:30:00",
+    "timezone_column": true,
+    "freezes_installed": false
+  },
+  "ztattuz": {
+    "audit_rows": 1304,
+    "audit_hash": "df637c97043372374ca5ff82b6cc2ea1",
+    "memberships_hash": "dc7dad17d6633f0682a9f51df750a09b",
+    "checkins_hash": "1b1b171512276c6b3d49af841ee8cede",
+    "colombia_example": "07/10/2026 21:30:00",
+    "timezone_column": false,
+    "freezes_installed": false
+  },
+  "history_unchanged": true,
+  "verification": "Read-only checksums matched the baseline. No new remote migration installed at this check."
+}

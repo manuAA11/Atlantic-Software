@@ -1,0 +1,6 @@
+Gym soft Comercial 3.6.0
+
+Extrae en una carpeta nueva y lee LEEME_ACTUALIZAR_3.6.0.md.
+Ejecuta CREAR_INSTALADORES.bat para generar el instalador de Windows.
+No necesitas conectar el lector ni el relé durante la compilación.
+No necesitas SQL nuevo para actualizar desde 3.5.3.

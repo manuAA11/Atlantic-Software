@@ -1,0 +1,336 @@
+{
+  "version": "3.6.0",
+  "edition": "ZTATTUZ",
+  "checked_at": "2026-09-27T18:37:40.294637+00:00",
+  "environment": "Linux, Tk 9.0, PostgreSQL local; DigitalPersona y LCUS-1 simulados",
+  "validation": {
+    "version": "3.6.0",
+    "started_at": "2026-09-27T18:30:42.156269+00:00",
+    "platform": "linux",
+    "scope": "all",
+    "status": "PASS",
+    "stages": [
+      {
+        "name": "python",
+        "status": "PASS",
+        "seconds": 14.92,
+        "log": "python.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contratos_extraidos",
+        "status": "PASS",
+        "seconds": 0.57,
+        "log": "contratos_extraidos.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprints",
+        "status": "PASS",
+        "seconds": 1.7,
+        "log": "fingerprints.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "upgrade_compatibility",
+        "status": "PASS",
+        "seconds": 1.85,
+        "log": "upgrade_compatibility.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "security",
+        "status": "PASS",
+        "seconds": 1.77,
+        "log": "security.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "seconds": 1.65,
+        "log": "contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_plans",
+        "status": "PASS",
+        "seconds": 1.82,
+        "log": "ticket_plans.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_followup",
+        "status": "PASS",
+        "seconds": 1.85,
+        "log": "ticket_followup.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "recorrido_huellas",
+        "status": "PASS",
+        "seconds": 14.38,
+        "log": "recorrido_huellas.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "simulacion_gimnasio",
+        "status": "PASS",
+        "seconds": 12.95,
+        "log": "simulacion_gimnasio.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "door_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.45,
+        "log": "door_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "dialog_design_ui_smoke",
+        "status": "PASS",
+        "seconds": 15.5,
+        "log": "dialog_design_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ui_wait_smoke",
+        "status": "PASS",
+        "seconds": 0.27,
+        "log": "ui_wait_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "access_layout_ui_smoke",
+        "status": "PASS",
+        "seconds": 20.1,
+        "log": "access_layout_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "client_fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 7.26,
+        "log": "client_fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.97,
+        "log": "fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "windows_ui_smoke",
+        "status": "PASS",
+        "seconds": 1.2,
+        "log": "windows_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "responsive_ui_smoke",
+        "status": "PASS",
+        "seconds": 58.33,
+        "log": "responsive_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "biometric_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.92,
+        "log": "biometric_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_ui_smoke",
+        "status": "PASS",
+        "seconds": 6.64,
+        "log": "ticket_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "performance_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.25,
+        "log": "performance_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "popdown_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.91,
+        "log": "popdown_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_modes_ui_smoke",
+        "status": "PASS",
+        "seconds": 47.4,
+        "log": "layout_modes_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "review_ui_smoke",
+        "status": "PASS",
+        "seconds": 5.04,
+        "log": "review_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_consistency_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.39,
+        "log": "layout_consistency_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      }
+    ]
+  },
+  "python_tests": 116,
+  "changes_from_3_5_3": {
+    "GUIA_PUERTA_LCUS1.md": {
+      "sha256": "4ac7d3eeb34006c4bd5a18461ffed69d4f9b35d07064689dcfe14c4b480cc334",
+      "previous_sha256": null
+    },
+    "LEEME_ACTUALIZAR_3.6.0.md": {
+      "sha256": "fdad23a576827ef04473de809e6d841a49b2565b96bcd1be33cfdd5c7b4bd89b",
+      "previous_sha256": null
+    },
+    "LEEME_PRIMERO.txt": {
+      "sha256": "08185465a0d99b96a4ede4783224cb30ab37785f99f0fa8247054dca803d4a4a",
+      "previous_sha256": "d40eb6b0c124eb51450206cb2bf4ce48f7d9224cb6b1248e41b7aa8a86ef2b69"
+    },
+    "LEER_PRIMERO.txt": {
+      "sha256": "08185465a0d99b96a4ede4783224cb30ab37785f99f0fa8247054dca803d4a4a",
+      "previous_sha256": "1c931a5ecf0f8bcff9def27489d7d3fb7f86217811686ad852bb9e94f2eb4c49"
+    },
+    "VERIFICACION_3.6.0.json": {
+      "sha256": "e9405a6e1c4eb1072b0a7888a58c49871bd312b5df004077d0670c74b3a9225d",
+      "previous_sha256": null
+    },
+    "VERIFICACION_3.6.0.md": {
+      "sha256": "e8a59f490d276672218ea66e58cd4b1349a94bf3909569a76a0b044f459ea9ea",
+      "previous_sha256": null
+    },
+    "app.py": {
+      "sha256": "63ee3080fefc25e5bb51bba877cf89499707735c3a557849e05fa9c128774adc",
+      "previous_sha256": "9ed11f1e309b13c8d276383167f41168328aa310e0603a50a143bd653c941d82"
+    },
+    "biometric.py": {
+      "sha256": "cc5d680eef1d52ffd0ca40523880b8774a04f0506ac993a75407dadd52b8baa0",
+      "previous_sha256": "968726dff548f1ca8fa258346dd0d348d8e2bb74d2147f1d2da1bbacc51c3069"
+    },
+    "build_windows.py": {
+      "sha256": "dc9fd53b86e49aca933f26f9c1be6d7300c874f2b3aa53a9b5a76b7ba9246c93",
+      "previous_sha256": "702a93857e103b267bd2878e6e2fffaee7c5e58eee991e7b0c56f8a92258d6f3"
+    },
+    "desktop_ui.py": {
+      "sha256": "23c8eef8e3e7a672c0c12b9876f5ee71bc455beb28ef7941cab5074c1689534c",
+      "previous_sha256": "ade0af7ea5cafda4ccd0d4e0f9984ba98d0e998cbe7b919bd569b80adc3bcb80"
+    },
+    "diagnostico.py": {
+      "sha256": "f6b429bcdcaea7779b57dd7be51bb4b6ed923587419f6cab79d2f6baac6d626e",
+      "previous_sha256": "0c73a38e1781058b2a145984030e8a9d53275a5ee8497bc551abb3a96074a434"
+    },
+    "door_access.py": {
+      "sha256": "bac1a8ea8c29a3ff0ce78d9bb1440172d7bb2282861849ebef17029e50a31cc2",
+      "previous_sha256": null
+    },
+    "door_ui.py": {
+      "sha256": "e78b1e9cdd2cdce36386fd48f8da7e74d612983270fa45147f7243481442a324",
+      "previous_sha256": null
+    },
+    "fingerprint_ui.py": {
+      "sha256": "3ae6afef987bdea9d86619dd7dc4efcea4ca7f4e53c66c07e8764d9bd525ee9e",
+      "previous_sha256": "b2e7961032cebd2e82d0cc2409ffeb82eeb02c947ac9d1174134b8068acee0e6"
+    },
+    "instalador_admin.iss": {
+      "sha256": "d61fab1d2c330726a2f0204ac7cf3f096042b89627ac8cde18b53498bd54897a",
+      "previous_sha256": "9d4461145a7f901fce22aee5d52742c4120e6524fb7db30f14f18ab8605be46a"
+    },
+    "instalador_completo.iss": {
+      "sha256": "a49e779e20e48caa2e007c9f13d0d79d84bd7668051b5bde976d8fe7784c5863",
+      "previous_sha256": "6b98372886f4fd67d3e96036e38d5f7ada4b44f1ce4e0d52a2605177b0d69755"
+    },
+    "instalador_recepcion.iss": {
+      "sha256": "bcb898b579c3d6e0ccaa04560d6107d00ab8a965d0148047ef63ca5cf02a4ae0",
+      "previous_sha256": "6513183d8234b7d8dea3708473c58c7a073bb7334f509596f8f8e36de0fbf803"
+    },
+    "product_config.py": {
+      "sha256": "3d1073079446c116acc59370b90da7c866238bddaa065d78cb286dbad23155b1",
+      "previous_sha256": "4e9765ad5ee92d4762353c6469954f3a69b6025144e76b5fe5d5d9c0ff169a0b"
+    },
+    "reception_app.py": {
+      "sha256": "7ca79cadfa8924f36be6aa421cfb24745f3fc5e0e21c5fe6190119ff0711497d",
+      "previous_sha256": "fc68aca3f6ee389cdf515c9ca1711b52d83d4fef97de872c48bc4ae7bdca17b1"
+    },
+    "requirements.txt": {
+      "sha256": "7f3b08b23d8757a0b60bb7209daa8a47c675966e39782c419cb54af16117f7cb",
+      "previous_sha256": "967d346e2f0b87f715f4a3c5f9997ac96662d8df36b0b2dbe492486ca25e60dd"
+    },
+    "run_validation.py": {
+      "sha256": "c997bb5ec1357a7afa9fc00256346d10c2f5f795efc864485bb90bb4bb17d083",
+      "previous_sha256": "aef24bf7c5d461c727286e5af4d8cfd244fd39fd980c5a7551c7b39a945b2ad7"
+    },
+    "runtime_cloud.py": {
+      "sha256": "10df343703e8e6a2593d208cdd81a964bb22a05a79e7837b60f186b93ef5eaae",
+      "previous_sha256": "4bbe0b45ef1a0eea658b1269113e1e1bd3b2c62c40961a9c52a8afe7ab8d5b2f"
+    },
+    "tests/dialog_design_ui_smoke.py": {
+      "sha256": "5e3ed108725bb292797d75df00a3bbff274b6e8dd3f34d5cd27caa713972c094",
+      "previous_sha256": null
+    },
+    "tests/door_ui_smoke.py": {
+      "sha256": "4005faf0f4701479e38ca5f3a06b71da3266a01ad82dc3d6d54292cc47d06d21",
+      "previous_sha256": null
+    },
+    "tests/fingerprint_journey.py": {
+      "sha256": "bd18aa2e9bd23791d46a030de85335bff341b4fe1b787b00c9cd8fd4159b7028",
+      "previous_sha256": "e827ea6789dd61623fe7aa45ca1fecc46b79d34d47304df00fef75da8f927359"
+    },
+    "tests/test_door_access.py": {
+      "sha256": "46913907fde35148f11fa043ee1ba3c2d37271d7d718f87d122f3e7480fbb087",
+      "previous_sha256": null
+    },
+    "ui_visuals.py": {
+      "sha256": "c8ef7f39fc94fba21357e912527bb18864706f170c20dafdc85d8296639b27df",
+      "previous_sha256": null
+    }
+  },
+  "live_database_changed": false,
+  "sql_changed": false,
+  "digitalpersona_driver_version_changed": false,
+  "driver_cab_restored_from_verified_bundle": false,
+  "door_feature": true,
+  "hardware_required_for_build": false,
+  "pending": [
+    "Compilar e instalar en Windows 10/11 de 64 bits",
+    "Validar el lector, el relé CH340 LCUS-1, el electroimán y la salida física en el gimnasio"
+  ]
+}

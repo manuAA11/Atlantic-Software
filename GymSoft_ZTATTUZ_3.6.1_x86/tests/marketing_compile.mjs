@@ -1,0 +1,1 @@
+import {database,root} from './migrations.mjs';import fs from 'node:fs';const d=await database();try{await d.exec(fs.readFileSync(root+'/ACTUALIZAR_MARKETING.sql','utf8'));console.log('MARKETING SQL COMPILES');}catch(e){console.error(e.message,e.where||'',e.detail||'');process.exitCode=1;}finally{await d.close()}

@@ -1,0 +1,137 @@
+{
+  "edition": "GymSoft_Comercial_3.6.0",
+  "scope": "data",
+  "started_at": "2026-10-08T21:54:51.456785+00:00",
+  "stages": [
+    {
+      "name": "python",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 7.08,
+      "timed_out": false,
+      "callback_failure": true
+    },
+    {
+      "name": "time_pipeline",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.52,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "membership_freezes",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 5.32,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "audit_logs",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.01,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_contracts",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 6.98,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "daily_tickets",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 7.1,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprints",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 7.37,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "security",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 7.39,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contracts",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 6.76,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "owner_flows",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 9.01,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "owner_editor",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 10.79,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_plans",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 8.75,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_followup",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 9.75,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_backend",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 1.04,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "recorrido_huellas",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 2.0,
+      "timed_out": false,
+      "callback_failure": true
+    },
+    {
+      "name": "simulacion_gimnasio",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 23.27,
+      "timed_out": false,
+      "callback_failure": false
+    }
+  ],
+  "note": "Existing source tests. Contracts fixture as supplied; no regeneration. Offline PGlite and simulated hardware; no Windows or external-service verification.",
+  "status": "FAIL"
+}

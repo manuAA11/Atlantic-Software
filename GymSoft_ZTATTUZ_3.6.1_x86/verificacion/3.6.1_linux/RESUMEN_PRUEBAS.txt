@@ -1,0 +1,31 @@
+Gym soft 3.6.1 · PASS
+Alcance: all · Plataforma: linux
+PASS: python (15.1 s) · python.log
+PASS: contratos_extraidos (0.5 s) · contratos_extraidos.log
+PASS: fingerprints (1.7 s) · fingerprints.log
+PASS: upgrade_compatibility (1.8 s) · upgrade_compatibility.log
+PASS: security (1.8 s) · security.log
+PASS: contracts (1.7 s) · contracts.log
+PASS: ticket_plans (1.8 s) · ticket_plans.log
+PASS: ticket_followup (1.9 s) · ticket_followup.log
+PASS: recorrido_huellas (16.7 s) · recorrido_huellas.log
+PASS: simulacion_gimnasio (12.9 s) · simulacion_gimnasio.log
+PASS: door_ui_smoke (8.4 s) · door_ui_smoke.log
+PASS: dialog_design_ui_smoke (15.4 s) · dialog_design_ui_smoke.log
+PASS: ui_wait_smoke (0.3 s) · ui_wait_smoke.log
+PASS: access_layout_ui_smoke (20.0 s) · access_layout_ui_smoke.log
+PASS: client_fingerprint_ui_smoke (7.3 s) · client_fingerprint_ui_smoke.log
+PASS: fingerprint_ui_smoke (9.1 s) · fingerprint_ui_smoke.log
+PASS: windows_ui_smoke (1.2 s) · windows_ui_smoke.log
+PASS: responsive_ui_smoke (58.4 s) · responsive_ui_smoke.log
+PASS: biometric_ui_smoke (3.9 s) · biometric_ui_smoke.log
+PASS: ticket_ui_smoke (6.6 s) · ticket_ui_smoke.log
+PASS: performance_ui_smoke (8.2 s) · performance_ui_smoke.log
+PASS: popdown_ui_smoke (3.8 s) · popdown_ui_smoke.log
+PASS: layout_modes_ui_smoke (47.3 s) · layout_modes_ui_smoke.log
+PASS: review_ui_smoke (5.1 s) · review_ui_smoke.log
+PASS: layout_consistency_ui_smoke (8.4 s) · layout_consistency_ui_smoke.log
+
+Estas pruebas usan datos ficticios y PostgreSQL local.
+Pendiente de comprobación manual: instaladores, hardware del lector, correo de acceso,
+conexión real entre equipos y envío de WhatsApp. Un PASS no garantiza ausencia de todo bug.

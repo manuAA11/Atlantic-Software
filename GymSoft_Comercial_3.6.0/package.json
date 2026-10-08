@@ -1,0 +1,12 @@
+{
+  "name": "gymsoft-commercial-security-tests",
+  "private": true,
+  "version": "3.4.5",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/security.mjs && node tests/contracts.mjs && node tests/owner_flows.mjs && node tests/owner_editor.mjs && node tests/ticket_plans.mjs && node tests/ticket_followup.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8"
+  }
+}

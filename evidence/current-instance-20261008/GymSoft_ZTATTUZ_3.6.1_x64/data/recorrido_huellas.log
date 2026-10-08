@@ -1,0 +1,98 @@
+LECTOR SIMULADO: U.are.U 4500 / CloudDatabase
+  OK: Modelo detectado por el adaptador y mostrado en el estado
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Registrar y comprobar la huella no abre la puerta
+  OK: Entrada biométrica mensual
+  OK: Puerta automática: mensual
+  OK: Entrada biométrica tiquetera
+  OK: Puerta automática: tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Puerta automática: sinplan
+  OK: Entrada biométrica inactivo
+  OK: Puerta automática: inactivo
+  OK: Entrada biométrica vencido
+  OK: Puerta automática: vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Reentrada abre; repetida inmediata, agotada al día siguiente, desconocida y eliminada no abren; el relé termina en OFF
+LECTOR SIMULADO: U.are.U 4500 / ReceptionDatabase
+  OK: Modelo detectado por el adaptador y mostrado en el estado
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Registrar y comprobar la huella no abre la puerta
+  OK: Entrada biométrica mensual
+  OK: Puerta automática: mensual
+  OK: Entrada biométrica tiquetera
+  OK: Puerta automática: tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Puerta automática: sinplan
+  OK: Entrada biométrica inactivo
+  OK: Puerta automática: inactivo
+  OK: Entrada biométrica vencido
+  OK: Puerta automática: vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Reentrada abre; repetida inmediata, agotada al día siguiente, desconocida y eliminada no abren; el relé termina en OFF
+LECTOR SIMULADO: U.are.U 5160 / CloudDatabase
+  OK: Modelo detectado por el adaptador y mostrado en el estado
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Registrar y comprobar la huella no abre la puerta
+  OK: Entrada biométrica mensual
+  OK: Puerta automática: mensual
+  OK: Entrada biométrica tiquetera
+  OK: Puerta automática: tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Puerta automática: sinplan
+  OK: Entrada biométrica inactivo
+  OK: Puerta automática: inactivo
+  OK: Entrada biométrica vencido
+  OK: Puerta automática: vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Reentrada abre; repetida inmediata, agotada al día siguiente, desconocida y eliminada no abren; el relé termina en OFF
+LECTOR SIMULADO: U.are.U 5160 / ReceptionDatabase
+  OK: Modelo detectado por el adaptador y mostrado en el estado
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Registrar y comprobar la huella no abre la puerta
+  OK: Entrada biométrica mensual
+  OK: Puerta automática: mensual
+  OK: Entrada biométrica tiquetera
+  OK: Puerta automática: tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Puerta automática: sinplan
+  OK: Entrada biométrica inactivo
+  OK: Puerta automática: inactivo
+  OK: Entrada biométrica vencido
+  OK: Puerta automática: vencido
+  OK: Tiquetera descuenta exactamente una entrada
+EN CURSO: recorrido_huellas · 15 s · límite 300 s.
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Reentrada abre; repetida inmediata, agotada al día siguiente, desconocida y eliminada no abren; el relé termina en OFF
+PASS: 92 comprobaciones de 4500 y 5160 con adaptador nativo, huella, nube, entrada y puerta en ambos roles; SDK y relé simulados; PostgreSQL local.

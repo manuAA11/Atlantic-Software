@@ -1,0 +1,731 @@
+https://developers.facebook.com/documentation/business-messaging/whatsapp/access-tokens/
+
+Access Tokens Guide | Meta for Developers
+Build with us
+Docs
+Blog
+Resources
+Developer centers
+Login
+WhatsApp Business Platform
+WhatsApp Business Platform
+Business Messaging
+WhatsApp Business Platform
+WhatsApp Business Platform
+Overview
+About the platform
+Access tokens
+Permissions
+Pricing
+Pricing
+Non-template messages
+Authentication-international rates
+AI Providers
+Change billing currency via API
+Prepaid billing
+Pricing (deprecated)
+Conversation-based pricing (Deprecated)
+Get started
+Direct Send messages
+Overview
+Supported features and limits
+Send utility and authentication messages
+Business-named templates
+Configure message TTL
+Supported message types
+Media message headers
+View generated templates
+View insights and analytics
+Integrity and content guidelines
+API reference
+FAQ
+Marketing messages
+Overview
+Get started
+Features
+Marketing templates
+Overview
+Custom marketing templates
+Call permission request message template
+Coupon code templates
+Limited-time-offer templates
+Location templates
+Media card carousel templates
+Guides
+Onboarding
+Measure conversions
+Track click events
+Track landing page views
+View metrics
+Deep links
+Route template messages by category
+Send marketing messages
+Onboard business customers
+Pricing
+Set a max price
+Enroll in max price
+Duplicate a template
+Control WhatsApp Manager visibility
+WhatsApp Manager experience
+Changelog
+In-App Signup
+Utility messages
+Overview
+Utility templates
+Call permission request templates
+Location templates
+Authentication messages
+Overview
+Authenticating users
+Error signals
+Authentication templates
+One-tap autofill
+Zero-tap
+Copy code
+Keyboard suggestions
+Bulk management
+Previews
+Service messages
+Overview
+Types of messages
+Address
+Audio
+Contacts
+Document
+Image
+Interactive
+URL button
+List buttons
+Media carousel
+Reply buttons
+Location
+Location request
+Reaction
+Sticker
+Text
+Video
+Calling
+Overview
+Configure call settings
+Business-initiated calls
+User call permissions
+User-initiated calls
+Call recording
+Call transcription
+Session Initiation Protocol
+Call button messages and deep links
+Integration patterns
+Integration examples
+Reference
+Troubleshooting
+Calling sandbox account
+App Review guidelines
+Pricing
+FAQ
+Groups
+Overview
+Get started
+Group management
+Group messaging
+Webhooks
+Error codes
+Pricing
+FAQ
+Catalogs
+Overview
+Get started
+Upload inventory
+Set commerce settings
+Share products
+Receiving responses
+Messages
+Catalog link messages
+Catalog messages
+Catalog template messages
+Multi-product messages
+Multi-product template messages
+Product carousel messages
+Product carousel template messages
+Single-product messages
+Single-product template messages
+Partners
+Overview
+Become a partner
+Become a Tech Provider
+Become a Solution Partner
+Become a Measurement Partner
+Upgrade to Tech Partner
+App Review
+Embedded Signup
+Overview
+Implementation
+Onboarding for Tech Providers
+Onboarding for Solution Partners
+Cloud API flow
+Custom flows
+Pre-filling screens
+Pre-verified phone numbers
+Bypassing phone number screens
+Making website optional
+App-only install
+Hosted ES
+Automatic Events
+Versions
+v4 public preview
+v4
+v3
+v3 public preview
+v2 public preview
+Errors
+Onboard Business app users (Coexistence)
+Reconnect offboarded coexistence clients
+Partner-initiated Messaging account creation
+Multi-Partner Solutions
+Overview
+Embedded Creation
+Migrate customers among solutions via Embedded Signup
+Migrate customers among solutions via Meta Business Suite
+Migrate Messaging accounts among partners via Embedded Signup
+Migrating customers off solutions via Embedded Signup
+Migrating customers off solutions via Meta Business Suite
+Add accounts to a Multi-Partner Solution
+Partner-led business verification
+Pixel tracking
+Manage customer assets
+Messaging accounts
+Phone numbers
+Overview
+Registering phone numbers via API
+System users
+Credit lines
+Webhooks
+Partner support
+Support
+Migrate numbers among partners via Embedded Signup
+Migrate numbers among partners programmatically
+Business customer support
+OBO model deprecation
+Conversation Routing
+Overview
+Entry points and routing
+Thread lifecycle
+Standby partners
+Get started
+Prepare before assigning another partner
+Prepare before enabling Meta Business Agent
+Thread control
+Conversation context
+Calling webhooks
+Prepare for Conversation Routing
+Troubleshooting
+Webhooks
+Overview
+Create a webhook endpoint
+Create a test webhook endpoint
+Override the callback URL
+Webhooks reference
+account_alerts
+account_review_update
+account_update
+business_capability_update
+history
+message_template_components_update
+message_template_quality_update
+message_template_status_update
+messages
+Overview
+audio messages
+button messages
+contacts messages
+document messages
+edit messages
+errors messages
+group messages
+image messages
+interactive messages
+location messages
+order messages
+reaction messages
+revoke messages
+status messages
+sticker messages
+system messages
+text messages
+unsupported messages
+video messages
+messaging_handovers
+partner_solutions
+payment_configuration_update
+phone_number_name_update
+phone_number_quality_update
+security
+smb_app_state_sync
+smb_message_echoes
+standby
+template_category_update
+user_preferences
+Template fundamentals
+Overview
+Components
+Languages
+Categorization
+Comparison
+Library
+Archival
+Media
+Management
+Overview
+Migration
+Configure time-to-live
+Tap target URL title override
+Quality and delivery
+Quality rating
+Review
+Pausing
+Business portfolio pacing
+Template pacing
+Messaging limits
+Upcoming changes to messaging limits
+Per-user marketing template limits
+Messaging features
+Media
+Read receipts
+Contextual replies
+Typing indicators
+Link previews
+Throughput
+Account assets
+Business phone numbers
+Overview
+Register a phone number
+Two-step verification
+Conversational components
+Business-scoped user IDs
+Business profiles
+Display names
+Official Business Accounts
+WhatsApp accounts and Messaging accounts
+Account model evolution
+Overview
+Onboarding
+Managing messaging accounts
+QR codes and message links
+Timezone IDs
+Analytics
+Ads that click to WhatsApp
+Welcome message sequences
+Payments
+Payments India
+Overview
+Onboarding APIs
+UPI Intent
+Dynamic VPA
+Cashfree
+Billdesk
+CCAvenue
+Payment links
+Enhanced payment links
+Payment gateway
+Order details templates
+Order status templates
+Checkout button templates
+Payments Brazil
+Overview
+Orders
+Pix
+Payment links
+Boleto
+One-click payments
+Order details templates
+Payment request CTA templates
+Payments - Rest of the world
+Data, Privacy, & Policy
+Policy enforcement
+Violations
+Blocking users
+Data privacy & security
+Local storage
+No storage
+Obtaining user opt-in
+User identity changes
+Support
+Support
+API status page
+Health status
+Load testing
+Experiments
+Use an existing WhatsApp number
+Resources
+API Reference
+Application
+Application Connected Client Businesses
+Application Solutions API
+Solution Creation API
+Business
+Add Phone Numbers API
+Business Account API
+Client WhatsApp Business Accounts API
+Owned WhatsApp Business Accounts
+WhatsApp Business Accounts API
+WhatsApp Business Partner Onboarding to MM Lite API
+WhatsApp Business Pre-Verified Phone Number Sharing API
+WhatsApp Business Pre-Verified Phone Numbers API
+Groups
+Groups Invite Link API
+Groups Join Requests API
+Groups Participants API
+Groups Query API
+Media
+Media API
+Media Download API
+Message History
+WhatsApp Business Message History Events API
+User
+Assigned WhatsApp Business Accounts API
+Webhooks
+WhatsApp Incoming Webhook Payload
+WhatsApp Account Number
+WhatsApp Account Number API
+WhatsApp Business Account
+Assigned Users Management API
+Conversational Automation API
+Extended Credits API
+Message Template API
+Phone Number Management API
+Schedules API
+Subscribed Apps API
+WhatsApp Business Account API
+WhatsApp Business Account Activities API
+WhatsApp Business Account Solutions List API
+WhatsApp Business Account Migration Intent
+Migration Intent Details API
+WhatsApp Business Bot
+Bot Details API
+WhatsApp Business Phone Number
+Block API
+Business Compliance Information API
+Business Encryption API
+Calling API
+Commerce Settings API
+Groups Management API
+Marketing Messages API for WhatsApp
+Media Upload API
+Message API
+Phone Number Deregister API
+Phone Number Registration
+Phone Number Verification Request Code API
+Settings API
+Verify Code API
+WhatsApp Business Account Official Business Account Status API
+WhatsApp Business Account Phone Number API
+WhatsApp Business Profile API
+WhatsApp Business QR Code API
+WhatsApp Business QR Code Management API
+WhatsApp Business Pre Verified Phone Number
+Request Verification Code API
+Verify Code API
+WhatsApp Business Pre-Verified Phone Number API
+WhatsApp Business Pre-Verified Phone Number Partners API
+WhatsApp Business Profile
+WhatsApp Business Profile Node API
+WhatsApp Business Solution
+Accept Deactivation Request API
+Access Token API
+Reject Deactivation Request API
+Send Deactivation Request API
+Solution Accept API
+Solution Details API
+Solution Reject API
+Changelog
+Error codes
+Docs
+Overview
+Access Tokens Guide
+Access Tokens Guide
+Updated
+:
+Sep 19, 2026
+Copy for LLM
+View as Markdown
+The platform supports the following access token types. The type you use depends on who uses your application, and whether you are a
+partner
+.
+If you are a
+direct developer
+, meaning only you or your business accesses your own data, use a
+System User access token
+.
+If you are a
+Tech Provider
+, use a
+Business Integration System User access token
+.
+If you are a
+solution partner
+, use
+System User access tokens
+to share your line of credit with newly onboarded customers, and
+Business Integration System User access tokens
+for everything else.
+System user access tokens
+System user access tokens (“system tokens”) represent you, your business, organization, or people within your business or organization. The main advantage of these tokens is that they are long-lived and can represent automated services within your business that don’t require any user input.
+System tokens rely on system users. Most endpoints check if the user identified by the token has access to the queried resource. If the user doesn’t have access to the resource, the system rejects the request with
+error code
+200
+(not to be confused with HTTP status code
+200
+).
+System users can be
+admins
+or
+employees
+.
+Admin system users
+By default, admin system users have full access to all WhatsApp accounts (WAACs), Messaging accounts, and their assets owned by or shared with you or your business portfolio.
+Admin system users are useful if your app needs access to all of the business portfolio’s assets, without having to manually grant business asset access to each asset whenever it is created, or shared with your business portfolio.
+You can override an admin system user’s default business asset access by granting partial access per account. Grant it separately for each WhatsApp account and each Messaging account. See
+Business Asset Access
+to learn how to set and override access.
+Employee system users
+Employee system users must be granted access to the individual WhatsApp accounts and Messaging accounts that are owned by, or shared with, your business portfolio. If your app only needs access to a few accounts that you own, an employee system user should be sufficient.
+Once created, you must grant
+Partial
+or
+Full
+business asset access
+for
+both
+accounts the system user needs to work with: the
+WhatsApp account
+and the
+Messaging account
+. Access to the Messaging account alone is not sufficient.
+How the grant is applied differs by surface:
+API.
+Granting business asset access on a Messaging account also applies that grant to the WhatsApp account it is linked to. This cascade exists because the WhatsApp account has no Graph API endpoints of its own yet. Treat it as interim behavior rather than something to depend on.
+Meta Business Suite.
+The panel does not cascade. Assign the system user to the WhatsApp account and to the Messaging account explicitly.
+Generate system user access tokens
+To generate a system token, access the
+Business settings
+⁠
+panel and then click
+System Users
+:
+Click the
++Add
+button, and in the
+Create system user
+window that appears, enter a system user name and assign it an
+Admin
+or
+Employee
+role:
+Once you create the admin system user, it appears in the list of system users. Click the system user’s name to display the asset assignment overlay:
+Click the
+Assign assets
+button to display the
+Select assets and assign permissions
+window:
+Select your app and grant your system user the
+Manage app
+permission, then click the
+Assign assets
+button to confirm and dismiss the window.
+Back in the
+System Users
+panel, reload the page to confirm that your system user has been granted
+Full control
+of your app. Granting the permissions may take a few minutes, so reload the page if your app doesn’t appear as an assigned asset. Once the asset has been assigned, it should look like this:
+Once you see that your system user has been granted full control of your app, in the asset assignment overlay, click the
+Generate token
+button. In the window that appears, select your app, choose a token expiration preference, and assign your app these three Graph API permissions:
+business_management
+whatsapp_business_management
+whatsapp_business_messaging
+You can search for
+business
+to find these permissions quickly:
+Click the
+Generate token
+button and copy the token when it appears.
+Business integration system user access tokens
+Business Integration System User access tokens (“business tokens”) are scoped to individual onboarded customers and should be used by Tech Providers and solution partners when accessing onboarded customer data.
+These tokens are useful for apps that perform programmatic, automated actions on customer Messaging accounts, without having to rely on input from an app user, or requiring future re-authentication.
+To generate a Business Integration System User access token, you must implement Embedded Signup (configured with Facebook Login for Businesses) and exchange the code returned to you when a customer completes the flow.
+See
+Embedded Signup
+and
+Business Integration System User access tokens
+to learn more about these tokens and how to generate them.
+User access tokens
+Although User access tokens are supported and can be used by all app developers, you typically only use them when you first use the App Dashboard to
+send your first test message
+. As you develop your app, however, you switch to a System User access token (and eventually a Business Integration System User access token, if you are a Tech Provider or a partner). This is because user access tokens expire quickly, so you have to keep generating a new one every few hours.
+There are several ways to generate a User access token:
+Access the
+App Dashboard
+>
+WhatsApp
+>
+API setup
+panel. This panel always generates a new User access token whenever you visit it. The token is automatically scoped to your user, since you are signed into your developer account when you access the panel.
+Use
+Graph API Explorer
+.
+Implement
+Facebook Login
+.
+Use tokens in requests
+When making API requests, include your token in an authorization request header, preceded by
+Bearer
+. For example:
+curl 'https://graph.facebook.com/
+v26.0
+/102290129340398/message_templates' \
+-H 'Authorization: Bearer EAAJB...'
+Token format
+Access tokens are opaque strings. A full token looks like this:
+EAAJBsbCmS80BO4hZBf5xYKFaFW7kVMNxAWzIInZB7q1PuZCLiEqKh3gZDZD
+Tokens can vary in length, and their internal structure and characteristics can change over time. Do not parse, decode, or make assumptions about the format of an access token — treat it as an opaque string. Use a variable-length data type without a specific maximum size to store access tokens.
+Business asset access
+After creating a system user, you must set business asset access levels. Many endpoints require the system user whose token is included in API requests to have either
+Partial
+or
+Full
+business asset access to both the
+WhatsApp account
+and the
+Messaging account
+being queried (or their assets). If the system user doesn’t have this access, these endpoints return
+error code
+200
+(not to be confused with HTTP status code
+200
+).
+Granting access on a Messaging account through the API also applies the grant to the WhatsApp account linked to it. Meta Business Suite does not do this — there, assign the system user to each account explicitly. The cascade is interim behavior that exists only until the WhatsApp account has API endpoints of its own, so do not build on it.
+If you set a system user’s business asset access on a WhatsApp account or Messaging account to
+Partial
+access, you can further restrict access to certain assets or actions on that account. For example, if you have a large business and want a certain department to only have read access to a Messaging account’s template data and a WhatsApp account’s business phone number data, you could create a system user for that department and set granular access to view only for that data.
+To set business asset access, follow these steps for the WhatsApp account, then repeat them for the Messaging account:
+Sign into
+Meta Business Suite
+⁠
+.
+Locate your business portfolio in the dropdown menu at the top of the page and click its
+Settings
+(gear) icon.
+Navigate to
+Accounts
+>
+WhatsApp accounts
+, or
+Accounts
+>
+Messaging accounts
+.
+Select the appropriate account.
+Select the
+People
+subtab.
+Click the
++Add people
+button.
+Select the appropriate system user and assign appropriate access levels on the account.
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+About us
+About
+Careers
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+English (US)

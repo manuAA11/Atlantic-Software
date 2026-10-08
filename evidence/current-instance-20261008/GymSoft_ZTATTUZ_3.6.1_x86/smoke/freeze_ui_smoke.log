@@ -1,0 +1,37 @@
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Traceback (most recent call last):
+  File "/workspace/multigym-source/GymSoft_ZTATTUZ_3.6.1_x86/tests/freeze_ui_smoke.py", line 98, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/workspace/multigym-source/GymSoft_ZTATTUZ_3.6.1_x86/tests/freeze_ui_smoke.py", line 93, in main
+    assert not failures,failures
+           ^^^^^^^^^^^^
+AssertionError: ["AssertionError('No se encontró un control en el punto visible (242, 246): control=.!modal2.!scrollarea.!canvas.!frame.!frame.!button3; visible=(162, 228, 323, 264); ventana=820x580+140+100; estado=normal; área útil=(0, 0, 1600, 960); escala Tk=1.3343840294194902; contexto=ventana de prueba. Mantén las ventanas de prueba visibles y el escritorio desbloqueado.')"]

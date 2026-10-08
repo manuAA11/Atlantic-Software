@@ -1,0 +1,20 @@
+EN CURSO: python · 15 s · límite 300 s.
+..................................................................................................E................................................
+======================================================================
+ERROR: test_icon_has_windows_sizes (test_packaging.PackageTest.test_icon_has_windows_sizes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/multigym-source/GymSoft_ZTATTUZ_3.6.1_x86/tests/test_packaging.py", line 28, in test_icon_has_windows_sizes
+    data=(ROOT/'icono.ico').read_bytes()
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/multigym-source/GymSoft_ZTATTUZ_3.6.1_x86/icono.ico'
+
+----------------------------------------------------------------------
+Ran 147 tests in 16.390s
+
+FAILED (errors=1)

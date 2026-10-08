@@ -1,0 +1,33 @@
+{
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+  "scope": "smoke",
+  "started_at": "2026-10-08T21:55:50.702875+00:00",
+  "stages": [
+    {
+      "name": "marketing_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 15.74,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "freeze_ui_smoke",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 6.06,
+      "timed_out": false,
+      "callback_failure": true
+    },
+    {
+      "name": "windows_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 5.62,
+      "timed_out": false,
+      "callback_failure": false
+    }
+  ],
+  "note": "Existing source tests. Contracts fixture as supplied; no regeneration. Offline PGlite and simulated hardware; no Windows or external-service verification.",
+  "status": "FAIL"
+}

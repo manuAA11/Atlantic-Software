@@ -1,0 +1,917 @@
+{
+  "calls": [
+    {
+      "file": "app.py",
+      "name": "get_finance_dashboard",
+      "args": [
+        "p_gym_id",
+        "p_date_from",
+        "p_date_to"
+      ]
+    },
+    {
+      "file": "app.py",
+      "name": "get_audit_logs",
+      "args": [
+        "p_gym_id",
+        "p_limit",
+        "p_action"
+      ]
+    },
+    {
+      "file": "app.py",
+      "name": "create_reception_invite",
+      "args": []
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "session_followup",
+      "args": [
+        "p_gym_id",
+        "p_days"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "get_attendance_statistics",
+      "args": [
+        "p_gym_id",
+        "p_days"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "ticket_followup",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_list_store_products",
+      "args": [
+        "p_gym_id",
+        "p_search",
+        "p_include_inactive"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_save_store_product",
+      "args": [
+        "p_gym_id",
+        "p_product_id",
+        "p_name",
+        "p_sku",
+        "p_sale_price",
+        "p_stock_quantity",
+        "p_low_stock_threshold",
+        "p_active",
+        "p_image_data"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_list_store_sales",
+      "args": [
+        "p_gym_id",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_store_finance",
+      "args": [
+        "p_gym_id",
+        "p_date_from",
+        "p_date_to"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_accounting_expenses",
+      "args": [
+        "p_gym_id",
+        "p_date_from",
+        "p_date_to"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_staff_dashboard",
+      "args": [
+        "p_gym_id",
+        "p_date_from",
+        "p_date_to"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_staff_clock",
+      "args": [
+        "p_gym_id",
+        "p_trainer_id",
+        "p_action"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_replace_gym_from_excel",
+      "args": [
+        "p_data"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "gym_local_clock",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "reception_membership_snapshot",
+      "args": [
+        "p_gym_id",
+        "p_client_id"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "admin_register_checkin",
+      "args": [
+        "p_gym_id",
+        "p_client_id",
+        "p_method",
+        "p_override"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "reception_list_clients",
+      "args": [
+        "p_gym_id",
+        "p_search"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "ticket_backup_memberships",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "fingerprint_store.py",
+      "name": "gym_fingerprints",
+      "args": [
+        "p_gym_id",
+        "p_action",
+        "p_client_id",
+        "p_template",
+        "p_expected"
+      ]
+    },
+    {
+      "file": "gym_time.py",
+      "name": "gym_local_clock",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "licensing.py",
+      "name": "commercial_check_license",
+      "args": [
+        "p_device_hash",
+        "p_device_name"
+      ]
+    },
+    {
+      "file": "marketing_client.py",
+      "name": "marketing_workspace",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "marketing_client.py",
+      "name": "marketing_lookup_clients",
+      "args": [
+        "p_gym_id",
+        "p_search",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "marketing_client.py",
+      "name": "marketing_history",
+      "args": [
+        "p_gym_id",
+        "p_kind",
+        "p_offset"
+      ]
+    },
+    {
+      "file": "marketing_reception.py",
+      "name": "marketing_reception_workspace",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "marketing_reception.py",
+      "name": "marketing_conversation_mode",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_mode"
+      ]
+    },
+    {
+      "file": "marketing_reception.py",
+      "name": "marketing_review_link",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_client_id",
+        "p_approved"
+      ]
+    },
+    {
+      "file": "marketing_reception.py",
+      "name": "marketing_review_link",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_client_id",
+        "p_approved"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_automation_action",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_revision",
+        "p_action"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_features",
+      "args": [
+        "p_gym_id",
+        "p_flags"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_features",
+      "args": [
+        "p_gym_id",
+        "p_flags"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_save_automation",
+      "args": [
+        "p_gym_id",
+        "p_data",
+        "p_id",
+        "p_revision"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_disconnect",
+      "args": [
+        "p_gym_id",
+        "p_provider"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_conversation_mode",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_mode"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_review_link",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_client_id",
+        "p_approved"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_save_template",
+      "args": [
+        "p_gym_id",
+        "p_data",
+        "p_id"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_activate_setup",
+      "args": [
+        "p_gym_id",
+        "p_rule_ids",
+        "p_chatbot"
+      ]
+    },
+    {
+      "file": "marketing_ui.py",
+      "name": "marketing_review_link",
+      "args": [
+        "p_gym_id",
+        "p_id",
+        "p_client_id",
+        "p_approved"
+      ]
+    },
+    {
+      "file": "owner_panel.py",
+      "name": "owner_list_gyms",
+      "args": []
+    },
+    {
+      "file": "owner_panel.py",
+      "name": "owner_gym_detail",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_panel.py",
+      "name": "owner_marketing_status",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_panel.py",
+      "name": "commercial_system_info",
+      "args": []
+    },
+    {
+      "file": "owner_panel.py",
+      "name": "owner_list_gyms",
+      "args": []
+    },
+    {
+      "file": "reception_app.py",
+      "name": "reception_account_context",
+      "args": []
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_list_clients",
+      "args": [
+        "p_gym_id",
+        "p_search"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_membership_snapshot",
+      "args": [
+        "p_gym_id",
+        "p_client_id"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_save_client",
+      "args": [
+        "p_gym_id",
+        "p_client_id",
+        "p_document",
+        "p_first_name",
+        "p_last_name",
+        "p_phone",
+        "p_email",
+        "p_birthdate",
+        "p_biometric_identifier"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_find_client_by_biometric",
+      "args": [
+        "p_gym_id",
+        "p_biometric_identifier"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_create_expense",
+      "args": [
+        "p_gym_id",
+        "p_expense_date",
+        "p_category",
+        "p_description",
+        "p_vendor",
+        "p_amount",
+        "p_payment_method",
+        "p_payment_reference",
+        "p_receipt_reference",
+        "p_notes"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "ticket_followup",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_list_memberships",
+      "args": [
+        "p_gym_id",
+        "p_client_id",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_list_store_products",
+      "args": [
+        "p_gym_id",
+        "p_search"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "register_store_sale",
+      "args": [
+        "p_gym_id",
+        "p_product_id",
+        "p_quantity",
+        "p_payment_method",
+        "p_payment_reference",
+        "p_customer_name",
+        "p_notes"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_register_checkin",
+      "args": [
+        "p_gym_id",
+        "p_client_id",
+        "p_method"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "reception_list_checkins",
+      "args": [
+        "p_gym_id",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "reception_database.py",
+      "name": "gym_local_clock",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "runtime_cloud.py",
+      "name": "commercial_accept_invite",
+      "args": [
+        "p_code"
+      ]
+    },
+    {
+      "file": "runtime_cloud.py",
+      "name": "commercial_system_info",
+      "args": []
+    },
+    {
+      "file": "runtime_cloud.py",
+      "name": "commercial_context",
+      "args": []
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_create_gym",
+      "args": [
+        "p_name",
+        "p_email",
+        "p_monthly_price",
+        "p_currency",
+        "p_max_devices",
+        "p_trial_days",
+        "p_timezone"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_renew",
+      "args": [
+        "p_gym_id",
+        "p_months",
+        "p_amount",
+        "p_currency",
+        "p_reference",
+        "p_idempotency_key"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_update_contract",
+      "args": [
+        "p_gym_id",
+        "p_price",
+        "p_currency",
+        "p_max_devices",
+        "p_max_users",
+        "p_notes"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_invite_user",
+      "args": [
+        "p_gym_id",
+        "p_email",
+        "p_role"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_grant_grace",
+      "args": [
+        "p_gym_id",
+        "p_days",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_set_status",
+      "args": [
+        "p_gym_id",
+        "p_status",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_set_device",
+      "args": [
+        "p_device_id",
+        "p_blocked",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_set_user",
+      "args": [
+        "p_user_id",
+        "p_enabled",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_backup_gym",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_gym_detail",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "gymsoft_client_payments",
+      "args": [
+        "p_gym_id",
+        "p_client_id",
+        "p_include_void",
+        "p_offset",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "gymsoft_change_payment",
+      "args": [
+        "p_gym_id",
+        "p_membership_id",
+        "p_expected_revision",
+        "p_action",
+        "p_reason",
+        "p_amount",
+        "p_payment_method",
+        "p_payment_reference"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "gymsoft_payment_history",
+      "args": [
+        "p_gym_id",
+        "p_membership_id"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_backup",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_access",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_revoke_invite",
+      "args": [
+        "p_gym_id",
+        "p_email",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_profile",
+      "args": [
+        "p_gym_id",
+        "p_name",
+        "p_email",
+        "p_timezone",
+        "p_plan",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_email",
+      "args": [
+        "p_gym_id",
+        "p_email",
+        "p_role",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_rows",
+      "args": [
+        "p_gym_id",
+        "p_table",
+        "p_search",
+        "p_offset",
+        "p_limit"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_record",
+      "args": [
+        "p_gym_id",
+        "p_table",
+        "p_id",
+        "p_expected",
+        "p_patch",
+        "p_reason",
+        "p_delete"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_delete_gym",
+      "args": [
+        "p_gym_id",
+        "p_name",
+        "p_expected",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_validate_import",
+      "args": [
+        "p_data"
+      ]
+    },
+    {
+      "file": "owner_forms.py / runtime adapters",
+      "name": "owner_editor_import",
+      "args": [
+        "p_gym_id",
+        "p_name",
+        "p_expected",
+        "p_reason",
+        "p_data"
+      ]
+    }
+  ],
+  "columns": {
+    "clients": [
+      "active",
+      "biometric_identifier",
+      "birth_date",
+      "birthdate",
+      "created_at",
+      "document",
+      "email",
+      "emergency_contact",
+      "first_name",
+      "id",
+      "last_name",
+      "phone",
+      "updated_at",
+      "whatsapp_opt_in",
+      "whatsapp_opt_in_at",
+      "whatsapp_opt_in_by"
+    ],
+    "plans": [
+      "active",
+      "duration_days",
+      "duration_months",
+      "entry_limit",
+      "id",
+      "name",
+      "price"
+    ],
+    "memberships": [
+      "amount",
+      "amount_paid",
+      "client_id",
+      "end_date",
+      "entry_limit",
+      "id",
+      "initial_entries_used",
+      "notes",
+      "paid_at",
+      "payment_change_reason",
+      "payment_changed_at",
+      "payment_changed_by",
+      "payment_method",
+      "payment_reference",
+      "payment_revision",
+      "payment_status",
+      "plan_id",
+      "recorded_by",
+      "start_date"
+    ],
+    "checkins": [
+      "checkin_at",
+      "client_id",
+      "gym_id",
+      "id",
+      "membership_id",
+      "method",
+      "notes",
+      "recorded_by",
+      "result"
+    ],
+    "store_products": [
+      "active",
+      "created_at",
+      "id",
+      "low_stock_threshold",
+      "name",
+      "sale_price",
+      "sku",
+      "stock_quantity",
+      "updated_at"
+    ],
+    "store_sales": [
+      "customer_name",
+      "id",
+      "notes",
+      "payment_method",
+      "payment_reference",
+      "product_id",
+      "product_name",
+      "product_sku",
+      "quantity",
+      "sold_at",
+      "sold_by",
+      "total_amount",
+      "unit_price"
+    ],
+    "accounting_expenses": [
+      "amount",
+      "category",
+      "created_at",
+      "description",
+      "expense_date",
+      "id",
+      "notes",
+      "payment_method",
+      "payment_reference",
+      "receipt_reference",
+      "recorded_by",
+      "updated_at",
+      "vendor"
+    ],
+    "trainers": [
+      "active",
+      "email",
+      "hire_date",
+      "hourly_rate",
+      "id",
+      "name",
+      "notes",
+      "phone",
+      "specialty"
+    ],
+    "staff_shifts": [
+      "check_in_at",
+      "check_out_at",
+      "id",
+      "notes",
+      "recorded_by",
+      "trainer_id"
+    ],
+    "routines": [
+      "active",
+      "client_id",
+      "goal",
+      "gym_id",
+      "id",
+      "name",
+      "notes",
+      "start_date",
+      "trainer_id"
+    ],
+    "exercises": [
+      "day_name",
+      "gym_id",
+      "id",
+      "name",
+      "notes",
+      "position",
+      "reps",
+      "routine_id",
+      "sets",
+      "weight"
+    ],
+    "classes": [
+      "capacity",
+      "gym_id",
+      "id",
+      "name",
+      "notes",
+      "starts_at",
+      "status",
+      "trainer_id"
+    ],
+    "reservations": [
+      "class_id",
+      "client_id",
+      "created_at",
+      "gym_id",
+      "id",
+      "status"
+    ],
+    "marketing_messages": [
+      "attempts",
+      "automation_type",
+      "client_id",
+      "client_name",
+      "created_at",
+      "error_message",
+      "id",
+      "phone",
+      "sent_at",
+      "source_date",
+      "status",
+      "template_name",
+      "whatsapp_message_id"
+    ],
+    "gym_branding": [
+      "gym_id",
+      "logo_data"
+    ]
+  }
+}

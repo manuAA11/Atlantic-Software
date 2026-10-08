@@ -1,0 +1,68 @@
+GYM SOFT 3.4.0 - CORRECCIONES DE CARGA Y PRUEBAS GRAFICAS
+
+REVISION DEL 10 DE SEPTIEMBRE DE 2026 - RECEPCION
+
+Este parche corrige la espera de performance_ui_smoke.py:
+"La respuesta de prueba no llego a tiempo."
+Corrige tambien ReceptionApp / access cuando la ventana esta normal y
+visible, las dos respuestas ya llegaron y el temporizador indica None.
+Este segundo caso es un fallo de carga del programa; no requiere que el
+usuario haya minimizado o movido ninguna ventana para producirse.
+Incluye tambien la recuperacion de las ventanas de prueba minimizadas,
+relacionada con "No se encontro un control en el punto visible".
+Es acumulativo. No necesitas aplicar antes ningun parche anterior.
+
+COMO APLICARLO
+
+1. Cierra Gym soft y la ventana de compilacion que mostro el error.
+2. Extrae este parche en una carpeta temporal.
+3. Copia TODO su contenido dentro de tu carpeta:
+   GymSoft_Comercial_3.4.0
+   Incluye archivos de la carpeta principal y de la subcarpeta tests.
+   Acepta reemplazar los archivos existentes.
+4. Desde GymSoft_Comercial_3.4.0, ejecuta CREAR_INSTALADORES.bat otra vez.
+   Conserva la carpeta .venv y las dependencias que ya instalaste.
+   Deja las ventanas de prueba visibles y el escritorio desbloqueado.
+   Al iniciar la prueba de rendimiento veras:
+   COORDINADOR DE CARGA: f1be40c96930
+   Ese identificador confirma que se esta usando el codigo corregido.
+5. Cuando termine, instala el archivo:
+   salida\GymSoft_Instalar_o_Actualizar_3.4.0.exe
+   Si usas el panel del propietario, instala tambien su instalador privado.
+
+No necesitas ejecutar SQL ni cambiar cuentas, gimnasios o registros.
+No omitas las pruebas ni uses instaladores de una compilacion incompleta.
+El aviso de una nueva version de pip no es la causa de este error.
+
+QUE SE CORRIGE
+
+La pagina seleccionada mantiene su temporizador si recibe datos mientras
+todavia se esta mostrando. No espera otro evento Map para presentarlos.
+La carga termina al mostrar todas sus respuestas, no simplemente al
+recibirlas. Una pagina apartada conserva sus datos pendientes en reposo
+y los presenta al regresar, sin volver a consultar el servidor.
+
+Las comprobaciones graficas consultan el control visible en el escritorio.
+Minimizar la ventana de prueba o taparla puede provocar una consulta vacia.
+Ahora las ventanas de prueba se mantienen delante y se restauran si se
+minimizan. La consulta se repite brevemente mientras Windows las muestra.
+Las pruebas siguen rechazando los controles ocultos o tapados y nunca
+aceptan una consulta sin resultado. La aplicacion instalada puede seguir
+minimizandose normalmente: esta recuperacion solo pertenece a las pruebas.
+
+Cuando los datos llegaban antes de mostrarse la pagina, la respuesta quedaba
+almacenada pero no se presentaba al aparecer la pantalla. Ahora se reanuda
+al mostrarse la pagina o restaurarse la ventana, sin repetir la consulta.
+Tambien se evita duplicar el temporizador de las cargas encadenadas.
+
+La prueba mantiene su limite de seis segundos y sus comprobaciones de carga.
+Ahora indica la seccion que esta cargando y, si falla, muestra el estado de
+la ventana, las solicitudes y el error de presentacion correspondiente.
+
+Esta correccion se probo localmente con ventanas Tk y datos simulados.
+La compilacion y comprobacion nativa del EXE se realizan en tu Windows.
+
+Created by Manuel Cuellar
+WhatsApp: +57 3162990884
+manuel411cm@hotmail.com
+(c) 2026 Manuel Cuellar. All rights reserved.

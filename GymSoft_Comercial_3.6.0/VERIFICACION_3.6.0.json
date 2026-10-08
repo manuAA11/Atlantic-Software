@@ -1,0 +1,283 @@
+{
+  "version": "3.6.0",
+  "edition": "Comercial",
+  "checked_at": "2026-09-27T18:37:41.898357+00:00",
+  "environment": "Linux, Tk 9.0, PostgreSQL local; DigitalPersona y LCUS-1 simulados",
+  "validation": {
+    "version": "3.6.0",
+    "started_at": "2026-09-27T18:29:40.547995+00:00",
+    "platform": "linux",
+    "scope": "all",
+    "status": "PASS",
+    "stages": [
+      {
+        "name": "python",
+        "status": "PASS",
+        "seconds": 6.64,
+        "log": "python.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contratos_extraidos",
+        "status": "PASS",
+        "seconds": 0.54,
+        "log": "contratos_extraidos.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprints",
+        "status": "PASS",
+        "seconds": 1.96,
+        "log": "fingerprints.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "security",
+        "status": "PASS",
+        "seconds": 1.95,
+        "log": "security.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "seconds": 1.88,
+        "log": "contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "owner_flows",
+        "status": "PASS",
+        "seconds": 2.23,
+        "log": "owner_flows.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "owner_editor",
+        "status": "PASS",
+        "seconds": 2.29,
+        "log": "owner_editor.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_plans",
+        "status": "PASS",
+        "seconds": 1.93,
+        "log": "ticket_plans.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_followup",
+        "status": "PASS",
+        "seconds": 2.12,
+        "log": "ticket_followup.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "recorrido_huellas",
+        "status": "PASS",
+        "seconds": 14.27,
+        "log": "recorrido_huellas.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "simulacion_gimnasio",
+        "status": "PASS",
+        "seconds": 13.38,
+        "log": "simulacion_gimnasio.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "dialog_design_ui_smoke",
+        "status": "PASS",
+        "seconds": 15.54,
+        "log": "dialog_design_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ui_wait_smoke",
+        "status": "PASS",
+        "seconds": 0.28,
+        "log": "ui_wait_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "access_layout_ui_smoke",
+        "status": "PASS",
+        "seconds": 20.18,
+        "log": "access_layout_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "client_fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 7.31,
+        "log": "client_fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 9.0,
+        "log": "fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "windows_ui_smoke",
+        "status": "PASS",
+        "seconds": 2.34,
+        "log": "windows_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "responsive_ui_smoke",
+        "status": "PASS",
+        "seconds": 61.89,
+        "log": "responsive_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "biometric_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.86,
+        "log": "biometric_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_ui_smoke",
+        "status": "PASS",
+        "seconds": 6.69,
+        "log": "ticket_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "performance_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.18,
+        "log": "performance_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "popdown_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.84,
+        "log": "popdown_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_modes_ui_smoke",
+        "status": "PASS",
+        "seconds": 55.15,
+        "log": "layout_modes_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "review_ui_smoke",
+        "status": "PASS",
+        "seconds": 5.11,
+        "log": "review_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_consistency_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.47,
+        "log": "layout_consistency_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      }
+    ]
+  },
+  "python_tests": 113,
+  "changes_from_3_5_3": {
+    "DigitalPersonaRuntime/Data1.cab": {
+      "sha256": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+      "previous_sha256": "7ac9a8adc89afcfe60fa283275a4c3f3d907229f6618221610fc41f2eb253007"
+    },
+    "LEEME_ACTUALIZAR_3.6.0.md": {
+      "sha256": "5f758471332282766479356854b8e925df33ec0fa6b9c69c0ca1c5800660fb93",
+      "previous_sha256": null
+    },
+    "LEEME_PRIMERO.txt": {
+      "sha256": "c033ecdde80b47b0c34c3cc4a2f84e0aee4c8c42aa245a4fcc95e710adfef360",
+      "previous_sha256": "d40eb6b0c124eb51450206cb2bf4ce48f7d9224cb6b1248e41b7aa8a86ef2b69"
+    },
+    "LEER_PRIMERO.txt": {
+      "sha256": "c033ecdde80b47b0c34c3cc4a2f84e0aee4c8c42aa245a4fcc95e710adfef360",
+      "previous_sha256": "bf5e4a7daa8de6e9c981e998d12a402f83ad511bc6c47e297b6d45347ef3444b"
+    },
+    "app.py": {
+      "sha256": "2ba5fc24671391769052e2649374e587c35aba23c12d9eab4a638a8063bd0ac7",
+      "previous_sha256": "8e29f59e061cdc2540b82e912b21f8205a8a6c81b7c8dce6ccc71546b5c5d8fa"
+    },
+    "desktop_ui.py": {
+      "sha256": "6ec62083755a04f1b64fb07acc4fc972754c0ce35925673e7a10f8c294d43b04",
+      "previous_sha256": "e0146e038e04a4cdfd4b952f7e889ae9a52bfd06a063144b4464adf6c5ee2b92"
+    },
+    "instalador_clientes.iss": {
+      "sha256": "a70f53a9a1cd988ce7a1d9643f5578ced614ec5c5134db0746c70a2a683c02cd",
+      "previous_sha256": "d5802c987676f0262575d26e486bac568082cf95bf3e1f2130694f0200c57a70"
+    },
+    "instalador_propietario.iss": {
+      "sha256": "3852b420ede7ad0225cbe5b6cb78e2b62836626525815295f97686320263aefa",
+      "previous_sha256": "4597e669511c60e6115d1922dcd09c7d53553401f6610e4c8e0f0749f2fcdc27"
+    },
+    "product_config.py": {
+      "sha256": "515b3df7243bbe7bb99431f10593f2cf04a75fe643e95d7f722f1b149265cf9e",
+      "previous_sha256": "0d4067621c56a057a9e3add33a5e6eb089c56e748075634cbe617b0e0cbee0d1"
+    },
+    "reception_app.py": {
+      "sha256": "6863e6207b9bad48ab6380e98f4b2a1f56f65e48b8e4f2439df2024e91c3c658",
+      "previous_sha256": "f8f59a0f31d5b91bc138edc2cf1259574d184cad7c70158c097b1fc6c454478f"
+    },
+    "run_validation.py": {
+      "sha256": "01215a369382e915a234bf8b87226412ccd5249de76c026e2d392c38785a970a",
+      "previous_sha256": "4ce54a899d17290f5c8cb23d40ecac94410679767e5731ee66ddd57cd7c08b01"
+    },
+    "runtime_cloud.py": {
+      "sha256": "cfe5ff7e7faf3602290ac10e50714ea646c76c52ef0093dc875b54259dea3071",
+      "previous_sha256": "828704122fe143dcdd42432012364fd8b52d65b1ad08d4415922a430c7eed5e8"
+    },
+    "tests/dialog_design_ui_smoke.py": {
+      "sha256": "5e3ed108725bb292797d75df00a3bbff274b6e8dd3f34d5cd27caa713972c094",
+      "previous_sha256": null
+    },
+    "ui_visuals.py": {
+      "sha256": "c8ef7f39fc94fba21357e912527bb18864706f170c20dafdc85d8296639b27df",
+      "previous_sha256": null
+    }
+  },
+  "live_database_changed": false,
+  "sql_changed": false,
+  "digitalpersona_driver_version_changed": false,
+  "driver_cab_restored_from_verified_bundle": true,
+  "door_feature": false,
+  "hardware_required_for_build": false,
+  "pending": [
+    "Compilar e instalar en Windows y comprobar el dibujo en el equipo de destino"
+  ]
+}

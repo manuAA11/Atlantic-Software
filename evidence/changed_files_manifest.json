@@ -1,0 +1,1002 @@
+[
+  {
+    "path": "CHANGELOG_EN_DESARROLLO.md",
+    "bytes": 2215,
+    "sha256": "92cfbb0626c65ac85e8a762e0b23ca1b3e5b888f42100fd569b7dbb6ec243374"
+  },
+  {
+    "path": "ESTADO_IMPLEMENTACION.md",
+    "bytes": 2066,
+    "sha256": "4dea953bec22a8a066d026aaa7d88c95c55486a3c745fbd86e4b5b23ac68de08"
+  },
+  {
+    "path": "GUIA_CONGELACION_Y_HORAS.md",
+    "bytes": 7990,
+    "sha256": "9aea28f1802c0218108917f494866a6911cd2152dd64e718d329debe82202594"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/ACTUALIZAR_CONGELACION_Y_HORAS.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/ACTUALIZAR_MARKETING.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/ACTUALIZAR_SCHEDULER.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/GUIA_CONGELACION_Y_HORAS.md",
+    "bytes": 7990,
+    "sha256": "9aea28f1802c0218108917f494866a6911cd2152dd64e718d329debe82202594"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/app.py",
+    "bytes": 276940,
+    "sha256": "08b88d104db867b2ea3871a64abe08155c4ed16fad12dd6990e5e870f413e775"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/build_windows.py",
+    "bytes": 5904,
+    "sha256": "7a0c45e4aca69bd2906bf8ee80d2163751e628e1be98dca9d3fe814112029888"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/cloud_database.py",
+    "bytes": 118557,
+    "sha256": "d67b6bb36ac458c96426cd2a298782967405454b19d5943027219084ded1c108"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/gym_time.py",
+    "bytes": 4556,
+    "sha256": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/tests/freeze_time.test.mjs",
+    "bytes": 3244,
+    "sha256": "379cfbdec0573b7d3ea4e806eab667af870a86fa83e87f9267ca9b0be11ee996"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/tests/http.test.mjs",
+    "bytes": 7853,
+    "sha256": "429813323838c1076c173810d5fa0038b0d1965c947b61ec633cdfe8f76b545d"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_backend/tests/onboarding_page.test.mjs",
+    "bytes": 5066,
+    "sha256": "2c0717856b193281cd5977e7fe02aebefc4e6d98466fdcc03de171379cc9c42b"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_client.py",
+    "bytes": 3005,
+    "sha256": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/marketing_ui.py",
+    "bytes": 44121,
+    "sha256": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/membership_freeze_ui.py",
+    "bytes": 9246,
+    "sha256": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/owner_panel.py",
+    "bytes": 28966,
+    "sha256": "962cbd6a90c9c7791b40891f50ed72893eda886cb3266eca87636e3a44a95c8e"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/payment_revision.py",
+    "bytes": 18439,
+    "sha256": "1cccdd1aae827ebdfb56013c8ec9fad4b8c33f0ddcbd9b1f492b8e47071dbf40"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/reception_app.py",
+    "bytes": 85649,
+    "sha256": "9713a9a28959d1e2186b74c8aca0a14a9d6ed19a7b65be50bf7db610e815f73f"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/reception_database.py",
+    "bytes": 13492,
+    "sha256": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/reception_expense_revision.py",
+    "bytes": 8416,
+    "sha256": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/release_gate.py",
+    "bytes": 1406,
+    "sha256": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/release_readiness.json",
+    "bytes": 1097,
+    "sha256": "f44a8286645b3ac802ca51a5837ac0b793cfabcd8058fe6657ee174f6fc6d012"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/run_validation.py",
+    "bytes": 5611,
+    "sha256": "6583ceb938ae0848f5ff1c3e7e531b35569de39a644aee034a8a80c007562a25"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/server_date.py",
+    "bytes": 1704,
+    "sha256": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/functions/marketing/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/functions/marketing/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/functions/marketing/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/functions/marketing/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/functions/marketing/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/migrations/20261003124254_marketing_automation.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/migrations/20261008024020_membership_freezes_time_pipeline.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/supabase/migrations/20261008031059_marketing_server_scheduler.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/contracts.json",
+    "bytes": 17759,
+    "sha256": "de105c192999b99563a2864dc52ad9401900f852c13df4d25fdb8828bbb1b056"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/extract_contracts.py",
+    "bytes": 5078,
+    "sha256": "cdb3a649f78bc3a5a213feae9f46edc3f48ba9190e6fce6ef1b1aeded3dcaabc"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/freeze_ui_smoke.py",
+    "bytes": 5871,
+    "sha256": "0bfc8b846c2ddf1e0e47422920003d06735b88646ef47583749a7cc3fb6c5bca"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/gym_simulation.py",
+    "bytes": 27435,
+    "sha256": "bb5ba85d951a068eebc533af00a17b5f64a0d5a0bd8428eac700b8287c8e49ba"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/marketing_contracts.mjs",
+    "bytes": 16943,
+    "sha256": "7389212549f8692b7d84ac3c3c7e92affadebd9350465c39a8b4c3761b3c5dac"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/marketing_ui_smoke.py",
+    "bytes": 5141,
+    "sha256": "7759d3d84907c77ffe7cf98555996bce81dba2cdb1a63ef7b41a426ca5ffdb7b"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/membership_freezes.mjs",
+    "bytes": 13390,
+    "sha256": "7c63620cec3d265e996a81c4fdf98b429e1e3aed159075a5f341b52f65651de3"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/migrations.mjs",
+    "bytes": 2244,
+    "sha256": "5ddf6d1176eb567d208f1e6ed03d9b9e52f555b5014e0ef4e1ef0be344485ff5"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/responsive_ui_smoke.py",
+    "bytes": 9649,
+    "sha256": "fc0daadee3d07c19cf2617cf527e07464a490df29757b881f7b75025fd9084e6"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/test_release_gate.py",
+    "bytes": 1867,
+    "sha256": "cbd14e1af34ceb3bf1330edd0bda889a3b3f11f9b79862e846254222dff506ef"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/test_review_regressions.py",
+    "bytes": 5543,
+    "sha256": "2f7b424a74c2c85a822b9d2b01842da150ddba767adc8f1a88f2ea9f233adff3"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/test_time_pipeline.py",
+    "bytes": 6490,
+    "sha256": "c076180600341b6cd13f3d4f8c9168352d8768d748f4e6a4af3880765d0ab449"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/ticket_followup.mjs",
+    "bytes": 10425,
+    "sha256": "1209648cc21b29ddb5b19b6be4923bc0d79823941d55b632a6f157856c578e3b"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/time_pipeline.mjs",
+    "bytes": 10009,
+    "sha256": "11f3ea33373cb45857c9ba1485c078b280a399b19f0289a40a4288458484e9c4"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/tests/windows_ui_smoke.py",
+    "bytes": 9718,
+    "sha256": "00ab6ae6be4140c0b9d0dd433fa94af9dd9d948b9718c1e9a0df491f493de259"
+  },
+  {
+    "path": "GymSoft_Comercial_3.6.0/ui_text.py",
+    "bytes": 6944,
+    "sha256": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/ACTUALIZAR_CONGELACION_Y_HORAS.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/ACTUALIZAR_MARKETING.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/ACTUALIZAR_SCHEDULER.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/GUIA_CONGELACION_Y_HORAS.md",
+    "bytes": 7990,
+    "sha256": "9aea28f1802c0218108917f494866a6911cd2152dd64e718d329debe82202594"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/app.py",
+    "bytes": 277135,
+    "sha256": "9e671f8f0173af42653ef9108b5a4c19771cdd7dc2cef92457ab4f31598f3440"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/build_windows.py",
+    "bytes": 6229,
+    "sha256": "fc57808d8aa4c4b6ee58f46f7432f770212952b01bb52e25551c56bcb97e061e"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/cloud_database.py",
+    "bytes": 118502,
+    "sha256": "9294d59a7db0e035101ae43b9a8e533e688589ccb1ab8625023f408d6d56320e"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/door_access.py",
+    "bytes": 16106,
+    "sha256": "201dc7f9a9ab86a29b21268c43c233883e6a70c78cbbf656bdf79f1fc8c38da2"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/gym_time.py",
+    "bytes": 4556,
+    "sha256": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/tests/freeze_time.test.mjs",
+    "bytes": 3244,
+    "sha256": "379cfbdec0573b7d3ea4e806eab667af870a86fa83e87f9267ca9b0be11ee996"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/tests/http.test.mjs",
+    "bytes": 7853,
+    "sha256": "429813323838c1076c173810d5fa0038b0d1965c947b61ec633cdfe8f76b545d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend/tests/onboarding_page.test.mjs",
+    "bytes": 5066,
+    "sha256": "2c0717856b193281cd5977e7fe02aebefc4e6d98466fdcc03de171379cc9c42b"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_client.py",
+    "bytes": 3005,
+    "sha256": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/marketing_ui.py",
+    "bytes": 44121,
+    "sha256": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/membership_freeze_ui.py",
+    "bytes": 9246,
+    "sha256": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/payment_revision.py",
+    "bytes": 18439,
+    "sha256": "71df6aed6981fed457ccbfd15e780120a3231184c6665609e4ee3beeb49ac485"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/reception_app.py",
+    "bytes": 85789,
+    "sha256": "d71defa3a2273de932d58b485b9ed409399bdf30b7ae2ec82e446a1486d83433"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/reception_database.py",
+    "bytes": 13492,
+    "sha256": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/reception_expense_revision.py",
+    "bytes": 8416,
+    "sha256": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/release_gate.py",
+    "bytes": 1406,
+    "sha256": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/release_readiness.json",
+    "bytes": 1097,
+    "sha256": "8cfa3b195edcbeac7b1b31e95ac628ba6209c7038b767abd6b20eeed3770fb8a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/run_validation.py",
+    "bytes": 5622,
+    "sha256": "bf97b5c36d8e99773d9b65f733519a67471ce3008635f16d09d8183e469283a3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/server_date.py",
+    "bytes": 1704,
+    "sha256": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/functions/marketing/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/functions/marketing/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/functions/marketing/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/functions/marketing/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/functions/marketing/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/migrations/20261003124254_marketing_automation.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/migrations/20261008024020_membership_freezes_time_pipeline.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/supabase/migrations/20261008031059_marketing_server_scheduler.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/contracts.json",
+    "bytes": 13325,
+    "sha256": "851601cc743cb8fb61833c86aa1a6398e1c6bb57f1731a74e86445d70b7c40cc"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/extract_contracts.py",
+    "bytes": 3147,
+    "sha256": "284a069675d483ed30d425c61b9beea6d09032b351894c67230259364291b023"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/freeze_ui_smoke.py",
+    "bytes": 5871,
+    "sha256": "0bfc8b846c2ddf1e0e47422920003d06735b88646ef47583749a7cc3fb6c5bca"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/marketing_contracts.mjs",
+    "bytes": 16943,
+    "sha256": "7389212549f8692b7d84ac3c3c7e92affadebd9350465c39a8b4c3761b3c5dac"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/marketing_ui_smoke.py",
+    "bytes": 5141,
+    "sha256": "7759d3d84907c77ffe7cf98555996bce81dba2cdb1a63ef7b41a426ca5ffdb7b"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/membership_freezes.mjs",
+    "bytes": 13390,
+    "sha256": "7c63620cec3d265e996a81c4fdf98b429e1e3aed159075a5f341b52f65651de3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/migrations.mjs",
+    "bytes": 1981,
+    "sha256": "ef038ab078f4dd2c68366619a72990c800c63d42648ef43e114a831afa13825f"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/responsive_ui_smoke.py",
+    "bytes": 8918,
+    "sha256": "f6356f923e34b4e0a86dff55c357a3af7ba3a7d011f107fda03a3859731d6390"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_door_access.py",
+    "bytes": 15117,
+    "sha256": "dcce7928544634633d8ee7af642e079423e877dc689160e3af7f061e9fc98d3e"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_release_gate.py",
+    "bytes": 1867,
+    "sha256": "cbd14e1af34ceb3bf1330edd0bda889a3b3f11f9b79862e846254222dff506ef"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_review_regressions.py",
+    "bytes": 4252,
+    "sha256": "81a109fe25bd3d37644de6082b450ae3ca284d4895c167a6f40bd90655de7818"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_time_pipeline.py",
+    "bytes": 6490,
+    "sha256": "c076180600341b6cd13f3d4f8c9168352d8768d748f4e6a4af3880765d0ab449"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/ticket_followup.mjs",
+    "bytes": 8559,
+    "sha256": "a42af64620e84ab9e44a4115d7fdd7362a02f4d68c2041b29f9ab0e61151c078"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/time_pipeline.mjs",
+    "bytes": 10009,
+    "sha256": "11f3ea33373cb45857c9ba1485c078b280a399b19f0289a40a4288458484e9c4"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/tests/windows_ui_smoke.py",
+    "bytes": 5403,
+    "sha256": "289cc4eb6de86c3d3f9794e24e1cccc1cf0cf741b0568facba84ad08c1a976a3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x64/ui_text.py",
+    "bytes": 6944,
+    "sha256": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/ACTUALIZAR_CONGELACION_Y_HORAS.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/ACTUALIZAR_MARKETING.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/ACTUALIZAR_SCHEDULER.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/GUIA_CONGELACION_Y_HORAS.md",
+    "bytes": 7990,
+    "sha256": "9aea28f1802c0218108917f494866a6911cd2152dd64e718d329debe82202594"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/app.py",
+    "bytes": 277135,
+    "sha256": "9e671f8f0173af42653ef9108b5a4c19771cdd7dc2cef92457ab4f31598f3440"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/build_windows.py",
+    "bytes": 6228,
+    "sha256": "88d8d81a93b0286a77d7ba5336a1b14dff68b2af51e54717d970c2b02c291500"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/cloud_database.py",
+    "bytes": 118502,
+    "sha256": "9294d59a7db0e035101ae43b9a8e533e688589ccb1ab8625023f408d6d56320e"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/door_access.py",
+    "bytes": 16106,
+    "sha256": "201dc7f9a9ab86a29b21268c43c233883e6a70c78cbbf656bdf79f1fc8c38da2"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/gym_time.py",
+    "bytes": 4556,
+    "sha256": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/tests/freeze_time.test.mjs",
+    "bytes": 3244,
+    "sha256": "379cfbdec0573b7d3ea4e806eab667af870a86fa83e87f9267ca9b0be11ee996"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/tests/http.test.mjs",
+    "bytes": 7853,
+    "sha256": "429813323838c1076c173810d5fa0038b0d1965c947b61ec633cdfe8f76b545d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend/tests/onboarding_page.test.mjs",
+    "bytes": 5066,
+    "sha256": "2c0717856b193281cd5977e7fe02aebefc4e6d98466fdcc03de171379cc9c42b"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_client.py",
+    "bytes": 3005,
+    "sha256": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/marketing_ui.py",
+    "bytes": 44121,
+    "sha256": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/membership_freeze_ui.py",
+    "bytes": 9246,
+    "sha256": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/payment_revision.py",
+    "bytes": 18439,
+    "sha256": "71df6aed6981fed457ccbfd15e780120a3231184c6665609e4ee3beeb49ac485"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/reception_app.py",
+    "bytes": 85789,
+    "sha256": "d71defa3a2273de932d58b485b9ed409399bdf30b7ae2ec82e446a1486d83433"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/reception_database.py",
+    "bytes": 13492,
+    "sha256": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/reception_expense_revision.py",
+    "bytes": 8416,
+    "sha256": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/release_gate.py",
+    "bytes": 1406,
+    "sha256": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/release_readiness.json",
+    "bytes": 1097,
+    "sha256": "8cfa3b195edcbeac7b1b31e95ac628ba6209c7038b767abd6b20eeed3770fb8a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/run_validation.py",
+    "bytes": 5622,
+    "sha256": "bf97b5c36d8e99773d9b65f733519a67471ce3008635f16d09d8183e469283a3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/server_date.py",
+    "bytes": 1704,
+    "sha256": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/functions/marketing/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/functions/marketing/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/functions/marketing/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/functions/marketing/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/functions/marketing/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/migrations/20261003124254_marketing_automation.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/migrations/20261008024020_membership_freezes_time_pipeline.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/supabase/migrations/20261008031059_marketing_server_scheduler.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/contracts.json",
+    "bytes": 13325,
+    "sha256": "851601cc743cb8fb61833c86aa1a6398e1c6bb57f1731a74e86445d70b7c40cc"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/extract_contracts.py",
+    "bytes": 3147,
+    "sha256": "284a069675d483ed30d425c61b9beea6d09032b351894c67230259364291b023"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/freeze_ui_smoke.py",
+    "bytes": 5871,
+    "sha256": "0bfc8b846c2ddf1e0e47422920003d06735b88646ef47583749a7cc3fb6c5bca"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/marketing_contracts.mjs",
+    "bytes": 16943,
+    "sha256": "7389212549f8692b7d84ac3c3c7e92affadebd9350465c39a8b4c3761b3c5dac"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/marketing_ui_smoke.py",
+    "bytes": 5141,
+    "sha256": "7759d3d84907c77ffe7cf98555996bce81dba2cdb1a63ef7b41a426ca5ffdb7b"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/membership_freezes.mjs",
+    "bytes": 13390,
+    "sha256": "7c63620cec3d265e996a81c4fdf98b429e1e3aed159075a5f341b52f65651de3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/migrations.mjs",
+    "bytes": 1981,
+    "sha256": "ef038ab078f4dd2c68366619a72990c800c63d42648ef43e114a831afa13825f"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/responsive_ui_smoke.py",
+    "bytes": 8918,
+    "sha256": "f6356f923e34b4e0a86dff55c357a3af7ba3a7d011f107fda03a3859731d6390"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_door_access.py",
+    "bytes": 15117,
+    "sha256": "dcce7928544634633d8ee7af642e079423e877dc689160e3af7f061e9fc98d3e"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_release_gate.py",
+    "bytes": 1867,
+    "sha256": "cbd14e1af34ceb3bf1330edd0bda889a3b3f11f9b79862e846254222dff506ef"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_review_regressions.py",
+    "bytes": 4252,
+    "sha256": "81a109fe25bd3d37644de6082b450ae3ca284d4895c167a6f40bd90655de7818"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_time_pipeline.py",
+    "bytes": 6490,
+    "sha256": "c076180600341b6cd13f3d4f8c9168352d8768d748f4e6a4af3880765d0ab449"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/ticket_followup.mjs",
+    "bytes": 8559,
+    "sha256": "a42af64620e84ab9e44a4115d7fdd7362a02f4d68c2041b29f9ab0e61151c078"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/time_pipeline.mjs",
+    "bytes": 10009,
+    "sha256": "11f3ea33373cb45857c9ba1485c078b280a399b19f0289a40a4288458484e9c4"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/tests/windows_ui_smoke.py",
+    "bytes": 5403,
+    "sha256": "289cc4eb6de86c3d3f9794e24e1cccc1cf0cf741b0568facba84ad08c1a976a3"
+  },
+  {
+    "path": "GymSoft_ZTATTUZ_3.6.1_x86/ui_text.py",
+    "bytes": 6944,
+    "sha256": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966"
+  },
+  {
+    "path": "backend/core/automation.mjs",
+    "bytes": 7663,
+    "sha256": "e545ae6f4939abcaed7306e02984d79ba41861b8084387b48976f61469aa222d"
+  },
+  {
+    "path": "backend/core/chatbot.mjs",
+    "bytes": 5191,
+    "sha256": "d4a172d5e70daed128e83e9441a84f2e06425e3cb39903301be2b5edc4d6e2fb"
+  },
+  {
+    "path": "backend/core/onboarding.mjs",
+    "bytes": 8278,
+    "sha256": "fc3ebd349151e94b239f1ddcd90e97bdb8ee5e8d920e2e76ddc68c320bf72192"
+  },
+  {
+    "path": "backend/core/worker.mjs",
+    "bytes": 5345,
+    "sha256": "36147f70828632e568eba6c580329534f65af3affb630bbde9b316dbbf68ff23"
+  },
+  {
+    "path": "backend/handler.mjs",
+    "bytes": 13226,
+    "sha256": "0e8edc0784bf7406d0f69a473234c358466b01a5f0198e02628c30b42576c09a"
+  },
+  {
+    "path": "backend/tests/freeze_time.test.mjs",
+    "bytes": 3244,
+    "sha256": "379cfbdec0573b7d3ea4e806eab667af870a86fa83e87f9267ca9b0be11ee996"
+  },
+  {
+    "path": "backend/tests/http.test.mjs",
+    "bytes": 7853,
+    "sha256": "429813323838c1076c173810d5fa0038b0d1965c947b61ec633cdfe8f76b545d"
+  },
+  {
+    "path": "backend/tests/onboarding_page.test.mjs",
+    "bytes": 5066,
+    "sha256": "2c0717856b193281cd5977e7fe02aebefc4e6d98466fdcc03de171379cc9c42b"
+  },
+  {
+    "path": "common/build_freezes.py",
+    "bytes": 1864,
+    "sha256": "f6f1cf3f4114852c3a015f36c3b0308163c97a4b4bc8ccf689f3def4708d5527"
+  },
+  {
+    "path": "common/build_onboarding.mjs",
+    "bytes": 489,
+    "sha256": "6f1e1a68fc288db58bef0f12087ef16d6eec10664d8b18a5b271db43f36485e7"
+  },
+  {
+    "path": "common/checkpoint.py",
+    "bytes": 792,
+    "sha256": "b6a4815e149d20c19b7d1b1eab627fd00120b33780ad0f9d4a11a7ddc8ec3aa1"
+  },
+  {
+    "path": "common/freeze_ui_smoke.py",
+    "bytes": 5871,
+    "sha256": "0bfc8b846c2ddf1e0e47422920003d06735b88646ef47583749a7cc3fb6c5bca"
+  },
+  {
+    "path": "common/gym_time.py",
+    "bytes": 4556,
+    "sha256": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec"
+  },
+  {
+    "path": "common/marketing_api.sql",
+    "bytes": 19678,
+    "sha256": "5f5f34b06634bff5a7a8847c21da88d53d5684e9b5d3ccbdb8384aef1a655ff2"
+  },
+  {
+    "path": "common/marketing_chatbot.sql",
+    "bytes": 13881,
+    "sha256": "2f2bd92dc99fe4c195219c5fbe1bd8118625c79c42a144e6a9fd235acdd4a6bc"
+  },
+  {
+    "path": "common/marketing_client.py",
+    "bytes": 3005,
+    "sha256": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a"
+  },
+  {
+    "path": "common/marketing_contracts.mjs",
+    "bytes": 16943,
+    "sha256": "7389212549f8692b7d84ac3c3c7e92affadebd9350465c39a8b4c3761b3c5dac"
+  },
+  {
+    "path": "common/marketing_desktop.sql",
+    "bytes": 10015,
+    "sha256": "d2ebc238798b79d55d812e75eb081ea5fa01580e4fd23681e2fd02771011b579"
+  },
+  {
+    "path": "common/marketing_payments.sql",
+    "bytes": 9313,
+    "sha256": "fa59203fc613486c72c6a9d8ed4568e9c848c791933ad862a0df75e4e3df0f22"
+  },
+  {
+    "path": "common/marketing_scheduler.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "common/marketing_service.sql",
+    "bytes": 14414,
+    "sha256": "09f21e8d61b32692acb9164b07dc444760124ae82bf88c27c4b544530f525980"
+  },
+  {
+    "path": "common/marketing_ui.py",
+    "bytes": 44121,
+    "sha256": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0"
+  },
+  {
+    "path": "common/marketing_ui_smoke.py",
+    "bytes": 5141,
+    "sha256": "7759d3d84907c77ffe7cf98555996bce81dba2cdb1a63ef7b41a426ca5ffdb7b"
+  },
+  {
+    "path": "common/membership_freeze_ui.py",
+    "bytes": 9246,
+    "sha256": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854"
+  },
+  {
+    "path": "common/membership_freezes.mjs",
+    "bytes": 13390,
+    "sha256": "7c63620cec3d265e996a81c4fdf98b429e1e3aed159075a5f341b52f65651de3"
+  },
+  {
+    "path": "common/membership_freezes.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "common/qa_display.py",
+    "bytes": 1498,
+    "sha256": "5556771408811c08e94a0eb783fd61ffb36eba31496d85f12eafb1084f401d75"
+  },
+  {
+    "path": "common/release_gate.py",
+    "bytes": 1406,
+    "sha256": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3"
+  },
+  {
+    "path": "common/report_update.py",
+    "bytes": 19156,
+    "sha256": "d60c62a6fd26b919a7b71db0efd4c96132e9367002c399417dd3ece91318d472"
+  },
+  {
+    "path": "common/server_date.py",
+    "bytes": 1704,
+    "sha256": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837"
+  },
+  {
+    "path": "common/test_release_gate.py",
+    "bytes": 1867,
+    "sha256": "cbd14e1af34ceb3bf1330edd0bda889a3b3f11f9b79862e846254222dff506ef"
+  },
+  {
+    "path": "common/test_time_pipeline.py",
+    "bytes": 6490,
+    "sha256": "c076180600341b6cd13f3d4f8c9168352d8768d748f4e6a4af3880765d0ab449"
+  },
+  {
+    "path": "common/time_pipeline.mjs",
+    "bytes": 10009,
+    "sha256": "11f3ea33373cb45857c9ba1485c078b280a399b19f0289a40a4288458484e9c4"
+  },
+  {
+    "path": "common/upgrade_freeze_time_clients.py",
+    "bytes": 6340,
+    "sha256": "421ed0e0096b413667841345379039c5e0c3c0b060d26b824c2f4850c61aa5bd"
+  },
+  {
+    "path": "deployment/configure_meta.mjs",
+    "bytes": 1126,
+    "sha256": "432108f4ea71413a516c29826ddd8336c3b5fa6ac9227d328dfb6b69f5b25273"
+  },
+  {
+    "path": "onboarding/index.html",
+    "bytes": 4582,
+    "sha256": "cf4eca73f10006acd3aea0febe15203f8e057331c0ea29449646a6dd58ceba59"
+  },
+  {
+    "path": "supabase/migrations/20261003124254_marketing_automation.sql",
+    "bytes": 91941,
+    "sha256": "215892a7b8c24eaf49e9d8586dcfdbf319fb4e4e97bbbed51b3332ab39b7790d"
+  },
+  {
+    "path": "supabase/migrations/20261008024020_membership_freezes_time_pipeline.sql",
+    "bytes": 27651,
+    "sha256": "8ba8e038eeabf188fbc674d60a80e204638ec9f44ec46c72503181dc85da9a20"
+  },
+  {
+    "path": "supabase/migrations/20261008031059_marketing_server_scheduler.sql",
+    "bytes": 4504,
+    "sha256": "07337e955eb5ba76bb7f1730557f72bdcfc1d8aac0e8e6dd81990f1c4c8b6326"
+  },
+  {
+    "path": "temporal_inventory.txt",
+    "bytes": 16590,
+    "sha256": "8fde5832c9f2e881557949e54e00e88989d2348f1fe1b020f210d86616d76432"
+  },
+  {
+    "path": "temporal_inventory_current.txt",
+    "bytes": 7495,
+    "sha256": "eb90dd6ca115566e443a44e129fbfe0904cff49d94f786e2c49f6a5c38b974db"
+  }
+]

@@ -1,0 +1,690 @@
+https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/create-webhook-endpoint/
+
+Create a webhook endpoint | Meta for Developers
+Build with us
+Docs
+Blog
+Resources
+Developer centers
+Login
+WhatsApp Business Platform
+WhatsApp Business Platform
+Business Messaging
+WhatsApp Business Platform
+WhatsApp Business Platform
+Overview
+About the platform
+Access tokens
+Permissions
+Pricing
+Pricing
+Non-template messages
+Authentication-international rates
+AI Providers
+Change billing currency via API
+Prepaid billing
+Pricing (deprecated)
+Conversation-based pricing (Deprecated)
+Get started
+Direct Send messages
+Overview
+Supported features and limits
+Send utility and authentication messages
+Business-named templates
+Configure message TTL
+Supported message types
+Media message headers
+View generated templates
+View insights and analytics
+Integrity and content guidelines
+API reference
+FAQ
+Marketing messages
+Overview
+Get started
+Features
+Marketing templates
+Overview
+Custom marketing templates
+Call permission request message template
+Coupon code templates
+Limited-time-offer templates
+Location templates
+Media card carousel templates
+Guides
+Onboarding
+Measure conversions
+Track click events
+Track landing page views
+View metrics
+Deep links
+Route template messages by category
+Send marketing messages
+Onboard business customers
+Pricing
+Set a max price
+Enroll in max price
+Duplicate a template
+Control WhatsApp Manager visibility
+WhatsApp Manager experience
+Changelog
+In-App Signup
+Utility messages
+Overview
+Utility templates
+Call permission request templates
+Location templates
+Authentication messages
+Overview
+Authenticating users
+Error signals
+Authentication templates
+One-tap autofill
+Zero-tap
+Copy code
+Keyboard suggestions
+Bulk management
+Previews
+Service messages
+Overview
+Types of messages
+Address
+Audio
+Contacts
+Document
+Image
+Interactive
+URL button
+List buttons
+Media carousel
+Reply buttons
+Location
+Location request
+Reaction
+Sticker
+Text
+Video
+Calling
+Overview
+Configure call settings
+Business-initiated calls
+User call permissions
+User-initiated calls
+Call recording
+Call transcription
+Session Initiation Protocol
+Call button messages and deep links
+Integration patterns
+Integration examples
+Reference
+Troubleshooting
+Calling sandbox account
+App Review guidelines
+Pricing
+FAQ
+Groups
+Overview
+Get started
+Group management
+Group messaging
+Webhooks
+Error codes
+Pricing
+FAQ
+Catalogs
+Overview
+Get started
+Upload inventory
+Set commerce settings
+Share products
+Receiving responses
+Messages
+Catalog link messages
+Catalog messages
+Catalog template messages
+Multi-product messages
+Multi-product template messages
+Product carousel messages
+Product carousel template messages
+Single-product messages
+Single-product template messages
+Partners
+Overview
+Become a partner
+Become a Tech Provider
+Become a Solution Partner
+Become a Measurement Partner
+Upgrade to Tech Partner
+App Review
+Embedded Signup
+Overview
+Implementation
+Onboarding for Tech Providers
+Onboarding for Solution Partners
+Cloud API flow
+Custom flows
+Pre-filling screens
+Pre-verified phone numbers
+Bypassing phone number screens
+Making website optional
+App-only install
+Hosted ES
+Automatic Events
+Versions
+v4 public preview
+v4
+v3
+v3 public preview
+v2 public preview
+Errors
+Onboard Business app users (Coexistence)
+Reconnect offboarded coexistence clients
+Partner-initiated Messaging account creation
+Multi-Partner Solutions
+Overview
+Embedded Creation
+Migrate customers among solutions via Embedded Signup
+Migrate customers among solutions via Meta Business Suite
+Migrate Messaging accounts among partners via Embedded Signup
+Migrating customers off solutions via Embedded Signup
+Migrating customers off solutions via Meta Business Suite
+Add accounts to a Multi-Partner Solution
+Partner-led business verification
+Pixel tracking
+Manage customer assets
+Messaging accounts
+Phone numbers
+Overview
+Registering phone numbers via API
+System users
+Credit lines
+Webhooks
+Partner support
+Support
+Migrate numbers among partners via Embedded Signup
+Migrate numbers among partners programmatically
+Business customer support
+OBO model deprecation
+Conversation Routing
+Overview
+Entry points and routing
+Thread lifecycle
+Standby partners
+Get started
+Prepare before assigning another partner
+Prepare before enabling Meta Business Agent
+Thread control
+Conversation context
+Calling webhooks
+Prepare for Conversation Routing
+Troubleshooting
+Webhooks
+Overview
+Create a webhook endpoint
+Create a test webhook endpoint
+Override the callback URL
+Webhooks reference
+account_alerts
+account_review_update
+account_update
+business_capability_update
+history
+message_template_components_update
+message_template_quality_update
+message_template_status_update
+messages
+Overview
+audio messages
+button messages
+contacts messages
+document messages
+edit messages
+errors messages
+group messages
+image messages
+interactive messages
+location messages
+order messages
+reaction messages
+revoke messages
+status messages
+sticker messages
+system messages
+text messages
+unsupported messages
+video messages
+messaging_handovers
+partner_solutions
+payment_configuration_update
+phone_number_name_update
+phone_number_quality_update
+security
+smb_app_state_sync
+smb_message_echoes
+standby
+template_category_update
+user_preferences
+Template fundamentals
+Overview
+Components
+Languages
+Categorization
+Comparison
+Library
+Archival
+Media
+Management
+Overview
+Migration
+Configure time-to-live
+Tap target URL title override
+Quality and delivery
+Quality rating
+Review
+Pausing
+Business portfolio pacing
+Template pacing
+Messaging limits
+Upcoming changes to messaging limits
+Per-user marketing template limits
+Messaging features
+Media
+Read receipts
+Contextual replies
+Typing indicators
+Link previews
+Throughput
+Account assets
+Business phone numbers
+Overview
+Register a phone number
+Two-step verification
+Conversational components
+Business-scoped user IDs
+Business profiles
+Display names
+Official Business Accounts
+WhatsApp accounts and Messaging accounts
+Account model evolution
+Overview
+Onboarding
+Managing messaging accounts
+QR codes and message links
+Timezone IDs
+Analytics
+Ads that click to WhatsApp
+Welcome message sequences
+Payments
+Payments India
+Overview
+Onboarding APIs
+UPI Intent
+Dynamic VPA
+Cashfree
+Billdesk
+CCAvenue
+Payment links
+Enhanced payment links
+Payment gateway
+Order details templates
+Order status templates
+Checkout button templates
+Payments Brazil
+Overview
+Orders
+Pix
+Payment links
+Boleto
+One-click payments
+Order details templates
+Payment request CTA templates
+Payments - Rest of the world
+Data, Privacy, & Policy
+Policy enforcement
+Violations
+Blocking users
+Data privacy & security
+Local storage
+No storage
+Obtaining user opt-in
+User identity changes
+Support
+Support
+API status page
+Health status
+Load testing
+Experiments
+Use an existing WhatsApp number
+Resources
+API Reference
+Application
+Application Connected Client Businesses
+Application Solutions API
+Solution Creation API
+Business
+Add Phone Numbers API
+Business Account API
+Client WhatsApp Business Accounts API
+Owned WhatsApp Business Accounts
+WhatsApp Business Accounts API
+WhatsApp Business Partner Onboarding to MM Lite API
+WhatsApp Business Pre-Verified Phone Number Sharing API
+WhatsApp Business Pre-Verified Phone Numbers API
+Groups
+Groups Invite Link API
+Groups Join Requests API
+Groups Participants API
+Groups Query API
+Media
+Media API
+Media Download API
+Message History
+WhatsApp Business Message History Events API
+User
+Assigned WhatsApp Business Accounts API
+Webhooks
+WhatsApp Incoming Webhook Payload
+WhatsApp Account Number
+WhatsApp Account Number API
+WhatsApp Business Account
+Assigned Users Management API
+Conversational Automation API
+Extended Credits API
+Message Template API
+Phone Number Management API
+Schedules API
+Subscribed Apps API
+WhatsApp Business Account API
+WhatsApp Business Account Activities API
+WhatsApp Business Account Solutions List API
+WhatsApp Business Account Migration Intent
+Migration Intent Details API
+WhatsApp Business Bot
+Bot Details API
+WhatsApp Business Phone Number
+Block API
+Business Compliance Information API
+Business Encryption API
+Calling API
+Commerce Settings API
+Groups Management API
+Marketing Messages API for WhatsApp
+Media Upload API
+Message API
+Phone Number Deregister API
+Phone Number Registration
+Phone Number Verification Request Code API
+Settings API
+Verify Code API
+WhatsApp Business Account Official Business Account Status API
+WhatsApp Business Account Phone Number API
+WhatsApp Business Profile API
+WhatsApp Business QR Code API
+WhatsApp Business QR Code Management API
+WhatsApp Business Pre Verified Phone Number
+Request Verification Code API
+Verify Code API
+WhatsApp Business Pre-Verified Phone Number API
+WhatsApp Business Pre-Verified Phone Number Partners API
+WhatsApp Business Profile
+WhatsApp Business Profile Node API
+WhatsApp Business Solution
+Accept Deactivation Request API
+Access Token API
+Reject Deactivation Request API
+Send Deactivation Request API
+Solution Accept API
+Solution Details API
+Solution Reject API
+Changelog
+Error codes
+Docs
+Overview
+Create a webhook endpoint
+Create a webhook endpoint
+Updated
+:
+Jun 17, 2026
+Copy for LLM
+View as Markdown
+Learn about webhook requests and responses so you can set up and configure your own webhook endpoint on a public server.
+Before you can use your app in a production capacity, you must create and configure your own webhook endpoint on a public server that can accept and respond to GET and POST requests, and that can validate and capture webhook payloads.
+TLS/SSL
+Your webhook endpoint server must have a valid TLS or SSL digital security certificate, correctly configured and installed. Self-signed certificates are not supported.
+mTLS
+Webhooks support mutual TLS (mTLS) for added security. See Graph API’s
+mTLS for webhooks
+document to learn how to enable and use mTLS.
+Note that enabling and disabling mTLS is not supported at the Messaging account or business phone number level. If you have more than one application accessing the platform, enable mTLS for each application.
+GET requests
+GET requests are used to verify your webhook endpoint. Anytime you
+set or edit the
+Callback URL
+field or the
+Verify token
+field
+in the App Dashboard, Meta sends a GET request to your webhook endpoint. You must validate and respond to this request.
+Request syntax
+GET <CALLBACK_URL>
+  ?hub.mode=subscribe
+  &hub.challenge=<HUB.CHALLENGE>
+  &hub.verify_token=<HUB.VERIFY_TOKEN>
+Request parameters
+Placeholder
+Description
+Example value
+<CALLBACK_URL>
+Your webhook endpoint URL.
+Add this URL to the
+Callback URL
+field in the App Dashboard when you
+configure webhooks
+later.
+https://www.luckyshrub.com/webhooks
+<HUB.CHALLENGE>
+A random string that Meta will generate.
+1158201444
+<HUB.VERIFY_TOKEN>
+A verification string of your own choosing. Store this string on your server.
+Add this string to the
+Verify token
+field in the App Dashboard when you
+configure webhooks
+later.
+vibecoding
+Validation
+To validate GET requests, compare the
+hub.verify_token
+value in the request to the verification string you have stored on your server. If the values match, the request is valid. Otherwise, the request is invalid.
+Response
+If the request is valid, respond with HTTP status
+200
+and the
+hub.challenge
+value. If the request is invalid, respond with a 400-level HTTP status code, or anything other than status
+200
+.
+When you
+configure webhooks
+, Meta sends a GET request to your webhook endpoint. If it returns status
+200
+and the
+hub.challenge
+value included in the request, Meta considers your webhook endpoint verified, and begins sending you webhooks. If your webhook endpoint responds with anything else, however, Meta will consider your webhook endpoint unverified, and webhooks will not be sent to your endpoint.
+POST requests
+Anytime a webhook event is triggered for any webhook fields you are subscribed to, Meta sends a POST request to your webhook endpoint, containing a JSON payload describing the event.
+Request syntax
+POST <CALLBACK_URL>
+Content-Type: application/json
+X-Hub-Signature-256: sha256=<SHA256_PAYLOAD_HASH>
+Content-Length: <CONTENT_LENGTH>
+
+<JSON_PAYLOAD>
+Request parameters
+Placeholder
+Description
+Example value
+<CALLBACK_URL>
+Your webhook endpoint URL.
+https://www.luckyshrub.com/webhooks
+<CONTENT_LENGTH>
+Content length in bytes.
+492
+<JSON_PAYLOAD>
+Post body payload, formatted using JSON.
+See
+Fields
+references for example payloads.
+<SHA256_PAYLOAD_HASH>
+HMAC-SHA256 hash, calculated using the post body payload and your
+app secret
+as the secret key.
+b63bb356dff0f1c24379efea2d6ef0b2e2040853339d1bcf13f9018790b1f7d2
+Validation
+To validate the request:
+Generate an HMAC-SHA256 hash using the JSON payload as the message input and your
+app secret
+as the secret key.
+Compare your generated hash to the hash assigned to the
+X-Hub-Signature-256
+header (everything after
+sha256=
+).
+If the hashes match, the payload is valid. Capture the payload and digest the payload contents according to business needs. If they do not match, consider the payload invalid.
+There are no APIs for fetching historical webhook data, so capture and store webhook payloads accordingly.
+Response
+If the request is valid, respond with HTTP status 200. Otherwise, respond with a 400-level HTTP status, or anything other than status 200.
+Batching
+POST requests are aggregated and sent in a batch with a maximum of 1000 updates. However, batching cannot be guaranteed so be sure to adjust your servers to handle each POST request individually.
+If any POST request sent to your server fails, delivery is retried immediately, then a few more times with decreasing frequency over the next 7 days. Your server should handle deduplication in these cases.
+Unacknowledged responses will be dropped after 7 days.
+Configure webhooks
+Once you have created your webhook endpoint, navigate to the
+App Dashboard
+>
+WhatsApp
+>
+Configuration
+panel, and add your webhook endpoint URL to the
+Callback URL
+field, and your verification string to
+Verify token
+field.
+Note that if you created your app using the
+Connect with customers through WhatsApp
+use case, navigate to
+App Dashboard
+>
+Use cases
+>
+Customize
+>
+Configuration
+instead.
+If your webhook endpoint is responding to webhook verification GET requests properly, the panel will save your changes, and a list of fields you can subscribe to will appear. You can then
+subscribe to any fields
+that fulfill your business needs.
+Note that you can use the
+Application Subscriptions API
+to configure webhooks as an alternative method, but it requires the use of an
+app token
+. See Graph API’s
+Subscriptions edge
+document to learn how to do this, and use whatsapp_business_account as the object value.
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+About us
+About
+Careers
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+Build with Meta
+AI
+Meta Horizon
+Social technologies
+Wearables
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer Support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+About us
+About
+Careers
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+Privacy policy
+Cookies
+English (US)

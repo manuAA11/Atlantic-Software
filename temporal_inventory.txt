@@ -1,0 +1,157 @@
+GymSoft_Comercial_3.6.0/cloud_database.py:23:from zoneinfo import ZoneInfo
+GymSoft_Comercial_3.6.0/cloud_database.py:29:BOGOTA_TIMEZONE = ZoneInfo("America/Bogota")
+GymSoft_Comercial_3.6.0/cloud_database.py:313:        return parse_instant(clock['now']).astimezone(ZoneInfo(clock['timezone']))
+GymSoft_Comercial_3.6.0/cloud_database.py:375:        today = today_date.isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:380:            tzinfo=ZoneInfo(self.cloud.timezone),
+GymSoft_Comercial_3.6.0/cloud_database.py:403:                day_start.isoformat(),
+GymSoft_Comercial_3.6.0/cloud_database.py:407:                next_day_start.isoformat(),
+GymSoft_Comercial_3.6.0/cloud_database.py:515:                        date.fromisoformat(end_text) - today
+GymSoft_Comercial_3.6.0/cloud_database.py:586:            end = date.fromisoformat(end_text)
+GymSoft_Comercial_3.6.0/cloud_database.py:985:        payload["updated_at"] = self._now().isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:1418:                "updated_at": self._now().isoformat(),
+GymSoft_Comercial_3.6.0/cloud_database.py:1494:                            date.fromisoformat(membership_end) - today
+GymSoft_Comercial_3.6.0/cloud_database.py:1512:            now = self._now().isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:1573:                "created_at": self._now().isoformat(timespec="seconds"),
+GymSoft_Comercial_3.6.0/cloud_database.py:1935:            ).isoformat(sep=" ")
+GymSoft_Comercial_3.6.0/cloud_database.py:2034:                        return date.fromisoformat(value[:10])
+GymSoft_Comercial_3.6.0/cloud_database.py:2039:                        parsed = datetime.fromisoformat(
+GymSoft_Comercial_3.6.0/cloud_database.py:2042:                        return local_datetime(parsed, timezone_for(self)).isoformat(sep=" ", timespec="seconds")
+GymSoft_Comercial_3.6.0/cloud_database.py:2292:                return value.date().isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2293:            return value.replace(microsecond=0).isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2297:                return datetime.combine(value, time.min).isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2298:            return value.isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2351:                parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+GymSoft_Comercial_3.6.0/cloud_database.py:2375:                return parsed.date().isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2376:            return parsed.replace(microsecond=0).isoformat()
+GymSoft_Comercial_3.6.0/cloud_database.py:2964:            f"GymSoft-antes-importacion-{datetime.now():%Y%m%d-%H%M%S}.json"
+GymSoft_Comercial_3.6.0/cloud_database.py:3199:                    "paid_at": membership.get("paid_at") or self._now().isoformat(),
+GymSoft_Comercial_3.6.0/cloud_database.py:3220:                    start_date=str(routine.get("start_date") or self._today().isoformat()),
+GymSoft_Comercial_3.6.0/cloud_database.py:3262:                            "checkin_at": checkin.get("checkin_at") or self._now().isoformat(),
+GymSoft_Comercial_3.6.0/cloud_database.py:3300:                            "created_at": reservation.get("created_at") or self._now().isoformat(),
+common/update_daily_ui.py:30:   s=s.replace('datetime.fromisoformat(text.replace("Z", "+00:00")).replace(tzinfo=None)',
+common/update_daily_ui.py:31:    'local_datetime(text, timezone_for(self)).replace(tzinfo=None)')
+common/update_daily_ui.py:53:    try: return local_datetime(value, zone).strftime('%d/%m/%Y %H:%M')
+GymSoft_Comercial_3.6.0/marketing_ui.py:217:            if trigger=='CUSTOM_DATE':options['date']=datetime.strptime(self.date.get(),'%d/%m/%Y').date().isoformat()
+GymSoft_Comercial_3.6.0/owner_panel.py:269:        now=datetime.now(timezone.utc)
+GymSoft_Comercial_3.6.0/owner_panel.py:272:            expiry=datetime.fromisoformat(r['expires_at'].replace('Z','+00:00'))
+GymSoft_Comercial_3.6.0/owner_panel.py:273:            if expiry.tzinfo is None:expiry=expiry.replace(tzinfo=timezone.utc)
+GymSoft_Comercial_3.6.0/owner_panel.py:383:        reference=pending.get('reference') or 'GS-'+datetime.now(timezone.utc).strftime('%Y%m%d')+'-'+uuid.uuid4().hex[:8].upper()
+GymSoft_Comercial_3.6.0/owner_panel.py:440:        path=filedialog.asksaveasfilename(title='Guardar respaldo del gimnasio',defaultextension='.json',initialfile='GymSoft-'+r['id']+'-'+datetime.now().strftime('%Y%m%d')+'.json',parent=self)
+common/gym_time.py:6:from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+common/gym_time.py:23:    result = value if isinstance(value, datetime) else datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+common/gym_time.py:26:    return result.astimezone(ZoneInfo(zone))
+common/gym_time.py:32:        return value.isoformat()
+common/gym_time.py:36:        return local_datetime(value, zone).strftime('%Y-%m-%d %H:%M:%S' if seconds else '%Y-%m-%d %H:%M')
+common/gym_time.py:37:    except (ValueError, TypeError, ZoneInfoNotFoundError):
+common/gym_time.py:44:    dt = value if isinstance(value, datetime) else datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+common/gym_time.py:54:    ZoneInfo(clock['timezone'])
+GymSoft_Comercial_3.6.0/gym_time.py:6:from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+GymSoft_Comercial_3.6.0/gym_time.py:23:    result = value if isinstance(value, datetime) else datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+GymSoft_Comercial_3.6.0/gym_time.py:26:    return result.astimezone(ZoneInfo(zone))
+GymSoft_Comercial_3.6.0/gym_time.py:32:        return value.isoformat()
+GymSoft_Comercial_3.6.0/gym_time.py:36:        return local_datetime(value, zone).strftime('%Y-%m-%d %H:%M:%S' if seconds else '%Y-%m-%d %H:%M')
+GymSoft_Comercial_3.6.0/gym_time.py:37:    except (ValueError, TypeError, ZoneInfoNotFoundError):
+GymSoft_Comercial_3.6.0/gym_time.py:44:    dt = value if isinstance(value, datetime) else datetime.fromisoformat(str(value).replace('Z', '+00:00'))
+GymSoft_Comercial_3.6.0/gym_time.py:54:    ZoneInfo(clock['timezone'])
+GymSoft_Comercial_3.6.0/ticket_forms.py:57:                used, end = carryover_values(plan, start.isoformat(), self.used.get(), self.today)
+GymSoft_Comercial_3.6.0/ui_text.py:62:        stamp=datetime.fromisoformat(str(last).replace('Z','+00:00'))
+GymSoft_Comercial_3.6.0/ui_text.py:63:        if stamp.tzinfo is None:stamp=stamp.replace(tzinfo=timezone.utc)
+GymSoft_Comercial_3.6.0/ui_text.py:64:        elapsed=((now or datetime.now(timezone.utc))-stamp).total_seconds()
+common/marketing_ui.py:217:            if trigger=='CUSTOM_DATE':options['date']=datetime.strptime(self.date.get(),'%d/%m/%Y').date().isoformat()
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:8:from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:36:    try: ZoneInfo(tz)
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:37:    except (ZoneInfoNotFoundError, ValueError) as error:
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:70:            try: value=date.fromisoformat(text).isoformat()
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:74:                dt=datetime.fromisoformat(text.replace('Z','+00:00'))
+GymSoft_Comercial_3.6.0/owner_editor_forms.py:76:                value=dt.isoformat()
+GymSoft_Comercial_3.6.0/reception_expense_revision.py:50:    return parsed.isoformat()
+GymSoft_Comercial_3.6.0/reception_expense_revision.py:71:        today = date.today()
+GymSoft_Comercial_3.6.0/reception_expense_revision.py:79:                value=current_day.strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/followup_ui.py:15:        return date.fromisoformat(str(value)[:10]).strftime('%d/%m/%Y')
+GymSoft_Comercial_3.6.0/followup_ui.py:102:            initialfile=f'Seguimiento-clientes-{date.today():%Y%m%d}.csv', defaultextension='.csv', filetypes=[('CSV para Excel', '*.csv')])
+GymSoft_Comercial_3.6.0/payment_revision.py:68:    try: return local_datetime(value, zone).strftime('%d/%m/%Y %H:%M')
+GymSoft_Comercial_3.6.0/owner_forms.py:6:from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+GymSoft_Comercial_3.6.0/owner_forms.py:80:        ZoneInfo(zone)
+GymSoft_Comercial_3.6.0/owner_forms.py:81:    except (ZoneInfoNotFoundError, ValueError):
+common/server_date.py:5:from zoneinfo import ZoneInfo
+common/server_date.py:11:        self.timezone = ZoneInfo(timezone)
+common/server_date.py:30:                self.timezone = ZoneInfo(result['timezone'])
+common/server_date.py:31:                instant = parse_instant(result['now']).astimezone(self.timezone)
+common/server_date.py:32:                value = date.fromisoformat(result['today'])
+common/server_date.py:39:                value = date.fromisoformat(str(result))
+common/upgrade_freeze_time_clients.py:32:        return parse_instant(clock['now']).astimezone(ZoneInfo(clock['timezone']))
+common/upgrade_freeze_time_clients.py:35:            s = s.replace('datetime.now().astimezone().isoformat()', 'self._now().isoformat()')
+common/upgrade_freeze_time_clients.py:36:            s = s.replace('datetime.now().astimezone().isoformat(timespec="seconds")', 'self._now().isoformat(timespec="seconds")')
+common/upgrade_freeze_time_clients.py:37:            s = s.replace('datetime.now().astimezone().replace(', 'self._now().replace(')
+GymSoft_Comercial_3.6.0/server_date.py:5:from zoneinfo import ZoneInfo
+GymSoft_Comercial_3.6.0/server_date.py:11:        self.timezone = ZoneInfo(timezone)
+GymSoft_Comercial_3.6.0/server_date.py:30:                self.timezone = ZoneInfo(result['timezone'])
+GymSoft_Comercial_3.6.0/server_date.py:31:                instant = parse_instant(result['now']).astimezone(self.timezone)
+GymSoft_Comercial_3.6.0/server_date.py:32:                value = date.fromisoformat(result['today'])
+GymSoft_Comercial_3.6.0/server_date.py:39:                value = date.fromisoformat(str(result))
+GymSoft_Comercial_3.6.0/database.py:29:    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+GymSoft_Comercial_3.6.0/database.py:49:    paid_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+GymSoft_Comercial_3.6.0/database.py:59:    checkin_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+GymSoft_Comercial_3.6.0/database.py:117:    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+GymSoft_Comercial_3.6.0/database.py:245:            start = date.today()
+GymSoft_Comercial_3.6.0/database.py:257:                    start.isoformat(),
+GymSoft_Comercial_3.6.0/database.py:258:                    end.isoformat(),
+GymSoft_Comercial_3.6.0/database.py:275:        today = date.today().isoformat()
+GymSoft_Comercial_3.6.0/database.py:276:        month_start = date.today().replace(day=1).isoformat()
+GymSoft_Comercial_3.6.0/database.py:314:        today = date.today()
+GymSoft_Comercial_3.6.0/database.py:329:                (today.isoformat(), limit.isoformat()),
+GymSoft_Comercial_3.6.0/database.py:336:        today = date.today().isoformat()
+GymSoft_Comercial_3.6.0/database.py:526:        start = date.fromisoformat(start_date)
+GymSoft_Comercial_3.6.0/database.py:544:                    start.isoformat(),
+GymSoft_Comercial_3.6.0/database.py:545:                    end.isoformat(),
+GymSoft_Comercial_3.6.0/database.py:572:        today = date.today().isoformat()
+GymSoft_Comercial_3.6.0/database.py:702:        timestamp = datetime.now().isoformat(sep=" ", timespec="seconds")
+GymSoft_Comercial_3.6.0/database.py:1029:                f"{datetime.now():%Y%m%d-%H%M%S}.db"
+GymSoft_Comercial_3.6.0/app.py:283:        born = date.fromisoformat(text[:10])
+GymSoft_Comercial_3.6.0/app.py:309:        born = date.fromisoformat(text[:10])
+GymSoft_Comercial_3.6.0/app.py:405:        return date.fromisoformat(text[:10]).strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/app.py:419:    ).date().isoformat()
+GymSoft_Comercial_3.6.0/app.py:1032:            value=today.strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/app.py:1209:                or date.today().strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/app.py:1549:            value=date.today().strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/app.py:1639:        self.starts_at = tk.StringVar(value=datetime.now().strftime("%Y-%m-%d 18:00"))
+GymSoft_Comercial_3.6.0/app.py:2562:        default = f"GymSoft-respaldo-{datetime.now():%Y%m%d-%H%M}.db"
+GymSoft_Comercial_3.6.0/app.py:3176:            text=f"Actualizado {datetime.now():%H:%M:%S}"
+GymSoft_Comercial_3.6.0/app.py:3865:        month_prefix = datetime.now().strftime("%Y-%m")
+GymSoft_Comercial_3.6.0/app.py:4410:        self.date_from.set(start.strftime("%d/%m/%Y"))
+GymSoft_Comercial_3.6.0/app.py:4411:        self.date_to.set(today.strftime("%d/%m/%Y"))
+GymSoft_Comercial_3.6.0/app.py:4457:            self.date_from.set(today.replace(day=1).strftime('%d/%m/%Y'))
+GymSoft_Comercial_3.6.0/app.py:4459:            self.date_to.set(today.strftime('%d/%m/%Y'))
+GymSoft_Comercial_3.6.0/app.py:5006:            today = date.today()
+GymSoft_Comercial_3.6.0/app.py:5026:                membership_end = date.fromisoformat(end_text)
+GymSoft_Comercial_3.6.0/app.py:5351:            today = date.today()
+GymSoft_Comercial_3.6.0/app.py:5352:        self.date_from.set(today.replace(day=1).strftime("%d/%m/%Y"))
+GymSoft_Comercial_3.6.0/app.py:5353:        self.date_to.set(today.strftime("%d/%m/%Y"))
+GymSoft_Comercial_3.6.0/app.py:5386:            self.date_from.set(today.replace(day=1).strftime('%d/%m/%Y'))
+GymSoft_Comercial_3.6.0/app.py:5388:            self.date_to.set(today.strftime('%d/%m/%Y'))
+GymSoft_Comercial_3.6.0/app.py:7129:            f"{datetime.now():%Y%m%d-%H%M}.xlsx"
+GymSoft_Comercial_3.6.0/app.py:7166:            f"{datetime.now():%Y%m%d-%H%M}.json"
+GymSoft_Comercial_3.6.0/app.py:7234:        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+GymSoft_Comercial_3.6.0/app.py:7330:                f"{datetime.now():%Y%m%d-%H%M%S}.db"
+GymSoft_Comercial_3.6.0/app.py:7497:        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+GymSoft_Comercial_3.6.0/tests/test_presentation.py:177:            self.assertEqual(service_status({**settings,'last_worker_at':(now-age).isoformat()},now)[0],
+GymSoft_Comercial_3.6.0/tests/test_presentation.py:179:        self.assertEqual(service_status({**settings,'last_worker_at':now.isoformat()},now),
+GymSoft_Comercial_3.6.0/tests/test_presentation.py:181:        self.assertEqual(service_status({**settings,'last_worker_at':now.isoformat(),'whatsapp_enabled':False},now)[0],
+GymSoft_Comercial_3.6.0/run_validation.py:30:    result=dict(version=VERSION,started_at=datetime.now(timezone.utc).isoformat(),
+GymSoft_Comercial_3.6.0/tests/test_ticket_followup.py:14:            self.assertEqual(plan_end_date(plan, start).isoformat(), end)
+GymSoft_Comercial_3.6.0/tests/test_ticket_followup.py:15:        self.assertEqual(plan_end_date({'duration_days': 30}, '2026-02-01').isoformat(), '2026-03-02')
+GymSoft_Comercial_3.6.0/desktop_ui.py:178:        reference='GS-'+datetime.now().strftime('%Y%m%d-%H%M%S')
+GymSoft_Comercial_3.6.0/plan_forms.py:50:        start = date.fromisoformat(start)
+GymSoft_Comercial_3.6.0/plan_forms.py:62:        start = date.fromisoformat(start)
+GymSoft_Comercial_3.6.0/plan_forms.py:101:        start = datetime.strptime(str(start).strip(), '%d/%m/%Y').date().isoformat()
+GymSoft_Comercial_3.6.0/runtime_cloud.py:132:            file.write(f'\n[{datetime.now(timezone.utc).isoformat()}] {type(error).__name__}\n')
+GymSoft_Comercial_3.6.0/owner_editor.py:297:            initialfile='GymSoft-'+self.gym['id']+'-'+datetime.now().strftime('%Y%m%d-%H%M%S')+'.json',parent=self)
+GymSoft_Comercial_3.6.0/reception_app.py:213:        return date.fromisoformat(text[:10]).strftime("%d/%m/%Y")
+GymSoft_Comercial_3.6.0/reception_app.py:222:    ).date().isoformat()
+GymSoft_Comercial_3.6.0/reception_app.py:232:        born = date.fromisoformat(text[:10])
+GymSoft_Comercial_3.6.0/reception_app.py:781:        self.start_date = tk.StringVar(value=today.strftime("%d/%m/%Y"))
+GymSoft_Comercial_3.6.0/tests/gym_simulation.py:96:        today=admin._today();day=today.isoformat()
+GymSoft_Comercial_3.6.0/tests/gym_simulation.py:159:        carry=admin.add_membership(migrated,ticket20,(today-timedelta(days=10)).isoformat(),0,'Efectivo',
+GymSoft_Comercial_3.6.0/tests/gym_simulation.py:161:        retry=admin.add_membership(migrated,ticket20,(today-timedelta(days=10)).isoformat(),0,'Efectivo',
+GymSoft_Comercial_3.6.0/tests/fingerprint_journey.py:76:                admin.add_membership(clients[kind],monthly,day.isoformat(),60000,'Efectivo')
+GymSoft_Comercial_3.6.0/tests/fingerprint_journey.py:77:            admin.add_membership(clients['tiquetera'],ticket,today.isoformat(),10000,'Efectivo')

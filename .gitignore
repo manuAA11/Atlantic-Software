@@ -1,0 +1,16 @@
+**/node_modules/
+**/__pycache__/
+**/.venv/
+**/salida/
+**/build/
+**/dist/
+*.log
+
+**/.temp/
+**/.pytest_cache/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+!evidence/**/*.log

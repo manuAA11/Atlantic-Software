@@ -1,0 +1,31 @@
+Gym soft Comercial 3.3.2 - Corrección de compilación
+9 de septiembre de 2026
+
+Para la carpeta 3.3.2 que ya tienes instalada en tu computador.
+
+1. Cierra las ventanas de las pruebas y la consola de compilación anterior.
+2. Extrae el ZIP del parche en una carpeta temporal.
+3. Copia TODO su contenido dentro de tu carpeta GymSoft_Comercial_3.3.2,
+   al mismo nivel donde está CREAR_INSTALADORES.bat.
+4. Acepta reemplazar los archivos con el mismo nombre. La carpeta tests del
+   parche se debe combinar con la carpeta tests existente. No la elimines.
+5. Ejecuta CREAR_INSTALADORES.bat desde tu carpeta GymSoft_Comercial_3.3.2.
+   Se reutiliza el entorno de Python que ya preparaste.
+
+No ejecutes las pruebas desde la carpeta temporal del parche: el parche
+contiene solo los archivos corregidos y necesita las fuentes completas.
+
+Durante la comprobación se abrirán y cambiarán de tamaño varias ventanas.
+Deja que termine el proceso sin moverlas, minimizarlas ni cerrarlas.
+
+Cuando termine correctamente, el instalador de Administración y Recepción
+estará en salida/GymSoft_Instalar_o_Actualizar_3.3.2.exe.
+El instalador del propietario estará en
+salida/GymSoft_Propietario_PRIVADO_3.3.2.exe y es exclusivo de tu computador.
+
+No se necesita ejecutar SQL. El aviso de una nueva versión de pip es informativo.
+El parche corrige las pruebas de pantalla; conserva las comprobaciones de
+contenido oculto y la validación de ventanas, lectura automática y tiqueteras.
+
+Las pruebas locales se ejecutaron en Linux con Tk y pantallas virtuales.
+La compilación de los ejecutables y su comprobación final se realizan en Windows.

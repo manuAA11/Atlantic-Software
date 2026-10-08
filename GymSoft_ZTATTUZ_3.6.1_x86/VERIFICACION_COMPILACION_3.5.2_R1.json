@@ -1,0 +1,236 @@
+{
+  "version": "3.5.2",
+  "build_revision": 1,
+  "edition": "ZTATTUZ",
+  "checked_at": "2026-09-26T16:08:05.603373+00:00",
+  "environment": "Linux / Tk real / PostgreSQL local / lector simulado",
+  "installed_code_changed": false,
+  "live_database_changes": false,
+  "validation": {
+    "version": "3.5.2",
+    "started_at": "2026-09-26T16:03:43.605528+00:00",
+    "platform": "linux",
+    "scope": "all",
+    "status": "PASS",
+    "stages": [
+      {
+        "name": "python",
+        "status": "PASS",
+        "seconds": 6.93,
+        "log": "python.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contratos_extraidos",
+        "status": "PASS",
+        "seconds": 1.16,
+        "log": "contratos_extraidos.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprints",
+        "status": "PASS",
+        "seconds": 5.35,
+        "log": "fingerprints.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "upgrade_compatibility",
+        "status": "PASS",
+        "seconds": 2.88,
+        "log": "upgrade_compatibility.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "security",
+        "status": "PASS",
+        "seconds": 3.69,
+        "log": "security.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "seconds": 2.69,
+        "log": "contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_plans",
+        "status": "PASS",
+        "seconds": 3.12,
+        "log": "ticket_plans.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_followup",
+        "status": "PASS",
+        "seconds": 2.98,
+        "log": "ticket_followup.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "recorrido_huellas",
+        "status": "PASS",
+        "seconds": 16.44,
+        "log": "recorrido_huellas.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "simulacion_gimnasio",
+        "status": "PASS",
+        "seconds": 14.2,
+        "log": "simulacion_gimnasio.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ui_wait_smoke",
+        "status": "PASS",
+        "seconds": 0.28,
+        "log": "ui_wait_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "client_fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 7.36,
+        "log": "client_fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 9.6,
+        "log": "fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "windows_ui_smoke",
+        "status": "PASS",
+        "seconds": 1.55,
+        "log": "windows_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "responsive_ui_smoke",
+        "status": "PASS",
+        "seconds": 59.92,
+        "log": "responsive_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "biometric_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.92,
+        "log": "biometric_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_ui_smoke",
+        "status": "PASS",
+        "seconds": 6.88,
+        "log": "ticket_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "performance_ui_smoke",
+        "status": "PASS",
+        "seconds": 9.15,
+        "log": "performance_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "popdown_ui_smoke",
+        "status": "PASS",
+        "seconds": 4.17,
+        "log": "popdown_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_modes_ui_smoke",
+        "status": "PASS",
+        "seconds": 49.18,
+        "log": "layout_modes_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "review_ui_smoke",
+        "status": "PASS",
+        "seconds": 5.59,
+        "log": "review_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_consistency_ui_smoke",
+        "status": "PASS",
+        "seconds": 9.35,
+        "log": "layout_consistency_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      }
+    ]
+  },
+  "files": {
+    "run_validation.py": {
+      "previous_sha256": "f18f1c506b9fb6973d623e60a70ccba87828afc6505306ceba5e1974d8e78960",
+      "sha256": "55bc836bb4e534f3cd022aedad8c89cabb180ac1394e2de31f115ef3c92ad2c1"
+    },
+    "validation_process.py": {
+      "previous_sha256": null,
+      "sha256": "df7402a14d922eb1d3b8d8bafec29c1b7b838dbdb268269cb2161a6985d5e418"
+    },
+    "tests/fingerprint_ui_smoke.py": {
+      "previous_sha256": "a3c3a4702fd128ab6c24ac568a940491c3d9f988c33060167af72b5f9d82f28d",
+      "sha256": "495912ee98d249418c8c4b3290e7aa96a20f2e26497327a1268481eb66eaa6b3"
+    },
+    "tests/ui_assertions.py": {
+      "previous_sha256": "ee0a3b9e6f0749b8f6f7f0fc5b6611d760deec41523d5656bfe5b8a3caf86e85",
+      "sha256": "25e1b615d412f63350c9a407025449e4bc0d29d107d86cd503aad3628930e1a5"
+    },
+    "tests/ui_test_support.py": {
+      "previous_sha256": null,
+      "sha256": "272afa943ab64afcdef3e424af7f8181687db24224909a6b7c0149e6b527fd93"
+    },
+    "tests/ui_wait_smoke.py": {
+      "previous_sha256": null,
+      "sha256": "08f6891801d9d2d17a1514b95d53af366d631365db81e4085f0b1b18ff0db0e8"
+    },
+    "tests/test_validation_failure.py": {
+      "previous_sha256": "16047ffa8ff7a6854ac6bb89959ab2f13f8d1b86acf5bd3615966c1ecd669d1c",
+      "sha256": "2d620354ae7f92b060721ac40c52d6a84bb461041f1016ad944b8c0b08d27518"
+    },
+    "tests/test_validation_process.py": {
+      "previous_sha256": null,
+      "sha256": "1ce4bccf3280074907db5b0d64c9008c2936c4a1da805ebb662961bce561d9c1"
+    },
+    "tests/biometric_ui_smoke.py": {
+      "previous_sha256": "4fd4dda4ee7f83b55556602530d9107d8650d059ffe5ec8de6fd0bee2dfe1d62",
+      "sha256": "211adc2b56b0a8722ae95dea4fc1a6464f9e2f792a355d851c46c2ac903f16df"
+    }
+  },
+  "pending": [
+    "Compilar instaladores en Windows",
+    "Verificación con lector físico"
+  ]
+}

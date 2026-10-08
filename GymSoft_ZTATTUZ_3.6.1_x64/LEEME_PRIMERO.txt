@@ -1,0 +1,39 @@
+ZTATTUZ 3.6.1 — WINDOWS DE 64 BITS (x64)
+
+Habilita DigitalPersona U.are.U 5160 y mantiene U.are.U 4500.
+Incluye Administración, Recepción, el runtime DigitalPersona x64 y el
+control de puerta LCUS-1. Conserva clientes, pagos, huellas y la corrección
+WinError 32 de la entrega anterior. No requiere SQL nuevo desde 3.6.0.
+
+PREPARAR EN TU COMPUTADOR CON WINDOWS x64 (INTEL/AMD):
+1. Extrae el ZIP completo en una carpeta nueva.
+2. Utiliza Python 3.13 de 64 bits, Inno Setup 6 y Node.js.
+3. Ejecuta CREAR_INSTALADORES.bat. No copies una .venv anterior.
+4. No se necesita el lector ni el relé para las pruebas de compilación.
+   Durante las pruebas gráficas, mantén sus ventanas visibles.
+5. Envía al gimnasio:
+   salida/ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe
+
+EN EL GIMNASIO:
+1. Cierra Administración y Recepción e instala el EXE x64.
+2. Instala el componente DigitalPersona incluido si aún no está instalado.
+   También está en DigitalPersonaRuntime/setup.exe: conserva todos los
+   archivos que acompañan ese setup. Reinicia si Windows lo solicita.
+3. Conecta el 5160 por USB y abre Administración o Recepción.
+4. En Registro de entrada, comprueba el mensaje de lector listo.
+5. Registra o comprueba la huella desde Nuevo cliente o Editar cliente.
+   Espera la confirmación de huella registrada y verificada.
+6. Con la lectura automática activa y el formulario cerrado, colocar el
+   dedo inicia la comprobación sin usar el buscador. El programa muestra
+   el resultado de entrada y, si procede, envía la apertura al relé.
+
+En el gimnasio no se necesita Python, Node.js ni Inno Setup.
+Consulta LEEME_ACTUALIZAR_3.6.1.md y GUIA_PUERTA_LCUS1.md.
+
+Este ZIP contiene código completo y generador de instaladores, no los EXE
+ZTATTUZ precompilados. VERIFICACION_3.6.1_x64.md describe las pruebas realizadas
+con datos y dispositivos simulados. Queda pendiente comprobar la instalación
+y el lector/relé físicos en el computador del gimnasio. Una edición MiniOS
+puede requerir restaurar componentes de Windows que hayan sido eliminados.
+
+© 2026 Manuel Cuéllar. All rights reserved.

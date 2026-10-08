@@ -1,0 +1,61 @@
+{
+  "version": "3.6.1",
+  "checks": {
+    "whatsapp_pilot": {
+      "passed": false,
+      "evidence": ""
+    },
+    "wompi_sandbox": {
+      "passed": false,
+      "evidence": ""
+    },
+    "chatbot_pilot": {
+      "passed": false,
+      "evidence": ""
+    },
+    "automation_pilot": {
+      "passed": false,
+      "evidence": ""
+    },
+    "timezone": {
+      "passed": false,
+      "evidence": ""
+    },
+    "audit_clock": {
+      "passed": false,
+      "evidence": ""
+    },
+    "freeze": {
+      "passed": false,
+      "evidence": ""
+    },
+    "freeze_checkin": {
+      "passed": false,
+      "evidence": ""
+    },
+    "ticket_daily": {
+      "passed": false,
+      "evidence": ""
+    },
+    "relay_hardware": {
+      "passed": false,
+      "evidence": ""
+    },
+    "scheduler_gym_timezone": {
+      "passed": false,
+      "evidence": ""
+    },
+    "prior_regressions": {
+      "passed": false,
+      "evidence": ""
+    },
+    "added_regressions": {
+      "passed": false,
+      "evidence": ""
+    },
+    "concurrent_two_sessions": {
+      "passed": false,
+      "evidence": ""
+    }
+  }
+}

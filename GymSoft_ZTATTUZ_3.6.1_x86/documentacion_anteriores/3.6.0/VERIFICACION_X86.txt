@@ -1,0 +1,15 @@
+ZTATTUZ 3.6.0 x86 — 2026-09-29
+120 pruebas Python aprobadas en Linux (incluye selección de DLL por arquitectura,
+rechazo de pares x86/x64 mezclados y cierre de SQLite).
+Dependencias resueltas y descargadas con pip --platform win32 --python-version 313
+--implementation cp --abi cp313 --only-binary=:all: (40 paquetes).
+DigitalPersona Runtime proviene de RTE/x86 del SDK 3.4.0 proporcionado.
+La compilación verifica la cabecera PE de cada EXE (Machine 0x14c).
+No se ejecutaron EXE Windows ni hardware real en este entorno.
+No se modificó SQL ni datos reales. No es una certificación de MiniOS.
+
+Fuentes:
+https://docs.python.org/3.13/using/windows.html
+https://www.python.org/downloads/release/python-31315/
+https://jrsoftware.org/ishelp/topic_setup_architecturesallowed.htm
+SDK: Docs/DigitalPersona Biometric SDK - Platform Guide for Windows, RTE/x86.

@@ -1,0 +1,16 @@
+@echo off
+setlocal
+cd /d "%~dp0"
+if not exist ".venv\Scripts\python.exe" (
+  py -3.13 -m venv .venv
+  if errorlevel 1 goto :error
+)
+".venv\Scripts\python.exe" -m pip install -r requirements.txt
+if errorlevel 1 goto :error
+".venv\Scripts\python.exe" owner_panel.py
+if errorlevel 1 goto :error
+exit /b 0
+:error
+echo No se pudo abrir el panel. Copia el error de esta ventana.
+pause
+exit /b 1
