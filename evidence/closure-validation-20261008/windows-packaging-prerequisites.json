@@ -18,5 +18,14 @@
   "original_chat_reference": {
     "url": "https://chatgpt.com/share/6ac823a8-ef28-83ea-9d77-868e750d82b6",
     "read_status": "HTTP 403 in current environment; native thread listing disconnected; content not read yet."
+  },
+  "windows_first_run": {
+    "url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/37858573412",
+    "commit": "65c6505",
+    "status": "FAIL",
+    "editions_failed": 3,
+    "artifacts": 3,
+    "duration": "4m20s",
+    "details": "Public page reports exit code 1 for each edition. Detailed logs require authentication; Actions API network blocked. Workflow updated to preserve its own new QA output via supported Git access on separate evidence branches."
   }
 }

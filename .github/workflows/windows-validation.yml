@@ -11,7 +11,7 @@ on:
       - 'backend/**'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: windows-validation-${{ github.ref }}
@@ -89,6 +89,32 @@ jobs:
             throw 'The unaccepted release did not stop at the acceptance gate.'
           }
           Write-Output 'Acceptance guard verified. No final installers produced by this workflow.'
+      - name: Preserve diagnostic reports in a separate Git branch
+        if: always()
+        run: |
+          $reportDir = Join-Path $env:GITHUB_WORKSPACE "evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}"
+          New-Item -ItemType Directory -Force $reportDir | Out-Null
+          $validationDir = Join-Path $env:GITHUB_WORKSPACE "${{ matrix.edition }}/salida/validacion"
+          if (Test-Path $validationDir) {
+            Get-ChildItem $validationDir -File | Where-Object { $_.Extension -in '.json', '.log', '.txt' } | Copy-Item -Destination $reportDir
+          }
+          @{ run_id = '${{ github.run_id }}'; commit = '${{ github.sha }}'; edition = '${{ matrix.edition }}'; scope = 'Windows offline validation only; no final installer or hardware acceptance.' } | ConvertTo-Json | Set-Content -Encoding utf8 (Join-Path $reportDir 'run.json')
+          Push-Location $env:GITHUB_WORKSPACE
+          try {
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            $branch = "ci/windows-evidence/${{ github.run_id }}/${{ matrix.edition }}"
+            git checkout -b $branch
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git add -f -- "evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git commit -m "Preserve Windows QA reports for ${{ matrix.edition }} run ${{ github.run_id }}"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin "HEAD:refs/heads/$branch"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          } finally {
+            Pop-Location
+          }
       - name: Save Windows evidence
         if: always()
         uses: actions/upload-artifact@v4
