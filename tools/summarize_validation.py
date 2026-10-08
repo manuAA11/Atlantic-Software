@@ -7,13 +7,13 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'evidence/closure-validation-20261008'
 rows = []
 for edition, suffix, count in [('GymSoft_Comercial_3.6.0', 'commercial', 137),
-                                ('GymSoft_ZTATTUZ_3.6.1_x86', 'x86', 152),
-                                ('GymSoft_ZTATTUZ_3.6.1_x64', 'x64', 153)]:
+                                ('GymSoft_ZTATTUZ_3.6.1_x86', 'x86', 156),
+                                ('GymSoft_ZTATTUZ_3.6.1_x64', 'x64', 157)]:
     initial = json.loads((BASE / edition / 'all/results.json').read_text())
     ui = json.loads((BASE / edition / 'ui/results.json').read_text())
     stages = [dict(s, evidence=f'{edition}/all/{s["name"]}.log') for s in initial['stages']
               if s['name'] not in {x['name'] for x in ui['stages']} and s['name'] != 'python']
-    python_log = f'rechecks/python-{suffix}-313-bootstrap-final.log'
+    python_log = f'rechecks/python-{suffix}-313-bootstrap-final.log' if suffix == 'commercial' else f'rechecks/python-{suffix}-313-diagnostic-final.log'
     py = (BASE / python_log).read_text()
     passed = bool(re.search(rf'Ran {count} tests .*\n\nOK\s*$', py))
     stages.append({'name': 'python', 'status': 'PASS' if passed else 'FAIL',

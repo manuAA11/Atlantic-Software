@@ -10,7 +10,7 @@ Fuentes recuperadas de Atlantic Gym Comercial 3.6.0 y ZTATTUZ 3.6.1 x86/x64, con
 
 Leer [estado y límites](docs/ESTADO_CIERRE.md), [acciones externas y Windows](docs/INTEGRACIONES_Y_WINDOWS.md), [UI Kit](docs/ATLANTIC_UI_KIT.md) y [políticas permanentes](AGENTS.md). Los requisitos del usuario están en `docs/REQUISITOS_CIERRE_MULTIGYM.txt`.
 
-La validación local final reúne 114 etapas PASS, incluidas 442 pruebas Python y 56 pruebas del backend por edición; también SQL, UI, branding y un flujo HTTP/backend/SQL con transportes externos simulados. El resumen enlaza sus logs en `evidence/closure-validation-20261008/summary.json`. Se conservan los fallos del primer run y sus rechecks explícitos.
+La validación local final reúne 114 etapas PASS, incluidas 450 pruebas Python y 56 pruebas del backend por edición; también SQL, UI, branding y un flujo HTTP/backend/SQL con transportes externos simulados. El resumen enlaza sus logs en `evidence/closure-validation-20261008/summary.json`. Se conservan los fallos del primer run y sus rechecks explícitos.
 
 Pendientes: runtime DigitalPersona excluido del ZIP, pilotos reales Meta/Wompi y aceptación Windows/hardware/servidor actual. Los instaladores finales siguen sujetos a `release_readiness.json`.
 
@@ -18,7 +18,7 @@ Pendientes: runtime DigitalPersona excluido del ZIP, pilotos reales Meta/Wompi y
 
 CPython 3.13 o 3.14 estándar: 64 bits para Comercial/ZTATTUZ x64; 32 bits para ZTATTUZ x86. Ejecuta `INICIAR_ADMINISTRADOR.bat` o `INICIAR_RECEPCION.bat` dentro de la carpeta de tu edición. El preparador conserva entornos incompatibles como respaldo. Hace falta la configuración pública del servidor; consulta [instrucciones](docs/INTEGRACIONES_Y_WINDOWS.md#abrir-los-programas-con-python-314-o-313).
 
-La suite de 442 tests también pasa con Python 3.14.7. Evidencia adicional de UI, wheels Windows y empaquetado de prueba Linux en `evidence/closure-validation-20261008/python-compatibility.json`. La ejecución Windows/hardware sigue pendiente.
+La suite de 450 tests también pasa con Python 3.14.7. Evidencia adicional de UI, wheels Windows y empaquetado de prueba Linux en `evidence/closure-validation-20261008/python-compatibility.json`. La ejecución Windows/hardware sigue pendiente.
 
 ## Desarrollo cloud
 

@@ -12,6 +12,18 @@ from zoneinfo import ZoneInfo
 from product_config import VERSION, load_config
 
 
+EXPECTED_BITS = 64
+
+
+def check_system():
+    if sys.platform != 'win32':
+        return 'Entorno de desarrollo ' + sys.platform
+    win = sys.getwindowsversion()
+    if win.major < 10 or struct.calcsize('P') * 8 != EXPECTED_BITS:
+        raise RuntimeError(f'Esta edición necesita Windows 10 o posterior con proceso de {EXPECTED_BITS} bits.')
+    return f'Windows {win.major}.{win.minor}, compilación {win.build}, proceso de {EXPECTED_BITS} bits'
+
+
 def run(*, network=True):
     checks=[]
     def check(name, fn):
@@ -20,12 +32,6 @@ def run(*, network=True):
             checks.append({'comprobacion':name,'estado':'OK','detalle':str(detail or 'Disponible')})
         except Exception as error:
             checks.append({'comprobacion':name,'estado':'ERROR','detalle':str(error)})
-    def system():
-        if sys.platform!='win32':return 'Entorno de desarrollo '+sys.platform
-        win=sys.getwindowsversion()
-        if win.major<10 or struct.calcsize('P')!=4:
-            raise RuntimeError('Esta edición necesita Windows 10 o posterior de 32 bits.')
-        return f'Windows {win.major}.{win.minor}, compilación {win.build}, proceso de 32 bits'
     def writable():
         folder=Path(os.environ.get('LOCALAPPDATA',str(Path.home()))) / 'GymControl'
         folder.mkdir(parents=True,exist_ok=True)
@@ -57,7 +63,7 @@ def run(*, network=True):
         with urllib.request.urlopen(request,context=ssl.create_default_context(cafile=certifi.where()),timeout=8) as response:
             if response.status!=200:raise RuntimeError('El servicio de acceso no respondió correctamente.')
         return 'Conexión HTTPS verificada; no se usaron cuentas'
-    check('Sistema',system);check('Almacenamiento local',writable);check('Interfaz',interface)
+    check('Sistema',check_system);check('Almacenamiento local',writable);check('Interfaz',interface)
     check('Componentes incluidos',libraries);check('Configuración ZTATTUZ',lambda:bool(load_config()))
     if network:check('Conexión al proyecto original',connection)
     return {'producto':'Gym soft · ZTATTUZ','version':VERSION,'fecha':datetime.now(timezone.utc).isoformat(),

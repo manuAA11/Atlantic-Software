@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-08",
+  "fingerprint_hardware": "User confirms fingerprint works in their current installation. Preserve the recovered implementation; this is not a new-3.14 installer test.",
+  "uploaded_archives": [
+    {
+      "name": "DigitalPersonaBiometricSDKforWindows_3.4.0.zip",
+      "sediment_id": "file_000000009b5481fbb716bd7547dc8057",
+      "transfer": "blocked: exceeds 32 MiB executor transfer limit"
+    },
+    {
+      "name": "DigitalPersona_Controlador_3.4.0_x64.zip",
+      "sediment_id": "file_0000000036d881f5a286d219e0c29528",
+      "transfer": "blocked: exceeds 32 MiB executor transfer limit"
+    }
+  ],
+  "library": "User indicates older versions and original resources are in Library. No Library read/download tool is exposed; app project listing disconnected before responding.",
+  "windows_api": "Git HTTPS push/read work; GitHub Actions API request rejected by network proxy, CONNECT 403. GitHub HTML is accessible; no Windows execution claimed.",
+  "original_chat_reference": {
+    "url": "https://chatgpt.com/share/6ac823a8-ef28-83ea-9d77-868e750d82b6",
+    "read_status": "HTTP 403 in current environment; native thread listing disconnected; content not read yet."
+  }
+}

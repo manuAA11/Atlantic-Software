@@ -1,0 +1,101 @@
+name: Multi-Gym Windows validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-validation.yml'
+      - 'GymSoft_*/**'
+      - 'common/**'
+      - 'backend/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: ${{ matrix.edition }} / Python ${{ matrix.python }} ${{ matrix.architecture }}
+    runs-on: windows-2022
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - edition: GymSoft_Comercial_3.6.0
+            python: '3.14'
+            architecture: x64
+          - edition: GymSoft_ZTATTUZ_3.6.1_x64
+            python: '3.14'
+            architecture: x64
+          - edition: GymSoft_ZTATTUZ_3.6.1_x86
+            python: '3.14'
+            architecture: x86
+    env:
+      GYMSOFT_OFFLINE_QA: '1'
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: utf-8
+      PYTHONUNBUFFERED: '1'
+    defaults:
+      run:
+        working-directory: ${{ matrix.edition }}
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+          architecture: ${{ matrix.architecture }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare with the Windows batch file
+        run: |
+          cmd /d /c PREPARAR_PYTHON.bat
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe -c "import sys,struct; print(sys.version); print('Bits:',struct.calcsize('P')*8)"
+          exit $LASTEXITCODE
+      - name: Install build dependencies and local database tests
+        run: |
+          & .\.venv\Scripts\python.exe -m pip install -r requirements-build.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cmd /d /c PREPARAR_PRUEBAS.bat
+          exit $LASTEXITCODE
+      - name: Run the complete offline validation
+        run: |
+          & .\.venv\Scripts\python.exe run_validation.py
+          exit $LASTEXITCODE
+      - name: Freeze and run a Windows component probe
+        run: |
+          & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths . --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon icono.ico --add-data "icono.ico;." --add-data "icono_recepcion.ico;." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe -c "from build_windows import verify_executable_icon; verify_executable_icon('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe')"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json
+          exit $LASTEXITCODE
+      - name: Check the final release remains blocked without acceptance
+        run: |
+          New-Item -ItemType Directory -Force salida\validacion | Out-Null
+          & .\.venv\Scripts\python.exe build_windows.py 2>&1 | Out-File -Encoding utf8 salida\validacion\release-block.log
+          $buildCode = $LASTEXITCODE
+          $message = Get-Content -Raw salida\validacion\release-block.log
+          if ($buildCode -eq 0 -or $message -notmatch 'Entrega bloqueada') {
+            throw 'The unaccepted release did not stop at the acceptance gate.'
+          }
+          Write-Output 'Acceptance guard verified. No final installers produced by this workflow.'
+      - name: Save Windows evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-evidence-${{ matrix.edition }}-python${{ matrix.python }}
+          if-no-files-found: error
+          path: |
+            ${{ matrix.edition }}/salida/validacion/*.json
+            ${{ matrix.edition }}/salida/validacion/*.log
+            ${{ matrix.edition }}/salida/validacion/*.txt

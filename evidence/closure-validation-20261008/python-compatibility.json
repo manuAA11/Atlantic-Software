@@ -30,21 +30,26 @@
       "unit_suites": [
         {
           "python": "3.13.15",
-          "tests": 152,
+          "tests": 156,
           "status": "PASS",
-          "evidence": "rechecks/python-x86-313-bootstrap-final.log"
+          "evidence": "rechecks/python-x86-313-diagnostic-final.log"
         },
         {
           "python": "3.14.7",
-          "tests": 152,
+          "tests": 156,
           "status": "PASS",
-          "evidence": "rechecks/python-x86-314-bootstrap.log"
+          "evidence": "rechecks/python-x86-314-diagnostic-final.log"
         }
       ],
       "ui_python314": {
         "status": "PASS",
         "stages": 19,
         "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui-python314/results.json"
+      },
+      "diagnostic_architecture_regressions": {
+        "status": "PASS",
+        "tests": 4,
+        "evidence": "rechecks/diagnostic-architecture-x86.log"
       }
     },
     {
@@ -52,26 +57,31 @@
       "unit_suites": [
         {
           "python": "3.13.15",
-          "tests": 153,
+          "tests": 157,
           "status": "PASS",
-          "evidence": "rechecks/python-x64-313-bootstrap-final.log"
+          "evidence": "rechecks/python-x64-313-diagnostic-final.log"
         },
         {
           "python": "3.14.7",
-          "tests": 153,
+          "tests": 157,
           "status": "PASS",
-          "evidence": "rechecks/python-x64-314-bootstrap.log"
+          "evidence": "rechecks/python-x64-314-diagnostic-final.log"
         }
       ],
       "ui_python314": {
         "status": "PASS",
         "stages": 19,
         "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui-python314/results.json"
+      },
+      "diagnostic_architecture_regressions": {
+        "status": "PASS",
+        "tests": 4,
+        "evidence": "rechecks/diagnostic-architecture-x64.log"
       }
     }
   ],
-  "unit_tests_per_version": 442,
-  "unit_tests_both_versions": 884,
+  "unit_tests_per_version": 450,
+  "unit_tests_both_versions": 900,
   "ui_python314_stages": 56,
   "windows_dependency_wheels": [
     {

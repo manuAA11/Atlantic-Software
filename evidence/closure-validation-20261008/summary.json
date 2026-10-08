@@ -504,8 +504,8 @@
         {
           "name": "python",
           "status": "PASS",
-          "tests": 152,
-          "evidence": "rechecks/python-x86-313-bootstrap-final.log"
+          "tests": 156,
+          "evidence": "rechecks/python-x86-313-diagnostic-final.log"
         },
         {
           "name": "marketing_ui_smoke",
@@ -690,7 +690,7 @@
           "evidence": "rechecks/marketing-compile-x86.log"
         }
       ],
-      "python_tests": 152,
+      "python_tests": 156,
       "data_stages": 19,
       "ui_stages": 19,
       "initial_failed_stages": [
@@ -852,8 +852,8 @@
         {
           "name": "python",
           "status": "PASS",
-          "tests": 153,
-          "evidence": "rechecks/python-x64-313-bootstrap-final.log"
+          "tests": 157,
+          "evidence": "rechecks/python-x64-313-diagnostic-final.log"
         },
         {
           "name": "marketing_ui_smoke",
@@ -1038,7 +1038,7 @@
           "evidence": "rechecks/marketing-compile-x64.log"
         }
       ],
-      "python_tests": 153,
+      "python_tests": 157,
       "data_stages": 19,
       "ui_stages": 19,
       "initial_failed_stages": [
@@ -1048,7 +1048,7 @@
     }
   ],
   "total_stages": 114,
-  "python_tests": 442,
+  "python_tests": 450,
   "backend_tests_per_edition": 56,
   "notes": [
     "Original failed run is retained. Python rerun fixes missing icons; complete UI rerun fixes sidebar overflow and verifies role icons.",

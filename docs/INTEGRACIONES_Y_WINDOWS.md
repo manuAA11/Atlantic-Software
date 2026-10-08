@@ -69,3 +69,15 @@ Comercial usa CPython 3.13 o 3.14 x64; ZTATTUZ x86 y x64 usan una de esas versio
 Completar `release_readiness.json` con evidencia de la versión para cada criterio aplicable; no poner todos los valores en true sin pruebas. Solo entonces ejecutar `CREAR_INSTALADORES.bat`, que llama a `build_windows.py`, valida arquitectura, pruebas e icono embebido. Los outputs se generan en `salida`. El panel/instalador Propietario de Comercial es privado y nunca se entrega al cliente.
 
 Esta instancia Linux no genera instaladores finales ni acredita los criterios externos/hardware. Los backups de fuentes contienen el estado recuperado, no reemplazan el redistribuible Windows ausente.
+
+## Recuperar archivos que superen el límite de transferencia
+
+Los dos ZIP DigitalPersona adjuntos por el usuario el 8 de octubre exceden el límite de transferencia de 32 MiB de esta herramienta; todavía no se leyeron sus bytes. El usuario confirma que la huella funciona en su instalación actual. Se conserva ese código; los paquetes se necesitan para redistribuir el mismo controlador en otro PC.
+
+Descarga `tools/partir_archivo.py` y ejecuta `py partir_archivo.py` en Windows. Se abre un selector para elegir los ZIP originales. La utilidad crea carpetas `<nombre>_partes` con ZIP de hasta 25 MiB más un manifiesto; conserva el original y rechaza sobrescribir partes existentes. Adjunta todos los ZIP de esas carpetas. La reconstrucción valida SHA256 de cada parte, SHA256 del archivo completo y CRC del ZIP antes de usarlo.
+
+La utilidad también acepta rutas: `py partir_archivo.py "C:\ruta\DigitalPersona_Controlador_3.4.0_x64.zip"`. No requiere 7-Zip ni instalar otra versión de Python.
+
+## Validación Windows en GitHub
+
+`.github/workflows/windows-validation.yml` usa Windows 2022 y Python 3.14 de la arquitectura de cada edición. Ejecuta el preparador batch, dependencias, pruebas offline completas y un ejecutable de prueba de Tk/Pillow/SSL/branding generado con PyInstaller. Conserva los informes en los artifacts del run. El probe no es una aplicación para entregar; el workflow no genera instaladores finales ni cambia aceptación. Su ejecución depende de GitHub Actions habilitado; registrar resultado y commit antes de acreditar Windows. La API de Actions fue bloqueada por el proxy de esta instancia; la página HTML de GitHub es accesible.
