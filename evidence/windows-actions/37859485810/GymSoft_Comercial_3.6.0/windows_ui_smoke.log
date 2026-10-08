@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\windows_ui_smoke.py", line 167, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\windows_ui_smoke.py", line 89, in main
+    assert picker.show()==str(Path(folder)/'respaldo.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
