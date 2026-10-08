@@ -74,7 +74,9 @@ def main():
         with tempfile.TemporaryDirectory(prefix='gymsoft_ui_') as folder:
             picker=FilePicker(root,save=True,initialdir=folder,initialfile='respaldo',defaultextension='.json')
             root.after(120,picker.accept)
-            assert picker.show()==str(Path(folder)/'respaldo.json')
+            selected=picker.show()
+            expected=(Path(folder)/'respaldo.json').resolve()
+            assert selected and Path(selected)==expected,(selected,str(expected))
         # Abrir pagos de un cliente en cada aplicación con respuesta simulada.
         for dialog_class in [AdminDialog,ReceptionDialog]:
             db=NS(gym_id=gym['id'],client=NS(rpc=lambda *args,**kw:None),
