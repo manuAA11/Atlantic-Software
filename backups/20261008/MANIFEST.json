@@ -1,0 +1,19 @@
+{
+  "type": "DEVELOPMENT_SOURCE_BACKUPS",
+  "final_release": false,
+  "packages": [
+    {
+      "file": "AtlanticGym_FUENTES_EN_DESARROLLO_20261008.zip",
+      "sha256": "7a56c63b8401f33580ac6c882614c37d56a33e17ddd3ae31ca7e09e31086b242",
+      "files": 919,
+      "bytes": 6367714
+    },
+    {
+      "file": "ZTATTUZ_FUENTES_EN_DESARROLLO_20261008.zip",
+      "sha256": "8f3eefd5ae6da60434d69b259c8673f0dd3054f6f5836613a35638ad2eb3075c",
+      "files": 1067,
+      "bytes": 7028522
+    }
+  ],
+  "source_commit": "94abfe8cf3933c40a7079e32666aa005e167925c"
+}
