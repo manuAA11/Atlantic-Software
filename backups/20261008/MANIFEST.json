@@ -1,7 +1,7 @@
 {
   "type": "DEVELOPMENT_SOURCE_BACKUPS",
   "final_release": false,
-  "source_commit": "7874bee128db69633f87ed72a02d28560dca3767",
+  "source_commit": "65c6505eeed2131d57244b5ab1a9f850427c83f5",
   "supported_python": [
     "3.13",
     "3.14"
@@ -9,15 +9,15 @@
   "packages": [
     {
       "file": "AtlanticGym_FUENTES_EN_DESARROLLO_20261008.zip",
-      "sha256": "88d82e35f787d535083bb826e1f247bc3139259ee857e7976824345e53e36912",
-      "files": 1001,
-      "bytes": 6433634
+      "sha256": "08beb9d3e0c8d3be3e967082178487e983cccc8e49dc9523c3d38bc15ab26e6a",
+      "files": 1009,
+      "bytes": 6439008
     },
     {
       "file": "ZTATTUZ_FUENTES_EN_DESARROLLO_20261008.zip",
-      "sha256": "a689db3f12a93574c2b3d12958eeb3b4fd92bde43e165f99c90e26246bc253d6",
-      "files": 1153,
-      "bytes": 7099330
+      "sha256": "f883ab617d6ddf942af2a809e581275b4de8d2751fac20416ec4a86f0176015b",
+      "files": 1163,
+      "bytes": 7106416
     }
   ]
 }

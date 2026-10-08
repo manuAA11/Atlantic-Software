@@ -1,0 +1,13 @@
+{
+  "file": "Atlantic_Transferencia_SDK_25MB.zip",
+  "sha256": "4b589f35104472694ed4df8e6b6534e0d0cf2c244dec765785ea2fa47ba5ca43",
+  "source_commit": "65c6505eeed2131d57244b5ab1a9f850427c83f5",
+  "purpose": "Split large original SDK ZIPs into independently uploadable ZIP parts; preserve source bytes.",
+  "verification": [
+    "Small real ZIP split/rejoined byte-for-byte",
+    "Original file unchanged",
+    "Missing part rejected",
+    "Existing reconstruction target preserved",
+    "Utility archive CRC and embedded script source match"
+  ]
+}
