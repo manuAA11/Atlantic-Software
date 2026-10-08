@@ -1,0 +1,32 @@
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Entrada biométrica mensual
+  OK: Entrada biométrica tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Entrada biométrica inactivo
+  OK: Entrada biométrica vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Entrada biométrica mensual
+  OK: Entrada biométrica tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Entrada biométrica inactivo
+  OK: Entrada biométrica vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+PASS: 30 comprobaciones completas de huella, nube y entrada en ambos roles; lector simulado y PostgreSQL local.
+EN CURSO: recorrido_huellas · 15 s · límite 300 s.

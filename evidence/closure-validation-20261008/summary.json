@@ -1,0 +1,1057 @@
+{
+  "status": "PASS",
+  "scope": "Automatic checks in Linux/Tk and PGlite. Synthetic hardware, external transport and Vault. No real external pilot or Windows installation.",
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "status": "PASS",
+      "stages": [
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.74,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 3.51,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/migrations.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.25,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-commercial-time_pipeline-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.52,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-commercial-membership_freezes-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.58,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.45,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-commercial-marketing_contracts-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.12,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.74,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/fingerprints.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.98,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.06,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/contracts.log"
+        },
+        {
+          "name": "owner_flows",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.09,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/owner_flows.log"
+        },
+        {
+          "name": "owner_editor",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.11,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/owner_editor.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.12,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.68,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.54,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 20.25,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 19.42,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/all/simulacion_gimnasio.log"
+        },
+        {
+          "name": "python",
+          "status": "PASS",
+          "tests": 132,
+          "evidence": "rechecks/python-commercial-final.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.32,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.47,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/freeze_ui_smoke.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 16.57,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.27,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 21.69,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.0,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 10.14,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 3.03,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 67.57,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/responsive_ui_smoke.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 3.99,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.14,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 10.42,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.53,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 64.04,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.53,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 10.18,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 2.91,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.59,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_Comercial_3.6.0/ui/atlantic_branding_ui_smoke.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "rechecks/sql-commercial-backend_sql_flow-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "rechecks/marketing-compile-commercial.log"
+        }
+      ],
+      "python_tests": 132,
+      "data_stages": 20,
+      "ui_stages": 18,
+      "initial_failed_stages": [
+        "python",
+        "layout_consistency_ui_smoke"
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "status": "PASS",
+      "stages": [
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.97,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.94,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/migrations.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.98,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x86-time_pipeline-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.11,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x86-membership_freezes-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.35,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.94,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x86-marketing_contracts-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.76,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.61,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/fingerprints.log"
+        },
+        {
+          "name": "upgrade_compatibility",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.59,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/upgrade_compatibility.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.11,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.15,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/contracts.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.68,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.82,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.53,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 22.2,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 18.3,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/all/simulacion_gimnasio.log"
+        },
+        {
+          "name": "python",
+          "status": "PASS",
+          "tests": 147,
+          "evidence": "rechecks/python-x86-final.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.95,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.42,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/freeze_ui_smoke.log"
+        },
+        {
+          "name": "door_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 10.68,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/door_ui_smoke.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 16.53,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.26,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 21.75,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.94,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 9.49,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 1.82,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 63.65,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/responsive_ui_smoke.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 3.96,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.32,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 9.98,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.31,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 54.36,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.58,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 11.42,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 2.91,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.71,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui/atlantic_branding_ui_smoke.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "rechecks/sql-x86-backend_sql_flow-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "rechecks/marketing-compile-x86.log"
+        }
+      ],
+      "python_tests": 147,
+      "data_stages": 19,
+      "ui_stages": 19,
+      "initial_failed_stages": [
+        "python",
+        "layout_consistency_ui_smoke"
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "status": "PASS",
+      "stages": [
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.98,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.94,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/migrations.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.68,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x64-time_pipeline-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.06,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x64-membership_freezes-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.1,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.86,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "rechecks/sql-x64-marketing_contracts-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.27,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.57,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/fingerprints.log"
+        },
+        {
+          "name": "upgrade_compatibility",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.28,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/upgrade_compatibility.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 5.83,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.01,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/contracts.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.27,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.93,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.66,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 21.91,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 17.75,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/all/simulacion_gimnasio.log"
+        },
+        {
+          "name": "python",
+          "status": "PASS",
+          "tests": 148,
+          "evidence": "rechecks/python-x64-final.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.25,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.44,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/freeze_ui_smoke.log"
+        },
+        {
+          "name": "door_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 10.66,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/door_ui_smoke.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 16.75,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.27,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 21.34,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 8.67,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 9.47,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 1.73,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 63.28,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/responsive_ui_smoke.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 3.98,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 7.25,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 9.74,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 4.41,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 55.47,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 6.59,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 11.24,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 2.92,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "returncode": 0,
+          "seconds": 0.7,
+          "timed_out": false,
+          "callback_failure": false,
+          "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui/atlantic_branding_ui_smoke.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "rechecks/sql-x64-backend_sql_flow-final.log",
+          "rechecked_after_sql_fix": true
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "rechecks/marketing-compile-x64.log"
+        }
+      ],
+      "python_tests": 148,
+      "data_stages": 19,
+      "ui_stages": 19,
+      "initial_failed_stages": [
+        "python",
+        "layout_consistency_ui_smoke"
+      ]
+    }
+  ],
+  "total_stages": 114,
+  "python_tests": 427,
+  "backend_tests_per_edition": 56,
+  "notes": [
+    "Original failed run is retained. Python rerun fixes missing icons; complete UI rerun fixes sidebar overflow and verifies role icons.",
+    "Counts of checks inside SQL/UI stages overlap and must not be added as unique tests."
+  ]
+}

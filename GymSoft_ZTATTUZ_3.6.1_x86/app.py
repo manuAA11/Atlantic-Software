@@ -50,41 +50,14 @@ from payment_revision import open_payment_manager  # GymSoft-PAGOS-2.0.1
 
 
 
-APP_NAME = "Gym soft · ZTATTUZ"
+from product_config import ADMIN_NAME as APP_NAME
 from product_config import VERSION as APP_VERSION
 DATA_FOLDER_NAME= "GymControl"
 MONEY_VALUES_HIDDEN = False
 
-COLORS = {
-    "background": "#0B1220",
-    "surface": "#172235",
-    "surface_alt": "#111B2E",
-    "surface_hover": "#21304A",
-    "input": "#0F192A",
-    "sidebar": "#182438",
-    "sidebar_hover": "#22324D",
-    "sidebar_active": "#213D79",
-    "topbar": "#172235",
-    "primary": "#16C784",
-    "primary_dark": "#0EAD70",
-    "accent": "#3B82F6",
-    "accent_hover": "#2563EB",
-    "text": "#F8FAFC",
-    "muted": "#94A3B8",
-    "line": "#2A3953",
-    "success": "#34D399",
-    "success_bg": "#10352E",
-    "danger": "#FB7185",
-    "danger_bg": "#3B1D29",
-    "warning": "#FBBF24",
-    "warning_bg": "#3A2E16",
-    "blue": "#60A5FA",
-    "blue_bg": "#172F59",
-    "purple": "#A78BFA",
-    "purple_bg": "#2B214B",
-}
+from atlantic_ui import COLORS, COPYRIGHT
 
-FONT_FAMILY = "Segoe UI Variable" if sys.platform == "win32" else UI_FONT
+FONT_FAMILY = UI_FONT
 ICON_FONT = "Segoe Fluent Icons"
 
 
@@ -193,6 +166,7 @@ def resource_path(filename: str) -> Path:
 
 def set_window_icon(window: tk.Misc) -> None:
     icon_path = resource_path("icono.ico")
+    window._atlantic_icon_name = "icono.ico"
     if not icon_path.is_file():
         return
     try:
@@ -6860,9 +6834,7 @@ class SettingsPage(BasePage):
 
         tk.Label(
             self,
-            text=("Created by Manuel Cuéllar. Instagram: @manuelcuellar11\n"
-                  "WhatsApp: +57 3162990884 · Correo: manuel411cm@hotmail.com\n"
-                  "© 2026 Manuel Cuéllar. All rights reserved."),
+            text=COPYRIGHT,
             bg=COLORS["background"],
             fg="#5F7089",
             font=(FONT_FAMILY, 7),
@@ -7613,7 +7585,7 @@ class GymSoftApp(tk.Tk):
         # autenticación quede detrás de otra aplicación en Windows.
         self._startup_message = tk.Label(
             self,
-            text="Conectando con Gym soft…\n\nEn unos momentos podrás iniciar sesión.",
+            text=f"Conectando con {APP_NAME}…\n\nEn unos momentos podrás iniciar sesión.",
             bg=COLORS["background"],
             fg=COLORS["muted"],
             font=(FONT_FAMILY, 12),
@@ -8012,7 +7984,7 @@ class GymSoftApp(tk.Tk):
 
         tk.Label(
             brand,
-            text="GYM",
+            text="ATLANTIC GYM",
             bg=COLORS["sidebar"],
             fg="#4F8CFF",
             font=(FONT_FAMILY, 10, "bold"),
@@ -8112,7 +8084,7 @@ class GymSoftApp(tk.Tk):
 
         tk.Label(
             footer,
-            text=f"Gym soft {APP_VERSION}  ·  {self.cloud.gym_id[:8]}",
+            text=f"Atlantic Gym {APP_VERSION}  ·  {self.cloud.gym_id[:8]}",
             bg=COLORS["sidebar"],
             fg="#71819A",
             font=(FONT_FAMILY, 8),

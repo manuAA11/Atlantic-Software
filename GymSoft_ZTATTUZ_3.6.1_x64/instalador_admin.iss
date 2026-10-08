@@ -3,9 +3,9 @@
 #endif
 [Setup]
 AppId={{E89DF404-FD78-4A97-89E8-9BA23D3B0B19}
-AppName=ZTATTUZ Administración
+AppName=Atlantic Gym · ZTATTUZ Administrador
 AppVersion={#AppVersion}
-AppPublisher=Manuel Cuéllar
+AppPublisher=Atlantic Tech Software
 DefaultDirName={localappdata}\Programs\ZTATTUZ Admin
 DefaultGroupName=ZTATTUZ
 PrivilegesRequired=lowest
@@ -38,9 +38,9 @@ Source: "LEEME_ACTUALIZAR_{#AppVersion}.md"; DestDir: "{app}"; Flags: ignorevers
 Source: "GUIA_PUERTA_LCUS1.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\ZTATTUZ Administración"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
-Name: "{autodesktop}\ZTATTUZ Administración"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
-Name: "{group}\Diagnóstico de ZTATTUZ Administración"; Filename: "{app}\ZTATTUZ Admin.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{group}\Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{autodesktop}\Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{group}\Diagnóstico de Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
 
 [Code]
 procedure SHChangeNotify(wEventId: Integer; uFlags: Cardinal; dwItem1, dwItem2: Integer);

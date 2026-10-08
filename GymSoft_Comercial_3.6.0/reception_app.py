@@ -39,32 +39,12 @@ from payment_revision import open_payment_manager  # GymSoft-PAGOS-2.0.1
 
 
 
-APP_NAME = "Gym soft Recepción"
+from product_config import RECEPTION_NAME as APP_NAME
 from product_config import VERSION as APP_VERSION
 
-COLORS = {
-    "background": "#0B1220",
-    "surface": "#172235",
-    "surface_alt": "#111B2E",
-    "surface_hover": "#21304A",
-    "input": "#0F192A",
-    "sidebar": "#182438",
-    "sidebar_hover": "#22324D",
-    "sidebar_active": "#213D79",
-    "topbar": "#172235",
-    "primary": "#16C784",
-    "primary_dark": "#0EAD70",
-    "accent": "#3B82F6",
-    "accent_hover": "#2563EB",
-    "text": "#F8FAFC",
-    "muted": "#94A3B8",
-    "line": "#2A3953",
-    "success": "#34D399",
-    "danger": "#FB7185",
-    "warning": "#FBBF24",
-}
+from atlantic_ui import COLORS, COPYRIGHT
 
-FONT_FAMILY = "Segoe UI Variable" if sys.platform == "win32" else UI_FONT
+FONT_FAMILY = UI_FONT
 ICON_FONT = "Segoe Fluent Icons"
 
 
@@ -76,7 +56,8 @@ def resource_path(filename: str) -> Path:
 
 
 def set_window_icon(window: tk.Misc) -> None:
-    icon_path = resource_path("icono.ico")
+    icon_path = resource_path("icono_recepcion.ico")
+    window._atlantic_icon_name = "icono_recepcion.ico"
 
     if not icon_path.is_file():
         return
@@ -333,7 +314,7 @@ class LoginDialog(tk.Toplevel):
             else "Iniciar sesión"
         )
 
-        self.title(f"{action} · Gym soft")
+        self.title(f"{action} · {APP_NAME}")
         self.geometry("520x430" if creating_account else "520x350")
         self.resizable(False, False)
         self.configure(bg=COLORS["background"])
@@ -2259,7 +2240,7 @@ class ReceptionApp(tk.Tk):
         # autenticación quede detrás de otra aplicación en Windows.
         self._startup_message = tk.Label(
             self,
-            text="Conectando con Gym soft Recepción…\n\nEn unos momentos podrás iniciar sesión.",
+            text=f"Conectando con {APP_NAME}…\n\nEn unos momentos podrás iniciar sesión.",
             bg=COLORS["background"],
             fg=COLORS["muted"],
             font=(FONT_FAMILY, 12),

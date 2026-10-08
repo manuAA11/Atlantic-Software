@@ -50,7 +50,9 @@ declare et text;data jsonb;begin
  data:=to_jsonb(new);
  if tg_table_name='checkins' then data:=data||jsonb_build_object('first_of_day',(select count(*)=1 from public.checkins ch where ch.gym_id=new.gym_id and ch.client_id=new.client_id and ch.result='PERMITIDA' and (ch.checkin_at at time zone (select timezone from public.gyms where id=new.gym_id))::date=private.gym_local_date(new.gym_id)),'first_of_membership',(select count(*)=1 from public.checkins ch where ch.gym_id=new.gym_id and ch.membership_id=new.membership_id and ch.result='PERMITIDA'),'checkin_count',(select count(*) from public.checkins ch where ch.gym_id=new.gym_id and ch.client_id=new.client_id and ch.result='PERMITIDA'));end if;
  insert into private.marketing_events(gym_id,client_id,event_type,entity_id,payload) values(new.gym_id,new.client_id,et,new.id::text,data) on conflict do nothing;return new;end$$;
+drop trigger if exists marketing_checkin_event on public.checkins;
 create trigger marketing_checkin_event after insert on public.checkins for each row execute function private.marketing_capture_event();
+drop trigger if exists marketing_renewal_event on public.memberships;
 create trigger marketing_renewal_event after insert on public.memberships for each row execute function private.marketing_capture_event();
 create or replace function public.marketing_service_enqueue(p_gym_id uuid,p_automation_id uuid,p_client_id bigint,p_dedupe_key text,p_phone text,p_body text,p_parameters jsonb,p_payment_request_id uuid default null) returns jsonb language plpgsql security definer set search_path='' as $$
 declare a public.marketing_automations;c public.clients;t public.whatsapp_templates;v_status text:='QUEUED';reason text;rid uuid;mid bigint;freq_n integer;freq_hours integer;begin

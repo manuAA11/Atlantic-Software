@@ -1,0 +1,12 @@
+[
+  {
+    "edition": "Comercial",
+    "endpoint": "https://bawrakwhzkxmhmgkczqu.supabase.co/functions/v1/marketing/health",
+    "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "edition": "ZTATTUZ",
+    "endpoint": "https://srmquhwpawgipncmvfjf.supabase.co/functions/v1/marketing/health",
+    "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+  }
+]

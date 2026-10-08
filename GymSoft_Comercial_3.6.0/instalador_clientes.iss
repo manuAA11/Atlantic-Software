@@ -3,9 +3,9 @@
 #endif
 [Setup]
 AppId={{6C58E8B8-C2ED-4B60-A080-EEA57BB407C2}
-AppName=Gym soft
+AppName=Atlantic Gym
 AppVersion={#AppVersion}
-AppPublisher=Gym soft
+AppPublisher=Atlantic Tech Software
 DefaultDirName={localappdata}\Programs\GymSoftCommercial
 DefaultGroupName=Gym soft
 PrivilegesRequired=lowest
@@ -31,15 +31,17 @@ Source: "DigitalPersonaRuntime\*"; DestDir: "{app}\DigitalPersonaRuntime"; Flags
 Source: "dist\GymSoftAdmin\*"; DestDir: "{app}\Admin"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "dist\GymSoftRecepcion\*"; DestDir: "{app}\Recepcion"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "icono.ico"; DestDir: "{app}\Admin"; Flags: ignoreversion
+Source: "icono_recepcion.ico"; DestDir: "{app}\Recepcion"; Flags: ignoreversion
+Source: "icono_recepcion.ico"; DestDir: "{app}"; DestName: "GymSoft-Recepcion-{#AppVersion}.ico"; Flags: ignoreversion
 Source: "icono.ico"; DestDir: "{app}\Recepcion"; Flags: ignoreversion
 Source: "icono.ico"; DestDir: "{app}"; DestName: "GymSoft-{#AppVersion}.ico"; Flags: ignoreversion
 Source: "COPYRIGHT.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Gym soft Administración"; Filename: "{app}\Admin\GymSoftAdmin.exe"; WorkingDir: "{app}\Admin"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Administracion"
-Name: "{group}\Gym soft Recepción"; Filename: "{app}\Recepcion\GymSoftRecepcion.exe"; WorkingDir: "{app}\Recepcion"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Recepcion"
-Name: "{autodesktop}\Gym soft Administración"; Filename: "{app}\Admin\GymSoftAdmin.exe"; WorkingDir: "{app}\Admin"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Administracion"
-Name: "{autodesktop}\Gym soft Recepción"; Filename: "{app}\Recepcion\GymSoftRecepcion.exe"; WorkingDir: "{app}\Recepcion"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Recepcion"
+Name: "{group}\Atlantic Gym Administrador"; Filename: "{app}\Admin\GymSoftAdmin.exe"; WorkingDir: "{app}\Admin"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Administracion"
+Name: "{group}\Atlantic Gym Recepción"; Filename: "{app}\Recepcion\GymSoftRecepcion.exe"; WorkingDir: "{app}\Recepcion"; IconFilename: "{app}\GymSoft-Recepcion-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Recepcion"
+Name: "{autodesktop}\Atlantic Gym Administrador"; Filename: "{app}\Admin\GymSoftAdmin.exe"; WorkingDir: "{app}\Admin"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Administracion"
+Name: "{autodesktop}\Atlantic Gym Recepción"; Filename: "{app}\Recepcion\GymSoftRecepcion.exe"; WorkingDir: "{app}\Recepcion"; IconFilename: "{app}\GymSoft-Recepcion-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Recepcion"
 
 [Run]
 Filename: "{app}\DigitalPersonaRuntime\setup.exe"; WorkingDir: "{app}\DigitalPersonaRuntime"; Description: "Instalar el controlador y reconocimiento DigitalPersona (no requiere lector conectado)"; Verb: "runas"; Flags: shellexec postinstall skipifsilent waituntilterminated

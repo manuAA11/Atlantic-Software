@@ -36,7 +36,7 @@ declare sid uuid;begin
  perform pg_advisory_xact_lock(hashtextextended('gymsoft/marketing-scheduler',0));
  select scheduler_secret_id into sid from private.marketing_platform where singleton for update;
  if sid is null then
- select vault.create_secret(encode(gen_random_bytes(32),'hex'),'gymsoft_scheduler_token','Private scheduler authentication') into sid;
+ select vault.create_secret(encode(extensions.gen_random_bytes(32),'hex'),'gymsoft_scheduler_token','Private scheduler authentication') into sid;
  update private.marketing_platform set scheduler_secret_id=sid where singleton;end if;
  insert into private.marketing_scheduler_config(singleton,project_url) values(true,p_project_url)
  on conflict(singleton) do update set project_url=excluded.project_url;

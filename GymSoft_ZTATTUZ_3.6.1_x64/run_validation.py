@@ -12,10 +12,10 @@ from product_config import VERSION
 from validation_process import run_stage
 
 ROOT=Path(__file__).resolve().parent
-SQL_TESTS=('time_pipeline','membership_freezes','audit_logs','marketing_contracts','daily_tickets','fingerprints','upgrade_compatibility','security','contracts','ticket_plans','ticket_followup')
+SQL_TESTS=('marketing_compile','backend_sql_flow','time_pipeline','membership_freezes','audit_logs','marketing_contracts','daily_tickets','fingerprints','upgrade_compatibility','security','contracts','ticket_plans','ticket_followup')
 UI_TESTS=('marketing_ui_smoke','freeze_ui_smoke','door_ui_smoke','dialog_design_ui_smoke','ui_wait_smoke','access_layout_ui_smoke','client_fingerprint_ui_smoke','fingerprint_ui_smoke','windows_ui_smoke','responsive_ui_smoke','biometric_ui_smoke','ticket_ui_smoke',
           'performance_ui_smoke','popdown_ui_smoke','layout_modes_ui_smoke','review_ui_smoke',
-          'layout_consistency_ui_smoke')
+          'layout_consistency_ui_smoke','visibility_ui_smoke','atlantic_branding_ui_smoke')
 
 
 def main():

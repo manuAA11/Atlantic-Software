@@ -9,14 +9,15 @@ import subprocess
 import sys
 import zipfile
 import struct
-from product_config import VERSION
+from product_config import VERSION, PRODUCT_NAME
+from atlantic_ui import COPYRIGHT, PUBLISHER
 
 ROOT=Path(__file__).resolve().parent
 
-def verify_executable_icon(executable):
+def verify_executable_icon(executable, icon_name="icono.ico"):
     """Detiene la entrega si PyInstaller no embebió el icono GS completo."""
     import pefile
-    raw=(ROOT/'icono.ico').read_bytes()
+    raw=(ROOT/icon_name).read_bytes()
     _,kind,count=struct.unpack_from('<HHH',raw)
     if kind!=1 or count<1:raise ValueError('icono.ico no es un icono Windows válido.')
     expected=set()
@@ -41,10 +42,10 @@ def version_file(name):
                  'GymSoftControl':'Control comercial'}[name]
     info=VSVersionInfo(ffi=FixedFileInfo(filevers=number,prodvers=number),kids=[
         StringFileInfo([StringTable('040904b0',[
-            StringStruct('CompanyName','Gym soft'),StringStruct('FileDescription','Gym soft · '+description),
+            StringStruct('CompanyName',PUBLISHER),StringStruct('FileDescription',PRODUCT_NAME+' · '+description),
             StringStruct('FileVersion',VERSION),StringStruct('ProductVersion',VERSION),
-            StringStruct('LegalCopyright','© 2026 Manuel Cuéllar. All rights reserved.'),
-            StringStruct('ProductName','Gym soft Comercial'),StringStruct('OriginalFilename',name+'.exe')])]),
+            StringStruct('LegalCopyright',COPYRIGHT),
+            StringStruct('ProductName',PRODUCT_NAME),StringStruct('OriginalFilename',name+'.exe')])]),
         VarFileInfo([VarStruct('Translation',[1033,1200])])])
     target=ROOT/'build'/f'{name}_version.txt'
     target.parent.mkdir(exist_ok=True)
@@ -79,10 +80,11 @@ def main():
     subprocess.run([sys.executable,'run_validation.py'],check=True)
     subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_fingerprint_*.py'], check=True)
     for name,entry in [('GymSoftAdmin','app.py'),('GymSoftRecepcion','reception_app.py'),('GymSoftControl','owner_panel.py')]:
+        icon_name = 'icono_recepcion.ico' if entry == 'reception_app.py' else 'icono.ico'
         subprocess.run([sys.executable,'-m','PyInstaller','--noconfirm','--clean','--windowed','--onedir','--name',name,
-            '--icon','icono.ico', '--version-file',str(version_file(name)), '--add-data','gymsoft_config.json;.', '--add-data','icono.ico;.', '--collect-all','supabase','--collect-all','realtime',
+            '--icon',icon_name, '--version-file',str(version_file(name)), '--add-data','gymsoft_config.json;.', '--add-data','icono.ico;.', '--add-data','icono_recepcion.ico;.', '--collect-all','supabase','--collect-all','realtime',
             '--collect-all','postgrest','--collect-all','supabase_auth','--collect-all','tzdata',entry],check=True)
-        verify_executable_icon(ROOT/'dist'/name/(name+'.exe'))
+        verify_executable_icon(ROOT/'dist'/name/(name+'.exe'), icon_name)
     for script in ['instalador_clientes.iss','instalador_propietario.iss']:
         subprocess.run([compiler,'/DAppVersion='+VERSION,script],check=True)
     output=ROOT/'salida';output.mkdir(exist_ok=True)

@@ -3,9 +3,9 @@
 #endif
 [Setup]
 AppId={{8F529E62-5D29-49E0-99AA-28255D920ECE}
-AppName=ZTATTUZ Recepción
+AppName=Atlantic Gym · ZTATTUZ Recepción
 AppVersion={#AppVersion}
-AppPublisher=Manuel Cuéllar
+AppPublisher=Atlantic Tech Software
 DefaultDirName={localappdata}\Programs\ZTATTUZ Recepcion
 DefaultGroupName=ZTATTUZ
 PrivilegesRequired=lowest
@@ -19,7 +19,7 @@ WizardStyle=modern
 MinVersion=10.0
 ArchitecturesAllowed=x64os
 ArchitecturesInstallIn64BitMode=x64os
-SetupIconFile=icono.ico
+SetupIconFile=icono_recepcion.ico
 CloseApplications=yes
 RestartApplications=no
 UninstallDisplayIcon={app}\ZTATTUZ Recepcion.exe
@@ -30,7 +30,7 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 [Files]
 Source: "DigitalPersonaRuntime\*"; DestDir: "{app}\DigitalPersonaRuntime"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "dist\ZTATTUZ Recepcion\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "icono.ico"; DestDir: "{app}"; DestName: "ZTATTUZ-{#AppVersion}.ico"; Flags: ignoreversion
+Source: "icono_recepcion.ico"; DestDir: "{app}"; DestName: "ZTATTUZ-Recepcion-{#AppVersion}.ico"; Flags: ignoreversion
 Source: "COPYRIGHT.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "LEEME_WINDOWS_MINI.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "LEEME_ACTUALIZAR_{#AppVersion}.md"; DestDir: "{app}"; Flags: ignoreversion
@@ -38,9 +38,9 @@ Source: "LEEME_ACTUALIZAR_{#AppVersion}.md"; DestDir: "{app}"; Flags: ignorevers
 Source: "GUIA_PUERTA_LCUS1.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
-Name: "{autodesktop}\ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
-Name: "{group}\Diagnóstico de ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{group}\Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{autodesktop}\Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{group}\Diagnóstico de Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
 
 [Code]
 procedure SHChangeNotify(wEventId: Integer; uFlags: Cardinal; dwItem1, dwItem2: Integer);

@@ -6,6 +6,20 @@ const keys={public_key:'pub_test_demo',private_key:'prv_test_demo',events_secret
 function request(path,body,headers={}){return new Request(base+path,{method:'POST',headers:{'content-type':'application/json',...headers},body:JSON.stringify(body)});}
 test('Admin mutations require authorization before provider access',async()=>{let sends=0;const db={authorize:async()=>{throw Object.assign(new Error(),{code:'x'})},rpc:async()=>{sends++;}};const r=await createHandler({db,baseURL:base})(request('/admin',{gym_id:gym,action:'connect_wompi',credentials:keys}));assert.equal(r.status,500);assert.equal(sends,0);});
 test('Scheduler rejects missing token',async()=>{const h=createHandler({db:{rpc:async()=>false},baseURL:base});assert.equal((await h(request('/jobs',{}))).status,403);});
+test('Hosted Edge mount resolves health and still authenticates scheduler requests',async()=>{
+ const calls=[];const h=createHandler({db:{rpc:async(n)=>{calls.push(n);return n==='marketing_service_health'?{database:true,scheduler_installed:true}:false;}},baseURL:base});
+ assert.equal((await h(new Request('http://edge.internal/marketing/health'))).status,200);
+ const job=await h(new Request('http://edge.internal/marketing/jobs',{method:'POST',body:'{}'}));
+ assert.equal(job.status,403);
+ assert.deepEqual(calls,['marketing_service_health','marketing_service_scheduler_authorized']);
+});
+test('A similarly named function cannot match the protected mount',async()=>{
+ let calls=0;const h=createHandler({db:{rpc:async()=>{calls++;}},baseURL:base});
+ for(const p of ['/marketing-extra/jobs','/functions/v1/marketing-extra/jobs']){
+  assert.equal((await h(new Request('http://edge.internal'+p,{method:'POST',body:'{}'}))).status,404);
+ }
+ assert.equal(calls,0);
+});
 test('Health probes the database and requires an installed scheduler',async()=>{
  let installed=false;const calls=[];
  const h=createHandler({db:{rpc:async(n)=>{calls.push(n);return {database:true,scheduler_installed:installed,server_now:'2026-10-08T02:30:00Z'};}},baseURL:base});

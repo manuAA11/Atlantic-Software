@@ -1,4 +1,6 @@
 from __future__ import annotations
+from atlantic_ui import COPYRIGHT
+from product_config import PRODUCT_NAME
 import os
 from datetime import datetime, timezone
 import tkinter as tk
@@ -74,7 +76,7 @@ class LoginDialog(tk.Toplevel):
         super().__init__(parent)
         decorate_window(self)
         self.result: tuple[str, str] | None = None
-        self.title('Gym soft · Crear cuenta' if creating_account else 'Gym soft · Iniciar sesión')
+        self.title(f'{PRODUCT_NAME} · Crear cuenta' if creating_account else f'{PRODUCT_NAME} · Iniciar sesión')
         fit_window(self,540,390,parent=parent)
         # Si un host oculta el root durante el inicio de sesión, una ventana
         # transient ligada a ese root puede quedar detrás de VS Code. El root
@@ -86,7 +88,7 @@ class LoginDialog(tk.Toplevel):
         self.viewport = ScrollArea(self, padding=28, width=540, height=390)
         self.viewport.pack(fill='both', expand=True)
         body = self.viewport.body
-        ttk.Label(body, text='Gym soft', font=(UI_FONT, 23, 'bold')).pack(anchor='w')
+        ttk.Label(body, text=PRODUCT_NAME, font=(UI_FONT, 23, 'bold')).pack(anchor='w')
         subtitle = ('Acceso privado del propietario del software.' if owner else
                     'Crea tu cuenta con el correo de tu invitación.' if creating_account else
                     'Inicia sesión con la cuenta asignada a tu gimnasio.')
@@ -98,6 +100,7 @@ class LoginDialog(tk.Toplevel):
             entry.pack(fill='x', pady=(3, 12))
             if not hidden:
                 entry.focus_set()
+        ttk.Label(body, text=COPYRIGHT, wraplength=460, font=(UI_FONT, 8)).pack(anchor='w', pady=(0, 10))
         ttk.Button(body, text='Crear cuenta' if creating_account else 'Iniciar sesión', command=self.accept).pack(anchor='e')
         self.bind('<Return>', lambda _: self.accept())
         self.bind('<Escape>', lambda _: self.destroy())

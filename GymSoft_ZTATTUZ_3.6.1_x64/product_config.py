@@ -7,7 +7,9 @@ from pathlib import Path
 import sys
 from urllib.parse import urlsplit
 
-PRODUCT_NAME = 'Gym soft'
+PRODUCT_NAME = 'Atlantic Gym · ZTATTUZ'
+ADMIN_NAME = PRODUCT_NAME + " Administrador"
+RECEPTION_NAME = PRODUCT_NAME + " Recepción"
 VERSION = '3.6.1'
 
 def resource_root() -> Path:

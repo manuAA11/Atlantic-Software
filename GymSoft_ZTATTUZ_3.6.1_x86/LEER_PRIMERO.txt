@@ -1,3 +1,7 @@
+ATLANTIC GYM - FUENTES EN DESARROLLO
+Consultar ESTADO_ACTUAL.md y ../docs/ESTADO_CIERRE.md.
+Las instrucciones siguientes corresponden a una entrega anterior; los criterios finales siguen pendientes.
+
 ZTATTUZ 3.6.1 — WINDOWS DE 32 BITS (x86)
 
 Habilita DigitalPersona U.are.U 5160 y mantiene U.are.U 4500.

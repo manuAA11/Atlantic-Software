@@ -1,0 +1,567 @@
+{
+  "status": "PASS",
+  "synchronized_files": [
+    {
+      "source": "common/atlantic_ui.py",
+      "target": "atlantic_ui.py",
+      "passed": true
+    },
+    {
+      "source": "common/atlantic_branding_ui_smoke.py",
+      "target": "tests/atlantic_branding_ui_smoke.py",
+      "passed": true
+    },
+    {
+      "source": "common/backend_sql_flow.mjs",
+      "target": "tests/backend_sql_flow.mjs",
+      "passed": true
+    },
+    {
+      "source": "common/marketing_freeze_indexes.sql",
+      "target": "ACTUALIZAR_INDICES_INTEGRACION.sql",
+      "passed": true
+    },
+    {
+      "source": "assets/atlantic/atlantic_gym_admin.ico",
+      "target": "icono.ico",
+      "passed": true
+    },
+    {
+      "source": "assets/atlantic/atlantic_gym_reception.ico",
+      "target": "icono_recepcion.ico",
+      "passed": true
+    },
+    {
+      "source": "backend/handler.mjs",
+      "target": "marketing_backend/handler.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/handler.mjs",
+      "target": "supabase/functions/marketing/handler.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/index.ts",
+      "target": "marketing_backend/index.ts",
+      "passed": true
+    },
+    {
+      "source": "backend/index.ts",
+      "target": "supabase/functions/marketing/index.ts",
+      "passed": true
+    },
+    {
+      "source": "backend/core/onboarding.mjs",
+      "target": "marketing_backend/core/onboarding.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/onboarding.mjs",
+      "target": "supabase/functions/marketing/core/onboarding.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/chatbot.mjs",
+      "target": "marketing_backend/core/chatbot.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/chatbot.mjs",
+      "target": "supabase/functions/marketing/core/chatbot.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/webhooks.mjs",
+      "target": "marketing_backend/core/webhooks.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/webhooks.mjs",
+      "target": "supabase/functions/marketing/core/webhooks.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/automation.mjs",
+      "target": "marketing_backend/core/automation.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/automation.mjs",
+      "target": "supabase/functions/marketing/core/automation.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/security.mjs",
+      "target": "marketing_backend/core/security.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/security.mjs",
+      "target": "supabase/functions/marketing/core/security.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/database.mjs",
+      "target": "marketing_backend/core/database.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/database.mjs",
+      "target": "supabase/functions/marketing/core/database.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/providers.mjs",
+      "target": "marketing_backend/core/providers.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/providers.mjs",
+      "target": "supabase/functions/marketing/core/providers.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/worker.mjs",
+      "target": "marketing_backend/core/worker.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/core/worker.mjs",
+      "target": "supabase/functions/marketing/core/worker.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/tests/core.test.mjs",
+      "target": "marketing_backend/tests/core.test.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/tests/freeze_time.test.mjs",
+      "target": "marketing_backend/tests/freeze_time.test.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/tests/http.test.mjs",
+      "target": "marketing_backend/tests/http.test.mjs",
+      "passed": true
+    },
+    {
+      "source": "backend/tests/onboarding_page.test.mjs",
+      "target": "marketing_backend/tests/onboarding_page.test.mjs",
+      "passed": true
+    }
+  ],
+  "shared_python_modules": [
+    {
+      "path": "app.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "b0e464df9c7407bc7181a758746783110b80db59d7b27dd779da96b2f85dc557",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "e66d4b11ebdf478e13fddb243c03cc4a512e414bb78fadc673648dd37f4acf73",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "e66d4b11ebdf478e13fddb243c03cc4a512e414bb78fadc673648dd37f4acf73"
+      }
+    },
+    {
+      "path": "atlantic_ui.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "4907e5975bbf6acfc8c979444f328be97842dc4daca6e1863fb67a8c36a533ad",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "4907e5975bbf6acfc8c979444f328be97842dc4daca6e1863fb67a8c36a533ad",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "4907e5975bbf6acfc8c979444f328be97842dc4daca6e1863fb67a8c36a533ad"
+      }
+    },
+    {
+      "path": "biometric.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "968726dff548f1ca8fa258346dd0d348d8e2bb74d2147f1d2da1bbacc51c3069",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "cc5d680eef1d52ffd0ca40523880b8774a04f0506ac993a75407dadd52b8baa0",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "cc5d680eef1d52ffd0ca40523880b8774a04f0506ac993a75407dadd52b8baa0"
+      }
+    },
+    {
+      "path": "branding.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "ee691640156458d2320728bf6ba34773b8d59916ba9ab4bb2b2dedd37e2de51b",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "76d60c79de5d6cf04fd639d3e0e2c73c68681a0b6789abce055d4b1bb8e7fa9a",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "76d60c79de5d6cf04fd639d3e0e2c73c68681a0b6789abce055d4b1bb8e7fa9a"
+      }
+    },
+    {
+      "path": "build_windows.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "b2413f784d1fcefe60b2b81fce7f02b6c14730be1be906c961ed5d3a43e761b4",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "bc04f41ea0eed98821ec8217bd0f9910f85f28467bd3c2dcad5785dad07504e9",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "dbff6e46760656a77f5c9579071b7370a0b9f6804f692517af64750d59a55332"
+      }
+    },
+    {
+      "path": "client_fingerprint.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "7a6b527fc52952aa6c9019273650dbf0e5499f9d783da81832bee17e0c0c0b46",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "7a6b527fc52952aa6c9019273650dbf0e5499f9d783da81832bee17e0c0c0b46",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "7a6b527fc52952aa6c9019273650dbf0e5499f9d783da81832bee17e0c0c0b46"
+      }
+    },
+    {
+      "path": "cloud.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "133160d74b7b65e98ba2f298b0c35a0f357c85ee43932ce344f923ab8a0f6c85",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "133160d74b7b65e98ba2f298b0c35a0f357c85ee43932ce344f923ab8a0f6c85",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "133160d74b7b65e98ba2f298b0c35a0f357c85ee43932ce344f923ab8a0f6c85"
+      }
+    },
+    {
+      "path": "cloud_database.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "d67b6bb36ac458c96426cd2a298782967405454b19d5943027219084ded1c108",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "9294d59a7db0e035101ae43b9a8e533e688589ccb1ab8625023f408d6d56320e",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "9294d59a7db0e035101ae43b9a8e533e688589ccb1ab8625023f408d6d56320e"
+      }
+    },
+    {
+      "path": "dark_files.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "449a480d6882921f982ec0080e626116f763f2899b7e558ee2c3dddec99c7d07",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "449a480d6882921f982ec0080e626116f763f2899b7e558ee2c3dddec99c7d07",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "449a480d6882921f982ec0080e626116f763f2899b7e558ee2c3dddec99c7d07"
+      }
+    },
+    {
+      "path": "database.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "4dedaa737868c2b16cb017a5fafced0c3c4e6c3c2910d94b2be37a5a276979b1",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "4dedaa737868c2b16cb017a5fafced0c3c4e6c3c2910d94b2be37a5a276979b1",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "4dedaa737868c2b16cb017a5fafced0c3c4e6c3c2910d94b2be37a5a276979b1"
+      }
+    },
+    {
+      "path": "date_input.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "30f23afc1a174fa7dcfc6a1fa4ed136f16ab57c1a41bc69c3e2b1b84de82d2e3",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "30f23afc1a174fa7dcfc6a1fa4ed136f16ab57c1a41bc69c3e2b1b84de82d2e3",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "30f23afc1a174fa7dcfc6a1fa4ed136f16ab57c1a41bc69c3e2b1b84de82d2e3"
+      }
+    },
+    {
+      "path": "desktop_ui.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "be2558f9ff534679a75269d42b82d2ec34c2a00ff63967a90d72b9691494d818",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "afc35d4b6f207b3bcb796fadb3514ee20a36b68ca0b107d21aa2497a44d57685",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "afc35d4b6f207b3bcb796fadb3514ee20a36b68ca0b107d21aa2497a44d57685"
+      }
+    },
+    {
+      "path": "digitalpersona_native.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "a4703666c58b32160569a129aba54239d6bab03239dcbd71386cc783ac84e93b",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "c6a66e47303a9e548d88fe285a76746eb3e4e6bc4331bcdb77c4a349c93d2f33",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "c6a66e47303a9e548d88fe285a76746eb3e4e6bc4331bcdb77c4a349c93d2f33"
+      }
+    },
+    {
+      "path": "fingerprint_diagnostics.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "add48980afebaa7f17230dfaa4f6a8325f9e575fe0db983064bfcd1647ccbfef",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "add48980afebaa7f17230dfaa4f6a8325f9e575fe0db983064bfcd1647ccbfef",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "add48980afebaa7f17230dfaa4f6a8325f9e575fe0db983064bfcd1647ccbfef"
+      }
+    },
+    {
+      "path": "fingerprint_service.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "4e1c35adda8281de131c39e47fd0e4311bcf8a8eb6b2f2bce6e2bc0e5b59176a",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "21d9105e1e00497b941ad83065aed37f9ac566ab0f6998514335f0ed5b3a2b14",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "21d9105e1e00497b941ad83065aed37f9ac566ab0f6998514335f0ed5b3a2b14"
+      }
+    },
+    {
+      "path": "fingerprint_store.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "8d66c0e6c03d5185cc8dc6133edfd276c59b81bde9b05bb04925bfa257cc1356",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "8d66c0e6c03d5185cc8dc6133edfd276c59b81bde9b05bb04925bfa257cc1356",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "8d66c0e6c03d5185cc8dc6133edfd276c59b81bde9b05bb04925bfa257cc1356"
+      }
+    },
+    {
+      "path": "fingerprint_ui.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "6ecc5672aff3603811ee3db5f078c06a161d47196e3755ca2416ee43f98036f0",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "46dfde09caebd2e021221360f8b49676a898e855c67f155d5e6dd7eb05d12f4c",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "46dfde09caebd2e021221360f8b49676a898e855c67f155d5e6dd7eb05d12f4c"
+      }
+    },
+    {
+      "path": "followup.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "12d7af34446d11bf42a217327e3338f068e90f327feff6b99dede770d7240125",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "12d7af34446d11bf42a217327e3338f068e90f327feff6b99dede770d7240125",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "12d7af34446d11bf42a217327e3338f068e90f327feff6b99dede770d7240125"
+      }
+    },
+    {
+      "path": "followup_ui.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "df76ce12ca54a80a788d7fd6e6106260dd0015f65e07c85a1d762179faa31522",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "df76ce12ca54a80a788d7fd6e6106260dd0015f65e07c85a1d762179faa31522",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "df76ce12ca54a80a788d7fd6e6106260dd0015f65e07c85a1d762179faa31522"
+      }
+    },
+    {
+      "path": "gym_time.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "82b43af76cfb4c69dd026e1b6a3eb4b07486df2003032708d2369ef5625874ec"
+      }
+    },
+    {
+      "path": "marketing_client.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "8d5a07a51d3f63c4e8f81aaeb2559ce824da912cdf443a5add47e0eba97fcc3a"
+      }
+    },
+    {
+      "path": "marketing_reception.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "dcb76a35602f240830be9a8e0d82c8cd06259dc28d0f6edda33572aa76b993ef",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "dcb76a35602f240830be9a8e0d82c8cd06259dc28d0f6edda33572aa76b993ef",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "dcb76a35602f240830be9a8e0d82c8cd06259dc28d0f6edda33572aa76b993ef"
+      }
+    },
+    {
+      "path": "marketing_ui.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "17027c00bab7a56b82619d87463e1143cbec56083543a03ca7ce3bc5b54370e0"
+      }
+    },
+    {
+      "path": "membership_freeze_ui.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "c3d9cc411d409b6ba3f0109ac4eeb730029cb2c06fd06e79987424e1675ec854"
+      }
+    },
+    {
+      "path": "money_input.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "a053e4ea413d4cf746b79fb5c85584cb63da57e8a7711858bb1fe56c1a761e7e",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "a053e4ea413d4cf746b79fb5c85584cb63da57e8a7711858bb1fe56c1a761e7e",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "a053e4ea413d4cf746b79fb5c85584cb63da57e8a7711858bb1fe56c1a761e7e"
+      }
+    },
+    {
+      "path": "payment_revision.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "1cccdd1aae827ebdfb56013c8ec9fad4b8c33f0ddcbd9b1f492b8e47071dbf40",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "71df6aed6981fed457ccbfd15e780120a3231184c6665609e4ee3beeb49ac485",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "71df6aed6981fed457ccbfd15e780120a3231184c6665609e4ee3beeb49ac485"
+      }
+    },
+    {
+      "path": "plan_forms.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "7f22782d7982d91360258e28559a5abf725496379fd30f2f5e468385631fdb24",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "7f22782d7982d91360258e28559a5abf725496379fd30f2f5e468385631fdb24",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "7f22782d7982d91360258e28559a5abf725496379fd30f2f5e468385631fdb24"
+      }
+    },
+    {
+      "path": "product_config.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "f842115000ac9c3749bbae2854461557a160231cc3374e69eab4837eec5ac95d",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "b7b667e3fc35d59080860177f29f0d7489eec36ac3b23b6de698886a1da61e81",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "b7b667e3fc35d59080860177f29f0d7489eec36ac3b23b6de698886a1da61e81"
+      }
+    },
+    {
+      "path": "realtime_listener.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "2b7b4e482f59dc453ee1dce438ade12e1fe6bfb700bffaf0740523fb1b4f6e64",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "2b7b4e482f59dc453ee1dce438ade12e1fe6bfb700bffaf0740523fb1b4f6e64",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "2b7b4e482f59dc453ee1dce438ade12e1fe6bfb700bffaf0740523fb1b4f6e64"
+      }
+    },
+    {
+      "path": "reception_app.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "27fff633a257deac40e9b8c5a0d057614c101014a24fab722412f6c41f7c7853",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "bfd28129204ee2835b81de9b07f8fee7a357bfb2845b159176245dc9657f980f",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "bfd28129204ee2835b81de9b07f8fee7a357bfb2845b159176245dc9657f980f"
+      }
+    },
+    {
+      "path": "reception_database.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "15ceba3590be5f5a73544b987f9c33a74cb9049b11a89b83405191e253d5a170"
+      }
+    },
+    {
+      "path": "reception_expense_revision.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "112db22307c0f3f20ffca7077cc25f44a032afe6d09fdc958c209868af7883a0"
+      }
+    },
+    {
+      "path": "release_gate.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "b231d50aed01ec564e3bf63d5f15d88bc295b09f946009e0dded5972999e9df3"
+      }
+    },
+    {
+      "path": "responsive_ui.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "630ad491ff71086f042dbe214798cefddff111cbefe0198d6f639f8941d767bd",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "630ad491ff71086f042dbe214798cefddff111cbefe0198d6f639f8941d767bd",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "630ad491ff71086f042dbe214798cefddff111cbefe0198d6f639f8941d767bd"
+      }
+    },
+    {
+      "path": "run_validation.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "9ea9bad911101cd2a7b1bb8dbca802ab5bc4c71f79f0dcf3c4c2f630c4c076fe",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "c6d6577b0d476ab65e7587f44c58a08c58e0a6877023b7082ec5c42e6281ddd7",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "c6d6577b0d476ab65e7587f44c58a08c58e0a6877023b7082ec5c42e6281ddd7"
+      }
+    },
+    {
+      "path": "runtime_cloud.py",
+      "identical": false,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "8f6a3b29eceec6cda379e693b9f02846040f5883c1ebe899eee6ebe905cc3405",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "0e0667adb1ca08584c5042030795cf26e7bf2c9b3c8f7a8d6d578ca1dbe614c9",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "0e0667adb1ca08584c5042030795cf26e7bf2c9b3c8f7a8d6d578ca1dbe614c9"
+      }
+    },
+    {
+      "path": "server_date.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "86ee9829eab41407409c565c27246180b0bb4b10e61603d9bad6f2a26b472837"
+      }
+    },
+    {
+      "path": "ticket_forms.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "1ab2fbc1a05deab366a8e094dff33561b1248b648454518d7b68dc93fe0a3b8b",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "1ab2fbc1a05deab366a8e094dff33561b1248b648454518d7b68dc93fe0a3b8b",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "1ab2fbc1a05deab366a8e094dff33561b1248b648454518d7b68dc93fe0a3b8b"
+      }
+    },
+    {
+      "path": "tk_window_state.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "d7d0be6c9a043209aec8aba7c1c9d5e808da72ced208c143760f67fc92e03322",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "d7d0be6c9a043209aec8aba7c1c9d5e808da72ced208c143760f67fc92e03322",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "d7d0be6c9a043209aec8aba7c1c9d5e808da72ced208c143760f67fc92e03322"
+      }
+    },
+    {
+      "path": "ui_performance.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "30092cec3d6f3021e6478b7dacbbbbb969bc34e66134d923cc14836b01f4dffd",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "30092cec3d6f3021e6478b7dacbbbbb969bc34e66134d923cc14836b01f4dffd",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "30092cec3d6f3021e6478b7dacbbbbb969bc34e66134d923cc14836b01f4dffd"
+      }
+    },
+    {
+      "path": "ui_tasks.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "15c084c3d569df965dc26e662d20866736ddd59c0e6f43300cbba8d1ed60cf54",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "15c084c3d569df965dc26e662d20866736ddd59c0e6f43300cbba8d1ed60cf54",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "15c084c3d569df965dc26e662d20866736ddd59c0e6f43300cbba8d1ed60cf54"
+      }
+    },
+    {
+      "path": "ui_text.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "cfb36923ed279cf887f936515250d80744e1a3ed5c5f1b97a7ff3fc33ea6c966"
+      }
+    },
+    {
+      "path": "ui_visuals.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "c8ef7f39fc94fba21357e912527bb18864706f170c20dafdc85d8296639b27df",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "c8ef7f39fc94fba21357e912527bb18864706f170c20dafdc85d8296639b27df",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "c8ef7f39fc94fba21357e912527bb18864706f170c20dafdc85d8296639b27df"
+      }
+    },
+    {
+      "path": "validation_process.py",
+      "identical": true,
+      "sha256": {
+        "GymSoft_Comercial_3.6.0": "df7402a14d922eb1d3b8d8bafec29c1b7b838dbdb268269cb2161a6985d5e418",
+        "GymSoft_ZTATTUZ_3.6.1_x64": "df7402a14d922eb1d3b8d8bafec29c1b7b838dbdb268269cb2161a6985d5e418",
+        "GymSoft_ZTATTUZ_3.6.1_x86": "df7402a14d922eb1d3b8d8bafec29c1b7b838dbdb268269cb2161a6985d5e418"
+      }
+    }
+  ],
+  "note": "Product-specific app, cloud/licensing, native reader architecture, ZTATTUZ door control and installer differences are retained. Hash differences alone are not classified as defects.",
+  "manual_marketing_updater": {
+    "status": "PASS",
+    "sha256": {
+      "GymSoft_ZTATTUZ_3.6.1_x64/ACTUALIZAR_MARKETING.sql": "2ec988b749533bb88fedbdac7aec6c163bc82f0d8c4ecf570111cf659b21e6eb",
+      "GymSoft_Comercial_3.6.0/ACTUALIZAR_MARKETING.sql": "2ec988b749533bb88fedbdac7aec6c163bc82f0d8c4ecf570111cf659b21e6eb",
+      "GymSoft_ZTATTUZ_3.6.1_x86/ACTUALIZAR_MARKETING.sql": "2ec988b749533bb88fedbdac7aec6c163bc82f0d8c4ecf570111cf659b21e6eb"
+    }
+  },
+  "historical_migrations": {
+    "status": "PASS",
+    "checked": 17,
+    "changed": []
+  }
+}

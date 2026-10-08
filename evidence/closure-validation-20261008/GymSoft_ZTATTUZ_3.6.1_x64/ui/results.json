@@ -1,0 +1,161 @@
+{
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+  "scope": "ui",
+  "started_at": "2026-10-08T22:23:21.527822+00:00",
+  "stages": [
+    {
+      "name": "marketing_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 7.25,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "freeze_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.44,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "door_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 10.66,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "dialog_design_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 16.75,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ui_wait_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.27,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "access_layout_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 21.34,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "client_fingerprint_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 8.67,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprint_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 9.47,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "windows_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 1.73,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "responsive_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 63.28,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "biometric_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 3.98,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 7.25,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "performance_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 9.74,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "popdown_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.41,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "layout_modes_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 55.47,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "review_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 6.59,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "layout_consistency_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 11.24,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "visibility_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 2.92,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "atlantic_branding_ui_smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.7,
+      "timed_out": false,
+      "callback_failure": false
+    }
+  ],
+  "note": "Existing source tests. Contracts extracted from current source. Offline PGlite and simulated hardware; no Windows or external-service verification.",
+  "status": "PASS"
+}

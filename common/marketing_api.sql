@@ -61,6 +61,7 @@ begin
  new.whatsapp_opt_in_at:=now();new.whatsapp_opt_in_by:=auth.uid();
  new.whatsapp_opt_in_source:=coalesce(nullif(new.whatsapp_opt_in_source,''),'Registro del personal');
  perform private.marketing_audit(new.gym_id,case when new.whatsapp_opt_in then 'CONSENT_GRANTED' else 'CONSENT_REVOKED' end,'client',new.id::text,jsonb_build_object('source',new.whatsapp_opt_in_source));end if;return new;end$$;
+drop trigger if exists marketing_consent on public.clients;
 create trigger marketing_consent before insert or update of whatsapp_opt_in on public.clients for each row execute function private.marketing_consent();
 create or replace function public.marketing_set_consent(p_gym_id uuid,p_client_id bigint,p_enabled boolean,p_source text default 'Registro del personal') returns void language plpgsql security definer set search_path='' as $$
 begin perform public.marketing_access(p_gym_id,true);

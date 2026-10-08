@@ -17,12 +17,8 @@ from PIL import Image, ImageTk
 from ui_visuals import install_indicators, dialog_icon
 from tk_window_state import capture_grab, close_native_dropdown, restore_grab
 
-BG = '#0b1220'
-SURFACE = '#172235'
-TEXT = '#f8fafc'
-MUTED = '#94a3b8'
-ACCENT = '#16c784'
-LINE = '#2a3953'
+from atlantic_ui import COLORS
+BG, SURFACE, TEXT, MUTED, ACCENT, LINE = (COLORS[k] for k in ('background', 'surface', 'text', 'muted', 'primary', 'line'))
 
 
 def resource_path(name: str) -> Path:
@@ -43,7 +39,11 @@ def set_app_id(component: str) -> None:
 def decorate_window(window: tk.Misc) -> None:
     """Icono GS y barra de título oscura, también para login y formularios."""
     window.configure(bg=BG)
-    path = resource_path('icono.ico')
+    parent = getattr(window, 'master', None)
+    inherited = getattr(parent, '_atlantic_icon_name', None)
+    icon_name = inherited or ('icono_recepcion.ico' if 'Recepción' in window.title() else 'icono.ico')
+    window._atlantic_icon_name = icon_name
+    path = resource_path(icon_name)
     if path.is_file():
         try:
             window.iconbitmap(str(path))

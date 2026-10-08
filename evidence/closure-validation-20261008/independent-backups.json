@@ -1,0 +1,35 @@
+[
+  {
+    "edition": "GymSoft_Comercial_3.6.0",
+    "status": "PASS",
+    "runtime_source_files_matched": 165,
+    "checks": [
+      "fresh npm ci",
+      "Python isolated import of app/reception/UI/product config",
+      "28 HTTP/backend/migrated SQL checks"
+    ],
+    "scope": "Independent extracted source backup; dependency venv shared deliberately, node_modules installed separately. No vendor runtime or Windows build."
+  },
+  {
+    "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+    "status": "PASS",
+    "runtime_source_files_matched": 142,
+    "checks": [
+      "fresh npm ci",
+      "Python isolated import of app/reception/UI/product config",
+      "28 HTTP/backend/migrated SQL checks"
+    ],
+    "scope": "Independent extracted source backup; dependency venv shared deliberately, node_modules installed separately. No vendor runtime or Windows build."
+  },
+  {
+    "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+    "status": "PASS",
+    "runtime_source_files_matched": 142,
+    "checks": [
+      "fresh npm ci",
+      "Python isolated import of app/reception/UI/product config",
+      "28 HTTP/backend/migrated SQL checks"
+    ],
+    "scope": "Independent extracted source backup; dependency venv shared deliberately, node_modules installed separately. No vendor runtime or Windows build."
+  }
+]

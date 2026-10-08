@@ -3,9 +3,9 @@
 #endif
 [Setup]
 AppId={{58D6DD62-FD67-4CC1-8D87-153AFB4EE44A}
-AppName=Gym soft Control comercial
+AppName=Atlantic Gym · Control comercial
 AppVersion={#AppVersion}
-AppPublisher=Gym soft
+AppPublisher=Atlantic Tech Software
 DefaultDirName={localappdata}\Programs\GymSoftControl
 DefaultGroupName=Gym soft Propietario
 PrivilegesRequired=lowest
@@ -33,8 +33,8 @@ Source: "icono.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "COPYRIGHT.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Gym soft Propietario"; Filename: "{app}\GymSoftControl.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Propietario"
-Name: "{autodesktop}\Gym soft Propietario"; Filename: "{app}\GymSoftControl.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Propietario"
+Name: "{group}\Atlantic Gym Propietario"; Filename: "{app}\GymSoftControl.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Propietario"
+Name: "{autodesktop}\Atlantic Gym Propietario"; Filename: "{app}\GymSoftControl.exe"; WorkingDir: "{app}"; IconFilename: "{app}\GymSoft-{#AppVersion}.ico"; IconIndex: 0; AppUserModelID: "GymSoft.Comercial.Propietario"
 
 [Run]
 Filename: "{app}\GymSoftControl.exe"; Description: "Abrir panel del propietario"; Flags: nowait postinstall skipifsilent unchecked

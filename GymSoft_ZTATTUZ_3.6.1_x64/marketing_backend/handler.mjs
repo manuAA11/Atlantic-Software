@@ -9,7 +9,12 @@ async function bodyJSON(req,max=65536){const text=await req.text();if(text.lengt
 export function createHandler({db,baseURL,fetcher=fetch}) {
  return async request=>{
   let cors={};try{
-   const url=new URL(request.url);const base=new URL(baseURL);const path=url.pathname.startsWith(base.pathname)?url.pathname.slice(base.pathname.length):url.pathname;
+   const url=new URL(request.url);const base=new URL(baseURL);
+   // The hosted Edge gateway can strip /functions/v1 before passing the request.
+   // Match a complete mount segment, preserving authentication on every route.
+   const mounts=[base.pathname.replace(/\/$/,''),'/'+base.pathname.split('/').filter(Boolean).at(-1)];
+   const mount=mounts.find(p=>url.pathname===p||url.pathname.startsWith(p+'/'));
+   const path=mount?url.pathname.slice(mount.length):url.pathname;
    const origin=request.headers.get('Origin');
    if(origin){const platform=await db.rpc('marketing_service_platform');if(origin!==platform?.onboarding_origin)throw new IntegrationError('ORIGIN_BLOCKED','Origen no autorizado.',403);cors={'Access-Control-Allow-Origin':origin,'Vary':'Origin','Access-Control-Allow-Methods':'POST,GET,OPTIONS','Access-Control-Allow-Headers':'content-type,authorization,apikey'};}
    if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors});

@@ -14,7 +14,12 @@ class PackageTest(unittest.TestCase):
             source=(ROOT/name).read_text(encoding='utf-8')
             self.assertIn(f'#define AppVersion "{VERSION}"',source)
             self.assertIn('DestName: "GymSoft-{#AppVersion}.ico"',source)
-            self.assertEqual(source.count('IconFilename: "{app}\\GymSoft-{#AppVersion}.ico"'),count)
+            if name == 'instalador_clientes.iss':
+                self.assertEqual(source.count('IconFilename: "{app}\\GymSoft-{#AppVersion}.ico"'), 2)
+                self.assertEqual(source.count('IconFilename: "{app}\\GymSoft-Recepcion-{#AppVersion}.ico"'), 2)
+                self.assertIn('Source: "icono_recepcion.ico"', source)
+            else:
+                self.assertEqual(source.count('IconFilename: "{app}\\GymSoft-{#AppVersion}.ico"'), count)
             icons=source.split('[Icons]',1)[1].split('\n[',1)[0]
             self.assertEqual(icons.count('WorkingDir:'),count)
             self.assertEqual(icons.count('AppUserModelID:'),count)

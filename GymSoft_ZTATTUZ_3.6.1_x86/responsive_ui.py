@@ -6,8 +6,8 @@ import sys
 import tkinter as tk
 from tkinter import ttk
 
-BG = '#0b1220'
-UI_FONT = 'Segoe UI' if sys.platform == 'win32' else 'Arial'
+from atlantic_ui import COLORS, UI_FONT
+BG = COLORS['background']
 
 
 def enable_dpi_awareness():

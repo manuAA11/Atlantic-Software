@@ -3,9 +3,9 @@
 #endif
 [Setup]
 AppId=ZTATTUZActualizadorCompleto
-AppName=Gym soft para ZTATTUZ
+AppName=Atlantic Gym · ZTATTUZ
 AppVersion={#AppVersion}
-AppPublisher=Manuel Cuéllar
+AppPublisher=Atlantic Tech Software
 CreateAppDir=no
 Uninstallable=no
 PrivilegesRequired=lowest

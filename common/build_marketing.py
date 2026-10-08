@@ -13,6 +13,8 @@ commit;
 sql='\n'.join((root/'common'/n).read_text() for n in parts if (root/'common'/n).exists())+footer
 for product in root.glob('GymSoft_*'):
  (product/'ACTUALIZAR_MARKETING.sql').write_text(sql)
- p=product/'supabase/migrations/20261003124254_marketing_automation.sql';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(sql)
-p=root/'supabase/migrations/20261003124254_marketing_automation.sql';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(sql)
-print('Marketing migration generated for all 3 editions')
+ p=product/'supabase/migrations/20261003124254_marketing_automation.sql';p.parent.mkdir(parents=True,exist_ok=True)
+ if not p.exists():p.write_text(sql)
+p=root/'supabase/migrations/20261003124254_marketing_automation.sql';p.parent.mkdir(parents=True,exist_ok=True)
+if not p.exists():p.write_text(sql)
+print('Marketing updater generated; existing migration snapshots preserved')

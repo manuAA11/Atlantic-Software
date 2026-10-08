@@ -28,6 +28,7 @@ export async function database({daily=true,marketing=true,freezes=true}={}) {
  if(marketing && daily) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_MARKETING.sql'),'utf8'));
  if(freezes && marketing && daily) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_CONGELACION_Y_HORAS.sql'),'utf8'));
  if(freezes && marketing && daily) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_SCHEDULER.sql'),'utf8'));
+ if(freezes && marketing && daily) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_INDICES_INTEGRACION.sql'),'utf8'));
  return db;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){

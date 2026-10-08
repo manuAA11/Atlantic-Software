@@ -129,9 +129,11 @@ do $$declare t text;begin
  execute format('create policy marketing_admin_read on public.%I for select to authenticated using(private.user_has_gym_role(gym_id,array[''admin'']))',t);
  end loop;
  foreach t in array array['whatsapp_conversations','chatbot_link_requests'] loop
+ execute format('drop policy if exists marketing_reception_read on public.%I',t);
  execute format('create policy marketing_reception_read on public.%I for select to authenticated using(private.user_has_gym_role(gym_id,array[''receptionist'']))',t);end loop;
  foreach t in array array['marketing_credentials','marketing_platform','marketing_oauth_states','marketing_webhook_events','marketing_rate_limits','marketing_events','marketing_sandbox_clients'] loop
  execute format('alter table private.%I enable row level security',t);execute format('revoke all on private.%I from public,anon,authenticated',t);end loop;
  foreach t in array array['marketing_automations','payment_requests','payment_transactions','whatsapp_conversations','chatbot_link_requests','automation_runs','marketing_messages'] loop
+ execute format('drop trigger if exists marketing_tenant_guard on public.%I',t);
  execute format('create trigger marketing_tenant_guard before insert or update on public.%I for each row execute function private.marketing_tenant_guard()',t);end loop;
 end$$;

@@ -1,4 +1,6 @@
 from __future__ import annotations
+from atlantic_ui import COPYRIGHT
+from product_config import PRODUCT_NAME
 
 from responsive_ui import AutoScrollbar
 from ui_performance import DataTreeview, clear_tree
@@ -95,13 +97,13 @@ class OwnerPanel(tk.Tk):
         from desktop_ui import install_error_handler
         install_error_handler(self)
         set_window_icon(self)
-        self.title(f'Gym soft · Control comercial {VERSION}')
+        self.title(f'Atlantic Gym · Control comercial {VERSION}')
         fit_window(self,1340,880,minimum=(760,480)); self.configure(bg=BG)
         self.rows={}; self.detail={}; self.detail_target=None; self.pending_detail=None
         self.pending_renewals={}; self.busy=False; self.queue=queue.Queue()
         self._populating=False; self._closing=False; self._poll_id=None
         self.configure_style()
-        startup=ttk.Label(self,text='Gym soft · Panel del propietario\nInicia sesión para administrar tus gimnasios.',anchor='center')
+        startup=ttk.Label(self,text='Atlantic Gym · Panel del propietario\nInicia sesión para administrar tus gimnasios.',anchor='center')
         startup.pack(fill='both',expand=True)
         self.update_idletasks()
         while True:
@@ -145,10 +147,11 @@ class OwnerPanel(tk.Tk):
         self.viewport=ScrollArea(self,padding=22,minimum_width=420)
         self.viewport.pack(fill='both',expand=True);outer=self.viewport.body
         header=ttk.Frame(outer);header.pack(fill='x')
-        ttk.Label(header,text='Gym soft · Control comercial',font=(UI_FONT,25,'bold')).pack(side='left')
+        ttk.Label(header,text='Atlantic Gym · Control comercial',font=(UI_FONT,25,'bold')).pack(side='left')
         ttk.Button(header,text='↻  Actualizar',command=self.refresh).pack(side='right')
         ttk.Button(header,text='✎  Editor del propietario',command=self.open_editor).pack(side='right',padx=10)
         ttk.Label(outer,text='Gimnasios, mensualidades y accesos desde tu cuenta de propietario.',style='Muted.TLabel').pack(anchor='w',pady=(4,18))
+        ttk.Label(outer,text=COPYRIGHT,style='Muted.TLabel',wraplength=700).pack(anchor='w',pady=(0,12))
         cards=ttk.Frame(outer);cards.pack(fill='x',pady=(0,14))
         self.metrics=[]
         for title in ['GIMNASIOS','ACCESO ACTIVO','VENCEN EN 7 DÍAS','EQUIPOS PENDIENTES']:

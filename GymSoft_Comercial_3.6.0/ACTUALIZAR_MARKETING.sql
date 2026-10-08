@@ -129,10 +129,12 @@ do $$declare t text;begin
  execute format('create policy marketing_admin_read on public.%I for select to authenticated using(private.user_has_gym_role(gym_id,array[''admin'']))',t);
  end loop;
  foreach t in array array['whatsapp_conversations','chatbot_link_requests'] loop
+ execute format('drop policy if exists marketing_reception_read on public.%I',t);
  execute format('create policy marketing_reception_read on public.%I for select to authenticated using(private.user_has_gym_role(gym_id,array[''receptionist'']))',t);end loop;
  foreach t in array array['marketing_credentials','marketing_platform','marketing_oauth_states','marketing_webhook_events','marketing_rate_limits','marketing_events','marketing_sandbox_clients'] loop
  execute format('alter table private.%I enable row level security',t);execute format('revoke all on private.%I from public,anon,authenticated',t);end loop;
  foreach t in array array['marketing_automations','payment_requests','payment_transactions','whatsapp_conversations','chatbot_link_requests','automation_runs','marketing_messages'] loop
+ execute format('drop trigger if exists marketing_tenant_guard on public.%I',t);
  execute format('create trigger marketing_tenant_guard before insert or update on public.%I for each row execute function private.marketing_tenant_guard()',t);end loop;
 end$$;
 
@@ -199,6 +201,7 @@ begin
  new.whatsapp_opt_in_at:=now();new.whatsapp_opt_in_by:=auth.uid();
  new.whatsapp_opt_in_source:=coalesce(nullif(new.whatsapp_opt_in_source,''),'Registro del personal');
  perform private.marketing_audit(new.gym_id,case when new.whatsapp_opt_in then 'CONSENT_GRANTED' else 'CONSENT_REVOKED' end,'client',new.id::text,jsonb_build_object('source',new.whatsapp_opt_in_source));end if;return new;end$$;
+drop trigger if exists marketing_consent on public.clients;
 create trigger marketing_consent before insert or update of whatsapp_opt_in on public.clients for each row execute function private.marketing_consent();
 create or replace function public.marketing_set_consent(p_gym_id uuid,p_client_id bigint,p_enabled boolean,p_source text default 'Registro del personal') returns void language plpgsql security definer set search_path='' as $$
 begin perform public.marketing_access(p_gym_id,true);
@@ -338,7 +341,9 @@ declare et text;data jsonb;begin
  data:=to_jsonb(new);
  if tg_table_name='checkins' then data:=data||jsonb_build_object('first_of_day',(select count(*)=1 from public.checkins ch where ch.gym_id=new.gym_id and ch.client_id=new.client_id and ch.result='PERMITIDA' and (ch.checkin_at at time zone (select timezone from public.gyms where id=new.gym_id))::date=private.gym_local_date(new.gym_id)),'first_of_membership',(select count(*)=1 from public.checkins ch where ch.gym_id=new.gym_id and ch.membership_id=new.membership_id and ch.result='PERMITIDA'),'checkin_count',(select count(*) from public.checkins ch where ch.gym_id=new.gym_id and ch.client_id=new.client_id and ch.result='PERMITIDA'));end if;
  insert into private.marketing_events(gym_id,client_id,event_type,entity_id,payload) values(new.gym_id,new.client_id,et,new.id::text,data) on conflict do nothing;return new;end$$;
+drop trigger if exists marketing_checkin_event on public.checkins;
 create trigger marketing_checkin_event after insert on public.checkins for each row execute function private.marketing_capture_event();
+drop trigger if exists marketing_renewal_event on public.memberships;
 create trigger marketing_renewal_event after insert on public.memberships for each row execute function private.marketing_capture_event();
 create or replace function public.marketing_service_enqueue(p_gym_id uuid,p_automation_id uuid,p_client_id bigint,p_dedupe_key text,p_phone text,p_body text,p_parameters jsonb,p_payment_request_id uuid default null) returns jsonb language plpgsql security definer set search_path='' as $$
 declare a public.marketing_automations;c public.clients;t public.whatsapp_templates;v_status text:='QUEUED';reason text;rid uuid;mid bigint;freq_n integer;freq_hours integer;begin
@@ -507,6 +512,7 @@ declare conv public.whatsapp_conversations;c public.clients;cid bigint;num integ
 create or replace function private.marketing_link_verified_phone() returns trigger language plpgsql set search_path='' as $$
 begin if new.verification_state='VERIFIED' and (old.verification_state is distinct from new.verification_state or old.verified_until is distinct from new.verified_until) then
  select private.marketing_phone(phone) into new.verified_registered_phone from public.clients where gym_id=new.gym_id and id=new.client_id;end if;return new;end$$;
+drop trigger if exists marketing_link_verified_phone on public.whatsapp_conversations;
 create trigger marketing_link_verified_phone before update on public.whatsapp_conversations for each row execute function private.marketing_link_verified_phone();
 -- One-time operator setup; app credentials never belong to a desktop profile.
 create or replace function public.marketing_service_configure_meta(p_data jsonb) returns jsonb

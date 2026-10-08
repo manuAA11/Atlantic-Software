@@ -48,6 +48,7 @@ declare conv public.whatsapp_conversations;c public.clients;cid bigint;num integ
 create or replace function private.marketing_link_verified_phone() returns trigger language plpgsql set search_path='' as $$
 begin if new.verification_state='VERIFIED' and (old.verification_state is distinct from new.verification_state or old.verified_until is distinct from new.verified_until) then
  select private.marketing_phone(phone) into new.verified_registered_phone from public.clients where gym_id=new.gym_id and id=new.client_id;end if;return new;end$$;
+drop trigger if exists marketing_link_verified_phone on public.whatsapp_conversations;
 create trigger marketing_link_verified_phone before update on public.whatsapp_conversations for each row execute function private.marketing_link_verified_phone();
 -- One-time operator setup; app credentials never belong to a desktop profile.
 create or replace function public.marketing_service_configure_meta(p_data jsonb) returns jsonb

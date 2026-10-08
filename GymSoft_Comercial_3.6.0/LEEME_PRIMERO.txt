@@ -1,3 +1,7 @@
+ATLANTIC GYM - FUENTES EN DESARROLLO
+Consultar ESTADO_ACTUAL.md y ../docs/ESTADO_CIERRE.md.
+Las instrucciones siguientes corresponden a una entrega anterior; los criterios finales siguen pendientes.
+
 Gym soft Comercial 3.6.0
 
 Extrae en una carpeta nueva y lee LEEME_ACTUALIZAR_3.6.0.md.
