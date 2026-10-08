@@ -1,0 +1,346 @@
+TAP version 13
+# Subtest: Meta uses raw bytes and rejects changed body, invalid signature and no secret
+ok 1 - Meta uses raw bytes and rejects changed body, invalid signature and no secret
+  ---
+  duration_ms: 19.6194
+  type: 'test'
+  ...
+# Subtest: Wompi dynamic property signature and header precedence
+ok 2 - Wompi dynamic property signature and header precedence
+  ---
+  duration_ms: 4.1119
+  type: 'test'
+  ...
+# Subtest: Signed checkout includes exact amount, unique reference and expiration
+ok 3 - Signed checkout includes exact amount, unique reference and expiration
+  ---
+  duration_ms: 3.0119
+  type: 'test'
+  ...
+# Subtest: Canonical Wompi lookup uses private key and validates returned id
+ok 4 - Canonical Wompi lookup uses private key and validates returned id
+  ---
+  duration_ms: 33.3226
+  type: 'test'
+  ...
+# Subtest: Session messages reject a closed 24 hour window
+ok 5 - Session messages reject a closed 24 hour window
+  ---
+  duration_ms: 0.3657
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_BEFORE
+ok 6 - Trigger MEMBERSHIP_BEFORE
+  ---
+  duration_ms: 27.5983
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_TODAY
+ok 7 - Trigger MEMBERSHIP_TODAY
+  ---
+  duration_ms: 0.8022
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_AFTER
+ok 8 - Trigger MEMBERSHIP_AFTER
+  ---
+  duration_ms: 0.6525
+  type: 'test'
+  ...
+# Subtest: Trigger BIRTHDAY
+ok 9 - Trigger BIRTHDAY
+  ---
+  duration_ms: 0.9585
+  type: 'test'
+  ...
+# Subtest: Trigger BIRTHDAY_BEFORE
+ok 10 - Trigger BIRTHDAY_BEFORE
+  ---
+  duration_ms: 1.1314
+  type: 'test'
+  ...
+# Subtest: Trigger INACTIVITY
+ok 11 - Trigger INACTIVITY
+  ---
+  duration_ms: 0.9191
+  type: 'test'
+  ...
+# Subtest: Trigger DAILY
+ok 12 - Trigger DAILY
+  ---
+  duration_ms: 0.8052
+  type: 'test'
+  ...
+# Subtest: Trigger TICKET_REMAINING
+ok 13 - Trigger TICKET_REMAINING
+  ---
+  duration_ms: 0.7283
+  type: 'test'
+  ...
+# Subtest: Ticket threshold is deduped by membership, not calendar day
+ok 14 - Ticket threshold is deduped by membership, not calendar day
+  ---
+  duration_ms: 1.4857
+  type: 'test'
+  ...
+# Subtest: Disabled, no consent, invalid phone, before send hour do not enqueue
+ok 15 - Disabled, no consent, invalid phone, before send hour do not enqueue
+  ---
+  duration_ms: 0.4252
+  type: 'test'
+  ...
+# Subtest: Event CHECK_IN_SUCCESS
+ok 16 - Event CHECK_IN_SUCCESS
+  ---
+  duration_ms: 0.7814
+  type: 'test'
+  ...
+# Subtest: Event FIRST_CHECK_IN_DAY
+ok 17 - Event FIRST_CHECK_IN_DAY
+  ---
+  duration_ms: 1.0196
+  type: 'test'
+  ...
+# Subtest: Event EVERY_N_CHECKINS
+ok 18 - Event EVERY_N_CHECKINS
+  ---
+  duration_ms: 0.7005
+  type: 'test'
+  ...
+# Subtest: Event FIRST_CHECK_IN_RENEWAL
+ok 19 - Event FIRST_CHECK_IN_RENEWAL
+  ---
+  duration_ms: 0.6892
+  type: 'test'
+  ...
+# Subtest: Event TICKET_CONSUMED
+ok 20 - Event TICKET_CONSUMED
+  ---
+  duration_ms: 0.6303
+  type: 'test'
+  ...
+# Subtest: Online renewal is never counted as a manual payment
+ok 21 - Online renewal is never counted as a manual payment
+  ---
+  duration_ms: 0.9115
+  type: 'test'
+  ...
+# Subtest: Filters, dates and variable preview
+ok 22 - Filters, dates and variable preview
+  ---
+  duration_ms: 6.5872
+  type: 'test'
+  ...
+# Subtest: Birthday parser rejects invalid dates
+ok 23 - Birthday parser rejects invalid dates
+  ---
+  duration_ms: 0.3649
+  type: 'test'
+  ...
+# Subtest: Chatbot never reveals membership before verification
+ok 24 - Chatbot never reveals membership before verification
+  ---
+  duration_ms: 0.9349
+  type: 'test'
+  ...
+# Subtest: Human handoff stops bot responses
+ok 25 - Human handoff stops bot responses
+  ---
+  duration_ms: 0.1993
+  type: 'test'
+  ...
+# Subtest: Unknown phone requests reception approval, no membership lookup
+ok 26 - Unknown phone requests reception approval, no membership lookup
+  ---
+  duration_ms: 1.1312
+  type: 'test'
+  ...
+# Subtest: Missing Wompi hands off to reception
+ok 27 - Missing Wompi hands off to reception
+  ---
+  duration_ms: 0.2649
+  type: 'test'
+  ...
+# Subtest: Verified member can see only supplied verified profile
+ok 28 - Verified member can see only supplied verified profile
+  ---
+  duration_ms: 0.1724
+  type: 'test'
+  ...
+# Subtest: 09 AM Bogotá is 14 UTC, independently of server timezone
+ok 29 - 09 AM Bogotá is 14 UTC, independently of server timezone
+  ---
+  duration_ms: 30.5382
+  type: 'test'
+  ...
+# Subtest: A second gym uses its own zone and daylight saving
+ok 30 - A second gym uses its own zone and daylight saving
+  ---
+  duration_ms: 1.9993
+  type: 'test'
+  ...
+# Subtest: Expiry moved to October 27 sends on October 24, never October 17 or while frozen
+ok 31 - Expiry moved to October 27 sends on October 24, never October 17 or while frozen
+  ---
+  duration_ms: 1.8457
+  type: 'test'
+  ...
+# Subtest: Verified chatbot shows freeze last day, resume day and extended expiry
+ok 32 - Verified chatbot shows freeze last day, resume day and extended expiry
+  ---
+  duration_ms: 0.9727
+  type: 'test'
+  ...
+# Subtest: Worker completes freezes even when automation jobs are disabled
+ok 33 - Worker completes freezes even when automation jobs are disabled
+  ---
+  duration_ms: 1.5508
+  type: 'test'
+  ...
+# Subtest: Frozen guard prevents an already claimed message from calling Meta
+ok 34 - Frozen guard prevents an already claimed message from calling Meta
+  ---
+  duration_ms: 0.5696
+  type: 'test'
+  ...
+# Subtest: Admin mutations require authorization before provider access
+ok 35 - Admin mutations require authorization before provider access
+  ---
+  duration_ms: 42.9417
+  type: 'test'
+  ...
+# Subtest: Scheduler rejects missing token
+ok 36 - Scheduler rejects missing token
+  ---
+  duration_ms: 1.0164
+  type: 'test'
+  ...
+# Subtest: Hosted Edge mount resolves health and still authenticates scheduler requests
+ok 37 - Hosted Edge mount resolves health and still authenticates scheduler requests
+  ---
+  duration_ms: 2.0541
+  type: 'test'
+  ...
+# Subtest: A similarly named function cannot match the protected mount
+ok 38 - A similarly named function cannot match the protected mount
+  ---
+  duration_ms: 2.5406
+  type: 'test'
+  ...
+# Subtest: Health probes the database and requires an installed scheduler
+ok 39 - Health probes the database and requires an installed scheduler
+  ---
+  duration_ms: 1.1759
+  type: 'test'
+  ...
+# Subtest: A failed database is never reported healthy or exposes its response
+ok 40 - A failed database is never reported healthy or exposes its response
+  ---
+  duration_ms: 0.6812
+  type: 'test'
+  ...
+# Subtest: Browser origin must match configured authorization page
+ok 41 - Browser origin must match configured authorization page
+  ---
+  duration_ms: 0.8859
+  type: 'test'
+  ...
+# Subtest: Wompi invalid signature cannot call payment processing
+ok 42 - Wompi invalid signature cannot call payment processing
+  ---
+  duration_ms: 0.9533
+  type: 'test'
+  ...
+# Subtest: Wompi trusts canonical merchant transaction, not unsigned currency/reference fields
+ok 43 - Wompi trusts canonical merchant transaction, not unsigned currency/reference fields
+  ---
+  duration_ms: 16.514
+  type: 'test'
+  ...
+# Subtest: Duplicate provider receipt does not reapply payment
+ok 44 - Duplicate provider receipt does not reapply payment
+  ---
+  duration_ms: 2.1689
+  type: 'test'
+  ...
+# Subtest: Meta history synchronization does not invoke chatbot
+ok 45 - Meta history synchronization does not invoke chatbot
+  ---
+  duration_ms: 3.589
+  type: 'test'
+  ...
+# Subtest: Coexistence human echo pauses chatbot on the correct gym
+ok 46 - Coexistence human echo pauses chatbot on the correct gym
+  ---
+  duration_ms: 1.6996
+  type: 'test'
+  ...
+# Subtest: Consent revoked after queuing blocks the actual provider call
+ok 47 - Consent revoked after queuing blocks the actual provider call
+  ---
+  duration_ms: 0.456
+  type: 'test'
+  ...
+# Subtest: Ambiguous Meta timeout is UNCERTAIN, never blindly queued for resend
+ok 48 - Ambiguous Meta timeout is UNCERTAIN, never blindly queued for resend
+  ---
+  duration_ms: 0.7789
+  type: 'test'
+  ...
+# Subtest: WABA template updates reach every authorized gym phone
+ok 49 - WABA template updates reach every authorized gym phone
+  ---
+  duration_ms: 1.8415
+  type: 'test'
+  ...
+# Subtest: Inbound without destination phone cannot choose an arbitrary gym
+ok 50 - Inbound without destination phone cannot choose an arbitrary gym
+  ---
+  duration_ms: 1.3187
+  type: 'test'
+  ...
+# Subtest: Authorization page obtains configuration from a live, gym-bound state
+ok 51 - Authorization page obtains configuration from a live, gym-bound state
+  ---
+  duration_ms: 32.7333
+  type: 'test'
+  ...
+# Subtest: Unknown backend, missing state and malformed state never contact a server
+ok 52 - Unknown backend, missing state and malformed state never contact a server
+  ---
+  duration_ms: 3.4676
+  type: 'test'
+  ...
+# Subtest: Expired authorization never loads Meta or enables authorization
+ok 53 - Expired authorization never loads Meta or enables authorization
+  ---
+  duration_ms: 1.9784
+  type: 'test'
+  ...
+# Subtest: A bootstrap cannot redirect authorization codes to another host
+ok 54 - A bootstrap cannot redirect authorization codes to another host
+  ---
+  duration_ms: 1.8729
+  type: 'test'
+  ...
+# Subtest: Failed completion requires a new authorization instead of replaying a consumed state
+ok 55 - Failed completion requires a new authorization instead of replaying a consumed state
+  ---
+  duration_ms: 2.1774
+  type: 'test'
+  ...
+# Subtest: Authorization configuration is encoded as JSON, not executable HTML
+ok 56 - Authorization configuration is encoded as JSON, not executable HTML
+  ---
+  duration_ms: 0.3001
+  type: 'test'
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 300.133

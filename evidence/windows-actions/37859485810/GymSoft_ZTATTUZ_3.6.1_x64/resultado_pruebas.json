@@ -1,0 +1,226 @@
+{
+  "version": "3.6.1",
+  "started_at": "2026-10-08T23:27:36.408342+00:00",
+  "platform": "win32",
+  "scope": "all",
+  "status": "FAIL",
+  "stages": [
+    {
+      "name": "python",
+      "status": "PASS",
+      "seconds": 30.25,
+      "log": "python.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contratos_extraidos",
+      "status": "PASS",
+      "seconds": 0.98,
+      "log": "contratos_extraidos.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_compile",
+      "status": "PASS",
+      "seconds": 2.83,
+      "log": "marketing_compile.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "backend_sql_flow",
+      "status": "PASS",
+      "seconds": 3.02,
+      "log": "backend_sql_flow.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "time_pipeline",
+      "status": "PASS",
+      "seconds": 2.8,
+      "log": "time_pipeline.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "membership_freezes",
+      "status": "PASS",
+      "seconds": 2.97,
+      "log": "membership_freezes.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "audit_logs",
+      "status": "PASS",
+      "seconds": 2.78,
+      "log": "audit_logs.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_contracts",
+      "status": "PASS",
+      "seconds": 3.03,
+      "log": "marketing_contracts.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "daily_tickets",
+      "status": "PASS",
+      "seconds": 2.81,
+      "log": "daily_tickets.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprints",
+      "status": "PASS",
+      "seconds": 2.88,
+      "log": "fingerprints.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "upgrade_compatibility",
+      "status": "PASS",
+      "seconds": 2.92,
+      "log": "upgrade_compatibility.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "security",
+      "status": "PASS",
+      "seconds": 2.8,
+      "log": "security.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contracts",
+      "status": "PASS",
+      "seconds": 2.67,
+      "log": "contracts.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_plans",
+      "status": "PASS",
+      "seconds": 2.86,
+      "log": "ticket_plans.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_followup",
+      "status": "PASS",
+      "seconds": 2.94,
+      "log": "ticket_followup.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_backend",
+      "status": "PASS",
+      "seconds": 0.47,
+      "log": "marketing_backend.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "recorrido_huellas",
+      "status": "PASS",
+      "seconds": 18.73,
+      "log": "recorrido_huellas.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "simulacion_gimnasio",
+      "status": "PASS",
+      "seconds": 14.45,
+      "log": "simulacion_gimnasio.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_ui_smoke",
+      "status": "PASS",
+      "seconds": 12.24,
+      "log": "marketing_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "freeze_ui_smoke",
+      "status": "PASS",
+      "seconds": 4.77,
+      "log": "freeze_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "door_ui_smoke",
+      "status": "PASS",
+      "seconds": 12.53,
+      "log": "door_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "dialog_design_ui_smoke",
+      "status": "PASS",
+      "seconds": 17.32,
+      "log": "dialog_design_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ui_wait_smoke",
+      "status": "PASS",
+      "seconds": 0.45,
+      "log": "ui_wait_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "access_layout_ui_smoke",
+      "status": "PASS",
+      "seconds": 23.14,
+      "log": "access_layout_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "client_fingerprint_ui_smoke",
+      "status": "PASS",
+      "seconds": 11.0,
+      "log": "client_fingerprint_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprint_ui_smoke",
+      "status": "PASS",
+      "seconds": 10.87,
+      "log": "fingerprint_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "windows_ui_smoke",
+      "status": "FAIL",
+      "seconds": 2.08,
+      "log": "windows_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": true
+    }
+  ],
+  "error": "Falló windows_ui_smoke. La prueba detectó un error. Revisa D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\windows_ui_smoke.log."
+}
