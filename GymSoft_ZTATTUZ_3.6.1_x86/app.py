@@ -1754,6 +1754,7 @@ class DashboardPage(BasePage):
 
     def __init__(self, parent: tk.Misc, app: "GymSoftApp"):
         super().__init__(parent, app)
+        self.configure(padding=(16, 24))
         self.page_header(
             "Vista general y acciones principales del gimnasio.",
             [
