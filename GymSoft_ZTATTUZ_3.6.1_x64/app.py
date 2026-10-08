@@ -1832,7 +1832,7 @@ class DashboardPage(BasePage):
             tk.Label(
                 header,
                 text=icon,
-                width=3,
+                width=2,
                 bg=icon_background,
                 fg=color,
                 font=(ICON_FONT, 13),
