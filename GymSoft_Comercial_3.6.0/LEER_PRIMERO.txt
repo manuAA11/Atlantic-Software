@@ -1,5 +1,8 @@
 ATLANTIC GYM - FUENTES EN DESARROLLO
 Consultar ESTADO_ACTUAL.md y ../docs/ESTADO_CIERRE.md.
+INSTRUCCIONES ACTUALES: CPython 3.13 o 3.14 de la arquitectura de esta edicion.
+Abre INICIAR_ADMINISTRADOR.bat o INICIAR_RECEPCION.bat para trabajar desde fuentes.
+CREAR_INSTALADORES.bat exige aceptacion documentada; no cambiar los gates a true.
 Las instrucciones siguientes corresponden a una entrega anterior; los criterios finales siguen pendientes.
 
 Gym soft Comercial 3.6.0

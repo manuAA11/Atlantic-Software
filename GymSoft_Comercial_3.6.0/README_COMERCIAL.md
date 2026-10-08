@@ -44,7 +44,7 @@ Las identidades globales de Authentication quedan sin gimnasio y sin permiso par
 
 ## Instaladores y seguridad
 
-`CREAR_INSTALADORES.bat`, en Windows con Python 3.13 de 64 bits, Node.js LTS e Inno Setup 6, genera:
+`CREAR_INSTALADORES.bat`, en Windows con CPython 3.13 o 3.14 de 64 bits, Node.js LTS e Inno Setup 6, genera:
 
 - `salida/GymSoft_Instalar_o_Actualizar_3.4.5.exe`: Administración y Recepción; éste se entrega al gimnasio.
 - `salida/GymSoft_Propietario_PRIVADO_3.4.5.exe`: tu panel privado con acceso directo propio.

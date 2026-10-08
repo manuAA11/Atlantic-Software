@@ -6,7 +6,7 @@ Actualización de presentación y controles. Las casillas usan marcas blancas, c
 
 1. Cierra Administración y Recepción, y el panel del propietario.
 2. Extrae este ZIP completo en una carpeta nueva.
-3. En el computador donde generas instaladores, ejecuta `CREAR_INSTALADORES.bat`. Utiliza Python 3.13 de 64 bits, Inno Setup 6 y Node.js LTS para las pruebas locales; los archivos de preparación incluidos comprueban las dependencias.
+3. En el computador donde generas instaladores, ejecuta `CREAR_INSTALADORES.bat`. Utiliza CPython 3.13 o 3.14 de 64 bits, Inno Setup 6 y Node.js LTS para las pruebas locales; los archivos de preparación incluidos comprueban las dependencias.
 4. Espera a que las comprobaciones terminen. No necesitas conectar el lector ni el relé. Las pruebas gráficas abren ventanas: mantén el escritorio desbloqueado y las pruebas visibles.
 5. En `salida`, ejecuta `GymSoft_Instalar_o_Actualizar_3.6.0.exe`. Sirve para instalar y actualizar Administración y Recepción.
 

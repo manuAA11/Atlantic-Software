@@ -1,0 +1,167 @@
+WARNING: The directory '/home/agent/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Collecting supabase==2.31.0 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading supabase-2.31.0-py3-none-any.whl.metadata (4.7 kB)
+Collecting Pillow==12.3.0 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 2))
+  Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl.metadata (9.3 kB)
+Collecting openpyxl==3.1.5 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 3))
+  Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting tzdata==2026.3 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 4))
+  Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting pyserial==3.5 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 5))
+  Downloading pyserial-3.5-py2.py3-none-any.whl.metadata (1.6 kB)
+Collecting cryptography==48.0.1 (from -r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 8))
+  Downloading cryptography-48.0.1-cp311-abi3-win_amd64.whl.metadata (4.3 kB)
+Collecting pyinstaller==6.22.2 (from -r GymSoft_ZTATTUZ_3.6.1_x64/requirements-build.txt (line 2))
+  Downloading pyinstaller-6.22.2-py3-none-win_amd64.whl.metadata (8.5 kB)
+Collecting realtime==2.31.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading realtime-2.31.0-py3-none-any.whl.metadata (7.0 kB)
+Collecting supabase-functions==2.31.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading supabase_functions-2.31.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting storage3==2.31.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading storage3-2.31.0-py3-none-any.whl.metadata (2.2 kB)
+Collecting supabase-auth==2.31.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading supabase_auth-2.31.0-py3-none-any.whl.metadata (6.4 kB)
+Collecting postgrest==2.31.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading postgrest-2.31.0-py3-none-any.whl.metadata (3.4 kB)
+Collecting httpx<0.29,>=0.26 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting yarl>=1.22.0 (from supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading yarl-1.25.1-cp314-cp314-win_amd64.whl.metadata (115 kB)
+Collecting et-xmlfile (from openpyxl==3.1.5->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 3))
+  Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+Collecting cffi>=2.0.0 (from cryptography==48.0.1->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 8))
+  Downloading cffi-2.1.1-cp314-cp314-win_amd64.whl.metadata (2.6 kB)
+Collecting altgraph (from pyinstaller==6.22.2->-r GymSoft_ZTATTUZ_3.6.1_x64/requirements-build.txt (line 2))
+  Downloading altgraph-0.17.5-py2.py3-none-any.whl.metadata (7.5 kB)
+Collecting packaging>=22.0 (from pyinstaller==6.22.2->-r GymSoft_ZTATTUZ_3.6.1_x64/requirements-build.txt (line 2))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyinstaller-hooks-contrib>=2026.6 (from pyinstaller==6.22.2->-r GymSoft_ZTATTUZ_3.6.1_x64/requirements-build.txt (line 2))
+  Downloading pyinstaller_hooks_contrib-2026.8-py3-none-any.whl.metadata (16 kB)
+Collecting setuptools>=42.0.0 (from pyinstaller==6.22.2->-r GymSoft_ZTATTUZ_3.6.1_x64/requirements-build.txt (line 2))
+  Downloading setuptools-84.0.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting deprecation>=2.1.0 (from postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading deprecation-2.1.0-py2.py3-none-any.whl.metadata (4.6 kB)
+Collecting pydantic<3.0,>=1.9 (from postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading pydantic-2.14.0-py3-none-any.whl.metadata (131 kB)
+Collecting typing-extensions>=4.14.0 (from realtime==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting websockets<16,>=11 (from realtime==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading websockets-15.0.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting pyjwt>=2.12.0 (from pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+Collecting strenum>=0.4.15 (from supabase-functions==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading StrEnum-0.4.15-py3-none-any.whl.metadata (5.3 kB)
+Collecting anyio (from httpx<0.29,>=0.26->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting certifi (from httpx<0.29,>=0.26->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx<0.29,>=0.26->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx<0.29,>=0.26->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<0.29,>=0.26->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting h2<5,>=3 (from httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading h2-4.4.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting hyperframe<7,>=6.1 (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading hyperframe-6.1.0-py3-none-any.whl.metadata (4.3 kB)
+Collecting hpack<5,>=4.2 (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading hpack-4.2.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting annotated-types>=0.6.0 (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.50.0 (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading pydantic_core-2.50.0-cp314-cp314-win_amd64.whl.metadata (6.7 kB)
+Collecting typing-inspection>=0.4.4 (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography==48.0.1->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 8))
+  Downloading pycparser-3.1-py3-none-any.whl.metadata (8.2 kB)
+Collecting multidict>=4.0 (from yarl>=1.22.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading multidict-7.0.0-cp314-cp314-win_amd64.whl.metadata (6.3 kB)
+Collecting propcache>=0.2.1 (from yarl>=1.22.0->supabase==2.31.0->-r /workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/requirements.txt (line 1))
+  Downloading propcache-0.5.4-cp314-cp314-win_amd64.whl.metadata (25 kB)
+Downloading supabase-2.31.0-py3-none-any.whl (16 kB)
+Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl (7.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 21.4 MB/s  0:00:00
+Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+Downloading pyserial-3.5-py2.py3-none-any.whl (90 kB)
+Downloading cryptography-48.0.1-cp311-abi3-win_amd64.whl (3.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 22.3 MB/s  0:00:00
+Downloading pyinstaller-6.22.2-py3-none-win_amd64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 51.6 MB/s  0:00:00
+Downloading postgrest-2.31.0-py3-none-any.whl (23 kB)
+Downloading realtime-2.31.0-py3-none-any.whl (22 kB)
+Downloading storage3-2.31.0-py3-none-any.whl (28 kB)
+Downloading supabase_auth-2.31.0-py3-none-any.whl (48 kB)
+Downloading supabase_functions-2.31.0-py3-none-any.whl (8.8 kB)
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading h2-4.4.1-py3-none-any.whl (62 kB)
+Downloading hpack-4.2.0-py3-none-any.whl (34 kB)
+Downloading hyperframe-6.1.0-py3-none-any.whl (13 kB)
+Downloading pydantic-2.14.0-py3-none-any.whl (487 kB)
+Downloading pydantic_core-2.50.0-cp314-cp314-win_amd64.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 43.7 MB/s  0:00:00
+Downloading websockets-15.0.1-py3-none-any.whl (169 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading cffi-2.1.1-cp314-cp314-win_amd64.whl (187 kB)
+Downloading deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pyinstaller_hooks_contrib-2026.8-py3-none-any.whl (462 kB)
+Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 146.3 MB/s  0:00:00
+Downloading StrEnum-0.4.15-py3-none-any.whl (8.9 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading yarl-1.25.1-cp314-cp314-win_amd64.whl (103 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading multidict-7.0.0-cp314-cp314-win_amd64.whl (86 kB)
+Downloading propcache-0.5.4-cp314-cp314-win_amd64.whl (46 kB)
+Downloading altgraph-0.17.5-py2.py3-none-any.whl (21 kB)
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+Downloading pycparser-3.1-py3-none-any.whl (48 kB)
+Saved /workspace/.cache/wheels314-x64/supabase-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pillow-12.3.0-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/openpyxl-3.1.5-py2.py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/tzdata-2026.3-py2.py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pyserial-3.5-py2.py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/cryptography-48.0.1-cp311-abi3-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/pyinstaller-6.22.2-py3-none-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/postgrest-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/realtime-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/storage3-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/supabase_auth-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/supabase_functions-2.31.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/httpx-0.28.1-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/httpcore-1.0.9-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/h2-4.4.1-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/hpack-4.2.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/hyperframe-6.1.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pydantic-2.14.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pydantic_core-2.50.0-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/websockets-15.0.1-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/annotated_types-0.8.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/cffi-2.1.1-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/deprecation-2.1.0-py2.py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/h11-0.16.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/packaging-26.3-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pyinstaller_hooks_contrib-2026.8-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pyjwt-2.15.1-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/setuptools-84.0.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/StrEnum-0.4.15-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/typing_extensions-4.16.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/typing_inspection-0.4.4-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/yarl-1.25.1-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/idna-3.20-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/multidict-7.0.0-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/propcache-0.5.4-cp314-cp314-win_amd64.whl
+Saved /workspace/.cache/wheels314-x64/altgraph-0.17.5-py2.py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/anyio-4.15.1-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/certifi-2026.7.22-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/et_xmlfile-2.0.0-py3-none-any.whl
+Saved /workspace/.cache/wheels314-x64/pycparser-3.1-py3-none-any.whl
+Successfully downloaded supabase Pillow openpyxl tzdata pyserial cryptography pyinstaller postgrest realtime storage3 supabase-auth supabase-functions httpx httpcore h2 hpack hyperframe pydantic pydantic-core websockets annotated-types cffi deprecation h11 packaging pyinstaller-hooks-contrib pyjwt setuptools strenum typing-extensions typing-inspection yarl idna multidict propcache altgraph anyio certifi et-xmlfile pycparser

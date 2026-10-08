@@ -1,0 +1,428 @@
+{
+  "status": "PASS",
+  "supported_runtime": "Standard CPython 3.13/3.14 with GIL, matching edition architecture.",
+  "scope": "Actual Python/Tk/Pillow/PyInstaller execution in Linux x64; x86 edition source tests run in an x64 process. Windows x86/x64 wheels resolved/downloaded only. No cmd.exe, Windows installer, vendor reader or physical relay execution.",
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "unit_suites": [
+        {
+          "python": "3.13.15",
+          "tests": 137,
+          "status": "PASS",
+          "evidence": "rechecks/python-commercial-313-bootstrap-final.log"
+        },
+        {
+          "python": "3.14.7",
+          "tests": 137,
+          "status": "PASS",
+          "evidence": "rechecks/python-commercial-314-bootstrap.log"
+        }
+      ],
+      "ui_python314": {
+        "status": "PASS",
+        "stages": 18,
+        "evidence": "GymSoft_Comercial_3.6.0/ui-python314/results.json"
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "unit_suites": [
+        {
+          "python": "3.13.15",
+          "tests": 152,
+          "status": "PASS",
+          "evidence": "rechecks/python-x86-313-bootstrap-final.log"
+        },
+        {
+          "python": "3.14.7",
+          "tests": 152,
+          "status": "PASS",
+          "evidence": "rechecks/python-x86-314-bootstrap.log"
+        }
+      ],
+      "ui_python314": {
+        "status": "PASS",
+        "stages": 19,
+        "evidence": "GymSoft_ZTATTUZ_3.6.1_x86/ui-python314/results.json"
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "unit_suites": [
+        {
+          "python": "3.13.15",
+          "tests": 153,
+          "status": "PASS",
+          "evidence": "rechecks/python-x64-313-bootstrap-final.log"
+        },
+        {
+          "python": "3.14.7",
+          "tests": 153,
+          "status": "PASS",
+          "evidence": "rechecks/python-x64-314-bootstrap.log"
+        }
+      ],
+      "ui_python314": {
+        "status": "PASS",
+        "stages": 19,
+        "evidence": "GymSoft_ZTATTUZ_3.6.1_x64/ui-python314/results.json"
+      }
+    }
+  ],
+  "unit_tests_per_version": 442,
+  "unit_tests_both_versions": 884,
+  "ui_python314_stages": 56,
+  "windows_dependency_wheels": [
+    {
+      "target": "CPython 3.14 Windows x64",
+      "status": "PASS",
+      "count": 40,
+      "evidence": "rechecks/wheels314-x64.log",
+      "wheels": [
+        {
+          "file": "StrEnum-0.4.15-py3-none-any.whl",
+          "sha256": "a30cda4af7cc6b5bf52c8055bc4bf4b2b6b14a93b574626da33df53cf7740659"
+        },
+        {
+          "file": "altgraph-0.17.5-py2.py3-none-any.whl",
+          "sha256": "f3a22400bce1b0c701683820ac4f3b159cd301acab067c51c653e06961600597"
+        },
+        {
+          "file": "annotated_types-0.8.0-py3-none-any.whl",
+          "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0"
+        },
+        {
+          "file": "anyio-4.15.1-py3-none-any.whl",
+          "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+        },
+        {
+          "file": "certifi-2026.7.22-py3-none-any.whl",
+          "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
+        },
+        {
+          "file": "cffi-2.1.1-cp314-cp314-win_amd64.whl",
+          "sha256": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48"
+        },
+        {
+          "file": "cryptography-48.0.1-cp311-abi3-win_amd64.whl",
+          "sha256": "39489bfca54c7a1f6b297efcd8bc608ab92d16c4ca631b0cad4da46724588b24"
+        },
+        {
+          "file": "deprecation-2.1.0-py2.py3-none-any.whl",
+          "sha256": "a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"
+        },
+        {
+          "file": "et_xmlfile-2.0.0-py3-none-any.whl",
+          "sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"
+        },
+        {
+          "file": "h11-0.16.0-py3-none-any.whl",
+          "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+        },
+        {
+          "file": "h2-4.4.1-py3-none-any.whl",
+          "sha256": "0e25f1462b23c9cb82d9eb02e28bc706dac2a68cb457c6a0d74d63c8a2a5d0e6"
+        },
+        {
+          "file": "hpack-4.2.0-py3-none-any.whl",
+          "sha256": "858ac0b02280fa582b5080d68db0899c62a80375e0e5413a74970c5e518b6986"
+        },
+        {
+          "file": "httpcore-1.0.9-py3-none-any.whl",
+          "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+        },
+        {
+          "file": "httpx-0.28.1-py3-none-any.whl",
+          "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+        },
+        {
+          "file": "hyperframe-6.1.0-py3-none-any.whl",
+          "sha256": "b03380493a519fce58ea5af42e4a42317bf9bd425596f7a0835ffce80f1a42e5"
+        },
+        {
+          "file": "idna-3.20-py3-none-any.whl",
+          "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+        },
+        {
+          "file": "multidict-7.0.0-cp314-cp314-win_amd64.whl",
+          "sha256": "42f71f869830e99bcf55e8aa991b28a9869b9efc417e489d1e3f302a21a1edec"
+        },
+        {
+          "file": "openpyxl-3.1.5-py2.py3-none-any.whl",
+          "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2"
+        },
+        {
+          "file": "packaging-26.3-py3-none-any.whl",
+          "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+        },
+        {
+          "file": "pillow-12.3.0-cp314-cp314-win_amd64.whl",
+          "sha256": "fdafc9cce40277e0f7a0feabce0ee50dd2fa1800f3b38015e51296b5e814048d"
+        },
+        {
+          "file": "postgrest-2.31.0-py3-none-any.whl",
+          "sha256": "c2fd47c94e13ee8335111c4f03c9a24ea9766ce9d35fc3cd7330057c9e7ea0c3"
+        },
+        {
+          "file": "propcache-0.5.4-cp314-cp314-win_amd64.whl",
+          "sha256": "0a095db8e15a6020db149ecbed6461939fe74f6acaa3ae8b702a1fe8c38cd983"
+        },
+        {
+          "file": "pycparser-3.1-py3-none-any.whl",
+          "sha256": "f09d358c840bd147b79e55f2bc494f18ea869dc897f5852a8f5766b74f787882"
+        },
+        {
+          "file": "pydantic-2.14.0-py3-none-any.whl",
+          "sha256": "15fab1bea6f1dc5003b54fc2ecab230c1fd1dbade2acd4addc52d81e32416d4b"
+        },
+        {
+          "file": "pydantic_core-2.50.0-cp314-cp314-win_amd64.whl",
+          "sha256": "63263d64884688554fb025a3906c7b00573980cfee75f9afeb86239d577384bc"
+        },
+        {
+          "file": "pyinstaller-6.22.2-py3-none-win_amd64.whl",
+          "sha256": "9b990fa6bbe143572f06644a984ad0d7aa2e2ccc6929d4916031343a5888e9a7"
+        },
+        {
+          "file": "pyinstaller_hooks_contrib-2026.8-py3-none-any.whl",
+          "sha256": "6d21d65323ea4467753afc21f52d7d0e69416ae8101dd88269bf273ad48db084"
+        },
+        {
+          "file": "pyjwt-2.15.1-py3-none-any.whl",
+          "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193"
+        },
+        {
+          "file": "pyserial-3.5-py2.py3-none-any.whl",
+          "sha256": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"
+        },
+        {
+          "file": "realtime-2.31.0-py3-none-any.whl",
+          "sha256": "f6e494b53d6a6e80b6efcee6711c8dd40413a52e766271de1bce8ced6c36cc1d"
+        },
+        {
+          "file": "setuptools-84.0.0-py3-none-any.whl",
+          "sha256": "51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670"
+        },
+        {
+          "file": "storage3-2.31.0-py3-none-any.whl",
+          "sha256": "4bf46e8bea320743179a6beafdc7531c5242495e00e0cc22af7c7a9d69d4ed84"
+        },
+        {
+          "file": "supabase-2.31.0-py3-none-any.whl",
+          "sha256": "25f2a99207a75f2d9377e2332783b4389cf56b02cbebdaf0c1743112dcbb704e"
+        },
+        {
+          "file": "supabase_auth-2.31.0-py3-none-any.whl",
+          "sha256": "5e9c8b4ecdee6af04dbcb06455ce78cb15674806fcb6b425170455307d70b0ee"
+        },
+        {
+          "file": "supabase_functions-2.31.0-py3-none-any.whl",
+          "sha256": "3fdc4c4766152bfda63bdd0e286fc8a06f50e1280711fae4a1dfc9b7e9ebabc6"
+        },
+        {
+          "file": "typing_extensions-4.16.0-py3-none-any.whl",
+          "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        {
+          "file": "typing_inspection-0.4.4-py3-none-any.whl",
+          "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147"
+        },
+        {
+          "file": "tzdata-2026.3-py2.py3-none-any.whl",
+          "sha256": "dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931"
+        },
+        {
+          "file": "websockets-15.0.1-py3-none-any.whl",
+          "sha256": "f7a866fbc1e97b5c617ee4116daaa09b722101d4a3c170c787450ba409f9736f"
+        },
+        {
+          "file": "yarl-1.25.1-cp314-cp314-win_amd64.whl",
+          "sha256": "acfa7e22aa6c6e7a5996a41d275bfa01efa7ea56ab890590280e9063e2cf5c1b"
+        }
+      ]
+    },
+    {
+      "target": "CPython 3.14 Windows x86",
+      "status": "PASS",
+      "count": 40,
+      "evidence": "rechecks/wheels314-x86.log",
+      "wheels": [
+        {
+          "file": "StrEnum-0.4.15-py3-none-any.whl",
+          "sha256": "a30cda4af7cc6b5bf52c8055bc4bf4b2b6b14a93b574626da33df53cf7740659"
+        },
+        {
+          "file": "altgraph-0.17.5-py2.py3-none-any.whl",
+          "sha256": "f3a22400bce1b0c701683820ac4f3b159cd301acab067c51c653e06961600597"
+        },
+        {
+          "file": "annotated_types-0.8.0-py3-none-any.whl",
+          "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0"
+        },
+        {
+          "file": "anyio-4.15.1-py3-none-any.whl",
+          "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+        },
+        {
+          "file": "certifi-2026.7.22-py3-none-any.whl",
+          "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
+        },
+        {
+          "file": "cffi-2.1.1-cp314-cp314-win32.whl",
+          "sha256": "1a18a57b58cfb21fc28d72e876acf10eaed67a1ed96226f92af4df681d571c4c"
+        },
+        {
+          "file": "cryptography-48.0.1-cp311-abi3-win32.whl",
+          "sha256": "b9a32b876490d66c8bcc9963ef220199569748434ab01a9d6aaeabf88e7f5158"
+        },
+        {
+          "file": "deprecation-2.1.0-py2.py3-none-any.whl",
+          "sha256": "a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"
+        },
+        {
+          "file": "et_xmlfile-2.0.0-py3-none-any.whl",
+          "sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"
+        },
+        {
+          "file": "h11-0.16.0-py3-none-any.whl",
+          "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+        },
+        {
+          "file": "h2-4.4.1-py3-none-any.whl",
+          "sha256": "0e25f1462b23c9cb82d9eb02e28bc706dac2a68cb457c6a0d74d63c8a2a5d0e6"
+        },
+        {
+          "file": "hpack-4.2.0-py3-none-any.whl",
+          "sha256": "858ac0b02280fa582b5080d68db0899c62a80375e0e5413a74970c5e518b6986"
+        },
+        {
+          "file": "httpcore-1.0.9-py3-none-any.whl",
+          "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+        },
+        {
+          "file": "httpx-0.28.1-py3-none-any.whl",
+          "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+        },
+        {
+          "file": "hyperframe-6.1.0-py3-none-any.whl",
+          "sha256": "b03380493a519fce58ea5af42e4a42317bf9bd425596f7a0835ffce80f1a42e5"
+        },
+        {
+          "file": "idna-3.20-py3-none-any.whl",
+          "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+        },
+        {
+          "file": "multidict-7.0.0-cp314-cp314-win32.whl",
+          "sha256": "95f2df049ca3611f21ef433d21860d7523b869b8b45fcef815fa4a808955a7b7"
+        },
+        {
+          "file": "openpyxl-3.1.5-py2.py3-none-any.whl",
+          "sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2"
+        },
+        {
+          "file": "packaging-26.3-py3-none-any.whl",
+          "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+        },
+        {
+          "file": "pillow-12.3.0-cp314-cp314-win32.whl",
+          "sha256": "af8d94b0db561cf68b88a267c5c44b49e134f525d0dc2cb7ed413a66bc23559a"
+        },
+        {
+          "file": "postgrest-2.31.0-py3-none-any.whl",
+          "sha256": "c2fd47c94e13ee8335111c4f03c9a24ea9766ce9d35fc3cd7330057c9e7ea0c3"
+        },
+        {
+          "file": "propcache-0.5.4-cp314-cp314-win32.whl",
+          "sha256": "30cc1cebaf9aef49db06357a50398323ae04d70460c0491837d026ab7d6452ea"
+        },
+        {
+          "file": "pycparser-3.1-py3-none-any.whl",
+          "sha256": "f09d358c840bd147b79e55f2bc494f18ea869dc897f5852a8f5766b74f787882"
+        },
+        {
+          "file": "pydantic-2.14.0-py3-none-any.whl",
+          "sha256": "15fab1bea6f1dc5003b54fc2ecab230c1fd1dbade2acd4addc52d81e32416d4b"
+        },
+        {
+          "file": "pydantic_core-2.50.0-cp314-cp314-win32.whl",
+          "sha256": "f12d9690634414fc04b1a7072fdc35c34a9242232c1851fe4518383578bb09d4"
+        },
+        {
+          "file": "pyinstaller-6.22.2-py3-none-win32.whl",
+          "sha256": "9a078877caa3920558a3242d0a7019fe5b825cff4b65ed380c7d1e1bd200ddd9"
+        },
+        {
+          "file": "pyinstaller_hooks_contrib-2026.8-py3-none-any.whl",
+          "sha256": "6d21d65323ea4467753afc21f52d7d0e69416ae8101dd88269bf273ad48db084"
+        },
+        {
+          "file": "pyjwt-2.15.1-py3-none-any.whl",
+          "sha256": "42d59d631f7768a1028a64c7ff581a9bf7519804daf91fc5b6c56e30eec5e193"
+        },
+        {
+          "file": "pyserial-3.5-py2.py3-none-any.whl",
+          "sha256": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0"
+        },
+        {
+          "file": "realtime-2.31.0-py3-none-any.whl",
+          "sha256": "f6e494b53d6a6e80b6efcee6711c8dd40413a52e766271de1bce8ced6c36cc1d"
+        },
+        {
+          "file": "setuptools-84.0.0-py3-none-any.whl",
+          "sha256": "51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670"
+        },
+        {
+          "file": "storage3-2.31.0-py3-none-any.whl",
+          "sha256": "4bf46e8bea320743179a6beafdc7531c5242495e00e0cc22af7c7a9d69d4ed84"
+        },
+        {
+          "file": "supabase-2.31.0-py3-none-any.whl",
+          "sha256": "25f2a99207a75f2d9377e2332783b4389cf56b02cbebdaf0c1743112dcbb704e"
+        },
+        {
+          "file": "supabase_auth-2.31.0-py3-none-any.whl",
+          "sha256": "5e9c8b4ecdee6af04dbcb06455ce78cb15674806fcb6b425170455307d70b0ee"
+        },
+        {
+          "file": "supabase_functions-2.31.0-py3-none-any.whl",
+          "sha256": "3fdc4c4766152bfda63bdd0e286fc8a06f50e1280711fae4a1dfc9b7e9ebabc6"
+        },
+        {
+          "file": "typing_extensions-4.16.0-py3-none-any.whl",
+          "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        {
+          "file": "typing_inspection-0.4.4-py3-none-any.whl",
+          "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147"
+        },
+        {
+          "file": "tzdata-2026.3-py2.py3-none-any.whl",
+          "sha256": "dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931"
+        },
+        {
+          "file": "websockets-15.0.1-py3-none-any.whl",
+          "sha256": "f7a866fbc1e97b5c617ee4116daaa09b722101d4a3c170c787450ba409f9736f"
+        },
+        {
+          "file": "yarl-1.25.1-py3-none-any.whl",
+          "sha256": "681c758b0490f9e96b78e5fa8e8dc6e648e9185bb6eaebe73183c33ea0c445f3"
+        }
+      ]
+    }
+  ],
+  "preparation_recovery": {
+    "status": "PASS",
+    "evidence": "rechecks/prepare314-recovery.log"
+  },
+  "pyinstaller314_linux_probe": {
+    "status": "PASS",
+    "build": "rechecks/pyinstaller314-build-final.log",
+    "runtime": "rechecks/pyinstaller314-runtime-final.log"
+  },
+  "release_acceptance": "Pending; release_readiness.json and release_gate.py unchanged.",
+  "retained_failures": [
+    "Original system Python 3.13.5 lacks ensurepip; failed creation logs retained as python-*-313-bootstrap.log, then full suites rerun with a complete CPython 3.13.15 runtime.",
+    "First frozen Tk/Pillow probe omitted PIL._tkinter_finder. Failure logs retained; hidden import added to all builds and the probe rerun successfully."
+  ]
+}

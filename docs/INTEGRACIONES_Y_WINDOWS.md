@@ -51,9 +51,20 @@ Para continuar, hace falta la ubicación del paquete completo anterior o del red
 6. Probar dos sesiones PostgreSQL reales con solicitudes concurrentes de congelación y de consumo diario. El script recuperado `deployment/live_freeze_qa.py` genera SQL para fixtures aisladas, observación y limpieza. Revisar los IDs de fixtures antes de ejecutarlo; no es un piloto de autenticación de PCs ni se ejecutó contra servidores en esta instancia.
 7. Validar instalación/actualización/desinstalación, accesos directos, iconos azul/cian y títulos en una VM Windows; verificar que IDs/carpetas históricos permiten actualizar sin crear instalaciones duplicadas. Registrar resolución y escala 100/120/125 %.
 
+## Abrir los programas con Python 3.14 o 3.13
+
+Se admite CPython 3.13 y 3.14 estándar, con GIL. Usa 64 bits para Comercial y ZTATTUZ x64; 32 bits para ZTATTUZ x86. El preparador intenta primero 3.14 al crear un entorno, reconoce el launcher `py`, PATH y las rutas de Python Install Manager (`%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe`). No necesitas desinstalar 3.14 ni instalar 3.13 si ya tienes 3.14 de la arquitectura correcta. No se promete compatibilidad con cualquier versión, PyPy o Python free-threaded; deben validarse por separado.
+
+1. Descarga el respaldo actualizado y extrae en una carpeta nueva. Conserva tu configuración pública existente; no copies `.venv`. En ZTATTUZ x64 abre `GymSoft_ZTATTUZ_3.6.1_x64`, que corresponde a tu Python de 64 bits.
+2. Ejecuta `PREPARAR_PYTHON.bat`. Solo prepara el entorno. Si encuentra una `.venv` incompatible, la renombra a `.venv_respaldo_<fecha>_<id>` y crea otra; conserva la anterior y no modifica `gymsoft_config.json`.
+3. Ejecuta `INICIAR_ADMINISTRADOR.bat` o `INICIAR_RECEPCION.bat`. Instalan los requisitos y abren `app.py` o `reception_app.py` desde las fuentes. No generan un EXE y mantienen autenticación, permisos y validación del servidor. Usa este acceso para configurar y probar antes de aceptar la entrega.
+4. Debe existir la configuración pública de la edición: URL y clave **publicable** de Supabase, en `gymsoft_config.json` o en las variables de `.env.example`. Un archivo `.env.example` no se carga automáticamente. Comercial cuenta con `INICIAR_CONFIGURACION.bat`. ZTATTUZ debe conservar la URL `https://srmquhwpawgipncmvfjf.supabase.co` y la clave publicable de ese proyecto; recupera la configuración de tu instalación existente. Nunca copies service_role ni secretos de Wompi/Meta al escritorio.
+
+El error `Entrega bloqueada. Falta comprobar: …` proviene de la aceptación final, no de pip o Python. `CREAR_INSTALADORES.bat` comprueba esos criterios antes de descargar dependencias de compilación y muestra los accesos anteriores. No cambiar `release_readiness.json` a true para quitar el mensaje. Puedes seguir usando las fuentes para completar las pruebas.
+
 ## Generar EXE e instaladores cuando se acepte la versión
 
-Comercial usa Python 3.13 x64; ZTATTUZ x86 y x64 usan Python 3.13 de su arquitectura. Instalar Tk, Node LTS e Inno Setup 6. En cada carpeta ejecutar `PREPARAR_PYTHON.bat` y `PREPARAR_PRUEBAS.bat`; instalar `requirements-build.txt`. Configurar únicamente URL/llave publicable mediante `INICIAR_CONFIGURACION.bat` donde exista o el configurador de la edición. Revisar las migraciones; no ejecutar un esquema inicial sobre una base existente ni reaplicar actualizaciones antiguas después de las nuevas.
+Comercial usa CPython 3.13 o 3.14 x64; ZTATTUZ x86 y x64 usan una de esas versiones de su arquitectura. Instalar Tk, Node LTS e Inno Setup 6. En cada carpeta ejecutar `PREPARAR_PYTHON.bat` y `PREPARAR_PRUEBAS.bat`; instalar `requirements-build.txt`. Configurar únicamente URL/llave publicable mediante `INICIAR_CONFIGURACION.bat` donde exista o el configurador de la edición. Revisar las migraciones; no ejecutar un esquema inicial sobre una base existente ni reaplicar actualizaciones antiguas después de las nuevas.
 
 Completar `release_readiness.json` con evidencia de la versión para cada criterio aplicable; no poner todos los valores en true sin pruebas. Solo entonces ejecutar `CREAR_INSTALADORES.bat`, que llama a `build_windows.py`, valida arquitectura, pruebas e icono embebido. Los outputs se generan en `salida`. El panel/instalador Propietario de Comercial es privado y nunca se entrega al cliente.
 

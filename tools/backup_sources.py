@@ -9,13 +9,16 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = Path('/workspace/deliverables')
 summary = json.loads((ROOT / 'evidence/closure-validation-20261008/summary.json').read_text())
 parity = json.loads((ROOT / 'evidence/closure-validation-20261008/parity.json').read_text())
-if summary['status'] != 'PASS' or parity['status'] != 'PASS':
+compatibility = json.loads((ROOT / 'evidence/closure-validation-20261008/python-compatibility.json').read_text())
+if summary['status'] != 'PASS' or parity['status'] != 'PASS' or compatibility['status'] != 'PASS':
     raise SystemExit('Source backups blocked: local validation or synchronization failed.')
 files = sorted(set(subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT).decode().split('\0')) - {''})
 shared = {'backend', 'common', 'supabase', 'onboarding', 'deployment', 'assets', 'docs', 'evidence'}
 root_files = {'AGENTS.md', '.env.example', '.gitignore'}
 OUTPUT.mkdir(parents=True, exist_ok=True)
-manifest = {'type': 'DEVELOPMENT_SOURCE_BACKUPS', 'final_release': False, 'packages': []}
+manifest = {'type': 'DEVELOPMENT_SOURCE_BACKUPS', 'final_release': False,
+            'source_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip(),
+            'supported_python': ['3.13', '3.14'], 'packages': []}
 for product, editions in [('AtlanticGym', {'GymSoft_Comercial_3.6.0'}),
                           ('ZTATTUZ', {'GymSoft_ZTATTUZ_3.6.1_x86', 'GymSoft_ZTATTUZ_3.6.1_x64'})]:
     name = f'{product}_FUENTES_EN_DESARROLLO_20261008'
@@ -25,6 +28,8 @@ for product, editions in [('AtlanticGym', {'GymSoft_Comercial_3.6.0'}),
                'Contiene todas las fuentes recuperadas disponibles de este producto, assets, pruebas, migraciones y configuración publicable.\n'
                'No es una entrega final ni un instalador. Falta el redistribuible DigitalPersona autorizado y la aceptación externa/Windows.\n'
                'No hay secretos, venv ni node_modules; instalar requirements.txt y npm ci en cada edición.\n'
+               'CPython 3.13 y 3.14 estándar: 64 bits Comercial/ZTATTUZ x64; 32 bits ZTATTUZ x86.\n'
+               'Para abrir desde fuentes: INICIAR_ADMINISTRADOR.bat o INICIAR_RECEPCION.bat. No hace falta generar un instalador para configurar/probar.\n'
                'Leer docs/ESTADO_CIERRE.md y docs/INTEGRACIONES_Y_WINDOWS.md. Conservar release_readiness.json: no forzar los criterios a true.\n\n'
                'Ediciones incluidas: ' + ', '.join(sorted(editions)) + '.\n'
                'Entradas: app.py (Administrador), reception_app.py (Recepción); owner_panel.py solo en Comercial y privado del propietario.\n'
@@ -40,7 +45,7 @@ for product, editions in [('AtlanticGym', {'GymSoft_Comercial_3.6.0'}),
         assert archive.testzip() is None
         names = set(archive.namelist())
         for edition in editions:
-            for required in ('app.py', 'reception_app.py', 'atlantic_ui.py', 'icono.ico', 'icono_recepcion.ico', 'requirements.txt', 'requirements-build.txt', 'release_readiness.json', '.env.example', 'tests/backend_sql_flow.mjs'):
+            for required in ('app.py', 'reception_app.py', 'atlantic_ui.py', 'icono.ico', 'icono_recepcion.ico', 'requirements.txt', 'requirements-build.txt', 'release_readiness.json', '.env.example', 'tests/backend_sql_flow.mjs', 'preparar_entorno.py', 'PREPARAR_PYTHON.bat', 'INICIAR_ADMINISTRADOR.bat', 'INICIAR_RECEPCION.bat'):
                 assert f'{name}/{edition}/{required}' in names, required
         assert not any('/node_modules/' in n or '/.env' in n and not n.endswith('.env.example') for n in names)
     item = {'file': target.name, 'sha256': hashlib.sha256(target.read_bytes()).hexdigest(), 'files': len(included) + 1, 'bytes': target.stat().st_size}

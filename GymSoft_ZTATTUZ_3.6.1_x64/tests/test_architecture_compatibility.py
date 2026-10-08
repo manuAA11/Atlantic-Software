@@ -44,7 +44,7 @@ class ArchitectureTests(unittest.TestCase):
                     patch.object(build_windows.sys, 'version_info', (3, 13, 0)), \
                     patch.object(build_windows.struct, 'calcsize', return_value=4), \
                     patch.object(build_windows.subprocess, 'run') as run:
-                with self.assertRaisesRegex(SystemExit, 'Python 3.13 de 64 bits'):
+                with self.assertRaisesRegex(SystemExit, 'CPython 3.13 o 3.14 de 64 bits'):
                     build_windows.main()
                 run.assert_not_called()
         finally:

@@ -1,32 +1,57 @@
 @echo off
-rem Preparador compartido. No requiere el comando py si Python ya esta instalado.
+setlocal EnableExtensions DisableDelayedExpansion
 cd /d "%~dp0"
-if exist ".venv\Scripts\python.exe" goto :validate
-where py >nul 2>nul
-if not errorlevel 1 (
-  py -3.13-64 -m venv .venv
-  if exist ".venv\Scripts\python.exe" goto :validate
+rem Reuse a valid environment; check version, architecture and actual venv prefix.
+if exist ".venv\Scripts\python.exe" (
+  ".venv\Scripts\python.exe" "%~dp0preparar_entorno.py" --check-environment --bits 64 >nul 2>nul
+  if not errorlevel 1 exit /b 0
+  echo El .venv actual es incompatible. Buscando Python 3.14 o 3.13 de 64 bits...
 )
-for %%P in ("C:\Python313-64\python.exe" "C:\Python313\python.exe" "%LOCALAPPDATA%\Programs\Python\Python313-64\python.exe" "%LOCALAPPDATA%\Programs\Python\Python313\python.exe" "%ProgramFiles%\Python313\python.exe") do (
+call :try_python py -3.14-64
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+call :try_python py -3.14
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+call :try_python py -3.13-64
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+call :try_python py -3.13
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+call :try_python py
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+for %%P in ("C:\Python314-64\python.exe" "C:\Python314\python.exe" "%LOCALAPPDATA%\Programs\Python\Python314-64\python.exe" "%LOCALAPPDATA%\Programs\Python\Python314\python.exe" "%LOCALAPPDATA%\Python\pythoncore-3.14-64\python.exe" "%ProgramFiles%\Python314\python.exe") do (
   if exist "%%~P" (
-    "%%~P" -c "import sys,struct;sys.exit(0 if sys.version_info[:2]==(3,13) and struct.calcsize('P')==8 else 1)"
-    if not errorlevel 1 "%%~P" -m venv .venv
-    if exist ".venv\Scripts\python.exe" goto :validate
+    call :try_python "%%~P"
+    if errorlevel 2 goto :failed
+    if not errorlevel 1 exit /b 0
   )
 )
-where python >nul 2>nul
-if not errorlevel 1 (
-  python -c "import sys,struct;sys.exit(0 if sys.version_info[:2]==(3,13) and struct.calcsize('P')==8 else 1)"
-  if not errorlevel 1 python -m venv .venv
+for %%P in ("C:\Python313-64\python.exe" "C:\Python313\python.exe" "%LOCALAPPDATA%\Programs\Python\Python313-64\python.exe" "%LOCALAPPDATA%\Programs\Python\Python313\python.exe" "%LOCALAPPDATA%\Python\pythoncore-3.13-64\python.exe" "%ProgramFiles%\Python313\python.exe") do (
+  if exist "%%~P" (
+    call :try_python "%%~P"
+    if errorlevel 2 goto :failed
+    if not errorlevel 1 exit /b 0
+  )
 )
-if not exist ".venv\Scripts\python.exe" (
-  echo No se encontro Python 3.13 de 64 bits. Instalalo y vuelve a ejecutar este archivo.
-  exit /b 1
-)
-:validate
-".venv\Scripts\python.exe" -c "import sys,struct;sys.exit(0 if sys.version_info[:2]==(3,13) and struct.calcsize('P')==8 else 1)"
-if errorlevel 1 (
-  echo El entorno actual no usa Python 3.13 de 64 bits. Extrae el paquete en una carpeta nueva.
-  exit /b 1
-)
+call :try_python python
+if errorlevel 2 goto :failed
+if not errorlevel 1 exit /b 0
+echo No se encontro CPython 3.13 o 3.14 de 64 bits (edicion estandar con GIL).
+echo Python 3.14 es compatible. Revisa py -0p y la arquitectura de esta carpeta.
+echo Descarga oficial: https://www.python.org/downloads/windows/
+exit /b 1
+
+:try_python
+%* "%~dp0preparar_entorno.py" --check --bits 64 >nul 2>nul
+if errorlevel 1 exit /b 1
+%* "%~dp0preparar_entorno.py" --bits 64
+if errorlevel 1 exit /b 2
 exit /b 0
+
+:failed
+echo No se pudo preparar .venv. Cierra las aplicaciones que lo usan y revisa el mensaje anterior.
+echo El entorno anterior se conserva; no se generaron instaladores.
+exit /b 1

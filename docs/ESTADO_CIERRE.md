@@ -19,7 +19,7 @@ Los dos archivos de evidencia remota del último turno se recibieron truncados. 
 
 - **Atlantic Gym Comercial 3.6.0:** Administrador, Recepción y panel privado del propietario; licencias, suscripciones, invitaciones y equipos aprobados son exclusivos de Comercial. Se conserva su ausencia de relé/apertura de puerta.
 - **Atlantic Gym · ZTATTUZ 3.6.1 x86/x64:** Administrador y Recepción, compatibilidad con la base ZTATTUZ anterior y control del relé. La arquitectura del loader nativo, Python/build e instalador se conserva por edición.
-- Backend, UI Kit, iconos y nuevas correcciones compartidas sincronizados: 30 comparaciones de archivos PASS; 30 de 44 módulos Python con el mismo nombre son idénticos en las tres ediciones. Las diferencias de app/cloud/licencia, arquitectura y puerta se conservan. El inventario completo está en `evidence/closure-validation-20261008/parity.json`.
+- Backend, UI Kit, iconos y nuevas correcciones compartidas sincronizados: 32 comparaciones de archivos PASS; 31 de 45 módulos Python con el mismo nombre son idénticos en las tres ediciones. Las diferencias de app/cloud/licencia, arquitectura y puerta se conservan. El inventario completo está en `evidence/closure-validation-20261008/parity.json`.
 
 ## Atlantic UI Kit, branding e iconos
 
@@ -45,13 +45,23 @@ Python 3.13.5, Tk 8.6.16, Node 24.19.0 y PGlite 0.5.8. Dependencias instaladas c
 
 | Edición | Etapas datos | Etapas gráficas | Total etapas | Tests Python | Tests backend | Congelación SQL | Tiempo SQL | Marketing SQL | Flujo HTTP/SQL |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Comercial | 20 PASS | 18 PASS | 38 PASS | 132 PASS | 56 PASS | 52 PASS | 55 PASS | 90 PASS | 28 PASS |
-| ZTATTUZ x86 | 19 PASS | 19 PASS | 38 PASS | 147 PASS | 56 PASS | 52 PASS | 55 PASS | 87 PASS | 28 PASS |
-| ZTATTUZ x64 | 19 PASS | 19 PASS | 38 PASS | 148 PASS | 56 PASS | 52 PASS | 55 PASS | 87 PASS | 28 PASS |
+| Comercial | 20 PASS | 18 PASS | 38 PASS | 137 PASS | 56 PASS | 52 PASS | 55 PASS | 90 PASS | 28 PASS |
+| ZTATTUZ x86 | 19 PASS | 19 PASS | 38 PASS | 152 PASS | 56 PASS | 52 PASS | 55 PASS | 87 PASS | 28 PASS |
+| ZTATTUZ x64 | 19 PASS | 19 PASS | 38 PASS | 153 PASS | 56 PASS | 52 PASS | 55 PASS | 87 PASS | 28 PASS |
 
-**114 etapas aprobadas y 427 pruebas Python.** Las columnas internas están incluidas en las etapas y no se suman como casos únicos. El backend es compartido; sus 56 tests se ejecutan por edición. Se ejecutaron contratos, migraciones, seguridad, permisos, clientes/pagos, importación, huellas, simulación de jornada, fechas/logs, freeze, tiqueteras, Marketing, pruebas gráficas y branding.
+**114 etapas aprobadas y 442 pruebas Python.** Las columnas internas están incluidas en las etapas y no se suman como casos únicos. El backend es compartido; sus 56 tests se ejecutan por edición. Se ejecutaron contratos, migraciones, seguridad, permisos, clientes/pagos, importación, huellas, simulación de jornada, fechas/logs, freeze, tiqueteras, Marketing, pruebas gráficas y branding.
 
 El primer run completo detectó iconos ausentes y desbordamiento gráfico. Se conserva su resultado FAIL. Tras corregirlos se repitió Python y toda la UI, además de las suites SQL afectadas y comprobaciones nuevas. El resumen final combina estos resultados explícitamente y enlaza cada log: `evidence/closure-validation-20261008/summary.json`. No se borraron ni transformaron los FAIL originales en PASS.
+
+## Compatibilidad de Python y diagnóstico Windows
+
+Se admite CPython 3.13/3.14 estándar con la arquitectura de cada edición. Preparador y build comparten la validación; se reconoce el launcher, PATH y Python Install Manager. Una `.venv` incompatible se conserva como `.venv_respaldo_<fecha>_<id>`; la configuración pública no se modifica. Las pruebas nuevas verifican creación real en ruta con espacios, reutilización, conservación de archivos, rechazo de arquitectura/versión incompatible y aceptación 3.14 seguida del gate final.
+
+Se ejecutaron **442 tests con CPython 3.13.15 y otros 442 con 3.14.7**, además de **56 etapas de UI con 3.14/Tk 9.0.4**. Se resolvieron y descargaron 40 wheels de dependencias/build para Windows cp314 x64 y 40 para x86. Un entorno 3.12 real se sustituyó por 3.14 desde CLI conservando el entorno anterior y la configuración. Un programa de prueba con PyInstaller 6.22.2 abre Tk/Pillow e importa Supabase, openpyxl, pyserial y cryptography en Linux. El primer empaquetado detectó `PIL._tkinter_finder` ausente; se añadió como hidden import en las tres ediciones y se conservó el FAIL junto al recheck PASS.
+
+El primer run de creación con el Python 3.13.5 del sistema falló por falta de `ensurepip`; se conservan esos logs. El recheck completo usa una distribución 3.13.15 con ensurepip. No se saltaron tests ni se simularon las creaciones. Evidencia: `evidence/closure-validation-20261008/python-compatibility.json`. La resolución de wheels no acredita ejecución en Windows; las suites de fuentes x86 aquí corren en un proceso x64. No se promete cualquier versión, PyPy o free-threaded.
+
+El log Windows aportado por el usuario instaló correctamente dependencias con Python 3.13 x64 y se detuvo en `Entrega bloqueada. Falta comprobar: …`. Es aceptación pendiente, no fallo de pip. `CREAR_INSTALADORES.bat` comprueba ahora ese requisito antes de instalar dependencias y explica cómo continuar. Nuevos accesos `INICIAR_ADMINISTRADOR.bat`/`INICIAR_RECEPCION.bat` permiten configurar/probar desde fuentes con autenticación y permisos normales; requieren la configuración pública del servidor. Los gates y manifest de aceptación no cambian.
 
 ## Bloqueos concretos y entrega
 

@@ -11,8 +11,10 @@ import zipfile
 import struct
 from product_config import VERSION, PRODUCT_NAME
 from atlantic_ui import COPYRIGHT, PUBLISHER
+from preparar_entorno import require_runtime
 
 ROOT=Path(__file__).resolve().parent
+EXPECTED_BITS=32
 
 def verify_executable_icon(executable, icon_name="icono.ico"):
     """Detiene la entrega si PyInstaller no embebió el icono GS completo."""
@@ -53,18 +55,20 @@ def version_file(name):
 
 def main():
     if sys.platform!='win32':
-        raise SystemExit('Los ejecutables Windows se compilan en Windows con Python 3.13 de 32 bits.')
+        raise SystemExit('Los ejecutables Windows se compilan en Windows con Python 3.13 o 3.14 de 32 bits.')
     os.chdir(ROOT)
     os.environ['GYMSOFT_OFFLINE_QA'] = '1'  # No USB/driver required during compilation.
-    if sys.version_info[:2]!=(3,13) or struct.calcsize('P')!=4:
-        raise SystemExit('Usa Python 3.13 de 32 bits para esta entrega.')
+    try:
+        require_runtime(EXPECTED_BITS)
+    except RuntimeError as error:
+        raise SystemExit(str(error)) from error
     from release_gate import require_release_ready
     require_release_ready(ROOT,VERSION)
     from product_config import load_config
     load_config()
     if not (ROOT/'gymsoft_config.json').is_file():
         raise SystemExit('Falta gymsoft_config.json. Extrae de nuevo el paquete completo de ZTATTUZ.')
-    if not compileall.compile_dir(str(ROOT),quiet=1,rx=__import__('re').compile(r'[/\\](\.venv|node_modules|dist|build)[/\\]')):
+    if not compileall.compile_dir(str(ROOT),quiet=1,rx=__import__('re').compile(r'[/\\](\.venv[^/\\]*|node_modules|dist|build)[/\\]')):
         raise SystemExit('Hay errores Python. No se generó el instalador.')
     compiler=shutil.which('ISCC.exe')
     if not compiler:
@@ -79,7 +83,7 @@ def main():
     for name,entry in [('ZTATTUZ Admin','app.py'),('ZTATTUZ Recepcion','reception_app.py')]:
         icon_name = 'icono_recepcion.ico' if entry == 'reception_app.py' else 'icono.ico'
         subprocess.run([sys.executable,'-m','PyInstaller','--noconfirm','--clean','--windowed','--onedir','--name',name,
-            '--icon',icon_name, '--version-file',str(version_file(name)), '--add-data','gymsoft_config.json;.', '--add-data','icono.ico;.', '--add-data','icono_recepcion.ico;.', '--collect-all','supabase','--collect-all','realtime',
+            '--icon',icon_name, '--version-file',str(version_file(name)), '--add-data','gymsoft_config.json;.', '--add-data','icono.ico;.', '--add-data','icono_recepcion.ico;.', '--hidden-import','PIL._tkinter_finder', '--collect-all','supabase','--collect-all','realtime',
             '--collect-all','certifi','--collect-all','postgrest','--collect-all','supabase_auth','--collect-all','tzdata','--collect-all','serial',entry],check=True)
         verify_executable_icon(ROOT/'dist'/name/(name+'.exe'), icon_name)
         import pefile

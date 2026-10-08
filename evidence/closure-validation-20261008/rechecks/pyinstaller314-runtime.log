@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "PIL/ImageTk.py", line 59, in _pyimagingtkcall
+_tkinter.TclError: invalid command name "PyImagingPhoto"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "probe.py", line 8, in <module>
+  File "PIL/ImageTk.py", line 132, in __init__
+  File "PIL/ImageTk.py", line 188, in paste
+  File "PIL/ImageTk.py", line 63, in _pyimagingtkcall
+ModuleNotFoundError: No module named 'PIL._tkinter_finder'
+[PYI-14943:ERROR] Failed to execute script 'probe' due to unhandled exception!

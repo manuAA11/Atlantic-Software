@@ -1,0 +1,7 @@
+PRUEBA: restaurando la ventana minimizada para continuar.
+PASS: límites del monitor, restauración de prueba, controles ocultos, superposiciones y consultas sin resultado.
+EN CURSO: responsive_ui_smoke · 15 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 30 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 45 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 60 s · límite 300 s.
+PASS: 489 comprobaciones de tamaños, navegación y formularios al 100 % y 125 %.

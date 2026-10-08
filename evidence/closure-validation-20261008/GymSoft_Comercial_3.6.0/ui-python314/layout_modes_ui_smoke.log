@@ -1,0 +1,4 @@
+EN CURSO: layout_modes_ui_smoke · 15 s · límite 300 s.
+EN CURSO: layout_modes_ui_smoke · 30 s · límite 300 s.
+EN CURSO: layout_modes_ui_smoke · 45 s · límite 300 s.
+PASS: 387 comprobaciones de modo normal, maximizado y movimiento sin redistribuir al 100 %, 120 % y 125 %.

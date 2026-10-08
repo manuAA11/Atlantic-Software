@@ -9,7 +9,7 @@ Incluye Administración, Recepción, el registro opcional de huella dentro de Nu
 El ZIP contiene el código completo, las pruebas, el generador de instaladores y el instalador original del runtime DigitalPersona de 64 bits. **No contiene los ejecutables de ZTATTUZ ya compilados.**
 
 1. Extrae todo el ZIP en una carpeta nueva. No copies la carpeta `.venv` de otra versión.
-2. Utiliza Python 3.13 de **64 bits**, Inno Setup 6 y Node.js. Tanto Windows como Python deben ser de 64 bits (x64, Intel/AMD).
+2. Utiliza CPython 3.13 o 3.14 de **64 bits**, Inno Setup 6 y Node.js. Tanto Windows como Python deben ser de 64 bits (x64, Intel/AMD).
 3. Ejecuta `CREAR_INSTALADORES.bat`.
 4. Las pruebas usan lectores y relé simulados: **no conectes hardware para compilar**. Durante las pruebas gráficas, mantén sus ventanas visibles y el escritorio desbloqueado.
 5. Al terminar, entrega al gimnasio **`salida/ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe`**.

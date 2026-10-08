@@ -165,8 +165,8 @@
         {
           "name": "python",
           "status": "PASS",
-          "tests": 132,
-          "evidence": "rechecks/python-commercial-final.log"
+          "tests": 137,
+          "evidence": "rechecks/python-commercial-313-bootstrap-final.log"
         },
         {
           "name": "marketing_ui_smoke",
@@ -342,7 +342,7 @@
           "evidence": "rechecks/marketing-compile-commercial.log"
         }
       ],
-      "python_tests": 132,
+      "python_tests": 137,
       "data_stages": 20,
       "ui_stages": 18,
       "initial_failed_stages": [
@@ -504,8 +504,8 @@
         {
           "name": "python",
           "status": "PASS",
-          "tests": 147,
-          "evidence": "rechecks/python-x86-final.log"
+          "tests": 152,
+          "evidence": "rechecks/python-x86-313-bootstrap-final.log"
         },
         {
           "name": "marketing_ui_smoke",
@@ -690,7 +690,7 @@
           "evidence": "rechecks/marketing-compile-x86.log"
         }
       ],
-      "python_tests": 147,
+      "python_tests": 152,
       "data_stages": 19,
       "ui_stages": 19,
       "initial_failed_stages": [
@@ -852,8 +852,8 @@
         {
           "name": "python",
           "status": "PASS",
-          "tests": 148,
-          "evidence": "rechecks/python-x64-final.log"
+          "tests": 153,
+          "evidence": "rechecks/python-x64-313-bootstrap-final.log"
         },
         {
           "name": "marketing_ui_smoke",
@@ -1038,7 +1038,7 @@
           "evidence": "rechecks/marketing-compile-x64.log"
         }
       ],
-      "python_tests": 148,
+      "python_tests": 153,
       "data_stages": 19,
       "ui_stages": 19,
       "initial_failed_stages": [
@@ -1048,10 +1048,11 @@
     }
   ],
   "total_stages": 114,
-  "python_tests": 427,
+  "python_tests": 442,
   "backend_tests_per_edition": 56,
   "notes": [
     "Original failed run is retained. Python rerun fixes missing icons; complete UI rerun fixes sidebar overflow and verifies role icons.",
+    "Python suite now includes five preparation/build regressions per edition. Rechecked with CPython 3.13.15 including ensurepip; original system 3.13.5 creation failed because ensurepip was absent. Python 3.14 and UI compatibility are recorded separately in python-compatibility.json.",
     "Counts of checks inside SQL/UI stages overlap and must not be added as unique tests."
   ]
 }

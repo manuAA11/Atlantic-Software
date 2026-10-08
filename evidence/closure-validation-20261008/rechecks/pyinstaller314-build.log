@@ -1,0 +1,128 @@
+237 INFO: PyInstaller: 6.22.2, contrib hooks: 2026.8
+237 INFO: Python: 3.14.7
+240 INFO: Platform: Linux-6.18.44-x86_64-with-glibc2.41
+240 INFO: Python environment: /workspace/.venvs/multigym314
+241 INFO: wrote /workspace/python314-freeze-check/Python314Probe.spec
+244 INFO: Removing temporary files and cleaning cache in /workspace/.cache/pyinstaller
+632 INFO: Module search paths (PYTHONPATH):
+['/workspace/Atlantic-Software',
+ '/workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/python314.zip',
+ '/workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14',
+ '/workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/lib-dynload',
+ '/workspace/.venvs/multigym314/lib/python3.14/site-packages',
+ '/workspace/python314-freeze-check']
+814 INFO: Appending 'datas' from .spec
+828 INFO: checking Analysis
+829 INFO: Building Analysis because Analysis-00.toc is non existent
+829 INFO: Looking for Python shared library...
+841 INFO: Using Python shared library: /workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/libpython3.14.so.1.0
+841 INFO: Running Analysis Analysis-00.toc
+842 INFO: Target bytecode optimization level: 0
+842 INFO: Initializing module dependency graph...
+842 INFO: Initializing module graph hook caches...
+849 INFO: Analyzing modules for base_library.zip ...
+1621 INFO: Processing standard module hook 'hook-math.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+2628 INFO: Processing standard module hook 'hook-encodings.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+3001 INFO: Processing standard module hook 'hook-pickle.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+5855 INFO: Processing standard module hook 'hook-difflib.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+5868 INFO: Processing standard module hook 'hook-heapq.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+6504 INFO: Caching module dependency graph...
+6538 INFO: Analyzing /workspace/python314-freeze-check/probe.py
+6539 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_find_module_path'
+6543 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+6849 INFO: Processing standard module hook 'hook-_tkinter.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+6859 INFO: Processing standard module hook 'hook-PIL.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+7054 INFO: Processing standard module hook 'hook-PIL.Image.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+7343 INFO: Processing standard module hook 'hook-xml.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+7368 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+7644 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+8606 INFO: Processing standard module hook 'hook-certifi.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8982 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+9484 INFO: Processing standard module hook 'hook-sysconfig.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+9490 INFO: Processing standard module hook 'hook-_ctypes.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+10205 INFO: Processing standard module hook 'hook-anyio.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+10533 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+10538 INFO: SetuptoolsInfo: initializing cached setuptools info...
+12822 INFO: Processing standard module hook 'hook-platform.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+12833 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+13143 INFO: Processing standard module hook 'hook-pydantic.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+14373 INFO: Processing standard module hook 'hook-zoneinfo.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+15993 INFO: Processing standard module hook 'hook-websockets.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+16772 INFO: Processing standard module hook 'hook-cryptography.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+17456 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+18164 INFO: Processing standard module hook 'hook-openpyxl.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+19480 INFO: Analyzing hidden import 'tzdata'
+19481 INFO: Analyzing hidden import 'tzdata.zoneinfo'
+19482 INFO: Analyzing hidden import 'tzdata.zoneinfo.Africa'
+19483 INFO: Analyzing hidden import 'tzdata.zoneinfo.America'
+19484 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Argentina'
+19485 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Indiana'
+19485 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Kentucky'
+19486 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.North_Dakota'
+19486 INFO: Analyzing hidden import 'tzdata.zoneinfo.Antarctica'
+19486 INFO: Analyzing hidden import 'tzdata.zoneinfo.Arctic'
+19486 INFO: Analyzing hidden import 'tzdata.zoneinfo.Asia'
+19487 INFO: Analyzing hidden import 'tzdata.zoneinfo.Atlantic'
+19487 INFO: Analyzing hidden import 'tzdata.zoneinfo.Australia'
+19488 INFO: Analyzing hidden import 'tzdata.zoneinfo.Brazil'
+19488 INFO: Analyzing hidden import 'tzdata.zoneinfo.Canada'
+19489 INFO: Analyzing hidden import 'tzdata.zoneinfo.Chile'
+19489 INFO: Analyzing hidden import 'tzdata.zoneinfo.Etc'
+19489 INFO: Analyzing hidden import 'tzdata.zoneinfo.Europe'
+19489 INFO: Analyzing hidden import 'tzdata.zoneinfo.Indian'
+19489 INFO: Analyzing hidden import 'tzdata.zoneinfo.Mexico'
+19490 INFO: Analyzing hidden import 'tzdata.zoneinfo.Pacific'
+19490 INFO: Analyzing hidden import 'tzdata.zoneinfo.US'
+19490 INFO: Processing module hooks (post-graph stage)...
+20289 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20290 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+20296 INFO: Processing standard module hook 'hook-setuptools.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+20310 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20348 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20348 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+20362 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20363 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+20552 INFO: Processing standard module hook 'hook-_osx_support.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+20902 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+20904 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20919 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+20920 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+22626 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/pre_safe_import_module'
+22626 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+22815 INFO: Processing standard module hook 'hook-tzdata.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+23713 INFO: Processing standard module hook 'hook-webbrowser.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+24183 INFO: Processing standard module hook 'hook-_tkinter.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+24608 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks'
+24681 INFO: Performing binary vs. data reclassification (832 entries)
+24764 INFO: Looking for ctypes DLLs
+24898 INFO: Analyzing run-time hooks ...
+24906 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/rthooks'
+24909 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/_pyinstaller_hooks_contrib/rthooks'
+24910 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/rthooks'
+24912 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/rthooks'
+24914 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/rthooks'
+24916 INFO: Including run-time hook 'pyi_rth__tkinter.py' from '/workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/hooks/rthooks'
+24951 INFO: Creating base_library.zip...
+24980 INFO: Looking for dynamic libraries
+25489 INFO: Warnings written to /workspace/python314-freeze-check/build/Python314Probe/warn-Python314Probe.txt
+25545 INFO: Graph cross-reference written to /workspace/python314-freeze-check/build/Python314Probe/xref-Python314Probe.html
+25592 INFO: checking PYZ
+25592 INFO: Building PYZ because PYZ-00.toc is non existent
+25592 INFO: Building PYZ (ZlibArchive) /workspace/python314-freeze-check/build/Python314Probe/PYZ-00.pyz
+26640 INFO: Building PYZ (ZlibArchive) /workspace/python314-freeze-check/build/Python314Probe/PYZ-00.pyz completed successfully.
+26678 INFO: checking PKG
+26678 INFO: Building PKG because PKG-00.toc is non existent
+26678 INFO: Building PKG (CArchive) Python314Probe.pkg
+26701 INFO: Building PKG (CArchive) Python314Probe.pkg completed successfully.
+26702 INFO: Bootloader /workspace/.venvs/multigym314/lib/python3.14/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+26702 INFO: checking EXE
+26702 INFO: Building EXE because EXE-00.toc is non existent
+26702 INFO: Building EXE from EXE-00.toc
+26702 INFO: Copying bootloader EXE to /workspace/python314-freeze-check/build/Python314Probe/Python314Probe
+26702 INFO: Appending PKG archive to custom ELF section in EXE
+26743 INFO: Building EXE from EXE-00.toc completed successfully.
+26750 INFO: checking COLLECT
+26750 INFO: Building COLLECT because COLLECT-00.toc is non existent
+26750 INFO: Building COLLECT COLLECT-00.toc
+27052 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+27064 INFO: Build complete! The results are available in: /workspace/python314-freeze-check/dist

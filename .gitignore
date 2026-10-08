@@ -14,3 +14,5 @@
 **/*.pem
 **/*.key
 !evidence/**/*.log
+
+**/.venv_respaldo_*/

@@ -7,7 +7,7 @@ WinError 32 de la entrega anterior. No requiere SQL nuevo desde 3.6.0.
 
 PREPARAR EN TU COMPUTADOR CON WINDOWS x64 (INTEL/AMD):
 1. Extrae el ZIP completo en una carpeta nueva.
-2. Utiliza Python 3.13 de 64 bits, Inno Setup 6 y Node.js.
+2. Utiliza CPython 3.13 o 3.14 de 64 bits, Inno Setup 6 y Node.js.
 3. Ejecuta CREAR_INSTALADORES.bat. No copies una .venv anterior.
 4. No se necesita el lector ni el relé para las pruebas de compilación.
    Durante las pruebas gráficas, mantén sus ventanas visibles.

@@ -1,0 +1,9 @@
+PASS: wrong Python leaves files untouched; real 3.12 venv replaced by 3.14; previous venv and public configuration preserved; reused without new backup; wrong architecture rejected.
+No se pudo preparar Python: Necesitas CPython 3.13 o 3.14 de 64 bits (edicion estandar con GIL). Este interprete es 3.12.14 de 64 bits.
+Entorno anterior conservado en: .venv_respaldo_20261008_225857_d756ca44
+Creando .venv con Python 3.14.7 de 64 bits...
+Entorno listo: Python 3.14.7 de 64 bits.
+3.14.7
+3.12.14
+Entorno listo: Python 3.14 de 64 bits.
+No se pudo preparar Python: Necesitas CPython 3.13 o 3.14 de 32 bits (edicion estandar con GIL). Este interprete es 3.14.7 de 64 bits.
