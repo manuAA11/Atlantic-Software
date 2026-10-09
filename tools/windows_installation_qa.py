@@ -18,6 +18,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 
 
 SCOPE = ('Instalación técnica Windows en runner efímero; NO FINAL. '
@@ -25,6 +26,9 @@ SCOPE = ('Instalación técnica Windows en runner efímero; NO FINAL. '
          'PostgreSQL concurrente ni aceptación de release_gate.')
 EDITIONS = {'GymSoft_Comercial_3.6.0', 'GymSoft_ZTATTUZ_3.6.1_x64',
             'GymSoft_ZTATTUZ_3.6.1_x86'}
+EDITION_CODES = {'GymSoft_Comercial_3.6.0': 'c64', 'GymSoft_ZTATTUZ_3.6.1_x64': 'z64',
+                 'GymSoft_ZTATTUZ_3.6.1_x86': 'z32'}
+INSTALLATION_MARKER = 'ATLANTIC_EPHEMERAL_INSTALLATION.json'
 APP_IDS = {
     'client': '{6C58E8B8-C2ED-4B60-A080-EEA57BB407C2}_is1',
     'owner': '{58D6DD62-FD67-4CC1-8D87-153AFB4EE44A}_is1',
@@ -107,6 +111,61 @@ def native_windows_architecture():
     function.restype = None
     function(ctypes.byref(value))
     return {0: 'x86', 9: 'x64', 12: 'arm64'}.get(value.architecture, 'unknown')
+
+
+def installation_identity(runner_context, edition):
+    if runner_context.get('environment') != 'github-hosted':
+        raise RuntimeError('La raíz de instalación necesita el runner efímero ya validado.')
+    run_id = runner_context.get('github_run_id', '')
+    if not re.fullmatch(r'[0-9]+', run_id) or edition.name not in EDITION_CODES:
+        raise RuntimeError('Identidad de instalación técnica inválida.')
+    return {'kind': 'Atlantic ephemeral installation QA', 'github_run_id': run_id,
+            'edition': edition.name, 'process_id': os.getpid(), 'final': False}
+
+
+def create_installation_root(runner_context, edition):
+    """Use a short, exclusive directory instead of installing into the log tree."""
+    identity = installation_identity(runner_context, edition)
+    temp = Path(runner_context['runner_temp']).resolve(strict=True)
+    if not temp.is_dir() or temp == Path(temp.anchor):
+        raise RuntimeError('RUNNER_TEMP no es una raíz de instalación válida.')
+    prefix = f"agym-{EDITION_CODES[edition.name]}-{identity['github_run_id']}-{identity['process_id']}-"
+    # InstallShield contains long prerequisite paths. Leave ample room below
+    # MAX_PATH rather than depending on long-path support of third-party EXEs.
+    probe = temp / (prefix + 'xxxxxxxx')
+    if len(str(probe).encode('utf-16-le')) // 2 > 110:
+        raise RuntimeError('RUNNER_TEMP es demasiado largo para verificar el runtime original.')
+    result = Path(tempfile.mkdtemp(prefix=prefix, dir=temp)).resolve()
+    try:
+        confined_path(result, temp)
+        (result / INSTALLATION_MARKER).write_text(json.dumps(identity), encoding='utf-8')
+    except Exception:
+        # mkdtemp created this exclusive directory; it contains no application
+        # yet. Do not leave an unauthenticated directory if marker writing fails.
+        shutil.rmtree(result)
+        raise
+    return result
+
+
+def remove_installation_root(root, runner_context, edition):
+    """Remove only the exclusive directory authenticated as owned by this run."""
+    identity = installation_identity(runner_context, edition)
+    temp = Path(runner_context['runner_temp']).resolve(strict=True)
+    root = confined_path(root, temp)
+    prefix = f"agym-{EDITION_CODES[edition.name]}-{identity['github_run_id']}-{identity['process_id']}-"
+    if root.parent != temp or not root.name.startswith(prefix):
+        raise RuntimeError('Se rechazó limpiar una raíz temporal ajena a esta instalación.')
+    marker = confined_path(root / INSTALLATION_MARKER, root, require_file=True)
+    if json.loads(marker.read_text(encoding='utf-8')) != identity:
+        raise RuntimeError('La raíz temporal no pertenece a esta ejecución de instalación.')
+    # Reject links anywhere in the exclusive tree before deleting anything.
+    # os.walk does not follow symlinks; inspect directory entries too so Windows
+    # junctions cannot turn cleanup into traversal of another installation.
+    for folder, directories, files in os.walk(root, followlinks=False):
+        for name in directories + files:
+            candidate = Path(folder) / name
+            confined_path(candidate, root)
+    shutil.rmtree(root)
 
 
 def load_technical_report(edition):
@@ -390,9 +449,9 @@ def main(argv=None):
               'runner_context': {name: os.environ.get(name) for name in
                  ('GITHUB_ACTIONS', 'RUNNER_ENVIRONMENT', 'RUNNER_OS', 'GITHUB_RUN_ID',
                   'RUNNER_TEMP', 'GITHUB_WORKSPACE')}}
-    qa_root, runner, locations = None, None, {}
+    qa_root, runner, install_root, locations = None, None, None, {}
     def execute():
-        nonlocal qa_root, runner, locations
+        nonlocal qa_root, runner, install_root, locations
         if not 45 <= args.timeout <= 1800:
             raise RuntimeError('El timeout debe estar entre 45 y 1800 segundos.')
         edition = args.edition.resolve(strict=True)
@@ -436,7 +495,9 @@ def main(argv=None):
         report['stage'] = 'verify_runtime_sources'
         report['runtime_source_sha256'] = require_runtime_files(edition, build.EXPECTED_BITS)
         runner = CommandRunner(qa_root / 'logs', report)
-        install_root = qa_root / 'instalacion'
+        report['stage'] = 'prepare_short_installation_directory'
+        install_root = create_installation_root(report['runner'], edition)
+        report['installation_root'] = str(install_root)
         installers = {item['script']: Path(item['executable']) for item in packaged['installers']}
         commercial = 'Comercial' in edition.name
         roles = [('client', 'instalador_clientes.iss'), ('owner', 'instalador_propietario.iss')] if commercial else [
@@ -500,14 +561,15 @@ def main(argv=None):
                                label='desinstalar-' + role, timeout=180, accepted=(0, 3010), cwd=expected_root)
                 if uninstall_entries():
                     raise RuntimeError('Quedaron registros de las aplicaciones después de desinstalar.')
-                remaining = inspect_shortcuts(runner, qa_root, qa_root / 'instalacion', 'accesos-despues-desinstalar')
+                remaining = inspect_shortcuts(runner, qa_root, install_root, 'accesos-despues-desinstalar')
                 if remaining:
                     raise RuntimeError('Quedaron accesos directos después de desinstalar.')
                 if any(path.exists() for path in (Path(item['executable']) for item in report['installed_executables'])):
                     raise RuntimeError('Quedaron ejecutables de las aplicaciones después de desinstalar.')
+                remove_installation_root(install_root, report['runner'], args.edition.resolve())
                 report['cleanup'] = {'status': 'PASS', 'application_registrations_removed': True,
                                      'application_executables_removed': True, 'shortcuts_removed': True,
-                                     'system_runtime_removed': False}
+                                     'system_runtime_removed': False, 'exclusive_installation_directory_removed': True}
             except Exception as error:
                 report['cleanup'] = {'status': 'FAIL', 'error': f'{type(error).__name__}: {error}'}
                 report['status'] = 'FAIL'

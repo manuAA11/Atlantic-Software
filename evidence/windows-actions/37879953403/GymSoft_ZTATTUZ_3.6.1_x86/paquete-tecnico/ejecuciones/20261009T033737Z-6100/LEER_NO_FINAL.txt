@@ -1,0 +1,2 @@
+Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.
+No distribuir ni instalar en equipos de clientes.

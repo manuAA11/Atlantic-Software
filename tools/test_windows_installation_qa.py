@@ -76,6 +76,110 @@ class InstallationQaGuards(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             qa.require_ephemeral_runner(self.edition, False, environ=self.env, platform='win32')
 
+    def runner_context(self):
+        return qa.require_ephemeral_runner(self.edition, True, environ=self.env, platform='win32')
+
+    def test_short_installation_roots_are_exclusive_confined_and_separate_from_evidence(self):
+        context = self.runner_context()
+        first = qa.create_installation_root(context, self.edition)
+        second = qa.create_installation_root(context, self.edition)
+        self.assertNotEqual(first, second)
+        for root in (first, second):
+            self.assertEqual(root.parent, self.runner_temp)
+            self.assertNotIn(self.workspace, root.parents)
+            self.assertLessEqual(len(str(root).encode('utf-16-le')) // 2, 110)
+            identity = json.loads((root / qa.INSTALLATION_MARKER).read_text())
+            self.assertEqual(identity, qa.installation_identity(context, self.edition))
+            self.assertIs(identity['final'], False)
+        evidence = self.edition / 'salida/validacion/installation-fixture.log'
+        evidence.parent.mkdir(parents=True)
+        evidence.write_text('preserve installation evidence')
+        (first / 'client').mkdir()
+        (first / 'client/runtime.dll').write_bytes(b'owned installation fixture')
+        qa.remove_installation_root(first, context, self.edition)
+        self.assertFalse(first.exists())
+        self.assertTrue(second.exists())
+        self.assertEqual(evidence.read_text(), 'preserve installation evidence')
+
+    def test_installation_root_rejects_unvalidated_context_before_mutation(self):
+        context = self.runner_context()
+        before = sorted(self.runner_temp.iterdir())
+        for change in ({'environment': 'self-hosted'}, {'github_run_id': 'not-a-run'}):
+            with self.subTest(change=change), self.assertRaises(RuntimeError):
+                qa.create_installation_root({**context, **change}, self.edition)
+        self.assertEqual(before, sorted(self.runner_temp.iterdir()))
+
+    def test_installation_root_rejects_long_vendor_paths_before_mutation(self):
+        long_temp = self.runner_temp / ('long-runner-temp-' + 'x' * 100)
+        long_temp.mkdir()
+        context = {**self.runner_context(), 'runner_temp': str(long_temp)}
+        with self.assertRaisesRegex(RuntimeError, 'demasiado largo'):
+            qa.create_installation_root(context, self.edition)
+        self.assertEqual(list(long_temp.iterdir()), [])
+
+    def test_cleanup_rejects_other_run_and_modified_identity_without_deleting(self):
+        context = self.runner_context()
+        root = qa.create_installation_root(context, self.edition)
+        with self.assertRaisesRegex(RuntimeError, 'ajena'):
+            qa.remove_installation_root(root, {**context, 'github_run_id': '987654'}, self.edition)
+        marker = root / qa.INSTALLATION_MARKER
+        original = json.loads(marker.read_text())
+        marker.write_text(json.dumps({**original, 'edition': 'another installation'}))
+        with self.assertRaisesRegex(RuntimeError, 'no pertenece'):
+            qa.remove_installation_root(root, context, self.edition)
+        self.assertTrue(root.is_dir())
+        marker.write_text(json.dumps(original))
+        qa.remove_installation_root(root, context, self.edition)
+        self.assertFalse(root.exists())
+
+    def test_cleanup_rejects_external_and_nested_targets_before_deleting(self):
+        context = self.runner_context()
+        root = qa.create_installation_root(context, self.edition)
+        nested = root / root.name
+        nested.mkdir()
+        (nested / qa.INSTALLATION_MARKER).write_text((root / qa.INSTALLATION_MARKER).read_text())
+        with self.assertRaisesRegex(RuntimeError, 'ajena'):
+            qa.remove_installation_root(nested, context, self.edition)
+        outside = self.root / root.name
+        outside.mkdir()
+        (outside / qa.INSTALLATION_MARKER).write_text((root / qa.INSTALLATION_MARKER).read_text())
+        with self.assertRaisesRegex(RuntimeError, 'Ruta fuera'):
+            qa.remove_installation_root(outside, context, self.edition)
+        self.assertTrue(nested.is_dir())
+        self.assertTrue(outside.is_dir())
+
+    def test_cleanup_rejects_linked_root_marker_and_descendants_without_deleting(self):
+        context = self.runner_context()
+        root = qa.create_installation_root(context, self.edition)
+        outside = self.root / 'preserved-customer-installation'
+        outside.mkdir()
+        data = outside / 'customer.dll'
+        data.write_bytes(b'customer installation must survive')
+        alias = self.runner_temp / (root.name + '-alias')
+        try:
+            alias.symlink_to(root, target_is_directory=True)
+        except OSError:
+            self.skipTest('Symlink creation is unavailable on this test machine.')
+        with self.assertRaisesRegex(RuntimeError, 'enlaces'):
+            qa.remove_installation_root(alias, context, self.edition)
+        alias.unlink()
+        original = (root / qa.INSTALLATION_MARKER).read_text()
+        external_marker = outside / 'marker.json'
+        external_marker.write_text(original)
+        marker = root / qa.INSTALLATION_MARKER
+        marker.unlink()
+        marker.symlink_to(external_marker)
+        with self.assertRaises(RuntimeError):
+            qa.remove_installation_root(root, context, self.edition)
+        marker.unlink()
+        marker.write_text(original)
+        child = root / 'runtime-link'
+        child.symlink_to(outside, target_is_directory=True)
+        with self.assertRaises(RuntimeError):
+            qa.remove_installation_root(root, context, self.edition)
+        self.assertTrue(root.is_dir())
+        self.assertEqual(data.read_bytes(), b'customer installation must survive')
+
     def test_preflight_failure_is_preserved_after_runner_guard_without_installing(self):
         output = io.StringIO()
         with patch.dict(qa.os.environ, self.env, clear=True), patch.object(qa.sys, 'platform', 'win32'), \

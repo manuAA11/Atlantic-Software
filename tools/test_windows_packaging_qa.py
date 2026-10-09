@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -145,6 +146,158 @@ with TemporaryDirectory() as folder:
     else:
         raise AssertionError('A failed diagnostic was accepted.')
 """)
+
+    def configuration_fixture(self, folder):
+        edition = Path(folder) / 'GymSoft_Comercial_3.6.0'
+        qa_root = edition / 'salida/validacion/paquete-tecnico/ejecuciones/prueba'
+        qa_root.mkdir(parents=True)
+        scripts = ('instalador_clientes.iss', 'instalador_propietario.iss')
+        entries = (('Admin', 'app.py'), ('Recepcion', 'reception_app.py'), ('Propietario', 'owner_panel.py'))
+        build = SimpleNamespace(ROOT=edition, VERSION='3.6.0', INSTALLER_SCRIPTS=scripts, EXECUTABLES=entries)
+        report = {'status': 'PASS', 'final': False, 'mode': 'installers',
+                  'edition': edition.name, 'version': build.VERSION, 'run_id': '20261008T180000Z-123',
+                  'full_local_validation': {'status': 'PASS', 'scope': 'all', 'platform': 'win32',
+                                            'version': build.VERSION,
+                                            'stages': [{'name': 'fixture', 'status': 'PASS'}]},
+                  'executables': [{'entry': entry, 'status': 'PASS', 'diagnostic': {'estado': 'OK'}}
+                                  for name, entry in entries], 'installers': []}
+        for index, script in enumerate(scripts):
+            source = qa_root / f'VALIDACION_NO_FINAL_installer_{index}.exe'
+            source.write_bytes(b'TECHNICAL INSTALLER UNIT FIXTURE ' + bytes([index]))
+            report['installers'].append({'script': script, 'executable': str(source),
+                                         'status': 'PASS', 'final': False, 'sha256': qa.sha256_file(source)})
+        return build, report, qa_root
+
+    def test_configuration_publication_validates_hashes_and_separates_owner(self):
+        with tempfile.TemporaryDirectory() as folder:
+            build, report, qa_root = self.configuration_fixture(folder)
+            result = qa.publish_configuration_installers(build, report, qa_root)
+            target = Path(result['directory'])
+            files = result['files']
+            self.assertEqual(len(files), 2)
+            self.assertEqual(Path(files[0]['path']).parent, Path('.'))
+            self.assertEqual(Path(files[1]['path']).parent, Path('PRIVADO_PROPIETARIO'))
+            for item in files:
+                self.assertTrue(Path(item['path']).name.startswith('VALIDACION_NO_FINAL_'))
+                self.assertEqual(qa.sha256_file(target / item['path']), item['sha256'])
+            manifest = (target / 'MANIFIESTO.json').read_bytes()
+            with self.assertRaisesRegex(RuntimeError, 'no se sobrescribe'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertEqual((target / 'MANIFIESTO.json').read_bytes(), manifest)
+
+    def test_altered_or_missing_installer_does_not_publish(self):
+        with tempfile.TemporaryDirectory() as folder:
+            build, report, qa_root = self.configuration_fixture(folder)
+            Path(report['installers'][1]['executable']).write_bytes(b'ALTERED')
+            with self.assertRaisesRegex(RuntimeError, 'alterado'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+            report['installers'].pop()
+            with self.assertRaisesRegex(RuntimeError, 'selección de instaladores está incompleta'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+
+    def test_copy_failure_never_publishes_a_partial_delivery(self):
+        with tempfile.TemporaryDirectory() as folder:
+            build, report, qa_root = self.configuration_fixture(folder)
+            original_copy = qa.shutil.copyfile
+            copied = []
+            def failing_copy(source, destination):
+                copied.append(source)
+                if len(copied) == 2:
+                    raise OSError('Simulated disk failure')
+                return original_copy(source, destination)
+            with patch.object(qa.shutil, 'copyfile', side_effect=failing_copy):
+                with self.assertRaisesRegex(OSError, 'disk failure'):
+                    qa.publish_configuration_installers(build, report, qa_root)
+            target_base = build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR'
+            self.assertEqual(list(target_base.iterdir()), [])
+
+    def test_configuration_requires_complete_local_validation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            build, report, qa_root = self.configuration_fixture(folder)
+            report['full_local_validation']['status'] = 'FAIL'
+            with self.assertRaisesRegex(RuntimeError, 'sin pruebas locales'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+
+    def test_configuration_rejects_partial_or_wrong_version_validation_before_copying(self):
+        for replacement in ({'scope': 'data'}, {'platform': 'linux'}, {'version': '0.0.0'},
+                            {'stages': []}, {'stages': [{'name': 'fixture', 'status': 'FAIL'}]},
+                            {'stages': [{'name': 'fixture', 'status': 'PASS', 'timed_out': True}]}):
+            with self.subTest(replacement=replacement), tempfile.TemporaryDirectory() as folder:
+                build, report, qa_root = self.configuration_fixture(folder)
+                report['full_local_validation'].update(replacement)
+                with patch.object(qa.shutil, 'copyfile') as copy:
+                    with self.assertRaisesRegex(RuntimeError, 'sin pruebas locales'):
+                        qa.publish_configuration_installers(build, report, qa_root)
+                copy.assert_not_called()
+                self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+
+    def test_configuration_rejects_unsafe_run_id_and_duplicate_program(self):
+        with tempfile.TemporaryDirectory() as folder:
+            build, report, qa_root = self.configuration_fixture(folder)
+            report['run_id'] = '../outside'
+            with self.assertRaisesRegex(RuntimeError, 'identidad de ejecución inválida'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+            report['run_id'] = '20261008T180000Z-123'
+            report['executables'].append(report['executables'][0])
+            with self.assertRaisesRegex(RuntimeError, 'Falta verificar un programa'):
+                qa.publish_configuration_installers(build, report, qa_root)
+            self.assertFalse((build.ROOT / 'salida/PRUEBAS_PARA_CONFIGURAR').exists())
+
+    def test_configuration_flag_requires_installers(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
+            qa.main(['--freeze-only', '--para-configurar'])
+        self.assertEqual(error.exception.code, 2)
+
+    def test_configuration_validation_rejects_stale_or_partial_suite(self):
+        validation = SimpleNamespace(SQL_TESTS=('membership_freezes',), UI_TESTS=('atlantic_branding_ui_smoke',))
+        expected = ['python', 'contratos_extraidos', 'membership_freezes', 'marketing_backend',
+                    'recorrido_huellas', 'simulacion_gimnasio', 'atlantic_branding_ui_smoke']
+        with tempfile.TemporaryDirectory() as folder:
+            build = SimpleNamespace(ROOT=Path(folder), VERSION='3.6.0')
+            target = build.ROOT / 'salida/validacion'
+            target.mkdir(parents=True)
+            def suite_report(scope='all', started=None, **changes):
+                result = {'version': build.VERSION, 'scope': scope, 'platform': 'win32', 'status': 'PASS',
+                          'started_at': started or qa.datetime.now(qa.timezone.utc).isoformat(),
+                          'stages': [{'name': name, 'status': 'PASS', 'log': name + '.log'} for name in expected]}
+                result.update(changes)
+                for stage in result['stages']:
+                    (target / stage['log']).write_text('LOCAL UNIT FIXTURE\n')
+                (target / 'resultado_pruebas_all.json').write_text(json.dumps(result))
+                return subprocess.CompletedProcess([], 0)
+            def fresh(command, **kwargs):
+                self.assertEqual(command, [sys.executable, str(build.ROOT / 'run_validation.py')])
+                self.assertTrue(kwargs['live_output'])
+                return suite_report()
+            with patch.dict(sys.modules, {'run_validation': validation}), contextlib.redirect_stdout(io.StringIO()):
+                result = qa.run_configuration_validation(build, fresh)
+                self.assertEqual(result['scope'], 'all')
+                self.assertEqual(len(result['evidence']['logs']), len(expected))
+                self.assertEqual(result['evidence']['sha256'], qa.sha256_file(target / 'resultado_pruebas_all.json'))
+                # A previous successful report is preserved but cannot satisfy
+                # a skipped run, even if the replacement command returns zero.
+                with self.assertRaisesRegex(RuntimeError, 'no están aprobadas'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: subprocess.CompletedProcess([], 0))
+                with self.assertRaisesRegex(RuntimeError, 'no están aprobadas'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: suite_report(scope='data'))
+                with self.assertRaisesRegex(RuntimeError, 'no están aprobadas'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: suite_report(started='2000-01-01T00:00:00+00:00'))
+                with self.assertRaisesRegex(RuntimeError, 'no están aprobadas'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: suite_report(started='2999-01-01T00:00:00+00:00'))
+                with self.assertRaisesRegex(RuntimeError, 'no están aprobadas'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: suite_report(stages=[{'name': 'python', 'status': 'PASS', 'log': 'python.log'}]))
+                def missing_log(*args, **kwargs):
+                    outcome = suite_report()
+                    (target / (expected[-1] + '.log')).unlink()
+                    return outcome
+                with self.assertRaisesRegex(RuntimeError, 'Falta un registro'):
+                    qa.run_configuration_validation(build, missing_log)
+                with self.assertRaisesRegex(RuntimeError, 'no terminó correctamente'):
+                    qa.run_configuration_validation(build, lambda *args, **kwargs: subprocess.CompletedProcess([], 1))
 
 
 if __name__ == '__main__':

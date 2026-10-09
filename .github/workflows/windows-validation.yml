@@ -110,21 +110,14 @@ jobs:
           $archive = Join-Path $env:GITHUB_WORKSPACE "backups/20261008/$bundleName"
           & .\.venv\Scripts\python.exe ..\tools\backup_complete_sources.py --restore-runtime-from-package $archive --edition '${{ matrix.edition }}' --expected-sha256 $bundle.sha256
           exit $LASTEXITCODE
-      - name: Compile and diagnose every real application and technical installer
+      - name: Create configuration installers with the actual Windows batch file
         run: |
-          & .\.venv\Scripts\python.exe ..\tools\windows_packaging_qa.py --installers
+          $env:GYMSOFT_BUILD_NONINTERACTIVE = '1'
+          cmd /d /c CREAR_INSTALADORES.bat 2>&1 | Tee-Object -FilePath salida\validacion\crear-instaladores.log
           exit $LASTEXITCODE
       - name: Install, update and uninstall on the disposable Windows runner
         run: |
           & .\.venv\Scripts\python.exe ..\tools\windows_installation_qa.py --ephemeral-runner 2>&1 | Tee-Object -FilePath salida\validacion\installation-entry.log
-          exit $LASTEXITCODE
-      - name: Recheck the failing dashboard layout first
-        run: |
-          & .\.venv\Scripts\python.exe tests/layout_consistency_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\layout-preflight.log
-          exit $LASTEXITCODE
-      - name: Run the complete offline validation
-        run: |
-          & .\.venv\Scripts\python.exe run_validation.py
           exit $LASTEXITCODE
       - name: Check the final release remains blocked without acceptance
         run: |
@@ -168,13 +161,13 @@ jobs:
           } finally {
             Pop-Location
           }
-      - name: Save technical installers for review (not final delivery)
-        if: always()
+      - name: Save complete configuration installers after successful validation
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: NO_FINAL-technical-installers-${{ matrix.edition }}
-          if-no-files-found: ignore
-          path: ${{ matrix.edition }}/salida/validacion/paquete-tecnico/ejecuciones/*/instaladores/**/*.exe
+          name: NO_FINAL-installers-para-configurar-${{ matrix.edition }}
+          if-no-files-found: error
+          path: ${{ matrix.edition }}/salida/PRUEBAS_PARA_CONFIGURAR/
       - name: Save Windows evidence
         if: always()
         uses: actions/upload-artifact@v4

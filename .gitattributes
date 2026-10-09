@@ -2,3 +2,6 @@
 # Preserve proprietary component licenses and application archives byte for byte.
 **/DigitalPersonaRuntime/Licenses/*.rtf -text
 backups/**/*.zip -text
+
+# Batch scripts use Windows line endings when checked out or packaged.
+*.bat text eol=crlf
