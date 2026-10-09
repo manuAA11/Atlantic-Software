@@ -1,0 +1,112 @@
+﻿2026-10-09 03:39:14.996   Log opened. (Time zone: UTC+00:00)
+2026-10-09 03:39:14.996   Setup version: Inno Setup version 6.7.1
+2026-10-09 03:39:14.996   Original Setup EXE: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T033709Z-7736\instaladores\componentes\ZTATTUZ_Admin_3.6.1.exe
+2026-10-09 03:39:14.996   Setup command line: /SL5="$600A8,66940795,936448,D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T033709Z-7736\instaladores\componentes\ZTATTUZ_Admin_3.6.1.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin /LOG=D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalar-admin.log
+2026-10-09 03:39:14.996   Windows version: 10.0.20348
+2026-10-09 03:39:14.996   Windows architecture: x64 (64-bit)
+2026-10-09 03:39:14.996   Machine types supported by system: x86 x64
+2026-10-09 03:39:14.996   User privileges: Administrative
+2026-10-09 03:39:15.027   Administrative install mode: No
+2026-10-09 03:39:15.027   Install mode root key: HKEY_CURRENT_USER
+2026-10-09 03:39:15.027   64-bit install mode: Yes
+2026-10-09 03:39:15.027   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-09 03:39:15.027   Created protected temporary directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-6CN3CGW71C.tmp
+2026-10-09 03:39:15.434   -- DLL function import --
+2026-10-09 03:39:15.434   Function and DLL name: SHChangeNotify@shell32.dll
+2026-10-09 03:39:15.434   Importing the DLL function. Dest DLL name: shell32.dll
+2026-10-09 03:39:15.434   Successfully imported the DLL function. Delay loaded? No
+2026-10-09 03:39:21.536   Starting the installation process.
+2026-10-09 03:39:21.536   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion
+2026-10-09 03:39:21.536   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin
+2026-10-09 03:39:21.536   Directory for uninstall files: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin
+2026-10-09 03:39:21.536   Creating new uninstall log: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\unins000.dat
+2026-10-09 03:39:21.992   -- File entry --
+2026-10-09 03:39:21.992   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\unins000.exe
+2026-10-09 03:39:21.992   Non-default bitness: 32-bit
+2026-10-09 03:39:22.665   Time stamp of our file: 2026-10-09 03:39:13.418
+2026-10-09 03:39:22.665   Installing the file.
+2026-10-09 03:39:22.774   Successfully installed the file.
+2026-10-09 03:39:22.774   -- File entry --
+2026-10-09 03:39:22.774   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\.gitignore
+2026-10-09 03:39:22.774   Time stamp of our file: 2026-10-09 03:35:24.000
+2026-10-09 03:39:22.774   Installing the file.
+2026-10-09 03:39:22.774   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime
+2026-10-09 03:39:22.774   Successfully installed the file.
+2026-10-09 03:39:22.774   -- File entry --
+2026-10-09 03:39:22.774   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\0x0409.ini
+2026-10-09 03:39:22.774   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:22.774   Installing the file.
+2026-10-09 03:39:22.774   Successfully installed the file.
+2026-10-09 03:39:22.774   -- File entry --
+2026-10-09 03:39:22.774   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\Data1.cab
+2026-10-09 03:39:22.774   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:22.774   Installing the file.
+2026-10-09 03:39:23.040   Successfully installed the file.
+2026-10-09 03:39:23.040   -- File entry --
+2026-10-09 03:39:23.040   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\InstallOnly.bat
+2026-10-09 03:39:23.040   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.040   Installing the file.
+2026-10-09 03:39:23.040   Successfully installed the file.
+2026-10-09 03:39:23.040   -- File entry --
+2026-10-09 03:39:23.040   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\MANIFEST.json
+2026-10-09 03:39:23.040   Time stamp of our file: 2026-10-09 03:35:24.000
+2026-10-09 03:39:23.040   Installing the file.
+2026-10-09 03:39:23.040   Successfully installed the file.
+2026-10-09 03:39:23.040   -- File entry --
+2026-10-09 03:39:23.040   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\README.md
+2026-10-09 03:39:23.040   Time stamp of our file: 2026-10-09 03:35:24.000
+2026-10-09 03:39:23.040   Installing the file.
+2026-10-09 03:39:23.040   Successfully installed the file.
+2026-10-09 03:39:23.040   -- File entry --
+2026-10-09 03:39:23.040   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\setup.exe
+2026-10-09 03:39:23.040   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.040   Installing the file.
+2026-10-09 03:39:23.071   Successfully installed the file.
+2026-10-09 03:39:23.071   -- File entry --
+2026-10-09 03:39:23.071   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\Setup.ini
+2026-10-09 03:39:23.071   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.071   Installing the file.
+2026-10-09 03:39:23.071   Successfully installed the file.
+2026-10-09 03:39:23.071   -- File entry --
+2026-10-09 03:39:23.071   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\setup.msi
+2026-10-09 03:39:23.071   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.071   Installing the file.
+2026-10-09 03:39:23.133   Successfully installed the file.
+2026-10-09 03:39:23.133   -- File entry --
+2026-10-09 03:39:23.133   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\UninstallOnly.bat
+2026-10-09 03:39:23.133   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.133   Installing the file.
+2026-10-09 03:39:23.133   Successfully installed the file.
+2026-10-09 03:39:23.133   -- File entry --
+2026-10-09 03:39:23.133   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+2026-10-09 03:39:23.133   Time stamp of our file: 2026-10-09 03:37:08.000
+2026-10-09 03:39:23.133   Installing the file.
+2026-10-09 03:39:23.133   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites
+2026-10-09 03:39:23.133   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}
+2026-10-09 03:39:23.337   Defaulting to Abort for suppressed message box (Abort/Retry/Ignore):
+                          D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+                          
+                          Ocurrió un error al intentar renombrar un archivo en la carpeta de destino:
+                          MoveFile falló; código 3.
+                          The system cannot find the path specified.
+2026-10-09 03:39:23.337   User canceled the installation process.
+2026-10-09 03:39:23.337   Rolling back changes.
+2026-10-09 03:39:23.337   Starting the uninstallation process.
+2026-10-09 03:39:23.337   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}
+2026-10-09 03:39:23.337   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\ISSetupPrerequisites
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\UninstallOnly.bat
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\setup.msi
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\Setup.ini
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\setup.exe
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\README.md
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\MANIFEST.json
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\InstallOnly.bat
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\Data1.cab
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\0x0409.ini
+2026-10-09 03:39:23.337   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime\.gitignore
+2026-10-09 03:39:23.337   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin\DigitalPersonaRuntime
+2026-10-09 03:39:23.337   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion\admin
+2026-10-09 03:39:23.337   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033902Z-3480\instalacion
+2026-10-09 03:39:23.337   Uninstallation process succeeded.
+2026-10-09 03:39:23.337   Deinitializing Setup.
+2026-10-09 03:39:23.337   Log closed.
