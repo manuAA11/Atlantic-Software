@@ -4,9 +4,9 @@
   "packages": [
     {
       "file": "AtlanticGym_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip",
-      "bytes": 47868484,
-      "sha256": "243bd2bc044a8c56e5a5410e6389c96c9fc8e701266c685771bac751b56c0e18",
-      "files": 1596,
+      "bytes": 49466014,
+      "sha256": "6301e687dd515724337e00dcc0518227183152ab081435c9602e3b7776d65ddd",
+      "files": 2351,
       "editions": {
         "GymSoft_Comercial_3.6.0": "x64"
       },
@@ -14,14 +14,18 @@
     },
     {
       "file": "ZTATTUZ_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip",
-      "bytes": 64105627,
-      "sha256": "8089a4de57f3bb62822bafa88079b8346757b5501108bbe0beb1adc53a4e8757",
-      "files": 1759,
+      "bytes": 65699007,
+      "sha256": "44cf6c2ff1c69f2151157dd3f067ed2030aca34c424f3029f6c3bfb8e8f13389",
+      "files": 2514,
       "editions": {
         "GymSoft_ZTATTUZ_3.6.1_x64": "x64",
         "GymSoft_ZTATTUZ_3.6.1_x86": "x86"
       },
       "final_release": false
     }
-  ]
+  ],
+  "source_commit": "b88058a921ee10d41affa5afc6bb97541a63321c",
+  "verified_windows_code_commit": "fe2a95b2413caf1567afe688b2b80af060d27615",
+  "verified_windows_run": "38001250527",
+  "configuration_installer_release": "https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-fe2a95b"
 }
