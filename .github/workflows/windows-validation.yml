@@ -184,13 +184,6 @@ jobs:
           } finally {
             Pop-Location
           }
-      - name: Save complete configuration installers after successful validation
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: NO_FINAL-installers-para-configurar-${{ matrix.edition }}
-          if-no-files-found: error
-          path: ${{ matrix.edition }}/salida/PRUEBAS_PARA_CONFIGURAR/
       - name: Save the complete customer installer download
         if: success()
         uses: actions/upload-artifact@v4
