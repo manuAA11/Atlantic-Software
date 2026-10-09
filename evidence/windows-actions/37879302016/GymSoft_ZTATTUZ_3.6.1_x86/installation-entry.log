@@ -1,0 +1,24 @@
+{
+  "status": "FAIL",
+  "final": false,
+  "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+  "date_utc": "2026-10-09T03:30:22.638456+00:00",
+  "release_gate_modified": false,
+  "commands": [],
+  "installed_executables": [],
+  "cleanup": {
+    "status": "NOT_RUN"
+  },
+  "runner": {
+    "environment": "github-hosted",
+    "github_run_id": "37879302016",
+    "runner_temp": "D:\\a\\_temp",
+    "workspace": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "packaging_report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\informe_empaquetado.json",
+  "packaging_report_sha256": "5fbb0fd73a4b47d7510f37dec19b14d033395631b09b5f800fa74f5187ba6f8f",
+  "native_windows_architecture": "x64",
+  "version": "3.6.1",
+  "error": "RuntimeError: El instalador compilado no contiene la marca técnica NO FINAL: instalador_admin.iss"
+}
