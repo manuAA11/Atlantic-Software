@@ -10,6 +10,9 @@ on:
       - 'common/**'
       - 'backend/**'
       - 'tools/windows_frozen_probe.py'
+      - 'tools/windows_packaging_qa.py'
+      - 'tools/windows_installation_qa.py'
+      - 'tools/backup_complete_sources.py'
 
 permissions:
   contents: write
@@ -22,7 +25,7 @@ jobs:
   validate:
     name: ${{ matrix.edition }} / Python ${{ matrix.python }} ${{ matrix.architecture }}
     runs-on: windows-2022
-    timeout-minutes: 25
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -68,6 +71,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cmd /d /c PREPARAR_PRUEBAS.bat
           exit $LASTEXITCODE
+      - name: Check portable packaging and installation guards
+        working-directory: .
+        run: |
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa
+          exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
           New-Item -ItemType Directory -Force salida\validacion | Out-Null
@@ -91,6 +99,24 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json 2>&1 | Tee-Object -FilePath salida\validacion\frozen-execution.log
           exit $LASTEXITCODE
+      - name: Restore the verified runtime incorporated in the application package
+        run: |
+          $bundleManifest = Get-Content -Raw (Join-Path $env:GITHUB_WORKSPACE 'backups/20261008/MANIFEST_APLICACIONES_COMPLETAS.json') | ConvertFrom-Json
+          $product = if ('${{ matrix.edition }}' -eq 'GymSoft_Comercial_3.6.0') { 'AtlanticGym' } else { 'ZTATTUZ' }
+          $bundleName = "${product}_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip"
+          $bundle = $bundleManifest.packages | Where-Object { $_.file -eq $bundleName }
+          if (-not $bundle) { throw 'The complete application package has no authenticated manifest entry.' }
+          $archive = Join-Path $env:GITHUB_WORKSPACE "backups/20261008/$bundleName"
+          & .\.venv\Scripts\python.exe ..\tools\backup_complete_sources.py --restore-runtime-from-package $archive --edition '${{ matrix.edition }}' --expected-sha256 $bundle.sha256
+          exit $LASTEXITCODE
+      - name: Compile and diagnose every real application and technical installer
+        run: |
+          & .\.venv\Scripts\python.exe ..\tools\windows_packaging_qa.py --installers
+          exit $LASTEXITCODE
+      - name: Install, update and uninstall on the disposable Windows runner
+        run: |
+          & .\.venv\Scripts\python.exe ..\tools\windows_installation_qa.py --ephemeral-runner
+          exit $LASTEXITCODE
       - name: Recheck the failing dashboard layout first
         run: |
           & .\.venv\Scripts\python.exe tests/layout_consistency_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\layout-preflight.log
@@ -109,6 +135,7 @@ jobs:
             throw 'The unaccepted release did not stop at the acceptance gate.'
           }
           Write-Output 'Acceptance guard verified. No final installers produced by this workflow.'
+          exit 0
       - name: Preserve diagnostic reports in a separate Git branch
         if: always()
         run: |
@@ -116,9 +143,14 @@ jobs:
           New-Item -ItemType Directory -Force $reportDir | Out-Null
           $validationDir = Join-Path $env:GITHUB_WORKSPACE "${{ matrix.edition }}/salida/validacion"
           if (Test-Path $validationDir) {
-            Get-ChildItem $validationDir -File | Where-Object { $_.Extension -in '.json', '.log', '.txt' } | Copy-Item -Destination $reportDir
+            Get-ChildItem $validationDir -Recurse -File | Where-Object { ($_.Extension -in '.json', '.log', '.txt') -and $_.FullName -notmatch '[\\/](dist|frozen-probe|cache-pyinstaller|build|instalacion)[\\/]' } | ForEach-Object {
+              $relative = $_.FullName.Substring($validationDir.Length).TrimStart([char[]]'\/')
+              $destination = Join-Path $reportDir $relative
+              New-Item -ItemType Directory -Force (Split-Path -Parent $destination) | Out-Null
+              Copy-Item $_.FullName -Destination $destination
+            }
           }
-          @{ run_id = '${{ github.run_id }}'; commit = '${{ github.sha }}'; edition = '${{ matrix.edition }}'; scope = 'Windows offline validation only; no final installer or hardware acceptance.' } | ConvertTo-Json | Set-Content -Encoding utf8 (Join-Path $reportDir 'run.json')
+          @{ run_id = '${{ github.run_id }}'; commit = '${{ github.sha }}'; edition = '${{ matrix.edition }}'; scope = 'Windows validation and technical packaging/installation only; no final release, real accounts or hardware acceptance.' } | ConvertTo-Json | Set-Content -Encoding utf8 (Join-Path $reportDir 'run.json')
           Push-Location $env:GITHUB_WORKSPACE
           try {
             git config user.name 'github-actions[bot]'
@@ -141,7 +173,4 @@ jobs:
         with:
           name: windows-evidence-${{ matrix.edition }}-python${{ matrix.python }}
           if-no-files-found: error
-          path: |
-            ${{ matrix.edition }}/salida/validacion/*.json
-            ${{ matrix.edition }}/salida/validacion/*.log
-            ${{ matrix.edition }}/salida/validacion/*.txt
+          path: evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}/

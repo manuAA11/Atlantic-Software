@@ -1,0 +1,4 @@
+
+# Preserve proprietary component licenses and application archives byte for byte.
+**/DigitalPersonaRuntime/Licenses/*.rtf -text
+backups/**/*.zip -text

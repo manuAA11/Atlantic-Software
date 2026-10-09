@@ -473,7 +473,14 @@ class OwnerPanel(tk.Tk):
                     writer.writerow(["'"+v if v.startswith(('=','+','-','@')) else v for v in values])
         except OSError as error:messagebox.showerror('No se pudo guardar',str(error),parent=self)
 
-if __name__=='__main__':
+def main():
+    if '--diagnostico' in sys.argv:
+        from diagnostico import main as diagnostic_main
+        raise SystemExit(diagnostic_main())
     app=OwnerPanel()
     try:app.mainloop()
     except tk.TclError:pass
+
+
+if __name__=='__main__':
+    main()

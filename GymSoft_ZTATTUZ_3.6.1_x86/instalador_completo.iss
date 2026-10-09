@@ -1,9 +1,21 @@
-﻿#ifndef AppVersion
+﻿#ifndef BuildDistRoot
+#define BuildDistRoot "dist"
+#endif
+#ifndef BuildComponentRoot
+#define BuildComponentRoot "salida\componentes"
+#endif
+#ifdef BuildValidation
+#define BuildSuffix " · Validación técnica (no final)"
+#else
+#define BuildSuffix ""
+#endif
+#define RuntimeBits 32
+#ifndef AppVersion
 #define AppVersion "3.6.1"
 #endif
 [Setup]
 AppId=ZTATTUZActualizadorCompleto
-AppName=Atlantic Gym · ZTATTUZ
+AppName=Atlantic Gym · ZTATTUZ{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
 CreateAppDir=no
@@ -16,15 +28,17 @@ SolidCompression=yes
 WizardStyle=modern
 MinVersion=10.0
 ArchitecturesAllowed=x86os
+LicenseFile=DigitalPersonaRuntime\Licenses\EULA SDK.rtf
 SetupIconFile=icono.ico
 DisableReadyPage=no
 [Languages]
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 [Files]
 Source: "DigitalPersonaRuntime\*"; DestDir: "{tmp}\DigitalPersonaRuntime"; Flags: deleteafterinstall recursesubdirs createallsubdirs
-Source: "salida\componentes\ZTATTUZ_Admin_{#AppVersion}.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
-Source: "salida\componentes\ZTATTUZ_Recepcion_{#AppVersion}.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
+Source: "{#BuildComponentRoot}\ZTATTUZ_Admin_{#AppVersion}.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
+Source: "{#BuildComponentRoot}\ZTATTUZ_Recepcion_{#AppVersion}.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall
 [Code]
+#include "digitalpersona_install.iss"
 procedure InstallComponent(const Filename: String; const LabelText: String);
 var Code: Integer;
 begin
@@ -33,14 +47,13 @@ begin
     RaiseException('No se pudo abrir el instalador de ' + LabelText + '. Vuelve a ejecutar la actualización.');
   if (Code <> 0) and (Code <> 3010) then
     RaiseException('No se completó ' + LabelText + ' (código ' + IntToStr(Code) + '). Cierra las aplicaciones y vuelve a ejecutar la actualización.');
+  if Code = 3010 then DigitalPersonaRestartRequired := True;
 end;
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssPostInstall then begin
+    EnsureDigitalPersonaRuntime(ExpandConstant('{tmp}\DigitalPersonaRuntime'));
     InstallComponent('ZTATTUZ_Admin_{#AppVersion}.exe', 'Administración');
     InstallComponent('ZTATTUZ_Recepcion_{#AppVersion}.exe', 'Recepción');
   end;
 end;
-
-[Run]
-Filename: "{tmp}\DigitalPersonaRuntime\setup.exe"; WorkingDir: "{tmp}\DigitalPersonaRuntime"; Description: "Instalar el controlador y reconocimiento DigitalPersona (no requiere lector conectado)"; Verb: "runas"; Flags: shellexec postinstall skipifsilent waituntilterminated

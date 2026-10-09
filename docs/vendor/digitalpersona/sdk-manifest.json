@@ -1,0 +1,144 @@
+{
+  "format_version": 1,
+  "product": "DigitalPersona U.are.U SDK for Windows",
+  "sdk_version": "3.4.0",
+  "runtime_version": "3.4.0.127",
+  "source_archive": {
+    "filename": "DigitalPersonaBiometricSDKforWindows_3.4.0.zip",
+    "bytes": 171161718,
+    "sha256": "195bca9190cfa51f6068b8fc6fbc676eb4303a0afd0338e7935430f7da33206a"
+  },
+  "redistribution": "Runtime object code incorporated into Atlantic Gym only; EULA 1.2(c), retain notices and terms no less restrictive. SDK and standalone Runtime binaries are not published in Git.",
+  "license": {
+    "source_path": "Docs/EULA SDK.rtf",
+    "path": "Licenses/EULA SDK.rtf",
+    "bytes": 124466,
+    "sha256": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "runtimes": {
+    "x64": {
+      "files": [
+        {
+          "source_path": "RTE/x64/0x0409.ini",
+          "path": "0x0409.ini",
+          "bytes": 22480,
+          "sha256": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948"
+        },
+        {
+          "source_path": "RTE/x64/Data1.cab",
+          "path": "Data1.cab",
+          "bytes": 21173316,
+          "sha256": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569"
+        },
+        {
+          "source_path": "RTE/x64/InstallOnly.bat",
+          "path": "InstallOnly.bat",
+          "bytes": 471,
+          "sha256": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a"
+        },
+        {
+          "source_path": "RTE/x64/ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe",
+          "path": "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe",
+          "bytes": 18052816,
+          "sha256": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df"
+        },
+        {
+          "source_path": "RTE/x64/setup.exe",
+          "path": "setup.exe",
+          "bytes": 1304256,
+          "sha256": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da"
+        },
+        {
+          "source_path": "RTE/x64/Setup.ini",
+          "path": "Setup.ini",
+          "bytes": 5446,
+          "sha256": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959"
+        },
+        {
+          "source_path": "RTE/x64/setup.msi",
+          "path": "setup.msi",
+          "bytes": 3722240,
+          "sha256": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6"
+        },
+        {
+          "source_path": "RTE/x64/UninstallOnly.bat",
+          "path": "UninstallOnly.bat",
+          "bytes": 75,
+          "sha256": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42"
+        }
+      ],
+      "file_count": 8,
+      "bytes": 44281100,
+      "msi_metadata": {
+        "msi_template": "x64;1033",
+        "product_code": "{7FC7AAC6-4A7E-4DA4-92ED-D37FB6BDCA18}",
+        "upgrade_code": "{7B16D7A8-EC3A-4FCC-9915-BD1D1D496E89}",
+        "product_version": "3.4.0.127",
+        "registry_product_key": "Software\\DigitalPersona\\Products\\U.are.U RTE",
+        "registry_version_name": "Version",
+        "includes_32_and_64_bit_dlls": true,
+        "launch_condition_table_present": false,
+        "arm64_validated": false
+      }
+    },
+    "x86": {
+      "files": [
+        {
+          "source_path": "RTE/x86/0x0409.ini",
+          "path": "0x0409.ini",
+          "bytes": 22480,
+          "sha256": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948"
+        },
+        {
+          "source_path": "RTE/x86/Data1.cab",
+          "path": "Data1.cab",
+          "bytes": 13966431,
+          "sha256": "42b57754f1b62fe10a8aaca3f2ecef9766e5be38bc8aec351b0dc449e7d1e1e4"
+        },
+        {
+          "source_path": "RTE/x86/InstallOnly.bat",
+          "path": "InstallOnly.bat",
+          "bytes": 471,
+          "sha256": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a"
+        },
+        {
+          "source_path": "RTE/x86/setup.exe",
+          "path": "setup.exe",
+          "bytes": 1103368,
+          "sha256": "738122915385bbaac033ac295dd1970685c5a3637382cae56caedecdc65aadc8"
+        },
+        {
+          "source_path": "RTE/x86/Setup.ini",
+          "path": "Setup.ini",
+          "bytes": 5230,
+          "sha256": "ec316a3f10f02efc3bcd2ac2d9615bd2a5480ed017cf0110e0033606e3037e69"
+        },
+        {
+          "source_path": "RTE/x86/setup.msi",
+          "path": "setup.msi",
+          "bytes": 2802688,
+          "sha256": "4310e0ab0354da2684671a04f4e61709f155251883dbc3deecfac646cd67a879"
+        },
+        {
+          "source_path": "RTE/x86/UninstallOnly.bat",
+          "path": "UninstallOnly.bat",
+          "bytes": 75,
+          "sha256": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42"
+        }
+      ],
+      "file_count": 7,
+      "bytes": 17900743,
+      "msi_metadata": {
+        "msi_template": "Intel;1033",
+        "product_code": "{9C54D120-D3C1-49FF-8160-CE6B1CF4F533}",
+        "upgrade_code": "{FCD41DB2-6094-4585-B3C4-A872AD33D96F}",
+        "product_version": "3.4.0.127",
+        "registry_product_key": "Software\\DigitalPersona\\Products\\U.are.U RTE",
+        "registry_version_name": "Version",
+        "includes_32_and_64_bit_dlls": false,
+        "launch_condition": "NOT VersionNT64",
+        "arm64_validated": false
+      }
+    }
+  }
+}

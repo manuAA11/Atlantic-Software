@@ -2413,6 +2413,9 @@ class ReceptionApp(tk.Tk):
 
 
 def main() -> None:
+    if "--diagnostico" in sys.argv:
+        from diagnostico import main as diagnostic_main
+        raise SystemExit(diagnostic_main())
     app = ReceptionApp()
 
     if app.ready:

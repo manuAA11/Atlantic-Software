@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "scope": "Índice de evidencia de regresiones y aplicabilidad. No constituye aceptación final, piloto externo ni hardware físico.",
+  "regression_acceptance_marked": false,
+  "current_full_validation": "pending_after_build_and_installer_changes",
+  "verified_windows_source_commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+  "verified_windows_run": "37876923101",
+  "windows_stages_passed": 111,
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "version": "3.6.0",
+      "windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 137,
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
+        "result_sha256": "00b445d6ead0cbe2a29c19d1744218a19a90b1fb44b4ae734c7b5829d6a2e451",
+        "metadata": "evidence/windows-actions/37876923101/GymSoft_Comercial_3.6.0/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "current_gate_tests": {
+        "status": "PASS",
+        "tests": 12,
+        "platform": "linux",
+        "scope": "Pruebas del gate con fixtures; no aceptación de proveedores ni hardware.",
+        "evidence": "GymSoft_Comercial_3.6.0-gate.log",
+        "recheck": "Repetido después del diagnóstico Comercial; prueba real de aplicabilidad regenerada con hashes LF actuales."
+      },
+      "final_release": {
+        "status": "BLOCKED",
+        "message": "Entrega bloqueada. Falta comprobar: whatsapp_pilot, wompi_sandbox, chatbot_pilot, automation_pilot, timezone, audit_clock, freeze, freeze_checkin, ticket_daily, scheduler_gym_timezone, prior_regressions, added_regressions, concurrent_two_sessions",
+        "pending_checks_count": 13
+      },
+      "regression_acceptance": {
+        "prior_regressions": false,
+        "added_regressions": false,
+        "reason": "Los cambios posteriores de build/instalador requieren su propia validación antes de acreditar el estado actual."
+      },
+      "earlier_windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "commit": "becc44afd5adc524ff3e02c816badbb05400009a",
+        "run_id": "37861669196",
+        "result": "evidence/windows-actions/37861669196/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
+        "result_sha256": "f8a42f36060a3ce721cfb5a7313262c785e269f6cdb0b37a677fb4fe970f1604",
+        "metadata": "evidence/windows-actions/37861669196/GymSoft_Comercial_3.6.0/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "windows_frozen_component_probe": {
+        "status": "PASS",
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_Comercial_3.6.0/frozen-windows-components.json",
+        "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "version": "3.6.1",
+      "windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 157,
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
+        "result_sha256": "f74dc72fc6e647ceff680ec36e490728dd2608cb5671b767bcb917563ef210a0",
+        "metadata": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "current_gate_tests": {
+        "status": "PASS",
+        "tests": 12,
+        "platform": "linux",
+        "scope": "Pruebas del gate con fixtures; no aceptación de proveedores ni hardware.",
+        "evidence": "GymSoft_ZTATTUZ_3.6.1_x64-gate.log"
+      },
+      "final_release": {
+        "status": "BLOCKED",
+        "message": "Entrega bloqueada. Falta comprobar: whatsapp_pilot, wompi_sandbox, chatbot_pilot, automation_pilot, timezone, audit_clock, freeze, freeze_checkin, ticket_daily, relay_hardware, scheduler_gym_timezone, prior_regressions, added_regressions, concurrent_two_sessions",
+        "pending_checks_count": 14
+      },
+      "regression_acceptance": {
+        "prior_regressions": false,
+        "added_regressions": false,
+        "reason": "Los cambios posteriores de build/instalador requieren su propia validación antes de acreditar el estado actual."
+      },
+      "earlier_windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "commit": "becc44afd5adc524ff3e02c816badbb05400009a",
+        "run_id": "37861669196",
+        "result": "evidence/windows-actions/37861669196/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
+        "result_sha256": "8494bb7feb8cd7c4f33913ccb758c75a027a69c3cb56fc71ac8625b8a3660857",
+        "metadata": "evidence/windows-actions/37861669196/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "windows_frozen_component_probe": {
+        "status": "PASS",
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x64/frozen-windows-components.json",
+        "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "version": "3.6.1",
+      "windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 156,
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
+        "result_sha256": "6771b9d8f2b93b558a0860165b9832437f2ca84effa22d274e2f2fa4950817d0",
+        "metadata": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "current_gate_tests": {
+        "status": "PASS",
+        "tests": 12,
+        "platform": "linux",
+        "scope": "Pruebas del gate con fixtures; no aceptación de proveedores ni hardware.",
+        "evidence": "GymSoft_ZTATTUZ_3.6.1_x86-gate.log"
+      },
+      "final_release": {
+        "status": "BLOCKED",
+        "message": "Entrega bloqueada. Falta comprobar: whatsapp_pilot, wompi_sandbox, chatbot_pilot, automation_pilot, timezone, audit_clock, freeze, freeze_checkin, ticket_daily, relay_hardware, scheduler_gym_timezone, prior_regressions, added_regressions, concurrent_two_sessions",
+        "pending_checks_count": 14
+      },
+      "regression_acceptance": {
+        "prior_regressions": false,
+        "added_regressions": false,
+        "reason": "Los cambios posteriores de build/instalador requieren su propia validación antes de acreditar el estado actual."
+      },
+      "earlier_windows_source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "commit": "becc44afd5adc524ff3e02c816badbb05400009a",
+        "run_id": "37861669196",
+        "result": "evidence/windows-actions/37861669196/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
+        "result_sha256": "794e9d5bf5e42510ecd674e964a04d85d98f89127ca4042e39b2f6ea36c7212a",
+        "metadata": "evidence/windows-actions/37861669196/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+        "scope": "Windows offline validation only; no final installer or hardware acceptance."
+      },
+      "windows_frozen_component_probe": {
+        "status": "PASS",
+        "commit": "0a783a777cd08186e3dc6c1e1f1538cc4a5e9eec",
+        "run_id": "37876923101",
+        "result": "evidence/windows-actions/37876923101/GymSoft_ZTATTUZ_3.6.1_x86/frozen-windows-components.json",
+        "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+      }
+    }
+  ],
+  "gate_implementation_sha256": "9c74d18e17f16067a1dcdc267974245a3df5c7225e669ef8f79ea7ec8324cde0",
+  "common_gate_test": {
+    "status": "PASS",
+    "tests": 12,
+    "platform": "linux",
+    "evidence": "common-gate.log"
+  },
+  "windows_workflow_status": "FAIL",
+  "windows_workflow_failure": "La comprobación esperaba el rechazo del gate final; PowerShell conservó LASTEXITCODE=1. Las 111 etapas y los tres probes congelados sí aprobaron. No se acredita instalación ni aceptación final.",
+  "current_python_tests_expected": {
+    "total": 484,
+    "status": "pending_full_recheck",
+    "editions": {
+      "GymSoft_Comercial_3.6.0": 153,
+      "GymSoft_ZTATTUZ_3.6.1_x86": 165,
+      "GymSoft_ZTATTUZ_3.6.1_x64": 166
+    },
+    "scope": "Conteo esperado después de las pruebas nuevas; no es un resultado PASS de la suite actual."
+  }
+}

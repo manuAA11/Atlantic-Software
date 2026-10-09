@@ -39,7 +39,9 @@
     },
     "relay_hardware": {
       "passed": false,
-      "evidence": ""
+      "state": "not_applicable",
+      "reason": "Atlantic Gym Comercial conserva la ausencia de relé y apertura de puerta; esas funciones pertenecen exclusivamente a ZTATTUZ.",
+      "evidence": "release_evidence/commercial_relay_not_applicable.json"
     },
     "scheduler_gym_timezone": {
       "passed": false,

@@ -8230,6 +8230,9 @@ class GymSoftApp(tk.Tk):
 
 
 def main() -> None:
+    if "--diagnostico" in sys.argv:
+        from diagnostico import main as diagnostic_main
+        raise SystemExit(diagnostic_main())
     app = GymSoftApp()
 
     if app.ready:

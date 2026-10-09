@@ -1,0 +1,17 @@
+test_a_new_version_cannot_reuse_missing_or_old_evidence (test_release_gate.ReleaseGateTests.test_a_new_version_cannot_reuse_missing_or_old_evidence) ... ok
+test_absent_relay_cannot_be_presented_as_an_approved_hardware_test (test_release_gate.ReleaseGateTests.test_absent_relay_cannot_be_presented_as_an_approved_hardware_test) ... ok
+test_absent_relay_evidence_must_still_match_the_source_version (test_release_gate.ReleaseGateTests.test_absent_relay_evidence_must_still_match_the_source_version) ... ok
+test_absent_relay_requires_matching_complete_evidence (test_release_gate.ReleaseGateTests.test_absent_relay_requires_matching_complete_evidence) ... ok
+test_commercial_can_document_its_absent_relay_without_a_hardware_pass (test_release_gate.ReleaseGateTests.test_commercial_can_document_its_absent_relay_without_a_hardware_pass) ... ok
+test_commercial_not_applicable_relay_does_not_authorize_missing_wompi (test_release_gate.ReleaseGateTests.test_commercial_not_applicable_relay_does_not_authorize_missing_wompi) ... ok
+test_commercial_with_a_door_module_cannot_reuse_absence_evidence (test_release_gate.ReleaseGateTests.test_commercial_with_a_door_module_cannot_reuse_absence_evidence) ... ok
+test_git_crlf_checkout_keeps_the_same_source_applicability_evidence (test_release_gate.ReleaseGateTests.test_git_crlf_checkout_keeps_the_same_source_applicability_evidence) ... ok
+test_local_pass_does_not_authorize_an_untested_provider_or_hardware (test_release_gate.ReleaseGateTests.test_local_pass_does_not_authorize_an_untested_provider_or_hardware) ... ok
+test_other_commercial_requirements_cannot_be_declared_not_applicable (test_release_gate.ReleaseGateTests.test_other_commercial_requirements_cannot_be_declared_not_applicable) ... ok
+test_verified_current_version_can_proceed_to_windows_validation (test_release_gate.ReleaseGateTests.test_verified_current_version_can_proceed_to_windows_validation) ... ok
+test_ztattuz_cannot_declare_its_relay_not_applicable (test_release_gate.ReleaseGateTests.test_ztattuz_cannot_declare_its_relay_not_applicable) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.048s
+
+OK

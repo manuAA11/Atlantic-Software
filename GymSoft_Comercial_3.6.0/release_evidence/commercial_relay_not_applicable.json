@@ -1,0 +1,22 @@
+{
+  "criterion": "relay_hardware",
+  "state": "not_applicable",
+  "product_name": "Atlantic Gym",
+  "version": "3.6.0",
+  "reason": "Atlantic Gym Comercial conserva la ausencia de relé y apertura de puerta; esas funciones pertenecen exclusivamente a ZTATTUZ.",
+  "scope": "Aplicabilidad de una función ausente, no aceptación de hardware ni de las demás funciones.",
+  "source_sha256": {
+    "product_config.py": "f842115000ac9c3749bbae2854461557a160231cc3374e69eab4837eec5ac95d",
+    "app.py": "7480dd4e11eedb11a5b7031900fa2d925d7ab4322bc951a3546b842e543cd602",
+    "reception_app.py": "5bfb7f07ac4b925dc871f6b9811492d3ce291bd931e856c5beaaffb32a1b1f85"
+  },
+  "absent_modules": [
+    "door_access.py"
+  ],
+  "review": {
+    "product_identity": "product_config.py:10-13",
+    "source_result": "app.py y reception_app.py no importan door_access ni implementan control del relé. El nuevo desvío --diagnostico comprueba componentes sin añadir funciones de apertura.",
+    "product_difference": "docs/ESTADO_CIERRE.md:20; se conserva la ausencia de relé/apertura de puerta de Comercial."
+  },
+  "source_hash_encoding": "UTF-8; line endings normalized to LF"
+}

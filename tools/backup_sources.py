@@ -13,7 +13,7 @@ compatibility = json.loads((ROOT / 'evidence/closure-validation-20261008/python-
 if summary['status'] != 'PASS' or parity['status'] != 'PASS' or compatibility['status'] != 'PASS':
     raise SystemExit('Source backups blocked: local validation or synchronization failed.')
 files = sorted(set(subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd=ROOT).decode().split('\0')) - {''})
-shared = {'backend', 'common', 'supabase', 'onboarding', 'deployment', 'assets', 'docs', 'evidence'}
+shared = {'backend', 'common', 'supabase', 'onboarding', 'deployment', 'assets', 'docs', 'evidence', 'tools'}
 root_files = {'AGENTS.md', '.env.example', '.gitignore'}
 OUTPUT.mkdir(parents=True, exist_ok=True)
 manifest = {'type': 'DEVELOPMENT_SOURCE_BACKUPS', 'final_release': False,
@@ -26,7 +26,8 @@ for product, editions in [('AtlanticGym', {'GymSoft_Comercial_3.6.0'}),
     included = [name for name in files if Path(name).parts[0] in shared | editions or name in root_files]
     warning = ('# ' + product + ': respaldo de fuentes en desarrollo\n\n'
                'Contiene todas las fuentes recuperadas disponibles de este producto, assets, pruebas, migraciones y configuración publicable.\n'
-               'No es una entrega final ni un instalador. Falta el redistribuible DigitalPersona autorizado y la aceptación externa/Windows.\n'
+               'No es una entrega final ni un instalador. Las suites Windows aprobaron; faltan instalación nueva y aceptación externa.\n'
+               'El SDK DigitalPersona ya está recuperado localmente. Este respaldo público excluye sus binarios propietarios; el paquete completo de aplicación los incorpora con su EULA.\n'
                'No hay secretos, venv ni node_modules; instalar requirements.txt y npm ci en cada edición.\n'
                'CPython 3.13 y 3.14 estándar: 64 bits Comercial/ZTATTUZ x64; 32 bits ZTATTUZ x86.\n'
                'Para abrir desde fuentes: INICIAR_ADMINISTRADOR.bat o INICIAR_RECEPCION.bat. No hace falta generar un instalador para configurar/probar.\n'

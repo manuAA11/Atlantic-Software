@@ -35,11 +35,11 @@ Usar un gimnasio de prueba, un cliente con consentimiento y fecha de nacimiento 
 
 Preparar una plantilla aprobada para confirmación de pago y una automatización ONLINE_APPROVED si se desea confirmar proactivamente. Habilitar el scheduler y comprobar auditoría/envío. Ejecutar el mismo job/evento dos veces: no debe producir mensajes ni renovaciones duplicados. Fuera de la ventana de conversación, WhatsApp requiere plantilla aprobada. Guardar evidencia con IDs de prueba/estados/horas, sin datos personales ni secretos. Repetir en ambos proyectos y registrar el alcance.
 
-## Recursos DigitalPersona excluidos del ZIP
+## DigitalPersona restaurado
 
-Recuperar el paquete original completo o el redistribuible autorizado del proveedor DigitalPersona/HID para U.are.U. Cada edición requiere `DigitalPersonaRuntime/setup.exe` y su árbol completo del instalador, sin separar sus MSI/CAB/DLL. Los loaders buscan `dpfpdd.dll` y `dpfj.dll` con arquitectura compatible: x86 para ZTATTUZ x86; x64 para Comercial y ZTATTUZ x64. No existe ese árbol en el material recuperado. No sustituirlo por archivos vacíos ni una DLL de una fuente no verificada.
+El SDK original 3.4.0 ya se reconstruyó desde las siete partes enviadas por el usuario, con SHA-256 y CRC verificados. Se recuperaron los árboles completos RTE/x64 y RTE/x86; Comercial y ZTATTUZ x64 usan el primero, ZTATTUZ x86 el segundo. Los recursos están disponibles localmente para incorporarlos a la aplicación con la EULA original. La implementación de huella permanece intacta.
 
-Para continuar, hace falta la ubicación del paquete completo anterior o del redistribuible autorizado. Registrar procedencia, permiso de redistribución y SHA256 al incorporarlo. El driver real y la compatibilidad del lector solo se acreditan en Windows.
+`docs/DIGITALPERSONA_RESTAURADO.md` contiene procedencia, hashes y preparación reproducible; `py docs\vendor\digitalpersona\preparar_runtime.py --verify` comprueba los tres árboles. Los binarios no se distribuyen como Runtime independiente. La recuperación de recursos no acredita aún instalación, controlador ni hardware de una nueva compilación. No hace falta volver a adjuntar el SDK.
 
 ## Pruebas físicas en Windows
 
@@ -58,7 +58,7 @@ Se admite CPython 3.13 y 3.14 estándar, con GIL. Usa 64 bits para Comercial y Z
 1. Descarga el respaldo actualizado y extrae en una carpeta nueva. Conserva tu configuración pública existente; no copies `.venv`. En ZTATTUZ x64 abre `GymSoft_ZTATTUZ_3.6.1_x64`, que corresponde a tu Python de 64 bits.
 2. Ejecuta `PREPARAR_PYTHON.bat`. Solo prepara el entorno. Si encuentra una `.venv` incompatible, la renombra a `.venv_respaldo_<fecha>_<id>` y crea otra; conserva la anterior y no modifica `gymsoft_config.json`.
 3. Ejecuta `INICIAR_ADMINISTRADOR.bat` o `INICIAR_RECEPCION.bat`. Instalan los requisitos y abren `app.py` o `reception_app.py` desde las fuentes. No generan un EXE y mantienen autenticación, permisos y validación del servidor. Usa este acceso para configurar y probar antes de aceptar la entrega.
-4. Debe existir la configuración pública de la edición: URL y clave **publicable** de Supabase, en `gymsoft_config.json` o en las variables de `.env.example`. Un archivo `.env.example` no se carga automáticamente. Comercial cuenta con `INICIAR_CONFIGURACION.bat`. ZTATTUZ debe conservar la URL `https://srmquhwpawgipncmvfjf.supabase.co` y la clave publicable de ese proyecto; recupera la configuración de tu instalación existente. Nunca copies service_role ni secretos de Wompi/Meta al escritorio.
+4. Debe existir la configuración pública de la edición: URL y clave **publicable** de Supabase, en `gymsoft_config.json` o en las variables de `.env.example`. Un archivo `.env.example` no se carga automáticamente. Comercial cuenta con `INICIAR_CONFIGURACION.bat`. Los tres `gymsoft_config.json` están recuperados y pasan su validación estructural. ZTATTUZ conserva la URL `https://srmquhwpawgipncmvfjf.supabase.co` y la clave publicable de ese proyecto; si utilizas una configuración propia, conserva una copia antes de actualizar. Nunca copies service_role ni secretos de Wompi/Meta al escritorio.
 
 El error `Entrega bloqueada. Falta comprobar: …` proviene de la aceptación final, no de pip o Python. `CREAR_INSTALADORES.bat` comprueba esos criterios antes de descargar dependencias de compilación y muestra los accesos anteriores. No cambiar `release_readiness.json` a true para quitar el mensaje. Puedes seguir usando las fuentes para completar las pruebas.
 
@@ -68,16 +68,12 @@ Comercial usa CPython 3.13 o 3.14 x64; ZTATTUZ x86 y x64 usan una de esas versio
 
 Completar `release_readiness.json` con evidencia de la versión para cada criterio aplicable; no poner todos los valores en true sin pruebas. Solo entonces ejecutar `CREAR_INSTALADORES.bat`, que llama a `build_windows.py`, valida arquitectura, pruebas e icono embebido. Los outputs se generan en `salida`. El panel/instalador Propietario de Comercial es privado y nunca se entrega al cliente.
 
-Esta instancia Linux no genera instaladores finales ni acredita los criterios externos/hardware. Los backups de fuentes contienen el estado recuperado, no reemplazan el redistribuible Windows ausente.
+Esta instancia Linux no genera instaladores finales ni acredita los criterios externos/hardware. Los backups públicos de fuentes contienen el estado recuperado; los redistribuibles propietarios se incorporan a la aplicación conforme a su EULA. Los paquetes técnicos de prueba no sustituyen la aceptación final.
 
-## Recuperar archivos que superen el límite de transferencia
+## Transferencia de archivos grandes
 
-Los dos ZIP DigitalPersona adjuntos por el usuario el 8 de octubre exceden el límite de transferencia de 32 MiB de esta herramienta; todavía no se leyeron sus bytes. El usuario confirma que la huella funciona en su instalación actual. Se conserva ese código; los paquetes se necesitan para redistribuir el mismo controlador en otro PC.
-
-Descarga `tools/partir_archivo.py` y ejecuta `py partir_archivo.py` en Windows. Se abre un selector para elegir los ZIP originales. La utilidad crea carpetas `<nombre>_partes` con ZIP de hasta 25 MiB más un manifiesto; conserva el original y rechaza sobrescribir partes existentes. Adjunta todos los ZIP de esas carpetas. La reconstrucción valida SHA256 de cada parte, SHA256 del archivo completo y CRC del ZIP antes de usarlo.
-
-La utilidad también acepta rutas: `py partir_archivo.py "C:\ruta\DigitalPersona_Controlador_3.4.0_x64.zip"`. No requiere 7-Zip ni instalar otra versión de Python.
+El SDK ya fue recuperado usando las siete partes. `tools/partir_archivo.py` queda disponible para otros ZIP autorizados que superen el límite de 32 MiB de transferencia: selecciona el original y crea ZIP de hasta 25 MiB, sin modificarlo ni sobrescribir partes. La reconstrucción valida los hashes de cada parte, el archivo completo y el CRC. No repetir esa transferencia para el SDK ya recuperado.
 
 ## Validación Windows en GitHub
 
-`.github/workflows/windows-validation.yml` usa Windows 2022 y Python 3.14 de la arquitectura de cada edición. Ejecuta el preparador batch, dependencias, pruebas offline completas y un ejecutable de prueba de Tk/Pillow/SSL/branding generado con PyInstaller. Conserva los informes en los artifacts del run. El probe no es una aplicación para entregar; el workflow no genera instaladores finales ni cambia aceptación. Su ejecución depende de GitHub Actions habilitado; registrar resultado y commit antes de acreditar Windows. La API de Actions fue bloqueada por el proxy de esta instancia; la página HTML de GitHub es accesible.
+`.github/workflows/windows-validation.yml` usa Windows 2022 y Python 3.14 de la arquitectura de cada edición. Ejecuta el preparador batch, dependencias, pruebas offline completas y un ejecutable de prueba de Tk/Pillow/SSL/branding generado con PyInstaller. Conserva los informes en los artifacts del run. El probe no es una aplicación para entregar; el workflow no genera instaladores finales ni cambia aceptación. El run `37861669196` aprobó las 111 etapas completas de las tres ediciones con Python 3.14.8 x64/x86. El empaquetado técnico se está comprobando por separado; registrar resultado y commit antes de acreditar cada capacidad. La API de Actions fue bloqueada por el proxy de esta instancia; la página HTML de GitHub es accesible.

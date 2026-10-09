@@ -1,0 +1,79 @@
+{
+  "format_version": 1,
+  "product": "DigitalPersona U.are.U SDK for Windows",
+  "sdk_version": "3.4.0",
+  "runtime_version": "3.4.0.127",
+  "source_archive": {
+    "filename": "DigitalPersonaBiometricSDKforWindows_3.4.0.zip",
+    "bytes": 171161718,
+    "sha256": "195bca9190cfa51f6068b8fc6fbc676eb4303a0afd0338e7935430f7da33206a"
+  },
+  "redistribution": "Runtime object code incorporated into Atlantic Gym only; EULA 1.2(c), retain notices and terms no less restrictive. SDK and standalone Runtime binaries are not published in Git.",
+  "license": {
+    "source_path": "Docs/EULA SDK.rtf",
+    "path": "Licenses/EULA SDK.rtf",
+    "bytes": 124466,
+    "sha256": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+  "architecture": "x86",
+  "runtime": {
+    "files": [
+      {
+        "source_path": "RTE/x86/0x0409.ini",
+        "path": "0x0409.ini",
+        "bytes": 22480,
+        "sha256": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948"
+      },
+      {
+        "source_path": "RTE/x86/Data1.cab",
+        "path": "Data1.cab",
+        "bytes": 13966431,
+        "sha256": "42b57754f1b62fe10a8aaca3f2ecef9766e5be38bc8aec351b0dc449e7d1e1e4"
+      },
+      {
+        "source_path": "RTE/x86/InstallOnly.bat",
+        "path": "InstallOnly.bat",
+        "bytes": 471,
+        "sha256": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a"
+      },
+      {
+        "source_path": "RTE/x86/setup.exe",
+        "path": "setup.exe",
+        "bytes": 1103368,
+        "sha256": "738122915385bbaac033ac295dd1970685c5a3637382cae56caedecdc65aadc8"
+      },
+      {
+        "source_path": "RTE/x86/Setup.ini",
+        "path": "Setup.ini",
+        "bytes": 5230,
+        "sha256": "ec316a3f10f02efc3bcd2ac2d9615bd2a5480ed017cf0110e0033606e3037e69"
+      },
+      {
+        "source_path": "RTE/x86/setup.msi",
+        "path": "setup.msi",
+        "bytes": 2802688,
+        "sha256": "4310e0ab0354da2684671a04f4e61709f155251883dbc3deecfac646cd67a879"
+      },
+      {
+        "source_path": "RTE/x86/UninstallOnly.bat",
+        "path": "UninstallOnly.bat",
+        "bytes": 75,
+        "sha256": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42"
+      }
+    ],
+    "file_count": 7,
+    "bytes": 17900743,
+    "msi_metadata": {
+      "msi_template": "Intel;1033",
+      "product_code": "{9C54D120-D3C1-49FF-8160-CE6B1CF4F533}",
+      "upgrade_code": "{FCD41DB2-6094-4585-B3C4-A872AD33D96F}",
+      "product_version": "3.4.0.127",
+      "registry_product_key": "Software\\DigitalPersona\\Products\\U.are.U RTE",
+      "registry_version_name": "Version",
+      "includes_32_and_64_bit_dlls": false,
+      "launch_condition": "NOT VersionNT64",
+      "arm64_validated": false
+    }
+  }
+}

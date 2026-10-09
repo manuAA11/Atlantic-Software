@@ -1,0 +1,32 @@
+{
+  "scope": "Current CPython3.14 Linux unit suites; captured Codex exec tool completion output, not Windows/hardware acceptance",
+  "recorded_utc": "2026-10-09T03:12:06.116473+00:00",
+  "status": "PASS",
+  "tests": 484,
+  "suites": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "tests": 153,
+      "status": "PASS",
+      "source": "commercial_diagnostics agent execution; agent reported unittest completion"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "tests": 166,
+      "status": "PASS",
+      "command": "GYMSOFT_OFFLINE_QA=1 /workspace/.venvs/multigym314/bin/python -m unittest discover -s tests -p test_*.py",
+      "exec_session": 36857,
+      "exit_code": 0,
+      "captured_final_output": "Ran 166 tests in 23.362s\n\nOK\n"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "tests": 165,
+      "status": "PASS",
+      "command": "GYMSOFT_OFFLINE_QA=1 /workspace/.venvs/multigym314/bin/python -m unittest discover -s tests -p test_*.py",
+      "exec_session": 5117,
+      "exit_code": 0,
+      "captured_final_output": "Ran 165 tests in 23.960s\n\nOK\n"
+    }
+  ]
+}

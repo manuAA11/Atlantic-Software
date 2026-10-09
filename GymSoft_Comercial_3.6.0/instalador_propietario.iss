@@ -1,9 +1,20 @@
-﻿#ifndef AppVersion
+﻿#ifndef BuildDistRoot
+#define BuildDistRoot "dist"
+#endif
+#ifndef BuildComponentRoot
+#define BuildComponentRoot "salida\componentes"
+#endif
+#ifdef BuildValidation
+#define BuildSuffix " · Validación técnica (no final)"
+#else
+#define BuildSuffix ""
+#endif
+#ifndef AppVersion
 #define AppVersion "3.6.0"
 #endif
 [Setup]
 AppId={{58D6DD62-FD67-4CC1-8D87-153AFB4EE44A}
-AppName=Atlantic Gym · Control comercial
+AppName=Atlantic Gym · Control comercial{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
 DefaultDirName={localappdata}\Programs\GymSoftControl
@@ -16,6 +27,7 @@ OutputBaseFilename=GymSoft_Propietario_PRIVADO_{#AppVersion}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+MinVersion=10.0
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 SetupIconFile=icono.ico
@@ -27,7 +39,7 @@ UninstallDisplayIcon={app}\GymSoftControl.exe
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Files]
-Source: "dist\GymSoftControl\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#BuildDistRoot}\GymSoftControl\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "icono.ico"; DestDir: "{app}"; DestName: "GymSoft-{#AppVersion}.ico"; Flags: ignoreversion
 Source: "icono.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "COPYRIGHT.txt"; DestDir: "{app}"; Flags: ignoreversion
