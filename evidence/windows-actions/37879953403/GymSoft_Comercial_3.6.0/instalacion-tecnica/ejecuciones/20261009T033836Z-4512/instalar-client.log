@@ -1,0 +1,112 @@
+﻿2026-10-09 03:38:41.709   Log opened. (Time zone: UTC+00:00)
+2026-10-09 03:38:41.709   Setup version: Inno Setup version 6.7.1
+2026-10-09 03:38:41.709   Original Setup EXE: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T033636Z-2244\instaladores\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe
+2026-10-09 03:38:41.709   Setup command line: /SL5="$5400A4,93148595,936448,D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T033636Z-2244\instaladores\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /DIR=D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client /LOG=D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalar-client.log
+2026-10-09 03:38:41.709   Windows version: 10.0.20348
+2026-10-09 03:38:41.709   Windows architecture: x64 (64-bit)
+2026-10-09 03:38:41.709   Machine types supported by system: x86 x64
+2026-10-09 03:38:41.709   User privileges: Administrative
+2026-10-09 03:38:41.725   Administrative install mode: No
+2026-10-09 03:38:41.725   Install mode root key: HKEY_CURRENT_USER
+2026-10-09 03:38:41.725   64-bit install mode: Yes
+2026-10-09 03:38:41.725   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-09 03:38:41.725   Created protected temporary directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-E6N649P4QQ.tmp
+2026-10-09 03:38:41.787   -- DLL function import --
+2026-10-09 03:38:41.787   Function and DLL name: SHChangeNotify@shell32.dll
+2026-10-09 03:38:41.787   Importing the DLL function. Dest DLL name: shell32.dll
+2026-10-09 03:38:41.787   Successfully imported the DLL function. Delay loaded? No
+2026-10-09 03:38:43.457   Starting the installation process.
+2026-10-09 03:38:43.457   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion
+2026-10-09 03:38:43.457   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client
+2026-10-09 03:38:43.457   Directory for uninstall files: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client
+2026-10-09 03:38:43.457   Creating new uninstall log: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\unins000.dat
+2026-10-09 03:38:43.613   -- File entry --
+2026-10-09 03:38:43.613   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\unins000.exe
+2026-10-09 03:38:43.613   Non-default bitness: 32-bit
+2026-10-09 03:38:43.795   Time stamp of our file: 2026-10-09 03:38:40.646
+2026-10-09 03:38:43.795   Installing the file.
+2026-10-09 03:38:43.811   Successfully installed the file.
+2026-10-09 03:38:43.811   -- File entry --
+2026-10-09 03:38:43.811   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\.gitignore
+2026-10-09 03:38:43.811   Time stamp of our file: 2026-10-09 03:35:22.000
+2026-10-09 03:38:43.811   Installing the file.
+2026-10-09 03:38:43.811   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime
+2026-10-09 03:38:43.811   Successfully installed the file.
+2026-10-09 03:38:43.811   -- File entry --
+2026-10-09 03:38:43.811   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\0x0409.ini
+2026-10-09 03:38:43.811   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:43.811   Installing the file.
+2026-10-09 03:38:43.811   Successfully installed the file.
+2026-10-09 03:38:43.811   -- File entry --
+2026-10-09 03:38:43.811   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\Data1.cab
+2026-10-09 03:38:43.811   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:43.811   Installing the file.
+2026-10-09 03:38:44.086   Successfully installed the file.
+2026-10-09 03:38:44.086   -- File entry --
+2026-10-09 03:38:44.086   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\InstallOnly.bat
+2026-10-09 03:38:44.086   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.086   Installing the file.
+2026-10-09 03:38:44.086   Successfully installed the file.
+2026-10-09 03:38:44.086   -- File entry --
+2026-10-09 03:38:44.086   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\MANIFEST.json
+2026-10-09 03:38:44.086   Time stamp of our file: 2026-10-09 03:35:22.000
+2026-10-09 03:38:44.086   Installing the file.
+2026-10-09 03:38:44.086   Successfully installed the file.
+2026-10-09 03:38:44.086   -- File entry --
+2026-10-09 03:38:44.086   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\README.md
+2026-10-09 03:38:44.086   Time stamp of our file: 2026-10-09 03:35:22.000
+2026-10-09 03:38:44.086   Installing the file.
+2026-10-09 03:38:44.086   Successfully installed the file.
+2026-10-09 03:38:44.086   -- File entry --
+2026-10-09 03:38:44.086   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\setup.exe
+2026-10-09 03:38:44.086   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.086   Installing the file.
+2026-10-09 03:38:44.108   Successfully installed the file.
+2026-10-09 03:38:44.108   -- File entry --
+2026-10-09 03:38:44.108   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\Setup.ini
+2026-10-09 03:38:44.108   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.108   Installing the file.
+2026-10-09 03:38:44.108   Successfully installed the file.
+2026-10-09 03:38:44.108   -- File entry --
+2026-10-09 03:38:44.108   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\setup.msi
+2026-10-09 03:38:44.108   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.108   Installing the file.
+2026-10-09 03:38:44.187   Successfully installed the file.
+2026-10-09 03:38:44.187   -- File entry --
+2026-10-09 03:38:44.187   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\UninstallOnly.bat
+2026-10-09 03:38:44.187   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.187   Installing the file.
+2026-10-09 03:38:44.187   Successfully installed the file.
+2026-10-09 03:38:44.187   -- File entry --
+2026-10-09 03:38:44.187   Dest filename: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+2026-10-09 03:38:44.187   Time stamp of our file: 2026-10-09 03:36:34.000
+2026-10-09 03:38:44.187   Installing the file.
+2026-10-09 03:38:44.187   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites
+2026-10-09 03:38:44.187   Creating directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}
+2026-10-09 03:38:44.374   Defaulting to Abort for suppressed message box (Abort/Retry/Ignore):
+                          D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+                          
+                          Ocurrió un error al intentar renombrar un archivo en la carpeta de destino:
+                          MoveFile falló; código 3.
+                          The system cannot find the path specified.
+2026-10-09 03:38:44.374   User canceled the installation process.
+2026-10-09 03:38:44.374   Rolling back changes.
+2026-10-09 03:38:44.374   Starting the uninstallation process.
+2026-10-09 03:38:44.374   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}
+2026-10-09 03:38:44.374   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\ISSetupPrerequisites
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\UninstallOnly.bat
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\setup.msi
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\Setup.ini
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\setup.exe
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\README.md
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\MANIFEST.json
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\InstallOnly.bat
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\Data1.cab
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\0x0409.ini
+2026-10-09 03:38:44.374   Deleting file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime\.gitignore
+2026-10-09 03:38:44.374   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client\DigitalPersonaRuntime
+2026-10-09 03:38:44.374   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion\client
+2026-10-09 03:38:44.374   Deleting directory: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\instalacion-tecnica\ejecuciones\20261009T033836Z-4512\instalacion
+2026-10-09 03:38:44.374   Uninstallation process succeeded.
+2026-10-09 03:38:44.374   Deinitializing Setup.
+2026-10-09 03:38:44.390   Log closed.

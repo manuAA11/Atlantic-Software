@@ -1,0 +1,105 @@
+{
+  "status": "FAIL",
+  "final": false,
+  "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+  "edition": "GymSoft_Comercial_3.6.0",
+  "date_utc": "2026-10-09T03:38:36.147928+00:00",
+  "release_gate_modified": false,
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T033636Z-2244\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/DIR=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\instalacion\\client",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\instalar-client.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\logs\\01-instalar-client.log",
+      "status": "FAIL",
+      "returncode": 5
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\shortcut-audit.ps1",
+        "-InstallationRoot",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\instalacion",
+        "-OutputPath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\accesos-despues-desinstalar.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\logs\\02-accesos-despues-desinstalar.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "installed_executables": [],
+  "cleanup": {
+    "status": "PASS",
+    "application_registrations_removed": true,
+    "application_executables_removed": true,
+    "shortcuts_removed": true,
+    "system_runtime_removed": false
+  },
+  "stage": "install_client",
+  "explicit_ephemeral_runner": true,
+  "runner_context": {
+    "GITHUB_ACTIONS": "true",
+    "RUNNER_ENVIRONMENT": "github-hosted",
+    "RUNNER_OS": "Windows",
+    "GITHUB_RUN_ID": "37879953403",
+    "RUNNER_TEMP": "D:\\a\\_temp",
+    "GITHUB_WORKSPACE": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "runner": {
+    "environment": "github-hosted",
+    "github_run_id": "37879953403",
+    "runner_temp": "D:\\a\\_temp",
+    "workspace": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "run_id": "20261009T033836Z-4512",
+  "packaging_report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\informe_empaquetado.json",
+  "packaging_report_sha256": "438835e0908fbabdfc81ee22062d2e8fc85aa0571efbe2494a53eb7b1af8c7ea",
+  "native_windows_architecture": "x64",
+  "version": "3.6.0",
+  "installer_metadata": [
+    {
+      "script": "instalador_clientes.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    },
+    {
+      "script": "instalador_propietario.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    }
+  ],
+  "runtime_source_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "error": "RuntimeError: instalar-client: código 5; consulta D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261009T033836Z-4512\\logs\\01-instalar-client.log.",
+  "failed_stage": "install_client",
+  "sdk_log": {
+    "status": "NOT_PRESENT",
+    "reason": "El runtime no produjo el registro MSI conocido."
+  }
+}
