@@ -80,6 +80,17 @@ jobs:
           } finally {
             Stop-Transcript
           }
+      - name: Freeze and run a Windows component probe
+        run: |
+          $sourceRoot = (Get-Location).Path
+          $adminIcon = Join-Path $sourceRoot 'icono.ico'
+          $receptionIcon = Join-Path $sourceRoot 'icono_recepcion.ico'
+          & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths $sourceRoot --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon $adminIcon --add-data "${adminIcon}:." --add-data "${receptionIcon}:." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe -c "from pathlib import Path; from build_windows import verify_executable_icon; verify_executable_icon(Path('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe'))" 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log -Append
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json 2>&1 | Tee-Object -FilePath salida\validacion\frozen-execution.log
+          exit $LASTEXITCODE
       - name: Recheck the failing dashboard layout first
         run: |
           & .\.venv\Scripts\python.exe tests/layout_consistency_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\layout-preflight.log
@@ -88,19 +99,6 @@ jobs:
         run: |
           & .\.venv\Scripts\python.exe run_validation.py
           exit $LASTEXITCODE
-      - name: Freeze and run a Windows component probe
-        run: |
-          Start-Transcript -Path salida\validacion\frozen-probe.log
-          try {
-            & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths . --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon icono.ico --add-data "icono.ico;." --add-data "icono_recepcion.ico;." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            & .\.venv\Scripts\python.exe -c "from pathlib import Path; from build_windows import verify_executable_icon; verify_executable_icon(Path('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe'))"
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json
-            exit $LASTEXITCODE
-          } finally {
-            Stop-Transcript
-          }
       - name: Check the final release remains blocked without acceptance
         run: |
           New-Item -ItemType Directory -Force salida\validacion | Out-Null
