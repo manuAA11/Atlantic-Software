@@ -1,0 +1,216 @@
+Instaladores para configurar y probar: C:\Users\RUNNER~1\AppData\Local\Temp\tmpqxt4r741\GymSoft_Comercial_3.6.0\salida\PRUEBAS_PARA_CONFIGURAR\20261008T180000Z-123
+.........................................FFEFEEEE.EFFFFFE
+======================================================================
+ERROR: test_failed_zip_write_does_not_leave_a_partial_download (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_failed_zip_write_does_not_leave_a_partial_download)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 211, in test_failed_zip_write_does_not_leave_a_partial_download
+    delivery.create_delivery(fixture['edition'], fixture['output'])
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_repeated_delivery_does_not_overwrite_existing_zip (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_repeated_delivery_does_not_overwrite_existing_zip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 200, in test_repeated_delivery_does_not_overwrite_existing_zip
+    first = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file) (edition='GymSoft_Comercial_3.6.0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 119, in test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file
+    result = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file) (edition='GymSoft_ZTATTUZ_3.6.1_x64')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 119, in test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file
+    result = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file) (edition='GymSoft_ZTATTUZ_3.6.1_x86')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 119, in test_three_client_deliveries_exclude_owner_and_components_and_verify_every_file
+    result = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_verifier_rejects_an_x86_installation_claim_changed_to_pass (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_verifier_rejects_an_x86_installation_claim_changed_to_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 242, in test_verifier_rejects_an_x86_installation_claim_changed_to_pass
+    created = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+ERROR: test_zip_verifier_rejects_changed_installer_unexpected_owner_and_path_traversal (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_zip_verifier_rejects_changed_installer_unexpected_owner_and_path_traversal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 218, in test_zip_verifier_rejects_changed_installer_unexpected_owner_and_path_traversal
+    created = delivery.create_delivery(fixture['edition'], fixture['output'])
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 320, in create_delivery
+    source, metadata, acceptance = load_inputs(edition)
+                                   ~~~~~~~~~~~^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 151, in load_inputs
+    suite = validate_local_suite(edition, version, packaged.get('full_local_validation', {}))
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\windows_configuration_delivery.py", line 121, in validate_local_suite
+    raise RuntimeError('El informe de pruebas no corresponde a esta edición.')
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+======================================================================
+FAIL: test_changed_stage_log_and_partial_suite_are_rejected (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_changed_stage_log_and_partial_suite_are_rejected) (change='log')
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 171, in test_changed_stage_log_and_partial_suite_are_rejected
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'SHA256|37 etapas'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "SHA256|37 etapas" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_ci_run_identity_must_match_recorded_installation (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_ci_run_identity_must_match_recorded_installation)
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 234, in test_ci_run_identity_must_match_recorded_installation
+    with patch.dict(os.environ, {'GITHUB_RUN_ID': '987654321'}, clear=True), self.assertRaisesRegex(RuntimeError, 'otra ejecución'):
+                                                                             ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "otra ejecución" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_old_installation_report_cannot_accredit_a_new_packaging (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_old_installation_report_cannot_accredit_a_new_packaging)
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 157, in test_old_installation_report_cannot_accredit_a_new_packaging
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'no acredita este empaquetado'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "no acredita este empaquetado" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_x64_failed_installation_or_cleanup_is_not_delivered (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_x64_failed_installation_or_cleanup_is_not_delivered) (replacement={'status': 'FAIL'})
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 181, in test_x64_failed_installation_or_cleanup_is_not_delivered
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'instalación, actualización y limpieza'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "instalación, actualización y limpieza" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_x64_failed_installation_or_cleanup_is_not_delivered (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_x64_failed_installation_or_cleanup_is_not_delivered) (replacement={'cleanup': {'status': 'FAIL'}})
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 181, in test_x64_failed_installation_or_cleanup_is_not_delivered
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'instalación, actualización y limpieza'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "instalación, actualización y limpieza" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_x86_requires_exact_not_run_scope_and_no_installed_programs (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_x86_requires_exact_not_run_scope_and_no_installed_programs) (replacement={'status': 'PASS'})
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 192, in test_x86_requires_exact_not_run_scope_and_no_installed_programs
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'alcance explícito NOT_RUN'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "alcance explícito NOT_RUN" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_x86_requires_exact_not_run_scope_and_no_installed_programs (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_x86_requires_exact_not_run_scope_and_no_installed_programs) (replacement={'reason': 'Skipped'})
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 192, in test_x86_requires_exact_not_run_scope_and_no_installed_programs
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'alcance explícito NOT_RUN'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "alcance explícito NOT_RUN" does not match "El informe de pruebas no corresponde a esta edición."
+
+======================================================================
+FAIL: test_x86_requires_exact_not_run_scope_and_no_installed_programs (tools.test_windows_configuration_delivery.ClientConfigurationDelivery.test_x86_requires_exact_not_run_scope_and_no_installed_programs) (replacement={'installed_executables': [{'name': 'claimed.exe'}]})
+----------------------------------------------------------------------
+RuntimeError: El informe de pruebas no corresponde a esta edición.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\tools\test_windows_configuration_delivery.py", line 192, in test_x86_requires_exact_not_run_scope_and_no_installed_programs
+    with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'alcance explícito NOT_RUN'):
+                                                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "alcance explícito NOT_RUN" does not match "El informe de pruebas no corresponde a esta edición."
+
+----------------------------------------------------------------------
+Ran 52 tests in 3.388s
+
+FAILED (failures=8, errors=7)
