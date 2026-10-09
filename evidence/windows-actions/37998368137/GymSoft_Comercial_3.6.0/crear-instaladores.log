@@ -1,0 +1,670 @@
+Entrega bloqueada. Falta comprobar: whatsapp_pilot, wompi_sandbox, chatbot_pilot, automation_pilot, timezone, audit_clock, freeze, freeze_checkin, ticket_daily, scheduler_gym_timezone, prior_regressions, added_regressions, concurrent_two_sessions
+La aceptacion final sigue pendiente. Se crearan instaladores para configurar y probar.
+Se ejecutaran todas las pruebas locales. Si alguna falla, no se publicara una nueva entrega.
+Requirement already satisfied: supabase==2.31.0 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: Pillow==12.3.0 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 2)) (12.3.0)
+Requirement already satisfied: openpyxl==3.1.5 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 3)) (3.1.5)
+Requirement already satisfied: tzdata==2026.3 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 4)) (2026.3)
+Requirement already satisfied: pyinstaller==6.22.2 in .\.venv\Lib\site-packages (from -r requirements-build.txt (line 2)) (6.22.2)
+Requirement already satisfied: realtime==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: supabase-functions==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: storage3==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: supabase-auth==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: postgrest==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: httpx<0.29,>=0.26 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.28.1)
+Requirement already satisfied: yarl>=1.22.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (1.25.1)
+Requirement already satisfied: et-xmlfile in .\.venv\Lib\site-packages (from openpyxl==3.1.5->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 3)) (2.0.0)
+Requirement already satisfied: altgraph in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (0.17.5)
+Requirement already satisfied: packaging>=22.0 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (26.3)
+Requirement already satisfied: pefile>=2022.5.30 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (2024.8.26)
+Requirement already satisfied: pyinstaller-hooks-contrib>=2026.6 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (2026.8)
+Requirement already satisfied: pywin32-ctypes>=0.2.1 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (0.2.3)
+Requirement already satisfied: setuptools>=42.0.0 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (84.0.0)
+Requirement already satisfied: deprecation>=2.1.0 in .\.venv\Lib\site-packages (from postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: pydantic<3.0,>=1.9 in .\.venv\Lib\site-packages (from postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.14.0)
+Requirement already satisfied: typing-extensions>=4.14.0 in .\.venv\Lib\site-packages (from realtime==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (4.16.0)
+Requirement already satisfied: websockets<16,>=11 in .\.venv\Lib\site-packages (from realtime==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (15.0.1)
+Requirement already satisfied: pyjwt>=2.12.0 in .\.venv\Lib\site-packages (from pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.15.1)
+Requirement already satisfied: strenum>=0.4.15 in .\.venv\Lib\site-packages (from supabase-functions==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.4.15)
+Requirement already satisfied: anyio in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (4.15.1)
+Requirement already satisfied: certifi in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (1.0.9)
+Requirement already satisfied: idna in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (3.20)
+Requirement already satisfied: h11>=0.16 in .\.venv\Lib\site-packages (from httpcore==1.*->httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied: h2<5,>=3 in .\.venv\Lib\site-packages (from httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied: hyperframe<7,>=6.1 in .\.venv\Lib\site-packages (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (6.1.0)
+Requirement already satisfied: hpack<5,>=4.2 in .\.venv\Lib\site-packages (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (4.2.0)
+Requirement already satisfied: annotated-types>=0.6.0 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.8.0)
+Requirement already satisfied: pydantic-core==2.50.0 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.50.0)
+Requirement already satisfied: typing-inspection>=0.4.4 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.4.4)
+Requirement already satisfied: cryptography>=3.4.0 in .\.venv\Lib\site-packages (from pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (50.0.2)
+Requirement already satisfied: cffi>=2.0.0 in .\.venv\Lib\site-packages (from cryptography>=3.4.0->pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (2.1.1)
+Requirement already satisfied: pycparser in .\.venv\Lib\site-packages (from cffi>=2.0.0->cryptography>=3.4.0->pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (3.11)
+Requirement already satisfied: multidict>=4.0 in .\.venv\Lib\site-packages (from yarl>=1.22.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (7.1.0)
+Requirement already satisfied: propcache>=0.2.1 in .\.venv\Lib\site-packages (from yarl>=1.22.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\requirements.txt (line 1)) (0.5.4)
+No broken requirements found.
+Verificando todas las funciones locales antes de crear los instaladores de pruebas...
+Gym soft 3.6.0 · Validación local con lector simulado
+
+PRUEBA: python
+...........................................................................................Creando .venv con Python 3.14.8 de 64 bits...
+Entorno listo: Python 3.14.8 de 64 bits.
+Entorno listo: Python 3.14 de 64 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261009_221858_bf1dadd3
+Creando .venv con Python 3.14.8 de 64 bits...
+EN CURSO: python · 15 s · límite 300 s.
+Entorno listo: Python 3.14.8 de 64 bits.
+.............................................................
+----------------------------------------------------------------------
+Ran 153 tests in 17.343s
+
+OK
+
+PRUEBA: contratos_extraidos
+Client contract extracted
+
+PRUEBA: marketing_compile
+MARKETING SQL COMPILES
+
+PRUEBA: backend_sql_flow
+PASS: 28 cross-layer checks (HTTP, signed Meta/chatbot, real SQL freeze, payment link, signed Wompi renewal/idempotency). External transport and Vault simulated; no external pilot.
+
+PRUEBA: time_pipeline
+PASS: 55 real time pipeline checks (commercial)
+
+PRUEBA: membership_freezes
+PASS: 52 freeze checks (commercial)
+
+PRUEBA: audit_logs
+PASS: 14 comprobaciones de nombres, hora real, historial conservado y permisos (comercial).
+
+PRUEBA: marketing_contracts
+PASS: 90 contratos Marketing de automatizaciones, consentimiento, permisos, sandbox, renovación e idempotencia (comercial).
+
+PRUEBA: daily_tickets
+PASS: 24 comprobaciones de consumo diario, saldos históricos, reentrada, respaldo, permisos y zonas horarias (comercial).
+
+PRUEBA: fingerprints
+PASS: 16 comprobaciones SQL de huellas, permisos, aislamiento y cambios simultáneos (Comercial).
+
+PRUEBA: security
+PASS: 54 security and business checks, real PostgreSQL engine (PGlite).
+
+PRUEBA: contracts
+PASS: 83 RPC call contracts and 15 table contracts.
+
+PRUEBA: owner_flows
+PASS: 35 owner and payment flows using Python form payloads and local PostgreSQL.
+
+PRUEBA: owner_editor
+PASS: 180 owner editor checks (roles, conflicts, all edit tables, import rollback, ID remapping, stock and complete isolated deletion).
+
+PRUEBA: ticket_plans
+PASS: 27 comprobaciones PostgreSQL de huella opcional, cupos, consumo, renovación, mensualidad y aislamiento.
+
+PRUEBA: ticket_followup
+PASS: 70 comprobaciones de meses calendario, saldos, seguimiento, roles e idempotencia.
+
+PRUEBA: marketing_backend
+TAP version 13
+# Subtest: Meta uses raw bytes and rejects changed body, invalid signature and no secret
+ok 1 - Meta uses raw bytes and rejects changed body, invalid signature and no secret
+  ---
+  duration_ms: 20.4818
+  type: 'test'
+  ...
+# Subtest: Wompi dynamic property signature and header precedence
+ok 2 - Wompi dynamic property signature and header precedence
+  ---
+  duration_ms: 3.7492
+  type: 'test'
+  ...
+# Subtest: Signed checkout includes exact amount, unique reference and expiration
+ok 3 - Signed checkout includes exact amount, unique reference and expiration
+  ---
+  duration_ms: 3.4167
+  type: 'test'
+  ...
+# Subtest: Canonical Wompi lookup uses private key and validates returned id
+ok 4 - Canonical Wompi lookup uses private key and validates returned id
+  ---
+  duration_ms: 40.2694
+  type: 'test'
+  ...
+# Subtest: Session messages reject a closed 24 hour window
+ok 5 - Session messages reject a closed 24 hour window
+  ---
+  duration_ms: 0.4579
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_BEFORE
+ok 6 - Trigger MEMBERSHIP_BEFORE
+  ---
+  duration_ms: 33.308
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_TODAY
+ok 7 - Trigger MEMBERSHIP_TODAY
+  ---
+  duration_ms: 0.8222
+  type: 'test'
+  ...
+# Subtest: Trigger MEMBERSHIP_AFTER
+ok 8 - Trigger MEMBERSHIP_AFTER
+  ---
+  duration_ms: 0.7382
+  type: 'test'
+  ...
+# Subtest: Trigger BIRTHDAY
+ok 9 - Trigger BIRTHDAY
+  ---
+  duration_ms: 1.0042
+  type: 'test'
+  ...
+# Subtest: Trigger BIRTHDAY_BEFORE
+ok 10 - Trigger BIRTHDAY_BEFORE
+  ---
+  duration_ms: 1.1228
+  type: 'test'
+  ...
+# Subtest: Trigger INACTIVITY
+ok 11 - Trigger INACTIVITY
+  ---
+  duration_ms: 0.9783
+  type: 'test'
+  ...
+# Subtest: Trigger DAILY
+ok 12 - Trigger DAILY
+  ---
+  duration_ms: 0.7672
+  type: 'test'
+  ...
+# Subtest: Trigger TICKET_REMAINING
+ok 13 - Trigger TICKET_REMAINING
+  ---
+  duration_ms: 0.5455
+  type: 'test'
+  ...
+# Subtest: Ticket threshold is deduped by membership, not calendar day
+ok 14 - Ticket threshold is deduped by membership, not calendar day
+  ---
+  duration_ms: 1.1464
+  type: 'test'
+  ...
+# Subtest: Disabled, no consent, invalid phone, before send hour do not enqueue
+ok 15 - Disabled, no consent, invalid phone, before send hour do not enqueue
+  ---
+  duration_ms: 0.3877
+  type: 'test'
+  ...
+# Subtest: Event CHECK_IN_SUCCESS
+ok 16 - Event CHECK_IN_SUCCESS
+  ---
+  duration_ms: 0.7297
+  type: 'test'
+  ...
+# Subtest: Event FIRST_CHECK_IN_DAY
+ok 17 - Event FIRST_CHECK_IN_DAY
+  ---
+  duration_ms: 0.6486
+  type: 'test'
+  ...
+# Subtest: Event EVERY_N_CHECKINS
+ok 18 - Event EVERY_N_CHECKINS
+  ---
+  duration_ms: 0.6684
+  type: 'test'
+  ...
+# Subtest: Event FIRST_CHECK_IN_RENEWAL
+ok 19 - Event FIRST_CHECK_IN_RENEWAL
+  ---
+  duration_ms: 0.6321
+  type: 'test'
+  ...
+# Subtest: Event TICKET_CONSUMED
+ok 20 - Event TICKET_CONSUMED
+  ---
+  duration_ms: 0.6044
+  type: 'test'
+  ...
+# Subtest: Online renewal is never counted as a manual payment
+ok 21 - Online renewal is never counted as a manual payment
+  ---
+  duration_ms: 1.0416
+  type: 'test'
+  ...
+# Subtest: Filters, dates and variable preview
+ok 22 - Filters, dates and variable preview
+  ---
+  duration_ms: 5.2267
+  type: 'test'
+  ...
+# Subtest: Birthday parser rejects invalid dates
+ok 23 - Birthday parser rejects invalid dates
+  ---
+  duration_ms: 0.2994
+  type: 'test'
+  ...
+# Subtest: Chatbot never reveals membership before verification
+ok 24 - Chatbot never reveals membership before verification
+  ---
+  duration_ms: 0.7356
+  type: 'test'
+  ...
+# Subtest: Human handoff stops bot responses
+ok 25 - Human handoff stops bot responses
+  ---
+  duration_ms: 0.1663
+  type: 'test'
+  ...
+# Subtest: Unknown phone requests reception approval, no membership lookup
+ok 26 - Unknown phone requests reception approval, no membership lookup
+  ---
+  duration_ms: 0.9258
+  type: 'test'
+  ...
+# Subtest: Missing Wompi hands off to reception
+ok 27 - Missing Wompi hands off to reception
+  ---
+  duration_ms: 0.2485
+  type: 'test'
+  ...
+# Subtest: Verified member can see only supplied verified profile
+ok 28 - Verified member can see only supplied verified profile
+  ---
+  duration_ms: 0.1883
+  type: 'test'
+  ...
+# Subtest: 09 AM Bogotá is 14 UTC, independently of server timezone
+ok 29 - 09 AM Bogotá is 14 UTC, independently of server timezone
+  ---
+  duration_ms: 37.6355
+  type: 'test'
+  ...
+# Subtest: A second gym uses its own zone and daylight saving
+ok 30 - A second gym uses its own zone and daylight saving
+  ---
+  duration_ms: 2.6375
+  type: 'test'
+  ...
+# Subtest: Expiry moved to October 27 sends on October 24, never October 17 or while frozen
+ok 31 - Expiry moved to October 27 sends on October 24, never October 17 or while frozen
+  ---
+  duration_ms: 2.3129
+  type: 'test'
+  ...
+# Subtest: Verified chatbot shows freeze last day, resume day and extended expiry
+ok 32 - Verified chatbot shows freeze last day, resume day and extended expiry
+  ---
+  duration_ms: 1.0566
+  type: 'test'
+  ...
+# Subtest: Worker completes freezes even when automation jobs are disabled
+ok 33 - Worker completes freezes even when automation jobs are disabled
+  ---
+  duration_ms: 1.8183
+  type: 'test'
+  ...
+# Subtest: Frozen guard prevents an already claimed message from calling Meta
+ok 34 - Frozen guard prevents an already claimed message from calling Meta
+  ---
+  duration_ms: 0.6101
+  type: 'test'
+  ...
+# Subtest: Admin mutations require authorization before provider access
+ok 35 - Admin mutations require authorization before provider access
+  ---
+  duration_ms: 48.4043
+  type: 'test'
+  ...
+# Subtest: Scheduler rejects missing token
+ok 36 - Scheduler rejects missing token
+  ---
+  duration_ms: 1.1607
+  type: 'test'
+  ...
+# Subtest: Hosted Edge mount resolves health and still authenticates scheduler requests
+ok 37 - Hosted Edge mount resolves health and still authenticates scheduler requests
+  ---
+  duration_ms: 2.6255
+  type: 'test'
+  ...
+# Subtest: A similarly named function cannot match the protected mount
+ok 38 - A similarly named function cannot match the protected mount
+  ---
+  duration_ms: 1.5511
+  type: 'test'
+  ...
+# Subtest: Health probes the database and requires an installed scheduler
+ok 39 - Health probes the database and requires an installed scheduler
+  ---
+  duration_ms: 4.3217
+  type: 'test'
+  ...
+# Subtest: A failed database is never reported healthy or exposes its response
+ok 40 - A failed database is never reported healthy or exposes its response
+  ---
+  duration_ms: 0.7565
+  type: 'test'
+  ...
+# Subtest: Browser origin must match configured authorization page
+ok 41 - Browser origin must match configured authorization page
+  ---
+  duration_ms: 0.853
+  type: 'test'
+  ...
+# Subtest: Wompi invalid signature cannot call payment processing
+ok 42 - Wompi invalid signature cannot call payment processing
+  ---
+  duration_ms: 1.1909
+  type: 'test'
+  ...
+# Subtest: Wompi trusts canonical merchant transaction, not unsigned currency/reference fields
+ok 43 - Wompi trusts canonical merchant transaction, not unsigned currency/reference fields
+  ---
+  duration_ms: 15.6186
+  type: 'test'
+  ...
+# Subtest: Duplicate provider receipt does not reapply payment
+ok 44 - Duplicate provider receipt does not reapply payment
+  ---
+  duration_ms: 3.3072
+  type: 'test'
+  ...
+# Subtest: Meta history synchronization does not invoke chatbot
+ok 45 - Meta history synchronization does not invoke chatbot
+  ---
+  duration_ms: 3.7994
+  type: 'test'
+  ...
+# Subtest: Coexistence human echo pauses chatbot on the correct gym
+ok 46 - Coexistence human echo pauses chatbot on the correct gym
+  ---
+  duration_ms: 1.7484
+  type: 'test'
+  ...
+# Subtest: Consent revoked after queuing blocks the actual provider call
+ok 47 - Consent revoked after queuing blocks the actual provider call
+  ---
+  duration_ms: 0.4214
+  type: 'test'
+  ...
+# Subtest: Ambiguous Meta timeout is UNCERTAIN, never blindly queued for resend
+ok 48 - Ambiguous Meta timeout is UNCERTAIN, never blindly queued for resend
+  ---
+  duration_ms: 0.9201
+  type: 'test'
+  ...
+# Subtest: WABA template updates reach every authorized gym phone
+ok 49 - WABA template updates reach every authorized gym phone
+  ---
+  duration_ms: 2.1327
+  type: 'test'
+  ...
+# Subtest: Inbound without destination phone cannot choose an arbitrary gym
+ok 50 - Inbound without destination phone cannot choose an arbitrary gym
+  ---
+  duration_ms: 1.432
+  type: 'test'
+  ...
+# Subtest: Authorization page obtains configuration from a live, gym-bound state
+ok 51 - Authorization page obtains configuration from a live, gym-bound state
+  ---
+  duration_ms: 35.258
+  type: 'test'
+  ...
+# Subtest: Unknown backend, missing state and malformed state never contact a server
+ok 52 - Unknown backend, missing state and malformed state never contact a server
+  ---
+  duration_ms: 3.6129
+  type: 'test'
+  ...
+# Subtest: Expired authorization never loads Meta or enables authorization
+ok 53 - Expired authorization never loads Meta or enables authorization
+  ---
+  duration_ms: 2.0407
+  type: 'test'
+  ...
+# Subtest: A bootstrap cannot redirect authorization codes to another host
+ok 54 - A bootstrap cannot redirect authorization codes to another host
+  ---
+  duration_ms: 2.3662
+  type: 'test'
+  ...
+# Subtest: Failed completion requires a new authorization instead of replaying a consumed state
+ok 55 - Failed completion requires a new authorization instead of replaying a consumed state
+  ---
+  duration_ms: 2.5189
+  type: 'test'
+  ...
+# Subtest: Authorization configuration is encoded as JSON, not executable HTML
+ok 56 - Authorization configuration is encoded as JSON, not executable HTML
+  ---
+  duration_ms: 0.3035
+  type: 'test'
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 323.8848
+
+PRUEBA: recorrido_huellas
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Entrada biométrica mensual
+  OK: Entrada biométrica tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Entrada biométrica inactivo
+  OK: Entrada biométrica vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+  OK: Antes de verificar no se guarda plantilla
+  OK: Registro confirma guardado real en PostgreSQL
+  OK: Otro rol/equipo recibe la misma huella
+  OK: Comprobar huella no registra asistencia
+  OK: Entrada biométrica mensual
+  OK: Entrada biométrica tiquetera
+  OK: Entrada biométrica sinplan
+  OK: Entrada biométrica inactivo
+  OK: Entrada biométrica vencido
+  OK: Tiquetera descuenta exactamente una entrada
+  OK: Lectura repetida no duplica ingreso ni descuenta otra entrada
+  OK: Tiquetera agotada permite reentrada el mismo día
+  OK: Sin saldo se deniega el día siguiente
+  OK: Huella desconocida no escribe entrada
+  OK: Huella eliminada deja de permitir identificación
+PASS: 30 comprobaciones completas de huella, nube y entrada en ambos roles; lector simulado y PostgreSQL local.
+EN CURSO: recorrido_huellas · 15 s · límite 300 s.
+
+PRUEBA: simulacion_gimnasio
+SIMULACIÓN: Alta del gimnasio, cuentas y autorización del equipo
+SIMULACIÓN: Clientes, cumpleaños, huella opcional y búsquedas
+SIMULACIÓN: Planes mensuales, tiqueteras y pagos
+SIMULACIÓN: Registro de entrada, cupos y control de acceso
+SIMULACIÓN: Corrección y anulación de pagos con auditoría
+SIMULACIÓN: Tienda, inventario y ventas desde Recepción
+SIMULACIÓN: Gastos, caja y conciliación del día
+SIMULACIÓN: Personal, turnos y rutinas
+SIMULACIÓN: Clases y reservas
+SIMULACIÓN: Dashboard, estadísticas y seguimiento comercial
+SIMULACIÓN: Marketing, contactos y autorización
+SIMULACIÓN: Excel, respaldos y restauración en un gimnasio aislado
+SIMULACIÓN: Permisos, licencia y cierre de jornada
+PASS: 111 comprobaciones de una jornada con las clases Python y el SQL comercial reales.
+Mantén visibles las ventanas de prueba y el escritorio desbloqueado hasta terminar.
+
+PRUEBA: marketing_ui_smoke
+PASS: 76 Marketing UI checks: eight sections, disabled flags, timestamps, rule editor, 100/125%.
+
+PRUEBA: freeze_ui_smoke
+PASS: 48 freeze UI checks: admin/reception, 100/125%, confirm/cancel, eligibility, local timestamps.
+
+PRUEBA: dialog_design_ui_smoke
+EN CURSO: dialog_design_ui_smoke · 15 s · límite 300 s.
+PASS: 234 comprobaciones de marcas blancas, teclado, avisos y cancelación al 100/120/125 %.
+
+PRUEBA: ui_wait_smoke
+PASS: cola gráfica continua, espera acotada, cierre detectado y limpieza repetida sin ocultar el error original.
+
+PRUEBA: access_layout_ui_smoke
+  DISEÑO DE INGRESO: GymSoftApp / 100 %
+  DISEÑO DE INGRESO: ReceptionApp / 100 %
+  DISEÑO DE INGRESO: GymSoftApp / 120 %
+  DISEÑO DE INGRESO: ReceptionApp / 120 %
+EN CURSO: access_layout_ui_smoke · 15 s · límite 120 s.
+  DISEÑO DE INGRESO: GymSoftApp / 125 %
+  DISEÑO DE INGRESO: ReceptionApp / 125 %
+PASS: 270 comprobaciones de avisos completos, columnas estables y ausencia de recálculo continuo; 100 %, 120 % y 125 %.
+
+PRUEBA: client_fingerprint_ui_smoke
+PASS: 80 comprobaciones de huella opcional integrada, alta sin duplicados, edición, cancelación, eliminación y fallo de red; 100 % y 125 %, lector simulado.
+
+PRUEBA: fingerprint_ui_smoke
+  HUELLA: GymSoftApp / 100 % / inicio
+  HUELLA: GymSoftApp / 100 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: GymSoftApp / 100 % / sincronizar la huella registrada
+  HUELLA: GymSoftApp / 100 % / confirmar guardado con respuesta tardía
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde dashboard
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde clients
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde shop
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde finance
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde statistics
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde routines
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde classes
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde staff
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde marketing
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde settings
+  HUELLA: GymSoftApp / 100 % / ingreso sin saldo
+  HUELLA: GymSoftApp / 100 % / huella desconocida
+  HUELLA: GymSoftApp / 100 % / respuesta de ingreso no confirmada
+  HUELLA: GymSoftApp / 100 % / completado
+  HUELLA: GymSoftApp / 125 % / inicio
+  HUELLA: GymSoftApp / 125 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: GymSoftApp / 125 % / sincronizar la huella registrada
+  HUELLA: GymSoftApp / 125 % / confirmar guardado con respuesta tardía
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde dashboard
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde clients
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde shop
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde finance
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde statistics
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde routines
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde classes
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde staff
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde marketing
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde settings
+  HUELLA: GymSoftApp / 125 % / ingreso sin saldo
+  HUELLA: GymSoftApp / 125 % / huella desconocida
+  HUELLA: GymSoftApp / 125 % / respuesta de ingreso no confirmada
+  HUELLA: GymSoftApp / 125 % / completado
+  HUELLA: ReceptionApp / 100 % / inicio
+  HUELLA: ReceptionApp / 100 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: ReceptionApp / 100 % / sincronizar la huella registrada
+  HUELLA: ReceptionApp / 100 % / confirmar guardado con respuesta tardía
+  HUELLA: ReceptionApp / 100 % / ingreso automático desde clients
+  HUELLA: ReceptionApp / 100 % / ingreso automático desde shop
+  HUELLA: ReceptionApp / 100 % / ingreso sin saldo
+  HUELLA: ReceptionApp / 100 % / huella desconocida
+  HUELLA: ReceptionApp / 100 % / respuesta de ingreso no confirmada
+  HUELLA: ReceptionApp / 100 % / completado
+  HUELLA: ReceptionApp / 125 % / inicio
+  HUELLA: ReceptionApp / 125 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: ReceptionApp / 125 % / sincronizar la huella registrada
+  HUELLA: ReceptionApp / 125 % / confirmar guardado con respuesta tardía
+  HUELLA: ReceptionApp / 125 % / ingreso automático desde clients
+  HUELLA: ReceptionApp / 125 % / ingreso automático desde shop
+  HUELLA: ReceptionApp / 125 % / ingreso sin saldo
+  HUELLA: ReceptionApp / 125 % / huella desconocida
+  HUELLA: ReceptionApp / 125 % / respuesta de ingreso no confirmada
+  HUELLA: ReceptionApp / 125 % / completado
+PASS: 124 comprobaciones gráficas de registro, nube, eliminación y resultado automático; lector simulado y respuestas tardías.
+
+PRUEBA: windows_ui_smoke
+PASS: ventanas login, Sí/No, formularios, modo oscuro, archivos, pagos, gastos y editor del propietario.
+
+PRUEBA: responsive_ui_smoke
+PRUEBA: restaurando la ventana minimizada para continuar.
+PRUEBA: restaurando la ventana minimizada para continuar.
+PASS: límites del monitor, restauración de prueba, controles ocultos, superposiciones y consultas sin resultado.
+EN CURSO: responsive_ui_smoke · 15 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 30 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 45 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 60 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 75 s · límite 300 s.
+PASS: 489 comprobaciones de tamaños, navegación y formularios al 100 % y 125 %.
+
+PRUEBA: biometric_ui_smoke
+PASS: lectura con/sin Enter, búsqueda manual, repetición, foco fuera del buscador, formularios, pausa y resultados pendientes.
+
+PRUEBA: ticket_ui_smoke
+PASS: 34 comprobaciones gráficas de fechas, tiqueteras y seguimiento al 100 % y 125 %.
+
+PRUEBA: performance_ui_smoke
+COORDINADOR DE CARGA: a1865228a026
+CARGA: GymSoftApp / dashboard
+CARGA: GymSoftApp / checkin
+CARGA: GymSoftApp / clients
+CARGA: GymSoftApp / shop
+CARGA: GymSoftApp / finance
+CARGA: GymSoftApp / statistics
+CARGA: GymSoftApp / routines
+CARGA: GymSoftApp / classes
+CARGA: GymSoftApp / staff
+CARGA: GymSoftApp / marketing
+CARGA: GymSoftApp / settings
+CARGA: ReceptionApp / access
+CARGA: ReceptionApp / clients
+CARGA: ReceptionApp / shop
+PASS: 14 páginas con consultas fuera de Tk; recepción sin Dashboard; respuestas vigentes, ráfagas agrupadas, modales y selección conservados, barras condicionales y tarjetas reutilizadas.
+MEDICIÓN LOCAL: despacho de consulta 0.11 ms; tabla sin cambios de 1.000 filas 2.53 ms; 0 borrados y 0 inserciones.
+
+PRUEBA: popdown_ui_smoke
+No se pudo cargar ClientsPage/falla: Conexión de prueba
+No se pudo cargar ClientsPage/falla: Conexión de prueba
+PASS: 40 comprobaciones de desplegables, pagos, refrescos, avisos y recuperación en Administración y Recepción.
+
+PRUEBA: layout_modes_ui_smoke
+EN CURSO: layout_modes_ui_smoke · 15 s · límite 300 s.
+EN CURSO: layout_modes_ui_smoke · 30 s · límite 300 s.
+EN CURSO: layout_modes_ui_smoke · 45 s · límite 300 s.
+EN CURSO: layout_modes_ui_smoke · 60 s · límite 300 s.
+PASS: 387 comprobaciones de modo normal, maximizado y movimiento sin redistribuir al 100 %, 120 % y 125 %.
+
+PRUEBA: review_ui_smoke
+PASS: 71 comprobaciones de transiciones sin capas ni esperas, scroll sin cálculos, pagos reales de interfaz con red simulada, respuesta única, recuperación, invitaciones y catálogo al 100/120/125 %.
+
+PRUEBA: layout_consistency_ui_smoke
+PASS: 120 comprobaciones de columnas estables, paneles sin huecos y contenido poblado al 100/120/125 %.
+
+PRUEBA: visibility_ui_smoke
+PRUEBA: restaurando la ventana minimizada para continuar.
+PRUEBA: restaurando la ventana minimizada para continuar.
+PASS: límites del monitor, restauración de prueba, controles ocultos, superposiciones y consultas sin resultado.
+
+PRUEBA: atlantic_branding_ui_smoke
+PASS: 16 Atlantic identity checks; real Tk and installer source resources, no Windows build.
+
+Pruebas completadas. Informe: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\RESUMEN_PRUEBAS.txt
+PASS · comando 1 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\01-comando.log
+PASS · comando 2 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\02-comando.log
+PASS · comando 3 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\03-comando.log
+PASS · comando 4 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\04-comando.log
+PASS · comando 5 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\05-comando.log
+PASS · comando 6 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\06-comando.log
+PASS · comando 7 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\07-comando.log
+PASS · comando 8 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\08-comando.log
+PASS · comando 9 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261009T221846Z-4648\logs\09-comando.log
+Instaladores para configurar y probar: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\PRUEBAS_PARA_CONFIGURAR\20261009T221846Z-4648
+PASS · empaquetado técnico Windows · NO FINAL
+Instaladores NO FINAL para configurar y probar: salida\PRUEBAS_PARA_CONFIGURAR.
+Consulta LEER_PRIMERO.txt en la carpeta de esta ejecucion.
