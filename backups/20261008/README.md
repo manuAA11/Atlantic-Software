@@ -1,3 +1,16 @@
+# Descargas completas de Atlantic Gym y ZTATTUZ
+
+Los ZIP `APLICACION_COMPLETA_EN_DESARROLLO` incluyen el código íntegro recuperado, recursos Atlantic, configuración pública, pruebas, dependencias declaradas y todos los archivos DigitalPersona originales de cada arquitectura, con EULA y condiciones incorporadas. Extrae en una carpeta nueva; no necesitas reconstruir MSI/CAB ni copiar recursos desde otro paquete.
+
+- [Atlantic Gym Comercial completo](AtlanticGym_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip): Administrador, Recepción y fuentes del panel privado. No entregar el panel propietario a clientes.
+- [ZTATTUZ completo x64/x86](ZTATTUZ_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip): Administrador y Recepción de ambas arquitecturas. Con Python 3.14 de 64 bits usa la carpeta x64.
+
+Son aplicaciones completas desde las fuentes, **en desarrollo**: no EXE finales ni aceptación de integraciones/hardware. `INICIAR_ADMINISTRADOR.bat` y `INICIAR_RECEPCION.bat` abren los programas para configurar y probar. `CREAR_INSTALADORES.bat` conserva la aceptación final. El empaquetado técnico se verifica aparte en Windows. Consulta `docs/ESTADO_CIERRE.md` y `docs/INTEGRACIONES_Y_WINDOWS.md` incluidos.
+
+Los hashes externos están en `MANIFEST_APLICACIONES_COMPLETAS.json`; dentro, `APP_MANIFEST.json` autentica cada archivo. DigitalPersona se distribuye exclusivamente incorporado a Atlantic con su EULA, nunca como Runtime independiente. No se incluyen secretos ni datos de clientes.
+
+---
+
 # Respaldos recuperados
 
 Estos dos ZIP contienen las fuentes de desarrollo de Atlantic Gym y ZTATTUZ por separado. Se conservan aquí para poder descargarlos incluso si se pierde el entorno cloud.
