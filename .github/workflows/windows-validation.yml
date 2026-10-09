@@ -74,7 +74,8 @@ jobs:
       - name: Check portable packaging and installation guards
         working-directory: .
         run: |
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa
+          New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -115,7 +116,7 @@ jobs:
           exit $LASTEXITCODE
       - name: Install, update and uninstall on the disposable Windows runner
         run: |
-          & .\.venv\Scripts\python.exe ..\tools\windows_installation_qa.py --ephemeral-runner
+          & .\.venv\Scripts\python.exe ..\tools\windows_installation_qa.py --ephemeral-runner 2>&1 | Tee-Object -FilePath salida\validacion\installation-entry.log
           exit $LASTEXITCODE
       - name: Recheck the failing dashboard layout first
         run: |

@@ -1,0 +1,307 @@
+{
+  "status": "PASS",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+  "version": "3.6.1",
+  "mode": "installers",
+  "date_utc": "2026-10-09T03:21:25.373234+00:00",
+  "run_id": "20261009T032125Z-4448",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:06:05) [MSC v.1944 32 bit (Intel)]",
+  "process_bits": 32,
+  "release_gate_modified": false,
+  "executables": [
+    {
+      "name": "ZTATTUZ Admin",
+      "entry": "app.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist\\ZTATTUZ Admin\\ZTATTUZ Admin.exe",
+      "process_bits": 32,
+      "sha256": "5e044e9e62954caf51e854384d7dca774d7ebc9ef0e0e34bb0ea04d374b6ca0d",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Gym soft · ZTATTUZ",
+        "version": "3.6.1",
+        "fecha": "2026-10-09T03:22:17.607831+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 32 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; imágenes y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración ZTATTUZ",
+            "estado": "OK",
+            "detalle": "True"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no certifica todas las variantes de Windows Mini ni el lector físico."
+      }
+    },
+    {
+      "name": "ZTATTUZ Recepcion",
+      "entry": "reception_app.py",
+      "icon": "icono_recepcion.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist\\ZTATTUZ Recepcion\\ZTATTUZ Recepcion.exe",
+      "process_bits": 32,
+      "sha256": "399e3cc5c6aa45a597843fd78ed0816e18ddbc92f1bcb999ad2a554c81258796",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Gym soft · ZTATTUZ",
+        "version": "3.6.1",
+        "fecha": "2026-10-09T03:22:18.442089+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 32 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; imágenes y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración ZTATTUZ",
+            "estado": "OK",
+            "detalle": "True"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no certifica todas las variantes de Windows Mini ni el lector físico."
+      }
+    }
+  ],
+  "installers": [
+    {
+      "script": "instalador_admin.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes\\ZTATTUZ_Admin_3.6.1.exe",
+      "sha256": "bbee346de0c007e225009e848abef7c34377adecf22f31d21365e6dc8c13ff5f",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_recepcion.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes\\ZTATTUZ_Recepcion_3.6.1.exe",
+      "sha256": "5207d1d799f5327f85d2ca179beacb207045a1a8dca22951dc9c81b934cfa168",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_completo.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86.exe",
+      "sha256": "dcab6e5d40b3df2c8159c0e30c4e8385f9e579680b9a4337089c9de4bc938534",
+      "status": "PASS",
+      "final": false
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "ZTATTUZ Admin",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\ZTATTUZ Admin_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "certifi",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "--collect-all",
+        "serial",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\01-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "ZTATTUZ Recepcion",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono_recepcion.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\ZTATTUZ Recepcion_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "certifi",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "--collect-all",
+        "serial",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\reception_app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\02-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist\\ZTATTUZ Admin\\ZTATTUZ Admin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\diagnosticos\\ZTATTUZ_Admin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\03-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist\\ZTATTUZ Recepcion\\ZTATTUZ Recepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\diagnosticos\\ZTATTUZ_Recepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\04-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\instalador_admin.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\05-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\instalador_recepcion.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\06-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\instaladores",
+        "/FVALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\instalador_completo.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032125Z-4448\\logs\\07-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "42b57754f1b62fe10a8aaca3f2ecef9766e5be38bc8aec351b0dc449e7d1e1e4",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "setup.exe": "738122915385bbaac033ac295dd1970685c5a3637382cae56caedecdc65aadc8",
+    "Setup.ini": "ec316a3f10f02efc3bcd2ac2d9615bd2a5480ed017cf0110e0033606e3037e69",
+    "setup.msi": "4310e0ab0354da2684671a04f4e61709f155251883dbc3deecfac646cd67a879",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  }
+}
