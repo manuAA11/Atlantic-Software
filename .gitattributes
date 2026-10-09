@@ -5,3 +5,6 @@ backups/**/*.zip -text
 
 # Batch scripts use Windows line endings when checked out or packaged.
 *.bat text eol=crlf
+
+# Keep native Windows reports and command transcripts identical to their hashes.
+evidence/windows-actions/** -text

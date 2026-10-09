@@ -1,0 +1,39 @@
+{
+  "producto": "Atlantic Gym",
+  "version": "3.6.0",
+  "fecha": "2026-10-09T22:27:47.238809+00:00",
+  "estado": "REVISAR",
+  "comprobaciones": [
+    {
+      "comprobacion": "Sistema",
+      "estado": "OK",
+      "detalle": "Entorno de desarrollo linux"
+    },
+    {
+      "comprobacion": "Almacenamiento local",
+      "estado": "ERROR",
+      "detalle": "[Errno 30] Read-only file system: '/home/agent/.local/share/GymSoft'"
+    },
+    {
+      "comprobacion": "Interfaz",
+      "estado": "OK",
+      "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+    },
+    {
+      "comprobacion": "Componentes incluidos",
+      "estado": "OK",
+      "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+    },
+    {
+      "comprobacion": "Configuración comercial",
+      "estado": "OK",
+      "detalle": "Configuración pública comercial válida; sin claves privadas"
+    },
+    {
+      "comprobacion": "Conexión al proyecto comercial",
+      "estado": "OK",
+      "detalle": "Conexión HTTPS verificada; no se usaron cuentas"
+    }
+  ],
+  "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+}

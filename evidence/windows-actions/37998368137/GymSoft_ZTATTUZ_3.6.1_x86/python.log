@@ -1,0 +1,13 @@
+EN CURSO: python · 15 s · límite 300 s.
+.........................................................................................................Creando .venv con Python 3.14.8 de 32 bits...
+Entorno listo: Python 3.14.8 de 32 bits.
+Entorno listo: Python 3.14 de 32 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261009_221955_4170f4fe
+Creando .venv con Python 3.14.8 de 32 bits...
+Entorno listo: Python 3.14.8 de 32 bits.
+...........................................................
+EN CURSO: python · 30 s · límite 300 s.
+----------------------------------------------------------------------
+Ran 165 tests in 29.182s
+
+OK

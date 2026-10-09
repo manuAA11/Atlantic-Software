@@ -1,0 +1,39 @@
+{
+  "producto": "Gym soft · ZTATTUZ",
+  "version": "3.6.1",
+  "fecha": "2026-10-09T22:27:47.089453+00:00",
+  "estado": "OK",
+  "comprobaciones": [
+    {
+      "comprobacion": "Sistema",
+      "estado": "OK",
+      "detalle": "Entorno de desarrollo linux"
+    },
+    {
+      "comprobacion": "Almacenamiento local",
+      "estado": "OK",
+      "detalle": "Carpeta local accesible"
+    },
+    {
+      "comprobacion": "Interfaz",
+      "estado": "OK",
+      "detalle": "Tk 9.0.4; imágenes y formularios disponibles"
+    },
+    {
+      "comprobacion": "Componentes incluidos",
+      "estado": "OK",
+      "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+    },
+    {
+      "comprobacion": "Configuración ZTATTUZ",
+      "estado": "OK",
+      "detalle": "True"
+    },
+    {
+      "comprobacion": "Conexión al proyecto original",
+      "estado": "OK",
+      "detalle": "Conexión HTTPS verificada; no se usaron cuentas"
+    }
+  ],
+  "alcance": "Diagnóstico de componentes; no certifica todas las variantes de Windows Mini ni el lector físico."
+}

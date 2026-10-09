@@ -1,0 +1,50 @@
+﻿[
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Administrador.lnk",
+        "kind":  "Desktop",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Admin\\GymSoftAdmin.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Admin",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Propietario.lnk",
+        "kind":  "Desktop",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner\\GymSoftControl.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Recepción.lnk",
+        "kind":  "Desktop",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Recepcion",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Administrador.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Admin\\GymSoftAdmin.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Admin",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Recepción.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\client\\Recepcion",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft Propietario\\Atlantic Gym Propietario.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner\\GymSoftControl.exe",
+        "icon":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-c64-37998368137-7832-_vo8ax7p\\owner",
+        "arguments":  ""
+    }
+]

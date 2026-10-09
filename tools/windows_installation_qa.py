@@ -436,6 +436,33 @@ def preserve_sdk_log(qa_root):
     return {'status': 'PRESERVED', 'log': str(destination), 'sha256': sha256(destination)}
 
 
+def application_install_commands(installers, locations, qa_root, *, fresh, commercial):
+    """Test the customer's entry points; only a fresh QA install overrides paths."""
+    commands = []
+    if commercial:
+        for role, script in (('client', 'instalador_clientes.iss'),
+                             ('owner', 'instalador_propietario.iss')):
+            label = ('instalar-' if fresh else 'actualizar-') + role
+            command = [str(installers[script]), '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART']
+            if fresh:
+                command.append('/DIR=' + str(locations[role]))
+            command.append('/LOG=' + str(qa_root / (label + '.log')))
+            commands.append((label, command))
+    else:
+        label = 'instalar-completo' if fresh else 'actualizar-completo'
+        command = [str(installers['instalador_completo.iss']), '/VERYSILENT',
+                   '/SUPPRESSMSGBOXES', '/NORESTART']
+        if fresh:
+            parent = locations['admin'].parent
+            if (locations['admin'].name != 'admin' or locations['reception'].name != 'reception' or
+                    locations['reception'].parent != parent):
+                raise RuntimeError('Los componentes deben compartir la raíz técnica exclusiva.')
+            command.append('/QAInstallRoot=' + str(parent))
+        command.append('/LOG=' + str(qa_root / (label + '.log')))
+        commands.append((label, command))
+    return commands
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--edition', type=Path, default=Path.cwd())
@@ -500,14 +527,15 @@ def main(argv=None):
         report['installation_root'] = str(install_root)
         installers = {item['script']: Path(item['executable']) for item in packaged['installers']}
         commercial = 'Comercial' in edition.name
-        roles = [('client', 'instalador_clientes.iss'), ('owner', 'instalador_propietario.iss')] if commercial else [
-            ('admin', 'instalador_admin.iss'), ('reception', 'instalador_recepcion.iss')]
-        for role, script in roles:
-            report['stage'] = 'install_' + role
-            locations[role] = install_root / role
-            code = runner.run([str(installers[script]), '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART',
-                               '/DIR=' + str(locations[role]), '/LOG=' + str(qa_root / ('instalar-' + role + '.log'))],
-                              label='instalar-' + role, timeout=args.timeout, accepted=(0, 3010), cwd=edition)
+        roles = ('client', 'owner') if commercial else ('admin', 'reception')
+        locations = {role: install_root / role for role in roles}
+        fresh_commands = application_install_commands(installers, locations, qa_root,
+                                                       fresh=True, commercial=commercial)
+        report['fresh_installation'] = {'entry_points': [Path(command[0]).name for _, command in fresh_commands],
+                                        'status': 'RUNNING'}
+        for label, command in fresh_commands:
+            report['stage'] = label
+            code = runner.run(command, label=label, timeout=args.timeout, accepted=(0, 3010), cwd=edition)
             if code == 3010:
                 report['restart_required'] = True
         report['stage'] = 'verify_registrations'
@@ -519,25 +547,28 @@ def main(argv=None):
         report['stage'] = 'verify_shortcuts'
         links = inspect_shortcuts(runner, qa_root, install_root, 'accesos-directos')
         report['shortcuts'] = {'status': 'PASS', 'counts': verify_shortcuts(links, expected, edition), 'entries': links}
-        if not commercial:
-            report['stage'] = 'update_with_complete_installer'
-            code = runner.run([str(installers['instalador_completo.iss']), '/VERYSILENT', '/SUPPRESSMSGBOXES',
-                               '/NORESTART', '/LOG=' + str(qa_root / 'actualizar-completo.log')],
-                              label='actualizar-completo', timeout=args.timeout, accepted=(0, 3010), cwd=edition)
+        report['fresh_installation']['status'] = 'PASS'
+        update_commands = application_install_commands(installers, locations, qa_root,
+                                                        fresh=False, commercial=commercial)
+        for label, command in update_commands:
+            report['stage'] = label
+            code = runner.run(command, label=label, timeout=args.timeout, accepted=(0, 3010), cwd=edition)
             if code == 3010:
                 report['restart_required'] = True
-            report['stage'] = 'verify_updated_registrations'
-            after_update = validate_registered_apps(uninstall_entries(), locations)
-            if after_update != first_registration:
-                raise RuntimeError('El actualizador cambió directorios o creó registros duplicados.')
-            report['stage'] = 'verify_updated_executables'
-            expected, update_results = verify_installed_apps(build, packaged, locations, runner, qa_root / 'actualizacion')
-            update_links = inspect_shortcuts(runner, qa_root, install_root, 'accesos-actualizados')
-            verify_shortcuts(update_links, expected, edition)
-            if len(update_links) != len(links):
-                raise RuntimeError('El actualizador creó accesos directos duplicados.')
-            report['update'] = {'status': 'PASS', 'same_registration_and_locations': True,
-                                'executables': update_results, 'shortcuts': update_links}
+        report['stage'] = 'verify_updated_registrations'
+        after_update = validate_registered_apps(uninstall_entries(), locations)
+        if after_update != first_registration:
+            raise RuntimeError('El actualizador cambió directorios o creó registros duplicados.')
+        report['stage'] = 'verify_updated_executables'
+        expected, update_results = verify_installed_apps(build, packaged, locations, runner, qa_root / 'actualizacion')
+        update_links = inspect_shortcuts(runner, qa_root, install_root, 'accesos-actualizados')
+        update_counts = verify_shortcuts(update_links, expected, edition)
+        if (len(update_links) != len(links) or update_counts != report['shortcuts']['counts']):
+            raise RuntimeError('El actualizador creó accesos directos duplicados.')
+        report['update'] = {'status': 'PASS', 'same_registration_and_locations': True,
+                            'entry_points': [Path(command[0]).name for _, command in update_commands],
+                            'existing_directories_reused_without_override': True,
+                            'executables': update_results, 'shortcuts': update_links}
         report['status'] = 'PASS'
     try:
         execute()

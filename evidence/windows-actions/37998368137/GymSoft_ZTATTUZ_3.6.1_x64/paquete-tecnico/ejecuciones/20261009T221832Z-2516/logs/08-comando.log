@@ -1,0 +1,93 @@
+["C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe", "/DAppVersion=3.6.1", "/DBuildValidation=1", "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221832Z-2516\\dist", "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221832Z-2516\\instaladores\\componentes", "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221832Z-2516\\instaladores", "/FVALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\instalador_completo.iss"]
+Inno Setup 6 Command-Line Compiler
+Copyright (C) 1997-2026 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.
+Portions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.
+https://www.innosetup.com
+
+Compiler engine version: Inno Setup 6.7.1
+Non-commercial use only
+
+Preprocessing
+   Reading file: c:\program files (x86)\inno setup 6\ISPPBuiltins.iss
+   Line 46: Including file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\digitalpersona_install.iss
+   Reading file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\digitalpersona_install.iss
+Parsing [Setup] section, line 17
+Parsing [Setup] section, line 18
+Parsing [Setup] section, line 19
+Parsing [Setup] section, line 20
+Parsing [Setup] section, line 22
+Parsing [Setup] section, line 23
+Parsing [Setup] section, line 25
+Parsing [Setup] section, line 26
+Parsing [Setup] section, line 27
+Parsing [Setup] section, line 28
+Parsing [Setup] section, line 29
+Parsing [Setup] section, line 30
+Parsing [Setup] section, line 31
+Parsing [Setup] section, line 32
+Parsing [Setup] section, line 33
+Parsing [Setup] section, line 34
+Parsing [Setup] section, line 35
+Parsing [Setup] section, line 36
+Parsing [Setup] section, line 37
+Parsing [Setup] section, line 38
+Reading file (LicenseFile)
+Reading file (WizardImageFile)
+Reading file (WizardSmallImageFile)
+Preparing Setup program executable
+   Verification successful
+   Updating icons (Setup.e32)
+   Updating version info (Setup.e32)
+Determining language code pages
+Parsing [Languages] section, line 40
+   Reading file: c:\program files (x86)\inno setup 6\Languages\Spanish.isl
+   Messages in script file
+Reading default messages from Default.isl
+Parsing [Languages] section, line 40
+   Reading file: c:\program files (x86)\inno setup 6\Languages\Spanish.isl
+Parsing [LangOptions], [Messages], and [CustomMessages] sections
+   Messages in script file
+Reading [Code] section
+Parsing [Files] section, line 42
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\.gitignore
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\0x0409.ini
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Data1.cab
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\InstallOnly.bat
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\MANIFEST.json
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\README.md
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\setup.exe
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Setup.ini
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\setup.msi
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\UninstallOnly.bat
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Licenses\EULA SDK.rtf
+Parsing [Files] section, line 43
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T221832Z-2516\instaladores\componentes\ZTATTUZ_Admin_3.6.1.exe
+Parsing [Files] section, line 44
+   Reading version info: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T221832Z-2516\instaladores\componentes\ZTATTUZ_Recepcion_3.6.1.exe
+Compiling [Code] section
+Creating setup files
+   Verification successful
+   Updating icons (Setup.exe)
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\.gitignore
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\0x0409.ini
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Data1.cab
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\InstallOnly.bat
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\MANIFEST.json
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\README.md
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\setup.exe   (3.4.0.127)
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Setup.ini
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\setup.msi
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\UninstallOnly.bat
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe   (7.0.34450.0)
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\DigitalPersonaRuntime\Licenses\EULA SDK.rtf
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T221832Z-2516\instaladores\componentes\ZTATTUZ_Admin_3.6.1.exe   (0.0.0.0)
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T221832Z-2516\instaladores\componentes\ZTATTUZ_Recepcion_3.6.1.exe   (0.0.0.0)
+   Compressing Setup program executable
+   Updating version info (Setup.exe)
+   Updating manifest (Setup.exe)
+
+
+Successful compile (13.704 sec). Resulting Setup program filename is:
+D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261009T221832Z-2516\instaladores\VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe

@@ -1,0 +1,1051 @@
+{
+  "schema": 1,
+  "run_id": "37998368137",
+  "source_commit": "d3a1077330100a7169d66323e3026a27465b617a",
+  "workflow_url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/37998368137",
+  "workflow_conclusion": "success",
+  "workflow_conclusion_source": "GitHub Actions page observed by the task agent; component conclusions independently checked against preserved reports below.",
+  "status": "PASS_AT_d3a1077",
+  "final": false,
+  "release_readiness_modified": false,
+  "scope": "Windows Server 2022 / CPython 3.14.8 offline regression and technical NO FINAL packaging/installation at the named commit. Commercial fresh installation and uninstall; ZTATTUZ x64 component installation, wrapper update and uninstall. ZTATTUZ x86 installation is NOT_RUN on the x64 host. No account sign-in, real Meta/Wompi pilots, physical reader/relay, PostgreSQL concurrency or final release acceptance.",
+  "entrypoint": "CREAR_INSTALADORES.bat -> windows_packaging_qa.py --installers --para-configurar",
+  "evidence_integrity_scope": "sha256 authenticates the repository file bytes. recorded_windows_sha256 is the original hash in the runner report. Git converted text CRLF to LF during evidence commit; restoring only CRLF reproduced every recorded hash for all 111 validation logs, three all-validation reports and three packaging reports. No original files were rewritten for this index.",
+  "totals": {
+    "windows_stages_passed": 111,
+    "python_tests_passed": 484,
+    "real_executables_compiled": 7,
+    "technical_installers_compiled": 8,
+    "technical_installation_suites_passed": 2,
+    "technical_installation_suites_not_run": 1
+  },
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "version": "3.6.0",
+      "process_bits": 64,
+      "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+      "source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 153,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "result": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
+        "result_sha256": "2093dfc2edc8f946f439ef263d41902862d1bef972a7171b1c3cd47ff465d2b0",
+        "result_recorded_windows_sha256": "c93b9c741b517ad8bafc662cc582f41ce6e514e64a1579c7ed9eed053f774b11",
+        "result_recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "metadata": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/run.json",
+        "metadata_sha256": "0b278d3d5484da685d85a89e1ced0b884d26cce4cb2ce45ccb143d7de87bb707",
+        "scope": "Windows offline source validation at this commit only; no authenticated server, real account or physical hardware acceptance."
+      },
+      "validation_logs": [
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/python.log",
+          "sha256": "e26e47e9efe361161ae11c9c13c868747c7b3e676f04dbfd4749a0b4b6d3cd7f",
+          "recorded_windows_sha256": "494644fba3939199c625b7895cd62eefffd05a9098c990204f5f2ee0d81881da",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/contratos_extraidos.log",
+          "sha256": "32e2d7077257e7d13afeebf620680706362b92e595b695a611a65b3b2a058fd7",
+          "recorded_windows_sha256": "a6e375d8873f1b71e27d7499e159cb1a5f7cafa4b7d4f49e765a94c52dbf5e64",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/marketing_compile.log",
+          "sha256": "d552eb03074cfacb29903351272f2c95cceed459ef364817b8d459eb1727ea1a",
+          "recorded_windows_sha256": "2ce870af847f0b02e7f6d8a2b548b8b8f29e44f86a5151697ffae55d6e3318f2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/backend_sql_flow.log",
+          "sha256": "60914616462a9fe70a2922d1c7d8b259fc4089da1759bd1dac6e8ad0c22ec7bd",
+          "recorded_windows_sha256": "348d0678e4cb652b85a7f5037ab7d3d9df2a93ee515226e4a1a633b3ec0a1848",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/time_pipeline.log",
+          "sha256": "adc5fcd29f94904b637ed0d250dc9b0853ab10638e155b14ebc2318b97e3231a",
+          "recorded_windows_sha256": "edabd9633834b3e0a3d742508b805eebaf85e23e8a93a0e4c2de35f5ea514003",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/membership_freezes.log",
+          "sha256": "8c897dc37b70171ddf6c85941d621ec7c25f72290f61f9a66f1a345bca4f4d54",
+          "recorded_windows_sha256": "ecf8afc54dcd22d151a4074dfba0e43ced54106e4bc0552e9f57ca849021bc6d",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/audit_logs.log",
+          "sha256": "d4e05a45bb0c72089678b1890f0ed9459a95f9498052844a1a40d860415f3518",
+          "recorded_windows_sha256": "38516299e95a24d6bd28d67219c3438161213ae010fbfb5c2cccddab5ae5f3c0",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/marketing_contracts.log",
+          "sha256": "f30ab6661ca249a449c94e8ccbaefcf3562de3964808f7648f02891d612a8c1f",
+          "recorded_windows_sha256": "afda526f20c15a1411176001d9449ac45948bc01143139a13e5c9d8a2335ccd5",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/daily_tickets.log",
+          "sha256": "ea0f67968f6354317a1e9a4456b75940559ee2b31a4b8b06914b5369203a0b32",
+          "recorded_windows_sha256": "4699ebfdaf2c7394a05a38019f4c85e0cacfa2bc026c720f65fbb4a541f2f602",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/fingerprints.log",
+          "sha256": "2ccc68ce4ce0f104b1b19fda40d6e106cda3ba52e6d2807bdb8b529e729d0bdf",
+          "recorded_windows_sha256": "10d253c65c017570b21a62eae647c6f773cfc177fd927d5c5901263501f8e288",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/security.log",
+          "sha256": "c402fe63c9e09b9a378bd1a7e537c8443fdc1d1ad6499e01724e36d9f13ab08e",
+          "recorded_windows_sha256": "33d8fa0ac0dd4827475aa1f9d9ea293456e3c1cdb480a7d02ed4b7093f5584db",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/contracts.log",
+          "sha256": "cd1750135fd9f5bd056bc805da45af8f3fbafc5fdf817846d3e07ab3a15e08d4",
+          "recorded_windows_sha256": "bf7555623a2bf4e640e2a9ec826b7c20920f76076c98b92bbe85703d91bd7015",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/owner_flows.log",
+          "sha256": "e6fac45c3ecc30dc9efece053e54db4242170e8feb72a546a3ba51677e27239a",
+          "recorded_windows_sha256": "0dfb6a00024f3300f7bf42120c7275a46f8daf7b73b101721573d781e3d86757",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/owner_editor.log",
+          "sha256": "4924f8e045e2741173eb4752e5eb592d491d858a03c412be18c87b685594a69d",
+          "recorded_windows_sha256": "fee6d5a93158683c0edd9e0338bee863ef31c652bab4986302df55b6cb495123",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/ticket_plans.log",
+          "sha256": "2c8c207b01d8db0303df7cc6916127cab47b6465b32484334a3b8e70e75f76b7",
+          "recorded_windows_sha256": "8f72d46412727bbaf039a60fb0e8f3fac17bbdefef131a3403c44de4542c86ae",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/ticket_followup.log",
+          "sha256": "9e316e7b8b2566bf0950e5632b4b07611325f110898ac5ab7678891a98ffb877",
+          "recorded_windows_sha256": "d99c16e1ac6f1a7bd8095fb26fa4ec2cd5cd666d08bfcf8627c4003d8c34af9a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/marketing_backend.log",
+          "sha256": "10697a11f19bf0adf5ecd0ded85dd2e74238c86b5cd56388a3d4a5bff1fd6392",
+          "recorded_windows_sha256": "0f17d85f4a101f4b3c486eb082774bb44f0375e4b59722994423434ce3256ef5",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/recorrido_huellas.log",
+          "sha256": "6889b9a01aa027cd8894457fcc673904027a4dc7f5fb320416b8611d47961eca",
+          "recorded_windows_sha256": "e859822f6a6632fe40ec75ea8993a08b7bad305942ca0ff9f6c0477c2c54c3ad",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/simulacion_gimnasio.log",
+          "sha256": "8393db16b5e15bf37dcd48f4504a21b24a9b9b35cdcc289f33b809c4aaf14495",
+          "recorded_windows_sha256": "d37eca37dec9730d3ac66ddebdcea729cc07109bd93e6c6433fd6b2f47062436",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/marketing_ui_smoke.log",
+          "sha256": "3ffc420f8c1f94ad11e9e8017965e8f2cec969fadc3ba089dec9b85320de7dc4",
+          "recorded_windows_sha256": "abfc6944f620e101176b75c05b2ab7ba793c11933b857894ce8ce000997ea2e5",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/freeze_ui_smoke.log",
+          "sha256": "dd7b13579899d4427cea034c859f6287ad907f2fee241244b303e34054ea37df",
+          "recorded_windows_sha256": "c1ffddadfe987c240afd2686531c6b0bd78b5699e1290a20e635f277798f7780",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/dialog_design_ui_smoke.log",
+          "sha256": "804d65db8ac4378064ea83672974dc68a81c16e8b2e4d7f60b1495b85f526237",
+          "recorded_windows_sha256": "97b6d166bfba15719fe7b7615d9a7292568897655f8e945bf435e1c5e7b924b6",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/ui_wait_smoke.log",
+          "sha256": "fb4fc2cf6f6f430c5b0aca5bcbbe40aba2fdc45132a7eadddb8767727930e31a",
+          "recorded_windows_sha256": "60a11bea6f368ceab4b43207cc67017f373f5bef1ba5ec856480eb1f436f8a85",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/access_layout_ui_smoke.log",
+          "sha256": "ce8d0da65819870a65fbe4bf27cbdc726cae09d68d22432245c0fe403215741a",
+          "recorded_windows_sha256": "2ff0ec1272f3730a913d75f6092b422f1bc287ce17c6a963b5720606d6db2f4a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/client_fingerprint_ui_smoke.log",
+          "sha256": "c7ce8c8278116984ba8e8766f76e89385fb7db3f2f5a2989868967e97d5bd266",
+          "recorded_windows_sha256": "4908a59c4488d1035028264c6e1d8a78ee743e003167f9057ee59b072b61e179",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/fingerprint_ui_smoke.log",
+          "sha256": "42efbc4a809f86a88709eb71cf2499863863732aaf57bbeb78555f1f7db1d308",
+          "recorded_windows_sha256": "3f8bb5767d72132f51d16d79d4ea709ccbc217bb7e64f0c6f442ffcca561cb7e",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/windows_ui_smoke.log",
+          "sha256": "1fe1f80127f0b8ded0c8d87620743c6b0bc864ceddd2be0caa781feb1d4b018c",
+          "recorded_windows_sha256": "c688471385707898c99ceae0e1fa0959ea83bf48d3680a21cc1ed14bc2f089a9",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/responsive_ui_smoke.log",
+          "sha256": "e414b280dd518434e87aa5d7a43e0348b904d8ca76d362e5617b9562e9f2a20d",
+          "recorded_windows_sha256": "b9482af95cbf0bb51498ffee1d178999c9f606977962875a37f21b4bf81483df",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/biometric_ui_smoke.log",
+          "sha256": "081bbad44346f5ba73f398b198cdae498e3b8351ddc1e802c4ff27f71962be42",
+          "recorded_windows_sha256": "aeaa561e6fc6075a8b31ad508459fb2d931b18edf2a0dae102f813b1ea8577e2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/ticket_ui_smoke.log",
+          "sha256": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14",
+          "recorded_windows_sha256": "34bf08d314f34de77311dfde439fbbddb6808a74cb60bf0d2d83981c854bca74",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/performance_ui_smoke.log",
+          "sha256": "dcdcdd62823a906a4b400ade3c8fde557a962247662ea6d3793f4a2d3975266e",
+          "recorded_windows_sha256": "18c15fc5a1089af4b88f9bb5223d0cd4be76dd3586c75446a94919add1f8df78",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/popdown_ui_smoke.log",
+          "sha256": "a8b4dd0458fa28229414d48b6c1cdb3d36f8afbbe916f378fba94ec0b7075920",
+          "recorded_windows_sha256": "439c97dd5ce8bb4aa50f0b1ce97237ab7662b48cac61e8047dd96435ba1576db",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/layout_modes_ui_smoke.log",
+          "sha256": "1e57835f07d6863f7cf624bcc8824c8d00394f0cedf08ca11a683a2d65a244ec",
+          "recorded_windows_sha256": "bf5154bbc80a4f9e2e5685e59215e9f34da567debf6b7c2dd6819d2224f32080",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/review_ui_smoke.log",
+          "sha256": "d9eef38dbed23bf5e89d591f17718f2584eff6a2f3a45b965038c74c93bcdd6b",
+          "recorded_windows_sha256": "9304a7863b2aaad05d8b0674c295dc3bae8cf0c9959c8965948c95c30283e712",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/layout_consistency_ui_smoke.log",
+          "sha256": "a04796d792bc219e0b0594efc3219922ab7190773cab850ac14a4344e629708a",
+          "recorded_windows_sha256": "69d43c3a654438eab6655c8a28a1f21edfcdde61e5da39508644c0d2261516ee",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/visibility_ui_smoke.log",
+          "sha256": "5ad8fff7fb7c1ca3ccca25a21591396c4b3a26d3c51498ac90aff4992734fb0c",
+          "recorded_windows_sha256": "b4f7f392d7a50c1c5098a69796e8ccb8116426cad49440bdc922add31c869236",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/atlantic_branding_ui_smoke.log",
+          "sha256": "9a4bc37de298a9efe8065bf62001387dd943475c3a99ff56160a36fb5aaa9ebd",
+          "recorded_windows_sha256": "e924299a52fca6cecfb34af17f1ed97b9f775c996abcf124aa078179a0239f20",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        }
+      ],
+      "packaging": {
+        "status": "PASS",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "executables": 3,
+        "installers": 2,
+        "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "e24e0fdee155fe3ab3807c41a035cec7d97f512efccc08bf0ae2ef0e32ce5f52",
+        "recorded_windows_sha256": "ea04225edadc84b4bdf5eabb88d212444993c2dff6e9438667e9fa476f60125f",
+        "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+        "configuration_installers": [
+          {
+            "path": "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+            "sha256": "86ac21eb603578c5c73cc9d0355786ceb88ec6b8f564052b90ac97290a05b0bb",
+            "bytes": 94515860
+          },
+          {
+            "path": "PRIVADO_PROPIETARIO/VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+            "sha256": "da81478255feaddc54a5f6e7f775565f387a9e87bb0161e6b835e9c4279bbb2d",
+            "bytes": 28620707
+          }
+        ]
+      },
+      "installation": {
+        "status": "PASS",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "8e59d7a7470e2c2648c51ba8a56ab3f85dd300322bc9ba0483e82d5100ca463e",
+        "update": {
+          "status": "NOT_RUN",
+          "reason": "Commercial update was not included in this run; fresh installation and uninstall were checked."
+        },
+        "cleanup": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "runtime": {
+          "status": "PASS",
+          "libraries": [
+            {
+              "library": "dpfpdd.dll",
+              "path": "C:\\Windows\\System32\\dpfpdd.dll",
+              "version": "3.4.0.127",
+              "sha256": "aae20aff139a69f89b3592602c4a81e4479ca91008c1e12383e57d9eaa53439a",
+              "architecture": "x64"
+            },
+            {
+              "library": "dpfj.dll",
+              "path": "C:\\Windows\\System32\\dpfj.dll",
+              "version": "3.4.0.127",
+              "sha256": "3bd05b4af0bb5e1023c6150d72d5a87fb82d5573a51bda70ceca3fa7ff20ee1a",
+              "architecture": "x64"
+            }
+          ],
+          "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
+        },
+        "sdk_log": {
+          "path": "evidence/windows-actions/37998368137/GymSoft_Comercial_3.6.0/instalacion-tecnica/ejecuciones/20261009T222738Z-7832/logs/DigitalPersona_instalacion.log",
+          "sha256": "3447edd3fc00b846ff49abe36153fa7028a587b30e8cefc5a88bab437d0b0a77",
+          "recorded_windows_sha256": "3447edd3fc00b846ff49abe36153fa7028a587b30e8cefc5a88bab437d0b0a77",
+          "recorded_hash_relation": "EXACT_BYTES"
+        }
+      },
+      "executable_diagnostics": [
+        {
+          "entry": "app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono.ico",
+          "sha256": "976e2e189c8c430e8826941ad4280fe12a7ba8eea7d04fae396f998b04f4c497"
+        },
+        {
+          "entry": "reception_app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono_recepcion.ico",
+          "sha256": "0256bb77a883b83ee919f55baccc32abfa0627c6d611c38ce0b5db21561d18ca"
+        },
+        {
+          "entry": "owner_panel.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono.ico",
+          "sha256": "7250a7c4a572f7bbc5ec4e018da4ca1374f3558166bd5f92fb09809c7ad7aa10"
+        }
+      ],
+      "installers": [
+        {
+          "script": "instalador_clientes.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "86ac21eb603578c5c73cc9d0355786ceb88ec6b8f564052b90ac97290a05b0bb"
+        },
+        {
+          "script": "instalador_propietario.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "da81478255feaddc54a5f6e7f775565f387a9e87bb0161e6b835e9c4279bbb2d"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "version": "3.6.1",
+      "process_bits": 64,
+      "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+      "source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 166,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "result": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
+        "result_sha256": "3d7867018ea9b4a92b64bbd21902cd5855d744910dae9f417780ff145dffb863",
+        "result_recorded_windows_sha256": "c5681af727f5cdc3cc7c40fb572c0c5f204ae3f6d55c42861016344b01f5ed75",
+        "result_recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "metadata": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+        "metadata_sha256": "758b0284f8896b4fb2de1ea6503859c0ecc78fb1447b1a2fbd7b1fc173f90876",
+        "scope": "Windows offline source validation at this commit only; no authenticated server, real account or physical hardware acceptance."
+      },
+      "validation_logs": [
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/python.log",
+          "sha256": "7cf1ab29fbf83125305b2c5fd9120d2123aeb6e24898c531e11171d427c252f9",
+          "recorded_windows_sha256": "32c747ef366e8d731770348f9c671242c99afad43ede003318b8ea67563c091a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/contratos_extraidos.log",
+          "sha256": "32e2d7077257e7d13afeebf620680706362b92e595b695a611a65b3b2a058fd7",
+          "recorded_windows_sha256": "a6e375d8873f1b71e27d7499e159cb1a5f7cafa4b7d4f49e765a94c52dbf5e64",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/marketing_compile.log",
+          "sha256": "d552eb03074cfacb29903351272f2c95cceed459ef364817b8d459eb1727ea1a",
+          "recorded_windows_sha256": "2ce870af847f0b02e7f6d8a2b548b8b8f29e44f86a5151697ffae55d6e3318f2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/backend_sql_flow.log",
+          "sha256": "60914616462a9fe70a2922d1c7d8b259fc4089da1759bd1dac6e8ad0c22ec7bd",
+          "recorded_windows_sha256": "348d0678e4cb652b85a7f5037ab7d3d9df2a93ee515226e4a1a633b3ec0a1848",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/time_pipeline.log",
+          "sha256": "1899576f342a5ff92e235e3eda2d4f3d76e271d5e7fb3bbaad0fcec9559d65af",
+          "recorded_windows_sha256": "f9d55fe093774f835bb222074ce7d3989b388cfec4a06d5c7267655fdaf5b378",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/membership_freezes.log",
+          "sha256": "ff19532e23ab155568a466d360ecdcc63bc3dcab4d2c61f0c761d56a780d3411",
+          "recorded_windows_sha256": "d09bec8eee69fe30bc1817b9e632eada1a2f9ac4ef62195ae3195a61294f0b8e",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/audit_logs.log",
+          "sha256": "75e757761a6c832ab1fa1425e29d232833ac3c2f871af5cacbe6293e763bd62d",
+          "recorded_windows_sha256": "1a73a5b32b8d01a3e0d19d786143b051a8701a6eb3bb54af0645a358cfede4be",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/marketing_contracts.log",
+          "sha256": "d1840683c42d771e4b56d7094389fbb2930c30eebc7249e632f99e47819030b7",
+          "recorded_windows_sha256": "ab64e341a39d3faff8f692639e81afdbfd7e74f44c12dbf0d1322f1612a4c301",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/daily_tickets.log",
+          "sha256": "dda9960f7764e7ed3b41e212491857f70dba61796f78c879594fc325d6c7c1ce",
+          "recorded_windows_sha256": "330d9c08312f315318cdf1f3398f96af4314724b88c148b1c2431fd79d616372",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/fingerprints.log",
+          "sha256": "69d15ec465cf692946ce679a250ca0ddddd29d7684fa8c44306d637bfde75514",
+          "recorded_windows_sha256": "8c8be368a32c9b7fc76bc7e8ba3818667f4db0d7c4725c6c042a6e0980646a80",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/upgrade_compatibility.log",
+          "sha256": "6a6741e1b38ba8c159964f7d8d5f7add8cce5f5233dd0ae6b72cb97b01b1e692",
+          "recorded_windows_sha256": "c0a330bbcc0af9c379ac22ec23c8994f9dbf7c72c51d587b4be12585bd4e1de8",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/security.log",
+          "sha256": "c836d02d21eb8c47fc7bb90ac655e33bfd942b6adc70ed476e00e1d27280f17c",
+          "recorded_windows_sha256": "5c90800985c1a76fbe7d61fa269d010434b5806aef0beeb84bebf4d87208566f",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/contracts.log",
+          "sha256": "c586f0f393492579ad040e92cb83c57997a3ab6662490d9147dd023218a1509a",
+          "recorded_windows_sha256": "4b046389a4cb12c38268751de11f9a349b00c27e91adb6a1d1f6013b82becb47",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/ticket_plans.log",
+          "sha256": "2c8c207b01d8db0303df7cc6916127cab47b6465b32484334a3b8e70e75f76b7",
+          "recorded_windows_sha256": "8f72d46412727bbaf039a60fb0e8f3fac17bbdefef131a3403c44de4542c86ae",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/ticket_followup.log",
+          "sha256": "86b911d54241b986d479bf84c844fa8e8c127db38c52193ea6838d685940dc0b",
+          "recorded_windows_sha256": "d4718bbc1fac650d52fe4fca7c1d4aa14e53e2a2ac700edde4b90f5b03dd0e26",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/marketing_backend.log",
+          "sha256": "d7a3cb46800d9041e4281d3b181105bc12e38b251987a1ff449d60ae16516348",
+          "recorded_windows_sha256": "76035617a7c60f538131f31307057f7339fccce98becaca59c7d3c04f6c852ed",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/recorrido_huellas.log",
+          "sha256": "ae3afadbbc00c7a90fc34243b2aa22e8d4cab537a60a9e04de1778a5fb9dbe2b",
+          "recorded_windows_sha256": "1636be2fcc263617cf35e5135e150794b4a869b027d258dd188e4d64750cc850",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/simulacion_gimnasio.log",
+          "sha256": "02bd03381dbd3a2b70cdbf5c5368f5ec7128c5f794ba4ed32f25715b7c23dbe7",
+          "recorded_windows_sha256": "f7346c385db83159c2c3dfa3b5ca7777b0bd5df439d7dfca20f23b8f8d81da63",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/marketing_ui_smoke.log",
+          "sha256": "3ffc420f8c1f94ad11e9e8017965e8f2cec969fadc3ba089dec9b85320de7dc4",
+          "recorded_windows_sha256": "abfc6944f620e101176b75c05b2ab7ba793c11933b857894ce8ce000997ea2e5",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/freeze_ui_smoke.log",
+          "sha256": "dd7b13579899d4427cea034c859f6287ad907f2fee241244b303e34054ea37df",
+          "recorded_windows_sha256": "c1ffddadfe987c240afd2686531c6b0bd78b5699e1290a20e635f277798f7780",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/door_ui_smoke.log",
+          "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+          "recorded_windows_sha256": "0d4732d725b63311c3ff4a6a4b6d2c7e915848f444481495841a401fc8bb483c",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/dialog_design_ui_smoke.log",
+          "sha256": "804d65db8ac4378064ea83672974dc68a81c16e8b2e4d7f60b1495b85f526237",
+          "recorded_windows_sha256": "97b6d166bfba15719fe7b7615d9a7292568897655f8e945bf435e1c5e7b924b6",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/ui_wait_smoke.log",
+          "sha256": "fb4fc2cf6f6f430c5b0aca5bcbbe40aba2fdc45132a7eadddb8767727930e31a",
+          "recorded_windows_sha256": "60a11bea6f368ceab4b43207cc67017f373f5bef1ba5ec856480eb1f436f8a85",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/access_layout_ui_smoke.log",
+          "sha256": "ce8d0da65819870a65fbe4bf27cbdc726cae09d68d22432245c0fe403215741a",
+          "recorded_windows_sha256": "2ff0ec1272f3730a913d75f6092b422f1bc287ce17c6a963b5720606d6db2f4a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/client_fingerprint_ui_smoke.log",
+          "sha256": "c7ce8c8278116984ba8e8766f76e89385fb7db3f2f5a2989868967e97d5bd266",
+          "recorded_windows_sha256": "4908a59c4488d1035028264c6e1d8a78ee743e003167f9057ee59b072b61e179",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/fingerprint_ui_smoke.log",
+          "sha256": "42efbc4a809f86a88709eb71cf2499863863732aaf57bbeb78555f1f7db1d308",
+          "recorded_windows_sha256": "3f8bb5767d72132f51d16d79d4ea709ccbc217bb7e64f0c6f442ffcca561cb7e",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/windows_ui_smoke.log",
+          "sha256": "635832ecea0b23703c2a3d27bd7e5278e7b78d7084cbe0016fb8cc50fbdfe6de",
+          "recorded_windows_sha256": "70c88fdf12e81e1f3f79f5ab84200e0231f3c01e083127dc007d3cd4f1de767a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/responsive_ui_smoke.log",
+          "sha256": "82554c285e23f813a1a9d4b509f5443d602c1778bd155fd0f58c52199bc20f35",
+          "recorded_windows_sha256": "5186f44ae4279777e22aaccbd4102838e13032daec72e3a1b5666f7147dcaebf",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/biometric_ui_smoke.log",
+          "sha256": "081bbad44346f5ba73f398b198cdae498e3b8351ddc1e802c4ff27f71962be42",
+          "recorded_windows_sha256": "aeaa561e6fc6075a8b31ad508459fb2d931b18edf2a0dae102f813b1ea8577e2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/ticket_ui_smoke.log",
+          "sha256": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14",
+          "recorded_windows_sha256": "34bf08d314f34de77311dfde439fbbddb6808a74cb60bf0d2d83981c854bca74",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/performance_ui_smoke.log",
+          "sha256": "7e76c7242ad1c5002ac885a9382545bdd8af745543ba46185eecce876c18d784",
+          "recorded_windows_sha256": "6efe0f841213ac0424699e9d77c367ee56a2a1c7013eb556be30d881f69775e0",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/popdown_ui_smoke.log",
+          "sha256": "a8b4dd0458fa28229414d48b6c1cdb3d36f8afbbe916f378fba94ec0b7075920",
+          "recorded_windows_sha256": "439c97dd5ce8bb4aa50f0b1ce97237ab7662b48cac61e8047dd96435ba1576db",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/layout_modes_ui_smoke.log",
+          "sha256": "485c6cb43978c28ad7abdc20ac3e27542f18898f344afee59b5d61d0c9bab9a7",
+          "recorded_windows_sha256": "14487e2b066c698e73d0946ea5f810ac17a9853c7c3f9b98ff354a7b5f18a5dc",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/review_ui_smoke.log",
+          "sha256": "d9eef38dbed23bf5e89d591f17718f2584eff6a2f3a45b965038c74c93bcdd6b",
+          "recorded_windows_sha256": "9304a7863b2aaad05d8b0674c295dc3bae8cf0c9959c8965948c95c30283e712",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/layout_consistency_ui_smoke.log",
+          "sha256": "a04796d792bc219e0b0594efc3219922ab7190773cab850ac14a4344e629708a",
+          "recorded_windows_sha256": "69d43c3a654438eab6655c8a28a1f21edfcdde61e5da39508644c0d2261516ee",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/visibility_ui_smoke.log",
+          "sha256": "5ad8fff7fb7c1ca3ccca25a21591396c4b3a26d3c51498ac90aff4992734fb0c",
+          "recorded_windows_sha256": "b4f7f392d7a50c1c5098a69796e8ccb8116426cad49440bdc922add31c869236",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/atlantic_branding_ui_smoke.log",
+          "sha256": "9a4bc37de298a9efe8065bf62001387dd943475c3a99ff56160a36fb5aaa9ebd",
+          "recorded_windows_sha256": "e924299a52fca6cecfb34af17f1ed97b9f775c996abcf124aa078179a0239f20",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        }
+      ],
+      "packaging": {
+        "status": "PASS",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "executables": 2,
+        "installers": 3,
+        "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "81728969ff848d87cba42d5852a86725301c9420ef96f661704d0a190c63c62b",
+        "recorded_windows_sha256": "6910aabc3d137dc267ba804c085ee2f726d50f5c978efb95c552f8f8b7ae9949",
+        "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+        "configuration_installers": [
+          {
+            "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
+            "sha256": "02abc43818e1ca923ea702958a351a1d722bac8a169cf2d1c3b8ec3c571b8a18",
+            "bytes": 68309686
+          },
+          {
+            "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
+            "sha256": "ee3b2d7d0f6d823be6879fd61b74ac26c422af5003670195129ee0926242c839",
+            "bytes": 68138553
+          },
+          {
+            "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
+            "sha256": "d2775afdf526426e845a8c03c5ab4aca3b59712eac69df730493532718de8972",
+            "bytes": 176951298
+          }
+        ]
+      },
+      "installation": {
+        "status": "PASS",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "64d8bf26e1a6089de3837b2944c2709c3021d5413c7b7b4b247144ea7c4c17cd",
+        "update": {
+          "status": "PASS",
+          "same_registration_and_locations": true,
+          "scope": "Existing component registrations updated through the complete wrapper; no fresh wrapper installation claim."
+        },
+        "cleanup": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "runtime": {
+          "status": "PASS",
+          "libraries": [
+            {
+              "library": "dpfpdd.dll",
+              "path": "C:\\Windows\\System32\\dpfpdd.dll",
+              "version": "3.4.0.127",
+              "sha256": "aae20aff139a69f89b3592602c4a81e4479ca91008c1e12383e57d9eaa53439a",
+              "architecture": "x64"
+            },
+            {
+              "library": "dpfj.dll",
+              "path": "C:\\Windows\\System32\\dpfj.dll",
+              "version": "3.4.0.127",
+              "sha256": "3bd05b4af0bb5e1023c6150d72d5a87fb82d5573a51bda70ceca3fa7ff20ee1a",
+              "architecture": "x64"
+            }
+          ],
+          "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
+        },
+        "sdk_log": {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/ejecuciones/20261009T222614Z-1480/logs/DigitalPersona_instalacion.log",
+          "sha256": "93735b44e9e943ab5759458d51f974c91dc9a9d35188e685bb685fa15d5a1475",
+          "recorded_windows_sha256": "93735b44e9e943ab5759458d51f974c91dc9a9d35188e685bb685fa15d5a1475",
+          "recorded_hash_relation": "EXACT_BYTES"
+        }
+      },
+      "executable_diagnostics": [
+        {
+          "entry": "app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono.ico",
+          "sha256": "3cbb9541e8f4140ac406b8db92cdb10007fc10af22738ff2076bfdf7d784a463"
+        },
+        {
+          "entry": "reception_app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono_recepcion.ico",
+          "sha256": "ee459c84a75e00243df7185cc7ca657bd6ce1737beb9ab6195da9783a9ae9ec1"
+        }
+      ],
+      "installers": [
+        {
+          "script": "instalador_admin.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "02abc43818e1ca923ea702958a351a1d722bac8a169cf2d1c3b8ec3c571b8a18"
+        },
+        {
+          "script": "instalador_recepcion.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "ee3b2d7d0f6d823be6879fd61b74ac26c422af5003670195129ee0926242c839"
+        },
+        {
+          "script": "instalador_completo.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "d2775afdf526426e845a8c03c5ab4aca3b59712eac69df730493532718de8972"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "version": "3.6.1",
+      "process_bits": 32,
+      "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:06:05) [MSC v.1944 32 bit (Intel)]",
+      "source_validation": {
+        "status": "PASS",
+        "stages": 37,
+        "python_tests": 165,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "result": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
+        "result_sha256": "253387ee31f09bfd9d44d82093d08afcc7e1451197ab4c07fc880ecc54c9de99",
+        "result_recorded_windows_sha256": "9911bb75f14116e94da5e61fb148b91874e83cd7266b7a2e83ec5237f1d9d5e1",
+        "result_recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "metadata": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+        "metadata_sha256": "abb9d9dd3e542e2040c50fc861cec9817af322a19b9a6df229a3e74fee8e24bc",
+        "scope": "Windows offline source validation at this commit only; no authenticated server, real account or physical hardware acceptance."
+      },
+      "validation_logs": [
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/python.log",
+          "sha256": "b4366bbf2d0b82da410eb9f0a4ef48e8c8db07d3e79e82f49b18a4119db1a8a5",
+          "recorded_windows_sha256": "468d358a605cb0893d34ecb67d65a10e8d3baaf26fad91e54084a79031ccec84",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/contratos_extraidos.log",
+          "sha256": "32e2d7077257e7d13afeebf620680706362b92e595b695a611a65b3b2a058fd7",
+          "recorded_windows_sha256": "a6e375d8873f1b71e27d7499e159cb1a5f7cafa4b7d4f49e765a94c52dbf5e64",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/marketing_compile.log",
+          "sha256": "d552eb03074cfacb29903351272f2c95cceed459ef364817b8d459eb1727ea1a",
+          "recorded_windows_sha256": "2ce870af847f0b02e7f6d8a2b548b8b8f29e44f86a5151697ffae55d6e3318f2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/backend_sql_flow.log",
+          "sha256": "60914616462a9fe70a2922d1c7d8b259fc4089da1759bd1dac6e8ad0c22ec7bd",
+          "recorded_windows_sha256": "348d0678e4cb652b85a7f5037ab7d3d9df2a93ee515226e4a1a633b3ec0a1848",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/time_pipeline.log",
+          "sha256": "1899576f342a5ff92e235e3eda2d4f3d76e271d5e7fb3bbaad0fcec9559d65af",
+          "recorded_windows_sha256": "f9d55fe093774f835bb222074ce7d3989b388cfec4a06d5c7267655fdaf5b378",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/membership_freezes.log",
+          "sha256": "ff19532e23ab155568a466d360ecdcc63bc3dcab4d2c61f0c761d56a780d3411",
+          "recorded_windows_sha256": "d09bec8eee69fe30bc1817b9e632eada1a2f9ac4ef62195ae3195a61294f0b8e",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/audit_logs.log",
+          "sha256": "75e757761a6c832ab1fa1425e29d232833ac3c2f871af5cacbe6293e763bd62d",
+          "recorded_windows_sha256": "1a73a5b32b8d01a3e0d19d786143b051a8701a6eb3bb54af0645a358cfede4be",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/marketing_contracts.log",
+          "sha256": "d1840683c42d771e4b56d7094389fbb2930c30eebc7249e632f99e47819030b7",
+          "recorded_windows_sha256": "ab64e341a39d3faff8f692639e81afdbfd7e74f44c12dbf0d1322f1612a4c301",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/daily_tickets.log",
+          "sha256": "dda9960f7764e7ed3b41e212491857f70dba61796f78c879594fc325d6c7c1ce",
+          "recorded_windows_sha256": "330d9c08312f315318cdf1f3398f96af4314724b88c148b1c2431fd79d616372",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/fingerprints.log",
+          "sha256": "69d15ec465cf692946ce679a250ca0ddddd29d7684fa8c44306d637bfde75514",
+          "recorded_windows_sha256": "8c8be368a32c9b7fc76bc7e8ba3818667f4db0d7c4725c6c042a6e0980646a80",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/upgrade_compatibility.log",
+          "sha256": "6a6741e1b38ba8c159964f7d8d5f7add8cce5f5233dd0ae6b72cb97b01b1e692",
+          "recorded_windows_sha256": "c0a330bbcc0af9c379ac22ec23c8994f9dbf7c72c51d587b4be12585bd4e1de8",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/security.log",
+          "sha256": "c836d02d21eb8c47fc7bb90ac655e33bfd942b6adc70ed476e00e1d27280f17c",
+          "recorded_windows_sha256": "5c90800985c1a76fbe7d61fa269d010434b5806aef0beeb84bebf4d87208566f",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/contracts.log",
+          "sha256": "c586f0f393492579ad040e92cb83c57997a3ab6662490d9147dd023218a1509a",
+          "recorded_windows_sha256": "4b046389a4cb12c38268751de11f9a349b00c27e91adb6a1d1f6013b82becb47",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/ticket_plans.log",
+          "sha256": "2c8c207b01d8db0303df7cc6916127cab47b6465b32484334a3b8e70e75f76b7",
+          "recorded_windows_sha256": "8f72d46412727bbaf039a60fb0e8f3fac17bbdefef131a3403c44de4542c86ae",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/ticket_followup.log",
+          "sha256": "86b911d54241b986d479bf84c844fa8e8c127db38c52193ea6838d685940dc0b",
+          "recorded_windows_sha256": "d4718bbc1fac650d52fe4fca7c1d4aa14e53e2a2ac700edde4b90f5b03dd0e26",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/marketing_backend.log",
+          "sha256": "b2afa488c77661832cc96df8d317c522c3af3d5d5f4fe94b82866c8ec5b4c3f9",
+          "recorded_windows_sha256": "b6793f0866d544404f2e4dc56106c01ed7ad902c9d030b83b8be36e6b19c9076",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/recorrido_huellas.log",
+          "sha256": "ae3afadbbc00c7a90fc34243b2aa22e8d4cab537a60a9e04de1778a5fb9dbe2b",
+          "recorded_windows_sha256": "1636be2fcc263617cf35e5135e150794b4a869b027d258dd188e4d64750cc850",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/simulacion_gimnasio.log",
+          "sha256": "02bd03381dbd3a2b70cdbf5c5368f5ec7128c5f794ba4ed32f25715b7c23dbe7",
+          "recorded_windows_sha256": "f7346c385db83159c2c3dfa3b5ca7777b0bd5df439d7dfca20f23b8f8d81da63",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/marketing_ui_smoke.log",
+          "sha256": "8d49d8205be50e7f6c1d20b5162ecf2b3952a00b1b4f23e3ae325152b7511034",
+          "recorded_windows_sha256": "2cb807a618cf4455a26a2ef5eeb205f737eecaaecdd20ca69f12a103fb421339",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/freeze_ui_smoke.log",
+          "sha256": "dd7b13579899d4427cea034c859f6287ad907f2fee241244b303e34054ea37df",
+          "recorded_windows_sha256": "c1ffddadfe987c240afd2686531c6b0bd78b5699e1290a20e635f277798f7780",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/door_ui_smoke.log",
+          "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+          "recorded_windows_sha256": "0d4732d725b63311c3ff4a6a4b6d2c7e915848f444481495841a401fc8bb483c",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/dialog_design_ui_smoke.log",
+          "sha256": "804d65db8ac4378064ea83672974dc68a81c16e8b2e4d7f60b1495b85f526237",
+          "recorded_windows_sha256": "97b6d166bfba15719fe7b7615d9a7292568897655f8e945bf435e1c5e7b924b6",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/ui_wait_smoke.log",
+          "sha256": "fb4fc2cf6f6f430c5b0aca5bcbbe40aba2fdc45132a7eadddb8767727930e31a",
+          "recorded_windows_sha256": "60a11bea6f368ceab4b43207cc67017f373f5bef1ba5ec856480eb1f436f8a85",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/access_layout_ui_smoke.log",
+          "sha256": "ce8d0da65819870a65fbe4bf27cbdc726cae09d68d22432245c0fe403215741a",
+          "recorded_windows_sha256": "2ff0ec1272f3730a913d75f6092b422f1bc287ce17c6a963b5720606d6db2f4a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/client_fingerprint_ui_smoke.log",
+          "sha256": "c7ce8c8278116984ba8e8766f76e89385fb7db3f2f5a2989868967e97d5bd266",
+          "recorded_windows_sha256": "4908a59c4488d1035028264c6e1d8a78ee743e003167f9057ee59b072b61e179",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/fingerprint_ui_smoke.log",
+          "sha256": "42efbc4a809f86a88709eb71cf2499863863732aaf57bbeb78555f1f7db1d308",
+          "recorded_windows_sha256": "3f8bb5767d72132f51d16d79d4ea709ccbc217bb7e64f0c6f442ffcca561cb7e",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/windows_ui_smoke.log",
+          "sha256": "635832ecea0b23703c2a3d27bd7e5278e7b78d7084cbe0016fb8cc50fbdfe6de",
+          "recorded_windows_sha256": "70c88fdf12e81e1f3f79f5ab84200e0231f3c01e083127dc007d3cd4f1de767a",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/responsive_ui_smoke.log",
+          "sha256": "6cf2c39bff32b027fc4a67c5113266d5bfb79abc5c6e73fea5b247a2823fab8d",
+          "recorded_windows_sha256": "3d4c0b9d4b9718131f26eea1034905c6f3423800899143ea7fc3d6ec360f3ec6",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/biometric_ui_smoke.log",
+          "sha256": "081bbad44346f5ba73f398b198cdae498e3b8351ddc1e802c4ff27f71962be42",
+          "recorded_windows_sha256": "aeaa561e6fc6075a8b31ad508459fb2d931b18edf2a0dae102f813b1ea8577e2",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/ticket_ui_smoke.log",
+          "sha256": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14",
+          "recorded_windows_sha256": "34bf08d314f34de77311dfde439fbbddb6808a74cb60bf0d2d83981c854bca74",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/performance_ui_smoke.log",
+          "sha256": "98a10c10047b477d31f6dd4d340ba4c365a035e25e21667db93a307a496c53d6",
+          "recorded_windows_sha256": "cde6c6fbd604db8649a3f7a38e45a46f820f270893402e33d30cd75ee638d0fb",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/popdown_ui_smoke.log",
+          "sha256": "a8b4dd0458fa28229414d48b6c1cdb3d36f8afbbe916f378fba94ec0b7075920",
+          "recorded_windows_sha256": "439c97dd5ce8bb4aa50f0b1ce97237ab7662b48cac61e8047dd96435ba1576db",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/layout_modes_ui_smoke.log",
+          "sha256": "485c6cb43978c28ad7abdc20ac3e27542f18898f344afee59b5d61d0c9bab9a7",
+          "recorded_windows_sha256": "14487e2b066c698e73d0946ea5f810ac17a9853c7c3f9b98ff354a7b5f18a5dc",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/review_ui_smoke.log",
+          "sha256": "d9eef38dbed23bf5e89d591f17718f2584eff6a2f3a45b965038c74c93bcdd6b",
+          "recorded_windows_sha256": "9304a7863b2aaad05d8b0674c295dc3bae8cf0c9959c8965948c95c30283e712",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/layout_consistency_ui_smoke.log",
+          "sha256": "a04796d792bc219e0b0594efc3219922ab7190773cab850ac14a4344e629708a",
+          "recorded_windows_sha256": "69d43c3a654438eab6655c8a28a1f21edfcdde61e5da39508644c0d2261516ee",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/visibility_ui_smoke.log",
+          "sha256": "5ad8fff7fb7c1ca3ccca25a21591396c4b3a26d3c51498ac90aff4992734fb0c",
+          "recorded_windows_sha256": "b4f7f392d7a50c1c5098a69796e8ccb8116426cad49440bdc922add31c869236",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        },
+        {
+          "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/atlantic_branding_ui_smoke.log",
+          "sha256": "9a4bc37de298a9efe8065bf62001387dd943475c3a99ff56160a36fb5aaa9ebd",
+          "recorded_windows_sha256": "e924299a52fca6cecfb34af17f1ed97b9f775c996abcf124aa078179a0239f20",
+          "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED"
+        }
+      ],
+      "packaging": {
+        "status": "PASS",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "executables": 2,
+        "installers": 3,
+        "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "6bac600ccab1a34e3661ae66fdbc87d5e1498805c0e4e31d993d92ecc7814ba7",
+        "recorded_windows_sha256": "9a7c1e83b4d1e6b768de098726f2a23b8a45c6a3b9deb75a9d85bf95d73f6a38",
+        "recorded_hash_relation": "GIT_LF_NORMALIZATION_ONLY_NATIVE_CRLF_HASH_VERIFIED",
+        "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+        "configuration_installers": [
+          {
+            "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
+            "sha256": "b0cef9f585ca5c2644bf05f54c3d8adabca3719cdf8625aea3b6812f7a87fdb9",
+            "bytes": 40759494
+          },
+          {
+            "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
+            "sha256": "fa53570c7026a0d74b4460656d352aed3ad62b662e5c6d9af7019166844d96e3",
+            "bytes": 40590962
+          },
+          {
+            "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86.exe",
+            "sha256": "3ab78683c22df456bd208766378a0cd578433ce380a842812884ee9c93f1ea3d",
+            "bytes": 97250173
+          }
+        ]
+      },
+      "installation": {
+        "status": "NOT_RUN",
+        "final": false,
+        "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+        "run_id": "37998368137",
+        "path": "evidence/windows-actions/37998368137/GymSoft_ZTATTUZ_3.6.1_x86/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "ae5d21a089802e10fe9eb266655d37784f8561b02d6b4c9629f7b05ccd6649d5",
+        "update": {
+          "status": "NOT_RUN",
+          "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits."
+        },
+        "cleanup": "NOT_RUN",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+        "native_windows_architecture": "x64"
+      },
+      "executable_diagnostics": [
+        {
+          "entry": "app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono.ico",
+          "sha256": "756e7c3eaed80c4f5c0590b38423a1b5a4f6e3a691f17e125ac5fd00c6eca962"
+        },
+        {
+          "entry": "reception_app.py",
+          "status": "PASS",
+          "diagnostic_status": "OK",
+          "icon": "icono_recepcion.ico",
+          "sha256": "cf84250c5ff9bec7235490bfe01bd0658ac329cf04f973776f1e11f294468f96"
+        }
+      ],
+      "installers": [
+        {
+          "script": "instalador_admin.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "b0cef9f585ca5c2644bf05f54c3d8adabca3719cdf8625aea3b6812f7a87fdb9"
+        },
+        {
+          "script": "instalador_recepcion.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "fa53570c7026a0d74b4460656d352aed3ad62b662e5c6d9af7019166844d96e3"
+        },
+        {
+          "script": "instalador_completo.iss",
+          "status": "PASS",
+          "final": false,
+          "sha256": "3ab78683c22df456bd208766378a0cd578433ce380a842812884ee9c93f1ea3d"
+        }
+      ]
+    }
+  ]
+}

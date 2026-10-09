@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "observed_at_utc": "2026-10-09T22:24:05.677837+00:00",
+  "scope": "Read-only authentication health with recovered publishable keys and public Commercial compatibility metadata. No user sign-in, private data, ZTATTUZ authenticated schema verification, pilots or final acceptance.",
+  "checks": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "check": "auth_health_with_recovered_public_configuration",
+      "status": "FAIL",
+      "error_type": "URLError"
+    },
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "check": "public_commercial_system_info",
+      "response": {
+        "product": "gymsoft-commercial",
+        "schema_version": "3.0.0"
+      },
+      "status": "PASS"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "check": "auth_health_with_recovered_public_configuration",
+      "status": "FAIL",
+      "error_type": "URLError"
+    }
+  ]
+}

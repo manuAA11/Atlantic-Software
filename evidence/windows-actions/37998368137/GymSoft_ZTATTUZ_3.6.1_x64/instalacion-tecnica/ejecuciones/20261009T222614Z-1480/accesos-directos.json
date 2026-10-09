@@ -1,0 +1,50 @@
+﻿[
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym · ZTATTUZ Administrador.lnk",
+        "kind":  "Desktop",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ Admin.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym · ZTATTUZ Recepción.lnk",
+        "kind":  "Desktop",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ Recepcion.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ-Recepcion-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\ZTATTUZ\\Atlantic Gym · ZTATTUZ Administrador.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ Admin.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\ZTATTUZ\\Atlantic Gym · ZTATTUZ Recepción.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ Recepcion.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ-Recepcion-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception",
+        "arguments":  ""
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\ZTATTUZ\\Diagnóstico de Atlantic Gym · ZTATTUZ Administrador.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ Admin.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin\\ZTATTUZ-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\admin",
+        "arguments":  "--diagnostico"
+    },
+    {
+        "shortcut":  "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\ZTATTUZ\\Diagnóstico de Atlantic Gym · ZTATTUZ Recepción.lnk",
+        "kind":  "Programs",
+        "target":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ Recepcion.exe",
+        "icon":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception\\ZTATTUZ-Recepcion-3.6.1.ico,0",
+        "working_directory":  "D:\\a\\_temp\\agym-z64-37998368137-1480-drr_wd3f\\reception",
+        "arguments":  "--diagnostico"
+    }
+]

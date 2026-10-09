@@ -88,8 +88,9 @@ def check_connection():
     config = load_config()
     request = urllib.request.Request(config['supabase_url'] + '/auth/v1/health',
                                      headers={'apikey': config['supabase_publishable_key']})
-    with urllib.request.urlopen(request, context=ssl.create_default_context(cafile=certifi.where()),
-                                timeout=8) as response:
+    context = ssl.create_default_context()
+    context.load_verify_locations(cafile=certifi.where())
+    with urllib.request.urlopen(request, context=context, timeout=8) as response:
         if response.status != 200:
             raise RuntimeError('El servicio de acceso no respondió correctamente.')
     return 'Conexión HTTPS verificada; no se usaron cuentas'

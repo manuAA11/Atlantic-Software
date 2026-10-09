@@ -1,0 +1,9 @@
+{
+  "scope": "Diagnósticos originales ejecutados desde fuentes en Linux/Python 3.14/Tk 9 contra servicios reales; no instalador Windows, cuenta autenticada, pagos, WhatsApp ni lector/relé físicos.",
+  "tls_diagnosis": "El contexto que cargaba únicamente certifi rechazaba la CA de transporte confiable de esta instancia. Se conserva la verificación TLS y hostname; se carga primero la confianza del sistema y se añade certifi. Las tres comprobaciones de conexión HTTPS aprobaron. Los tres diagnósticos completos desde fuentes terminaron OK en Linux. El intento TLS anterior FAIL está preservado en evidence/live-public-configuration-20261009.json; la primera ejecución Comercial también conserva su fallo al intentar escribir en HOME de solo lectura. La repetición usa XDG_DATA_HOME=/workspace/.local/share, configuración ya admitida por la aplicación.",
+  "reports": [
+    "GymSoft_ZTATTUZ_3.6.1_x64.json",
+    "GymSoft_Comercial_3.6.0.json",
+    "GymSoft_ZTATTUZ_3.6.1_x86.json"
+  ]
+}

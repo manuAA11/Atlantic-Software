@@ -12,6 +12,7 @@ on:
       - 'tools/windows_frozen_probe.py'
       - 'tools/windows_packaging_qa.py'
       - 'tools/windows_installation_qa.py'
+      - 'tools/windows_configuration_delivery.py'
       - 'tools/backup_complete_sources.py'
 
 permissions:
@@ -75,7 +76,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -130,6 +131,28 @@ jobs:
           }
           Write-Output 'Acceptance guard verified. No final installers produced by this workflow.'
           exit 0
+      - name: Package the customer installers and upload only to an explicitly prepared draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          & .\.venv\Scripts\python.exe ..\tools\windows_configuration_delivery.py --output salida/PRUEBAS_DESCARGABLES
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $archives = @(Get-ChildItem salida/PRUEBAS_DESCARGABLES -File -Filter '*.zip')
+          if ($archives.Count -ne 1) { throw 'Expected one complete customer installer archive.' }
+          $sha = '${{ github.sha }}'
+          $tag = 'configuracion-pruebas-' + $sha.Substring(0, 7)
+          $releases = gh api 'repos/${{ github.repository }}/releases' | ConvertFrom-Json
+          if ($LASTEXITCODE -ne 0) { throw 'Could not check the prepared release draft.' }
+          $prepared = @($releases | Where-Object { $_.tag_name -eq $tag })
+          if ($prepared.Count -eq 0) {
+            Write-Output 'No release draft prepared for this commit. The complete archive remains available as an artifact.'
+            exit 0
+          }
+          if ($prepared.Count -ne 1 -or -not $prepared[0].draft -or -not $prepared[0].prerelease -or $prepared[0].target_commitish -ne $sha) {
+            throw 'Only a prepared NO FINAL draft for this exact commit can receive these archives.'
+          }
+          gh release upload $tag $archives[0].FullName --repo '${{ github.repository }}'
+          exit $LASTEXITCODE
       - name: Preserve diagnostic reports in a separate Git branch
         if: always()
         run: |
@@ -168,6 +191,13 @@ jobs:
           name: NO_FINAL-installers-para-configurar-${{ matrix.edition }}
           if-no-files-found: error
           path: ${{ matrix.edition }}/salida/PRUEBAS_PARA_CONFIGURAR/
+      - name: Save the complete customer installer download
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: NO_FINAL-client-download-${{ matrix.edition }}
+          if-no-files-found: error
+          path: ${{ matrix.edition }}/salida/PRUEBAS_DESCARGABLES/*.zip
       - name: Save Windows evidence
         if: always()
         uses: actions/upload-artifact@v4

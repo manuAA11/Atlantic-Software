@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "Lectura HTTP pública real de health; confirma disponibilidad/backend/database/scheduler reportados. No consulta datos privados ni acredita pilotos Meta/Wompi, hardware, concurrencia ni aceptación final.",
+  "checks": [
+    {
+      "product": "Comercial",
+      "url": "https://bawrakwhzkxmhmgkczqu.supabase.co/functions/v1/marketing/health",
+      "http_status": 200,
+      "response": {
+        "service": "marketing",
+        "ready": true,
+        "database": true,
+        "scheduler_installed": true,
+        "server_now": "2026-10-09T22:20:46.82376+00:00"
+      },
+      "observed_at_utc": "2026-10-09T22:20:46.885044+00:00"
+    },
+    {
+      "product": "ZTATTUZ",
+      "url": "https://srmquhwpawgipncmvfjf.supabase.co/functions/v1/marketing/health",
+      "http_status": 200,
+      "response": {
+        "service": "marketing",
+        "ready": true,
+        "database": true,
+        "scheduler_installed": true,
+        "server_now": "2026-10-09T22:20:47.266374+00:00"
+      },
+      "observed_at_utc": "2026-10-09T22:20:47.315316+00:00"
+    }
+  ]
+}

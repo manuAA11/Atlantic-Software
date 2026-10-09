@@ -180,6 +180,71 @@ class InstallationQaGuards(unittest.TestCase):
         self.assertTrue(root.is_dir())
         self.assertEqual(data.read_bytes(), b'customer installation must survive')
 
+    def test_ztattuz_fresh_install_uses_complete_wrapper_and_update_reuses_existing_directories(self):
+        install_root = self.runner_temp / 'exclusive QA root with spaces'
+        locations = {role: install_root / role for role in ('admin', 'reception')}
+        installers = {name: self.root / name.replace('.iss', '.exe') for name in
+                      ('instalador_completo.iss', 'instalador_admin.iss', 'instalador_recepcion.iss')}
+        fresh = qa.application_install_commands(installers, locations, self.root, fresh=True, commercial=False)
+        self.assertEqual(len(fresh), 1)
+        self.assertEqual(fresh[0][1][0], str(installers['instalador_completo.iss']))
+        self.assertIn('/QAInstallRoot=' + str(install_root), fresh[0][1])
+        self.assertFalse(any(value.startswith('/DIR=') for value in fresh[0][1]))
+        update = qa.application_install_commands(installers, locations, self.root, fresh=False, commercial=False)
+        self.assertEqual(update[0][1][0], str(installers['instalador_completo.iss']))
+        self.assertFalse(any(value.startswith(('/DIR=', '/QAInstallRoot=')) for value in update[0][1]))
+        self.assertNotEqual(fresh[0][1][-1], update[0][1][-1])
+        locations['reception'] = self.root / 'other-installation/reception'
+        with self.assertRaisesRegex(RuntimeError, 'compartir la raíz'):
+            qa.application_install_commands(installers, locations, self.root, fresh=True, commercial=False)
+
+    def test_commercial_fresh_and_update_cover_client_and_private_owner_without_update_directory_override(self):
+        install_root = self.runner_temp / 'exclusive QA root with spaces'
+        locations = {role: install_root / role for role in ('client', 'owner')}
+        installers = {name: self.root / name.replace('.iss', '.exe') for name in
+                      ('instalador_clientes.iss', 'instalador_propietario.iss')}
+        fresh = qa.application_install_commands(installers, locations, self.root, fresh=True, commercial=True)
+        update = qa.application_install_commands(installers, locations, self.root, fresh=False, commercial=True)
+        self.assertEqual([command[0] for _, command in fresh], [str(value) for value in installers.values()])
+        self.assertEqual([command[0] for _, command in update], [str(value) for value in installers.values()])
+        self.assertEqual(len(update), 2)
+        for role, (_, command) in zip(('client', 'owner'), fresh):
+            self.assertIn('/DIR=' + str(locations[role]), command)
+        for _, command in update:
+            self.assertFalse(any(value.startswith(('/DIR=', '/QAInstallRoot=')) for value in command))
+        self.assertTrue(all(any(arg.startswith('/LOG=') for arg in command) for _, command in update))
+
+    def test_wrapper_qa_routing_is_conditional_and_preserves_original_production_identity(self):
+        repository = Path(__file__).resolve().parent.parent
+        for edition in ('GymSoft_ZTATTUZ_3.6.1_x64', 'GymSoft_ZTATTUZ_3.6.1_x86'):
+            with self.subTest(edition=edition):
+                text = (repository / edition / 'instalador_completo.iss').read_text(encoding='utf-8-sig')
+                production, technical = [], []
+                in_validation = False
+                for line in text.splitlines():
+                    if line.strip() == '#ifdef BuildValidation':
+                        in_validation = True
+                    elif line.strip() == '#else' and in_validation:
+                        in_validation = False
+                    elif line.strip() == '#endif':
+                        in_validation = False
+                    elif in_validation:
+                        technical.append(line)
+                    else:
+                        production.append(line)
+                normal = '\n'.join(production)
+                qa_only = '\n'.join(technical)
+                self.assertIn('AppId=ZTATTUZActualizadorCompleto', normal)
+                self.assertIn('CreateAppDir=no', normal)
+                self.assertIn('Uninstallable=no', normal)
+                self.assertNotIn('QAInstallRoot', normal)
+                self.assertNotIn('/DIR=', normal)
+                self.assertIn("{param:QAInstallRoot|}", qa_only)
+                self.assertIn('ATLANTIC_EPHEMERAL_INSTALLATION.json', qa_only)
+                self.assertIn("+ Role +", qa_only)
+                self.assertIn("'Administración', 'admin'", normal)
+                self.assertIn("'Recepción', 'reception'", normal)
+
     def test_preflight_failure_is_preserved_after_runner_guard_without_installing(self):
         output = io.StringIO()
         with patch.dict(qa.os.environ, self.env, clear=True), patch.object(qa.sys, 'platform', 'win32'), \

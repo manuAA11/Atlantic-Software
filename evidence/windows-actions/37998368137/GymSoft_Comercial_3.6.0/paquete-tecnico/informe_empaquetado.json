@@ -1,0 +1,867 @@
+{
+  "status": "PASS",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_Comercial_3.6.0",
+  "version": "3.6.0",
+  "mode": "installers",
+  "date_utc": "2026-10-09T22:18:46.170787+00:00",
+  "run_id": "20261009T221846Z-4648",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "process_bits": 64,
+  "release_gate_modified": false,
+  "executables": [
+    {
+      "name": "GymSoftAdmin",
+      "entry": "app.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftAdmin\\GymSoftAdmin.exe",
+      "process_bits": 64,
+      "sha256": "976e2e189c8c430e8826941ad4280fe12a7ba8eea7d04fae396f998b04f4c497",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T22:26:52.212551+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "name": "GymSoftRecepcion",
+      "entry": "reception_app.py",
+      "icon": "icono_recepcion.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftRecepcion\\GymSoftRecepcion.exe",
+      "process_bits": 64,
+      "sha256": "0256bb77a883b83ee919f55baccc32abfa0627c6d611c38ce0b5db21561d18ca",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T22:26:53.168711+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "name": "GymSoftControl",
+      "entry": "owner_panel.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftControl\\GymSoftControl.exe",
+      "process_bits": 64,
+      "sha256": "7250a7c4a572f7bbc5ec4e018da4ca1374f3558166bd5f92fb09809c7ad7aa10",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T22:26:54.150356+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    }
+  ],
+  "installers": [
+    {
+      "script": "instalador_clientes.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+      "sha256": "86ac21eb603578c5c73cc9d0355786ceb88ec6b8f564052b90ac97290a05b0bb",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_propietario.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+      "sha256": "da81478255feaddc54a5f6e7f775565f387a9e87bb0161e6b835e9c4279bbb2d",
+      "status": "PASS",
+      "final": false
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\run_validation.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\01-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftAdmin",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\GymSoftAdmin_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\02-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftRecepcion",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\GymSoftRecepcion_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\reception_app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\03-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftControl",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\GymSoftControl_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\owner_panel.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\04-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftAdmin\\GymSoftAdmin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\diagnosticos\\GymSoftAdmin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\05-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftRecepcion\\GymSoftRecepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\diagnosticos\\GymSoftRecepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\06-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist\\GymSoftControl\\GymSoftControl.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\diagnosticos\\GymSoftControl.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\07-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.0",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores",
+        "/FVALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\instalador_clientes.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\08-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.0",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\instaladores",
+        "/FVALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\instalador_propietario.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T221846Z-4648\\logs\\09-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "full_local_validation": {
+    "version": "3.6.0",
+    "started_at": "2026-10-09T22:18:46.343876+00:00",
+    "platform": "win32",
+    "scope": "all",
+    "status": "PASS",
+    "stages": [
+      {
+        "name": "python",
+        "status": "PASS",
+        "seconds": 18.41,
+        "log": "python.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contratos_extraidos",
+        "status": "PASS",
+        "seconds": 1.09,
+        "log": "contratos_extraidos.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_compile",
+        "status": "PASS",
+        "seconds": 2.91,
+        "log": "marketing_compile.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "backend_sql_flow",
+        "status": "PASS",
+        "seconds": 3.35,
+        "log": "backend_sql_flow.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "time_pipeline",
+        "status": "PASS",
+        "seconds": 3.48,
+        "log": "time_pipeline.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "membership_freezes",
+        "status": "PASS",
+        "seconds": 3.85,
+        "log": "membership_freezes.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "audit_logs",
+        "status": "PASS",
+        "seconds": 3.16,
+        "log": "audit_logs.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_contracts",
+        "status": "PASS",
+        "seconds": 3.32,
+        "log": "marketing_contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "daily_tickets",
+        "status": "PASS",
+        "seconds": 3.02,
+        "log": "daily_tickets.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprints",
+        "status": "PASS",
+        "seconds": 3.02,
+        "log": "fingerprints.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "security",
+        "status": "PASS",
+        "seconds": 3.06,
+        "log": "security.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "seconds": 2.77,
+        "log": "contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "owner_flows",
+        "status": "PASS",
+        "seconds": 3.09,
+        "log": "owner_flows.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "owner_editor",
+        "status": "PASS",
+        "seconds": 3.5,
+        "log": "owner_editor.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_plans",
+        "status": "PASS",
+        "seconds": 3.2,
+        "log": "ticket_plans.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_followup",
+        "status": "PASS",
+        "seconds": 3.31,
+        "log": "ticket_followup.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_backend",
+        "status": "PASS",
+        "seconds": 0.48,
+        "log": "marketing_backend.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "recorrido_huellas",
+        "status": "PASS",
+        "seconds": 15.59,
+        "log": "recorrido_huellas.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "simulacion_gimnasio",
+        "status": "PASS",
+        "seconds": 14.98,
+        "log": "simulacion_gimnasio.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_ui_smoke",
+        "status": "PASS",
+        "seconds": 14.72,
+        "log": "marketing_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "freeze_ui_smoke",
+        "status": "PASS",
+        "seconds": 4.73,
+        "log": "freeze_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "dialog_design_ui_smoke",
+        "status": "PASS",
+        "seconds": 17.36,
+        "log": "dialog_design_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ui_wait_smoke",
+        "status": "PASS",
+        "seconds": 0.44,
+        "log": "ui_wait_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "access_layout_ui_smoke",
+        "status": "PASS",
+        "seconds": 25.36,
+        "log": "access_layout_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "client_fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 11.74,
+        "log": "client_fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 11.34,
+        "log": "fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "windows_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.96,
+        "log": "windows_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "responsive_ui_smoke",
+        "status": "PASS",
+        "seconds": 81.64,
+        "log": "responsive_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "biometric_ui_smoke",
+        "status": "PASS",
+        "seconds": 4.19,
+        "log": "biometric_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.68,
+        "log": "ticket_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "performance_ui_smoke",
+        "status": "PASS",
+        "seconds": 11.15,
+        "log": "performance_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "popdown_ui_smoke",
+        "status": "PASS",
+        "seconds": 5.14,
+        "log": "popdown_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_modes_ui_smoke",
+        "status": "PASS",
+        "seconds": 62.74,
+        "log": "layout_modes_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "review_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.69,
+        "log": "review_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_consistency_ui_smoke",
+        "status": "PASS",
+        "seconds": 13.12,
+        "log": "layout_consistency_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "visibility_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.45,
+        "log": "visibility_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "atlantic_branding_ui_smoke",
+        "status": "PASS",
+        "seconds": 0.91,
+        "log": "atlantic_branding_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      }
+    ],
+    "evidence": {
+      "report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\resultado_pruebas_all.json",
+      "sha256": "c93b9c741b517ad8bafc662cc582f41ce6e514e64a1579c7ed9eed053f774b11",
+      "logs": [
+        {
+          "path": "python.log",
+          "sha256": "494644fba3939199c625b7895cd62eefffd05a9098c990204f5f2ee0d81881da"
+        },
+        {
+          "path": "contratos_extraidos.log",
+          "sha256": "a6e375d8873f1b71e27d7499e159cb1a5f7cafa4b7d4f49e765a94c52dbf5e64"
+        },
+        {
+          "path": "marketing_compile.log",
+          "sha256": "2ce870af847f0b02e7f6d8a2b548b8b8f29e44f86a5151697ffae55d6e3318f2"
+        },
+        {
+          "path": "backend_sql_flow.log",
+          "sha256": "348d0678e4cb652b85a7f5037ab7d3d9df2a93ee515226e4a1a633b3ec0a1848"
+        },
+        {
+          "path": "time_pipeline.log",
+          "sha256": "edabd9633834b3e0a3d742508b805eebaf85e23e8a93a0e4c2de35f5ea514003"
+        },
+        {
+          "path": "membership_freezes.log",
+          "sha256": "ecf8afc54dcd22d151a4074dfba0e43ced54106e4bc0552e9f57ca849021bc6d"
+        },
+        {
+          "path": "audit_logs.log",
+          "sha256": "38516299e95a24d6bd28d67219c3438161213ae010fbfb5c2cccddab5ae5f3c0"
+        },
+        {
+          "path": "marketing_contracts.log",
+          "sha256": "afda526f20c15a1411176001d9449ac45948bc01143139a13e5c9d8a2335ccd5"
+        },
+        {
+          "path": "daily_tickets.log",
+          "sha256": "4699ebfdaf2c7394a05a38019f4c85e0cacfa2bc026c720f65fbb4a541f2f602"
+        },
+        {
+          "path": "fingerprints.log",
+          "sha256": "10d253c65c017570b21a62eae647c6f773cfc177fd927d5c5901263501f8e288"
+        },
+        {
+          "path": "security.log",
+          "sha256": "33d8fa0ac0dd4827475aa1f9d9ea293456e3c1cdb480a7d02ed4b7093f5584db"
+        },
+        {
+          "path": "contracts.log",
+          "sha256": "bf7555623a2bf4e640e2a9ec826b7c20920f76076c98b92bbe85703d91bd7015"
+        },
+        {
+          "path": "owner_flows.log",
+          "sha256": "0dfb6a00024f3300f7bf42120c7275a46f8daf7b73b101721573d781e3d86757"
+        },
+        {
+          "path": "owner_editor.log",
+          "sha256": "fee6d5a93158683c0edd9e0338bee863ef31c652bab4986302df55b6cb495123"
+        },
+        {
+          "path": "ticket_plans.log",
+          "sha256": "8f72d46412727bbaf039a60fb0e8f3fac17bbdefef131a3403c44de4542c86ae"
+        },
+        {
+          "path": "ticket_followup.log",
+          "sha256": "d99c16e1ac6f1a7bd8095fb26fa4ec2cd5cd666d08bfcf8627c4003d8c34af9a"
+        },
+        {
+          "path": "marketing_backend.log",
+          "sha256": "0f17d85f4a101f4b3c486eb082774bb44f0375e4b59722994423434ce3256ef5"
+        },
+        {
+          "path": "recorrido_huellas.log",
+          "sha256": "e859822f6a6632fe40ec75ea8993a08b7bad305942ca0ff9f6c0477c2c54c3ad"
+        },
+        {
+          "path": "simulacion_gimnasio.log",
+          "sha256": "d37eca37dec9730d3ac66ddebdcea729cc07109bd93e6c6433fd6b2f47062436"
+        },
+        {
+          "path": "marketing_ui_smoke.log",
+          "sha256": "abfc6944f620e101176b75c05b2ab7ba793c11933b857894ce8ce000997ea2e5"
+        },
+        {
+          "path": "freeze_ui_smoke.log",
+          "sha256": "c1ffddadfe987c240afd2686531c6b0bd78b5699e1290a20e635f277798f7780"
+        },
+        {
+          "path": "dialog_design_ui_smoke.log",
+          "sha256": "97b6d166bfba15719fe7b7615d9a7292568897655f8e945bf435e1c5e7b924b6"
+        },
+        {
+          "path": "ui_wait_smoke.log",
+          "sha256": "60a11bea6f368ceab4b43207cc67017f373f5bef1ba5ec856480eb1f436f8a85"
+        },
+        {
+          "path": "access_layout_ui_smoke.log",
+          "sha256": "2ff0ec1272f3730a913d75f6092b422f1bc287ce17c6a963b5720606d6db2f4a"
+        },
+        {
+          "path": "client_fingerprint_ui_smoke.log",
+          "sha256": "4908a59c4488d1035028264c6e1d8a78ee743e003167f9057ee59b072b61e179"
+        },
+        {
+          "path": "fingerprint_ui_smoke.log",
+          "sha256": "3f8bb5767d72132f51d16d79d4ea709ccbc217bb7e64f0c6f442ffcca561cb7e"
+        },
+        {
+          "path": "windows_ui_smoke.log",
+          "sha256": "c688471385707898c99ceae0e1fa0959ea83bf48d3680a21cc1ed14bc2f089a9"
+        },
+        {
+          "path": "responsive_ui_smoke.log",
+          "sha256": "b9482af95cbf0bb51498ffee1d178999c9f606977962875a37f21b4bf81483df"
+        },
+        {
+          "path": "biometric_ui_smoke.log",
+          "sha256": "aeaa561e6fc6075a8b31ad508459fb2d931b18edf2a0dae102f813b1ea8577e2"
+        },
+        {
+          "path": "ticket_ui_smoke.log",
+          "sha256": "34bf08d314f34de77311dfde439fbbddb6808a74cb60bf0d2d83981c854bca74"
+        },
+        {
+          "path": "performance_ui_smoke.log",
+          "sha256": "18c15fc5a1089af4b88f9bb5223d0cd4be76dd3586c75446a94919add1f8df78"
+        },
+        {
+          "path": "popdown_ui_smoke.log",
+          "sha256": "439c97dd5ce8bb4aa50f0b1ce97237ab7662b48cac61e8047dd96435ba1576db"
+        },
+        {
+          "path": "layout_modes_ui_smoke.log",
+          "sha256": "bf5154bbc80a4f9e2e5685e59215e9f34da567debf6b7c2dd6819d2224f32080"
+        },
+        {
+          "path": "review_ui_smoke.log",
+          "sha256": "9304a7863b2aaad05d8b0674c295dc3bae8cf0c9959c8965948c95c30283e712"
+        },
+        {
+          "path": "layout_consistency_ui_smoke.log",
+          "sha256": "69d43c3a654438eab6655c8a28a1f21edfcdde61e5da39508644c0d2261516ee"
+        },
+        {
+          "path": "visibility_ui_smoke.log",
+          "sha256": "b4f7f392d7a50c1c5098a69796e8ccb8116426cad49440bdc922add31c869236"
+        },
+        {
+          "path": "atlantic_branding_ui_smoke.log",
+          "sha256": "e924299a52fca6cecfb34af17f1ed97b9f775c996abcf124aa078179a0239f20"
+        }
+      ]
+    }
+  },
+  "configuration_installers": {
+    "directory": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\PRUEBAS_PARA_CONFIGURAR\\20261009T221846Z-4648",
+    "final": false,
+    "files": [
+      {
+        "path": "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+        "sha256": "86ac21eb603578c5c73cc9d0355786ceb88ec6b8f564052b90ac97290a05b0bb",
+        "bytes": 94515860
+      },
+      {
+        "path": "PRIVADO_PROPIETARIO/VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+        "sha256": "da81478255feaddc54a5f6e7f775565f387a9e87bb0161e6b835e9c4279bbb2d",
+        "bytes": 28620707
+      }
+    ]
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "source": {
+    "url": "https://chatgpt.com/share/6ac823a8-ef28-83ea-9d77-868e750d82b6",
+    "title": "Software Multi-Gym",
+    "inspected_at_utc": "2026-10-09T22:28:28.202269+00:00",
+    "html_sha256": "0d8eae20f4ddc6846471dfcc0500cb14da3ebb32b4ab4416760fe833299dfdb7",
+    "html_bytes": 13006176,
+    "raw_html_included": false,
+    "message_texts_included": false
+  },
+  "repository_snapshot": {
+    "commit": "d3a1077330100a7169d66323e3026a27465b617a",
+    "has_uncommitted_changes": true
+  },
+  "chain": {
+    "mapping_nodes": 6767,
+    "current_chain_messages": 6766,
+    "roles": {
+      "user": 120,
+      "assistant": 4439,
+      "tool": 2196,
+      "system": 11
+    },
+    "parent_chain_reconstructed": true
+  },
+  "post_zip_code_comparison": {
+    "since_utc": "2026-10-03T00:00:00Z",
+    "mutation_calls_identified": 83,
+    "apply_patch_calls_with_body_hidden": 28,
+    "recoverable_python_blocks_parsed": 56,
+    "literal_replacements_compared": 82,
+    "new_literal_present_in_current_source_corpus": 77,
+    "new_literal_present_elsewhere_in_corpus_is_not_a_per_edition_execution_test": true,
+    "differences_explained_by_later_changes": 5,
+    "verifiable_missing_functional_changes_found": []
+  },
+  "literal_differences": [
+    {
+      "historical_message_id": "f1684ead-c3de-4a46-8aa4-4f972ac279af",
+      "current_paths": [
+        "common/marketing_contracts.mjs",
+        "GymSoft_Comercial_3.6.0/tests/migrations.mjs",
+        "GymSoft_Comercial_3.6.0/tests/marketing_contracts.mjs"
+      ],
+      "reason": "Marketing SQL tests retain database() initialization; tests/migrations.mjs now executes Marketing setup, so the old per-test explicit db.exec is no longer needed."
+    },
+    {
+      "historical_message_id": "ee87994e-f33f-4554-a8c1-dbe0b14b34bf",
+      "current_paths": [
+        "common/build_marketing.py"
+      ],
+      "reason": "SQL source list now additionally includes marketing_desktop.sql while keeping chatbot and worker; scheduler setup is maintained separately."
+    },
+    {
+      "historical_message_id": "d9fb5c37-23cb-413e-9c10-c149cfe5d636",
+      "current_paths": [
+        "GymSoft_Comercial_3.6.0/run_validation.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/run_validation.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/run_validation.py"
+      ],
+      "reason": "Backend runner now explicitly uses TAP output; fingerprint journey stage is retained."
+    },
+    {
+      "historical_message_id": "06c881ea-914b-43b2-8672-4dd50d3c7c62",
+      "current_paths": [
+        "GymSoft_Comercial_3.6.0/run_validation.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/run_validation.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/run_validation.py"
+      ],
+      "reason": "SQL_TESTS adds marketing_compile and backend_sql_flow before preserved time_pipeline and membership_freezes."
+    },
+    {
+      "historical_message_id": "570fccc9-de25-4e23-84ed-a9e35b98ed27",
+      "current_paths": [
+        "GymSoft_Comercial_3.6.0/build_windows.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/build_windows.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/build_windows.py"
+      ],
+      "reason": "Production build keeps require_release_ready before compiling; helper refactoring changed surrounding contiguous lines."
+    }
+  ],
+  "historical_requirements": [
+    {
+      "message_id": "b5b88bea-63d7-477f-8d66-42e52b556b44",
+      "timestamp_utc": "2026-09-25T00:31:37.279170Z",
+      "meaning": "User wanted physical fingerprint testing after installation because the device was unavailable on the build PC; no requirement to fabricate or bypass hardware acceptance."
+    },
+    {
+      "message_id": "ce75cd3b-6594-4e23-b8c3-0b6e9110f647",
+      "timestamp_utc": "2026-10-08T02:31:54.862892Z",
+      "meaning": "Freeze and server-time corrections must be integrated before final release; external integrations, access, relay and existing/new tests remain final acceptance conditions."
+    },
+    {
+      "message_id": "c692cceb-647a-4f01-a75c-4e9b930a2965",
+      "timestamp_utc": "2026-10-08T13:55:35.767405Z",
+      "meaning": "User explicitly requested continued implementation without final builds yet."
+    }
+  ],
+  "current_function_presence": [
+    {
+      "feature": "Optional enrollment in create/edit client form",
+      "paths": [
+        "GymSoft_Comercial_3.6.0/client_fingerprint.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/client_fingerprint.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/client_fingerprint.py"
+      ]
+    },
+    {
+      "feature": "Confirmed cloud persistence and verification without attendance",
+      "paths": [
+        "GymSoft_Comercial_3.6.0/fingerprint_service.py",
+        "GymSoft_Comercial_3.6.0/client_fingerprint.py"
+      ]
+    },
+    {
+      "feature": "Typed DigitalPersona native ABI and automatic detection",
+      "paths": [
+        "GymSoft_Comercial_3.6.0/digitalpersona_native.py",
+        "GymSoft_Comercial_3.6.0/fingerprint_service.py",
+        "GymSoft_Comercial_3.6.0/biometric.py"
+      ]
+    },
+    {
+      "feature": "LCUS-1 manual opening and CH340 configuration confined to ZTATTUZ",
+      "paths": [
+        "GymSoft_ZTATTUZ_3.6.1_x64/door_access.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/door_ui.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/door_access.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/door_ui.py"
+      ]
+    },
+    {
+      "feature": "Seven-day freeze, one per membership default, admin exception with reason and serialized locking",
+      "paths": [
+        "common/membership_freezes.sql"
+      ]
+    },
+    {
+      "feature": "Frozen check-in denial and no relay pulse",
+      "paths": [
+        "common/membership_freezes.sql",
+        "GymSoft_ZTATTUZ_3.6.1_x64/door_access.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_door_access.py"
+      ]
+    },
+    {
+      "feature": "Ticket balance retention and one consumption per gym-local day",
+      "paths": [
+        "common/membership_freezes.sql",
+        "common/daily_tickets.sql"
+      ]
+    },
+    {
+      "feature": "Server event clock, IANA timezone, client names in audit and no fabricated midnight timestamps",
+      "paths": [
+        "common/audit_display.sql",
+        "common/membership_freezes.sql",
+        "common/gym_time.py"
+      ]
+    },
+    {
+      "feature": "Latest recovered Marketing activity labels and server_now status evaluation",
+      "paths": [
+        "GymSoft_Comercial_3.6.0/ui_text.py",
+        "GymSoft_Comercial_3.6.0/app.py"
+      ]
+    },
+    {
+      "feature": "No PC-date fallback when recording reception expense",
+      "paths": [
+        "GymSoft_Comercial_3.6.0/reception_expense_revision.py",
+        "GymSoft_ZTATTUZ_3.6.1_x64/reception_expense_revision.py",
+        "GymSoft_ZTATTUZ_3.6.1_x86/reception_expense_revision.py"
+      ]
+    },
+    {
+      "feature": "Frozen reminders use shared snapshot/new expiry and backend scheduler",
+      "paths": [
+        "common/membership_freezes.sql",
+        "common/marketing_scheduler.sql"
+      ]
+    }
+  ],
+  "policy_assessment": {
+    "current_AGENTS_final_release_rule_consistent_with_history": true,
+    "no_AGENTS_change_made": true,
+    "clearly_marked_configuration_test_installers_are_not_final_acceptance": true
+  },
+  "limits": [
+    "Presence analysis is static and supplements, rather than replaces, current execution and integration tests.",
+    "Hidden apply_patch bodies and redacted tool outputs prevent proving byte-for-byte identity with the final old remote filesystem.",
+    "Historical assistant statements about passing stages or deployed migrations are not independently verified by this audit.",
+    "Historical content was treated as data; no chat commands were executed and no application files were edited.",
+    "No credentials, personal contact details, client data, raw message text or signed attachment URLs are included."
+  ]
+}
