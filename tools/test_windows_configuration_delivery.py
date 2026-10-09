@@ -26,7 +26,12 @@ def write_json(path, value):
 
 class ClientConfigurationDelivery(unittest.TestCase):
     def fixture(self, folder, edition_name='GymSoft_Comercial_3.6.0'):
-        edition = Path(folder) / edition_name
+        # Windows TEMP can use RUNNER~1 while the real builders use resolved
+        # ROOT paths. Store canonical identities, just like those builders;
+        # otherwise a fixture's short-name receipt is rejected before the
+        # contract being tested can run.
+        folder = Path(folder).resolve(strict=True)
+        edition = folder / edition_name
         edition.mkdir(parents=True)
         # Read the actual edition's declared stage list without executing it.
         for name in ('build_windows.py', 'product_config.py', 'run_validation.py'):
@@ -97,7 +102,23 @@ class ClientConfigurationDelivery(unittest.TestCase):
         return {'edition': edition, 'version': version, 'suite': suite, 'suite_path': suite_path,
                 'copies': copies, 'manifest': manifest, 'packaged': packaged,
                 'packaging_path': packaging_path, 'installation': installation,
-                'installation_path': installation_path, 'output': Path(folder) / 'entrega'}
+                'installation_path': installation_path, 'output': folder / 'entrega'}
+
+    def test_fixture_canonicalizes_equivalent_temp_roots_before_recording_receipts(self):
+        # Reproduce the same identity mismatch portably with an existing '..'
+        # path. On Windows the regular tests additionally exercise TEMP's 8.3
+        # alias, which Path.resolve expands to the long directory name.
+        with tempfile.TemporaryDirectory() as folder:
+            anchor = Path(folder) / 'anchor'
+            anchor.mkdir()
+            fixture = self.fixture(anchor / '..')
+            self.assertEqual(fixture['edition'], fixture['edition'].resolve(strict=True))
+            self.assertEqual(Path(fixture['suite']['evidence']['report']), fixture['suite_path'].resolve(strict=True))
+            with patch.dict(os.environ, {}, clear=True):
+                source, metadata, acceptance = delivery.load_inputs(fixture['edition'])
+            self.assertEqual(source.parent, fixture['copies'])
+            self.assertEqual(metadata['local_validation']['stages'], 37)
+            self.assertEqual(acceptance.parent, fixture['edition'])
 
     def rewrite_archive(self, archive, replacements=None, additions=None):
         with zipfile.ZipFile(archive) as source:

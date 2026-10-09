@@ -13,6 +13,8 @@ on:
       - 'tools/windows_packaging_qa.py'
       - 'tools/windows_installation_qa.py'
       - 'tools/windows_configuration_delivery.py'
+      - 'tools/test_windows_*.py'
+      - 'tools/test_backup_complete_sources.py'
       - 'tools/backup_complete_sources.py'
 
 permissions:

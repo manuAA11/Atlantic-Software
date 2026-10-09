@@ -30,7 +30,7 @@ Desde `/workspace/Atlantic-Software`, ejecutar `bash tools/setup_cloud.sh` con P
 
 ```sh
 node --test backend/tests/*.test.mjs
-DISPLAY=:100 XDG_CACHE_HOME=/workspace/.cache /workspace/.venvs/multigym313/bin/python tools/validate_all.py GymSoft_Comercial_3.6.0 --scope all
+DISPLAY=:100 XDG_CACHE_HOME=/workspace/.cache XDG_DATA_HOME=/workspace/.local/share /workspace/.venvs/multigym314/bin/python tools/validate_all.py GymSoft_Comercial_3.6.0 --scope all
 ```
 
 ZTATTUZ usa el mismo comando con su carpeta y un display propio (:101 x64; :102 x86). El helper conserva resultados y no oculta errores. No reinstalar dependencias mientras haya pruebas en ejecución. Desde una carpeta de edición, `python run_validation.py --data-only` o `--ui-only` usa el runner portable Windows/Linux. Instalar sus requirements y ejecutar `npm ci` previamente.
