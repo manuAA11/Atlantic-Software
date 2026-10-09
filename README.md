@@ -10,7 +10,9 @@ Aplicaciones recuperadas de Atlantic Gym Comercial 3.6.0 y ZTATTUZ 3.6.1 x86/x64
 
 Leer [estado y límites](docs/ESTADO_CIERRE.md), [acciones externas y Windows](docs/INTEGRACIONES_Y_WINDOWS.md), [UI Kit](docs/ATLANTIC_UI_KIT.md) y [políticas permanentes](AGENTS.md). Los requisitos del usuario están en `docs/REQUISITOS_CIERRE_MULTIGYM.txt`.
 
-El run Windows `37998368137` aprobó los tres jobs completos con Python 3.14.8: **111 etapas y 484 tests Python**, creación mediante el `.bat` real, **siete programas y ocho instaladores** con iconos PE/diagnósticos correctos. La instalación y desinstalación x64 también aprobaron; ZTATTUZ verificó actualización mediante el instalador completo. La variante x86 se compila y diagnostica, pero su Runtime requiere Windows de 32 bits para instalarse. Los logs y alcances están en [el estado](docs/ESTADO_CIERRE.md) y `evidence/windows-actions`. Las pruebas simuladas no acreditan cuentas reales ni lector/relé físicos. Ambos servidores reportan base y scheduler disponibles en la comprobación pública del 9 de octubre.
+El run Windows `38001250527`, commit `fe2a95b`, aprobó los tres jobs completos con Python 3.14.8: **111 etapas y 484 tests Python**, creación mediante el `.bat` real, **siete programas y ocho instaladores** con iconos PE/diagnósticos correctos. Comercial y ZTATTUZ x64 aprobaron instalación nueva, actualización conservando directorios/registros y desinstalación; ZTATTUZ utilizó su instalador completo en ambos pasos. La variante x86 se compila y diagnostica, pero su Runtime requiere Windows de 32 bits para instalarse. Los logs y alcances están en [el estado](docs/ESTADO_CIERRE.md) y `evidence/windows-actions`. Las pruebas simuladas no acreditan cuentas reales ni lector/relé físicos. Ambos servidores reportan base y scheduler disponibles en la comprobación pública del 9 de octubre.
+
+Los [instaladores ya compilados](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-fe2a95b) están publicados para configurar y probar. Se descargaron y verificaron CRC/SHA256 de los tres ZIP y sus digests de GitHub. Extrae el ZIP de tu edición y ejecuta el EXE; el PC no necesita Python. La entrega mantiene la marca **NO FINAL** hasta completar la aceptación real pendiente.
 
 ## Crear e instalar los programas en Windows
 
@@ -30,7 +32,7 @@ Desde `/workspace/Atlantic-Software`, ejecutar `bash tools/setup_cloud.sh` con P
 
 ```sh
 node --test backend/tests/*.test.mjs
-DISPLAY=:100 XDG_CACHE_HOME=/workspace/.cache XDG_DATA_HOME=/workspace/.local/share /workspace/.venvs/multigym314/bin/python tools/validate_all.py GymSoft_Comercial_3.6.0 --scope all
+DISPLAY=:100 XDG_CACHE_HOME=/workspace/.cache XDG_DATA_HOME=/workspace/.local/share /workspace/.venvs/multigym314/bin/python tools/validate_all.py GymSoft_Comercial_3.6.0 --scope all --run-label "cloud-$(date -u +%Y%m%dT%H%M%SZ)-$$"
 ```
 
 ZTATTUZ usa el mismo comando con su carpeta y un display propio (:101 x64; :102 x86). El helper conserva resultados y no oculta errores. No reinstalar dependencias mientras haya pruebas en ejecución. Desde una carpeta de edición, `python run_validation.py --data-only` o `--ui-only` usa el runner portable Windows/Linux. Instalar sus requirements y ejecutar `npm ci` previamente.

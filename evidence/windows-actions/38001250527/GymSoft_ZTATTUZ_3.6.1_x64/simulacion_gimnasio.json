@@ -1,0 +1,600 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "section": "Cuentas y acceso original de ZTATTUZ",
+      "case": "Invitación conserva el rol de Recepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Cuentas y acceso original de ZTATTUZ",
+      "case": "Servidor reconoce la actualización",
+      "status": "PASS"
+    },
+    {
+      "section": "Cuentas y acceso original de ZTATTUZ",
+      "case": "Administración y Recepción usan la fecha del gimnasio",
+      "status": "PASS"
+    },
+    {
+      "section": "Cuentas y acceso original de ZTATTUZ",
+      "case": "Gimnasios comienzan sin clientes",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Ambos roles ven las altas del mismo gimnasio",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Cumpleaños guardado correctamente",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Buscar documento",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Buscar huella en Administración",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Buscar huella en Recepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Buscar nombre sin mezclar personas",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Búsqueda sin coincidencias",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Huella desconocida no identifica un cliente",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Documento duplicado rechazado",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Huella duplicada rechazada",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Editar contacto desde Administración",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Editar cliente desde Recepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Eliminar un registro temporal sin relaciones",
+      "status": "PASS"
+    },
+    {
+      "section": "Clientes, cumpleaños, huella opcional y búsquedas",
+      "case": "Aislamiento de lectura entre gimnasios",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Plan desactivado oculto en nuevas ventas",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Administración conserva los planes inactivos",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Plan de duración cero rechazado",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Pago mensual habilita acceso",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Recepción registra tiquetera con transferencia",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Tiquetera inicia con 15 entradas",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Renovación anticipada acumula vigencia",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Recepción consulta ambas mensualidades",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "No cambia a tiquetera un plan con mensualidades vendidas",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Editar plan conserva el cupo ya vendido",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Traslado de tiquetera conserva el saldo y no se duplica al reintentar",
+      "status": "PASS"
+    },
+    {
+      "section": "Planes mensuales, tiqueteras y pagos",
+      "case": "Traslado no genera un pago ficticio",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Entrada mensual manual",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Entrada con huella descuenta una unidad",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Sin plan se deniega entrada",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Administración puede autorizar una excepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Cliente inactivo no entra aunque tenga pago",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Sesión permite una entrada",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Sesión permite reentrada el mismo día sin descontar",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Historial administrativo muestra entradas",
+      "status": "PASS"
+    },
+    {
+      "section": "Registro de entrada, cupos y control de acceso",
+      "case": "Historial de Recepción incluye resultados permitidos y denegados",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Corrección conserva el registro y aumenta revisión",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Conflicto de edición desde una pantalla desactualizada",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Historial de corrección disponible",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Anulación conserva la evidencia",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Pago anulado deja de ampliar la vigencia",
+      "status": "PASS"
+    },
+    {
+      "section": "Corrección y anulación de pagos con auditoría",
+      "case": "Editor sigue mostrando el pago anulado",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Buscar producto por código de barras",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Venta guardada desde Recepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Venta descuenta inventario",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Se impide vender más que el stock",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Cantidad de venta cero rechazada",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Ventas rechazadas no cambian inventario",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Producto inactivo no se ofrece en Recepción",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Historial de ventas sin duplicados",
+      "status": "PASS"
+    },
+    {
+      "section": "Tienda, inventario y ventas desde Recepción",
+      "case": "Finanzas de tienda consulta el período",
+      "status": "PASS"
+    },
+    {
+      "section": "Gastos, caja y conciliación del día",
+      "case": "Alta, edición y eliminación de gastos conservan el total correcto",
+      "status": "PASS"
+    },
+    {
+      "section": "Gastos, caja y conciliación del día",
+      "case": "Informe de gastos consulta ambos roles",
+      "status": "PASS"
+    },
+    {
+      "section": "Gastos, caja y conciliación del día",
+      "case": "Caja suma pagos corregidos y excluye anulados y traslados",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "Crear y editar personal",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "No se abren dos turnos a la vez",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "No se cierra un turno inexistente",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "Turno cerrado visible en informe de personal",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "Rutina vinculada al cliente y entrenador",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "Ejercicios mantienen el orden",
+      "status": "PASS"
+    },
+    {
+      "section": "Personal, turnos y rutinas",
+      "case": "Personal inactivo se oculta del listado activo",
+      "status": "PASS"
+    },
+    {
+      "section": "Clases y reservas",
+      "case": "Clase llena no acepta otra reserva",
+      "status": "PASS"
+    },
+    {
+      "section": "Clases y reservas",
+      "case": "Reserva cancelada puede reactivarse sin duplicarse",
+      "status": "PASS"
+    },
+    {
+      "section": "Clases y reservas",
+      "case": "Listado de reservas mantiene un registro",
+      "status": "PASS"
+    },
+    {
+      "section": "Clases y reservas",
+      "case": "Clase y entrenador disponibles en la agenda",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Dashboard cuenta clientes del gimnasio",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Dashboard cuenta entradas permitidas",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Estadísticas consultan la asistencia del período",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Dashboard incluye tiqueteras con pocas entradas",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Recepción consulta saldos de tiqueteras",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Seguimiento de sesiones a 7 días",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Seguimiento de sesiones a 14 días",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Seguimiento de sesiones a 30 días",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Bloques de vencimientos consultables",
+      "status": "PASS"
+    },
+    {
+      "section": "Dashboard, estadísticas y seguimiento comercial",
+      "case": "Listado de próximos vencimientos",
+      "status": "PASS"
+    },
+    {
+      "section": "Marketing, contactos y autorización",
+      "case": "Guardar y recuperar configuración de marketing",
+      "status": "PASS"
+    },
+    {
+      "section": "Marketing, contactos y autorización",
+      "case": "Consentimiento de contacto activado",
+      "status": "PASS"
+    },
+    {
+      "section": "Marketing, contactos y autorización",
+      "case": "Consentimiento revocado",
+      "status": "PASS"
+    },
+    {
+      "section": "Marketing, contactos y autorización",
+      "case": "La simulación no envía mensajes externos",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Segunda visita no consume otra entrada antes de exportar",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Borrar visitas conserva el saldo consumido",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Respaldo incluye los clientes de la jornada",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Excel exportado se puede leer para importar",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Restaurar reconstruye clientes en el gimnasio destino",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Restauración no cambia el gimnasio de origen",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Restauración genera identificadores nuevos para evitar mezclar gimnasios",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Restauración reconstruye relaciones de rutinas y clases",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Relación rota revierte toda la importación",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Importación fallida conserva los registros anteriores",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "El Excel exportado restaura clientes y ventas mediante la operación real de importación",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Excel restaura el saldo aunque se haya borrado el historial de visitas",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Reentrada tras restaurar no vuelve a consumir el día ya pagado",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "Exportar e importar Excel conserva las entradas iniciales consumidas",
+      "status": "PASS"
+    },
+    {
+      "section": "Excel, respaldos y restauración en un gimnasio aislado",
+      "case": "JSON corrupto rechazado antes de importar",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "Recepción no accede a estadísticas administrativas",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "Recepción no invita a otras cuentas",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "RPC rechaza consultar otro gimnasio",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "Cuenta desvinculada no puede operar",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "Vinculación conserva los datos y recupera acceso",
+      "status": "PASS"
+    },
+    {
+      "section": "Permisos y cierre de jornada",
+      "case": "Jornada queda auditada",
+      "status": "PASS"
+    }
+  ],
+  "checks_passed": 103,
+  "methods_exercised": [
+    "CloudDatabase.accounting_expenses",
+    "CloudDatabase.add_exercise",
+    "CloudDatabase.add_membership",
+    "CloudDatabase.add_plan",
+    "CloudDatabase.attendance_statistics",
+    "CloudDatabase.backup",
+    "CloudDatabase.cancel_reservation",
+    "CloudDatabase.create_class",
+    "CloudDatabase.create_routine",
+    "CloudDatabase.dashboard_metrics",
+    "CloudDatabase.delete_client",
+    "CloudDatabase.delete_expense",
+    "CloudDatabase.export_excel",
+    "CloudDatabase.get_client",
+    "CloudDatabase.get_client_by_biometric_identifier",
+    "CloudDatabase.get_client_by_document",
+    "CloudDatabase.invalidate_today_cache",
+    "CloudDatabase.is_empty",
+    "CloudDatabase.list_checkins",
+    "CloudDatabase.list_classes",
+    "CloudDatabase.list_clients",
+    "CloudDatabase.list_exercises",
+    "CloudDatabase.list_memberships",
+    "CloudDatabase.list_plans",
+    "CloudDatabase.list_reservations",
+    "CloudDatabase.list_routines",
+    "CloudDatabase.list_store_products",
+    "CloudDatabase.list_store_sales",
+    "CloudDatabase.list_trainers",
+    "CloudDatabase.marketing_activity",
+    "CloudDatabase.marketing_contacts",
+    "CloudDatabase.marketing_settings",
+    "CloudDatabase.membership_expiration_groups",
+    "CloudDatabase.membership_snapshot",
+    "CloudDatabase.prepare_excel_replacement",
+    "CloudDatabase.prepare_technical_backup_replacement",
+    "CloudDatabase.register_checkin",
+    "CloudDatabase.replace_from_excel",
+    "CloudDatabase.reserve_class",
+    "CloudDatabase.save_client",
+    "CloudDatabase.save_expense",
+    "CloudDatabase.save_marketing_settings",
+    "CloudDatabase.save_store_product",
+    "CloudDatabase.save_trainer",
+    "CloudDatabase.session_followup",
+    "CloudDatabase.set_marketing_opt_in",
+    "CloudDatabase.set_plan_active",
+    "CloudDatabase.staff_clock",
+    "CloudDatabase.staff_dashboard",
+    "CloudDatabase.store_finance",
+    "CloudDatabase.ticket_followup",
+    "CloudDatabase.upcoming_expirations",
+    "CloudDatabase.update_plan",
+    "ReceptionDatabase.add_membership",
+    "ReceptionDatabase.create_expense",
+    "ReceptionDatabase.find_client_by_biometric_identifier",
+    "ReceptionDatabase.invalidate_today_cache",
+    "ReceptionDatabase.list_checkins",
+    "ReceptionDatabase.list_clients",
+    "ReceptionDatabase.list_memberships",
+    "ReceptionDatabase.list_plans",
+    "ReceptionDatabase.list_store_products",
+    "ReceptionDatabase.membership_snapshot",
+    "ReceptionDatabase.register_checkin",
+    "ReceptionDatabase.register_store_sale",
+    "ReceptionDatabase.save_client",
+    "ReceptionDatabase.ticket_followup",
+    "ReceptionDatabase.today"
+  ],
+  "requests": 234,
+  "scope": "Clases Python reales + PostgreSQL local con SQL y RLS de ZTATTUZ. Transporte PostgREST adaptado.",
+  "external_pending": [
+    "Windows nativo y ejecutables instalados",
+    "Autenticación y correo reales",
+    "HTTP/PostgREST y Realtime en red",
+    "Lector físico",
+    "Envío externo de WhatsApp"
+  ]
+}

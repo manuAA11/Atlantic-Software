@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "run_id": "38000930440",
+  "source_commit": "9f26dbe335e90232ee032a7513c13ea9e03d6108",
+  "workflow_url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/38000930440",
+  "workflow_conclusion": "failure",
+  "workflow_conclusion_source": "Task agent observed all three jobs fail; the original native guard logs independently show 52 tests with 8 failures and 7 errors per matrix job.",
+  "status": "FAIL",
+  "final": false,
+  "release_readiness_modified": false,
+  "scope": "This attempt stopped during portable helper guard tests, before the desktop/application suites, actual EXE build, installer compilation, installation or customer ZIP generation. It does not replace the latest successful application validation at d3a1077.",
+  "failure_diagnosis": {
+    "message": "El informe de pruebas no corresponde a esta edición.",
+    "cause": "The test fixture kept a Windows temporary directory spelling while the helper resolved its equivalent 8.3 directory alias; exact report-path ownership validation rejected that fixture.",
+    "remediation_scope": "The fixture now resolves its temporary root, with an additional regression test; application validation checks were retained.",
+    "remediation_commit": "fe2a95b2413caf1567afe688b2b80af060d27615",
+    "windows_recheck_run_id": "38001250527",
+    "windows_recheck_status": "PENDING"
+  },
+  "evidence_integrity_scope": "These six report files were copied directly from native Git blobs without newline conversion or textual rewriting; SHA-256 authenticates the saved repository bytes.",
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "status": "FAIL",
+      "branch_commit": "24c0551805651def334711e7e18d1fb4b33acc62",
+      "failed_stage": "Check portable packaging and installation guards",
+      "portable_tool_tests": {
+        "tests": 52,
+        "failures": 8,
+        "errors": 7,
+        "seconds": 3.848
+      },
+      "metadata": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_Comercial_3.6.0/run.json",
+        "sha256": "91231d53ad4271d6a6fcde612bce06272096adad64b0df4a825bfe49f40a63ed"
+      },
+      "failure_log": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_Comercial_3.6.0/packaging-guards.log",
+        "sha256": "320743702eebca1044b498700b836781706078c857d281b802b8052b4c83282e"
+      },
+      "full_application_validation": "NOT_RUN",
+      "actual_application_build": "NOT_RUN",
+      "technical_installation": "NOT_RUN",
+      "customer_delivery_zip": "NOT_RUN"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "status": "FAIL",
+      "branch_commit": "34658b19d90e3a593bad1feae0d74ddddd591d28",
+      "failed_stage": "Check portable packaging and installation guards",
+      "portable_tool_tests": {
+        "tests": 52,
+        "failures": 8,
+        "errors": 7,
+        "seconds": 3.299
+      },
+      "metadata": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+        "sha256": "e91546fa2820eb0c4f7185125bd76bfa99e548c8609a8e4a3659e3f859bbe757"
+      },
+      "failure_log": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_ZTATTUZ_3.6.1_x64/packaging-guards.log",
+        "sha256": "287deac76c65a85f5b31677ca1559e2a2a5746187a7827c451e429498a4e1285"
+      },
+      "full_application_validation": "NOT_RUN",
+      "actual_application_build": "NOT_RUN",
+      "technical_installation": "NOT_RUN",
+      "customer_delivery_zip": "NOT_RUN"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "status": "FAIL",
+      "branch_commit": "20edd19bb71e370381aafedd0677409b84be3b32",
+      "failed_stage": "Check portable packaging and installation guards",
+      "portable_tool_tests": {
+        "tests": 52,
+        "failures": 8,
+        "errors": 7,
+        "seconds": 3.388
+      },
+      "metadata": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+        "sha256": "a6361097eca22313afd4f941872534197663f1fe4c05fdd6903fba7d94f87859"
+      },
+      "failure_log": {
+        "path": "evidence/windows-actions/38000930440/GymSoft_ZTATTUZ_3.6.1_x86/packaging-guards.log",
+        "sha256": "9dfb58ae5a4ce4f28b94c4b981d194f355bfd21aa69eaead8d9df992b3f6be59"
+      },
+      "full_application_validation": "NOT_RUN",
+      "actual_application_build": "NOT_RUN",
+      "technical_installation": "NOT_RUN",
+      "customer_delivery_zip": "NOT_RUN"
+    }
+  ]
+}

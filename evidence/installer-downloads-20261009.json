@@ -1,0 +1,36 @@
+{
+  "type": "VERIFIED_CLIENT_CONFIGURATION_DOWNLOADS",
+  "final_release": false,
+  "tag": "configuracion-pruebas-fe2a95b",
+  "source_commit": "fe2a95b2413caf1567afe688b2b80af060d27615",
+  "github_run_id": "38001250527",
+  "scope": "Configuration installers only; real accounts/hardware acceptance still pending.",
+  "packages": [
+    {
+      "file": "AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 94036167,
+      "sha256": "600090bb32474bb560ebe943d0f427126c129a14c57a6e55e7a8f4e1724e3772",
+      "edition": "GymSoft_Comercial_3.6.0",
+      "installation_status": "PASS",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    },
+    {
+      "file": "AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 176475169,
+      "sha256": "1b08116192d0aed090b5b3eee4bf9c0dc6fec5eda45a8026f1ad03809bbc23a2",
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "installation_status": "PASS",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    },
+    {
+      "file": "AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 96760109,
+      "sha256": "59cbe89b73be34e1539707757b5569f6ddd445ad9907f8e80a496dfa4aafd5d8",
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "installation_status": "NOT_RUN",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    }
+  ],
+  "published_prerelease": true,
+  "release_url": "https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-fe2a95b"
+}

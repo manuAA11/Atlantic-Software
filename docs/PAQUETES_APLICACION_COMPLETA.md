@@ -4,6 +4,14 @@
 
 ## Descargar y crear los instaladores
 
+Ya puedes descargar los instaladores compilados y verificados, sin compilar en tu PC:
+
+- [ZTATTUZ x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
+- [Atlantic Gym Comercial x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
+- [ZTATTUZ x86](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip): exclusivo para Windows32; su instalación en ese sistema sigue pendiente de validación.
+
+Extrae el ZIP en una carpeta nueva, lee `LEER_PRIMERO.txt` y ejecuta el EXE. No requiere Python, Node ni Inno en el PC de instalación. Las dos ediciones x64 aprobaron instalación nueva, actualización y desinstalación; las tres aprobaron compilación/diagnóstico/37 etapas. Los ZIP se descargaron y verificaron de nuevo con CRC/SHA256 y digest de GitHub. Están marcados **PRUEBAS_PARA_CONFIGURAR_NO_FINAL**: permiten configurar desde la aplicación antes de los pilotos con cuentas y hardware reales. El panel Propietario no está incluido en la descarga pública de clientes.
+
 Los paquetes completos publicados en `main` están en [backups/20261008](../backups/20261008/). Sus nombres conservan la fecha de la recuperación; el manifiesto identifica el commit de fuentes incluido y el SHA-256 de cada ZIP.
 
 - [Atlantic Gym Comercial completo](https://github.com/manuAA11/Atlantic-Software/raw/refs/heads/main/backups/20261008/AtlanticGym_APLICACION_COMPLETA_EN_DESARROLLO_20261008.zip): Administrador, Recepción y panel privado del propietario.

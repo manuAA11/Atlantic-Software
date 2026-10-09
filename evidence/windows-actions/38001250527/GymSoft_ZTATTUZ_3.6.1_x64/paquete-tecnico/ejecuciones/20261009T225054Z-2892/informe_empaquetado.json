@@ -1,0 +1,797 @@
+{
+  "status": "PASS",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+  "version": "3.6.1",
+  "mode": "installers",
+  "date_utc": "2026-10-09T22:50:54.873679+00:00",
+  "run_id": "20261009T225054Z-2892",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "process_bits": 64,
+  "release_gate_modified": false,
+  "executables": [
+    {
+      "name": "ZTATTUZ Admin",
+      "entry": "app.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist\\ZTATTUZ Admin\\ZTATTUZ Admin.exe",
+      "process_bits": 64,
+      "sha256": "d4bc063f18f04a57cba1b9f6886909324df1254242c229f671909b422e88fa3e",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Gym soft · ZTATTUZ",
+        "version": "3.6.1",
+        "fecha": "2026-10-09T22:58:14.991319+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; imágenes y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración ZTATTUZ",
+            "estado": "OK",
+            "detalle": "True"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no certifica todas las variantes de Windows Mini ni el lector físico."
+      }
+    },
+    {
+      "name": "ZTATTUZ Recepcion",
+      "entry": "reception_app.py",
+      "icon": "icono_recepcion.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist\\ZTATTUZ Recepcion\\ZTATTUZ Recepcion.exe",
+      "process_bits": 64,
+      "sha256": "34ee65f6fea90eaf3d532101379aa87e2303bcb33e5415e643e5ed19da82bd6e",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Gym soft · ZTATTUZ",
+        "version": "3.6.1",
+        "fecha": "2026-10-09T22:58:15.940882+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; imágenes y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración ZTATTUZ",
+            "estado": "OK",
+            "detalle": "True"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no certifica todas las variantes de Windows Mini ni el lector físico."
+      }
+    }
+  ],
+  "installers": [
+    {
+      "script": "instalador_admin.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes\\ZTATTUZ_Admin_3.6.1.exe",
+      "sha256": "7de542ac557362b5041e751d346be319c728ab1477a65f0f18f409876c1c594a",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_recepcion.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes\\ZTATTUZ_Recepcion_3.6.1.exe",
+      "sha256": "4d5f2cc804f979a73682677b6e5ddcf7760504b0a9b1088ab81bfeca900a93a7",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_completo.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
+      "sha256": "e4d59f9e66cc0f6bd5711ef8cc144f04bbc15898b925e7d43e5a97420bf93cc9",
+      "status": "PASS",
+      "final": false
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Scripts\\python.exe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\run_validation.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\01-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "ZTATTUZ Admin",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\ZTATTUZ Admin_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "certifi",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "--collect-all",
+        "serial",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\02-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "ZTATTUZ Recepcion",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono_recepcion.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\ZTATTUZ Recepcion_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "certifi",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "--collect-all",
+        "serial",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\reception_app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\03-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist\\ZTATTUZ Admin\\ZTATTUZ Admin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\diagnosticos\\ZTATTUZ_Admin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\04-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist\\ZTATTUZ Recepcion\\ZTATTUZ Recepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\diagnosticos\\ZTATTUZ_Recepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\05-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\instalador_admin.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\06-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\instalador_recepcion.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\07-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.1",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\instaladores",
+        "/FVALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\instalador_completo.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T225054Z-2892\\logs\\08-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "full_local_validation": {
+    "version": "3.6.1",
+    "started_at": "2026-10-09T22:50:55.034366+00:00",
+    "platform": "win32",
+    "scope": "all",
+    "status": "PASS",
+    "stages": [
+      {
+        "name": "python",
+        "status": "PASS",
+        "seconds": 27.82,
+        "log": "python.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contratos_extraidos",
+        "status": "PASS",
+        "seconds": 0.94,
+        "log": "contratos_extraidos.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_compile",
+        "status": "PASS",
+        "seconds": 2.78,
+        "log": "marketing_compile.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "backend_sql_flow",
+        "status": "PASS",
+        "seconds": 3.38,
+        "log": "backend_sql_flow.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "time_pipeline",
+        "status": "PASS",
+        "seconds": 2.82,
+        "log": "time_pipeline.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "membership_freezes",
+        "status": "PASS",
+        "seconds": 3.02,
+        "log": "membership_freezes.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "audit_logs",
+        "status": "PASS",
+        "seconds": 2.87,
+        "log": "audit_logs.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_contracts",
+        "status": "PASS",
+        "seconds": 2.84,
+        "log": "marketing_contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "daily_tickets",
+        "status": "PASS",
+        "seconds": 2.52,
+        "log": "daily_tickets.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprints",
+        "status": "PASS",
+        "seconds": 2.53,
+        "log": "fingerprints.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "upgrade_compatibility",
+        "status": "PASS",
+        "seconds": 2.47,
+        "log": "upgrade_compatibility.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "security",
+        "status": "PASS",
+        "seconds": 2.6,
+        "log": "security.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "contracts",
+        "status": "PASS",
+        "seconds": 2.56,
+        "log": "contracts.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_plans",
+        "status": "PASS",
+        "seconds": 2.74,
+        "log": "ticket_plans.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_followup",
+        "status": "PASS",
+        "seconds": 2.71,
+        "log": "ticket_followup.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_backend",
+        "status": "PASS",
+        "seconds": 0.44,
+        "log": "marketing_backend.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "recorrido_huellas",
+        "status": "PASS",
+        "seconds": 18.91,
+        "log": "recorrido_huellas.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "simulacion_gimnasio",
+        "status": "PASS",
+        "seconds": 14.55,
+        "log": "simulacion_gimnasio.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "marketing_ui_smoke",
+        "status": "PASS",
+        "seconds": 15.1,
+        "log": "marketing_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "freeze_ui_smoke",
+        "status": "PASS",
+        "seconds": 4.75,
+        "log": "freeze_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "door_ui_smoke",
+        "status": "PASS",
+        "seconds": 13.52,
+        "log": "door_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "dialog_design_ui_smoke",
+        "status": "PASS",
+        "seconds": 17.25,
+        "log": "dialog_design_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ui_wait_smoke",
+        "status": "PASS",
+        "seconds": 0.44,
+        "log": "ui_wait_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "access_layout_ui_smoke",
+        "status": "PASS",
+        "seconds": 25.17,
+        "log": "access_layout_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "client_fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 11.28,
+        "log": "client_fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "fingerprint_ui_smoke",
+        "status": "PASS",
+        "seconds": 10.68,
+        "log": "fingerprint_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "windows_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.19,
+        "log": "windows_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "responsive_ui_smoke",
+        "status": "PASS",
+        "seconds": 76.83,
+        "log": "responsive_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "biometric_ui_smoke",
+        "status": "PASS",
+        "seconds": 4.21,
+        "log": "biometric_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "ticket_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.47,
+        "log": "ticket_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "performance_ui_smoke",
+        "status": "PASS",
+        "seconds": 10.93,
+        "log": "performance_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "popdown_ui_smoke",
+        "status": "PASS",
+        "seconds": 5.08,
+        "log": "popdown_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_modes_ui_smoke",
+        "status": "PASS",
+        "seconds": 53.23,
+        "log": "layout_modes_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "review_ui_smoke",
+        "status": "PASS",
+        "seconds": 8.63,
+        "log": "review_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "layout_consistency_ui_smoke",
+        "status": "PASS",
+        "seconds": 12.51,
+        "log": "layout_consistency_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "visibility_ui_smoke",
+        "status": "PASS",
+        "seconds": 3.45,
+        "log": "visibility_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      },
+      {
+        "name": "atlantic_branding_ui_smoke",
+        "status": "PASS",
+        "seconds": 0.83,
+        "log": "atlantic_branding_ui_smoke.log",
+        "timed_out": false,
+        "callback_failure": false
+      }
+    ],
+    "evidence": {
+      "report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\resultado_pruebas_all.json",
+      "sha256": "1a65b8de29be10db3d3e09fe707a03edcbd48e5232fb3bec7b8c5635733d260a",
+      "logs": [
+        {
+          "path": "python.log",
+          "sha256": "d99974381f46ded436578c1033c8c0ddabe54aeec59a7fab1710789320cd25d1"
+        },
+        {
+          "path": "contratos_extraidos.log",
+          "sha256": "a6e375d8873f1b71e27d7499e159cb1a5f7cafa4b7d4f49e765a94c52dbf5e64"
+        },
+        {
+          "path": "marketing_compile.log",
+          "sha256": "2ce870af847f0b02e7f6d8a2b548b8b8f29e44f86a5151697ffae55d6e3318f2"
+        },
+        {
+          "path": "backend_sql_flow.log",
+          "sha256": "348d0678e4cb652b85a7f5037ab7d3d9df2a93ee515226e4a1a633b3ec0a1848"
+        },
+        {
+          "path": "time_pipeline.log",
+          "sha256": "f9d55fe093774f835bb222074ce7d3989b388cfec4a06d5c7267655fdaf5b378"
+        },
+        {
+          "path": "membership_freezes.log",
+          "sha256": "d09bec8eee69fe30bc1817b9e632eada1a2f9ac4ef62195ae3195a61294f0b8e"
+        },
+        {
+          "path": "audit_logs.log",
+          "sha256": "1a73a5b32b8d01a3e0d19d786143b051a8701a6eb3bb54af0645a358cfede4be"
+        },
+        {
+          "path": "marketing_contracts.log",
+          "sha256": "ab64e341a39d3faff8f692639e81afdbfd7e74f44c12dbf0d1322f1612a4c301"
+        },
+        {
+          "path": "daily_tickets.log",
+          "sha256": "330d9c08312f315318cdf1f3398f96af4314724b88c148b1c2431fd79d616372"
+        },
+        {
+          "path": "fingerprints.log",
+          "sha256": "8c8be368a32c9b7fc76bc7e8ba3818667f4db0d7c4725c6c042a6e0980646a80"
+        },
+        {
+          "path": "upgrade_compatibility.log",
+          "sha256": "c0a330bbcc0af9c379ac22ec23c8994f9dbf7c72c51d587b4be12585bd4e1de8"
+        },
+        {
+          "path": "security.log",
+          "sha256": "5c90800985c1a76fbe7d61fa269d010434b5806aef0beeb84bebf4d87208566f"
+        },
+        {
+          "path": "contracts.log",
+          "sha256": "4b046389a4cb12c38268751de11f9a349b00c27e91adb6a1d1f6013b82becb47"
+        },
+        {
+          "path": "ticket_plans.log",
+          "sha256": "8f72d46412727bbaf039a60fb0e8f3fac17bbdefef131a3403c44de4542c86ae"
+        },
+        {
+          "path": "ticket_followup.log",
+          "sha256": "d4718bbc1fac650d52fe4fca7c1d4aa14e53e2a2ac700edde4b90f5b03dd0e26"
+        },
+        {
+          "path": "marketing_backend.log",
+          "sha256": "da52dc8e22252800e6cc090833221be53703555889a0f60486290abcaab72b2f"
+        },
+        {
+          "path": "recorrido_huellas.log",
+          "sha256": "1636be2fcc263617cf35e5135e150794b4a869b027d258dd188e4d64750cc850"
+        },
+        {
+          "path": "simulacion_gimnasio.log",
+          "sha256": "f7346c385db83159c2c3dfa3b5ca7777b0bd5df439d7dfca20f23b8f8d81da63"
+        },
+        {
+          "path": "marketing_ui_smoke.log",
+          "sha256": "abfc6944f620e101176b75c05b2ab7ba793c11933b857894ce8ce000997ea2e5"
+        },
+        {
+          "path": "freeze_ui_smoke.log",
+          "sha256": "c1ffddadfe987c240afd2686531c6b0bd78b5699e1290a20e635f277798f7780"
+        },
+        {
+          "path": "door_ui_smoke.log",
+          "sha256": "0d4732d725b63311c3ff4a6a4b6d2c7e915848f444481495841a401fc8bb483c"
+        },
+        {
+          "path": "dialog_design_ui_smoke.log",
+          "sha256": "97b6d166bfba15719fe7b7615d9a7292568897655f8e945bf435e1c5e7b924b6"
+        },
+        {
+          "path": "ui_wait_smoke.log",
+          "sha256": "60a11bea6f368ceab4b43207cc67017f373f5bef1ba5ec856480eb1f436f8a85"
+        },
+        {
+          "path": "access_layout_ui_smoke.log",
+          "sha256": "2ff0ec1272f3730a913d75f6092b422f1bc287ce17c6a963b5720606d6db2f4a"
+        },
+        {
+          "path": "client_fingerprint_ui_smoke.log",
+          "sha256": "4908a59c4488d1035028264c6e1d8a78ee743e003167f9057ee59b072b61e179"
+        },
+        {
+          "path": "fingerprint_ui_smoke.log",
+          "sha256": "3f8bb5767d72132f51d16d79d4ea709ccbc217bb7e64f0c6f442ffcca561cb7e"
+        },
+        {
+          "path": "windows_ui_smoke.log",
+          "sha256": "70c88fdf12e81e1f3f79f5ab84200e0231f3c01e083127dc007d3cd4f1de767a"
+        },
+        {
+          "path": "responsive_ui_smoke.log",
+          "sha256": "3d4c0b9d4b9718131f26eea1034905c6f3423800899143ea7fc3d6ec360f3ec6"
+        },
+        {
+          "path": "biometric_ui_smoke.log",
+          "sha256": "aeaa561e6fc6075a8b31ad508459fb2d931b18edf2a0dae102f813b1ea8577e2"
+        },
+        {
+          "path": "ticket_ui_smoke.log",
+          "sha256": "34bf08d314f34de77311dfde439fbbddb6808a74cb60bf0d2d83981c854bca74"
+        },
+        {
+          "path": "performance_ui_smoke.log",
+          "sha256": "c054574a27432454ea3ae5bf938b13b41a88c8206cf4325157281c01d66be621"
+        },
+        {
+          "path": "popdown_ui_smoke.log",
+          "sha256": "439c97dd5ce8bb4aa50f0b1ce97237ab7662b48cac61e8047dd96435ba1576db"
+        },
+        {
+          "path": "layout_modes_ui_smoke.log",
+          "sha256": "14487e2b066c698e73d0946ea5f810ac17a9853c7c3f9b98ff354a7b5f18a5dc"
+        },
+        {
+          "path": "review_ui_smoke.log",
+          "sha256": "9304a7863b2aaad05d8b0674c295dc3bae8cf0c9959c8965948c95c30283e712"
+        },
+        {
+          "path": "layout_consistency_ui_smoke.log",
+          "sha256": "69d43c3a654438eab6655c8a28a1f21edfcdde61e5da39508644c0d2261516ee"
+        },
+        {
+          "path": "visibility_ui_smoke.log",
+          "sha256": "b4f7f392d7a50c1c5098a69796e8ccb8116426cad49440bdc922add31c869236"
+        },
+        {
+          "path": "atlantic_branding_ui_smoke.log",
+          "sha256": "e924299a52fca6cecfb34af17f1ed97b9f775c996abcf124aa078179a0239f20"
+        }
+      ]
+    }
+  },
+  "configuration_installers": {
+    "directory": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\PRUEBAS_PARA_CONFIGURAR\\20261009T225054Z-2892",
+    "final": false,
+    "files": [
+      {
+        "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
+        "sha256": "7de542ac557362b5041e751d346be319c728ab1477a65f0f18f409876c1c594a",
+        "bytes": 68306811
+      },
+      {
+        "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
+        "sha256": "4d5f2cc804f979a73682677b6e5ddcf7760504b0a9b1088ab81bfeca900a93a7",
+        "bytes": 68137679
+      },
+      {
+        "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
+        "sha256": "e4d59f9e66cc0f6bd5711ef8cc144f04bbc15898b925e7d43e5a97420bf93cc9",
+        "bytes": 176947761
+      }
+    ]
+  }
+}

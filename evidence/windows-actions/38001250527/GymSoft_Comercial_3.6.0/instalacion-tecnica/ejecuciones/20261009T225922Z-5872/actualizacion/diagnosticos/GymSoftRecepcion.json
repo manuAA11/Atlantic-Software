@@ -1,0 +1,34 @@
+{
+  "producto": "Atlantic Gym",
+  "version": "3.6.0",
+  "fecha": "2026-10-09T23:00:18.494553+00:00",
+  "estado": "OK",
+  "comprobaciones": [
+    {
+      "comprobacion": "Sistema",
+      "estado": "OK",
+      "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+    },
+    {
+      "comprobacion": "Almacenamiento local",
+      "estado": "OK",
+      "detalle": "Carpeta local comercial accesible"
+    },
+    {
+      "comprobacion": "Interfaz",
+      "estado": "OK",
+      "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+    },
+    {
+      "comprobacion": "Componentes incluidos",
+      "estado": "OK",
+      "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+    },
+    {
+      "comprobacion": "Configuración comercial",
+      "estado": "OK",
+      "detalle": "Configuración pública comercial válida; sin claves privadas"
+    }
+  ],
+  "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+}
