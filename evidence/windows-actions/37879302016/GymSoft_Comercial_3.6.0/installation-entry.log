@@ -1,0 +1,24 @@
+{
+  "status": "FAIL",
+  "final": false,
+  "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+  "edition": "GymSoft_Comercial_3.6.0",
+  "date_utc": "2026-10-09T03:30:44.088922+00:00",
+  "release_gate_modified": false,
+  "commands": [],
+  "installed_executables": [],
+  "cleanup": {
+    "status": "NOT_RUN"
+  },
+  "runner": {
+    "environment": "github-hosted",
+    "github_run_id": "37879302016",
+    "runner_temp": "D:\\a\\_temp",
+    "workspace": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "packaging_report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\informe_empaquetado.json",
+  "packaging_report_sha256": "037ca8e54ffcf0f1fc4816513cfa58b9380f660c8797b04b25c153e1c16861ed",
+  "native_windows_architecture": "x64",
+  "version": "3.6.0",
+  "error": "RuntimeError: El instalador compilado no contiene la marca técnica NO FINAL: instalador_propietario.iss"
+}

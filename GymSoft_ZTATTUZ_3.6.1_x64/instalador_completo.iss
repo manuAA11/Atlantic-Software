@@ -18,6 +18,10 @@ AppId=ZTATTUZActualizadorCompleto
 AppName=Atlantic Gym · ZTATTUZ{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
+#ifdef BuildValidation
+VersionInfoDescription=Atlantic Gym · Validación técnica (no final)
+VersionInfoProductName=Atlantic Gym · Validación técnica (no final)
+#endif
 CreateAppDir=no
 Uninstallable=no
 PrivilegesRequired=lowest

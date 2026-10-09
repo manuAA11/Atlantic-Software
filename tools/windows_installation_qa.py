@@ -15,6 +15,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -136,12 +137,14 @@ def load_technical_report(edition):
     return report, report_path
 
 
-def verify_technical_installer_metadata(packaged):
+def verify_technical_installer_metadata(packaged, *, diagnostics=None):
     """Inspect the compiled marker before any installer process is started."""
     import pefile
-    rows = []
+    rows = [] if diagnostics is None else diagnostics
     for item in packaged['installers']:
         names = []
+        row = {'script': item['script'], 'status': 'RUNNING', 'product_names': names}
+        rows.append(row)
         with pefile.PE(item['executable']) as binary:
             for group in getattr(binary, 'FileInfo', []):
                 for info in group:
@@ -150,8 +153,9 @@ def verify_technical_installer_metadata(packaged):
                             if name in (b'ProductName', b'FileDescription'):
                                 names.append(value.decode('utf-8', errors='replace'))
         if not any('Validación técnica (no final)' in value for value in names):
+            row['status'] = 'FAIL'
             raise RuntimeError('El instalador compilado no contiene la marca técnica NO FINAL: ' + item['script'])
-        rows.append({'script': item['script'], 'status': 'PASS', 'product_names': names})
+        row['status'] = 'PASS'
     return rows
 
 
@@ -357,6 +361,22 @@ def record_runtime():
             'cleanup': 'Runtime del sistema conservado hasta destruir el runner efímero.'}
 
 
+def preserve_sdk_log(qa_root):
+    """Preserve only the known vendor-installation log, never the environment."""
+    base = os.environ.get('LOCALAPPDATA')
+    if not base:
+        return {'status': 'NOT_PRESENT', 'reason': 'LOCALAPPDATA no disponible.'}
+    source = Path(base) / 'AtlanticTechSoftware' / 'logs' / 'DigitalPersona_instalacion.log'
+    if not source.is_file():
+        return {'status': 'NOT_PRESENT', 'reason': 'El runtime no produjo el registro MSI conocido.'}
+    if source.is_symlink() or getattr(source, 'is_junction', lambda: False)():
+        raise RuntimeError('El registro del runtime no debe ser un enlace.')
+    destination = qa_root / 'logs' / 'DigitalPersona_instalacion.log'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, destination)
+    return {'status': 'PRESERVED', 'log': str(destination), 'sha256': sha256(destination)}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--edition', type=Path, default=Path.cwd())
@@ -365,7 +385,11 @@ def main(argv=None):
     args = parser.parse_args(argv)
     report = {'status': 'RUNNING', 'final': False, 'scope': SCOPE, 'edition': args.edition.name,
               'date_utc': datetime.now(timezone.utc).isoformat(), 'release_gate_modified': False,
-              'commands': [], 'installed_executables': [], 'cleanup': {'status': 'NOT_RUN'}}
+              'commands': [], 'installed_executables': [], 'cleanup': {'status': 'NOT_RUN'},
+              'stage': 'runner_guard', 'explicit_ephemeral_runner': args.ephemeral_runner,
+              'runner_context': {name: os.environ.get(name) for name in
+                 ('GITHUB_ACTIONS', 'RUNNER_ENVIRONMENT', 'RUNNER_OS', 'GITHUB_RUN_ID',
+                  'RUNNER_TEMP', 'GITHUB_WORKSPACE')}}
     qa_root, runner, locations = None, None, {}
     def execute():
         nonlocal qa_root, runner, locations
@@ -373,33 +397,43 @@ def main(argv=None):
             raise RuntimeError('El timeout debe estar entre 45 y 1800 segundos.')
         edition = args.edition.resolve(strict=True)
         report['runner'] = require_ephemeral_runner(edition, args.ephemeral_runner)
+        # Once the runner guard has succeeded, retain preflight failures as files
+        # too. This creates only QA evidence; no installer has been authorized yet.
+        run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + f'-{os.getpid()}'
+        candidate = edition / 'salida' / 'validacion' / 'instalacion-tecnica' / 'ejecuciones' / run_id
+        confined_path(candidate, edition / 'salida' / 'validacion')
+        candidate.mkdir(parents=True, exist_ok=False)
+        qa_root = candidate
+        report['run_id'] = run_id
+        report['stage'] = 'authenticate_packaging'
         packaged, source_report = load_technical_report(edition)
         report['packaging_report'] = str(source_report)
         report['packaging_report_sha256'] = sha256(source_report)
+        report['stage'] = 'native_architecture'
         architecture = native_windows_architecture()
         report['native_windows_architecture'] = architecture
         sys.path.insert(0, str(edition))
         build = importlib.import_module('build_windows')
         report['version'] = build.VERSION
+        report['stage'] = 'match_edition_and_version'
         if (set(item['script'] for item in packaged['installers']) != set(build.INSTALLER_SCRIPTS) or
                 set(item['name'] for item in packaged['executables']) != set(name for name, entry in build.EXECUTABLES) or
                 packaged.get('version') != build.VERSION):
             raise RuntimeError('El paquete técnico no coincide con los programas y versión actuales.')
-        report['installer_metadata'] = verify_technical_installer_metadata(packaged)
-        run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + f'-{os.getpid()}'
-        qa_root = edition / 'salida' / 'validacion' / 'instalacion-tecnica' / 'ejecuciones' / run_id
-        confined_path(qa_root, edition / 'salida' / 'validacion')
-        qa_root.mkdir(parents=True, exist_ok=False)
-        report['run_id'] = run_id
+        report['stage'] = 'verify_installer_metadata'
+        metadata = report.setdefault('installer_metadata', [])
+        verify_technical_installer_metadata(packaged, diagnostics=metadata)
         if build.EXPECTED_BITS == 32 and architecture == 'x64':
             report.update(status='NOT_RUN', reason='El MSI DigitalPersona x86 exige NOT VersionNT64. '
                           'El runner Windows x64 no acredita instalación en Windows de 32 bits.')
             return
         if architecture != 'x64' or build.EXPECTED_BITS != 64:
             raise RuntimeError('Solo se acredita instalación nativa x64 en los runners Windows disponibles.')
+        report['stage'] = 'reject_existing_installations'
         if uninstall_entries():
             raise RuntimeError('Ya existe un producto Gym instalado; se rechaza modificar instalaciones anteriores.')
         from windows_packaging_qa import require_runtime_files
+        report['stage'] = 'verify_runtime_sources'
         report['runtime_source_sha256'] = require_runtime_files(edition, build.EXPECTED_BITS)
         runner = CommandRunner(qa_root / 'logs', report)
         install_root = qa_root / 'instalacion'
@@ -408,26 +442,34 @@ def main(argv=None):
         roles = [('client', 'instalador_clientes.iss'), ('owner', 'instalador_propietario.iss')] if commercial else [
             ('admin', 'instalador_admin.iss'), ('reception', 'instalador_recepcion.iss')]
         for role, script in roles:
+            report['stage'] = 'install_' + role
             locations[role] = install_root / role
             code = runner.run([str(installers[script]), '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART',
                                '/DIR=' + str(locations[role]), '/LOG=' + str(qa_root / ('instalar-' + role + '.log'))],
                               label='instalar-' + role, timeout=args.timeout, accepted=(0, 3010), cwd=edition)
             if code == 3010:
                 report['restart_required'] = True
+        report['stage'] = 'verify_registrations'
         first_registration = validate_registered_apps(uninstall_entries(), locations)
+        report['stage'] = 'verify_installed_runtime'
         report['runtime'] = record_runtime()
+        report['stage'] = 'verify_installed_executables'
         expected, report['installed_executables'] = verify_installed_apps(build, packaged, locations, runner, qa_root)
+        report['stage'] = 'verify_shortcuts'
         links = inspect_shortcuts(runner, qa_root, install_root, 'accesos-directos')
         report['shortcuts'] = {'status': 'PASS', 'counts': verify_shortcuts(links, expected, edition), 'entries': links}
         if not commercial:
+            report['stage'] = 'update_with_complete_installer'
             code = runner.run([str(installers['instalador_completo.iss']), '/VERYSILENT', '/SUPPRESSMSGBOXES',
                                '/NORESTART', '/LOG=' + str(qa_root / 'actualizar-completo.log')],
                               label='actualizar-completo', timeout=args.timeout, accepted=(0, 3010), cwd=edition)
             if code == 3010:
                 report['restart_required'] = True
+            report['stage'] = 'verify_updated_registrations'
             after_update = validate_registered_apps(uninstall_entries(), locations)
             if after_update != first_registration:
                 raise RuntimeError('El actualizador cambió directorios o creó registros duplicados.')
+            report['stage'] = 'verify_updated_executables'
             expected, update_results = verify_installed_apps(build, packaged, locations, runner, qa_root / 'actualizacion')
             update_links = inspect_shortcuts(runner, qa_root, install_root, 'accesos-actualizados')
             verify_shortcuts(update_links, expected, edition)
@@ -439,7 +481,7 @@ def main(argv=None):
     try:
         execute()
     except Exception as error:
-        report.update(status='FAIL', error=f'{type(error).__name__}: {error}')
+        report.update(status='FAIL', error=f'{type(error).__name__}: {error}', failed_stage=report['stage'])
     finally:
         if runner is not None and locations:
             try:
@@ -469,6 +511,12 @@ def main(argv=None):
             except Exception as error:
                 report['cleanup'] = {'status': 'FAIL', 'error': f'{type(error).__name__}: {error}'}
                 report['status'] = 'FAIL'
+                report.setdefault('failed_stage', 'cleanup')
+        if qa_root is not None:
+            try:
+                report['sdk_log'] = preserve_sdk_log(qa_root)
+            except Exception as error:
+                report['sdk_log'] = {'status': 'ERROR', 'error': f'{type(error).__name__}: {error}'}
         payload = json.dumps(report, ensure_ascii=False, indent=2)
         if qa_root is not None:
             (qa_root / 'informe_instalacion.json').write_text(payload, encoding='utf-8')

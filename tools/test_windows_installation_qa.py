@@ -5,7 +5,9 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -73,6 +75,58 @@ class InstallationQaGuards(unittest.TestCase):
                 qa.require_ephemeral_runner(self.edition, True, environ={**self.env, **change}, platform='win32')
         with self.assertRaises(RuntimeError):
             qa.require_ephemeral_runner(self.edition, False, environ=self.env, platform='win32')
+
+    def test_preflight_failure_is_preserved_after_runner_guard_without_installing(self):
+        output = io.StringIO()
+        with patch.dict(qa.os.environ, self.env, clear=True), patch.object(qa.sys, 'platform', 'win32'), \
+                patch.object(qa.subprocess, 'Popen') as process, contextlib.redirect_stdout(output):
+            result = qa.main(['--edition', str(self.edition), '--ephemeral-runner'])
+        self.assertEqual(result, 1)
+        process.assert_not_called()
+        path = self.edition / 'salida/validacion/instalacion-tecnica/informe_instalacion.json'
+        self.assertTrue(path.is_file())
+        report = json.loads(path.read_text())
+        self.assertEqual(report['status'], 'FAIL')
+        self.assertEqual(report['failed_stage'], 'authenticate_packaging')
+        self.assertEqual(report['commands'], [])
+        self.assertIs(report['final'], False)
+        self.assertEqual(json.loads(output.getvalue()), report)
+
+    def test_metadata_guard_accepts_complete_marker_and_retains_observed_names(self):
+        name = 'Atlantic Gym · Validación técnica (no final)'
+        table = SimpleNamespace(entries={b'ProductName': name.encode('utf-8')})
+        info = SimpleNamespace(StringTable=[table])
+        binary = SimpleNamespace(FileInfo=[[info]])
+        class Resource:
+            def __enter__(self):
+                return binary
+            def __exit__(self, *args):
+                pass
+        package = {'installers': [{'script': 'fixture.iss', 'executable': 'fixture.exe'}]}
+        rows = []
+        with patch.dict(sys.modules, {'pefile': SimpleNamespace(PE=lambda _: Resource())}):
+            qa.verify_technical_installer_metadata(package, diagnostics=rows)
+        self.assertEqual(rows[0]['status'], 'PASS')
+        self.assertEqual(rows[0]['product_names'], [name])
+
+    def test_metadata_guard_rejects_incomplete_marker_without_relaxing_acceptance(self):
+        name = 'Atlantic Gym · ZTATTUZ Administrador · Validación técnica (no final)'[:64]
+        self.assertNotIn('Validación técnica (no final)', name)
+        table = SimpleNamespace(entries={b'ProductName': name.encode('utf-8')})
+        info = SimpleNamespace(StringTable=[table])
+        binary = SimpleNamespace(FileInfo=[[info]])
+        class Resource:
+            def __enter__(self):
+                return binary
+            def __exit__(self, *args):
+                pass
+        package = {'installers': [{'script': 'fixture.iss', 'executable': 'fixture.exe'}]}
+        rows = []
+        with patch.dict(sys.modules, {'pefile': SimpleNamespace(PE=lambda _: Resource())}), \
+                self.assertRaisesRegex(RuntimeError, 'NO FINAL'):
+            qa.verify_technical_installer_metadata(package, diagnostics=rows)
+        self.assertEqual(rows[0]['status'], 'FAIL')
+        self.assertEqual(rows[0]['product_names'], [name])
 
     def test_authentication_rejects_changed_bytes(self):
         path, report, exe = self.make_report()

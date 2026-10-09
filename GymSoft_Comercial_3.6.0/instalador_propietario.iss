@@ -17,6 +17,10 @@ AppId={{58D6DD62-FD67-4CC1-8D87-153AFB4EE44A}
 AppName=Atlantic Gym · Control comercial{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
+#ifdef BuildValidation
+VersionInfoDescription=Atlantic Gym · Validación técnica (no final)
+VersionInfoProductName=Atlantic Gym · Validación técnica (no final)
+#endif
 DefaultDirName={localappdata}\Programs\GymSoftControl
 DefaultGroupName=Gym soft Propietario
 PrivilegesRequired=lowest

@@ -18,6 +18,10 @@ AppId={{8F529E62-5D29-49E0-99AA-28255D920ECE}
 AppName=Atlantic Gym · ZTATTUZ Recepción{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
+#ifdef BuildValidation
+VersionInfoDescription=Atlantic Gym · Validación técnica (no final)
+VersionInfoProductName=Atlantic Gym · Validación técnica (no final)
+#endif
 DefaultDirName={localappdata}\Programs\ZTATTUZ Recepcion
 DefaultGroupName=ZTATTUZ
 PrivilegesRequired=lowest

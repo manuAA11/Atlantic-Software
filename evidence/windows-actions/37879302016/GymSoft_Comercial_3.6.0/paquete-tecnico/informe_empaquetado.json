@@ -1,0 +1,383 @@
+{
+  "status": "PASS",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_Comercial_3.6.0",
+  "version": "3.6.0",
+  "mode": "installers",
+  "date_utc": "2026-10-09T03:28:10.099677+00:00",
+  "run_id": "20261009T032810Z-3732",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "process_bits": 64,
+  "release_gate_modified": false,
+  "executables": [
+    {
+      "name": "GymSoftAdmin",
+      "entry": "app.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftAdmin\\GymSoftAdmin.exe",
+      "process_bits": 64,
+      "sha256": "716eb43c6e0e74da8ecf997d37df1cb11dba19528972cab79d7fb4c427bf0cf1",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T03:29:48.715408+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "name": "GymSoftRecepcion",
+      "entry": "reception_app.py",
+      "icon": "icono_recepcion.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftRecepcion\\GymSoftRecepcion.exe",
+      "process_bits": 64,
+      "sha256": "16f661fce3bb1d4654b6964fafbda185a35d83079d33dd1e0be6efc5ec886c40",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T03:29:49.786672+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "name": "GymSoftControl",
+      "entry": "owner_panel.py",
+      "icon": "icono.ico",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftControl\\GymSoftControl.exe",
+      "process_bits": 64,
+      "sha256": "1fe3a469c9b484e8eaf7e649862c0d1d6fbbbda55e070bce8156f9fdfafbde39",
+      "status": "PASS",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-09T03:29:50.899450+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    }
+  ],
+  "installers": [
+    {
+      "script": "instalador_clientes.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+      "sha256": "a61ca7674bcbbad94abd1c519b3141193ba47c1a5b0c5d80eb9734e79273bdba",
+      "status": "PASS",
+      "final": false
+    },
+    {
+      "script": "instalador_propietario.iss",
+      "executable": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+      "sha256": "192103fe98a663c5efdfd8e1e9c65c64262771a3c4abe1a7ffe68835f3b47be0",
+      "status": "PASS",
+      "final": false
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftAdmin",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\GymSoftAdmin_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\01-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftRecepcion",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\GymSoftRecepcion_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\reception_app.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\02-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe",
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--windowed",
+        "--onedir",
+        "--name",
+        "GymSoftControl",
+        "--icon",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico",
+        "--version-file",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\GymSoftControl_version.txt",
+        "--paths",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0",
+        "--workpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\work",
+        "--specpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\build\\spec",
+        "--distpath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.",
+        "--add-data",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.",
+        "--hidden-import",
+        "PIL._tkinter_finder",
+        "--collect-all",
+        "supabase",
+        "--collect-all",
+        "realtime",
+        "--collect-all",
+        "postgrest",
+        "--collect-all",
+        "supabase_auth",
+        "--collect-all",
+        "tzdata",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\owner_panel.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\03-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftAdmin\\GymSoftAdmin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\diagnosticos\\GymSoftAdmin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\04-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftRecepcion\\GymSoftRecepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\diagnosticos\\GymSoftRecepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\05-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist\\GymSoftControl\\GymSoftControl.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\diagnosticos\\GymSoftControl.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\06-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.0",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores",
+        "/FVALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\instalador_clientes.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\07-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe",
+        "/DAppVersion=3.6.0",
+        "/DBuildValidation=1",
+        "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\dist",
+        "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores\\componentes",
+        "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\instaladores",
+        "/FVALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\instalador_propietario.iss"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261009T032810Z-3732\\logs\\08-comando.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  }
+}

@@ -168,6 +168,13 @@ jobs:
           } finally {
             Pop-Location
           }
+      - name: Save technical installers for review (not final delivery)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: NO_FINAL-technical-installers-${{ matrix.edition }}
+          if-no-files-found: ignore
+          path: ${{ matrix.edition }}/salida/validacion/paquete-tecnico/ejecuciones/*/instaladores/**/*.exe
       - name: Save Windows evidence
         if: always()
         uses: actions/upload-artifact@v4
