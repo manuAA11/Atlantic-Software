@@ -1,6 +1,13 @@
 # STAFF y reanudación de membresías
 
-Revisión: 13 de octubre de 2026. Código de Comercial 3.6.0 y ZTATTUZ 3.6.1 x64/x86; el usuario autorizó posteriormente generar instaladores para todas las aplicaciones. Se preparan paquetes de configuración y pruebas con el pipeline Windows existente; la aceptación final sigue separada.
+Revisión: 14 de octubre de 2026. Código de Comercial 3.6.0 y ZTATTUZ 3.6.1 x64/x86; el usuario autorizó posteriormente generar instaladores para todas las aplicaciones. Se preparan paquetes de configuración y pruebas con el pipeline Windows existente; la aceptación final sigue separada.
+
+**Estado remoto comunicado por el usuario:** SQL de STAFF y reanudación aplicado
+en ZTATTUZ mediante `membership_internal_staff_and_early_resume`, con registros
+e importes conservados y pruebas transaccionales aprobadas. Esta sesión cloud
+no volvió a consultar el servidor. Falta comprobar Dashboard y guardado de planes
+en el programa instalado. El reporte no acredita Comercial, despliegue de Marketing
+ni hardware. [Procedencia y alcance](SOLUCION_PANEL_SIN_DATOS.md#estado-comunicado-posteriormente).
 
 ## Operación
 
@@ -18,7 +25,7 @@ Se mantiene una congelación por membresía, salvo excepción administrativa con
 
 ## Base de datos y despliegue
 
-Las migraciones son aditivas y transaccionales. Primero verificar el historial del proyecto: deben estar aplicados consumo diario, Marketing, congelación, scheduler e índices anteriores. **No ejecutar el esquema inicial sobre una instalación existente ni volver a aplicar migraciones antiguas después de estas.** No se aplicaron a proyectos reales en esta tarea.
+Las migraciones son aditivas y transaccionales. Primero verificar el historial del proyecto: deben estar aplicados consumo diario, Marketing, congelación, scheduler e índices anteriores. **No ejecutar el esquema inicial sobre una instalación existente ni volver a aplicar migraciones antiguas después de estas.** La revisión inicial cloud no las ejecutó remotamente; el reporte posterior del usuario comunica su aplicación en ZTATTUZ. La aplicación en Comercial no está acreditada.
 
 1. `supabase/migrations/20261013090000_internal_plans.sql` / `ACTUALIZAR_PLANES_INTERNOS.sql`.
 2. `supabase/migrations/20261013091000_early_resume.sql` / `ACTUALIZAR_REANUDACION_MEMBRESIAS.sql`.
@@ -73,6 +80,6 @@ El run [38495253410](https://github.com/manuAA11/Atlantic-Software/actions/runs/
 
 [Descarga de Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-24ca689). Los ZIP fueron descargados y verificados por CRC, SHA256, tamaño y run/commit del manifiesto; evidencia en `evidence/installer-downloads-20261014.json`. El panel Propietario se entrega por separado al operador, fuera de estos ZIP. El PC de instalación no necesita Python ni Node.js. Los cambios posteriores del workflow sólo preservan esa descarga separada y no modifican el código de las aplicaciones.
 
-Son instaladores de configuración y pruebas NO FINAL. Antes de habilitar las funciones nuevas, aplicar los dos upgrades SQL en el orden indicado y desplegar el backend actualizado; no se aplicaron ni desplegaron en un proyecto Supabase real durante esta tarea. Continúa pendiente la aceptación con cuentas reales, servidor concurrente y lector/relé físicos.
+Son instaladores de configuración y pruebas NO FINAL. Las funciones nuevas requieren los upgrades SQL y el backend actualizado. El usuario comunicó posteriormente el SQL aplicado en ZTATTUZ; no comunicó el despliegue del backend ni la aplicación en Comercial. Continúa pendiente la comprobación del programa instalado y la aceptación con cuentas reales, servidor concurrente y lector/relé físicos.
 
-La entrega posterior con control de puerta revisado está en [configuracion-pruebas-7a44de8](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-7a44de8). Mantiene STAFF/reanudación y aprobó 111 etapas/599 tests Python Windows en el run `38555801086`; [estado y prueba física](CONTROL_PUERTA_ESTADO.md). Los upgrades/backend siguen siendo requisitos de despliegue no ejecutados remotamente.
+La entrega posterior con control de puerta revisado está en [configuracion-pruebas-7a44de8](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-7a44de8). Mantiene STAFF/reanudación y aprobó 111 etapas/599 tests Python Windows en el run `38555801086`; [estado y prueba física](CONTROL_PUERTA_ESTADO.md). El reporte posterior registra el SQL de ZTATTUZ aplicado, con la validación del programa instalado y los demás despliegues aún pendientes.

@@ -1,6 +1,6 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
-Estado revisado el **13 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
+Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
@@ -8,8 +8,13 @@ Estado revisado el **13 de octubre de 2026**; la fecha del título identifica la
 clientes y estadísticas existentes, pero el panel falla al cargar. Confirmó que
 solo instaló el programa, sin aplicar los dos upgrades nuevos de Supabase.
 La corrección separa cargas y muestra datos desconocidos/diagnóstico; el código
-necesita un build posterior a `7a44de8`. No se modificó el servidor ni se publicaron
-instaladores nuevos en esta revisión. [Diagnóstico y actualización del proyecto existente](SOLUCION_PANEL_SIN_DATOS.md).
+necesita un build posterior a `7a44de8`. Posteriormente, el usuario comunicó la
+aplicación exitosa del SQL en ZTATTUZ mediante
+`membership_internal_staff_and_early_resume`, conservación de registros/importes
+y pruebas SQL transaccionales de STAFF y reanudación aprobadas con datos de prueba
+revertidos. Esta sesión cloud no lo verificó directamente. Queda comprobar
+Dashboard y guardado de planes en el programa instalado; no se publicaron nuevos
+instaladores por este reporte. [Estado, procedencia y siguiente comprobación](SOLUCION_PANEL_SIN_DATOS.md).
 
 ## Cambio posterior: STAFF y reanudación anticipada
 

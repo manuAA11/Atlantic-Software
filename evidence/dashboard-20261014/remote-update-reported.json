@@ -1,0 +1,59 @@
+{
+  "reported_on": "2026-10-14",
+  "source": "Informe de aplicación de SQL comunicado por el usuario en esta conversación",
+  "status": "APPLIED_REPORTED",
+  "project_ref": "srmquhwpawgipncmvfjf",
+  "product": "ZTATTUZ",
+  "migration_name": "membership_internal_staff_and_early_resume",
+  "server_success_reported": true,
+  "direct_server_verification_in_this_cloud_session": false,
+  "original_server_tool_receipts_available_here": false,
+  "applied_sql_sha256": null,
+  "preflight_passed_reported": true,
+  "full_rollback_rehearsal_passed_reported": true,
+  "preservation_reported": {
+    "client_count_unchanged": true,
+    "membership_count_unchanged": true,
+    "plan_count_unchanged": true,
+    "checkin_count_unchanged": true,
+    "amount_sum_unchanged": true,
+    "amount_paid_sum_unchanged": true
+  },
+  "transactional_qa_reported": {
+    "location": "Gimnasio QA existente",
+    "test_changes_rolled_back": true,
+    "active_staff_allowed": true,
+    "inactive_staff_denied": true,
+    "reactivated_staff_allowed": true,
+    "staff_excluded_from_financial_view": true,
+    "assignment_reference_idempotent": true,
+    "frozen_membership_denied": true,
+    "resume_after_two_days_allows_and_extends_two_days": true,
+    "repeated_resume_does_not_extend_again": true
+  },
+  "server_queries_reported_successful": [
+    "membership_population",
+    "finanzas",
+    "asistencia"
+  ],
+  "security_reported": {
+    "preexisting_advisories_remain": [
+      "pg_net en public",
+      "funciones SECURITY DEFINER",
+      "protección de contraseñas filtradas"
+    ],
+    "new_public_functions_check_authorization": true,
+    "new_public_functions_revoke_anonymous_access": true,
+    "private_freeze_adjustment_context_has_rls_and_direct_access_revoked": true
+  },
+  "not_verified_by_this_report": [
+    "Interfaz del programa instalado y resolución visible del Dashboard/guardado de planes",
+    "Hardware físico",
+    "Pruebas concurrentes de dos sesiones PostgreSQL",
+    "Despliegue del backend de Marketing",
+    "Proyecto Comercial",
+    "Identidad SHA256 del SQL ejecutado"
+  ],
+  "next_step": "Cerrar el programa, abrirlo, iniciar sesión y pulsar Actualizar; comprobar Dashboard y guardado de planes.",
+  "release_readiness_modified": false
+}

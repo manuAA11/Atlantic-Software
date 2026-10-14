@@ -7,6 +7,29 @@ válido del servidor. No se observó ni se realizó un borrado de datos en esta 
 El usuario mostró también estadísticas cargadas (8 entradas del día, 195 del mes)
 y confirmó que solo instaló el programa, sin ejecutar los dos upgrades nuevos.
 
+## Estado comunicado posteriormente
+
+El usuario informó que la migración `membership_internal_staff_and_early_resume`
+se aplicó con `success=true` al proyecto ZTATTUZ `srmquhwpawgipncmvfjf`, después de
+comprobar requisitos y ensayar el archivo completo con ROLLBACK. Comunicó que los
+recuentos de registros y los totales financieros se conservaron, y que las consultas
+de población de membresías, finanzas y asistencia respondieron correctamente.
+
+También informó pruebas transaccionales de STAFF activo/inactivo/reactivado,
+exclusión financiera, asignación idempotente, bloqueo durante congelación y
+reanudación de dos días sin extensión duplicada. Los cambios de prueba se
+revirtieron en el gimnasio QA existente. Se conserva el
+[reporte sanitizado](../evidence/dashboard-20261014/remote-update-reported.json)
+con su procedencia: esta sesión cloud no volvió a consultar el servidor ni recibió
+los comprobantes originales de sus herramientas. No se conoce aquí el SHA256
+del archivo ejecutado.
+
+**Siguiente comprobación:** cerrar completamente el programa, abrirlo, iniciar
+sesión y pulsar **Actualizar** en Dashboard. Comprobar también el guardado del
+plan que se estaba configurando. La interfaz instalada y el hardware aún no
+quedan validados por el reporte SQL. Este informe no comunica un despliegue
+del backend de Marketing ni una actualización del proyecto Comercial.
+
 ## Causa identificada en el cliente
 
 El panel nuevo consulta `membership_population`, agregada por
@@ -18,10 +41,11 @@ todo el panel. Además consultaba dos veces la población de membresías.
 La ausencia de esa función es una explicación probable en un proyecto sin el
 upgrade, pero **no se ha confirmado el error exacto de la sesión del usuario**.
 Un permiso, sesión vencida o timeout también puede interrumpir una consulta.
-En esta revisión la conexión pública de diagnóstico fue rechazada por el proxy
-del entorno; no se accedió a la sesión del usuario ni se modificó Supabase.
+Durante el diagnóstico inicial cloud, la conexión pública fue rechazada por el
+proxy del entorno y no se modificó Supabase desde aquí. El resultado posterior
+comunicado por el usuario se registra arriba; no confirma por sí solo la interfaz.
 
-## Comprobar el proyecto existente
+## Procedimiento para un proyecto que todavía no tenga el upgrade
 
 1. En el panel de Supabase, abrir el proyecto utilizado por la aplicación.
    Para ZTATTUZ es `srmquhwpawgipncmvfjf`; conservar el gimnasio y las cuentas existentes.
