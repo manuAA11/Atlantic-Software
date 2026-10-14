@@ -36,7 +36,7 @@ Decisión y consumo los resuelve el servidor. Una entrada como máximo por día 
 
 ## DEBOUNCE
 
-Ledger SQLite con transacción antes del RPC: lecturas simultáneas del mismo cliente/gimnasio se suprimen durante 0,75 s, sin cachear autorización. El lector conserva el control de dedo retirado y debounce de accesos permitidos. Relé: un ciclo a la vez, sin cola ni extensión por otra lectura; exclusión entre procesos y deduplicación de órdenes existente.
+Exclusión por cliente/gimnasio durante toda la llamada RPC y ledger SQLite con transacción antes del RPC: lecturas simultáneas del mismo cliente/gimnasio se suprimen durante 0,75 s, sin cachear autorización. El bloqueo entre procesos se libera al terminar la llamada o al cerrarse el proceso. Respuestas con más de dos segundos de espera conservan la asistencia del servidor pero no solicitan una liberación retrasada. El lector conserva el control de dedo retirado y debounce de accesos permitidos. Relé: un ciclo a la vez, sin cola ni extensión por otra lectura; exclusión entre procesos y deduplicación de órdenes existente.
 
 ## LOGS / DIAGNÓSTICO
 
@@ -57,3 +57,5 @@ Software aprobado con transporte/SDK simulados y SQL real en PGlite: autoriza/re
 ## LO ÚNICO QUE QUEDA PARA PROBAR FÍSICAMENTE MAÑANA
 
 La cadena real LCUS-1/CH340, contactos COM/NC, imán/fuente, retorno tras pérdidas de USB/energía y cierre/reinicio, huellero real y salida independiente. El servidor debe tener primero los upgrades/backend descritos en la checklist; no se desplegaron remotamente en esta tarea. El watchdog del PC no garantiza contacto físico si USB/Windows/hardware dejan de operar. No declarar seguridad eléctrica, evacuación o normativa a partir de estos tests.
+
+Revisión independiente adicional: 55 pruebas específicas de puerta aprobadas, incluidas seis de orden ON/OFF y tres de petición lenta/en curso. El fallo de sincronización original x86 y los dos jobs Windows aprobados del run `38499829306` se conservan sin marcar la matriz como aprobada. La siguiente ejecución Windows valida las correcciones y el diagnóstico congelado de pySerial/puerta también en Comercial.

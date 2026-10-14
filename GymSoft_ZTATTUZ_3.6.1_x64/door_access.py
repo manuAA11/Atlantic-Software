@@ -139,6 +139,7 @@ class PulseSession:
         self.controller, self.connection, self.config = controller, connection, config
         self.kind = kind
         self.lock = threading.Lock()
+        self.io_lock = threading.Lock()
         self.done = threading.Event()
         self.writing = threading.Event()
         self.finished = False
@@ -146,10 +147,15 @@ class PulseSession:
         self.timer = None
 
     def write(self, frame):
-        if self.finished: raise TimeoutError('El ciclo del relé ya terminó.')
-        self.writing.set()
-        try: self.controller._write(self.connection, frame)
-        finally: self.writing.clear()
+        # OFF and ON must never be written concurrently: cancel_write() only
+        # requests cancellation and does not mean the earlier write has ended.
+        with self.io_lock:
+            with self.lock:
+                if self.finished:
+                    raise TimeoutError('El ciclo del relé ya terminó.')
+                self.writing.set()
+            try: self.controller._write(self.connection, frame)
+            finally: self.writing.clear()
 
     def arm(self):
         self.timer = threading.Timer(self.config.seconds, self.finish, kwargs={'reason': 'watchdog'})
@@ -165,11 +171,23 @@ class PulseSession:
             return self.done.is_set() and self.error is None
         if self.timer: self.timer.cancel()
         self.controller._cancel.set()
+        owns_io = False
+        cancel_error = None
         try:
             if self.writing.is_set():
                 cancel = getattr(self.connection, 'cancel_write', None)
-                if cancel: cancel()
+                if cancel:
+                    try: cancel()
+                    except Exception as error: cancel_error = error
+            # Wait for the canceled write to unwind before the terminal OFF.
+            # A stuck USB driver must report UNKNOWN rather than racing an
+            # OFF against an ON which could subsequently reach the module.
+            owns_io = self.io_lock.acquire(timeout=1.0)
+            if not owns_io:
+                raise TimeoutError('La escritura USB no terminó después de cancelarla.')
             self.controller._write(self.connection, REST_NC)
+            if cancel_error:
+                self.controller._record('relay_cancel_failed', error=type(cancel_error).__name__, stage='serial')
             self.controller._record('relay_rest_sent' if self.kind == 'secure' else 'relay_unlock_end', port=self.config.port, reason=reason,
                                     command=REST_NC.hex(), state='Reposo (OFF enviado)')
         except Exception as error:
@@ -183,6 +201,7 @@ class PulseSession:
             except Exception as error:
                 self.error = self.error or error
                 self.controller._fault = True
+            if owns_io: self.io_lock.release()
             self.done.set()
         return self.error is None
 
@@ -528,12 +547,39 @@ class DoorDatabase:
                 db.execute('DELETE FROM reads WHERE at<?', (now - 86400,))
                 return True
 
+    def _read_complete(self, client_id):
+        person = hashlib.sha256((self.door.store.gym_id + '/' + str(client_id)).encode()).hexdigest()
+        with closing(sqlite3.connect(self.door.store.folder / 'puerta_eventos.db', timeout=.3)) as db:
+            with db:
+                db.execute('UPDATE reads SET at=? WHERE person=?', (time.time(), person))
+
     def _register(self, client_id, method, kwargs):
         automatic = method in (BIOMETRIC_METHOD, CODE_METHOD) and not kwargs.get('override')
         self.door._record('member_identified', member_id=int(client_id), stage='identification')
-        if automatic and not self._claim_read(client_id):
-            self.door._record('duplicate_read_ignored', member_id=int(client_id))
-            return dict(id=int(client_id), result='DUPLICADA', duplicate_read=True)
+        if not automatic: return self._perform_checkin(client_id, method, kwargs, automatic=False)
+        # The OS releases this lock on process death. Hold it through the whole
+        # RPC, even beyond the short debounce window; no expiring authorization
+        # cache or stale persistent pending flag can cause a second write.
+        try:
+            with equipment_lock(self.door.store.folder, 'access/' + self.door.store.gym_id + '/' + str(client_id)):
+                if not self._claim_read(client_id): return self._duplicate(client_id)
+                try:
+                    return self._perform_checkin(client_id, method, kwargs, automatic=True)
+                finally:
+                    # Preserve the RPC's confirmed/uncertain outcome if logging
+                    # the completion timestamp fails; never repeat its write.
+                    try: self._read_complete(client_id)
+                    except (OSError, sqlite3.Error):
+                        self.door._record('read_completion_log_failed', member_id=int(client_id), stage='deduplication')
+        except RelayBusy:
+            return self._duplicate(client_id)
+
+    def _duplicate(self, client_id):
+        self.door._record('duplicate_read_ignored', member_id=int(client_id))
+        return dict(id=int(client_id), result='DUPLICADA', duplicate_read=True)
+
+    def _perform_checkin(self, client_id, method, kwargs, *, automatic):
+        request_started = self.door.clock()
         try:
             result = self.database.register_checkin(client_id, method, **kwargs)
         except Exception as error:
@@ -546,5 +592,11 @@ class DoorDatabase:
             raise ValueError('El servidor no confirmó el acceso; no se solicitó liberar la puerta.')
         self.door._record('access_decision', member_id=int(client_id), decision=result['result'],
                           reason=result.get('status', ''), stage='membership')
-        if automatic: self.door.submit(result, client_id, method)
+        if automatic:
+            if self.door.clock() - request_started > 2:
+                self.door._record('access_response_expired', member_id=int(client_id), stage='backend', error='STALE_AUTHORIZATION')
+                self.door._status('Entrada confirmada, pero la respuesta tardó demasiado. No se liberó la puerta; '
+                                  'revisa el historial sin repetir la asistencia.', 'warning')
+            else:
+                self.door.submit(result, client_id, method)
         return result

@@ -25,14 +25,15 @@ def main():
     args = parser.parse_args()
     assert sys.platform == 'win32', 'This probe must run on Windows.'
     assert callable(app.GymSoftApp) and callable(reception_app.ReceptionApp)
+    # Import the optional door dependency in every edition without enumerating
+    # or opening a physical USB device.
+    import serial
+    from serial.tools import list_ports
+    from door_access import RELAY_ON, RELAY_OFF
+    assert len(RELAY_ON) == len(RELAY_OFF) == 4
     if PRODUCT_NAME == 'Atlantic Gym':
         import owner_panel
         assert callable(owner_panel.OwnerPanel)
-    else:
-        import serial
-        from serial.tools import list_ports
-        from door_access import RELAY_ON, RELAY_OFF
-        assert len(RELAY_ON) == len(RELAY_OFF) == 4
     root = tk.Tk()
     root.withdraw()
     try:
@@ -46,6 +47,7 @@ def main():
         report = {'status': 'PASS', 'python': sys.version, 'process_bits': struct.calcsize('P') * 8,
                   'tk': root.tk.call('info', 'patchlevel'), 'frozen': bool(getattr(sys, 'frozen', False)),
                   'checks': ['Frozen Admin and Reception module imports', 'Product-specific module imports',
+                             'Optional door and pySerial imports (no USB access)',
                              'Tk and Atlantic dark styles', 'Role window icons', 'Pillow ImageTk',
                              'Supabase/realtime/httpx imports', 'Excel import', 'SSL certificates', 'Bogota timezone'],
                   'scope': 'Windows frozen component probe only. No account, hardware, installer or final release acceptance.'}

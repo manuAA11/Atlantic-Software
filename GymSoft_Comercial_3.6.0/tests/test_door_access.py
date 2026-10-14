@@ -345,17 +345,44 @@ class DoorTests(unittest.TestCase):
 
     def test_duplicate_callbacks_concurrently_write_the_backend_once(self):
         backend = Mock()
+        # Test exclusion, not VM scheduling latency; stale replies have their
+        # own deadline regression in test_door_request_lock.py.
+        self.door.clock = lambda: 10.0
         entered, proceed = threading.Event(), threading.Event()
         def rpc(*_):
-            entered.set(); proceed.wait(2); return self.result()
+            entered.set()
+            if not proceed.wait(10):
+                raise TimeoutError('La prueba no liberó el RPC simulado.')
+            return self.result()
         backend.register_checkin.side_effect = rpc
         proxy = DoorDatabase(backend, self.door)
-        answers = []
-        first = threading.Thread(target=lambda:answers.append(proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD)))
-        first.start(); self.assertTrue(entered.wait(1))
-        second = proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD)
-        self.assertTrue(second['duplicate_read'])
-        proceed.set(); first.join(2); self.finish()
+        answers, errors = [], []
+        def register():
+            try:
+                answers.append(proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD))
+            except Exception as error:
+                errors.append(error)
+        first = threading.Thread(target=register)
+        wall_clock = [time.time()]
+        with patch('door_access.time.time', side_effect=lambda: wall_clock[0]):
+            first.start()
+            try:
+                self.assertTrue(entered.wait(10), 'El primer RPC no comenzó.')
+                # La petición en curso debe excluir otra escritura incluso
+                # después de la ventana breve de debounce, sin esperar en real.
+                wall_clock[0] += 2
+                second = proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD)
+                self.assertTrue(second['duplicate_read'])
+            finally:
+                # Windows no permite eliminar SQLite si el callback continúa.
+                # También limpiar cuando falle una comprobación intermedia.
+                proceed.set()
+                first.join(10)
+                self.assertFalse(first.is_alive(), 'El callback simulado no terminó.')
+        self.assertFalse(errors, errors)
+        self.assertEqual(len(answers), 1)
+        self.assertEqual(answers[0]['result'], 'PERMITIDA')
+        self.finish()
         self.assertEqual(backend.register_checkin.call_count, 1)
         self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
 

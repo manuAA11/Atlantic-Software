@@ -1,0 +1,2 @@
+DOOR SQL/DRIVER BRIDGE 60 CHECKS PASS: server responses preserved; denied never unlock; repeated reads never repeat RPC/pulse.
+DOOR ACCESS FLOW 16 SQL CHECKS PASS (ZTATTUZ; real PGlite decisions, simulated USB)
