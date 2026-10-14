@@ -43,7 +43,12 @@ class DoorTests(unittest.TestCase):
         self.store = ConfigStore(self.temp.name, 'gym-A')
         self.usb = FakeUSB()
         self.factory = Mock(return_value=self.usb)
+        # Functional transport tests control authorization age explicitly;
+        # Windows disk/scheduler latency must not expire a simulated command.
+        # Timer, Event.wait and serial-drain deadlines still use real time.
+        # Expired commands and slow opens have dedicated clock regressions.
         self.door = DoorController(self.store, transport=self.factory, admin_authorized=True,
+            clock=lambda: 10.0,
             ports_provider=lambda: [dict(port='COM7', vid=0x1A86, pid=0x7523, location='USB-A')])
         self.usb.on = self.door._cancel.set  # Tiempo físico simulado sin espera.
         self.config = DoorConfig(True, 'COM7', 3, 0x1A86, 0x7523, '', 'USB-A')
@@ -127,8 +132,11 @@ class DoorTests(unittest.TestCase):
         self.submit(result); self.submit(result); self.submit(self.result())
         self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
     def test_other_client_can_enter_next(self):
-        self.submit(client=1); self.submit(client=2)
-        self.assertEqual(self.usb.frames.count(RELAY_ON), 2)
+        self.assertTrue(self.submit(client=1))
+        self.assertTrue(self.submit(client=2))
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 2,
+            dict(state=self.door.snapshot(), events=list(self.door.events.queue),
+                 frames=[frame.hex() for frame in self.usb.frames]))
     def test_disabled_default_and_offline_never_touch_transport(self):
         self.store.save(DoorConfig())
         self.assertFalse(self.submit()); self.factory.assert_not_called()

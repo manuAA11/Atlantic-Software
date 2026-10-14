@@ -63,6 +63,9 @@ class DiagnosticComponentsTests(unittest.TestCase):
                         patch.object(diagnostico, 'check_interface', return_value='Interfaz fuera de esta prueba'), \
                         patch.object(module, constructor) as create_app, \
                         patch.object(runtime_cloud, 'CloudService') as create_cloud, \
+                        patch('serial.Serial', side_effect=AssertionError('USB prohibido')) as serial_open, \
+                        patch('serial.tools.list_ports.comports',
+                              side_effect=AssertionError('Enumeración USB prohibida')) as usb_ports, \
                         patch('urllib.request.urlopen', side_effect=AssertionError('Red prohibida')) as request:
                     with self.assertRaises(SystemExit) as outcome:
                         module.main()
@@ -70,10 +73,19 @@ class DiagnosticComponentsTests(unittest.TestCase):
                     create_app.assert_not_called()
                     create_cloud.assert_not_called()
                     request.assert_not_called()
+                    serial_open.assert_not_called()
+                    usb_ports.assert_not_called()
                     report = json.loads(report_path.read_text(encoding='utf-8'))
                     self.assertEqual(report['estado'], 'OK')
                     self.assertEqual(len(report['comprobaciones']), 5)
-                    self.assertIn('no incluye relé', report['alcance'])
+                    components = next(check for check in report['comprobaciones']
+                                      if check['comprobacion'] == 'Componentes incluidos')
+                    self.assertEqual(components['estado'], 'OK')
+                    self.assertIn('control opcional de puerta disponibles', components['detalle'])
+                    self.assertIn('sin consultar USB', components['detalle'])
+                    self.assertIn('no acredita cuentas, pagos, WhatsApp', report['alcance'])
+                    self.assertIn('ni lector/relé físicos', report['alcance'])
+                    self.assertIn('No enumera ni abre puertos USB', report['alcance'])
                     config = diagnostico.load_config()
                     self.assertNotIn(config['supabase_publishable_key'], report_path.read_text(encoding='utf-8'))
 

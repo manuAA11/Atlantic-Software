@@ -1,0 +1,24 @@
+{
+  "status": "PASS_LOCAL_PYTHON_RECHECK",
+  "total": 599,
+  "editions": {
+    "Comercial": 214,
+    "ZTATTUZ_x64": 193,
+    "ZTATTUZ_x86": 192
+  },
+  "source_changes": "Only test fixture clock/diagnostic scope assertions updated; runtime driver unchanged from630db97. Windows full recheck required.",
+  "logs": [
+    {
+      "path": "/workspace/Atlantic-Software/evidence/door-access-20261014/door-full-python-races-C-final.log",
+      "sha256": "8168f7045ef4603aa7b8f516e32f67f3e15f61f2ef0cfe24494d020a710094e8"
+    },
+    {
+      "path": "/workspace/Atlantic-Software/evidence/door-access-20261014/door-full-python-races-Z64-final.log",
+      "sha256": "c410fd114a5df447cd0a801a0e75450ea5f33286ac84069319492c7f5fa9679e"
+    },
+    {
+      "path": "/workspace/Atlantic-Software/evidence/door-access-20261014/door-full-python-races-Z32-final.log",
+      "sha256": "fde939466be7fbb8b05b7152bba991efad379de97293769298aed0fef965160b"
+    }
+  ]
+}
