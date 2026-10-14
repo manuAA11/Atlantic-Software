@@ -6,7 +6,7 @@ Estado revisado el **13 de octubre de 2026**; la fecha del título identifica la
 
 ## Cambio posterior: STAFF y reanudación anticipada
 
-El historial Windows descrito abajo corresponde al código anterior a estos cambios. La rama `feature/internal-plans-early-resume` incorpora planes internos no comerciales, métricas comerciales separadas de la asistencia del personal, y extensión por días completos efectivamente congelados. Guía, migraciones y alcance de validación: [MEMBRESIAS_STAFF_REANUDACION.md](MEMBRESIAS_STAFF_REANUDACION.md). No se aplicaron cambios a proyectos Supabase reales al registrar esta ampliación; después el usuario solicitó los nuevos instaladores de todas las aplicaciones y se inició su compilación Windows.
+El historial Windows descrito abajo corresponde al código anterior a estos cambios. La rama `feature/internal-plans-early-resume` incorpora planes internos no comerciales, métricas comerciales separadas de la asistencia del personal, y extensión por días completos efectivamente congelados. Guía, migraciones y alcance de validación: [MEMBRESIAS_STAFF_REANUDACION.md](MEMBRESIAS_STAFF_REANUDACION.md). No se aplicaron cambios a proyectos Supabase reales al registrar esta ampliación; después el usuario solicitó los nuevos instaladores de todas las aplicaciones. El run `38495253410`, commit `24ca689`, aprobó las 111 etapas Windows, 499 tests Python y compilación de siete programas/ocho instaladores con estos cambios. Las descargas nuevas están en `configuracion-pruebas-24ca689`; conservan el alcance NO FINAL, instalación x86 pendiente en Windows32 y los upgrades/deploy del servidor pendientes.
 
 ## Recuperación verificada
 

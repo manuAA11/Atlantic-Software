@@ -1,0 +1,105 @@
+{
+  "status": "VERIFIED_DOWNLOADS",
+  "final": false,
+  "release_url": "https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-24ca689",
+  "source_commit": "24ca689bb4b4a1874dfb1f5def5f110855590c04",
+  "github_run_id": "38495253410",
+  "assets": [
+    {
+      "name": "ACTUALIZAR_PLANES_INTERNOS.sql",
+      "bytes": 34253,
+      "sha256": "cd5c77dd700d1b47bfb6ae4fbc902f1d0c161f23ef8a273ec0080a429cc1a2cb",
+      "github_digest": "sha256:cd5c77dd700d1b47bfb6ae4fbc902f1d0c161f23ef8a273ec0080a429cc1a2cb",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/ACTUALIZAR_PLANES_INTERNOS.sql",
+      "source_sql_match": "Identical content after Windows CRLF normalization; original downloaded bytes hashed unchanged."
+    },
+    {
+      "name": "ACTUALIZAR_REANUDACION_MEMBRESIAS.sql",
+      "bytes": 22797,
+      "sha256": "27a756d389469bb635d627f86605da7cc18437045a5d0989d8d7f964cc299b5f",
+      "github_digest": "sha256:27a756d389469bb635d627f86605da7cc18437045a5d0989d8d7f964cc299b5f",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/ACTUALIZAR_REANUDACION_MEMBRESIAS.sql",
+      "source_sql_match": "Identical content after Windows CRLF normalization; original downloaded bytes hashed unchanged."
+    },
+    {
+      "name": "AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 94050614,
+      "sha256": "820a310dbfd640e54c8771a126aa0ae52e5daed635b33d8c3c3b1399d3d7eef3",
+      "github_digest": "sha256:820a310dbfd640e54c8771a126aa0ae52e5daed635b33d8c3c3b1399d3d7eef3",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "edition": "GymSoft_Comercial_3.6.0",
+      "validation": {
+        "status": "PASS",
+        "scope": "all",
+        "platform": "win32",
+        "stages": 37,
+        "report_sha256": "b6c5b677724bf7b639aa59729396acba9737cae055ccbdeece511100df6db56f"
+      },
+      "installation": {
+        "status": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "report_sha256": "12e2abe1170db7ab4815d8b70d670a2e6f2d8e1c717e8b5dbf5c7db81e3f7082"
+      },
+      "source_commit": "24ca689bb4b4a1874dfb1f5def5f110855590c04",
+      "crc_and_all_internal_hashes": "PASS"
+    },
+    {
+      "name": "AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 176489494,
+      "sha256": "524a8c487f5385132468f92dc6ee7480d8d175aebd4cb1969f648d44a128cc3f",
+      "github_digest": "sha256:524a8c487f5385132468f92dc6ee7480d8d175aebd4cb1969f648d44a128cc3f",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "validation": {
+        "status": "PASS",
+        "scope": "all",
+        "platform": "win32",
+        "stages": 37,
+        "report_sha256": "c634b46d7b399cc85cd530b5c02a16662d70a19f03c8dbba8b6b1db34edd6ba1"
+      },
+      "installation": {
+        "status": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "report_sha256": "80170b58ee8c3de18e301adc79c9b88aba213b23fa2014792b6f40e345b01343"
+      },
+      "source_commit": "24ca689bb4b4a1874dfb1f5def5f110855590c04",
+      "crc_and_all_internal_hashes": "PASS"
+    },
+    {
+      "name": "AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "bytes": 96775639,
+      "sha256": "18848ef6eefe81e63dc0d24aaf8739a6fac5a18ddb899f2f936e358eea489230",
+      "github_digest": "sha256:18848ef6eefe81e63dc0d24aaf8739a6fac5a18ddb899f2f936e358eea489230",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "validation": {
+        "status": "PASS",
+        "scope": "all",
+        "platform": "win32",
+        "stages": 37,
+        "report_sha256": "6351b5bb1bfe3858884952776800ddd04159587ffc8532b03fa2c212da44584d"
+      },
+      "installation": {
+        "status": "NOT_RUN",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+        "native_windows_architecture": "x64",
+        "report_sha256": "cc9e30140cc95909d52ba39f05a53beca930156c942db492b07703d630652331"
+      },
+      "source_commit": "24ca689bb4b4a1874dfb1f5def5f110855590c04",
+      "crc_and_all_internal_hashes": "PASS"
+    },
+    {
+      "name": "MEMBRESIAS_STAFF_REANUDACION.md",
+      "bytes": 9337,
+      "sha256": "14aa88717453fc308e6c784206418de8e715b3a78c0dac469a634b62c55343eb",
+      "github_digest": "sha256:14aa88717453fc308e6c784206418de8e715b3a78c0dac469a634b62c55343eb",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-24ca689/MEMBRESIAS_STAFF_REANUDACION.md"
+    }
+  ],
+  "scope": "Actual downloaded release bytes verified against GitHub SHA256/size; all customer ZIP CRC, contents hashes and run/commit manifests validated. Remote schema/deployment and real accounts/hardware acceptance remain pending. Owner excluded from customer ZIPs and delivered separately."
+}
