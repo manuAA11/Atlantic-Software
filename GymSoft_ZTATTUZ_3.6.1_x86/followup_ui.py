@@ -119,6 +119,7 @@ class TicketDashboard(ttk.Frame):
         self.app = app
         self.dialog_class = dialog_class
         self.groups = ticket_groups([])
+        self.loaded = False
         self.counts = {}
         ttk.Label(self, text='Tiqueteras · entradas restantes', style='Section.TLabel').pack(anchor='w')
         ttk.Label(self, text='Clientes activos con tiquetera vigente por fecha. Haz clic en un bloque para ver el listado.',
@@ -133,7 +134,7 @@ class TicketDashboard(ttk.Frame):
             card.grid(row=index // 3, column=index % 3, sticky='nsew', padx=5, pady=5)
             label = tk.Label(card, text=title, bg=bg, fg=fg, font=(UI_FONT, 9, 'bold'), anchor='w')
             label.pack(fill='x', padx=12, pady=(10, 0))
-            count = tk.Label(card, text='0', bg=bg, fg=fg, font=(UI_FONT, 22, 'bold'), anchor='w')
+            count = tk.Label(card, text='—', bg=bg, fg=fg, font=(UI_FONT, 22, 'bold'), anchor='w')
             count.pack(fill='x', padx=12)
             hint = tk.Label(card, text='Ver clientes →', bg=bg, fg=fg, font=(UI_FONT, 9), anchor='w')
             hint.pack(fill='x', padx=12, pady=(0, 10))
@@ -147,10 +148,19 @@ class TicketDashboard(ttk.Frame):
 
     def set_rows(self, rows):
         self.groups = ticket_groups(rows)
+        self.loaded = True
         for key, label in self.counts.items():
             label.configure(text=str(len(self.groups[key])))
 
     def show(self, key, title):
+        if not self.loaded:
+            messagebox.showinfo(
+                'Tiqueteras pendientes de consulta',
+                'Todavía no se pudo consultar esta información. '
+                'Pulsa el aviso de actualización para ver el diagnóstico y reintentar.',
+                parent=self,
+            )
+            return
         window = self.dialog_class(self, f'Tiqueteras · {title}', 1060, 600)
         ttk.Label(window.body, text=title, style='Section.TLabel').pack(anchor='w', pady=(0, 10))
         def visit(client_id):

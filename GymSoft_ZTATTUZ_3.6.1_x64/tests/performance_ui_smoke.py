@@ -8,7 +8,6 @@ import queue
 import threading
 import time
 import traceback
-from collections import defaultdict
 from datetime import date
 from types import SimpleNamespace as NS
 from unittest.mock import Mock, patch
@@ -68,7 +67,11 @@ class FixtureDB:
             self.calls.append((name, args))
             time.sleep(.018)
             if name in ('_today', 'today'): return date(2026, 9, 9)
-            if name == 'dashboard_metrics': return defaultdict(int)
+            if name == 'membership_population':
+                return {'metrics': dict.fromkeys(('active_clients', 'valid_memberships',
+                    'expired_memberships', 'checkins_today', 'internal_memberships',
+                    'staff_checkins_today'), 0),
+                    'groups': {key: [] for key, *_ in admin.DashboardPage.EXPIRATION_BUCKETS}}
             if name.startswith('list_') or name in ('ticket_followup', 'session_followup', 'marketing_contacts', 'marketing_activity'): return []
             return {}
         return read
@@ -307,4 +310,7 @@ def main():
     print(f'PASS: {page_count} páginas con consultas fuera de Tk; recepción sin Dashboard; respuestas vigentes, ráfagas agrupadas, modales y selección conservados, barras condicionales y tarjetas reutilizadas.')
     print(f'MEDICIÓN LOCAL: despacho de consulta {dispatch_ms:.2f} ms; tabla sin cambios de 1.000 filas {row_ms:.2f} ms; 0 borrados y 0 inserciones.')
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
+    from dashboard_loading_ui_smoke import main as check_dashboard_loading
+    check_dashboard_loading()

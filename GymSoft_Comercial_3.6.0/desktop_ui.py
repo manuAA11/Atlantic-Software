@@ -185,9 +185,16 @@ def install_error_handler(root):
                 f.write(f'\n{reference} {kind.__name__}\n'+''.join(
                     f'  {frame.filename}:{frame.lineno} · {frame.name}\n' for frame in frames))
         except OSError:pass
+        guidance = ('Actualiza esta sección y revisa el resultado antes de repetir la operación. '
+                    'Si el problema continúa, contacta al soporte de Gym soft.')
+        # Reuse fixed, classified guidance only for this known server upgrade.
+        # Unknown callback errors must never disclose their API text or retry a write.
+        from ui_performance import classify_read_failure
+        failure = classify_read_failure(error)
+        if failure.category == 'membership_update':
+            guidance = failure.message
         messagebox.showerror('No se pudo completar la acción',
-            'Actualiza esta sección y revisa el resultado antes de repetir la operación. '
-            'Si el problema continúa, contacta al soporte de Gym soft.\n\nReferencia: '+reference,parent=root)
+            guidance+'\n\nReferencia: '+reference,parent=root)
     root.report_callback_exception=handle
 
 

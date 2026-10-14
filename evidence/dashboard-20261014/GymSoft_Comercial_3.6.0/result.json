@@ -1,0 +1,74 @@
+{
+  "edition": "GymSoft_Comercial_3.6.0",
+  "started_at": "2026-10-14T21:33:49.922340+00:00",
+  "scope": "Offline CPython/Tk Linux and PGlite fixtures; no Windows build or real Supabase change.",
+  "stages": [
+    {
+      "name": "python",
+      "command": [
+        "/workspace/.venvs/multigym314/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_*.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 26.61,
+      "callback_failure": false,
+      "timed_out": false
+    },
+    {
+      "name": "performance_ui_smoke",
+      "command": [
+        "/workspace/.venvs/multigym314/bin/python",
+        "tests/performance_ui_smoke.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 10.82,
+      "callback_failure": false,
+      "timed_out": false
+    },
+    {
+      "name": "ticket_ui_smoke",
+      "command": [
+        "/workspace/.venvs/multigym314/bin/python",
+        "tests/ticket_ui_smoke.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 6.72,
+      "callback_failure": false,
+      "timed_out": false
+    },
+    {
+      "name": "popdown_ui_smoke",
+      "command": [
+        "/workspace/.venvs/multigym314/bin/python",
+        "tests/popdown_ui_smoke.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.17,
+      "callback_failure": false,
+      "timed_out": false
+    },
+    {
+      "name": "internal_memberships",
+      "command": [
+        "node",
+        "tests/internal_memberships.mjs"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 6.77,
+      "callback_failure": false,
+      "timed_out": false
+    }
+  ],
+  "status": "PASS"
+}

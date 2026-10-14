@@ -102,3 +102,4 @@ try{
  eq((await db.query('select * from public.memberships order by id')).rows,beforeRerun);
  console.log(`INTERNAL MEMBERSHIPS ${checks} CHECKS PASS (${f.commercial?'Commercial':'ZTATTUZ'})`);
 }finally{await db.close();}
+await import('./dashboard_upgrade.mjs');

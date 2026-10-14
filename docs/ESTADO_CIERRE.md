@@ -4,6 +4,13 @@ Estado revisado el **13 de octubre de 2026**; la fecha del título identifica la
 
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
+**Incidencia del 14 de octubre: Dashboard sin información.** El usuario muestra
+clientes y estadísticas existentes, pero el panel falla al cargar. Confirmó que
+solo instaló el programa, sin aplicar los dos upgrades nuevos de Supabase.
+La corrección separa cargas y muestra datos desconocidos/diagnóstico; el código
+necesita un build posterior a `7a44de8`. No se modificó el servidor ni se publicaron
+instaladores nuevos en esta revisión. [Diagnóstico y actualización del proyecto existente](SOLUCION_PANEL_SIN_DATOS.md).
+
 ## Cambio posterior: STAFF y reanudación anticipada
 
 El historial Windows descrito abajo corresponde al código anterior a estos cambios. La rama `feature/internal-plans-early-resume` incorpora planes internos no comerciales, métricas comerciales separadas de la asistencia del personal, y extensión por días completos efectivamente congelados. Guía, migraciones y alcance de validación: [MEMBRESIAS_STAFF_REANUDACION.md](MEMBRESIAS_STAFF_REANUDACION.md). No se aplicaron cambios a proyectos Supabase reales al registrar esta ampliación; después el usuario solicitó los nuevos instaladores de todas las aplicaciones. El run `38495253410`, commit `24ca689`, aprobó las 111 etapas Windows, 499 tests Python y compilación de siete programas/ocho instaladores con estos cambios. Las descargas nuevas están en `configuracion-pruebas-24ca689`; conservan el alcance NO FINAL, instalación x86 pendiente en Windows32 y los upgrades/deploy del servidor pendientes.

@@ -721,7 +721,7 @@ def page_header(page, title, subtitle, actions):
     if hasattr(page, '_view_status'):
         status = ttk.Label(title_row, textvariable=page._view_status, style='Subtitle.TLabel', anchor='e', justify='right')
         status.pack(side='right', fill='x', expand=True, padx=(16, 0))
-        status.bind('<Button-1>', lambda _: page.refresh())
+        status.bind('<Button-1>', lambda _: page.show_read_error() if hasattr(page, 'show_read_error') else page.refresh())
     ttk.Label(frame, text=subtitle, style='Subtitle.TLabel').pack(anchor='w', fill='x', pady=(4, 8))
     if actions:
         buttons = ttk.Frame(frame, style='Page.TFrame'); buttons.pack(fill='x')

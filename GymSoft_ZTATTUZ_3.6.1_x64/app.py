@@ -669,7 +669,7 @@ class MembershipStatusCard(tk.Frame):
 
         self.value_label = tk.Label(
             self,
-            text="0",
+            text="—",
             bg=background,
             fg=COLORS["text"],
             font=(FONT_FAMILY, 22, "bold"),
@@ -722,8 +722,8 @@ class MembershipStatusCard(tk.Frame):
     def _leave(self, _event: tk.Event[Any]) -> None:
         self._paint(self.normal_background)
 
-    def set_count(self, count: int) -> None:
-        self.value_label.configure(text=str(count))
+    def set_count(self, count: int | None) -> None:
+        self.value_label.configure(text="—" if count is None else str(count))
 
 def selected_id(tree: ttk.Treeview) -> int | None:
     selection = tree.selection()
@@ -1803,7 +1803,7 @@ class DashboardPage(BasePage):
 
             value = tk.Label(
                 card,
-                text="0",
+                text="—",
                 font=(FONT_FAMILY, 23, "bold"),
                 fg=COLORS["text"],
                 bg=COLORS["surface"],
@@ -1815,7 +1815,7 @@ class DashboardPage(BasePage):
             )
             self.metric_labels[key] = value
 
-        self.internal_summary = ttk.Label(self, text='Personal interno: 0 · Asistencias del personal hoy: 0', style='Muted.TLabel')
+        self.internal_summary = ttk.Label(self, text='Personal interno: — · Asistencias del personal hoy: —', style='Muted.TLabel')
         self.internal_summary.pack(anchor='w', pady=(8, 0))
 
         quick_section = ttk.Frame(
@@ -1917,6 +1917,7 @@ class DashboardPage(BasePage):
         )
         status_cards.pack(fill="x")
 
+        self._memberships_loaded = False
         self.expiration_groups: dict[
             str,
             list[dict[str, Any]],
@@ -1985,6 +1986,7 @@ class DashboardPage(BasePage):
         )
         birthday_cards_frame.pack(fill="x")
 
+        self._birthdays_loaded = False
         self.birthday_groups: dict[
             str,
             list[dict[str, Any]],
@@ -2024,33 +2026,38 @@ class DashboardPage(BasePage):
             self.birthday_cards[key] = card
 
     def refresh(self) -> None:
-        self.load_view('dashboard', lambda: (self.db.dashboard_metrics(),
-            self.db.membership_expiration_groups(), self.db.ticket_followup(),
-            self.db.list_clients(), self.db._today()), self._render_refresh)
+        # Cada panel carga aunque otro requiera actualizar el servidor.
+        # Métricas y grupos usan el mismo snapshot autorizado del servidor.
+        self.load_view('membership_population', self.db.membership_population,
+                       self._render_memberships)
+        self.load_view('ticket_followup', self.db.ticket_followup,
+                       self.ticket_dashboard.set_rows)
+        self.load_view('dashboard_birthdays',
+                       lambda: (self.db.list_clients(), self.db._today()),
+                       self._render_birthdays)
 
-    def _render_refresh(self, data):
-        metrics, self.expiration_groups, tickets, clients, today = data
-        self.internal_summary.configure(text=f"Personal interno: {metrics.get('internal_memberships', 0)} · Asistencias del personal hoy: {metrics.get('staff_checkins_today', 0)}")
+    def _render_memberships(self, population):
+        metrics, groups = population['metrics'], population['groups']
+        counts = {key: len(groups[key]) for key in self.expiration_cards}
+        values = {key: metrics[key] for key in self.metric_labels}
+        summary = (f"Personal interno: {metrics['internal_memberships']} · "
+                   f"Asistencias del personal hoy: {metrics['staff_checkins_today']}")
+        self.expiration_groups = groups
+        self.internal_summary.configure(text=summary)
         for key, label in self.metric_labels.items():
-            label.configure(text=format_money(metrics[key]) if key == "income_month" else str(metrics[key]))
-
-
+            value = values[key]
+            label.configure(text=format_money(value) if key == "income_month" else str(value))
         for key, card in self.expiration_cards.items():
-            card.set_count(
-                len(self.expiration_groups.get(key, []))
-            )
+            card.set_count(counts[key])
+        self._memberships_loaded = True
 
-        self.ticket_dashboard.set_rows(tickets)
-
-        self.birthday_groups = birthday_dashboard_groups(
-            clients,
-            today,
-        )
-
+    def _render_birthdays(self, data):
+        clients, today = data
+        groups = birthday_dashboard_groups(clients, today)
+        self.birthday_groups = groups
         for key, card in self.birthday_cards.items():
-            card.set_count(
-                len(self.birthday_groups.get(key, []))
-            )
+            card.set_count(len(groups[key]))
+        self._birthdays_loaded = True
 
     def quick_new_client(self) -> None:
         self.app.show_page("clients")
@@ -2147,6 +2154,14 @@ class DashboardPage(BasePage):
         bucket: str,
         title: str,
     ) -> None:
+        if not self._memberships_loaded:
+            messagebox.showinfo(
+                "Membresías pendientes de consulta",
+                "Todavía no se pudo consultar esta información. "
+                "Pulsa el aviso de actualización para ver el diagnóstico y reintentar.",
+                parent=self,
+            )
+            return
         people = self.expiration_groups.get(bucket, [])
         window = BaseDialog(
             self,
@@ -2334,6 +2349,14 @@ class DashboardPage(BasePage):
         bucket: str,
         title: str,
     ) -> None:
+        if not self._birthdays_loaded:
+            messagebox.showinfo(
+                "Cumpleaños pendientes de consulta",
+                "Todavía no se pudo consultar esta información. "
+                "Pulsa el aviso de actualización para ver el diagnóstico y reintentar.",
+                parent=self,
+            )
+            return
         people = self.birthday_groups.get(bucket, [])
         window = BaseDialog(
             self,

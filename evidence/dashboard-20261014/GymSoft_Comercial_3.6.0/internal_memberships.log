@@ -1,0 +1,2 @@
+INTERNAL MEMBERSHIPS 91 CHECKS PASS (Commercial)
+DASHBOARD UPGRADE 40 CHECKS PASS (Commercial): missing RPC, read-only diagnosis, atomic preflight, legacy history, idempotent combined upgrade and server metrics.
