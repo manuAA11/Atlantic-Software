@@ -5965,6 +5965,7 @@ class CheckinPage(BasePage):
                 parent=self,
             )
             return
+        if result.get('duplicate_read'): return
         self.show_result(result)
         self.refresh_history()
         self.app.refresh_all(except_page=self)

@@ -139,6 +139,7 @@ try {
  console.log(`PASS: ${checks} freeze checks (${commercial?'commercial':'ZTATTUZ'})`);
 }catch(e){console.error('FAIL FREEZE:',e.message,e.where||'',e.detail||'');process.exitCode=1;}finally{await db.close();}
 
-// Validate the additive upgrade after the preserved legacy contract.
+// Preserve the legacy baseline and also exercise the actual additive upgrade.
 await import('./internal_memberships.mjs');
 await import('./early_resume.mjs');
+await import('./door_access_flow.mjs');

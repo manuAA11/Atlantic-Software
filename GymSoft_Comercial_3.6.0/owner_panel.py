@@ -192,6 +192,12 @@ class OwnerPanel(tk.Tk):
         self.marketing_status=tk.StringVar(self,'Selecciona un gimnasio para consultar sus integraciones.')
         ttk.Label(self.marketing_tab,textvariable=self.marketing_status,justify='left',wraplength=760).pack(anchor='w',fill='x',pady=8)
         ttk.Button(self.marketing_tab,text='Actualizar integraciones',command=self.load_marketing).pack(anchor='w',pady=8)
+        door_tab=ttk.Frame(tabs,padding=16)
+        tabs.add(door_tab,text='Puerta')
+        ttk.Label(door_tab,text='Configura el relé de este computador para el gimnasio seleccionado. '
+                  'Función opcional; no controla a distancia el equipo de otro PC.',wraplength=760).pack(anchor='w',fill='x',pady=8)
+        from door_ui import owner_settings
+        ttk.Button(door_tab,text='Puerta de este equipo',command=lambda:owner_settings(self)).pack(anchor='w',pady=8)
         tabs.bind('<<NotebookTabChanged>>',lambda _:self.load_marketing() if tabs.select()==str(self.marketing_tab) else None,add='+')
         self.message=ttk.Label(outer,text='Conectado como '+self.cloud.email,style='Muted.TLabel');self.message.pack(anchor='w',pady=(12,0))
 

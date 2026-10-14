@@ -54,6 +54,15 @@ class Tests(unittest.TestCase):
     def test_known_and_duplicate(self):
         s,store,r,calls=self.start({1:T});r.samples.put(T);until(lambda:len(calls)==1)
         r.samples.put(T);time.sleep(.15);self.assertEqual(len(calls),1)
+    def test_denied_then_resumed_has_no_ten_second_cached_denial(self):
+        responses=iter([{'result':'DENEGADA'},{'result':'PERMITIDA'}])
+        calls=[]
+        def register(*args): calls.append(args); return next(responses)
+        service,store,reader,_=self.start({1:T},register)
+        reader.samples.put(T); until(lambda:len(calls)==1 and 1 not in service.last)
+        reader.samples.put(T); until(lambda:len(calls)==2)
+        self.assertTrue(service.enabled.is_set())
+
     def test_unknown(self):
         s,store,r,calls=self.start({1:T});r.hits=[];r.samples.put(T)
         until(lambda:'no reconocida' in s._status);self.assertFalse(calls)

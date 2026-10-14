@@ -28,6 +28,7 @@ def main():
                 root.db = door_ui.install(root, root.db, admin=cls is app.GymSoftApp)
                 usb = FakeUSB(); usb.on = root.door._cancel.set
                 root.door.transport = lambda config: usb
+                root.door.ports_provider = lambda: [port]
                 root.door.offline = False  # Transporte sustituido antes de habilitar.
                 failures = []
                 root.report_callback_exception = lambda kind, error, tb: failures.append(str(error))
@@ -74,19 +75,19 @@ def main():
                             assert RELAY_ON not in usb.frames
                             checks += 4
                         win.destroy(); pump(root)
-                    # El botón manual existe en ambos roles. Cancelar no hace
-                    # I/O y confirmar no llama a los RPC de asistencia/pagos.
-                    assert any(isinstance(w, ttk.Button) and w.cget('text') == 'Abrir puerta'
-                               for w in descendants(root.pages[key]))
+                    # Liberación administrativa explícita; Recepción no ofrece
+                    # bypass de autorización ni pruebas de apertura.
+                    assert any(isinstance(w, ttk.Button) and w.cget('text') == 'Liberar puerta'
+                               for w in descendants(root.pages[key])) == root.door_admin
                     before = usb.frames.count(RELAY_ON)
                     root.db.database.register_checkin.reset_mock()
                     with patch.object(door_ui.messagebox, 'askokcancel', return_value=False):
                         assert root.open_door_manually() is False
                     assert usb.frames.count(RELAY_ON) == before
                     with patch.object(door_ui.messagebox, 'askokcancel', return_value=True):
-                        assert root.open_door_manually() is True
+                        assert root.open_door_manually() == root.door_admin
                     pump(root, .15)
-                    assert usb.frames.count(RELAY_ON) == before + 1
+                    assert usb.frames.count(RELAY_ON) == before + int(root.door_admin)
                     root.db.database.register_checkin.assert_not_called()
                     checks += 4
                     for size in ('960x640', '1366x768'):

@@ -1,0 +1,20 @@
+E
+======================================================================
+ERROR: test_fingerprint_service (unittest.loader._FailedTest.test_fingerprint_service)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_fingerprint_service
+Traceback (most recent call last):
+  File "/workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/unittest/loader.py", line 433, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/workspace/.local/python/cpython-3.14.7-linux-x86_64-gnu/lib/python3.14/unittest/loader.py", line 374, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/test_fingerprint_service.py", line 9, in <module>
+    from fingerprint_service import FingerprintService
+ModuleNotFoundError: No module named 'fingerprint_service'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

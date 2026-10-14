@@ -1,0 +1,309 @@
+Sí. Para mañana lo importante es que Codex no solo diga “el relé funciona”, sino que deje todo el flujo de acceso listo para probar físicamente en Windows con el imán, el huellero, el LCUS-1 y el botón no-touch.
+La lógica física que veníamos usando es: el huellero y el relé USB van al computador de forma independiente; el huellero no se conecta al relé.    Pasted text En el circuito de 12 V, el positivo pasa por los contactos NC del relé y del botón antes de llegar al electroimán; así, en reposo el imán recibe corriente y asegura la puerta, y cuando el relé o el botón abren el circuito, el imán queda sin corriente y libera.    Pasted text
+Pásale esto a Codex:
+Quiero hacer una revisión FINAL y preparar el sistema de control de acceso para la instalación física de la puerta de ZTATTUZ mañana.
+Vamos a instalar:
+- electroimán fail-safe de 12 V;
+- relé USB LCUS-1 / CH340;
+- lector de huella USB conectado directamente al computador;
+- botón de salida sin contacto ZKTeco TLEB102;
+- fuente/adaptador de 12 V DC;
+- liberación de emergencia independiente del software donde corresponda.
+IMPORTANTE:
+NO cambies la lógica eléctrica del sistema desde el software.
+El circuito físico previsto funciona así:
+Fuente +12V
+→ COM del relé
+→ contacto interno NC del relé
+→ COM del botón
+→ contacto interno NC del botón
+→ electroimán +
+electroimán -
+→ GND / negativo de fuente
+El botón sin contacto recibe además su propia alimentación:
++12V fuente → +12V botón
+GND fuente → GND botón
+El lector de huella USB y el relé USB son dispositivos separados conectados al computador.
+EL HUELLERO NO SE CONECTA ELÉCTRICAMENTE AL RELÉ.
+El computador:
+1. recibe la identificación del huellero/código;
+2. consulta el estado REAL del cliente en el backend;
+3. determina si tiene acceso;
+4. solamente si está autorizado, envía la orden temporal al relé.
+LÓGICA DEL RELÉ
+Este punto es CRÍTICO.
+Debido al cableado mediante COM + NC, el comportamiento esperado es:
+RELÉ EN REPOSO
+COM ↔ NC cerrado
+→ electroimán recibe 12 V
+→ puerta ASEGURADA.
+RELÉ ACTIVADO TEMPORALMENTE
+COM ↔ NC se abre
+→ electroimán deja de recibir 12 V
+→ puerta LIBERADA.
+Por lo tanto, en el software:
+activar el relé = LIBERAR la puerta
+y después de unos segundos:
+desactivar/devolver relé al reposo = ASEGURAR nuevamente cuando la puerta cierre.
+Verifica esta lógica explícitamente.
+NO asumas que relay_on() significa “cerrar puerta”.
+Comprueba qué comando real del LCUS-1 abre el contacto NC y abstrae esa diferencia dentro del driver.
+DRIVER DE RELÉ
+Revisa el driver existente del LCUS-1.
+Debe:
+- funcionar correctamente en Windows;
+- detectar o permitir seleccionar el puerto COM;
+- reconocer el adaptador CH340 cuando corresponda;
+- utilizar la configuración serial correcta del hardware existente;
+- NO hardcodear COM3, COM4, etc.;
+- guardar la configuración del dispositivo;
+- detectar desconexiones;
+- reconectar de forma controlada;
+- manejar errores;
+- registrar logs.
+El hardware que veníamos utilizando normalmente aparece como puerto serial CH340 y la configuración existente debe verificarse con el dispositivo real.
+No presentes un puerto como válido simplemente porque existe.
+DURACIÓN DE APERTURA
+Crear/configurar:
+door_unlock_seconds
+Valor recomendado inicial:
+aproximadamente 3 segundos.
+Debe poder configurarse desde Administración/Propietario.
+Flujo:
+AUTORIZADO
+→ activar relé
+→ esperar door_unlock_seconds
+→ devolver relé a reposo.
+Nunca dejar el relé indefinidamente activo por:
+- excepción;
+- error de UI;
+- thread bloqueado;
+- cierre de ventana;
+- lectura doble;
+- timeout;
+- pérdida de comunicación.
+Utiliza un mecanismo seguro tipo timer/watchdog/finally según la arquitectura existente.
+ESTADO SEGURO
+El estado normal del software debe ser:
+RELÉ EN REPOSO.
+No mantengas el relé activado cuando no exista una autorización.
+Si ZTATTUZ:
+- inicia;
+- reinicia;
+- pierde conexión con Supabase;
+- encuentra un error;
+- se cierra;
+no debe ordenar una apertura permanente.
+El sistema NO debe intentar “mantener abierta” la puerta por software.
+CONTROL DE ACCESO — UNA SOLA FUENTE DE VERDAD
+NO dupliques en el módulo del relé las reglas de membresías.
+Reutiliza el servicio/backend actual que determina:
+can_access
+o su equivalente real.
+La secuencia debe ser:
+Huella/código
+→ identificar cliente
+→ consultar servidor
+→ evaluar acceso
+→ si AUTORIZADO, abrir relé.
+Nunca:
+Huella encontrada
+→ abrir directamente.
+Encontrar una huella NO significa automáticamente tener acceso.
+DEBE RESPETAR TODAS LAS REGLAS ACTUALES
+Verifica físicamente/lógicamente que el acceso contemple las implementaciones recientes.
+Mensualidad activa
+→ permitir.
+Membresía vencida
+→ denegar.
+Membresía congelada
+→ denegar.
+Membresía reanudada anticipadamente
+→ permitir inmediatamente si está vigente.
+No esperar hasta los 7 días originales.
+Staff / plan interno activo
+→ permitir acceso ilimitado.
+→ no exigir pago.
+→ no exigir vencimiento.
+→ registrar asistencia.
+Staff inactivo
+→ denegar.
+Tiquetera con entradas
+→ permitir según las reglas actuales.
+Tiquetera sin entradas
+→ denegar.
+Mantén la regla existente de máximo una entrada descontada por día cuando corresponda.
+NO descuentes varias entradas debido a lecturas repetidas del mismo acceso.
+PREVENCIÓN DE DOBLE APERTURA / DOBLE LECTURA
+Implementa/verifica debounce.
+Si el huellero envía dos eventos casi simultáneamente:
+NO:
+- registrar dos asistencias incorrectamente;
+- descontar dos entradas;
+- ejecutar múltiples timers contradictorios;
+- enviar múltiples órdenes innecesarias al relé.
+Durante una apertura ya activa, nuevas autorizaciones deben manejarse de forma determinista.
+No permitas condiciones de carrera.
+MODO DE PRUEBA DE PUERTA
+En Administración/Propietario agrega o revisa una pantalla:
+Configuración de Puerta / Control de Acceso
+respetando completamente el Atlantic UI Kit.
+Debe mostrar:
+Relé: Conectado / Desconectado
+Puerto: COMx
+Estado: Reposo / Liberando
+Duración de apertura: X segundos
+Última orden
+Último error
+Botones administrativos:
+[Detectar relé]
+[Probar apertura]
+[Probar lector]
+El botón Probar apertura debe requerir permiso administrativo y confirmación:
+La puerta se liberará durante X segundos.
+¿Continuar?
+Después:
+→ activar relé
+→ esperar X segundos
+→ devolverlo obligatoriamente a reposo.
+NO crear un botón de “mantener abierto indefinidamente” para esta prueba.
+DIAGNÓSTICO
+Agrega logs suficientemente claros para mañana.
+Ejemplo:
+21:14:03 fingerprint detected
+21:14:03 member_id=...
+21:14:03 access_decision=AUTHORIZED
+21:14:03 relay_unlock_start COM5
+21:14:06 relay_unlock_end
+o:
+access_decision=DENIED
+reason=MEMBERSHIP_FROZEN
+NO registrar información biométrica sensible innecesaria.
+Necesito poder saber mañana si un fallo viene de:
+- lector;
+- identificación;
+- backend;
+- membresía;
+- puerto COM;
+- relé;
+- orden serial.
+BOTÓN DE SALIDA
+El botón no-touch funciona eléctricamente en el circuito y NO depende de ZTATTUZ para liberar el electroimán.
+No intentes hacer que el software sea necesario para que una persona pueda salir.
+El software no necesita recibir el evento del botón para que la puerta se libere.
+Si en el futuro se quiere registrar dicho evento, debe ser una función adicional y nunca una dependencia para la salida.
+CORTE DE ENERGÍA
+El sistema utiliza electroimán fail-safe.
+Si se corta la alimentación de 12 V:
+→ electroimán sin energía
+→ puerta liberada.
+Cuando regresa la alimentación:
+→ electroimán vuelve a recibir energía mediante el circuito NC
+→ puerta se asegura cuando la hoja esté cerrada y el imán alineado.
+El software NO debe invertir esta lógica.
+NO CONFUNDIR CERRAR PUERTA CON BLOQUEARLA
+El electroimán NO mueve físicamente la puerta.
+El sistema solamente:
+energiza = asegura
+desenergiza = libera
+El cierre físico de la hoja depende del mecanismo/cierrapuertas instalado.
+No describas en UI el relé como si físicamente cerrara la puerta.
+Usa:
+Liberar puerta
+Puerta asegurada
+en vez de:
+Abrir físicamente
+cuando corresponda.
+SEGURIDAD DE SALIDA
+El software NO debe ser considerado mecanismo de evacuación.
+El botón no-touch y cualquier liberación de emergencia física deben funcionar independientemente del computador.
+No elimines ni sustituyas esos mecanismos mediante lógica de software.
+No declares la instalación físicamente segura o conforme a normativa únicamente porque las pruebas de software pasen.
+ZTATTUZ Y ATLANTIC GYM
+Para mañana, la prueba física prioritaria será ZTATTUZ.
+Sin embargo, la capa común de control de acceso debe permanecer correctamente implementada también en Atlantic Gym cuando ese producto utilice puerta/relé.
+Debe ser una función OPCIONAL por gimnasio.
+Si:
+automatic_door_enabled = false
+el sistema debe funcionar normalmente sin buscar un relé.
+Un gimnasio sin puerta automática NO debe recibir errores de hardware.
+ATLANTIC UI KIT
+Mantén todas las políticas actuales:
+- Atlantic UI Kit;
+- nuevos iconos;
+- branding;
+- componentes reutilizables;
+- diálogos;
+- botones;
+- badges;
+- sistema visual actual.
+NO reviertas cambios de UI recientes.
+TESTS AUTOMÁTICOS OBLIGATORIOS
+Antes de la prueba física agrega/ejecuta tests para:
+autorización válida → solicita apertura;
+rechazo → nunca solicita apertura;
+congelada → rechazada;
+reanudada → autorizada;
+Staff activo → autorizado;
+Staff inactivo → rechazado;
+tiquetera válida → autorizada;
+tiquetera agotada → rechazada;
+lectura repetida → no doble descuento;
+relay timeout → vuelve a reposo;
+excepción durante apertura → vuelve a reposo;
+puerto desconectado → error controlado;
+aplicación sin relé configurado → funciona;
+gimnasio sin puerta automática → funciona;
+scheduler/timezone no afecta incorrectamente el estado;
+servidor sigue siendo fuente de verdad.
+Usa mocks/simulador solamente para tests automáticos, no para presentar hardware real como probado.
+CHECKLIST PARA MAÑANA EN WINDOWS
+Además de las pruebas automáticas, genera un archivo:
+PRUEBA_PUERTA_ZTATTUZ.md
+con pasos exactos y breves para mañana:
+1. identificar COM del LCUS-1;
+2. confirmar conexión del driver;
+3. prueba del relé SIN depender inicialmente de una huella;
+4. confirmar retorno automático a reposo;
+5. prueba de huella autorizada;
+6. prueba de huella rechazada;
+7. membresía vencida;
+8. membresía congelada;
+9. membresía reanudada;
+10. Staff activo;
+11. tiquetera;
+12. lectura repetida;
+13. botón no-touch;
+14. desconectar USB del relé;
+15. reiniciar aplicación;
+16. prueba final completa.
+Para cualquier prueba eléctrica, indica claramente qué pasos corresponden al instalador y no inventes conexiones basadas en colores de cables.
+El software debe utilizar terminales/funciones por nombre y no asumir asignaciones físicas que todavía no se hayan confirmado.
+NO GENERAR INSTALADORES TODAVÍA SI HAY FALLOS
+Primero:
+- audita el código actual;
+- corrige control de relé;
+- verifica toda la lógica de acceso;
+- ejecuta tests;
+- prepara diagnóstico;
+- prepara checklist Windows.
+Si todo lo verificable por software pasa, deja ZTATTUZ listo para la prueba física de mañana.
+NO afirmes que el electroimán o cableado físico funcionan si no fueron probados realmente.
+INFORME FINAL
+Al terminar dame exactamente:
+CONTROL DE PUERTA — ESTADO
+DRIVER LCUS-1
+CONFIGURACIÓN WINDOWS
+LÓGICA NC / FAIL-SAFE
+LECTOR DE HUELLA
+MEMBRESÍAS
+CONGELACIÓN / REANUDACIÓN
+STAFF
+TIQUETERA
+DEBOUNCE
+LOGS / DIAGNÓSTICO
+TESTS EJECUTADOS
+RESULTADOS
+ARCHIVO PRUEBA_PUERTA_ZTATTUZ.md
+LO ÚNICO QUE QUEDA PARA PROBAR FÍSICAMENTE MAÑANA
+Implementa/corrige directamente todo lo necesario y continúa hasta que todas las pruebas de software relevantes pasen.

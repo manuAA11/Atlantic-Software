@@ -5966,6 +5966,7 @@ class CheckinPage(BasePage):
                 parent=self,
             )
             return
+        if result.get('duplicate_read'): return
         self.show_result(result)
         self.refresh_history()
         self.app.refresh_all(except_page=self)
@@ -6816,6 +6817,9 @@ class SettingsPage(BasePage):
             font=(FONT_FAMILY, 7),
         ).pack(side="bottom", anchor="e", pady=(5, 0), padx=(0, 3))
 
+        from door_ui import settings_tab
+        settings_tab(notebook, app)
+
     def load_whatsapp_settings(self, show_error: bool = True) -> None:
         self.load_view('whatsapp', self.db.marketing_settings, self._render_load_whatsapp_settings)
 
@@ -7582,7 +7586,8 @@ class GymSoftApp(tk.Tk):
             or self.data_dir / "gymcontrol.db"
         )
 
-        self.db = UiDatabase(CloudDatabase(self.cloud), self)
+        from door_ui import install as install_door
+        self.db = UiDatabase(install_door(self, CloudDatabase(self.cloud), admin=True), self)
 
         self._startup_message.destroy()
         self.build_shell()

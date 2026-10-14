@@ -2128,6 +2128,8 @@ class AccessPage(BasePage):
             messagebox.showerror("No se pudo registrar la entrada", str(error), parent=self)
             return
 
+        if result.get('duplicate_read'): return
+
         allowed = str(result.get("result")) == "PERMITIDA"
         self._access_result_visible = True
         self._result_search = self.search.get()
@@ -2256,7 +2258,8 @@ class ReceptionApp(tk.Tk):
             self.destroy()
             return
 
-        self.db = UiDatabase(ReceptionDatabase(self.cloud), self)
+        from door_ui import install as install_door
+        self.db = UiDatabase(install_door(self, ReceptionDatabase(self.cloud), admin=False), self)
         self.pages: dict[str, BasePage] = {}
         self.page_types: dict[str, type[BasePage]] = {}
         self.nav_buttons: dict[str, SidebarButton] = {}

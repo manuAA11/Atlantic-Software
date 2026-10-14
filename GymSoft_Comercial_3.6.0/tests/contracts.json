@@ -798,6 +798,7 @@
       "client_id",
       "end_date",
       "entry_limit",
+      "freeze_archive",
       "has_expiration",
       "id",
       "include_in_financial_stats",
@@ -816,6 +817,7 @@
       "plan_id",
       "recorded_by",
       "start_date",
+      "ticket_consumption_archive",
       "unlimited_access"
     ],
     "checkins": [

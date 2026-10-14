@@ -2127,6 +2127,8 @@ class AccessPage(BasePage):
             messagebox.showerror("No se pudo registrar la entrada", str(error), parent=self)
             return
 
+        if result.get('duplicate_read'): return
+
         allowed = str(result.get("result")) == "PERMITIDA"
         self._access_result_visible = True
         self._result_search = self.search.get()

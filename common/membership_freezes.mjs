@@ -142,3 +142,4 @@ try {
 // Preserve the legacy baseline and also exercise the actual additive upgrade.
 await import('./internal_memberships.mjs');
 await import('./early_resume.mjs');
+await import('./door_access_flow.mjs');

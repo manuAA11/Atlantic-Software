@@ -1,0 +1,14 @@
+..E..........................................
+======================================================================
+ERROR: test_backend_outage_cancels_an_active_unlock (test_door_access.DoorTests.test_backend_outage_cancels_an_active_unlock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/test_door_access.py", line 399, in test_backend_outage_cancels_an_active_unlock
+    self.assertIn('2026-10-20T09:00:00-05:00',formatter.format(record))
+                                              ^^^^^^^^^
+NameError: name 'formatter' is not defined. Did you mean: 'format'?
+
+----------------------------------------------------------------------
+Ran 45 tests in 12.197s
+
+FAILED (errors=1)

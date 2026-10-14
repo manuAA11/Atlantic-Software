@@ -120,3 +120,6 @@ if __name__=='__main__':
     main()
     from membership_editor_smoke import main as editor_checks
     editor_checks()
+    # Exercise the shared optional door UI in Commercial as well as ZTATTUZ.
+    from door_ui_smoke import main as door_checks
+    door_checks()

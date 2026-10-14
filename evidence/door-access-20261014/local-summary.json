@@ -1,0 +1,180 @@
+{
+  "scope": "Linux CPython 3.14 / Tk, PGlite server decisions, simulated USB/native SDK. Does not prove Windows, physical LCUS-1, wiring, reader or remote server. The final Windows pipeline repeats all tests at the source commit.",
+  "full_suites": [
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "stages": 38,
+      "status": "PASS",
+      "path": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-door-20261014-v1/results.json",
+      "sha256": "9a0eea134cba1f9cfecc3a12cb166dacb098d27541270bf1a30f12c2b8c3cc7c"
+    },
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "stages": 39,
+      "status": "PASS",
+      "path": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-door-20261014-v1/results.json",
+      "sha256": "00eeba2c08cfa3c3e1aeaea7f03558f6a4aa88e1bb589a5bed24a13d2aba4fa8"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "stages": 38,
+      "status": "PASS",
+      "path": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-door-20261014-v1/results.json",
+      "sha256": "9a0bb4dd2c1d8663d09a6aa11596c7337e46bd1d4710301b0866bc4b7621cf4d"
+    }
+  ],
+  "logs": [
+    {
+      "path": "evidence/door-access-20261014/door-v1.log",
+      "sha256": "f2063b6bb7c8de554d74548efc903ef052a5e0eb9a4ac18727e22d7ee16f4ee6",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "42"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-v2.log",
+      "sha256": "5a1f5f0123599bdb5f54fb3b3917d550b5521146e43b257c0c62b4e291b92094",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "43"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-v3.log",
+      "sha256": "d9b2da3275114402780ba0b079d293b91bf5341badd8ced47279dc8898f85244",
+      "contains_failure": true,
+      "observed_test_counts": [
+        "45"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-v4.log",
+      "sha256": "f38be5a8c7d49146f9807e32c4128ee4ef116e8a448d655f1879a9e1d8e31120",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "45"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-313-v2.log",
+      "sha256": "6211c3ecc81fb842ba3a662327fdb9cfc1bce75588f799b990343b2866144f7c",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "43"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-reader-v2.log",
+      "sha256": "a8ba24b75be57d60853cc6114a8dc78830dc5d96780cfe5eb5d027c5883106c9",
+      "contains_failure": true,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-reader-v3.log",
+      "sha256": "988086a5d4fe5e9f10cc1f4466cc25b5d1b512c9b066693e70c8a167d7397d37",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "16"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-final-driver.log",
+      "sha256": "e9c74e9b309255de0658cf722355a86199ba620db644db5a957d01cc4e784d7a",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "45"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-final-driver-v2.log",
+      "sha256": "d6b75c6929bc98947399cb75b1ff0b0386768844042c826b2037793ff9f2b21f",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "46"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-final-driver-v3.log",
+      "sha256": "656696a364f073ce9e8d758d020422eecbb68816dd4ad60f0e10a2f95aceb1d0",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "46"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-ui-v1.log",
+      "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-ui-c-v1.log",
+      "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-ui-c-final.log",
+      "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-flow-zt-v1.log",
+      "sha256": "81a457e84cf094a325786848d550be1dc310c9b6ec6763ddfb9e53d586fcc66d",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-flow-c-v1.log",
+      "sha256": "922b5f98f7ad64ae720f01b62f2c2eee5e6cddcc63a7197ad93f42b40991f202",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-packaging-guards-v1.log",
+      "sha256": "ea75b3f8e039bbad2de8b03250dd0e5e33d53cf6c617b5a2f3b1dd14d6ef387e",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "53"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-biometric-final-c.log",
+      "sha256": "081bbad44346f5ba73f398b198cdae498e3b8351ddc1e802c4ff27f71962be42",
+      "contains_failure": false,
+      "observed_test_counts": []
+    },
+    {
+      "path": "evidence/door-access-20261014/door-python-final-c.log",
+      "sha256": "c0a2fe5d2e0ea83708f3bdf65f941c63761fcf2a49068a84a22ddb0e4d898207",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "204"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-python-final-x64.log",
+      "sha256": "d2c35c323055231829957ba6b76d16e770f2d1aff4b5d3823db277b263d7daa3",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "183"
+      ]
+    },
+    {
+      "path": "evidence/door-access-20261014/door-python-final-x86.log",
+      "sha256": "1a0aa4d1dd72da17bd4b941e1134d0aca1ed471063a9e3281d092ed91728b260",
+      "contains_failure": false,
+      "observed_test_counts": [
+        "182"
+      ]
+    }
+  ],
+  "historical_failure_notes": {
+    "door-v3.log": "Test fixture edit placed timezone assertions inside another method; corrected before final driver tests.",
+    "door-reader-v2.log": "Isolated reader test invoked from repository root without edition import path; repeated from edition directory and passed."
+  },
+  "hardware_acceptance": false,
+  "remote_deployment_performed": false
+}
