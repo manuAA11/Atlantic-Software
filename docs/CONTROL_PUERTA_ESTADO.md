@@ -2,6 +2,13 @@
 
 Correcciones de software completas y pruebas locales aprobadas; compilación/pruebas Windows y aceptación física documentadas por separado. Requisitos originales: `REQUISITOS_PUERTA_ZTATTUZ_20261014.txt`. No se modificó el circuito eléctrico desde el software.
 
+**Incidencia física posterior del 14 de octubre:** el usuario informa que el
+botón no-touch libera y se registra asistencia, pero el relé no actúa desde el
+PC de 32 bits. Las capturas muestran CH340 presente, estado Desconocido y fallo
+USB al restablecer, sin una orden registrada como enviada. La causa concreta
+del puerto/controlador/transmisión sigue pendiente de la comprobación del
+equipo. [Diagnóstico y alcance](DIAGNOSTICO_RELE_USB_WINDOWS.md).
+
 ## DRIVER LCUS-1
 
 Driver común en Comercial y ZTATTUZ x64/x86. Selección COM/identidad USB CH340, 9600/8N1 por defecto, tiempos de escritura acotados, pulso con watchdog independiente/finally, cancelación de escritura y OFF al cerrar. Errores quedan latentes hasta restablecer; no reenvía aperturas al reconectar. Puerto presente no equivale a relé físicamente validado.
@@ -41,6 +48,13 @@ Exclusión por cliente/gimnasio durante toda la llamada RPC y ledger SQLite con 
 ## LOGS / DIAGNÓSTICO
 
 Hora IANA del gimnasio para lector y puerta. Eventos de lector/código, identificación, backend, decisión, inicio/fin del pulso, desconexión/restablecimiento y error serial. Sin huellas, nombres, documentos ni credenciales. Pantalla: conexión serial, COM, estado solicitado, duración, última orden/error y Copiar diagnóstico. Logs de puerta limitados por rotación.
+
+La corrección posterior conserva fase del fallo, tipo permitido y código
+numérico de Windows/errno, con orientación fija. Una entrada posterior bloqueada
+no sustituye la causa original y un OFF satisfactorio permite restablecer el
+control. Estas mejoras están en las fuentes; requieren una nueva compilación
+Windows y no cambian el instalador `7a44de8` ya publicado. No acreditan la
+resolución física del caso comunicado.
 
 ## TESTS EJECUTADOS
 

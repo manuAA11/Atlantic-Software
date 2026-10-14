@@ -11,7 +11,7 @@ import unittest
 from unittest.mock import Mock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from door_access import (DoorConfig, ConfigStore, DoorController, DoorDatabase,
-    RELAY_ON, RELAY_OFF, BIOMETRIC_METHOD, matches_port, open_relay, equipment_lock)
+    RELAY_ON, RELAY_OFF, BIOMETRIC_METHOD, matches_port, open_relay, equipment_lock, relay_failure)
 
 
 def until(fn, seconds=3):
@@ -290,6 +290,78 @@ class DoorTests(unittest.TestCase):
             args = serial.call_args.kwargs
             self.assertEqual((args['baudrate'], args['bytesize'], args['parity'], args['stopbits']), (9600, 8, 'N', 1))
             self.assertLess(args['write_timeout'], 1)
+
+    def test_serial_open_failure_retains_safe_cause_after_another_checkin(self):
+        from serial import SerialException
+        failure = SerialException("could not open port 'COM7': PermissionError(13, 'SECRET_TOKEN user@example.test', None, 5)")
+        self.factory.side_effect = failure
+        self.assertTrue(self.door.secure()); self.finish()
+        state = self.door.snapshot()
+        self.assertIn('COM7', state['last_error'])
+        self.assertIn('Windows 5', state['last_error'])
+        self.assertIn('abrir/configurar puerto', state['last_error'])
+        self.assertNotIn('SECRET_TOKEN', state['last_error'])
+        self.assertNotIn('user@example.test', (self.store.folder / 'puerta.log').read_text())
+        self.assertFalse(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        self.assertEqual(self.door.snapshot()['last_error'], state['last_error'])
+        self.assertTrue(self.door._fault)
+        self.assertEqual(self.usb.frames, [])
+        self.factory.side_effect = None
+        self.assertTrue(self.door.secure()); self.finish()
+        self.assertFalse(self.door._fault)
+        self.assertEqual(self.door.snapshot()['last_error'], '—')
+        self.assertEqual(self.usb.frames, [RELAY_OFF, RELAY_OFF])
+
+    def test_initial_rest_write_failure_never_sends_on(self):
+        def fail_write(frame):
+            self.usb.frames.append(frame)
+            raise PermissionError(13, 'DO_NOT_LOG')
+        self.usb.write = fail_write
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+        self.assertIn('enviar OFF inicial', self.door.snapshot()['last_error'])
+        self.assertIn('errno 13', self.door.snapshot()['last_error'])
+        self.assertNotIn('DO_NOT_LOG', self.door.snapshot()['last_error'])
+        self.assertTrue(self.door._fault)
+
+    def test_initial_rest_drain_failure_is_distinct_from_write(self):
+        class BrokenDrain(FakeUSB):
+            @property
+            def out_waiting(self): raise OSError(22, 'DO_NOT_LOG')
+            @out_waiting.setter
+            def out_waiting(self, value): pass
+        self.usb = BrokenDrain()
+        self.factory.return_value = self.usb
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+        self.assertIn('terminar OFF inicial', self.door.snapshot()['last_error'])
+        self.assertTrue(self.usb.closed)
+
+    def test_final_rest_and_close_failures_keep_the_original_stage(self):
+        self.usb.fail_off = True
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertIn('enviar OFF final', self.door.snapshot()['last_error'])
+        self.usb.fail_off = False
+        self.assertTrue(self.door.secure()); self.finish()
+        def fail_close(): raise OSError(5, 'DO_NOT_LOG')
+        self.usb.close = fail_close
+        self.assertTrue(self.door.secure()); self.finish()
+        self.assertIn('cerrar puerto', self.door.snapshot()['last_error'])
+        self.assertTrue(self.door._fault)
+
+    def test_windows_driver_codes_and_unknown_messages_are_sanitized(self):
+        from serial import SerialException
+        for code in (31, 87, 2, 3, 1167):
+            with self.subTest(code=code):
+                value = relay_failure(SerialException(f"PermissionError(13, 'private context', None, {code})"), 'COM7')
+                self.assertEqual(value['winerror'], code)
+                self.assertNotIn('private context', value['error'])
+                self.assertIn('controlador' if code in (31, 87) else 'no está disponible', value['error'])
+        error = OSError('SECRET_TOKEN Windows 5')
+        value = relay_failure(error, 'SECRET_PORT')
+        self.assertIsNone(value['winerror'])
+        self.assertNotIn('SECRET', value['error'])
+        self.assertEqual(value['stage'], 'serial')
 
     def test_watchdog_sends_rest_even_if_access_worker_is_blocked(self):
         self.store.save(replace(self.config, seconds=1))

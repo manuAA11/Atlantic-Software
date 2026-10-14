@@ -32,6 +32,57 @@ UNLOCK_NC = RELAY_ON
 REST_NC = RELAY_OFF
 
 
+_ERROR_STAGES = {
+    'configuration': 'validar configuración', 'port_identity': 'comprobar puerto',
+    'serial_open': 'abrir/configurar puerto', 'initial_rest_write': 'enviar OFF inicial',
+    'initial_rest_drain': 'terminar OFF inicial', 'unlock_write': 'enviar ON',
+    'unlock_drain': 'terminar ON', 'final_rest_write': 'enviar OFF final',
+    'final_rest_drain': 'terminar OFF final', 'final_rest': 'restablecer OFF',
+    'serial_close': 'cerrar puerto', 'serial': 'comunicación USB',
+}
+
+
+def _error_stage(error, stage):
+    # Preserve the original exception (including TimeoutError semantics).
+    error._door_stage = stage
+    return error
+
+
+def relay_failure(error, port=''):
+    """Only fixed text and numeric OS codes may leave the exception boundary."""
+    stage = getattr(error, '_door_stage', 'serial')
+    if stage not in _ERROR_STAGES: stage = 'serial'
+    error_type = type(error).__name__
+    if error_type not in {'OSError', 'PermissionError', 'FileNotFoundError', 'TimeoutError',
+                          'ValueError', 'TypeError', 'SerialException', 'SerialTimeoutException',
+                          'PortNotOpenError', 'ImportError', 'ModuleNotFoundError'}:
+        error_type = 'Error'
+    def number(value):
+        return value if type(value) is int and 0 <= value <= 65535 else None
+    errno, winerror = number(getattr(error, 'errno', None)), number(getattr(error, 'winerror', None))
+    if winerror is None:
+        # pySerial 3.5 serialwin32 embeds repr(ctypes.WinError()) in a
+        # SerialException rather than retaining its numeric attributes/cause.
+        # Parse that exact repr shape, never display the free-form message.
+        embedded = re.search(r'''\b(?:PermissionError|OSError|FileNotFoundError)\(([0-9]{1,5}), (?:'(?:[^'\\\r\n]|\\.){0,500}'|"(?:[^"\\\r\n]|\\.){0,500}"), None, ([0-9]{1,5})\)''', str(error)[:1500])
+        if embedded:
+            errno, winerror = number(int(embedded[1])), number(int(embedded[2]))
+    if winerror == 5 or (winerror is None and errno in (1, 13)):
+        guidance = 'Windows denegó el acceso. Cierra otras aplicaciones que usen este COM y revisa los permisos.'
+    elif winerror in (2, 3, 1167) or (winerror is None and errno in (2, 3)):
+        guidance = 'El puerto no está disponible. Revisa la conexión USB y vuelve a detectar el COM.'
+    elif winerror in (31, 87):
+        guidance = 'Windows rechazó la operación USB. Revisa el controlador CH340 y la conexión del módulo.'
+    elif error_type in ('TimeoutError', 'SerialTimeoutException'):
+        guidance = 'La transmisión USB no terminó a tiempo. Revisa el controlador, el cable y el módulo.'
+    else:
+        guidance = 'Revisa el puerto, el controlador CH340 y la conexión USB.'
+    safe_port = port if isinstance(port, str) and re.fullmatch(r'COM[1-9][0-9]{0,3}', port) else 'Puerto seleccionado'
+    code = f' · Windows {winerror}' if winerror is not None else (f' · errno {errno}' if errno is not None else '')
+    message = f'{safe_port} · {_ERROR_STAGES[stage]} · {error_type}{code}. {guidance} Después pulsa Restablecer. La asistencia no se repite.'
+    return dict(error=message, error_type=error_type, stage=stage, errno=errno, winerror=winerror)
+
+
 @dataclass(frozen=True)
 class DoorConfig:
     enabled: bool = False
@@ -114,15 +165,23 @@ def open_relay(config):
     # Importar pySerial no abre puertos; nunca se usa serial_for_url ni se
     # envían comandos a dispositivos descubiertos sin selección explícita.
     import serial
-    config.validate()
+    try: config.validate()
+    except Exception as error:
+        raise _error_stage(error, 'configuration')
     if not config.enabled:
         raise ValueError('La puerta automática está desactivada.')
-    if not any(matches_port(config, item) for item in available_ports()):
-        raise OSError('El puerto seleccionado no corresponde al LCUS-1 conectado.')
-    return serial.Serial(port=config.port, baudrate=config.baudrate, bytesize=serial.EIGHTBITS,
-                         parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,
-                         timeout=0.2, write_timeout=0.35, xonxoff=False,
-                         rtscts=False, dsrdtr=False)
+    try:
+        if not any(matches_port(config, item) for item in available_ports()):
+            raise OSError('El puerto seleccionado no corresponde al LCUS-1 conectado.')
+    except Exception as error:
+        raise _error_stage(error, 'port_identity')
+    try:
+        return serial.Serial(port=config.port, baudrate=config.baudrate, bytesize=serial.EIGHTBITS,
+                             parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE,
+                             timeout=0.2, write_timeout=0.35, xonxoff=False,
+                             rtscts=False, dsrdtr=False)
+    except Exception as error:
+        raise _error_stage(error, 'serial_open')
 
 
 class RelayBusy(Exception):
@@ -155,6 +214,9 @@ class PulseSession:
                     raise TimeoutError('El ciclo del relé ya terminó.')
                 self.writing.set()
             try: self.controller._write(self.connection, frame)
+            except Exception as error:
+                phase = 'unlock' if frame == UNLOCK_NC else 'initial_rest'
+                raise _error_stage(error, phase + '_' + ('drain' if getattr(error, '_door_stage', '') == 'drain' else 'write'))
             finally: self.writing.clear()
 
     def arm(self):
@@ -185,20 +247,30 @@ class PulseSession:
             owns_io = self.io_lock.acquire(timeout=1.0)
             if not owns_io:
                 raise TimeoutError('La escritura USB no terminó después de cancelarla.')
-            self.controller._write(self.connection, REST_NC)
+            try: self.controller._write(self.connection, REST_NC)
+            except Exception as error:
+                raise _error_stage(error, 'final_rest_' + ('drain' if getattr(error, '_door_stage', '') == 'drain' else 'write'))
             if cancel_error:
                 self.controller._record('relay_cancel_failed', error=type(cancel_error).__name__, stage='serial')
             self.controller._record('relay_rest_sent' if self.kind == 'secure' else 'relay_unlock_end', port=self.config.port, reason=reason,
                                     command=REST_NC.hex(), state='Reposo (OFF enviado)')
         except Exception as error:
+            if getattr(error, '_door_stage', '') not in _ERROR_STAGES:
+                _error_stage(error, 'final_rest')
             self.error = error
             self.controller._fault = True
+            details = relay_failure(error, self.config.port)
             self.controller._record('relay_rest_failed', port=self.config.port,
-                                    error=type(error).__name__, state='Desconocido')
-            self.controller._status('No se confirmó la orden de reposo. Revisa el relé y la puerta presencialmente.', 'error')
+                                    **details, state='Desconocido')
+            self.controller._status(details['error'], 'error')
         finally:
             try: self.connection.close()
             except Exception as error:
+                _error_stage(error, 'serial_close')
+                if self.error is None:
+                    details = relay_failure(error, self.config.port)
+                    self.controller._record('relay_close_failed', port=self.config.port, **details, state='Desconocido')
+                    self.controller._status(details['error'], 'error')
                 self.error = self.error or error
                 self.controller._fault = True
             if owns_io: self.io_lock.release()
@@ -331,7 +403,7 @@ class DoorController:
             config = self.store.load()
             if not config.enabled: return False
             if self._fault:
-                self._status('Entrada registrada; revisa el relé y pulsa Restablecer. No se envió apertura.', 'error')
+                self._status('Entrada registrada; revisa el relé y pulsa Restablecer. No se envió apertura.', 'warning')
                 return False
             return self._queue('access', config, (int(client_id), stamp.isoformat()))
         except (KeyError, ValueError, TypeError, OSError):
@@ -380,28 +452,38 @@ class DoorController:
 
     @staticmethod
     def _write(connection, data):
-        if connection.write(data) != len(data):
-            raise OSError('Escritura incompleta al relé.')
+        try:
+            if connection.write(data) != len(data):
+                raise OSError('Escritura incompleta al relé.')
+        except Exception as error:
+            raise _error_stage(error, 'write')
         # No cerrar con el último OFF aún en la cola del controlador. flush()
         # no tiene un plazo propio: aquí se limita explícitamente la espera.
-        deadline = time.monotonic() + 0.4
-        while connection.out_waiting:
-            if time.monotonic() >= deadline:
-                raise TimeoutError('El controlador USB no terminó de transmitir.')
-            time.sleep(0.005)
+        try:
+            deadline = time.monotonic() + 0.4
+            while connection.out_waiting:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError('El controlador USB no terminó de transmitir.')
+                time.sleep(0.005)
+        except Exception as error:
+            raise _error_stage(error, 'drain')
 
     def _execute(self, kind, config, payload, created, generation):
         if self._stop.is_set() or generation != self._generation or self.store.load() != config:
             return
         if self._fault and kind != 'secure':
-            self._status('Relé pendiente de restablecer. No se reenvía una liberación.', 'error')
+            self._status('Relé pendiente de restablecer. No se reenvía una liberación.', 'warning')
             return
         if self.clock() - created > 2:
             self._status('La orden caducó. No se abrió la puerta con una respuesta retrasada.', 'warning'); return
         with equipment_lock(self.store.folder, config.port):
             if kind == 'access' and not self._claim(*payload):
                 self._status('Entrada repetida: no se envió otra apertura.', 'warning'); return
-            connection = self.transport(config)
+            try: connection = self.transport(config)
+            except Exception as error:
+                if getattr(error, '_door_stage', '') not in _ERROR_STAGES:
+                    _error_stage(error, 'serial_open')
+                raise
             session = PulseSession(self, connection, config, kind)
             self._session = session
             with self._state_guard: self._state['connection'] = 'USB conectado; relé sin confirmación física'
@@ -430,8 +512,9 @@ class DoorController:
             finally:
                 success = session.finish()
                 self._session = None
-            if not success: raise OSError('No se completó el retorno del relé a reposo.')
+            if not success: raise session.error or OSError('No se completó el retorno del relé a reposo.')
             self._fault = False
+            with self._state_guard: self._state['last_error'] = '—'
             self._status('Relé en reposo: OFF enviado. El contacto y la puerta requieren comprobación física.')
 
     def snapshot(self):
@@ -444,7 +527,8 @@ class DoorController:
 
     def _record(self, event, **fields):
         # Only whitelisted technical fields; no biometric data, names or tokens.
-        allowed = {'port', 'reason', 'command', 'state', 'member_id', 'decision', 'error', 'stage'}
+        allowed = {'port', 'reason', 'command', 'state', 'member_id', 'decision', 'error', 'stage',
+                   'error_type', 'errno', 'winerror'}
         fields = {key: value for key, value in fields.items() if key in allowed and value is not None}
         with self._state_guard:
             if 'command' in fields: self._state['last_command'] = event + ' · ' + fields['command']
@@ -496,14 +580,9 @@ class DoorController:
             except Exception as error:
                 # No registrar documentos, nombres ni plantillas biométricas.
                 self._fault = True
-                self._record('relay_error', error=type(error).__name__, stage='serial', state='Desconocido')
-                self._status('No se pudo completar la orden USB. Revisa la puerta y el cable; después pulsa Restablecer. '
-                             'La asistencia no se repite.', 'error')
-                try:
-                    self.store.folder.mkdir(parents=True, exist_ok=True)
-                    with (self.store.folder / 'puerta.log').open('a', encoding='utf-8') as file:
-                        file.write(datetime.now().isoformat(timespec='seconds') + ' ' + type(error).__name__ + '\n')
-                except OSError: pass
+                details = relay_failure(error, command[1].port)
+                self._record('relay_error', port=command[1].port, **details, state='Desconocido')
+                self._status(details['error'], 'error')
             finally:
                 with self._guard: self._pending = False
                 self._commands.task_done()

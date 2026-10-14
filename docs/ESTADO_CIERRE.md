@@ -4,6 +4,14 @@ Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la
 
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
+**Incidencia del relé USB comunicada el 14 de octubre:** botón de salida
+operativo y asistencia registrada, pero sin activación del relé desde el PC de
+32 bits. El restablecimiento muestra fallo USB, estado desconocido y última
+orden `—`. Se mejora el diagnóstico de las fuentes para conservar fase
+y código del error; la causa física/Windows y su resolución siguen pendientes.
+El usuario está revisando conexiones antes de continuar las pruebas.
+[Estado y prueba del puerto](DIAGNOSTICO_RELE_USB_WINDOWS.md).
+
 **Incidencia del 14 de octubre: Dashboard sin información.** El usuario muestra
 clientes y estadísticas existentes, pero el panel falla al cargar. Confirmó que
 solo instaló el programa, sin aplicar los dos upgrades nuevos de Supabase.
