@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED_NATIVE_OWNER_INSTALLER_AND_UPLOAD_METADATA",
+  "final": false,
+  "source_commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+  "github_run_id": "38555801086",
+  "artifact_name": "NO_FINAL-PRIVADO_PROPIETARIO-Comercial-x64",
+  "artifact_id": 11890383860,
+  "artifact_digest": "sha256:d1e77702f82aabba66516b54354a39fb4a5427f6eeb9982e200ea60fcc86eef4",
+  "artifact_expires_at": "2027-01-12T11:19:53Z",
+  "download_url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/38555801086/artifacts/11890383860",
+  "installer": {
+    "name": "VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+    "bytes": 28889678,
+    "sha256": "696e10f17ee3fa396bc540fdf449430ea6cd2d1987c2273fd1bb00c4f640f489"
+  },
+  "installation": "PASS fresh/update/uninstall in Windows x64, including owner installer entrypoint",
+  "downloaded_bytes_verified_in_cloud": false,
+  "cloud_download_blocker": "Artifact storage GET returned Forbidden; release customer archives were downloaded and verified separately. GitHub artifact requires browser sign-in; no private access guarantee for public repository.",
+  "evidence": {
+    "packaging_report": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/paquete-tecnico/informe_empaquetado.json",
+    "packaging_report_sha256": "8180263c1185267ec2018ddd026a64bf828d0390abd1b7ba4e8b3752acbe0a24"
+  }
+}

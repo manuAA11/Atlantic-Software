@@ -1,0 +1,305 @@
+{
+  "version": "3.6.1",
+  "started_at": "2026-10-14T11:22:42.807657+00:00",
+  "platform": "win32",
+  "scope": "all",
+  "status": "PASS",
+  "stages": [
+    {
+      "name": "python",
+      "status": "PASS",
+      "seconds": 33.99,
+      "log": "python.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contratos_extraidos",
+      "status": "PASS",
+      "seconds": 0.8,
+      "log": "contratos_extraidos.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_compile",
+      "status": "PASS",
+      "seconds": 2.01,
+      "log": "marketing_compile.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "backend_sql_flow",
+      "status": "PASS",
+      "seconds": 2.13,
+      "log": "backend_sql_flow.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "time_pipeline",
+      "status": "PASS",
+      "seconds": 1.83,
+      "log": "time_pipeline.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "membership_freezes",
+      "status": "PASS",
+      "seconds": 15.51,
+      "log": "membership_freezes.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "audit_logs",
+      "status": "PASS",
+      "seconds": 1.98,
+      "log": "audit_logs.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_contracts",
+      "status": "PASS",
+      "seconds": 1.88,
+      "log": "marketing_contracts.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "daily_tickets",
+      "status": "PASS",
+      "seconds": 1.66,
+      "log": "daily_tickets.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprints",
+      "status": "PASS",
+      "seconds": 1.67,
+      "log": "fingerprints.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "upgrade_compatibility",
+      "status": "PASS",
+      "seconds": 1.6,
+      "log": "upgrade_compatibility.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "security",
+      "status": "PASS",
+      "seconds": 1.67,
+      "log": "security.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contracts",
+      "status": "PASS",
+      "seconds": 1.76,
+      "log": "contracts.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_plans",
+      "status": "PASS",
+      "seconds": 1.78,
+      "log": "ticket_plans.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_followup",
+      "status": "PASS",
+      "seconds": 1.83,
+      "log": "ticket_followup.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_backend",
+      "status": "PASS",
+      "seconds": 0.36,
+      "log": "marketing_backend.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "recorrido_huellas",
+      "status": "PASS",
+      "seconds": 18.64,
+      "log": "recorrido_huellas.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "simulacion_gimnasio",
+      "status": "PASS",
+      "seconds": 12.93,
+      "log": "simulacion_gimnasio.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_ui_smoke",
+      "status": "PASS",
+      "seconds": 12.49,
+      "log": "marketing_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "freeze_ui_smoke",
+      "status": "PASS",
+      "seconds": 18.8,
+      "log": "freeze_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "door_ui_smoke",
+      "status": "PASS",
+      "seconds": 12.84,
+      "log": "door_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "dialog_design_ui_smoke",
+      "status": "PASS",
+      "seconds": 17.52,
+      "log": "dialog_design_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ui_wait_smoke",
+      "status": "PASS",
+      "seconds": 0.89,
+      "log": "ui_wait_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "access_layout_ui_smoke",
+      "status": "PASS",
+      "seconds": 24.18,
+      "log": "access_layout_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "client_fingerprint_ui_smoke",
+      "status": "PASS",
+      "seconds": 10.32,
+      "log": "client_fingerprint_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "fingerprint_ui_smoke",
+      "status": "PASS",
+      "seconds": 9.64,
+      "log": "fingerprint_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "windows_ui_smoke",
+      "status": "PASS",
+      "seconds": 2.78,
+      "log": "windows_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "responsive_ui_smoke",
+      "status": "PASS",
+      "seconds": 67.19,
+      "log": "responsive_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "biometric_ui_smoke",
+      "status": "PASS",
+      "seconds": 4.12,
+      "log": "biometric_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "ticket_ui_smoke",
+      "status": "PASS",
+      "seconds": 7.48,
+      "log": "ticket_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "performance_ui_smoke",
+      "status": "PASS",
+      "seconds": 9.64,
+      "log": "performance_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "popdown_ui_smoke",
+      "status": "PASS",
+      "seconds": 4.45,
+      "log": "popdown_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "layout_modes_ui_smoke",
+      "status": "PASS",
+      "seconds": 49.24,
+      "log": "layout_modes_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "review_ui_smoke",
+      "status": "PASS",
+      "seconds": 6.92,
+      "log": "review_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "layout_consistency_ui_smoke",
+      "status": "PASS",
+      "seconds": 10.8,
+      "log": "layout_consistency_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "visibility_ui_smoke",
+      "status": "PASS",
+      "seconds": 3.32,
+      "log": "visibility_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "atlantic_branding_ui_smoke",
+      "status": "PASS",
+      "seconds": 0.64,
+      "log": "atlantic_branding_ui_smoke.log",
+      "timed_out": false,
+      "callback_failure": false
+    }
+  ]
+}
