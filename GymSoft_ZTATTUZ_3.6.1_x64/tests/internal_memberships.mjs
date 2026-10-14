@@ -51,6 +51,15 @@ try{
  }
  eq(logs.some(x=>x.action==='PAGO_REGISTRADO'&&String(x.entity_id)===String(m.membership_id)),false);
  if(f.commercial){await user(O);eq((await make('Propietario')).name,'Propietario');await user(A);}
+ const transition=await monthly();
+ await tableRpc('assign_internal_membership',{p_gym_id:gym,p_client_id:transition.c,p_plan_id:staff.id,p_request_id:randomUUID(),p_start_date:'2026-10-25'});
+ eq((await snapshot(transition.c)).membership_type,'COMMERCIAL','Scheduling future staff does not interrupt the current paid membership');eq((await enter(transition.c)).result,'PERMITIDA');
+ const transitionFreeze=await rpc('membership_freeze',{p_gym_id:gym,p_membership_id:transition.m,p_request_id:randomUUID()});
+ await f.clock('2026-10-25T14:00:00Z');eq((await snapshot(transition.c)).frozen,true,'A scheduled internal transition cannot bypass an existing freeze');eq((await enter(transition.c,true)).result,'DENEGADA');
+ await rpc('membership_resume_freeze',{p_gym_id:gym,p_freeze_id:transitionFreeze.id,p_expected_days:5});eq((await snapshot(transition.c)).membership_type,'INTERNAL');eq((await enter(transition.c)).result,'PERMITIDA');
+ await f.clock('2026-10-20T14:00:00Z');
+ await tableRpc('assign_internal_membership',{p_gym_id:gym,p_client_id:c,p_plan_id:trainer.id,p_request_id:randomUUID(),p_start_date:'2026-10-25'});
+ eq((await snapshot(c)).plan_name,'STAFF','The current internal authorization continues until its replacement starts');
  const finite=await make('Invitado por días',{has_expiration:true,duration_days:3});const cp=await person();
  const [fm]=await tableRpc('assign_internal_membership',{p_gym_id:gym,p_client_id:cp,p_plan_id:finite.id,p_request_id:randomUUID()});
  eq(new Date(fm.end_date).toISOString().slice(0,10),'2026-10-22');eq((await enter(cp)).result,'PERMITIDA');
@@ -81,7 +90,7 @@ try{
  const req=(await db.query("insert into public.payment_requests(gym_id,client_id,plan_id,plan_snapshot,amount_in_cents,currency,mode,reference,idempotency_key,status,expires_at) values($1,$2,$3,'{}',7000000,'COP','test','STAFF-OLD-CHARGE','old-staff-charge','VOIDED',now()+interval '1 day') returning *",[gym,c,ordinary.p])).rows[0];
  const tx={id:'staff-old-confirmed-charge',reference:req.reference,status:'APPROVED',amount_in_cents:7000000,currency:'COP',mode:'test',created_at:new Date(req.created_at).toISOString()};
  const review=await rpc('marketing_service_apply_payment',{p_gym_id:gym,p_transaction:tx});eq(review.requires_review,true);eq(review.membership_id,undefined);
- eq((await db.query('select count(*)::int n from public.memberships where client_id=$1',[c])).rows[0].n,1);
+ eq((await db.query('select count(*)::int n from public.memberships where client_id=$1',[c])).rows[0].n,2);
  eq((await db.query("select requires_review from public.payment_transactions where provider_transaction_id='staff-old-confirmed-charge'")).rows[0].requires_review,true);
  await user(A);
  await f.clock('2026-10-23T14:00:00Z');eq((await enter(cp)).result,'DENEGADA');eq((await enter(c)).result,'PERMITIDA','Unlimited indefinite access still works in later months');

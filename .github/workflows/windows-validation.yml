@@ -154,7 +154,12 @@ jobs:
             throw 'Only a prepared NO FINAL draft for this exact commit can receive these archives.'
           }
           gh release upload $tag $archives[0].FullName --repo '${{ github.repository }}'
-          exit $LASTEXITCODE
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if ('${{ matrix.edition }}' -eq 'GymSoft_Comercial_3.6.0') {
+            gh release upload $tag ACTUALIZAR_PLANES_INTERNOS.sql ACTUALIZAR_REANUDACION_MEMBRESIAS.sql ..\docs\MEMBRESIAS_STAFF_REANUDACION.md --repo '${{ github.repository }}' --clobber
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+          exit 0
       - name: Preserve diagnostic reports in a separate Git branch
         if: always()
         run: |

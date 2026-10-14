@@ -190,8 +190,9 @@ create or replace function private.membership_snapshot_json(p_gym_id uuid,p_clie
 language plpgsql security definer set search_path='' as $$
 declare m public.memberships;c public.clients;p public.plans;s jsonb;used bigint:=0;today date:=private.gym_local_date(p_gym_id);allowed boolean;begin
  perform private.freeze_complete_due(p_gym_id,p_client_id);
- select * into m from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='INTERNAL' order by id desc limit 1;
- if m.id is null or exists(select 1 from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='COMMERCIAL' and payment_status='posted' and start_date<=today and id>m.id) then
+ select * into m from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='INTERNAL' and start_date<=today order by id desc limit 1;
+ if m.id is null then select * into m from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='INTERNAL' and start_date>today order by start_date,id desc limit 1;end if;
+ if private.freeze_active(p_gym_id,p_client_id) is not null or m.id is null or m.start_date>today and exists(select 1 from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='COMMERCIAL' and payment_status='posted' and start_date<=today and end_date>=today) or exists(select 1 from public.memberships where gym_id=p_gym_id and client_id=p_client_id and membership_type='COMMERCIAL' and payment_status='posted' and start_date<=today and id>m.id) then
   s:=private.membership_snapshot_before_internal(p_gym_id,p_client_id);
   return s||jsonb_build_object('membership_type','COMMERCIAL','has_expiration',true,'unlimited_access',s->>'entry_limit' is null,
    'membership_state',case when coalesce((s->>'frozen')::boolean,false) then 'FROZEN' when coalesce((s->>'allowed')::boolean,false) then 'ACTIVE' else 'INACTIVE' end);
