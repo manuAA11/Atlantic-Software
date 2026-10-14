@@ -1,0 +1,1 @@
+PASS: 28 cross-layer checks (HTTP, signed Meta/chatbot, real SQL freeze, payment link, signed Wompi renewal/idempotency). External transport and Vault simulated; no external pilot.

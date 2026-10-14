@@ -1,0 +1,256 @@
+Quiero mejorar la funcionalidad actual de congelación de membresías en ZTATTUZ y Atlantic Gym.
+Actualmente existe una congelación de hasta 7 días. Quiero conservar esa funcionalidad, pero agregar la posibilidad de reanudar/descongelar la membresía antes de que terminen los 7 días.
+IMPORTANTE:
+Los 7 días deben representar el máximo permitido de congelación, NO una extensión fija obligatoria de 7 días.
+COMPORTAMIENTO DESEADO
+Cuando se congela una membresía:
+- guardar la fecha/hora real de inicio;
+- bloquear el acceso;
+- marcar la membresía como congelada;
+- establecer un máximo de 7 días;
+- permitir que se reactive automáticamente al llegar al máximo;
+- PERO también permitir que un administrador/propietario la reactive manualmente antes.
+Ejemplo:
+Membresía:
+Vencimiento original: 30 de octubre
+Se congela:
+20 de octubre
+El cliente regresa:
+22 de octubre
+El administrador pulsa:
+REANUDAR MEMBRESÍA
+Resultado esperado:
+Días realmente congelados: 2
+Nuevo vencimiento: 1 de noviembre
+NO extender hasta el 6 de noviembre como si hubiera utilizado los 7 días completos.
+CÁLCULO REAL DE DÍAS UTILIZADOS
+El servidor debe calcular cuánto tiempo se utilizó realmente de la congelación.
+NO guardar automáticamente:
+extension_days = 7
+al comenzar.
+La extensión final debe calcularse cuando:
+- el usuario reanuda manualmente;
+- o termina automáticamente el máximo permitido.
+Conceptualmente:
+freeze_started_at
+freeze_resumed_at
+freeze_used_days
+freeze_max_days = 7
+Si:
+freeze_started_at = 20 Oct
+freeze_resumed_at = 22 Oct
+entonces:
+freeze_used_days = 2
+y solamente esos 2 días se agregan al vencimiento.
+Revisa cuidadosamente los límites de fecha para evitar errores off-by-one.
+Usa la zona horaria configurada del gimnasio, especialmente:
+America/Bogota
+El servidor sigue siendo la fuente de verdad.
+BOTÓN REANUDAR MEMBRESÍA
+Cuando una membresía esté congelada, mostrar en Administración/Propietario un botón claro:
+REANUDAR MEMBRESÍA
+Preferir este texto sobre “Descongelar” para mantener una UX más clara.
+Al presionarlo mostrar una confirmación siguiendo Atlantic UI Kit:
+¿Reanudar esta membresía?
+La membresía ha permanecido congelada durante X días.
+Se agregarán X días a su fecha de vencimiento.
+[Cancelar] [Reanudar membresía]
+El valor X debe provenir del servidor.
+Después de confirmar:
+- cerrar la congelación;
+- guardar la fecha/hora real de reanudación;
+- calcular días reales utilizados;
+- extender el vencimiento solamente por esos días;
+- cambiar la membresía nuevamente a ACTIVE;
+- permitir acceso inmediatamente;
+- actualizar UI;
+- actualizar chatbot/WhatsApp;
+- actualizar scheduler;
+- registrar auditoría.
+REACTIVACIÓN AUTOMÁTICA
+Si nadie pulsa Reanudar:
+al llegar al máximo de 7 días debe mantenerse el comportamiento automático actual.
+Ejemplo:
+congelación inicia:
+20 Oct
+no se reanuda manualmente.
+entonces al completar los 7 días:
+freeze_used_days = 7
+y el vencimiento se extiende exactamente 7 días.
+Después la membresía vuelve a ACTIVE automáticamente.
+Mantén el scheduler funcionando correctamente.
+NO EXTENDER DOS VECES
+Esto es CRÍTICO.
+Si se reanuda manualmente, el scheduler NO debe posteriormente volver a agregar los días restantes.
+Ejemplo:
+congelada 20 Oct
+reanudada 22 Oct
+extensión aplicada:
++2 días
+Cuando llegue el 27 Oct:
+NO debe aplicarse otra extensión.
+La operación debe ser idempotente.
+Una congelación cerrada no puede procesarse nuevamente.
+HISTORIAL
+Guardar el historial real de la congelación.
+Como mínimo:
+- inicio;
+- fin previsto;
+- fecha/hora de reanudación real;
+- máximo permitido;
+- días utilizados;
+- usuario que congeló;
+- usuario que reanudó;
+- motivo;
+- vencimiento antes;
+- vencimiento después;
+- si terminó manual o automáticamente.
+NO sobrescribir el historial anterior.
+UI
+En una membresía congelada mostrar algo equivalente a:
+CONGELADA
+Inicio: 20 Oct
+Máximo: 27 Oct
+Utilizados: 2 de 7 días
+Restantes del periodo actual: 5 días
+[ REANUDAR MEMBRESÍA ]
+Todo debe respetar:
+- Atlantic UI Kit;
+- iconos oficiales;
+- tipografía;
+- cards;
+- botones;
+- badges;
+- dialogs;
+- spacing;
+- branding actual.
+Implementarlo consistentemente en ZTATTUZ y Atlantic Gym.
+ACCESO / RELÉ
+Mientras:
+status = FROZEN
+denegar acceso.
+Inmediatamente después de:
+REANUDAR MEMBRESÍA
+si la membresía está vigente:
+permitir acceso nuevamente.
+El relé y el lector deben consultar el estado proveniente del servidor.
+No mantener un bloqueo local hasta la fecha original de 7 días.
+TIQUETERAS
+Mantener la regla actual:
+- congelar no consume entradas;
+- reanudar antes no elimina entradas;
+- no duplicar descuentos;
+- máximo una entrada descontada por día según la lógica existente.
+Si la tiquetera posee vigencia temporal y la congelación la extiende, extenderla únicamente por el tiempo REAL utilizado.
+WHATSAPP / CHATBOT
+Actualizar la implementación existente.
+Mientras esté congelada, el chatbot puede indicar:
+Membresía congelada
+Congelada desde: ...
+Reactivación máxima: ...
+Después de reanudar:
+- debe mostrar ACTIVE;
+- debe utilizar el nuevo vencimiento real;
+- no debe continuar diciendo que está congelada;
+- los recordatorios futuros deben basarse en el nuevo vencimiento.
+No enviar mensajes de congelación después de haber sido reanudada.
+WOMPI
+La reanudación temprana no debe generar:
+- cobro;
+- pago;
+- link Wompi;
+- transacción.
+Solamente modifica correctamente el periodo de la membresía.
+Mantener intacta la lógica actual de pagos.
+PLANES INTERNOS / STAFF
+Esta implementación debe ser compatible con la nueva capacidad de planes internos/no comerciales.
+Un plan con:
+has_expiration = false
+o equivalente
+NO debe utilizar esta congelación, porque no existe vencimiento que extender.
+No inventes una fecha para Staff.
+Mantén completamente separada la lógica de Staff/planes indefinidos.
+PERMISOS
+Respetar el sistema existente.
+Solamente usuarios autorizados para administrar congelaciones pueden:
+- congelar;
+- reanudar anticipadamente.
+Registrar ambas operaciones en auditoría.
+UNA CONGELACIÓN POR MEMBRESÍA
+Mantén la política existente de máximo una congelación por membresía, salvo la excepción administrativa ya implementada.
+Una reanudación temprana NO debe borrar el registro de que esa congelación fue utilizada.
+Ejemplo:
+si utilizó solamente 2 de los 7 días y reanudó voluntariamente:
+la congelación se considera finalizada.
+NO vuelvas a abrir automáticamente ese mismo evento.
+Si existe la excepción administrativa actual para permitir otra congelación, debe seguir requiriendo autorización y motivo.
+TESTS OBLIGATORIOS
+Agrega pruebas como mínimo para:
+1. Congelar una membresía.
+2. Acceso bloqueado durante congelación.
+3. Reanudar antes de 7 días.
+4. Reanudación cambia estado inmediatamente a ACTIVE.
+5. Extensión utiliza únicamente días reales congelados.
+6. Ejemplo 20 → 22 produce +2 días.
+7. No aplica automáticamente los otros 5 días.
+8. Scheduler no procesa nuevamente una congelación ya cerrada.
+9. Congelación completa sigue utilizando máximo 7 días.
+10. Reactivación automática sigue funcionando.
+11. Timezone America/Bogota.
+12. Cambio alrededor de medianoche.
+13. No aparecen horas falsas 00:00.
+14. Tiquetera conserva entradas.
+15. Tiquetera con vigencia solo extiende el periodo realmente usado.
+16. WhatsApp refleja reanudación.
+17. Chatbot refleja el nuevo vencimiento.
+18. Recordatorios utilizan el nuevo vencimiento.
+19. Wompi no genera pagos por reanudación.
+20. Staff/planes indefinidos no reciben congelaciones incorrectas.
+21. Auditoría guarda quién congeló y quién reanudó.
+22. ZTATTUZ funciona correctamente.
+23. Atlantic Gym funciona correctamente.
+24. No se rompe la congelación anterior ni las demás membresías.
+Ejecuta también las regresiones relacionadas con:
+- membresías;
+- tiqueteras;
+- congelación;
+- acceso;
+- scheduler;
+- timezone;
+- logs;
+- WhatsApp;
+- chatbot;
+- automatizaciones;
+- Wompi;
+- planes internos.
+IMPORTANTE
+Implementa esto en ZTATTUZ Y ATLANTIC GYM.
+Mantén todos los cambios recientes.
+NO reviertas:
+- Atlantic UI Kit;
+- nuevos iconos;
+- branding;
+- WhatsApp;
+- chatbot;
+- Wompi;
+- planes internos/Staff;
+- correcciones de timezone;
+- scheduler;
+- logs;
+- tiqueteras.
+No generes instaladores todavía.
+Al terminar dame:
+ZTATTUZ — estado
+ATLANTIC GYM — estado
+Reanudación anticipada — implementación
+Cálculo de días utilizados
+Base de datos/migraciones
+UI
+Scheduler
+WhatsApp / Chatbot
+Tiqueteras
+Staff / planes internos
+Tests agregados
+Resultado de regresiones
+Archivos modificados
+Implementa directamente y continúa hasta que todas las pruebas relevantes pasen.

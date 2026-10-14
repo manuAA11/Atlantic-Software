@@ -1025,17 +1025,19 @@ class MembershipDialog(BaseDialog):
         )
         self.amount_entry = self.add_entry("Valor pagado", self.amount, 2)
         ttk.Label(self.body, text="Método de pago", style="Field.TLabel").grid(row=6, column=0, sticky="w", pady=(7, 3))
-        ttk.Combobox(
+        self.method_control = ttk.Combobox(
             self.body,
             textvariable=self.method,
             values=["Efectivo", "Transferencia"],
             state="readonly",
-        ).grid(row=7, column=0, sticky="ew")
-        self.add_entry("Referencia o comprobante", self.reference, 4)
+        )
+        self.method_control.grid(row=7, column=0, sticky="ew")
+        self.reference_entry = self.reference_entry = self.add_entry("Referencia o comprobante", self.reference, 4)
         self.add_entry("Notas", self.notes, 5)
         self.ticket_fields = CarryoverFields(self.body, lambda: self.plan_by_label.get(self.plan.get()), self.start_date, today, self.sync_mode)
         self.ticket_fields.grid(row=12, column=0, sticky="ew", pady=(12, 0))
         self.add_buttons(self.save, 13)
+        self._payment_controls = [widget for row in (4, 5, 6, 7, 8, 9) for widget in self.body.grid_slaves(row=row)]
         self.sync_amount()
         center_window(self, parent)
 
@@ -1049,8 +1051,16 @@ class MembershipDialog(BaseDialog):
     def sync_mode(self):
         moved = self.ticket_fields.enabled.get()
         plan = self.plan_by_label.get(self.plan.get()) or {}
-        self.amount.set('0' if moved else str(plan.get('price', 0)))
-        self.amount_entry.configure(state='disabled' if moved else 'normal')
+        internal = plan.get('plan_type') == 'INTERNAL'
+        self.amount.set('0' if moved or internal else str(plan.get('price', 0)))
+        self.amount_entry.configure(state='disabled' if moved or internal else 'normal')
+        for widget in self._payment_controls:
+            widget.grid_remove() if internal else widget.grid()
+        # grid_slaves excludes removed fields; restore the original widgets explicitly.
+        if not internal:
+            self.amount_entry.grid(); self.method_control.grid(); self.reference_entry.grid()
+        self.ticket_fields.grid_remove() if internal else self.ticket_fields.grid()
+        if internal: self.ticket_fields.enabled.set(False)
 
     def save(self) -> None:
         plan = self.plan_by_label.get(self.plan.get())
@@ -1076,70 +1086,22 @@ class MembershipDialog(BaseDialog):
             "notes": self.notes.get().strip(),
             **extra,
         }
+        if plan.get('plan_type') == 'INTERNAL':
+            from uuid import uuid4
+            self._assignment_request_id = getattr(self, '_assignment_request_id', None) or str(uuid4())
+            payload.update(internal=True, request_id=self._assignment_request_id, carryover=False,
+                           initial_entries_used=0, amount=0, payment_method='', payment_reference='')
         from ui_tasks import submit_payment
         submit_payment(self, payload, self.on_submit)
 
 
-class PlanDialog(BaseDialog):
+from membership_features import expiry_label
+from plan_editor_ui import PlanEditorMixin
+
+class PlanDialog(PlanEditorMixin, BaseDialog):
     def __init__(self, parent, data=None):
-        data = data or {}
-        super().__init__(parent, 'Editar plan' if data else 'Nuevo plan', 590, 680)
-        self.name = tk.StringVar(value=data.get('name', ''))
-        self.days = tk.StringVar(value=str(data.get('duration_days', 30)))
-        self.months = tk.StringVar(value=str(data.get('duration_months') or 1))
-        self.price = tk.StringVar(value=str(data.get('price', 55000)))
-        self.kind = tk.StringVar(value='Tiquetera / por entradas' if data.get('entry_limit') is not None else 'Mensualidad / por días')
-        old_days_ticket = data.get('entry_limit') is not None and data.get('duration_months') is None
-        self.unit = tk.StringVar(value='Días' if old_days_ticket else 'Meses calendario')
-        self.entries = tk.StringVar(value=str(data.get('entry_limit') or 15))
-        self.add_entry('Nombre del plan', self.name, 0)
-        ttk.Label(self.body, text='Tipo de plan', style='Field.TLabel').grid(row=2, column=0, sticky='w', pady=(10, 3))
-        ttk.Combobox(self.body, textvariable=self.kind, state='readonly', values=('Mensualidad / por días', 'Tiquetera / por entradas')).grid(row=3, column=0, sticky='ew')
-        self.unit_frame = ttk.Frame(self.body, style='Surface.TFrame')
-        self.unit_frame.grid(row=4, column=0, sticky='ew', pady=(10, 0))
-        self.unit_frame.columnconfigure(0, weight=1)
-        ttk.Label(self.unit_frame, text='Unidad de vigencia', style='Field.TLabel').grid(row=0, column=0, sticky='w')
-        ttk.Combobox(self.unit_frame, textvariable=self.unit, state='readonly', values=('Meses calendario', 'Días')).grid(row=1, column=0, sticky='ew', pady=(3, 0))
-        self.duration_label = ttk.Label(self.body, style='Field.TLabel')
-        self.duration_label.grid(row=5, column=0, sticky='w', pady=(10, 3))
-        self.duration_entry = ttk.Entry(self.body)
-        self.duration_entry.grid(row=6, column=0, sticky='ew')
-        self.entries_label = ttk.Label(self.body, text='Cantidad total de entradas', style='Field.TLabel')
-        self.entries_label.grid(row=7, column=0, sticky='w', pady=(10, 3))
-        self.entries_entry = ttk.Entry(self.body, textvariable=self.entries)
-        self.entries_entry.grid(row=8, column=0, sticky='ew')
-        ttk.Label(self.body, text='Precio', style='Field.TLabel').grid(row=9, column=0, sticky='w', pady=(10, 3))
-        ttk.Entry(self.body, textvariable=self.price).grid(row=10, column=0, sticky='ew')
-        self.hint = ttk.Label(self.body, style='CardMuted.TLabel', wraplength=490)
-        self.hint.grid(row=11, column=0, sticky='ew', pady=(12, 0))
-        self.add_buttons(self.save, 12)
-        self.kind.trace_add('write', lambda *_: self.update_kind())
-        self.unit.trace_add('write', lambda *_: self.update_kind())
-        self.update_kind()
+        super().__init__(parent, data)
         center_window(self, parent)
-
-    def update_kind(self):
-        ticket = self.kind.get() == 'Tiquetera / por entradas'
-        months = ticket and self.unit.get() == 'Meses calendario'
-        for widget in (self.unit_frame, self.entries_label, self.entries_entry):
-            widget.grid() if ticket else widget.grid_remove()
-        self.duration_label.configure(text='Cantidad de meses de vigencia' if months else 'Vigencia en días')
-        self.duration_entry.configure(textvariable=self.months if months else self.days)
-        self.hint.configure(text=(
-            'La tiquetera termina al agotar las entradas o vencer su vigencia. Los cambios se aplican a las próximas compras; las tiqueteras vendidas conservan su cupo y vencimiento. '
-            'Para trasladar una tiquetera anterior, abre el cliente y selecciona «Tiquetera ya iniciada» al registrar el plan.' if ticket else
-            'Acceso por días, sin límite de entradas durante la vigencia. Las membresías ya vendidas conservan sus fechas.'))
-
-    def save(self):
-        try:
-            ticket = self.kind.get() == 'Tiquetera / por entradas'
-            months = validate_months(self.months.get(), self.entries.get()) if ticket and self.unit.get() == 'Meses calendario' else None
-            values = validate_plan(self.name.get(), months * 30 if months else self.days.get(), self.price.get(), self.entries.get() if ticket else None)
-            self.result = (*values, months)
-        except ValueError as error:
-            messagebox.showwarning('Revisa el plan', str(error), parent=self)
-            return
-        self.destroy()
 
 
 class ExpenseDialog(BaseDialog):
@@ -1769,7 +1731,7 @@ class DashboardPage(BasePage):
         card_data = [
             (
                 "active_clients",
-                "Clientes activos",
+                "Clientes comerciales activos",
                 "\uE716",
                 COLORS["blue"],
                 COLORS["blue_bg"],
@@ -1790,7 +1752,7 @@ class DashboardPage(BasePage):
             ),
             (
                 "checkins_today",
-                "Entradas hoy",
+                "Entradas de clientes hoy",
                 "\uE787",
                 COLORS["warning"],
                 COLORS["warning_bg"],
@@ -1852,6 +1814,9 @@ class DashboardPage(BasePage):
                 pady=(0, 15),
             )
             self.metric_labels[key] = value
+
+        self.internal_summary = ttk.Label(self, text='Personal interno: 0 · Asistencias del personal hoy: 0', style='Muted.TLabel')
+        self.internal_summary.pack(anchor='w', pady=(8, 0))
 
         quick_section = ttk.Frame(
             self,
@@ -2065,6 +2030,7 @@ class DashboardPage(BasePage):
 
     def _render_refresh(self, data):
         metrics, self.expiration_groups, tickets, clients, today = data
+        self.internal_summary.configure(text=f"Personal interno: {metrics.get('internal_memberships', 0)} · Asistencias del personal hoy: {metrics.get('staff_checkins_today', 0)}")
         for key, label in self.metric_labels.items():
             label.configure(text=format_money(metrics[key]) if key == "income_month" else str(metrics[key]))
 
@@ -2427,7 +2393,7 @@ class DashboardPage(BasePage):
                 "today"
                 if info["period_label"] == "HOY 🎂"
                 else "inactive"
-                if status == "INACTIVO"
+                if status in ("INACTIVO", "INACTIVE")
                 else ""
             )
             tree.insert(
@@ -3924,6 +3890,14 @@ class FinancePage(BasePage):
         "Pagos eliminados": "PAGO_ELIMINADO",
         "Entradas": "ENTRADA_REGISTRADA",
         "Membresías congeladas": "MEMBERSHIP_FROZEN",
+        "Membresías reanudadas": "MEMBERSHIP_FREEZE_RESUMED",
+        "Planes internos creados": "INTERNAL_PLAN_CREATED",
+        "Planes internos editados": "INTERNAL_PLAN_UPDATED",
+        "Membresías internas asignadas": "INTERNAL_MEMBERSHIP_ASSIGNED",
+        "Membresías internas activadas": "INTERNAL_MEMBERSHIP_ACTIVATED",
+        "Membresías internas desactivadas": "INTERNAL_MEMBERSHIP_DEACTIVATED",
+        "Membresías internas editadas": "INTERNAL_MEMBERSHIP_UPDATED",
+        "Membresías internas eliminadas": "INTERNAL_MEMBERSHIP_REMOVED",
         "Congelaciones completadas": "MEMBERSHIP_FREEZE_COMPLETED",
         "Congelaciones canceladas": "MEMBERSHIP_FREEZE_CANCELLED",
         "Ingresos denegados por congelación": "CHECK_IN_DENIED_MEMBERSHIP_FROZEN",
@@ -4869,7 +4843,7 @@ class ClientsPage(BasePage):
         clear_tree(self.tree)
         for client in rows:
             status = client["membership_status"]
-            tag = "valid" if status == "AL DÍA" else "inactive" if status == "INACTIVO" else "expired"
+            tag = "valid" if status in ("AL DÍA", "ACTIVE") else "inactive" if status in ("INACTIVO", "INACTIVE") else "expired"
             self.tree.insert(
                 "",
                 "end",
@@ -4880,9 +4854,7 @@ class ClientsPage(BasePage):
                     client["phone"],
                     date_to_display(client.get("birthdate")) or "—",
                     status,
-                    date_to_display(
-                        client["membership_end"]
-                    ) or "—",
+                    expiry_label(client, date_to_display) or "—",
                 ),
                 tags=(tag,),
             )
@@ -5002,6 +4974,8 @@ class ClientsPage(BasePage):
             if days is not None and days <= 30:
                 birthdays.append((client, days))
 
+            if client.get('membership_type') == 'INTERNAL' or client.get('frozen'):
+                continue
             end_text = str(client.get("membership_end") or "")[:10]
             if not end_text or not client.get("active", True):
                 continue

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {database,root} from './migrations.mjs';
-const db=await database(); let checks=0;
+const db=await database({features:false}); let checks=0;
 const O='10000000-0000-4000-8000-000000000001',A='20000000-0000-4000-8000-000000000001',B='30000000-0000-4000-8000-000000000001';
 const commercial=fs.existsSync(path.join(root,'sql'));
 async function user(id){await db.exec('reset role');await db.query("select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false)",[id,JSON.stringify({sub:id,session_id:id})]);await db.exec('set role authenticated');}
@@ -138,3 +138,7 @@ try {
  await user(A);equal((await rpc('gym_local_clock',{p_gym_id:gym})).today,'2026-10-07');
  console.log(`PASS: ${checks} freeze checks (${commercial?'commercial':'ZTATTUZ'})`);
 }catch(e){console.error('FAIL FREEZE:',e.message,e.where||'',e.detail||'');process.exitCode=1;}finally{await db.close();}
+
+// Validate the additive upgrade after the preserved legacy contract.
+await import('./internal_memberships.mjs');
+await import('./early_resume.mjs');

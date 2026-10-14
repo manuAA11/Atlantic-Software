@@ -13,7 +13,7 @@ from plan_forms import validate_plan
 class AccessPlans(TestCase):
     def db(self):
         db=CloudDatabase.__new__(CloudDatabase);db.gym_id='gimnasio-prueba'
-        db.client=Mock();db._data=Mock(return_value=[{'id':17}]);db._execute=Mock()
+        db.client=Mock();db._data=Mock(return_value=[{'id':17}]);db._execute=Mock(return_value=Mock(data={'id':17}))
         return db
 
     def test_blank_and_missing_biometrics_are_empty_text_for_insert_and_edit(self):
@@ -32,7 +32,7 @@ class AccessPlans(TestCase):
     def test_ticket_limits_do_not_depend_on_plan_name(self):
         for limit in [1,15,20,37,None]:
             db=self.db();db.add_plan('Plan personalizado',30,55000,limit)
-            value=db.client.table.return_value.insert.call_args.args[0]
+            value=db.client.rpc.call_args.args[1]['p_data']
             self.assertEqual(value['entry_limit'],limit)
             self.assertEqual(value['duration_days'],30)
         self.assertEqual(validate_plan('Tiquetera',30,100,None)[3],None)
@@ -40,9 +40,10 @@ class AccessPlans(TestCase):
     def test_edit_ticket_limit_preserves_gym_scope(self):
         db=self.db();db._data.return_value=[{'entry_limit':15}]
         db.update_plan(17,'Tiquetera 20',30,60000,20)
-        value=db.client.table.return_value.update.call_args.args[0]
+        value=db.client.rpc.call_args.args[1]['p_data']
         self.assertEqual(value['entry_limit'],20)
-        self.assertEqual(db.client.table.return_value.update.return_value.eq.call_args.args,('gym_id','gimnasio-prueba'))
+        self.assertEqual(db.client.rpc.call_args.args[1]['p_gym_id'],'gimnasio-prueba')
+        self.assertEqual(db.client.rpc.call_args.args[1]['p_plan_id'],17)
 
     def test_existing_sales_prevent_days_to_tickets_type_change(self):
         db=self.db();db._data.side_effect=[[{'entry_limit':None}],[{'id':9}]]

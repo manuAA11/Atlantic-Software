@@ -2,6 +2,35 @@
 from calendar import monthrange
 from datetime import date, datetime, timedelta
 from money_input import parse_amount
+from membership_features import internal_plan
+
+
+def validate_plan_options(name, days, price, entry_limit=None, duration_months=None,
+                          plan_type='COMMERCIAL', unlimited_access=None,
+                          has_expiration=True, include_in_financial_stats=True):
+    if plan_type not in ('COMMERCIAL', 'INTERNAL'):
+        raise ValueError('Selecciona Comercial o Interno / No comercial.')
+    if plan_type == 'COMMERCIAL':
+        values = validate_plan(name, days, price, entry_limit)
+        months = validate_months(duration_months, values[3])
+        return (*values, months, 'COMMERCIAL', values[3] is None, True, bool(include_in_financial_stats))
+    name = str(name).strip()
+    if not name:
+        raise ValueError('Escribe el nombre del plan interno.')
+    if parse_amount(price) != 0:
+        raise ValueError('Un plan interno no comercial debe tener precio $0.')
+    unlimited = True if unlimited_access is None else bool(unlimited_access)
+    if unlimited:
+        limit = None
+    else:
+        try: limit = int(str(entry_limit))
+        except (ValueError, TypeError): raise ValueError('Indica el número de entradas del plan interno.') from None
+        if not 1 <= limit <= 1000000: raise ValueError('Indica una cantidad válida de entradas.')
+    if has_expiration:
+        _, days, _, _ = validate_plan(name, days, 0, limit)
+    else:
+        days = None
+    return name, days, 0, limit, None, 'INTERNAL', unlimited, bool(has_expiration), False
 
 
 def validate_plan(name, days, price, entry_limit=None):
@@ -22,6 +51,9 @@ def validate_plan(name, days, price, entry_limit=None):
 
 
 def plan_label(plan, money):
+    if internal_plan(plan):
+        access = 'Acceso ilimitado' if plan.get('unlimited_access', True) else f"{plan['entry_limit']} entradas"
+        return f"{plan['name']} · Interno · {access} · {plan_duration(plan)} · Sin pago"
     allowance = (f"{plan['entry_limit']} entradas · " if plan.get('entry_limit') is not None else '')
     return f"{plan['name']} · {allowance}{plan_duration(plan)} · {money(plan['price'])}"
 
@@ -39,6 +71,8 @@ def validate_months(value, entry_limit):
 
 
 def plan_duration(plan):
+    if plan.get('has_expiration', True) is False:
+        return 'Vigencia indefinida'
     months = plan.get('duration_months')
     if months is not None:
         return f"{months} {'mes calendario' if int(months) == 1 else 'meses calendario'}"
@@ -46,6 +80,8 @@ def plan_duration(plan):
 
 
 def plan_end_date(plan, start):
+    if plan.get('has_expiration', True) is False:
+        return None
     if isinstance(start, str):
         start = date.fromisoformat(start)
     months = plan.get('duration_months')
@@ -73,7 +109,18 @@ def carryover_values(plan, start, used, today):
 
 def membership_request(gym_id, client_id, plan_id, start_date, amount,
                        payment_method, payment_reference='', notes='', *,
-                       carryover=False, initial_entries_used=0, request_id=None):
+                       carryover=False, initial_entries_used=0, request_id=None, internal=False):
+    if internal:
+        from uuid import UUID
+        try: request_id = str(UUID(str(request_id)))
+        except (ValueError, TypeError, AttributeError):
+            raise ValueError('La referencia de asignación interna no es válida. Reabre el formulario.') from None
+        if carryover or initial_entries_used or int(amount) != 0:
+            raise ValueError('La asignación interna no utiliza pagos ni traslados de tiquetera.')
+        return 'assign_internal_membership', {
+            'p_gym_id': gym_id, 'p_client_id': int(client_id), 'p_plan_id': int(plan_id),
+            'p_request_id': request_id, 'p_start_date': start_date, 'p_notes': notes.strip(),
+        }
     if carryover:
         from uuid import UUID
         try:

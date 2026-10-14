@@ -1,0 +1,3 @@
+FAILED owner editor after 18 checks: multiple assignments to same column "duration_months"  SQL statement "update public.plans t set name=r.name,duration_days=r.duration_days,duration_months=r.duration_months,price=r.price,entry_limit=r.entry_limit,active=r.active,duration_months=r.duration_months,plan_type=r.plan_type,unlimited_access=r.unlimited_access,has_expiration=r.has_expiration,include_in_financial_stats=r.include_in_financial_stats from jsonb_populate_record(null::public.plans,$3) r where t.gym_id=$1 and t.id=$2 returning to_jsonb(t)"
+PL/pgSQL function private.owner_editor_record(uuid,text,bigint,text,jsonb,text,boolean) line 65 at EXECUTE
+SQL function "owner_editor_record" statement 1

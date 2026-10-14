@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-export async function database({upgrade=true,daily=true,marketing=true,freezes=true}={}) {
+export async function database({upgrade=true,daily=true,marketing=true,freezes=true,features=true}={}) {
  const db=new PGlite();
  await db.exec(`
  CREATE ROLE anon NOLOGIN; CREATE ROLE authenticated NOLOGIN; CREATE ROLE service_role NOLOGIN BYPASSRLS;
@@ -25,6 +25,10 @@ export async function database({upgrade=true,daily=true,marketing=true,freezes=t
  if(freezes && marketing && daily && upgrade) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_CONGELACION_Y_HORAS.sql'),'utf8'));
  if(freezes && marketing && daily && upgrade) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_SCHEDULER.sql'),'utf8'));
  if(freezes && marketing && daily && upgrade) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_INDICES_INTEGRACION.sql'),'utf8'));
+ if(features && freezes && marketing && daily && upgrade) {
+  await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_PLANES_INTERNOS.sql'),'utf8'));
+  await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_REANUDACION_MEMBRESIAS.sql'),'utf8'));
+ }
  return db;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){

@@ -1,8 +1,12 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
-Estado revisado el **9 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
+Estado revisado el **13 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
+
+## Cambio posterior: STAFF y reanudación anticipada
+
+El historial Windows descrito abajo corresponde al código anterior a estos cambios. La rama `feature/internal-plans-early-resume` incorpora planes internos no comerciales, métricas comerciales separadas de la asistencia del personal, y extensión por días completos efectivamente congelados. Guía, migraciones y alcance de validación: [MEMBRESIAS_STAFF_REANUDACION.md](MEMBRESIAS_STAFF_REANUDACION.md). No se aplicaron cambios a proyectos Supabase reales al registrar esta ampliación; después el usuario solicitó los nuevos instaladores de todas las aplicaciones y se inició su compilación Windows.
 
 ## Recuperación verificada
 

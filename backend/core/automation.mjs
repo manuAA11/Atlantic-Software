@@ -1,6 +1,9 @@
 import {normalizePhone,cleanText} from './security.mjs';
 export const VARIABLES=['nombre','apellido','gimnasio','plan','precio','fecha_vencimiento','dias_restantes','entradas_restantes','fecha_ultima_entrada','telefono','link_pago'];
 const dayNumber=s=>Math.floor(Date.parse(String(s).slice(0,10)+'T12:00:00Z')/86400000);
+export const INTERNAL_BILLING_TRIGGERS=new Set(['MEMBERSHIP_BEFORE','MEMBERSHIP_TODAY','MEMBERSHIP_AFTER','MEMBERSHIP_OVERDUE_REPEAT','MEMBERSHIP_RENEWED',
+ 'TICKET_REMAINING','TICKET_EXPIRING','TICKET_CONSUMED','FIRST_CHECK_IN_RENEWAL','INACTIVITY','MANUAL_PAYMENT','ONLINE_APPROVED','ONLINE_DECLINED','PAYMENT_PENDING','UNUSED_PAYMENT_LINK']);
+export function internalContext(context) {return context.membership?.membership_type==='INTERNAL'||context.plan?.plan_type==='INTERNAL';}
 export function localParts(instant,zone='America/Bogota') {
  const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(instant)).map(x=>[x.type,x.value]));
  return {date:`${p.year}-${p.month}-${p.day}`,time:`${p.hour}:${p.minute}`};
@@ -8,7 +11,7 @@ export function localParts(instant,zone='America/Bogota') {
 export function facts(context,event=null) {
  const m=context.membership||{},p=context.plan||{},today=context.today;
  const last=context.last_checkin?localParts(context.last_checkin,context.timezone).date:null;
- return {plan_id:p.id??m.plan_id,plan_type:(m.entry_limit??p.entry_limit)!=null?'ticket':'monthly',active:context.active===true,status:m.status,
+ return {plan_id:p.id??m.plan_id,plan_type:internalContext(context)?'internal':(m.entry_limit??p.entry_limit)!=null?'ticket':'monthly',active:context.active===true,status:m.status,
  entries_remaining:m.entries_remaining??null,days_remaining:m.end_date?dayNumber(m.end_date)-dayNumber(today):null,
  days_absent:dayNumber(today)-dayNumber(last||localParts(context.created_at,context.timezone).date),whatsapp_opt_in:context.whatsapp_opt_in===true,
  payment_method:event?.payload?.payment_method??null,payment_pending:event?.payload?.status==='PENDING',client_type:(m.entry_limit??p.entry_limit)===1?'session':(m.entry_limit??p.entry_limit)!=null?'ticket':'monthly'};
@@ -28,6 +31,7 @@ export function triggerMatches(rule,c,event=null) {
  let birthdayDays=birthday?dayNumber(thisYearBirthday)-dayNumber(today):null;
  if(birthdayDays<0)birthdayDays=dayNumber(String(Number(today.slice(0,4))+1)+'-'+birthday)-dayNumber(today);
  const et=event?.event_type,ep=event?.payload||{};
+ if(internalContext(c)&&(INTERNAL_BILLING_TRIGGERS.has(rule.trigger_type)||rule.include_payment_link))return false;
  if((m.frozen===true||m.status==='FROZEN')&&['MEMBERSHIP_BEFORE','MEMBERSHIP_TODAY','MEMBERSHIP_AFTER','MEMBERSHIP_OVERDUE_REPEAT','TICKET_EXPIRING','TICKET_REMAINING','INACTIVITY'].includes(rule.trigger_type))return false;
  switch(rule.trigger_type){
  case 'MEMBERSHIP_BEFORE':return f.plan_type==='monthly'&&f.days_remaining===n;
@@ -66,7 +70,7 @@ export function evaluate(rule,c,event=null) {
 }
 export function variablesFor(c,paymentLink='') {
  const f=facts(c),m=c.membership||{};
- return {nombre:c.first_name||'',apellido:c.last_name||'',gimnasio:c.gym_name||'',plan:c.plan?.name||m.plan_name||'Sin plan',precio:new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(c.plan?.price||0),fecha_vencimiento:m.end_date?.slice(0,10)||'Sin plan',dias_restantes:String(f.days_remaining??0),entradas_restantes:f.entries_remaining==null?'Sin límite':String(f.entries_remaining),fecha_ultima_entrada:c.last_checkin?localParts(c.last_checkin,c.timezone).date:'Sin registros',telefono:c.phone||'',link_pago:paymentLink};
+ return {nombre:c.first_name||'',apellido:c.last_name||'',gimnasio:c.gym_name||'',plan:c.plan?.name||m.plan_name||'Sin plan',precio:new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(c.plan?.price||0),fecha_vencimiento:m.has_expiration===false?'No aplica':m.end_date?.slice(0,10)||'Sin plan',dias_restantes:m.has_expiration===false?'':String(f.days_remaining??0),entradas_restantes:f.entries_remaining==null?'Sin límite':String(f.entries_remaining),fecha_ultima_entrada:c.last_checkin?localParts(c.last_checkin,c.timezone).date:'Sin registros',telefono:c.phone||'',link_pago:internalContext(c)?'':paymentLink};
 }
 export function renderMessage(body,variables) {return cleanText(body.replace(/\{\{([a-z_]+)\}\}/g,(_,name)=>{if(!VARIABLES.includes(name))throw new Error('Variable no admitida');return variables[name]??'';}));}
 export function recommendedRules() {

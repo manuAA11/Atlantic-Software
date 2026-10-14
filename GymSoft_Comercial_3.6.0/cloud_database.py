@@ -1,4 +1,5 @@
 from __future__ import annotations
+from plan_forms import validate_plan_options
 from gym_time import display_timestamp, local_datetime, timezone_for, parse_instant, local_wall_instant
 from plan_forms import membership_request
 from server_date import ServerDate
@@ -247,6 +248,9 @@ EXCEL_IMPORT_COLUMNS = {
     },
 }
 EXCEL_IMPORT_COLUMNS["memberships"].update(PAYMENT_EXCEL_COLUMNS)
+EXCEL_IMPORT_COLUMNS['plans'].update({'Tipo de plan': 'plan_type', 'Acceso ilimitado': 'unlimited_access', 'Tiene vencimiento': 'has_expiration', 'Incluir en finanzas': 'include_in_financial_stats'})
+EXCEL_IMPORT_COLUMNS['memberships'].update({'Tipo de membresía': 'membership_type', 'Membresía activa': 'membership_active', 'Acceso ilimitado': 'unlimited_access', 'Tiene vencimiento': 'has_expiration', 'Incluir en finanzas': 'include_in_financial_stats', 'Referencia de asignación': 'assignment_request_id'})
+EXCEL_IMPORT_COLUMNS['memberships'].update({'Historial de congelaciones': 'freeze_archive', 'Historial de consumo diario': 'ticket_consumption_archive'})
 
 
 
@@ -369,61 +373,14 @@ class CloudDatabase:
         return not rows
 
     # Dashboard
+    def membership_population(self):
+        value = self._execute(self.client.rpc('membership_population', {'p_gym_id': self.gym_id})).data
+        if isinstance(value, str): value = json.loads(value)
+        if not isinstance(value, dict): raise ValueError('No se pudo consultar el estado de las membresías.')
+        return value
+
     def dashboard_metrics(self) -> dict[str, int]:
-        today_date = self._today()
-        today = today_date.isoformat()
-
-        day_start = datetime.combine(
-            today_date,
-            time.min,
-            tzinfo=ZoneInfo(self.cloud.timezone),
-        )
-
-        next_day_start = (
-            day_start + timedelta(days=1)
-        )
-        clients = self._data(
-            self.client.table("clients")
-            .select("id, active")
-            .eq("gym_id", self.gym_id)
-        )
-        memberships = self._data(
-            self.client.table("memberships")
-            .select("client_id, start_date, end_date").eq("payment_status", "posted")
-            .eq("gym_id", self.gym_id)
-        )
-        checkins = self._data(
-            self.client.table("checkins")
-            .select("id, checkin_at, result")
-            .eq("gym_id", self.gym_id)
-            .eq("result", "PERMITIDA")
-            .gte(
-                "checkin_at",
-                day_start.isoformat(),
-            )
-            .lt(
-                "checkin_at",
-                next_day_start.isoformat(),
-            )
-        )
-        active_ids = {
-            int(item["id"])
-            for item in clients
-            if bool(item.get("active", True))
-        }
-        valid_ids = {
-            int(item["client_id"])
-            for item in memberships
-            if item.get("start_date", "") <= today <= item.get("end_date", "")
-        } & active_ids
-
-        return {
-            "active_clients": len(active_ids),
-            "valid_memberships": len(valid_ids),
-            "expired_memberships": max(len(active_ids) - len(valid_ids), 0),
-            "checkins_today": len(checkins),
-            "income_month": 0,
-        }
+        return self.membership_population()['metrics']
 
     def session_followup(self, days=7):
         response = self._execute(self.client.rpc('session_followup', {'p_gym_id': self.gym_id, 'p_days': int(days)}))
@@ -463,139 +420,15 @@ class CloudDatabase:
 
         return result
 
-    def membership_expiration_groups(
-        self,
-    ) -> dict[str, list[dict[str, Any]]]:
-        today = self._today()
-        groups: dict[str, list[dict[str, Any]]] = {
-            "expired": [],
-            "days_0_7": [],
-            "days_8_15": [],
-            "days_16_30": [],
-            "days_31_plus": [],
-        }
+    def membership_expiration_groups(self):
+        return self.membership_population()['groups']
 
-        clients = self._data(
-            self.client.table("clients")
-            .select(
-                "id, document, first_name, last_name, "
-                "phone, active"
-            )
-            .eq("gym_id", self.gym_id)
-            .eq("active", True)
-        )
+    def upcoming_expirations(self, days=7):
+        rows = self.membership_population()['clients']
+        return sorted([row for row in rows if row.get('membership_type') != 'INTERNAL'
+                       and row.get('frozen') is not True and row.get('days_remaining') is not None
+                       and 0 <= row['days_remaining'] <= int(days)], key=lambda row: row['end_date'])
 
-        latest_membership: dict[int, str] = {}
-
-        for membership in self._data(
-            self.client.table("memberships")
-            .select("client_id, end_date").eq("payment_status", "posted")
-            .eq("gym_id", self.gym_id)
-        ):
-            client_id = int(membership["client_id"])
-            end_date = str(
-                membership.get("end_date") or ""
-            )
-
-            if end_date:
-                latest_membership[client_id] = max(
-                    latest_membership.get(client_id, ""),
-                    end_date,
-                )
-
-        for client in clients:
-            client_id = int(client["id"])
-            end_text = latest_membership.get(client_id, "")
-            days_remaining: int | None = None
-
-            if end_text:
-                try:
-                    days_remaining = (
-                        date.fromisoformat(end_text) - today
-                    ).days
-                except ValueError:
-                    end_text = ""
-
-            if days_remaining is None or days_remaining < 0:
-                bucket = "expired"
-            elif days_remaining <= 7:
-                bucket = "days_0_7"
-            elif days_remaining <= 15:
-                bucket = "days_8_15"
-            elif days_remaining <= 30:
-                bucket = "days_16_30"
-            else:
-                bucket = "days_31_plus"
-
-            groups[bucket].append(
-                {
-                    "id": client_id,
-                    "document": client.get("document", ""),
-                    "client_name": (
-                        f"{client.get('first_name', '')} "
-                        f"{client.get('last_name', '')}"
-                    ).strip(),
-                    "phone": client.get("phone", ""),
-                    "end_date": end_text,
-                    "days_remaining": days_remaining,
-                }
-            )
-
-        for bucket, people in groups.items():
-            people.sort(
-                key=lambda person: (
-                    person["days_remaining"] is None,
-                    person["days_remaining"]
-                    if person["days_remaining"] is not None
-                    else 0,
-                    person["client_name"].casefold(),
-                )
-            )
-
-        return groups
-
-    def upcoming_expirations(self, days: int = 7) -> list[dict[str, Any]]:
-        today = self._today()       
-        limit = today + timedelta(days=days)
-        clients = {
-            int(row["id"]): row
-            for row in self._data(
-                self.client.table("clients")
-                .select("id, document, first_name, last_name, active")
-                .eq("gym_id", self.gym_id)
-                .eq("active", True)
-            )
-        }
-        latest: dict[int, str] = {}
-
-        for row in self._data(
-            self.client.table("memberships")
-            .select("client_id, end_date").eq("payment_status", "posted")
-            .eq("gym_id", self.gym_id)
-        ):
-            client_id = int(row["client_id"])
-            end_date = str(row["end_date"])
-            latest[client_id] = max(latest.get(client_id, ""), end_date)
-
-        result = []
-        for client_id, end_text in latest.items():
-            client = clients.get(client_id)
-            if not client:
-                continue
-            end = date.fromisoformat(end_text)
-            if today <= end <= limit:
-                result.append(
-                    {
-                        "id": client_id,
-                        "document": client["document"],
-                        "client_name": f"{client['first_name']} {client['last_name']}",
-                        "end_date": end_text,
-                    }
-                )
-
-        return sorted(result, key=lambda item: item["end_date"])
-
-    # Clientes
     def list_clients(self, search: str = "") -> list[dict[str, Any]]:
         rows = self._execute(self.client.rpc('reception_list_clients', {
             'p_gym_id': self.gym_id, 'p_search': search.strip()})).data or []
@@ -712,43 +545,28 @@ class CloudDatabase:
             query = query.eq("active", True)
         return self._data(query)
 
-    def add_plan(self, name: str, duration_days: int, price: int, entry_limit: int | None = None, duration_months: int | None = None) -> int:
-        clean_name, duration_days, price, entry_limit = validate_plan(name, duration_days, price, entry_limit)
-        duration_months = validate_months(duration_months, entry_limit)
-        payload = {
-            "gym_id": self.gym_id,
-            "name": clean_name,
-            "duration_days": int(duration_days),
-            "price": int(price),
-            "entry_limit": entry_limit,
-            "duration_months": duration_months,
-            "active": True,
-        }
-        rows = self._data(self.client.table("plans").insert(payload))
-        return int(rows[0]["id"])
+    def add_plan(self, name, duration_days, price, entry_limit=None, duration_months=None,
+                 plan_type='COMMERCIAL', unlimited_access=None, has_expiration=True, include_in_financial_stats=True):
+        values = validate_plan_options(name, duration_days, price, entry_limit, duration_months,
+                                       plan_type, unlimited_access, has_expiration, include_in_financial_stats)
+        fields = ('name','duration_days','price','entry_limit','duration_months','plan_type',
+                  'unlimited_access','has_expiration','include_in_financial_stats')
+        payload = dict(zip(fields, values), active=True)
+        row = self._execute(self.client.rpc('save_membership_plan', {'p_gym_id': self.gym_id, 'p_data': payload, 'p_reason': 'Plan creado desde Administración'})).data
+        return int(row['id'])
 
-    def update_plan(self, plan_id: int, name: str, duration_days: int, price: int, entry_limit: int | None = None, duration_months: int | None = None) -> None:
-        clean_name, duration_days, price, entry_limit = validate_plan(name, duration_days, price, entry_limit)
-        duration_months = validate_months(duration_months, entry_limit)
-        old = self._data(self.client.table("plans").select("entry_limit").eq("gym_id", self.gym_id).eq("id", plan_id).limit(1))
-        if old and (old[0].get("entry_limit") is None) != (entry_limit is None):
-            used = self._data(self.client.table("memberships").select("id").eq("gym_id", self.gym_id).eq("plan_id", plan_id).limit(1))
+    def update_plan(self, plan_id, name, duration_days, price, entry_limit=None, duration_months=None,
+                    plan_type='COMMERCIAL', unlimited_access=None, has_expiration=True, include_in_financial_stats=True):
+        values = validate_plan_options(name, duration_days, price, entry_limit, duration_months,
+                                       plan_type, unlimited_access, has_expiration, include_in_financial_stats)
+        old = self._data(self.client.table('plans').select('entry_limit').eq('gym_id', self.gym_id).eq('id', plan_id).limit(1))
+        if old and (old[0].get('entry_limit') is None) != (values[3] is None):
+            used = self._data(self.client.table('memberships').select('id').eq('gym_id', self.gym_id).eq('plan_id', plan_id).limit(1))
             if used:
-                raise ValueError("Este plan ya tiene compras registradas. Crea otro plan para cambiar entre días y entradas. Puedes editar el cupo de esta tiquetera para las próximas compras.")
-        self._execute(
-            self.client.table("plans")
-            .update(
-                {
-                    "name": clean_name,
-                    "duration_days": int(duration_days),
-                    "price": int(price),
-                    "entry_limit": entry_limit,
-                    "duration_months": duration_months,
-                }
-            )
-            .eq("gym_id", self.gym_id)
-            .eq("id", plan_id)
-        )
+                raise ValueError('Este plan ya tiene compras registradas. Crea otro plan para cambiar entre días y entradas.')
+        fields = ('name','duration_days','price','entry_limit','duration_months','plan_type',
+                  'unlimited_access','has_expiration','include_in_financial_stats')
+        self._execute(self.client.rpc('save_membership_plan', {'p_gym_id': self.gym_id, 'p_plan_id': int(plan_id), 'p_data': dict(zip(fields, values)), 'p_reason': 'Plan actualizado desde Administración'}))
 
     def set_plan_active(self, plan_id: int, active: bool) -> None:
         self._execute(
@@ -771,11 +589,12 @@ class CloudDatabase:
         carryover: bool = False,
         initial_entries_used: int = 0,
         request_id: str | None = None,
+        internal: bool = False,
         ) -> int:
             rpc_name, params = membership_request(
                 self.gym_id, client_id, plan_id, start_date, amount, payment_method,
                 payment_reference, notes, carryover=carryover,
-                initial_entries_used=initial_entries_used, request_id=request_id)
+                initial_entries_used=initial_entries_used, request_id=request_id, internal=internal)
             response = self._execute(self.client.rpc(rpc_name, params))
             
             rows = list(response.data or [])
@@ -790,7 +609,7 @@ class CloudDatabase:
     def list_memberships(self, client_id: int) -> list[dict[str, Any]]:
             rows = self._data(
                 self.client.table("memberships")
-                .select("*, plans(name)").eq("payment_status", "posted")
+                .select("*, plans(name)").in_("payment_status", ("posted", "non_commercial"))
                 .eq("gym_id", self.gym_id)
                 .eq("client_id", client_id)
                 .order("paid_at", desc=True)
@@ -1639,6 +1458,10 @@ class CloudDatabase:
                     ("duration_months", "Vigencia (meses calendario)"),
                     ("price", "Precio"),
                     ("entry_limit", "Límite de entradas"),
+                    ("plan_type", "Tipo de plan"),
+                    ("unlimited_access", "Acceso ilimitado"),
+                    ("has_expiration", "Tiene vencimiento"),
+                    ("include_in_financial_stats", "Incluir en finanzas"),
                     ("active", "Activo"),
                 ],
                 "memberships": [
@@ -1650,6 +1473,12 @@ class CloudDatabase:
                     ("plan_name", "Plan"),
                     ("start_date", "Inicio"),
                     ("end_date", "Vencimiento"),
+                    ("membership_type", "Tipo de membresía"),
+                    ("membership_active", "Membresía activa"),
+                    ("unlimited_access", "Acceso ilimitado"),
+                    ("has_expiration", "Tiene vencimiento"),
+                    ("include_in_financial_stats", "Incluir en finanzas"),
+                    ("assignment_request_id", "Referencia de asignación"),
                     ("entry_limit", "Entradas compradas"),
                     ("initial_entries_used", "Entradas utilizadas antes del traslado"),
                     ("amount", "Valor pagado"),
@@ -1659,6 +1488,8 @@ class CloudDatabase:
                     ("notes", "Notas"),
                     ("paid_at", "Fecha del pago"),
                     ("recorded_by", "Registrado por"),
+                    ("freeze_archive", "Historial de congelaciones"),
+                    ("ticket_consumption_archive", "Historial de consumo diario"),
                 ] + [(key, label) for label, key in PAYMENT_EXCEL_COLUMNS.items()],
                 "checkins": [
                     ("id", "ID"),
@@ -2245,7 +2076,7 @@ class CloudDatabase:
         boolean_fields = {
             "ticket_consumed", "already_consumed_today",
             "active",
-            "whatsapp_opt_in",
+            "whatsapp_opt_in", "unlimited_access", "has_expiration", "include_in_financial_stats", "membership_active",
         }
         integer_fields = {
             "duration_days",
@@ -2718,11 +2549,11 @@ class CloudDatabase:
                 required=True,
             )
 
-            if not row.get("start_date") or not row.get("end_date"):
+            if not row.get("start_date") or row.get("has_expiration", True) and not row.get("end_date"):
                 validation_errors.append(
                     f"Membresías, fila {row['__excel_row']}: faltan inicio o vencimiento."
                 )
-            elif str(row["end_date"]) < str(row["start_date"]):
+            elif row.get("end_date") and str(row["end_date"]) < str(row["start_date"]):
                 validation_errors.append(
                     f"Membresías, fila {row['__excel_row']}: el vencimiento "
                     "es anterior al inicio."

@@ -46,8 +46,9 @@ class TicketTests(unittest.TestCase):
         db.gym_id = 'gym'
         db.client = Mock()
         db._data = Mock(return_value=[{'id': 2}])
+        db._execute = Mock(return_value=Mock(data={'id':2}))
         db.add_plan('Bono 20', 60, 50000, 20, 2)
-        payload = db.client.table.return_value.insert.call_args.args[0]
+        payload = db.client.rpc.call_args.args[1]['p_data']
         self.assertEqual((payload['duration_months'], payload['entry_limit']), (2, 20))
 
     def test_export_preserves_contacts_as_text(self):

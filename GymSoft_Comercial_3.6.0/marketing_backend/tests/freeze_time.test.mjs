@@ -24,11 +24,11 @@ test('Expiry moved to October 27 sends on October 24, never October 17 or while 
  assert.equal(evaluate(rule,{...context,today:'2026-10-17',server_now:'2026-10-17T14:00:00Z'}),null);
  assert.equal(evaluate(rule,{...context,membership:{...context.membership,status:'FROZEN',frozen:true}}),null);
 });
-test('Verified chatbot shows freeze last day, resume day and extended expiry',async()=>{
+test('Verified chatbot shows real freeze start, maximum resume and original expiry',async()=>{
  const out=await respond({rpc:async()=>({state:'VERIFIED',client_id:1,first_name:'Ana',
-  membership:{...context.membership,status:'FROZEN',frozen:true,freeze_last_date:'2026-10-14',resume_date:'2026-10-15'}}),
+  membership:{...context.membership,status:'FROZEN',frozen:true,freeze_last_date:'2026-10-14',freeze:{start_date:'2026-10-08'},resume_date:'2026-10-15'}}),
   gym:{id:'g',name:'ZTATTUZ'},sender:'573001234567',message:{text:{body:'Mi membresía'}}});
- for(const text of ['CONGELADA','2026-10-14','2026-10-15','2026-10-27'])assert.ok(out.interactive.body.text.includes(text));
+ for(const text of ['CONGELADA','2026-10-08','2026-10-15','2026-10-27'])assert.ok(out.interactive.body.text.includes(text));
 });
 test('Worker completes freezes even when automation jobs are disabled',async()=>{
  const calls=[];

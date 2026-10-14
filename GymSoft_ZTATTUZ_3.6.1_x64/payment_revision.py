@@ -34,14 +34,20 @@ def payment_amount(row: dict[str, Any]) -> int:
 
 def posted_income(rows: list[dict[str, Any]]) -> int:
     return sum(payment_amount(row) for row in rows
-               if row.get("payment_status", "posted") == "posted")
+               if row.get("payment_status", "posted") == "posted"
+               and row.get("include_in_financial_stats", True) and row.get("membership_type") != "INTERNAL")
 
 
 def validate_import_payment(row: dict[str, Any]) -> None:
     """No permite que un estado desconocido se convierta en un pago vigente."""
     status = str(row.get("payment_status") or "posted").strip().lower()
-    if status not in ("posted", "void"):
-        raise ValueError("Estado del pago no válido: conserva posted o void en el Excel.")
+    if status not in ("posted", "void", "non_commercial"):
+        raise ValueError("Estado del pago no válido: conserva posted, void o non_commercial en el Excel.")
+    if status == 'non_commercial':
+        if row.get('membership_type') != 'INTERNAL' or payment_amount(row) != 0 or int(row.get('amount_paid') or 0) != 0:
+            raise ValueError('Una asignación interna debe conservar tipo INTERNAL y valor cero.')
+        if row.get('include_in_financial_stats') not in (None, False):
+            raise ValueError('Una asignación interna no puede incluirse en finanzas.')
     revision = row.get("payment_revision")
     if revision in (None, ""):
         revision = 0

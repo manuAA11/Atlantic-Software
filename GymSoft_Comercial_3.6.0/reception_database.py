@@ -260,7 +260,7 @@ class ReceptionDatabase:
         response = self._execute(
             self.client.table("plans")
             .select("id, name, duration_days, duration_months, price, entry_limit")
-            .eq("gym_id", self.gym_id)
+            .eq("gym_id", self.gym_id).eq("plan_type", "COMMERCIAL")
             .eq("active", True)
             .order("duration_days")
         )
