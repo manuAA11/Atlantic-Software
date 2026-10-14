@@ -1,0 +1,49 @@
+EN CURSO: python · 15 s · límite 300 s.
+................FFF................................F......................................................................................................Creando .venv con Python 3.14.8 de 64 bits...
+EN CURSO: python · 30 s · límite 300 s.
+Entorno listo: Python 3.14.8 de 64 bits.
+Entorno listo: Python 3.14 de 64 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261014_111108_d6b8bf99
+Creando .venv con Python 3.14.8 de 64 bits...
+Entorno listo: Python 3.14.8 de 64 bits.
+.............................................................
+======================================================================
+FAIL: test_each_entry_point_diagnoses_without_starting_app_or_cloud (test_diagnostic_components.DiagnosticComponentsTests.test_each_entry_point_diagnoses_without_starting_app_or_cloud) (entry_point='app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\test_diagnostic_components.py", line 76, in test_each_entry_point_diagnoses_without_starting_app_or_cloud
+    self.assertIn('no incluye relé', report['alcance'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no incluye relé' not found in 'Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector/relé físicos. No enumera ni abre puertos USB.'
+
+======================================================================
+FAIL: test_each_entry_point_diagnoses_without_starting_app_or_cloud (test_diagnostic_components.DiagnosticComponentsTests.test_each_entry_point_diagnoses_without_starting_app_or_cloud) (entry_point='reception_app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\test_diagnostic_components.py", line 76, in test_each_entry_point_diagnoses_without_starting_app_or_cloud
+    self.assertIn('no incluye relé', report['alcance'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no incluye relé' not found in 'Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector/relé físicos. No enumera ni abre puertos USB.'
+
+======================================================================
+FAIL: test_each_entry_point_diagnoses_without_starting_app_or_cloud (test_diagnostic_components.DiagnosticComponentsTests.test_each_entry_point_diagnoses_without_starting_app_or_cloud) (entry_point='owner_panel')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\test_diagnostic_components.py", line 76, in test_each_entry_point_diagnoses_without_starting_app_or_cloud
+    self.assertIn('no incluye relé', report['alcance'])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'no incluye relé' not found in 'Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector/relé físicos. No enumera ni abre puertos USB.'
+
+======================================================================
+FAIL: test_other_client_can_enter_next (test_door_access.DoorTests.test_other_client_can_enter_next)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\tests\test_door_access.py", line 131, in test_other_client_can_enter_next
+    self.assertEqual(self.usb.frames.count(RELAY_ON), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 214 tests in 41.510s
+
+FAILED (failures=4)

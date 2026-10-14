@@ -1,0 +1,18 @@
+{
+  "version": "3.6.0",
+  "started_at": "2026-10-14T11:10:31.982675+00:00",
+  "platform": "win32",
+  "scope": "all",
+  "status": "FAIL",
+  "stages": [
+    {
+      "name": "python",
+      "status": "FAIL",
+      "seconds": 42.38,
+      "log": "python.log",
+      "timed_out": false,
+      "callback_failure": true
+    }
+  ],
+  "error": "Falló python. La prueba detectó un error. Revisa D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\python.log."
+}
