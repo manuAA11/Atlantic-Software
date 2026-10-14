@@ -1,0 +1,43 @@
+Gym soft 3.6.1 · PASS
+Alcance: all · Plataforma: win32
+PASS: python (34.0 s) · python.log
+PASS: contratos_extraidos (0.8 s) · contratos_extraidos.log
+PASS: marketing_compile (2.0 s) · marketing_compile.log
+PASS: backend_sql_flow (2.1 s) · backend_sql_flow.log
+PASS: time_pipeline (1.8 s) · time_pipeline.log
+PASS: membership_freezes (15.5 s) · membership_freezes.log
+PASS: audit_logs (2.0 s) · audit_logs.log
+PASS: marketing_contracts (1.9 s) · marketing_contracts.log
+PASS: daily_tickets (1.7 s) · daily_tickets.log
+PASS: fingerprints (1.7 s) · fingerprints.log
+PASS: upgrade_compatibility (1.6 s) · upgrade_compatibility.log
+PASS: security (1.7 s) · security.log
+PASS: contracts (1.8 s) · contracts.log
+PASS: ticket_plans (1.8 s) · ticket_plans.log
+PASS: ticket_followup (1.8 s) · ticket_followup.log
+PASS: marketing_backend (0.4 s) · marketing_backend.log
+PASS: recorrido_huellas (18.6 s) · recorrido_huellas.log
+PASS: simulacion_gimnasio (12.9 s) · simulacion_gimnasio.log
+PASS: marketing_ui_smoke (12.5 s) · marketing_ui_smoke.log
+PASS: freeze_ui_smoke (18.8 s) · freeze_ui_smoke.log
+PASS: door_ui_smoke (12.8 s) · door_ui_smoke.log
+PASS: dialog_design_ui_smoke (17.5 s) · dialog_design_ui_smoke.log
+PASS: ui_wait_smoke (0.9 s) · ui_wait_smoke.log
+PASS: access_layout_ui_smoke (24.2 s) · access_layout_ui_smoke.log
+PASS: client_fingerprint_ui_smoke (10.3 s) · client_fingerprint_ui_smoke.log
+PASS: fingerprint_ui_smoke (9.6 s) · fingerprint_ui_smoke.log
+PASS: windows_ui_smoke (2.8 s) · windows_ui_smoke.log
+PASS: responsive_ui_smoke (67.2 s) · responsive_ui_smoke.log
+PASS: biometric_ui_smoke (4.1 s) · biometric_ui_smoke.log
+PASS: ticket_ui_smoke (7.5 s) · ticket_ui_smoke.log
+PASS: performance_ui_smoke (9.6 s) · performance_ui_smoke.log
+PASS: popdown_ui_smoke (4.5 s) · popdown_ui_smoke.log
+PASS: layout_modes_ui_smoke (49.2 s) · layout_modes_ui_smoke.log
+PASS: review_ui_smoke (6.9 s) · review_ui_smoke.log
+PASS: layout_consistency_ui_smoke (10.8 s) · layout_consistency_ui_smoke.log
+PASS: visibility_ui_smoke (3.3 s) · visibility_ui_smoke.log
+PASS: atlantic_branding_ui_smoke (0.6 s) · atlantic_branding_ui_smoke.log
+
+Estas pruebas usan datos ficticios y PostgreSQL local.
+Pendiente de comprobación manual: instaladores, hardware del lector, correo de acceso,
+conexión real entre equipos y envío de WhatsApp. Un PASS no garantiza ausencia de todo bug.
