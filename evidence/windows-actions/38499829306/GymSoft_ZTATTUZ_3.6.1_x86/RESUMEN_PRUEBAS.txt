@@ -1,0 +1,9 @@
+Gym soft 3.6.1 · FAIL
+Alcance: all · Plataforma: win32
+FAIL: python (35.7 s) · python.log
+
+Estas pruebas usan datos ficticios y PostgreSQL local.
+Pendiente de comprobación manual: instaladores, hardware del lector, correo de acceso,
+conexión real entre equipos y envío de WhatsApp. Un PASS no garantiza ausencia de todo bug.
+
+Falló python. La prueba detectó un error. Revisa D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\python.log.

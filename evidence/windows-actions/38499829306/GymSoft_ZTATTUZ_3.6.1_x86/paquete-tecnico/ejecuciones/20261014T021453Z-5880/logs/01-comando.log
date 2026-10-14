@@ -1,0 +1,68 @@
+["D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\run_validation.py"]
+Gym soft 3.6.1 · Validación local con lector simulado
+
+PRUEBA: python
+EN CURSO: python · 15 s · límite 300 s.
+...............................FE...........................................................................................Creando .venv con Python 3.14.8 de 32 bits...
+Entorno listo: Python 3.14.8 de 32 bits.
+Entorno listo: Python 3.14 de 32 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261014_021521_91a3b2a2
+Creando .venv con Python 3.14.8 de 32 bits...
+EN CURSO: python · 30 s · límite 300 s.
+Entorno listo: Python 3.14.8 de 32 bits.
+...........................................................
+======================================================================
+ERROR: test_duplicate_callbacks_concurrently_write_the_backend_once (test_door_access.DoorTests.test_duplicate_callbacks_concurrently_write_the_backend_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\tmptk9fbqjj\\puerta_eventos.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\test_door_access.py", line 52, in tearDown
+    self.door.close(); self.temp.cleanup()
+                       ~~~~~~~~~~~~~~~~~^^
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\hostedtoolcache\windows\Python\3.14.8\x86\Lib\tempfile.py", line 931, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\tmptk9fbqjj\\puerta_eventos.db'
+
+======================================================================
+FAIL: test_duplicate_callbacks_concurrently_write_the_backend_once (test_door_access.DoorTests.test_duplicate_callbacks_concurrently_write_the_backend_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\test_door_access.py", line 355, in test_duplicate_callbacks_concurrently_write_the_backend_once
+    first.start(); self.assertTrue(entered.wait(1))
+                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 183 tests in 34.654s
+
+FAILED (failures=1, errors=1)
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 91, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 74, in main
+    stage('python',[sys.executable,'-m','unittest','discover','-s','tests','-p','test_*.py'])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 66, in stage
+    raise RuntimeError(f'Falló {name}. {reason} Revisa {log}.')
+RuntimeError: Falló python. La prueba detectó un error. Revisa D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\python.log.

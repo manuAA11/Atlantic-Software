@@ -1,0 +1,18 @@
+{
+  "version": "3.6.1",
+  "started_at": "2026-10-14T02:14:53.288059+00:00",
+  "platform": "win32",
+  "scope": "all",
+  "status": "FAIL",
+  "stages": [
+    {
+      "name": "python",
+      "status": "FAIL",
+      "seconds": 35.74,
+      "log": "python.log",
+      "timed_out": false,
+      "callback_failure": true
+    }
+  ],
+  "error": "Falló python. La prueba detectó un error. Revisa D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\python.log."
+}
