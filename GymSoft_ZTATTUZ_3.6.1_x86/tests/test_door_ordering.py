@@ -9,6 +9,7 @@ from door_access import DoorConfig, PulseSession, RELAY_OFF, RELAY_ON
 
 class Controller:
     def __init__(self):
+        self._stop = threading.Event()
         self._cancel = threading.Event()
         self._fault = False
         self.records = []

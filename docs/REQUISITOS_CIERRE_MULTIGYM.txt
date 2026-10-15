@@ -389,3 +389,11 @@ PAQUETE COMPLETO GYM SOFT / ATLANTIC GYM
 INSTRUCCIONES PARA GENERAR EXE / INSTALADORES
 No me entregues los paquetes finales hasta haber ejecutado primero todas las validaciones que puedas realizar.
 Empieza ahora desde el estado recuperado y continúa trabajando hasta completar todo lo anterior. No te detengas después de hacer solamente un análisis o un plan.
+
+ACTUALIZACIÓN DE PRIORIDAD DEL USUARIO — 15 DE OCTUBRE DE 2026
+Pausar la actualización de Tienda/POS mientras se revisa el incidente de puerta.
+Primera entrada abre; al activarse el relé se corta la música Bluetooth; después
+la asistencia sigue registrándose pero las siguientes entradas no abren.
+Relé conectado mediante un adaptador USB, tipo pendiente de confirmar.
+Continuar revisando el código aun sin diagnóstico del computador afectado.
+Conservar el trabajo POS y retomarlo después de resolver esta incidencia.

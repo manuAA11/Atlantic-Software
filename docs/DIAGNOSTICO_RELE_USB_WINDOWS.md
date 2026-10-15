@@ -1,5 +1,40 @@
 # Diagnóstico del relé USB en Windows
 
+## Incidencia posterior: primera apertura y desconexión de música Bluetooth
+
+El 15 de octubre el usuario aclaró que la primera entrada abre la puerta y en
+ese mismo momento se interrumpe la música Bluetooth. Los siguientes chequeos
+siguen registrándose, pero no abren. El relé utiliza un adaptador USB cuyo tipo
+exacto todavía no se confirmó. Falta el diagnóstico del computador afectado.
+
+La revisión no encontró código que controle Bluetooth, abra sus puertos ni
+modifique la energía de Windows. Una pérdida de comunicación con el CH340 puede
+activar el bloqueo de nuevas aperturas. La coincidencia temporal con Bluetooth
+requiere comprobar Windows, el adaptador y la instalación; no acredita por sí
+sola una causa eléctrica ni un problema de arquitectura de 32 bits.
+
+Se reprodujeron **dos defectos de limpieza USB en las fuentes** mediante un
+transporte simulado: el cierre de la aplicación podía quedarse dentro de un
+`close()` nativo bloqueado, y una limpieza concurrente podía devolver el control
+antes de que ese cierre terminara. Las pruebas de reproducción fallaron antes
+de la corrección. Esto no demuestra que esos defectos provocaran el corte de
+Bluetooth del usuario.
+
+La corrección solicita cancelación/OFF desde un trabajador de cierre, limita la
+espera del hilo de interfaz y conserva el bloqueo exclusivo del puerto hasta
+que el controlador termine realmente. Si el cierre supera su plazo de
+observación, registra estado desconocido y mantiene el fallo hasta un OFF
+confirmado. No fuerza reaperturas, no reenvía ON y no cambia DTR/RTS, comandos,
+cableado ni configuración de Bluetooth. También rechaza ON si el cierre ya
+comenzó. El fallo de creación del monitor auxiliar no omite el cierre nativo.
+
+La herramienta de [diagnóstico USB/Bluetooth](DIAGNOSTICO_USB_BLUETOOTH_32BITS.md)
+recoge el estado anterior y posterior sin operar el relé. Las comprobaciones
+locales y sus límites se conservan en `evidence/relay-cleanup-20261015`.
+La actualización de Tienda permanece pausada por petición del usuario; esta
+corrección del relé se conserva aparte y todavía requiere compilación Windows
+y comprobación en el computador afectado.
+
 ## Incidencia comunicada el 14 de octubre de 2026
 
 En el computador de 32 bits, el usuario informa que Recepción registra entradas

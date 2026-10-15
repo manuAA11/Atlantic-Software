@@ -201,6 +201,8 @@ class PulseSession:
         self.io_lock = threading.Lock()
         self.done = threading.Event()
         self.writing = threading.Event()
+        self.closing = threading.Event()
+        self.close_completed = threading.Event()
         self.finished = False
         self.error = None
         self.timer = None
@@ -212,6 +214,8 @@ class PulseSession:
             with self.lock:
                 if self.finished:
                     raise TimeoutError('El ciclo del relé ya terminó.')
+                if frame == UNLOCK_NC and self.controller._stop.is_set():
+                    raise _error_stage(RuntimeError('El control de puerta se está cerrando; no se envió ON.'), 'unlock_write')
                 self.writing.set()
             try: self.controller._write(self.connection, frame)
             except Exception as error:
@@ -229,8 +233,10 @@ class PulseSession:
             first = not self.finished
             self.finished = True
         if not first:
-            self.done.wait(1.5)
-            return self.done.is_set() and self.error is None
+            # Only background workers call finish(). They must retain the COM
+            # equipment lock until the original native cleanup really ends.
+            self.done.wait()
+            return self.error is None
         if self.timer: self.timer.cancel()
         self.controller._cancel.set()
         owns_io = False
@@ -264,6 +270,13 @@ class PulseSession:
                                     **details, state='Desconocido')
             self.controller._status(details['error'], 'error')
         finally:
+            self.closing.set()
+            close_guard = threading.Timer(1.0, self._close_timeout)
+            close_guard.daemon = True
+            try: close_guard.start()
+            except RuntimeError:
+                # Losing an observational thread must never skip native close.
+                self.controller._record('relay_close_monitor_unavailable', stage='serial_close')
             try: self.connection.close()
             except Exception as error:
                 _error_stage(error, 'serial_close')
@@ -273,9 +286,31 @@ class PulseSession:
                     self.controller._status(details['error'], 'error')
                 self.error = self.error or error
                 self.controller._fault = True
+            finally:
+                with self.lock:
+                    self.close_completed.set()
+                close_guard.cancel()
+                self.closing.clear()
             if owns_io: self.io_lock.release()
             self.done.set()
         return self.error is None
+
+    def _close_timeout(self):
+        # Observation only: never release the equipment lock, close a second
+        # handle, retry ON, or pretend the native driver has returned.
+        with self.lock:
+            if self.close_completed.is_set():
+                return
+            self.controller._fault = True
+            primary = self.error is None
+            if primary:
+                self.error = _error_stage(TimeoutError('El controlador USB no terminó de cerrar el puerto.'), 'serial_close')
+        if primary:
+            details = relay_failure(self.error, self.config.port)
+            self.controller._record('relay_close_timeout', port=self.config.port, **details, state='Desconocido; cierre USB pendiente')
+            self.controller._status(details['error'], 'error')
+        else:
+            self.controller._record('relay_close_timeout', port=self.config.port, state='Desconocido; cierre USB pendiente', stage='serial_close')
 
 
 @contextmanager
@@ -321,6 +356,7 @@ class DoorController:
         self._log_guard = threading.Lock()
         self._state = dict(connection='Sin comprobar', state='Reposo solicitado', last_command='—', last_error='—')
         self._session = None
+        self._shutdown_thread = None
         self.offline = offline
         self.events = queue.Queue(maxsize=32)
         self._commands = queue.Queue(maxsize=1)
@@ -589,10 +625,31 @@ class DoorController:
 
     def close(self):
         self._stop.set(); self._cancel.set()
-        session = self._session
-        if session: session.finish(reason='shutdown')
+        shutdown = None
+        with self._guard:
+            session = self._session
+            if session and self._shutdown_thread is None:
+                # Tk must never enter a native COM close. Request OFF/cancel
+                # immediately even if an ON write is blocked before finally.
+                shutdown = threading.Thread(target=session.finish, kwargs={'reason': 'shutdown'},
+                                            name='Atlantic-LCUS1-Shutdown', daemon=True)
+                self._shutdown_thread = shutdown
+        if shutdown:
+            try: shutdown.start()
+            except RuntimeError:
+                # The existing worker/finally and watchdog remain responsible
+                # for OFF. Never enter blocking USB code from the Tk caller.
+                self._fault = True
+                with self._state_guard: self._state['state'] = 'Desconocido; cierre auxiliar no disponible'
+                self._status('No se pudo iniciar el cierre auxiliar USB. Se mantiene la cancelación de la operación.', 'warning')
         if threading.current_thread() is not self._thread:
             self._thread.join(timeout=2)
+        if self._thread.is_alive():
+            self._fault = True
+            # No disk logging on the Tk shutdown path: the cleanup guardian
+            # records the native failure from its own background thread.
+            with self._state_guard: self._state['state'] = 'Desconocido; cierre USB pendiente'
+            self._status('El cierre USB sigue pendiente. No se enviarán nuevas aperturas.', 'warning')
 
 
 class DoorDatabase:

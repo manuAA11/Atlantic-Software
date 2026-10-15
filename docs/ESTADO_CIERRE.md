@@ -127,3 +127,33 @@ El entorno de desarrollo Linux/Tk/PGlite está comprobado. `install_script` y `s
 La revisión de puerta solicitada el 14 de octubre está en [CONTROL_PUERTA_ESTADO.md](CONTROL_PUERTA_ESTADO.md). Añade watchdog, debounce previo al RPC, diagnóstico y capa opcional común; los instaladores de `24ca689` preceden a esa revisión. Las pruebas Windows y descargas nuevas deben corresponder al commit posterior de puerta, sin sustituir el historial anterior.
 
 Revisión de puerta completada por software: run `38555801086`/commit `7a44de8`, 111 etapas y 599 tests Python Windows aprobados. Instaladores actualizados en [configuracion-pruebas-7a44de8](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-7a44de8), con alcance NO FINAL y [checklist presencial](../PRUEBA_PUERTA_ZTATTUZ.md). Detalle/descarga separada de Propietario y su alcance de verificación en [CONTROL_PUERTA_ESTADO.md](CONTROL_PUERTA_ESTADO.md).
+
+## Incidencia prioritaria del 15 de octubre: relé y Bluetooth
+
+El usuario pidió pausar Tienda/POS: la primera entrada abre, la música Bluetooth
+se interrumpe al activar el relé y las siguientes entradas se registran sin
+abrir. Indicó un adaptador USB en la conexión del relé, sin confirmar su tipo.
+Todavía no se recibió el diagnóstico de Windows. No se confirmó una causa
+eléctrica, de controlador, de adaptador o de arquitectura de 32 bits.
+
+Se corrigieron dos defectos reproducidos con USB simulado: cierre nativo capaz
+de bloquear el hilo de interfaz, y liberación del bloqueo exclusivo antes de
+terminar una limpieza concurrente. El cierre conserva el bloqueo hasta terminar,
+marca estado desconocido si se atasca, intenta cancelación/OFF fuera de Tk y no
+permite ON después de comenzar el cierre. Mantiene autorización, watchdog,
+debounce, comandos y necesidad de restablecimiento explícito tras fallo.
+
+Las tres ediciones aprobaron 69 pruebas de puerta cada una y 78 comprobaciones
+de interfaz cada una: **207 pruebas unitarias y 234 comprobaciones gráficas**.
+Esto es Linux/CPython/Tk con USB simulado, sin probar Windows32, Bluetooth ni el
+relé del usuario. Se conservan reproducciones FAIL y resultados PASS en
+`evidence/relay-cleanup-20261015`. La guía y el colector de estado Windows están
+en [DIAGNOSTICO_USB_BLUETOOTH_32BITS.md](DIAGNOSTICO_USB_BLUETOOTH_32BITS.md).
+
+Estas fuentes aún necesitan compilación Windows y prueba en el equipo afectado;
+los instaladores publicados anteriormente no incorporan la corrección. El API
+GitHub/Actions sigue rechazando la conexión de este entorno con `Forbidden`.
+No se modificó `release_readiness.json` ni se acreditó aceptación de hardware.
+El trabajo de Tienda permanece conservado como borrador en el entorno y en un
+checkpoint local, sin generar instaladores ni retomar su implementación durante
+la incidencia.

@@ -1,0 +1,92 @@
+{
+  "created_at": "2026-10-15T22:00:12.574837+00:00",
+  "base_commit": "57febfba44c1890ea049bfad49ae015304d0c6ec",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux",
+  "process_bits": 64,
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "unit_tests": 69,
+      "unit_status": "PASS",
+      "ui_checks": 78,
+      "ui_status": "PASS",
+      "scope": "Linux CPython/Tk with simulated USB; edition source layout, not Windows process architecture",
+      "unit_log": "GymSoft_Comercial_3.6.0-unit.log",
+      "ui_log": "GymSoft_Comercial_3.6.0-ui.log"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "unit_tests": 69,
+      "unit_status": "PASS",
+      "ui_checks": 78,
+      "ui_status": "PASS",
+      "scope": "Linux CPython/Tk with simulated USB; edition source layout, not Windows process architecture",
+      "unit_log": "GymSoft_ZTATTUZ_3.6.1_x64-unit.log",
+      "ui_log": "GymSoft_ZTATTUZ_3.6.1_x64-ui.log"
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "unit_tests": 69,
+      "unit_status": "PASS",
+      "ui_checks": 78,
+      "ui_status": "PASS",
+      "scope": "Linux CPython/Tk with simulated USB; edition source layout, not Windows process architecture",
+      "unit_log": "GymSoft_ZTATTUZ_3.6.1_x86-unit.log",
+      "ui_log": "GymSoft_ZTATTUZ_3.6.1_x86-ui.log"
+    }
+  ],
+  "totals": {
+    "unit_tests": 207,
+    "ui_checks": 234
+  },
+  "baseline": {
+    "status": "FAIL",
+    "tests": 3,
+    "failures": 2,
+    "passed": 1,
+    "log": "before-cleanup-regressions.log",
+    "note": "Reproduced native close blocking Tk caller and early release of equipment lock while concurrent cleanup was still in native close."
+  },
+  "intermediate": {
+    "status": "FAIL",
+    "tests": 63,
+    "failures": 5,
+    "log": "intermediate-fixture-missing-stop.log",
+    "note": "Existing lightweight ordering-test controller lacked the newly required stop event. Fixture updated to model real controller; all ordering checks retained and pass in final runs."
+  },
+  "collector": {
+    "status": "PASS",
+    "checks": 97,
+    "runtime": "PowerShell 7.4.13 Linux",
+    "log": "collector-powershell-linux.log",
+    "scope": "Parser and helper functions with fake PnP/events/logs. Windows main flow, BAT, filesystem APIs, PowerShell 5.1 and hardware not executed."
+  },
+  "physical_validation": "NOT_RUN: user diagnostic pending; Bluetooth disconnection cause unconfirmed",
+  "windows_build": "NOT_RUN: GitHub API returned Forbidden; previously published installers unchanged",
+  "pos_update": "PAUSED by user; no POS installers generated",
+  "source_hashes": {
+    "common/door_access.py": "6d346e823ce542607deed0bc8d781fae7ed0f7653f00b65f2408a297aa6760eb",
+    "common/test_door_cleanup.py": "9920537cc82a912dacaa9fab0615b3bd27aece918ba9aeabc641d9ddf93f9cb7",
+    "common/test_door_cleanup_extra.py": "89969fe81c0d81879ac298c9d307b89782709d41683f209867a549485947902f",
+    "common/test_door_ordering.py": "bba499775a762cfb48472235a75d189067c98eb5765ed0f67bbc0bb6a2ac3772",
+    "common/sync_door_features.py": "60c42f1e9f6201d46711854693b190b5799144cf6dbff36bf2ae2f255a5ee308",
+    "tools/diagnose_relay_usb.ps1": "fb8826a21c4298fa48ef44a80eb463e01b1da2a737a2c4c969ce6593a6f2a963",
+    "tools/DIAGNOSTICAR_RELE_USB.bat": "b2e09f8188616a9a7f8efe70c45348b982980b0db0fc793f05ea1f76a9cde3d1",
+    "tools/tests/test_diagnose_relay_usb.ps1": "18c7dbb7770480c79f949a2b91fcd5188e86d767a456ded828ef1dced4d08c7f",
+    "GymSoft_Comercial_3.6.0/door_access.py": "6d346e823ce542607deed0bc8d781fae7ed0f7653f00b65f2408a297aa6760eb",
+    "GymSoft_ZTATTUZ_3.6.1_x64/door_access.py": "6d346e823ce542607deed0bc8d781fae7ed0f7653f00b65f2408a297aa6760eb",
+    "GymSoft_ZTATTUZ_3.6.1_x86/door_access.py": "6d346e823ce542607deed0bc8d781fae7ed0f7653f00b65f2408a297aa6760eb"
+  },
+  "log_hashes": {
+    "GymSoft_Comercial_3.6.0-ui.log": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+    "GymSoft_Comercial_3.6.0-unit.log": "2d996b8c3bb3d961a70c22417556421f5352afa2e963cee6c3786a2d6dce97b3",
+    "GymSoft_ZTATTUZ_3.6.1_x64-ui.log": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+    "GymSoft_ZTATTUZ_3.6.1_x64-unit.log": "0e6719197a6e485341aa28d612299c5ba44a593dc45fa897999037f6bd8df4b2",
+    "GymSoft_ZTATTUZ_3.6.1_x86-ui.log": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18",
+    "GymSoft_ZTATTUZ_3.6.1_x86-unit.log": "73ba5420e4bab5ceb661f701e72e48350e603feba157f4fd6f5a1645017d1581",
+    "before-cleanup-regressions.log": "a32bf3ded580f33062742e8183cee2af7f0aef026ee46e12f7d62b167fba3d68",
+    "collector-powershell-linux.log": "f90309c25c22361ccdb0526ace4c4f1bdb2f38c0aefd7ceacf154788e5782fe0",
+    "intermediate-fixture-missing-stop.log": "7c0c99a25b9fe676e8c4d5ab231cc2fb6863ccff2fc7236995667a61acc13daf"
+  }
+}
