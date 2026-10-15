@@ -108,7 +108,7 @@ class OwnerEditor(Modal):
         self.page_var=tk.StringVar(self,value='Selecciona Buscar / actualizar para cargar.')
         ttk.Label(nav,textvariable=self.page_var,foreground=MUTED).pack(side='left')
         action=ttk.Frame(records);action.pack(fill='x')
-        for label,command in [('✎  Editar seleccionado',self.edit_record),('Ver detalle',self.show_record),('Eliminar registro…',self.delete_record)]:
+        for label,command in [('Nuevo plan',self.create_plan),('Membresía y congelación',self.membership_details),('✎  Editar seleccionado',self.edit_record),('Ver detalle',self.show_record),('Eliminar registro…',self.delete_record)]:
             ttk.Button(action,text=label,command=command).pack(side='left',padx=(0,8))
         ttk.Label(records,text='Los registros con dependencias deben revisarse antes de eliminarlos. Corregir o eliminar una venta ajusta el inventario.',wraplength=840,foreground=MUTED).pack(anchor='w',pady=(10,0))
         database=ttk.Frame(tabs,padding=16);tabs.add(database,text='Base de datos y eliminación')
@@ -287,10 +287,54 @@ class OwnerEditor(Modal):
         item=self.selected()
         if not item:return
         if not any(c['editable'] for c in self.columns):self.show_record();return
-        result=RecordForm(self,item,self.columns,self.loaded_table).result
+        if self.loaded_table=='memberships' and item['data'].get('membership_type')=='INTERNAL':
+            self.membership_details();return
+        if self.loaded_table=='plans':
+            from plan_editor_ui import OwnerPlanDialog
+            values=OwnerPlanDialog(self,item['data']).show()
+            if not values:return
+            fields=('name','duration_days','price','entry_limit','duration_months','plan_type','unlimited_access','has_expiration','include_in_financial_stats')
+            patch={key:value for key,value in zip(fields,values) if value!=item['data'].get(key)}
+            if not patch:return
+            from desktop_ui import simpledialog
+            reason=simpledialog.askstring('Modificar plan','Motivo del cambio (obligatorio):',parent=self)
+            if not reason:return
+            result={'p_patch':patch,'p_reason':reason}
+        else:
+            result=RecordForm(self,item,self.columns,self.loaded_table).result
         if not result:return
         params={'p_gym_id':self.gym['id'],'p_table':self.loaded_table,'p_id':item['data']['id'],'p_expected':item['version'],**result}
         self.run(lambda:self.call('owner_editor_record',params),lambda _:self.load_records())
+
+    def create_plan(self):
+        from plan_editor_ui import OwnerPlanDialog
+        from desktop_ui import simpledialog
+        values=OwnerPlanDialog(self).show()
+        if not values:return
+        reason=simpledialog.askstring('Crear plan','Motivo de creación (obligatorio):',parent=self)
+        if not reason:return
+        fields=('name','duration_days','price','entry_limit','duration_months','plan_type','unlimited_access','has_expiration','include_in_financial_stats')
+        params={'p_gym_id':self.gym['id'],'p_data':dict(zip(fields,values)),'p_reason':reason}
+        def saved(_):
+            self.table_var.set('Planes');self.load_records(reset=True)
+        self.run(lambda:self.call('save_membership_plan',params),saved)
+
+    def membership_details(self):
+        item=self.selected()
+        if not item:return
+        if self.loaded_table not in ('clients','memberships'):
+            messagebox.showinfo('Membresía','Selecciona un cliente o una membresía.',parent=self);return
+        from types import SimpleNamespace
+        from membership_freeze_ui import open_freeze_manager
+        panel=self.panel
+        class Adapter:
+            gym_id=self.gym['id']
+            cloud=SimpleNamespace(role='owner',timezone=self.gym.get('timezone','America/Bogota'))
+            def rpc(self,name,parameters):return name,parameters
+            def _execute(self,query):return SimpleNamespace(data=panel.rpc(*query))
+        db=Adapter();db.client=db
+        row=item['data'];client_id=row['id'] if self.loaded_table=='clients' else row['client_id']
+        open_freeze_manager(self,db,client_id,'Cliente #'+str(client_id),lambda:self.load_records())
 
     def backup_path(self,purpose='Respaldo'):
         return filedialog.asksaveasfilename(title=purpose,defaultextension='.json',

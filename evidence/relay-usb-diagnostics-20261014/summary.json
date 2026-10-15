@@ -1,0 +1,116 @@
+{
+  "observed_at_utc": "2026-10-14T23:47:31.067218+00:00",
+  "status": "PASS_LOCAL_REGRESSION",
+  "scope": "CPython 3.14/Tk on Linux, simulated USB; no Windows or physical relay validation.",
+  "source_base_commit": "f31bdf81480dc37a42be50cdc4643599ab11c2ae",
+  "source_file_sha256": {
+    "GymSoft_Comercial_3.6.0/door_access.py": "1151d1dc20d5680402cdf22aa66de1b3eaceb10e9ba1864f9355092acfd0ca19",
+    "GymSoft_Comercial_3.6.0/tests/test_door_access.py": "afbfdd7807e1dd5b3d41f1be5bd3b082c4c5a4b366825b7ddc7be148126ef707",
+    "GymSoft_ZTATTUZ_3.6.1_x64/door_access.py": "1151d1dc20d5680402cdf22aa66de1b3eaceb10e9ba1864f9355092acfd0ca19",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_door_access.py": "afbfdd7807e1dd5b3d41f1be5bd3b082c4c5a4b366825b7ddc7be148126ef707",
+    "GymSoft_ZTATTUZ_3.6.1_x86/door_access.py": "1151d1dc20d5680402cdf22aa66de1b3eaceb10e9ba1864f9355092acfd0ca19",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_door_access.py": "afbfdd7807e1dd5b3d41f1be5bd3b082c4c5a4b366825b7ddc7be148126ef707",
+    "common/door_access.py": "1151d1dc20d5680402cdf22aa66de1b3eaceb10e9ba1864f9355092acfd0ca19",
+    "common/test_door_access.py": "afbfdd7807e1dd5b3d41f1be5bd3b082c4c5a4b366825b7ddc7be148126ef707"
+  },
+  "python_tests_total": 650,
+  "door_tests_included_total": 180,
+  "ui_checks_total": 234,
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "python_tests": 231,
+      "door_tests_included": 60,
+      "door_ui_checks": 78,
+      "python_status": "PASS",
+      "ui_status": "PASS",
+      "logs": [
+        {
+          "path": "GymSoft_Comercial_3.6.0-python.log",
+          "sha256": "ae547cf50d18a24f1f302307eabebade77f6f2191270e25718bcb0c3f623c706"
+        },
+        {
+          "path": "GymSoft_Comercial_3.6.0-ui.log",
+          "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "python_tests": 210,
+      "door_tests_included": 60,
+      "door_ui_checks": 78,
+      "python_status": "PASS",
+      "ui_status": "PASS",
+      "logs": [
+        {
+          "path": "GymSoft_ZTATTUZ_3.6.1_x64-python.log",
+          "sha256": "ae18c962483d2395571c6d621f1c3874b2560e1bc619d2cfabc3d4572caa3bb5"
+        },
+        {
+          "path": "GymSoft_ZTATTUZ_3.6.1_x64-ui.log",
+          "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "python_tests": 209,
+      "door_tests_included": 60,
+      "door_ui_checks": 78,
+      "python_status": "PASS",
+      "ui_status": "PASS",
+      "logs": [
+        {
+          "path": "GymSoft_ZTATTUZ_3.6.1_x86-python.log",
+          "sha256": "3633886f37646dc21a69d88fb125108691efafe89659a27e2496641038c49ae6"
+        },
+        {
+          "path": "GymSoft_ZTATTUZ_3.6.1_x86-ui.log",
+          "sha256": "a3eeaeea9775e780347c766a85e55dde2c1136cc86b8f97b7f63c452dca31c18"
+        }
+      ]
+    }
+  ],
+  "reported_incident": {
+    "source": "User messages and screenshots in this conversation",
+    "windows_architecture": "x86",
+    "attendance_registered": true,
+    "no_touch_button_releases_reported": true,
+    "relay_does_not_act_reported": true,
+    "screenshots": {
+      "ch340_port_present": true,
+      "control_enabled": true,
+      "baudrate": 9600,
+      "pulse_seconds": 3,
+      "state": "Desconocido",
+      "last_command": "—",
+      "reset_reports_usb_failure": true
+    },
+    "negative_cable_disconnection_reported": true,
+    "negative_cable_component_identified": false
+  },
+  "root_cause": "UNCONFIRMED: original Windows/serial error required",
+  "native_windows_port_probe": "PENDING_USER_CHECKING_CONNECTIONS",
+  "application_change": "Preserve serial failure stage and safe numeric/type diagnostics; retain original cause after a blocked attendance.",
+  "current_published_installer_contains_fix": false,
+  "windows_build": "NOT_RUN_GITHUB_API_AUTHENTICATION_FAILED",
+  "hardware_acceptance": false,
+  "release_readiness_modified": false,
+  "commands": {
+    "python": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_*.py"
+    ],
+    "ui": [
+      "python",
+      "tests/door_ui_smoke.py"
+    ]
+  }
+}

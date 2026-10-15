@@ -6,11 +6,12 @@ import sys
 import tempfile
 import threading
 import time
+import json
 import unittest
 from unittest.mock import Mock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from door_access import (DoorConfig, ConfigStore, DoorController, DoorDatabase,
-    RELAY_ON, RELAY_OFF, BIOMETRIC_METHOD, matches_port, open_relay, equipment_lock)
+    RELAY_ON, RELAY_OFF, BIOMETRIC_METHOD, matches_port, open_relay, equipment_lock, relay_failure)
 
 
 def until(fn, seconds=3):
@@ -42,7 +43,13 @@ class DoorTests(unittest.TestCase):
         self.store = ConfigStore(self.temp.name, 'gym-A')
         self.usb = FakeUSB()
         self.factory = Mock(return_value=self.usb)
-        self.door = DoorController(self.store, transport=self.factory)
+        # Functional transport tests control authorization age explicitly;
+        # Windows disk/scheduler latency must not expire a simulated command.
+        # Timer, Event.wait and serial-drain deadlines still use real time.
+        # Expired commands and slow opens have dedicated clock regressions.
+        self.door = DoorController(self.store, transport=self.factory, admin_authorized=True,
+            clock=lambda: 10.0,
+            ports_provider=lambda: [dict(port='COM7', vid=0x1A86, pid=0x7523, location='USB-A')])
         self.usb.on = self.door._cancel.set  # Tiempo físico simulado sin espera.
         self.config = DoorConfig(True, 'COM7', 3, 0x1A86, 0x7523, '', 'USB-A')
         self.store.save(self.config)
@@ -116,7 +123,8 @@ class DoorTests(unittest.TestCase):
         self.factory.assert_not_called()
     def test_missing_or_wrong_confirmation_never_open(self):
         for result in (None, {}, {'result':'PERMITIDA'}, self.result(client=2),
-                       dict(self.result(), checkin_at='ayer'), dict(self.result(), checkin_at='2026-09-27')):
+                       dict(self.result(), checkin_at='ayer'), dict(self.result(), checkin_at='2026-09-27'),
+                       dict(self.result(), checkin_at=None), dict(self.result(), checkin_at=123)):
             self.assertFalse(self.door.submit(result, 1, BIOMETRIC_METHOD))
         self.factory.assert_not_called()
     def test_exact_event_not_replayed_and_same_client_debounced(self):
@@ -124,8 +132,11 @@ class DoorTests(unittest.TestCase):
         self.submit(result); self.submit(result); self.submit(self.result())
         self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
     def test_other_client_can_enter_next(self):
-        self.submit(client=1); self.submit(client=2)
-        self.assertEqual(self.usb.frames.count(RELAY_ON), 2)
+        self.assertTrue(self.submit(client=1))
+        self.assertTrue(self.submit(client=2))
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 2,
+            dict(state=self.door.snapshot(), events=list(self.door.events.queue),
+                 frames=[frame.hex() for frame in self.usb.frames]))
     def test_disabled_default_and_offline_never_touch_transport(self):
         self.store.save(DoorConfig())
         self.assertFalse(self.submit()); self.factory.assert_not_called()
@@ -224,6 +235,10 @@ class DoorTests(unittest.TestCase):
         self.store.save(DoorConfig())
         self.door._execute('access', self.config, (1, self.result()['checkin_at']), self.door.clock(), 0)
         self.factory.assert_not_called()
+    def test_fault_latched_after_queue_prevents_late_opening(self):
+        self.door._fault = True
+        self.door._execute('access', self.config, (1,self.result()['checkin_at']), self.door.clock(), 0)
+        self.factory.assert_not_called()
     def test_corrupted_or_different_gym_config_fails_closed(self):
         self.store.path.write_text('{invalid', encoding='utf-8')
         self.assertFalse(self.submit()); self.factory.assert_not_called()
@@ -244,14 +259,15 @@ class DoorTests(unittest.TestCase):
         with equipment_lock(self.temp.name, self.config.port):
             self.submit()
         self.factory.assert_not_called()
-    def test_native_callback_only_and_database_response_preserved(self):
+    def test_native_and_code_use_the_same_rpc_and_are_debounced_before_write(self):
         real = Mock(); result = self.result(); real.register_checkin.return_value = result
         proxy = DoorDatabase(real, self.door)
         self.assertIs(proxy.register_checkin(1, BIOMETRIC_METHOD), result)
-        self.factory.assert_not_called()
-        self.assertIs(proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD), result)
         self.finish(); self.assertIn(RELAY_ON, self.usb.frames)
-        self.assertEqual(real.register_checkin.call_count, 2)
+        duplicate = proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD)
+        self.assertTrue(duplicate['duplicate_read'])
+        self.assertEqual(real.register_checkin.call_count, 1)
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
     def test_network_error_no_relay_and_no_retry(self):
         real = Mock(); real.register_checkin.side_effect = TimeoutError('respuesta perdida')
         with self.assertRaises(TimeoutError): DoorDatabase(real, self.door).register_fingerprint_checkin(1, BIOMETRIC_METHOD)
@@ -274,6 +290,228 @@ class DoorTests(unittest.TestCase):
             args = serial.call_args.kwargs
             self.assertEqual((args['baudrate'], args['bytesize'], args['parity'], args['stopbits']), (9600, 8, 'N', 1))
             self.assertLess(args['write_timeout'], 1)
+
+    def test_serial_open_failure_retains_safe_cause_after_another_checkin(self):
+        from serial import SerialException
+        failure = SerialException("could not open port 'COM7': PermissionError(13, 'SECRET_TOKEN user@example.test', None, 5)")
+        self.factory.side_effect = failure
+        self.assertTrue(self.door.secure()); self.finish()
+        state = self.door.snapshot()
+        self.assertIn('COM7', state['last_error'])
+        self.assertIn('Windows 5', state['last_error'])
+        self.assertIn('abrir/configurar puerto', state['last_error'])
+        self.assertNotIn('SECRET_TOKEN', state['last_error'])
+        self.assertNotIn('user@example.test', (self.store.folder / 'puerta.log').read_text())
+        self.assertFalse(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        self.assertEqual(self.door.snapshot()['last_error'], state['last_error'])
+        self.assertTrue(self.door._fault)
+        self.assertEqual(self.usb.frames, [])
+        self.factory.side_effect = None
+        self.assertTrue(self.door.secure()); self.finish()
+        self.assertFalse(self.door._fault)
+        self.assertEqual(self.door.snapshot()['last_error'], '—')
+        self.assertEqual(self.usb.frames, [RELAY_OFF, RELAY_OFF])
+
+    def test_initial_rest_write_failure_never_sends_on(self):
+        def fail_write(frame):
+            self.usb.frames.append(frame)
+            raise PermissionError(13, 'DO_NOT_LOG')
+        self.usb.write = fail_write
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+        self.assertIn('enviar OFF inicial', self.door.snapshot()['last_error'])
+        self.assertIn('errno 13', self.door.snapshot()['last_error'])
+        self.assertNotIn('DO_NOT_LOG', self.door.snapshot()['last_error'])
+        self.assertTrue(self.door._fault)
+
+    def test_initial_rest_drain_failure_is_distinct_from_write(self):
+        class BrokenDrain(FakeUSB):
+            @property
+            def out_waiting(self): raise OSError(22, 'DO_NOT_LOG')
+            @out_waiting.setter
+            def out_waiting(self, value): pass
+        self.usb = BrokenDrain()
+        self.factory.return_value = self.usb
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+        self.assertIn('terminar OFF inicial', self.door.snapshot()['last_error'])
+        self.assertTrue(self.usb.closed)
+
+    def test_final_rest_and_close_failures_keep_the_original_stage(self):
+        self.usb.fail_off = True
+        self.assertTrue(self.door.test_pulse()); self.finish()
+        self.assertIn('enviar OFF final', self.door.snapshot()['last_error'])
+        self.usb.fail_off = False
+        self.assertTrue(self.door.secure()); self.finish()
+        def fail_close(): raise OSError(5, 'DO_NOT_LOG')
+        self.usb.close = fail_close
+        self.assertTrue(self.door.secure()); self.finish()
+        self.assertIn('cerrar puerto', self.door.snapshot()['last_error'])
+        self.assertTrue(self.door._fault)
+
+    def test_windows_driver_codes_and_unknown_messages_are_sanitized(self):
+        from serial import SerialException
+        for code in (31, 87, 2, 3, 1167):
+            with self.subTest(code=code):
+                value = relay_failure(SerialException(f"PermissionError(13, 'private context', None, {code})"), 'COM7')
+                self.assertEqual(value['winerror'], code)
+                self.assertNotIn('private context', value['error'])
+                self.assertIn('controlador' if code in (31, 87) else 'no está disponible', value['error'])
+        error = OSError('SECRET_TOKEN Windows 5')
+        value = relay_failure(error, 'SECRET_PORT')
+        self.assertIsNone(value['winerror'])
+        self.assertNotIn('SECRET', value['error'])
+        self.assertEqual(value['stage'], 'serial')
+
+    def test_watchdog_sends_rest_even_if_access_worker_is_blocked(self):
+        self.store.save(replace(self.config, seconds=1))
+        blocked = threading.Event()
+        released = threading.Event()
+        def blocked_write():
+            blocked.set()
+            released.wait(2.5)
+        self.usb.on = blocked_write
+        self.usb.cancel_write = released.set
+        self.assertTrue(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        self.assertTrue(blocked.wait(1))
+        until(lambda: RELAY_OFF in self.usb.frames[2:] and self.usb.closed, seconds=2)
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
+        self.finish()
+        records = (self.store.folder / 'puerta.log').read_text()
+        self.assertIn('watchdog', records)
+
+    def test_administrative_operations_reject_reception(self):
+        self.door.admin_authorized = False
+        self.assertFalse(self.door.test_pulse())
+        self.assertFalse(self.door.manual_pulse())
+        with self.assertRaises(PermissionError): self.door.save_config(self.config)
+        self.factory.assert_not_called()
+        self.assertTrue(self.door.secure())
+        self.finish()
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+
+    def test_configuration_migrates_legacy_and_names_new_settings(self):
+        self.store.path.write_text(json.dumps({'schema':1,'gym_id':'gym-A',
+            'config':dict(enabled=True,port='COM7',seconds=3,vid=0x1A86,pid=0x7523,location='USB-A')}))
+        config = self.store.load()
+        self.assertEqual(config, self.config)
+        self.store.save(config)
+        data = json.loads(self.store.path.read_text())
+        self.assertEqual(data['config']['automatic_door_enabled'], True)
+        self.assertEqual(data['config']['door_unlock_seconds'], 3)
+        self.assertEqual(self.store.load(), config)
+
+    def test_disabled_door_never_discovers_a_usb_device(self):
+        ports = Mock(side_effect=AssertionError('USB discovery forbidden'))
+        self.store.save(DoorConfig())
+        self.door.ports_provider = ports
+        self.door._check_connection()
+        self.assertFalse(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        ports.assert_not_called()
+        self.factory.assert_not_called()
+
+    def test_unplug_monitor_fault_requires_rest_not_delayed_unlock(self):
+        self.door.ports_provider = lambda: []
+        self.door._check_connection()
+        self.assertEqual(self.door.snapshot()['connection'], 'Desconectado')
+        self.assertTrue(self.door._fault)
+        self.assertFalse(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        self.door.ports_provider = lambda: [dict(port='COM7',vid=0x1A86,pid=0x7523,location='USB-A')]
+        self.door._check_connection()
+        self.assertTrue(self.door._fault)
+        self.assertTrue(self.door.secure()); self.finish()
+        self.assertFalse(self.door._fault)
+        self.assertNotIn(RELAY_ON, self.usb.frames)
+
+    def test_duplicate_callbacks_concurrently_write_the_backend_once(self):
+        backend = Mock()
+        # Test exclusion, not VM scheduling latency; stale replies have their
+        # own deadline regression in test_door_request_lock.py.
+        self.door.clock = lambda: 10.0
+        entered, proceed = threading.Event(), threading.Event()
+        def rpc(*_):
+            entered.set()
+            if not proceed.wait(10):
+                raise TimeoutError('La prueba no liberó el RPC simulado.')
+            return self.result()
+        backend.register_checkin.side_effect = rpc
+        proxy = DoorDatabase(backend, self.door)
+        answers, errors = [], []
+        def register():
+            try:
+                answers.append(proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD))
+            except Exception as error:
+                errors.append(error)
+        first = threading.Thread(target=register)
+        wall_clock = [time.time()]
+        with patch('door_access.time.time', side_effect=lambda: wall_clock[0]):
+            first.start()
+            try:
+                self.assertTrue(entered.wait(10), 'El primer RPC no comenzó.')
+                # La petición en curso debe excluir otra escritura incluso
+                # después de la ventana breve de debounce, sin esperar en real.
+                wall_clock[0] += 2
+                second = proxy.register_fingerprint_checkin(1, BIOMETRIC_METHOD)
+                self.assertTrue(second['duplicate_read'])
+            finally:
+                # Windows no permite eliminar SQLite si el callback continúa.
+                # También limpiar cuando falle una comprobación intermedia.
+                proceed.set()
+                first.join(10)
+                self.assertFalse(first.is_alive(), 'El callback simulado no terminó.')
+        self.assertFalse(errors, errors)
+        self.assertEqual(len(answers), 1)
+        self.assertEqual(answers[0]['result'], 'PERMITIDA')
+        self.finish()
+        self.assertEqual(backend.register_checkin.call_count, 1)
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
+
+    def test_missing_confirmation_does_not_use_cached_authorization(self):
+        backend = Mock(); backend.register_checkin.return_value = None
+        with self.assertRaises(ValueError): DoorDatabase(backend,self.door).register_fingerprint_checkin(1, BIOMETRIC_METHOD)
+        self.factory.assert_not_called()
+
+    def test_technical_logs_use_gym_timezone_without_biometric_data(self):
+        self.submit()
+        events = [json.loads(line) for line in (self.store.folder/'puerta.log').read_text().splitlines() if line.startswith('{')]
+        self.assertTrue(any(x['event']=='relay_unlock_start' for x in events))
+        self.assertTrue(any(x['event']=='relay_unlock_end' for x in events))
+        self.assertTrue(all(x['timezone']=='America/Bogota' and x['at'].endswith('-05:00') for x in events))
+        text=json.dumps(events)
+        self.assertNotIn('template',text)
+        self.assertNotIn('document',text)
+        self.assertNotIn('client_name',text)
+
+    def test_reader_diagnostic_clock_uses_gym_timezone(self):
+        import logging
+        from fingerprint_diagnostics import GymFormatter, set_gym_timezone
+        record = logging.LogRecord('reader', logging.INFO, '', 0, 'fingerprint_detected', (), None)
+        record.created = datetime(2026,10,20,14,tzinfo=timezone.utc).timestamp()
+        formatter = GymFormatter('%(asctime)s %(message)s')
+        set_gym_timezone('America/Bogota')
+        self.assertIn('2026-10-20T09:00:00-05:00',formatter.format(record))
+        set_gym_timezone('America/New_York')
+        self.assertIn('2026-10-20T10:00:00-04:00',formatter.format(record))
+        set_gym_timezone('America/Bogota')
+
+    def test_restart_with_enabled_configuration_sends_only_off(self):
+        other = DoorController(self.store, transport=self.factory, ports_provider=lambda: [])
+        try:
+            until(lambda: not other._pending)
+            self.assertTrue(self.usb.frames)
+            self.assertNotIn(RELAY_ON, self.usb.frames)
+            self.assertEqual(self.usb.frames[-1], RELAY_OFF)
+        finally: other.close()
+
+    def test_backend_outage_cancels_an_active_unlock(self):
+        self.usb.on = lambda: None
+        self.assertTrue(self.door.submit(self.result(), 1, BIOMETRIC_METHOD))
+        until(lambda: RELAY_ON in self.usb.frames)
+        backend = Mock(); backend.register_checkin.side_effect = ConnectionError()
+        with self.assertRaises(ConnectionError): DoorDatabase(backend,self.door).register_fingerprint_checkin(2, BIOMETRIC_METHOD)
+        self.finish()
+        self.assertEqual(self.usb.frames[-1], RELAY_OFF)
+        self.assertEqual(self.usb.frames.count(RELAY_ON), 1)
 
 
 if __name__ == '__main__': unittest.main()

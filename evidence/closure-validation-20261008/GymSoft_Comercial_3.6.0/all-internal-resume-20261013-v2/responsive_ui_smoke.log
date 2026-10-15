@@ -1,0 +1,12 @@
+PRUEBA: restaurando la ventana minimizada para continuar.
+PASS: límites del monitor, restauración de prueba, controles ocultos, superposiciones y consultas sin resultado.
+EN CURSO: responsive_ui_smoke · 15 s · límite 300 s.
+EN CURSO: responsive_ui_smoke · 30 s · límite 300 s.
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_Comercial_3.6.0/tests/responsive_ui_smoke.py", line 163, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/workspace/Atlantic-Software/GymSoft_Comercial_3.6.0/tests/responsive_ui_smoke.py", line 147, in main
+    win.save();assert win.result==( 'Prueba',30,50000,limit,None);checked+=1
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

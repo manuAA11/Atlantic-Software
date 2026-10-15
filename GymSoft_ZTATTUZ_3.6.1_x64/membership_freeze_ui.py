@@ -1,6 +1,5 @@
 """Shared server-authorized membership freezes; no local calendar arithmetic."""
 import json
-from datetime import date, timedelta
 import tkinter as tk
 from tkinter import ttk
 from uuid import uuid4
@@ -55,17 +54,27 @@ class FreezeManager:
 
     @property
     def admin(self):
-        return getattr(self.db.cloud, 'role', '') == 'admin'
+        return getattr(self, 'info', {}).get('permissions', {}).get('can_resume',
+               getattr(self.db.cloud, 'role', '') in ('admin', 'owner'))
 
     def load(self):
         self.info = rpc(self.db, 'membership_freeze_info', p_client_id=self.client_id)
         self.membership = self.info['membership']
         m = self.membership
+        internal = m.get('membership_type') == 'INTERNAL'
         policy = m.get('freeze_policy') or self.info['policy']
         self.days = int(policy['duration_days'])
-        text = f"Estado: {'CONGELADA' if m.get('frozen') else m.get('status', 'Sin plan')}\nPlan: {m.get('plan_name', 'Sin plan')}\nVencimiento: {date_label(m.get('membership_end'))}"
+        expiry = 'Sin vencimiento' if m.get('has_expiration', True) is False else date_label(m.get('membership_end'))
+        text = f"Estado: {'CONGELADA' if m.get('frozen') else m.get('status', 'Sin plan')}\nPlan: {m.get('plan_name', 'Sin plan')}\nVencimiento: {expiry}"
+        if internal:
+            text += '\nPlan interno · sin pago · excluido de estadísticas financieras.'
+            text += '\nAcceso ilimitado' if m.get('unlimited_access') else '\nEntradas restantes: '+str(m.get('entries_remaining', 0))
         if m.get('frozen'):
-            text += f"\nCongelada hasta: {date_label(m.get('freeze_last_date'))}\nSe reactiva: {date_label(m.get('resume_date'))}"
+            f = m['freeze']; zone = f.get('timezone') or timezone_for(self.db)
+            text += (f"\nInicio: {display_timestamp(f.get('freeze_started_at') or f.get('starts_at'), zone)}"
+                     f"\nReanudación máxima: {display_timestamp(f.get('ends_at'), zone)}"
+                     f"\nUtilizados: {f.get('freeze_used_days', 0)} de {f.get('freeze_max_days', self.days)} días"
+                     f"\nRestantes del período: {f.get('freeze_remaining_days', self.days)} días")
         elif not m.get('can_freeze'):
             text += '\nEsta membresía no cumple la política para una nueva congelación.'
         self.status.set(text)
@@ -73,18 +82,21 @@ class FreezeManager:
             child.destroy()
         if m.get('can_freeze'):
             ttk.Button(self.controls, text=f'CONGELAR {self.days} DÍAS', command=self.confirm).pack(side='left', padx=(0, 8))
-        if self.admin:
+        if self.admin and not internal:
             ttk.Button(self.controls, text='Política de congelación', command=self.policy).pack(side='left', padx=(0, 8))
             if m.get('frozen'):
-                ttk.Button(self.controls, text='Cancelar congelación', command=self.cancel).pack(side='left')
+                ttk.Button(self.controls, text='REANUDAR MEMBRESÍA', command=self.resume).pack(side='left')
             elif m.get('membership_id') and m.get('allowed') and not m.get('can_freeze'):
                 ttk.Button(self.controls, text='Excepción administrativa', command=lambda:self.confirm(True)).pack(side='left')
+        if internal and self.info.get('permissions', {}).get('can_manage_internal', self.admin):
+            ttk.Button(self.controls, text='DESACTIVAR MEMBRESÍA' if m.get('membership_active') else 'ACTIVAR MEMBRESÍA',
+                       command=self.toggle_internal).pack(side='left')
         self.table.delete(*self.table.get_children())
         for f in self.info['history']:
             self.table.insert('', 'end', iid=f['id'], values=(
-                f"{date_label(f['start_date'])} → {date_label((date.fromisoformat(f['resume_date'])-timedelta(days=1)).isoformat())}",
-                int(f['days_added']) - int(f['days_reversed']),
-                {'ACTIVE':'Activa','COMPLETED':'Completada','CANCELLED':'Cancelada','SCHEDULED':'Programada'}[f['status']],
+                f"{display_timestamp(f.get('starts_at'), f.get('timezone') or timezone_for(self.db), seconds=False)} → {display_timestamp(f.get('resumed_at') or f.get('ends_at'), f.get('timezone') or timezone_for(self.db), seconds=False)}",
+                f.get('freeze_used_days', int(f['days_added']) - int(f['days_reversed'])),
+                {'ACTIVE':'Activa','COMPLETED':'Automática','RESUMED':'Reanudada','CANCELLED':'Cancelada','SCHEDULED':'Programada'}[f['status']],
                 display_timestamp(f['created_at'], timezone_for(self.db))))
 
     def confirm(self, override=False):
@@ -95,7 +107,7 @@ class FreezeManager:
                 return
         d = Modal(self.window, 'Confirmar congelación')
         d.preferred_width = 540
-        ttk.Label(d.body, text=f'¿Deseas congelar esta membresía durante {self.days} días?\n\nDurante este período el cliente no podrá registrar entradas.\nLa fecha de vencimiento se extenderá {self.days} días.', justify='left', wraplength=450).pack(fill='x', pady=12)
+        ttk.Label(d.body, text=f'¿Deseas congelar esta membresía hasta un máximo de {self.days} días?\n\nDurante este período el cliente no podrá registrar entradas.\nPuedes reanudar antes. Al finalizar se agregarán solamente los días completos utilizados.', justify='left', wraplength=450).pack(fill='x', pady=12)
         actions = ttk.Frame(d.body)
         actions.pack(fill='x', pady=12)
         ttk.Button(actions, text='Cancelar', command=d.close).pack(side='right')
@@ -119,19 +131,42 @@ class FreezeManager:
         self.changed()
         self.load()
 
-    def cancel(self):
-        reason = simpledialog.askstring('Cancelar congelación', 'Motivo de cancelación (obligatorio):', parent=self.window)
-        if not reason:
-            return
-        if not messagebox.askyesno('Cancelar congelación', 'Se conservarán solamente los días completos ya congelados. El cliente podrá volver a entrar. ¿Continuar?', parent=self.window):
-            return
+    def resume(self):
         try:
-            rpc(self.db, 'membership_cancel_freeze', p_freeze_id=self.membership['freeze']['id'], p_reason=reason)
+            preview = rpc(self.db, 'membership_resume_preview', p_freeze_id=self.membership['freeze']['id'])
+            if not preview.get('can_resume'):
+                self.load(); return
+            days = int(preview['extension_days'])
+            d = Modal(self.window, '¿Reanudar esta membresía?')
+            d.preferred_width = 560
+            ttk.Label(d.body, text=f'La membresía ha permanecido congelada durante {days} días completos.\nSe agregarán {days} días a su fecha de vencimiento.',
+                      justify='left', wraplength=470).pack(fill='x', pady=12)
+            actions = ttk.Frame(d.body); actions.pack(fill='x', pady=12)
+            ttk.Button(actions, text='Cancelar', command=d.close).pack(side='left')
+            ttk.Button(actions, text='Reanudar membresía', command=lambda:d.close(True)).pack(side='right')
+            if not d.show(): return
+            rpc(self.db, 'membership_resume_freeze', p_freeze_id=preview['id'], p_expected_days=days, p_reason='Reanudación solicitada desde Administración')
         except Exception as error:
-            messagebox.showerror('No se pudo cancelar la congelación', str(error), parent=self.window)
+            messagebox.showerror('No se pudo reanudar la membresía', str(error), parent=self.window)
+            self.load()
             return
         self.changed()
         self.load()
+
+    def cancel(self):
+        """Compatibility for callers of the former controller method."""
+        self.resume()
+
+    def toggle_internal(self):
+        active = not self.membership.get('membership_active', True)
+        reason = simpledialog.askstring('Activar membresía interna' if active else 'Desactivar membresía interna',
+                                       'Motivo del cambio (obligatorio):', parent=self.window)
+        if not reason: return
+        try:
+            rpc(self.db, 'set_internal_membership_active', p_membership_id=self.membership['membership_id'], p_active=active, p_reason=reason)
+        except Exception as error:
+            messagebox.showerror('No se pudo cambiar la membresía', str(error), parent=self.window); return
+        self.changed(); self.load()
 
     def policy(self):
         plan_id = self.membership.get('plan_id')
@@ -145,9 +180,9 @@ class FreezeManager:
         ttk.Checkbutton(d.body, text='Permitir congelación', variable=enabled).pack(anchor='w', pady=8)
         ttk.Label(d.body, text='Aplicar a').pack(anchor='w')
         ttk.Combobox(d.body, textvariable=scope, state='readonly', values=['Todo el gimnasio'] + (['Este plan'] if plan_id else [])).pack(fill='x')
-        for label, variable in [('Duración (días)', days), ('Máximo por ciclo/membresía', maximum)]:
+        for label, variable in [('Máximo permitido (1 a 7 días)', days), ('Máximo por ciclo/membresía', maximum)]:
             ttk.Label(d.body, text=label).pack(anchor='w', pady=(10, 3))
-            ttk.Entry(d.body, textvariable=variable).pack(fill='x')
+            ttk.Entry(d.body, textvariable=variable, state='readonly' if variable is maximum else 'normal').pack(fill='x')
         def save():
             try:
                 rpc(self.db, 'membership_save_freeze_policy', p_enabled=enabled.get(),

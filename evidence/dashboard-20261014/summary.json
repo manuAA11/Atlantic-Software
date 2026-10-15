@@ -1,0 +1,112 @@
+{
+  "observed_at_utc": "2026-10-14T21:35:32.012263+00:00",
+  "scope": "Offline Linux CPython 3.14/Tk and PGlite fixtures. No remote Supabase migration or new Windows build.",
+  "status": "PASS",
+  "source_base_commit": "11665df4a78593d64e5804563627b2f78130ae5f",
+  "source_file_sha256": {
+    "ACTUALIZAR_SERVIDOR_MEMBRESIAS.sql": "9766fa8da4850f296eb54f627a74be3bbd947a30973da58e1134b5bd3ff96cbd",
+    "GymSoft_Comercial_3.6.0/ACTUALIZAR_SERVIDOR_MEMBRESIAS.sql": "9766fa8da4850f296eb54f627a74be3bbd947a30973da58e1134b5bd3ff96cbd",
+    "GymSoft_Comercial_3.6.0/DIAGNOSTICAR_PANEL.sql": "99213c8d7080ee835ac59d8da0affe9720b12ee0737aa4aabd6656188e10295f",
+    "GymSoft_Comercial_3.6.0/app.py": "118fd47fbd46d62977ddd7d812252b1398887fc8acb626888ba955500ded1743",
+    "GymSoft_Comercial_3.6.0/desktop_ui.py": "1102f5ae1e3fd7938f921b92e4b122bccc6babfda23022e92409c532d4e489bf",
+    "GymSoft_Comercial_3.6.0/followup_ui.py": "f937337504896305e7e5c8c3ea0086c909c031c2c346d21c8cf6c669a73a9c23",
+    "GymSoft_Comercial_3.6.0/responsive_ui.py": "cabf0eb7bba2263411791a731010057da38b8a4dbbcd6ef3b3499f5c3855e149",
+    "GymSoft_Comercial_3.6.0/tests/dashboard_loading_ui_smoke.py": "016b0828663cea75a817ddcca989fbf0458c4fc4465100edad153f39866c902b",
+    "GymSoft_Comercial_3.6.0/tests/dashboard_upgrade.mjs": "0ffd744dfd5cb538473244411b3b53c186153df2ea983a66c2eba69cac862817",
+    "GymSoft_Comercial_3.6.0/tests/internal_memberships.mjs": "a080e73a7ebc303b02d0f8e23746dbff0322bb15f67790fcb8956bde1767df1f",
+    "GymSoft_Comercial_3.6.0/tests/performance_ui_smoke.py": "e34ef0dc86af331f16b4214b17755e0b981a8db18cbf72789724abaec23c9416",
+    "GymSoft_Comercial_3.6.0/tests/test_async_read_errors.py": "2c587313b863bf6f586919fb85fc5dc51ca122a678832d21e1228b3ab8267028",
+    "GymSoft_Comercial_3.6.0/ui_performance.py": "74553d7cd29995dee0af56063032a05f9fc813d5fadcae2244626b3495dcf2ac",
+    "GymSoft_ZTATTUZ_3.6.1_x64/ACTUALIZAR_SERVIDOR_MEMBRESIAS.sql": "9766fa8da4850f296eb54f627a74be3bbd947a30973da58e1134b5bd3ff96cbd",
+    "GymSoft_ZTATTUZ_3.6.1_x64/DIAGNOSTICAR_PANEL.sql": "99213c8d7080ee835ac59d8da0affe9720b12ee0737aa4aabd6656188e10295f",
+    "GymSoft_ZTATTUZ_3.6.1_x64/app.py": "85863a0e281b277db7d3bc256a124b7374e5a3c8c96ef6c7fadb7c266b9eebf8",
+    "GymSoft_ZTATTUZ_3.6.1_x64/desktop_ui.py": "3f36c2f9dd6986f46178c5ebb50faf35e9a8293295eb68c5d5778ee87d178b4c",
+    "GymSoft_ZTATTUZ_3.6.1_x64/followup_ui.py": "f937337504896305e7e5c8c3ea0086c909c031c2c346d21c8cf6c669a73a9c23",
+    "GymSoft_ZTATTUZ_3.6.1_x64/responsive_ui.py": "cabf0eb7bba2263411791a731010057da38b8a4dbbcd6ef3b3499f5c3855e149",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/dashboard_loading_ui_smoke.py": "016b0828663cea75a817ddcca989fbf0458c4fc4465100edad153f39866c902b",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/dashboard_upgrade.mjs": "0ffd744dfd5cb538473244411b3b53c186153df2ea983a66c2eba69cac862817",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/internal_memberships.mjs": "a080e73a7ebc303b02d0f8e23746dbff0322bb15f67790fcb8956bde1767df1f",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/performance_ui_smoke.py": "e34ef0dc86af331f16b4214b17755e0b981a8db18cbf72789724abaec23c9416",
+    "GymSoft_ZTATTUZ_3.6.1_x64/tests/test_async_read_errors.py": "2c587313b863bf6f586919fb85fc5dc51ca122a678832d21e1228b3ab8267028",
+    "GymSoft_ZTATTUZ_3.6.1_x64/ui_performance.py": "74553d7cd29995dee0af56063032a05f9fc813d5fadcae2244626b3495dcf2ac",
+    "GymSoft_ZTATTUZ_3.6.1_x86/ACTUALIZAR_SERVIDOR_MEMBRESIAS.sql": "9766fa8da4850f296eb54f627a74be3bbd947a30973da58e1134b5bd3ff96cbd",
+    "GymSoft_ZTATTUZ_3.6.1_x86/DIAGNOSTICAR_PANEL.sql": "99213c8d7080ee835ac59d8da0affe9720b12ee0737aa4aabd6656188e10295f",
+    "GymSoft_ZTATTUZ_3.6.1_x86/app.py": "85863a0e281b277db7d3bc256a124b7374e5a3c8c96ef6c7fadb7c266b9eebf8",
+    "GymSoft_ZTATTUZ_3.6.1_x86/desktop_ui.py": "3f36c2f9dd6986f46178c5ebb50faf35e9a8293295eb68c5d5778ee87d178b4c",
+    "GymSoft_ZTATTUZ_3.6.1_x86/followup_ui.py": "f937337504896305e7e5c8c3ea0086c909c031c2c346d21c8cf6c669a73a9c23",
+    "GymSoft_ZTATTUZ_3.6.1_x86/responsive_ui.py": "cabf0eb7bba2263411791a731010057da38b8a4dbbcd6ef3b3499f5c3855e149",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/dashboard_loading_ui_smoke.py": "016b0828663cea75a817ddcca989fbf0458c4fc4465100edad153f39866c902b",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/dashboard_upgrade.mjs": "0ffd744dfd5cb538473244411b3b53c186153df2ea983a66c2eba69cac862817",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/internal_memberships.mjs": "a080e73a7ebc303b02d0f8e23746dbff0322bb15f67790fcb8956bde1767df1f",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/performance_ui_smoke.py": "e34ef0dc86af331f16b4214b17755e0b981a8db18cbf72789724abaec23c9416",
+    "GymSoft_ZTATTUZ_3.6.1_x86/tests/test_async_read_errors.py": "2c587313b863bf6f586919fb85fc5dc51ca122a678832d21e1228b3ab8267028",
+    "GymSoft_ZTATTUZ_3.6.1_x86/ui_performance.py": "74553d7cd29995dee0af56063032a05f9fc813d5fadcae2244626b3495dcf2ac",
+    "common/build_membership_server_upgrade.py": "8a432020aef15d7b37dc12e6174f558bf9da322ebcd4bfeca6ccd5730dad6a18",
+    "common/dashboard_loading_ui_smoke.py": "016b0828663cea75a817ddcca989fbf0458c4fc4465100edad153f39866c902b",
+    "common/dashboard_upgrade.mjs": "0ffd744dfd5cb538473244411b3b53c186153df2ea983a66c2eba69cac862817",
+    "common/internal_memberships.mjs": "a080e73a7ebc303b02d0f8e23746dbff0322bb15f67790fcb8956bde1767df1f",
+    "common/sync_membership_features.py": "337a3b4545a066214d5091efc60aef78afdefa5da5edaa6d7ac7c32c7ed4b522",
+    "common/test_async_read_errors.py": "2c587313b863bf6f586919fb85fc5dc51ca122a678832d21e1228b3ab8267028",
+    "deployment/DIAGNOSTICAR_PANEL.sql": "99213c8d7080ee835ac59d8da0affe9720b12ee0737aa4aabd6656188e10295f"
+  },
+  "editions": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "python_tests": 226,
+      "stages": 5,
+      "new_dashboard_tk_checks": 58,
+      "new_atomic_sql_checks": 40,
+      "hashes": {
+        "internal_memberships.log": "06a7be2b6156adc65b4ce0091b27a96bb784cf37899364eb9a83ecb7d915988e",
+        "performance_ui_smoke.log": "07b24954c877a9c5a7f37a9f306cc0294ae93b0e4571ea59ee92993284db4398",
+        "popdown_ui_smoke.log": "8d2096c363fe79e85d39e50fd9790a582cd1752bd7fe137ff5e9aa27c30def10",
+        "python.log": "6e086d45a68766e1cf751c53b210586562750eb6328ecdccee1561b0f81aac2c",
+        "result.json": "2884fb362d06c31cf09c9e52c87516576931274e51f92609aa8268fa35bf866b",
+        "ticket_ui_smoke.log": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14"
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "python_tests": 205,
+      "stages": 5,
+      "new_dashboard_tk_checks": 58,
+      "new_atomic_sql_checks": 40,
+      "hashes": {
+        "internal_memberships.log": "124114fb645811a3a17161e720228fa3107e9c61cb3e8f78bb437b25a6fb3ded",
+        "performance_ui_smoke.log": "09af7766d356d6d8a860a9d84d83a4c4d4a382085a4b13a3bd85a922b1e3978a",
+        "popdown_ui_smoke.log": "8d2096c363fe79e85d39e50fd9790a582cd1752bd7fe137ff5e9aa27c30def10",
+        "python.log": "6e4f4589080224ae6c2fbb9f1dec7651ab6275e94bac08d610b90686ccbedc04",
+        "result.json": "97af73a491cb162b0cf725c4828594b903f39b176d63cadef3cf38f3e9863eae",
+        "ticket_ui_smoke.log": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14"
+      }
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "python_tests": 204,
+      "stages": 5,
+      "new_dashboard_tk_checks": 58,
+      "new_atomic_sql_checks": 40,
+      "hashes": {
+        "internal_memberships.log": "124114fb645811a3a17161e720228fa3107e9c61cb3e8f78bb437b25a6fb3ded",
+        "performance_ui_smoke.log": "22eb1cec132c64e8013dab27119854c290ac161f3661a91a4c3e9fec018215fc",
+        "popdown_ui_smoke.log": "8d2096c363fe79e85d39e50fd9790a582cd1752bd7fe137ff5e9aa27c30def10",
+        "python.log": "0bbc663730626df9a6934721fb3dc5d8954202236c6bc89df82881052c736450",
+        "result.json": "bebb23259de30fd7908bed5b956954cd0e76c846197ed86a7d69bb717bc4e975",
+        "ticket_ui_smoke.log": "602eb534821a383193a43ba348886d2afa1336ae7c49572760b48a09bd4b2c14"
+      }
+    }
+  ],
+  "python_tests_total": 635,
+  "remote_sql_status": "NOT_RUN_NO_SUPABASE_TOOLS_IN_CLOUD_SESSION",
+  "user_reported_desktop_supabase_connection": true,
+  "github_windows_status": "NOT_RUN_GITHUB_API_FORBIDDEN",
+  "source_git_status": "WORKTREE_FILES_HASHED_BEFORE_CHECKPOINT",
+  "sql_file": "ACTUALIZAR_SERVIDOR_MEMBRESIAS.sql",
+  "sql_sha256": "9766fa8da4850f296eb54f627a74be3bbd947a30973da58e1134b5bd3ff96cbd",
+  "earlier_attempts": [
+    "Initial test fixture treated JSON RPC rows as table rows; fixed to use the real JSON RPC return.",
+    "Initial metadata expectation omitted the missing membership_type column; corrected expected objects.",
+    "Upgrade audit assertion initially required zero new audit rows; revised to preserve every old row and require all new backfill rows to be nonfinancial PLAN_EDITADO system entries. Original failure preserved.",
+    "Commercial callback test initially assumed the ZTATTUZ log directory; fixture corrected to accept the existing Commercial directory without changing product paths. Original failure preserved."
+  ]
+}

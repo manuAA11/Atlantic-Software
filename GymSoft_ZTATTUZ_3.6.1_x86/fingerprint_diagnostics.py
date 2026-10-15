@@ -1,9 +1,23 @@
 """Small local diagnostic: phases and error codes, never templates or identities."""
 import logging
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from logging.handlers import RotatingFileHandler
 import os
 from pathlib import Path
 import re
+
+
+_gym_zone = ZoneInfo('America/Bogota')
+
+def set_gym_timezone(name):
+    global _gym_zone
+    try: _gym_zone = ZoneInfo(name)
+    except (ValueError, TypeError, KeyError): _gym_zone = ZoneInfo('America/Bogota')
+
+class GymFormatter(logging.Formatter):
+    def formatTime(self, record, datefmt=None):
+        return datetime.fromtimestamp(record.created, timezone.utc).astimezone(_gym_zone).isoformat(timespec='seconds')
 
 
 def log_path():
@@ -17,7 +31,7 @@ def record(phase, error=None):
         if not logger.handlers:
             path = log_path(); path.parent.mkdir(parents=True, exist_ok=True)
             handler = RotatingFileHandler(path, maxBytes=100000, backupCount=1, encoding='utf-8')
-            handler.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
+            handler.setFormatter(GymFormatter('%(asctime)s %(message)s'))
             logger.addHandler(handler); logger.setLevel(logging.INFO); logger.propagate = False
         code = str(getattr(error, 'code', ''))
         codes = re.findall(r'0x[0-9A-Fa-f]{4,8}', str(error)) if error else []

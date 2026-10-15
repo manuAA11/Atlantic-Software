@@ -1,6 +1,6 @@
 import {cleanText} from './security.mjs';
 export const textMessage=body=>({type:'text',text:{body:cleanText(body)}});
-export function menu(gym) {return {type:'interactive',interactive:{type:'list',body:{text:`Hola 👋 Soy el asistente virtual de ${cleanText(gym,120)}. ¿En qué puedo ayudarte?`},action:{button:'Ver opciones',sections:[{title:'Tu gimnasio',rows:[{id:'membership',title:'Mi membresía'},{id:'renew',title:'Renovar'},{id:'entries',title:'Mis entradas'},{id:'reception',title:'Hablar con recepción'}]}]}}};}
+export function menu(gym,{internal=false}={}) {return {type:'interactive',interactive:{type:'list',body:{text:`Hola 👋 Soy el asistente virtual de ${cleanText(gym,120)}. ¿En qué puedo ayudarte?`},action:{button:'Ver opciones',sections:[{title:'Tu gimnasio',rows:[{id:'membership',title:'Mi membresía'},...internal?[]:[{id:'renew',title:'Renovar'}],{id:'entries',title:'Mis entradas'},{id:'reception',title:'Hablar con recepción'}]}]}}};}
 export function parseBirthDate(text) {
  const m=String(text).trim().match(/^(\d{2})[/-](\d{2})[/-](\d{4})$/);if(!m)return null;
  const iso=`${m[3]}-${m[2]}-${m[1]}`;const date=new Date(iso+'T12:00:00Z');
@@ -41,6 +41,8 @@ export async function respond({rpc,paymentLink,gym,sender,message}) {
    return textMessage('Para proteger tu información, confirma tu fecha de nacimiento en formato DD/MM/AAAA.');
  }
  const m=session.membership||{};
+ const internal=m.membership_type==='INTERNAL';
+ if(internal&&(action==='pay'||action==='renew'))return textMessage('Tu plan '+(m.plan_name||'interno')+' no comercial no requiere renovación ni pagos. Para modificarlo, habla con recepción.');
  if(action==='pay') {
    try {return textMessage('Renueva de forma segura aquí:\n'+await paymentLink(session.client_id,message.id));}
    catch(e){if(e.code==='NOT_CONFIGURED'){await rpc('marketing_service_chat',{...args,p_action:'handoff'});return {...textMessage('Los pagos online todavía no están habilitados. Te comunicaremos con recepción.'),_handoff_ack:true};}throw e;}
@@ -48,8 +50,10 @@ export async function respond({rpc,paymentLink,gym,sender,message}) {
  if(action==='renew')return {type:'interactive',interactive:{type:'button',body:{text:`Tu plan actual: ${m.plan_name||'Sin plan'}. El importe exacto aparecerá antes de confirmar el pago.`},action:{buttons:[{type:'reply',reply:{id:'pay',title:'Pagar ahora'}},{type:'reply',reply:{id:'reception',title:'Recepción'}}]}}};
  if(action==='membership'||action==='entries'||dob){
   const frozen=m.frozen===true||m.status==='FROZEN';
-  const dates=frozen?`\nCongelada hasta: ${m.freeze_last_date}\nSe reactiva: ${m.resume_date}\nNuevo vencimiento: ${m.end_date||m.membership_end}`:`\nVence: ${m.end_date||m.membership_end||'Sin plan'}`;
-  return {type:'interactive',interactive:{type:'button',body:{text:`Hola ${session.first_name} 👋\nPlan: ${m.plan_name||'Sin plan'}\nEstado: ${frozen?'CONGELADA':m.status||'Sin plan'}${dates}${m.entry_limit!=null?'\nEntradas restantes: '+String(m.entries_remaining??0):''}`},action:{buttons:[{type:'reply',reply:{id:'renew',title:'Renovar'}},{type:'reply',reply:{id:'reception',title:'Recepción'}}]}}};
+  const dates=m.has_expiration===false?'':frozen?`\nCongelada desde: ${m.freeze?.start_date||'Por confirmar'}\nReactivación máxima: ${m.resume_date}\nVencimiento al inicio: ${m.end_date||m.membership_end}`:`\nVence: ${m.end_date||m.membership_end||'Sin plan'}`;
+  const access=m.unlimited_access===true?'\nAcceso: Ilimitado':m.entry_limit!=null?'\nEntradas restantes: '+String(m.entries_remaining??0):'';
+  const buttons=internal?[{type:'reply',reply:{id:'reception',title:'Recepción'}}]:[{type:'reply',reply:{id:'renew',title:'Renovar'}},{type:'reply',reply:{id:'reception',title:'Recepción'}}];
+  return {type:'interactive',interactive:{type:'button',body:{text:`Hola ${session.first_name} 👋\nPlan: ${m.plan_name||'Sin plan'}${internal?'\nTipo: Interno / No comercial':''}\nEstado: ${frozen?'CONGELADA':m.membership_state||m.status||'Sin plan'}${dates}${access}`},action:{buttons}}};
  }
- return menu(gym.name);
+ return menu(gym.name,{internal});
 }

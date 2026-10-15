@@ -1,0 +1,599 @@
+{
+  "scope": "Linux Python/Tk, PGlite, simulated hardware and transport. No remote database deployment or Windows acceptance claimed.",
+  "products": [
+    {
+      "edition": "GymSoft_Comercial_3.6.0",
+      "status": "PASS",
+      "python_tests": 158,
+      "stages": [
+        {
+          "name": "python",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_Comercial_3.6.0-python.log"
+        },
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/migrations.log"
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/marketing_compile.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/backend_sql_flow.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/time_pipeline.log"
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/membership_freezes.log"
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/marketing_contracts.log"
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/fingerprints.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/contracts.log"
+        },
+        {
+          "name": "owner_flows",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/owner_flows.log"
+        },
+        {
+          "name": "owner_editor",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/owner_editor.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/data-internal-resume-20261013-v3/simulacion_gimnasio.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_Comercial_3.6.0-feature-ui.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_Comercial_3.6.0-responsive.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_Comercial_3.6.0/all-internal-resume-20261013-v2/atlantic_branding_ui_smoke.log"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "status": "PASS",
+      "python_tests": 171,
+      "stages": [
+        {
+          "name": "python",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x64-python.log"
+        },
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/migrations.log"
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/marketing_compile.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/backend_sql_flow.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/time_pipeline.log"
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x64-membership_freezes.log"
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/marketing_contracts.log"
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/fingerprints.log"
+        },
+        {
+          "name": "upgrade_compatibility",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/upgrade_compatibility.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/contracts.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/data-internal-resume-20261013-v3/simulacion_gimnasio.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x64-feature-ui.log"
+        },
+        {
+          "name": "door_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/door_ui_smoke.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x64-responsive.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x64/all-internal-resume-20261013-v2/atlantic_branding_ui_smoke.log"
+        }
+      ]
+    },
+    {
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "status": "PASS",
+      "python_tests": 170,
+      "stages": [
+        {
+          "name": "python",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x86-python.log"
+        },
+        {
+          "name": "contracts_extracted",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/contracts_extracted.log"
+        },
+        {
+          "name": "migrations",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/migrations.log"
+        },
+        {
+          "name": "marketing_compile",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/marketing_compile.log"
+        },
+        {
+          "name": "backend_sql_flow",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/backend_sql_flow.log"
+        },
+        {
+          "name": "time_pipeline",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/time_pipeline.log"
+        },
+        {
+          "name": "membership_freezes",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x86-membership_freezes.log"
+        },
+        {
+          "name": "audit_logs",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/audit_logs.log"
+        },
+        {
+          "name": "marketing_contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/marketing_contracts.log"
+        },
+        {
+          "name": "daily_tickets",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/daily_tickets.log"
+        },
+        {
+          "name": "fingerprints",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/fingerprints.log"
+        },
+        {
+          "name": "upgrade_compatibility",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/upgrade_compatibility.log"
+        },
+        {
+          "name": "security",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/security.log"
+        },
+        {
+          "name": "contracts",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/contracts.log"
+        },
+        {
+          "name": "ticket_plans",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/ticket_plans.log"
+        },
+        {
+          "name": "ticket_followup",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/ticket_followup.log"
+        },
+        {
+          "name": "marketing_backend",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/marketing_backend.log"
+        },
+        {
+          "name": "recorrido_huellas",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/recorrido_huellas.log"
+        },
+        {
+          "name": "simulacion_gimnasio",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/data-internal-resume-20261013-v3/simulacion_gimnasio.log"
+        },
+        {
+          "name": "marketing_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/marketing_ui_smoke.log"
+        },
+        {
+          "name": "freeze_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x86-feature-ui.log"
+        },
+        {
+          "name": "door_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/door_ui_smoke.log"
+        },
+        {
+          "name": "dialog_design_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/dialog_design_ui_smoke.log"
+        },
+        {
+          "name": "ui_wait_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/ui_wait_smoke.log"
+        },
+        {
+          "name": "access_layout_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/access_layout_ui_smoke.log"
+        },
+        {
+          "name": "client_fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/client_fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "fingerprint_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/fingerprint_ui_smoke.log"
+        },
+        {
+          "name": "windows_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/windows_ui_smoke.log"
+        },
+        {
+          "name": "responsive_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/membership-features-20261013/GymSoft_ZTATTUZ_3.6.1_x86-responsive.log"
+        },
+        {
+          "name": "biometric_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/biometric_ui_smoke.log"
+        },
+        {
+          "name": "ticket_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/ticket_ui_smoke.log"
+        },
+        {
+          "name": "performance_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/performance_ui_smoke.log"
+        },
+        {
+          "name": "popdown_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/popdown_ui_smoke.log"
+        },
+        {
+          "name": "layout_modes_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/layout_modes_ui_smoke.log"
+        },
+        {
+          "name": "review_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/review_ui_smoke.log"
+        },
+        {
+          "name": "layout_consistency_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/layout_consistency_ui_smoke.log"
+        },
+        {
+          "name": "visibility_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/visibility_ui_smoke.log"
+        },
+        {
+          "name": "atlantic_branding_ui_smoke",
+          "status": "PASS",
+          "evidence": "evidence/closure-validation-20261008/GymSoft_ZTATTUZ_3.6.1_x86/all-internal-resume-20261013-v2/atlantic_branding_ui_smoke.log"
+        }
+      ]
+    }
+  ],
+  "python_tests_total": 499,
+  "status": "PASS",
+  "historical_failures_retained": true
+}

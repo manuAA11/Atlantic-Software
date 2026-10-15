@@ -70,10 +70,15 @@ def check_libraries():
     import openpyxl
     import supabase
     import realtime
+    import serial
+    from serial.tools import list_ports
+    from door_access import RELAY_ON, RELAY_OFF
 
+    if len(RELAY_ON) != 4 or len(RELAY_OFF) != 4:
+        raise RuntimeError('Los comandos del control opcional de puerta no son válidos.')
     ssl.create_default_context(cafile=certifi.where())
     ZoneInfo('America/Bogota')
-    return 'SSL, certificados, base en nube, Excel y zona horaria disponibles'
+    return 'SSL, certificados, base en nube, Excel, zona horaria y control opcional de puerta disponibles; sin consultar USB'
 
 
 def check_configuration():
@@ -119,7 +124,7 @@ def run(*, network=True):
             'estado': 'OK' if all(c['estado'] == 'OK' for c in checks) else 'REVISAR',
             'comprobaciones': checks,
             'alcance': 'Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, '
-                       'licencias operativas ni lector físico. La edición comercial no incluye relé.'}
+                       'licencias operativas ni lector/relé físicos. No enumera ni abre puertos USB.'}
 
 
 def main():

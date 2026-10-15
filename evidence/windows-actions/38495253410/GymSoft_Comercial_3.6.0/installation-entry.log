@@ -1,0 +1,669 @@
+{
+  "status": "PASS",
+  "final": false,
+  "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+  "edition": "GymSoft_Comercial_3.6.0",
+  "date_utc": "2026-10-14T01:32:02.636946+00:00",
+  "release_gate_modified": false,
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261014T012250Z-6720\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/DIR=D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\instalar-client.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\01-instalar-client.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261014T012250Z-6720\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/DIR=D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\instalar-owner.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\02-instalar-owner.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\diagnosticos\\GymSoftAdmin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\03-diagnostico-GymSoftAdmin.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\diagnosticos\\GymSoftRecepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\04-diagnostico-GymSoftRecepcion.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\diagnosticos\\GymSoftControl.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\05-diagnostico-GymSoftControl.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\shortcut-audit.ps1",
+        "-InstallationRoot",
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr",
+        "-OutputPath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\accesos-directos.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\06-accesos-directos.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261014T012250Z-6720\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\actualizar-client.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\07-actualizar-client.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261014T012250Z-6720\\instaladores\\VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\actualizar-owner.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\08-actualizar-owner.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\actualizacion\\diagnosticos\\GymSoftAdmin.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\09-diagnostico-GymSoftAdmin.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\actualizacion\\diagnosticos\\GymSoftRecepcion.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\10-diagnostico-GymSoftRecepcion.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "--diagnostico",
+        "--sin-red",
+        "--silencioso",
+        "--informe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\actualizacion\\diagnosticos\\GymSoftControl.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\11-diagnostico-GymSoftControl.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\shortcut-audit.ps1",
+        "-InstallationRoot",
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr",
+        "-OutputPath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\accesos-actualizados.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\12-accesos-actualizados.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\desinstalar-client.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\13-desinstalar-client.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\desinstalar-owner.log"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\14-desinstalar-owner.log",
+      "status": "PASS",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\shortcut-audit.ps1",
+        "-InstallationRoot",
+        "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr",
+        "-OutputPath",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\accesos-despues-desinstalar.json"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\15-accesos-despues-desinstalar.log",
+      "status": "PASS",
+      "returncode": 0
+    }
+  ],
+  "installed_executables": [
+    {
+      "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+      "sha256": "50f3195390b3673560f7183901fa920c59bab7f89c0307529e1a5bbdf10d8324",
+      "status": "PASS",
+      "icon": "icono.ico",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-14T01:32:42.292266+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+      "sha256": "9979998db8b76f843c1278485dfa159b9f2cb0ef559761300a54516bb46183fb",
+      "status": "PASS",
+      "icon": "icono_recepcion.ico",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-14T01:32:44.256231+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    },
+    {
+      "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+      "sha256": "bf1f0498cf164626d655fcfa7c82aea34373b4896eb2ec29833c4b15d9d723a0",
+      "status": "PASS",
+      "icon": "icono.ico",
+      "diagnostic": {
+        "producto": "Atlantic Gym",
+        "version": "3.6.0",
+        "fecha": "2026-10-14T01:32:46.261373+00:00",
+        "estado": "OK",
+        "comprobaciones": [
+          {
+            "comprobacion": "Sistema",
+            "estado": "OK",
+            "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+          },
+          {
+            "comprobacion": "Almacenamiento local",
+            "estado": "OK",
+            "detalle": "Carpeta local comercial accesible"
+          },
+          {
+            "comprobacion": "Interfaz",
+            "estado": "OK",
+            "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+          },
+          {
+            "comprobacion": "Componentes incluidos",
+            "estado": "OK",
+            "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+          },
+          {
+            "comprobacion": "Configuración comercial",
+            "estado": "OK",
+            "detalle": "Configuración pública comercial válida; sin claves privadas"
+          }
+        ],
+        "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+      }
+    }
+  ],
+  "cleanup": {
+    "status": "PASS",
+    "application_registrations_removed": true,
+    "application_executables_removed": true,
+    "shortcuts_removed": true,
+    "system_runtime_removed": false,
+    "exclusive_installation_directory_removed": true
+  },
+  "stage": "verify_updated_executables",
+  "explicit_ephemeral_runner": true,
+  "runner_context": {
+    "GITHUB_ACTIONS": "true",
+    "RUNNER_ENVIRONMENT": "github-hosted",
+    "RUNNER_OS": "Windows",
+    "GITHUB_RUN_ID": "38495253410",
+    "RUNNER_TEMP": "D:\\a\\_temp",
+    "GITHUB_WORKSPACE": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "runner": {
+    "environment": "github-hosted",
+    "github_run_id": "38495253410",
+    "runner_temp": "D:\\a\\_temp",
+    "workspace": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "run_id": "20261014T013202Z-5516",
+  "packaging_report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\informe_empaquetado.json",
+  "packaging_report_sha256": "f45fe3e4146e838e642fe2ce6af560edbb2b97550f0e9a1f86d2bbdf9a812228",
+  "native_windows_architecture": "x64",
+  "version": "3.6.0",
+  "installer_metadata": [
+    {
+      "script": "instalador_clientes.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    },
+    {
+      "script": "instalador_propietario.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    }
+  ],
+  "runtime_source_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "installation_root": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr",
+  "fresh_installation": {
+    "entry_points": [
+      "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+      "VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe"
+    ],
+    "status": "PASS"
+  },
+  "runtime": {
+    "status": "PASS",
+    "libraries": [
+      {
+        "library": "dpfpdd.dll",
+        "path": "C:\\Windows\\System32\\dpfpdd.dll",
+        "version": "3.4.0.127",
+        "sha256": "aae20aff139a69f89b3592602c4a81e4479ca91008c1e12383e57d9eaa53439a",
+        "architecture": "x64"
+      },
+      {
+        "library": "dpfj.dll",
+        "path": "C:\\Windows\\System32\\dpfj.dll",
+        "version": "3.4.0.127",
+        "sha256": "3bd05b4af0bb5e1023c6150d72d5a87fb82d5573a51bda70ceca3fa7ff20ee1a",
+        "architecture": "x64"
+      }
+    ],
+    "scope": "Archivos del runtime instalado; no conecta ni prueba el lector.",
+    "cleanup": "Runtime del sistema conservado hasta destruir el runner efímero."
+  },
+  "shortcuts": {
+    "status": "PASS",
+    "counts": {
+      "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe": 2,
+      "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe": 2,
+      "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe": 2
+    },
+    "entries": [
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Administrador.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Propietario.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Recepción.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Administrador.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Recepción.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft Propietario\\Atlantic Gym Propietario.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner",
+        "arguments": ""
+      }
+    ]
+  },
+  "update": {
+    "status": "PASS",
+    "same_registration_and_locations": true,
+    "entry_points": [
+      "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+      "VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe"
+    ],
+    "existing_directories_reused_without_override": true,
+    "executables": [
+      {
+        "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "sha256": "50f3195390b3673560f7183901fa920c59bab7f89c0307529e1a5bbdf10d8324",
+        "status": "PASS",
+        "icon": "icono.ico",
+        "diagnostic": {
+          "producto": "Atlantic Gym",
+          "version": "3.6.0",
+          "fecha": "2026-10-14T01:32:58.733239+00:00",
+          "estado": "OK",
+          "comprobaciones": [
+            {
+              "comprobacion": "Sistema",
+              "estado": "OK",
+              "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+            },
+            {
+              "comprobacion": "Almacenamiento local",
+              "estado": "OK",
+              "detalle": "Carpeta local comercial accesible"
+            },
+            {
+              "comprobacion": "Interfaz",
+              "estado": "OK",
+              "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+            },
+            {
+              "comprobacion": "Componentes incluidos",
+              "estado": "OK",
+              "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+            },
+            {
+              "comprobacion": "Configuración comercial",
+              "estado": "OK",
+              "detalle": "Configuración pública comercial válida; sin claves privadas"
+            }
+          ],
+          "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+        }
+      },
+      {
+        "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "sha256": "9979998db8b76f843c1278485dfa159b9f2cb0ef559761300a54516bb46183fb",
+        "status": "PASS",
+        "icon": "icono_recepcion.ico",
+        "diagnostic": {
+          "producto": "Atlantic Gym",
+          "version": "3.6.0",
+          "fecha": "2026-10-14T01:33:00.774821+00:00",
+          "estado": "OK",
+          "comprobaciones": [
+            {
+              "comprobacion": "Sistema",
+              "estado": "OK",
+              "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+            },
+            {
+              "comprobacion": "Almacenamiento local",
+              "estado": "OK",
+              "detalle": "Carpeta local comercial accesible"
+            },
+            {
+              "comprobacion": "Interfaz",
+              "estado": "OK",
+              "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+            },
+            {
+              "comprobacion": "Componentes incluidos",
+              "estado": "OK",
+              "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+            },
+            {
+              "comprobacion": "Configuración comercial",
+              "estado": "OK",
+              "detalle": "Configuración pública comercial válida; sin claves privadas"
+            }
+          ],
+          "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+        }
+      },
+      {
+        "executable": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "sha256": "bf1f0498cf164626d655fcfa7c82aea34373b4896eb2ec29833c4b15d9d723a0",
+        "status": "PASS",
+        "icon": "icono.ico",
+        "diagnostic": {
+          "producto": "Atlantic Gym",
+          "version": "3.6.0",
+          "fecha": "2026-10-14T01:33:02.776505+00:00",
+          "estado": "OK",
+          "comprobaciones": [
+            {
+              "comprobacion": "Sistema",
+              "estado": "OK",
+              "detalle": "Windows 10.0, compilación 20348, proceso de 64 bits"
+            },
+            {
+              "comprobacion": "Almacenamiento local",
+              "estado": "OK",
+              "detalle": "Carpeta local comercial accesible"
+            },
+            {
+              "comprobacion": "Interfaz",
+              "estado": "OK",
+              "detalle": "Tk 9.0.4; estilos Atlantic, iconos y formularios disponibles"
+            },
+            {
+              "comprobacion": "Componentes incluidos",
+              "estado": "OK",
+              "detalle": "SSL, certificados, base en nube, Excel y zona horaria disponibles"
+            },
+            {
+              "comprobacion": "Configuración comercial",
+              "estado": "OK",
+              "detalle": "Configuración pública comercial válida; sin claves privadas"
+            }
+          ],
+          "alcance": "Diagnóstico de componentes; no acredita cuentas, pagos, WhatsApp, licencias operativas ni lector físico. La edición comercial no incluye relé."
+        }
+      }
+    ],
+    "shortcuts": [
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Administrador.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Propietario.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\Desktop\\Atlantic Gym Recepción.lnk",
+        "kind": "Desktop",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Administrador.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin\\GymSoftAdmin.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Admin",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft\\Atlantic Gym Recepción.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion\\GymSoftRecepcion.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\GymSoft-Recepcion-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\client\\Recepcion",
+        "arguments": ""
+      },
+      {
+        "shortcut": "C:\\Users\\runneradmin\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Gym soft Propietario\\Atlantic Gym Propietario.lnk",
+        "kind": "Programs",
+        "target": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoftControl.exe",
+        "icon": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner\\GymSoft-3.6.0.ico,0",
+        "working_directory": "D:\\a\\_temp\\agym-c64-38495253410-5516-ok1_r4dr\\owner",
+        "arguments": ""
+      }
+    ]
+  },
+  "sdk_log": {
+    "status": "PRESERVED",
+    "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\instalacion-tecnica\\ejecuciones\\20261014T013202Z-5516\\logs\\DigitalPersona_instalacion.log",
+    "sha256": "2a92491c246589fbc05bfee54ceb3a870d2d6a961d7cc99807985689e31659c1"
+  }
+}

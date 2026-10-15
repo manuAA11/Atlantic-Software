@@ -29,6 +29,8 @@ LABELS = dict(zip(
      'Comprobante','ID cliente','ID plan','ID producto','ID personal','ID clase','ID rutina','ID membresía','Total',
      'Valor pagado','Creación (UTC)']))
 LABELS.update(duration_months='Vigencia en meses calendario (solo tiqueteras)', initial_entries_used='Entradas utilizadas antes del traslado', carryover_key='Identificador del traslado')
+LABELS.update(plan_type='Tipo de plan',unlimited_access='Acceso ilimitado',has_expiration='Tiene vencimiento',
+              include_in_financial_stats='Incluido en estadísticas financieras',membership_type='Tipo de membresía',membership_active='Membresía activa')
 ENUMS = {'payment_status': ['posted','void'], 'result': ['PERMITIDA','DENEGADA']}
 
 def profile_params(gym, raw):

@@ -17,7 +17,7 @@ ROOT=Path(__file__).resolve().parent
 EXPECTED_BITS=64
 EXECUTABLES = (('GymSoftAdmin', 'app.py'), ('GymSoftRecepcion', 'reception_app.py'), ('GymSoftControl', 'owner_panel.py'))
 INSTALLER_SCRIPTS = ('instalador_clientes.iss', 'instalador_propietario.iss')
-COLLECT_PACKAGES = ('supabase', 'realtime', 'postgrest', 'supabase_auth', 'tzdata')
+COLLECT_PACKAGES = ('supabase', 'realtime', 'postgrest', 'supabase_auth', 'tzdata', 'serial')
 
 def verify_executable_icon(executable, icon_name="icono.ico"):
     """Detiene la entrega si PyInstaller no embebió el icono Atlantic aprobado completo."""

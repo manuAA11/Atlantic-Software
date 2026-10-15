@@ -1,4 +1,5 @@
 from __future__ import annotations
+from membership_features import expiry_label
 from gym_time import display_timestamp, timezone_for, ticket_access_note, checkin_label
 
 
@@ -1235,7 +1236,7 @@ class ClientsPage(BasePage):
             remaining = row.get("entries_remaining")
             entries = "Ilimitadas" if remaining is None else str(remaining)
             status = str(row.get("status", "VENCIDO"))
-            tag = "ok" if status == "AL DÍA" else "bad"
+            tag = "ok" if status in ("AL DÍA", "ACTIVE") else "bad"
             self.tree.insert(
                 "",
                 "end",
@@ -1246,7 +1247,7 @@ class ClientsPage(BasePage):
                     row.get("phone", ""),
                     status,
                     row.get("plan_name", "Sin plan"),
-                    date_to_display(row.get("membership_end")),
+                    expiry_label(row, date_to_display),
                     entries,
                 ),
                 tags=(tag,),
@@ -2065,7 +2066,7 @@ class AccessPage(BasePage):
                     status,
                     remaining_text,
                 ),
-                tags=("ok" if status == "AL DÍA" else "bad",),
+                tags=("ok" if status in ("AL DÍA", "ACTIVE") else "bad",),
             )
 
         self.clients_tree.tag_configure("ok", foreground=COLORS["success"])
@@ -2093,11 +2094,11 @@ class AccessPage(BasePage):
         self.status_name.set(str(client.get("client_name", "Cliente")))
         self.status_label.configure(
             text=status,
-            fg=COLORS["success"] if status == "AL DÍA" else COLORS["danger"],
+            fg=COLORS["success"] if status in ("AL DÍA", "ACTIVE") else COLORS["danger"],
         )
         self.status_detail.set(
             f"Plan: {client.get('plan_name', 'Sin plan')}\n"
-            f"Vencimiento: {date_to_display(client.get('membership_end'))}\n"
+            f"Vencimiento: {expiry_label(client, date_to_display)}\n"
             f"Entradas disponibles: {remaining_text}"
         )
 
@@ -2126,6 +2127,8 @@ class AccessPage(BasePage):
         except Exception as error:
             messagebox.showerror("No se pudo registrar la entrada", str(error), parent=self)
             return
+
+        if result.get('duplicate_read'): return
 
         allowed = str(result.get("result")) == "PERMITIDA"
         self._access_result_visible = True
@@ -2255,7 +2258,8 @@ class ReceptionApp(tk.Tk):
             self.destroy()
             return
 
-        self.db = UiDatabase(ReceptionDatabase(self.cloud), self)
+        from door_ui import install as install_door
+        self.db = UiDatabase(install_door(self, ReceptionDatabase(self.cloud), admin=False), self)
         self.pages: dict[str, BasePage] = {}
         self.page_types: dict[str, type[BasePage]] = {}
         self.nav_buttons: dict[str, SidebarButton] = {}

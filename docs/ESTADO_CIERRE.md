@@ -1,8 +1,32 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
-Estado revisado el **9 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
+Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
+
+**Incidencia del relé USB comunicada el 14 de octubre:** botón de salida
+operativo y asistencia registrada, pero sin activación del relé desde el PC de
+32 bits. El restablecimiento muestra fallo USB, estado desconocido y última
+orden `—`. Se mejora el diagnóstico de las fuentes para conservar fase
+y código del error; la causa física/Windows y su resolución siguen pendientes.
+El usuario está revisando conexiones antes de continuar las pruebas.
+[Estado y prueba del puerto](DIAGNOSTICO_RELE_USB_WINDOWS.md).
+
+**Incidencia del 14 de octubre: Dashboard sin información.** El usuario muestra
+clientes y estadísticas existentes, pero el panel falla al cargar. Confirmó que
+solo instaló el programa, sin aplicar los dos upgrades nuevos de Supabase.
+La corrección separa cargas y muestra datos desconocidos/diagnóstico; el código
+necesita un build posterior a `7a44de8`. Posteriormente, el usuario comunicó la
+aplicación exitosa del SQL en ZTATTUZ mediante
+`membership_internal_staff_and_early_resume`, conservación de registros/importes
+y pruebas SQL transaccionales de STAFF y reanudación aprobadas con datos de prueba
+revertidos. Esta sesión cloud no lo verificó directamente. Queda comprobar
+Dashboard y guardado de planes en el programa instalado; no se publicaron nuevos
+instaladores por este reporte. [Estado, procedencia y siguiente comprobación](SOLUCION_PANEL_SIN_DATOS.md).
+
+## Cambio posterior: STAFF y reanudación anticipada
+
+El historial Windows descrito abajo corresponde al código anterior a estos cambios. La rama `feature/internal-plans-early-resume` incorpora planes internos no comerciales, métricas comerciales separadas de la asistencia del personal, y extensión por días completos efectivamente congelados. Guía, migraciones y alcance de validación: [MEMBRESIAS_STAFF_REANUDACION.md](MEMBRESIAS_STAFF_REANUDACION.md). No se aplicaron cambios a proyectos Supabase reales al registrar esta ampliación; después el usuario solicitó los nuevos instaladores de todas las aplicaciones. El run `38495253410`, commit `24ca689`, aprobó las 111 etapas Windows, 499 tests Python y compilación de siete programas/ocho instaladores con estos cambios. Las descargas nuevas están en `configuracion-pruebas-24ca689`; conservan el alcance NO FINAL, instalación x86 pendiente en Windows32 y los upgrades/deploy del servidor pendientes.
 
 ## Recuperación verificada
 
@@ -99,3 +123,57 @@ Se comprobaron respaldos extraídos en carpetas independientes: imports aislados
 Los respaldos publicados en Git incluyen **aplicaciones completas desde las fuentes en desarrollo**: fuentes recuperadas, assets, tests, requirements, migraciones, configuración pública, .env.example y guías. Incorporan los Runtime originales bajo cada edición, con sus EULA y términos; no requieren reconstruir archivos MSI/CAB. El helper comprueba CRC e inventario SHA-256 de todo el contenido. También se conserva la alternativa de respaldo de fuentes. Ningún paquete contiene venv/node_modules ni secretos, ni acredita aceptación externa. Los detalles y verificación están en `docs/PAQUETES_APLICACION_COMPLETA.md`. `CREAR_INSTALADORES.bat` permite instalar para configurar y probar antes de la entrega final; `release_readiness.json` conserva los criterios externos pendientes. Las instrucciones exactas y procedimientos de aceptación están en la guía enlazada.
 
 El entorno de desarrollo Linux/Tk/PGlite está comprobado. `install_script` y `start_skill` se actualizaron y guardaron como borrador con Python 3.14.7/Tk 9.0.4 y Python 3.13.15, ambos con ensurepip, requisitos build y lockfile. La instalación completa se repitió y el arranque Tk se comprobó. Esa persistencia no equivale a publicar el snapshot ni valida una máquina futura. El usuario debe revisar/publicar en la configuración del entorno para conservarlo.
+
+La revisión de puerta solicitada el 14 de octubre está en [CONTROL_PUERTA_ESTADO.md](CONTROL_PUERTA_ESTADO.md). Añade watchdog, debounce previo al RPC, diagnóstico y capa opcional común; los instaladores de `24ca689` preceden a esa revisión. Las pruebas Windows y descargas nuevas deben corresponder al commit posterior de puerta, sin sustituir el historial anterior.
+
+Revisión de puerta completada por software: run `38555801086`/commit `7a44de8`, 111 etapas y 599 tests Python Windows aprobados. Instaladores actualizados en [configuracion-pruebas-7a44de8](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-7a44de8), con alcance NO FINAL y [checklist presencial](../PRUEBA_PUERTA_ZTATTUZ.md). Detalle/descarga separada de Propietario y su alcance de verificación en [CONTROL_PUERTA_ESTADO.md](CONTROL_PUERTA_ESTADO.md).
+
+## Incidencia prioritaria del 15 de octubre: relé y Bluetooth
+
+El usuario pidió pausar Tienda/POS: la primera entrada abre, la música Bluetooth
+se interrumpe al activar el relé y las siguientes entradas se registran sin
+abrir. Indicó un adaptador USB en la conexión del relé, sin confirmar su tipo.
+Todavía no se recibió el diagnóstico de Windows. No se confirmó una causa
+eléctrica, de controlador, de adaptador o de arquitectura de 32 bits.
+
+Se corrigieron dos defectos reproducidos con USB simulado: cierre nativo capaz
+de bloquear el hilo de interfaz, y liberación del bloqueo exclusivo antes de
+terminar una limpieza concurrente. El cierre conserva el bloqueo hasta terminar,
+marca estado desconocido si se atasca, intenta cancelación/OFF fuera de Tk y no
+permite ON después de comenzar el cierre. Mantiene autorización, watchdog,
+debounce, comandos y necesidad de restablecimiento explícito tras fallo.
+
+Las tres ediciones aprobaron 69 pruebas de puerta cada una y 78 comprobaciones
+de interfaz cada una: **207 pruebas unitarias y 234 comprobaciones gráficas**.
+Esto es Linux/CPython/Tk con USB simulado, sin probar Windows32, Bluetooth ni el
+relé del usuario. Se conservan reproducciones FAIL y resultados PASS en
+`evidence/relay-cleanup-20261015`. La guía y el colector de estado Windows están
+en [DIAGNOSTICO_USB_BLUETOOTH_32BITS.md](DIAGNOSTICO_USB_BLUETOOTH_32BITS.md).
+
+El acceso al API GitHub/Actions volvió a funcionar el 15 de octubre y se inició
+el run `38818623034` desde `816fcb9`, sin incluir Tienda. x86 aprobó 218 pruebas
+Python y falló después en el puente SQL/relé: exigía una lectura duplicada tras
+esperar un ciclo USB real, que podía superar el debounce de 0,75 segundos. Se
+reprodujo el mismo fallo añadiendo un segundo de espera al fixture original.
+El fixture ahora fija exclusivamente sus relojes de simulación; conserva todas
+las aserciones y los plazos reales del watchdog. El código de producción no
+cambia por este ajuste. La reproducción corregida y los puentes SQL/relé de
+las tres ediciones aprobaron.
+
+El run Windows `38819668761`, commit `751c52c`, terminó con los tres jobs en
+success: **111 etapas y 677 tests Python**, siete programas y ocho instaladores
+reales compilados. Comercial y ZTATTUZ x64 comprobaron instalación, actualización
+y desinstalación; x86 conserva instalación `NOT_RUN` en el runner x64 por la
+restricción original del MSI. Los 254 informes/logs nativos y sus hashes están
+en `evidence/windows-actions/38819668761`. Los tres ZIP cliente se descargaron
+y verificaron con CRC, SHA256, digest/tamaño GitHub, commit y run ID; recibo en
+`evidence/installer-downloads-20261015.json`. La entrega para configurar/pruebas
+está en [configuracion-pruebas-751c52c](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-751c52c).
+El EXE completo Administrador/Recepción está dentro del ZIP x86 y no requiere
+Python en el equipo de instalación. La instalación sobre Windows32 y la prueba
+física del relé/Bluetooth siguen pendientes; estos resultados no confirman la
+causa de la desconexión Bluetooth ni una reparación eléctrica del equipo.
+
+No se modificó `release_readiness.json` ni se acreditó aceptación de hardware.
+Tienda permanece pausada y respaldada en `wip/tienda-pos-20261015` (`6755f49`),
+sin incluirse en esta entrega del relé.

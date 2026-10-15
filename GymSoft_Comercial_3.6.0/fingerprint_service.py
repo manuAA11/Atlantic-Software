@@ -208,9 +208,11 @@ class FingerprintService:
                         if not self.cancel_event.is_set(): self.process_sample(sample)
                         continue
                     if epoch != self.epoch or not self.enabled.is_set(): continue
+                    record('fingerprint_detected')
                     self.sync()
                     keys = list(self.templates); hits = self.reader.match(sample, list(self.templates.values()))
                     if len(hits) != 1:
+                        record('fingerprint_unrecognized')
                         message = 'Huella no reconocida. Regístrala o vuelve a colocar el dedo.' if not hits else 'Lectura ambigua. Vuelve a colocar el dedo.'
                         if self._status != message: self.events.put(('unrecognized', message))
                         self.status(message); continue
@@ -220,8 +222,12 @@ class FingerprintService:
                     self.last[client] = now
                     try:
                         result = self.register(client, 'HUELLA BIOMÉTRICA')
+                        if isinstance(result, dict) and result.get('duplicate_read'):
+                            self.last.pop(client, None)
+                            record('duplicate_read_ignored'); continue
                         if not isinstance(result, dict) or result.get('result') not in ('PERMITIDA', 'DENEGADA'):
                             raise ValueError('No se recibió un resultado de entrada válido.')
+                        if result['result'] == 'DENEGADA': self.last.pop(client, None)
                         self.events.put(('access', result)); self.status('Entrada comprobada. Retira el dedo.')
                         record('checkin_response')
                     except Exception as error:

@@ -1,0 +1,89 @@
+{
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+  "scope": "all",
+  "python": "3.14.7 (main, Sep 24 2026, 17:58:18) [Clang 22.1.3 ]",
+  "started_at": "2026-10-14T00:20:27.234048+00:00",
+  "stages": [
+    {
+      "name": "python",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 25.24,
+      "timed_out": false,
+      "callback_failure": true
+    },
+    {
+      "name": "contracts_extracted",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 1.1,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "migrations",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 6.31,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_compile",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 4.73,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "backend_sql_flow",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 4.49,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "time_pipeline",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 6.55,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "membership_freezes",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 8.6,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "audit_logs",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 5.33,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_contracts",
+      "status": "FAIL",
+      "returncode": 1,
+      "seconds": 6.2,
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "daily_tickets",
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 5.45,
+      "timed_out": false,
+      "callback_failure": false
+    }
+  ],
+  "note": "Existing source tests. Contracts extracted from current source. Offline PGlite and simulated hardware; no Windows or external-service verification."
+}

@@ -1,0 +1,95 @@
+["D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\run_validation.py"]
+Gym soft 3.6.1 · Validación local con lector simulado
+
+PRUEBA: python
+EN CURSO: python · 15 s · límite 300 s.
+EN CURSO: python · 30 s · límite 300 s.
+..............................................................................................................................................................Creando .venv con Python 3.14.8 de 32 bits...
+EN CURSO: python · 45 s · límite 300 s.
+Entorno listo: Python 3.14.8 de 32 bits.
+Entorno listo: Python 3.14 de 32 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261015_224326_fb9daf4a
+Creando .venv con Python 3.14.8 de 32 bits...
+Entorno listo: Python 3.14.8 de 32 bits.
+...........................................................
+----------------------------------------------------------------------
+Ran 218 tests in 52.666s
+
+OK
+
+PRUEBA: contratos_extraidos
+Client contract extracted
+
+PRUEBA: marketing_compile
+MARKETING SQL COMPILES
+
+PRUEBA: backend_sql_flow
+PASS: 28 cross-layer checks (HTTP, signed Meta/chatbot, real SQL freeze, payment link, signed Wompi renewal/idempotency). External transport and Vault simulated; no external pilot.
+
+PRUEBA: time_pipeline
+PASS: 55 real time pipeline checks (ZTATTUZ)
+
+PRUEBA: membership_freezes
+PASS: 52 freeze checks (ZTATTUZ)
+INTERNAL MEMBERSHIPS 90 CHECKS PASS (ZTATTUZ)
+DASHBOARD UPGRADE 40 CHECKS PASS (ZTATTUZ): missing RPC, read-only diagnosis, atomic preflight, legacy history, idempotent combined upgrade and server metrics.
+EARLY RESUME 68 CHECKS PASS (ZTATTUZ)
+LEGACY FREEZE UPGRADE PASS
+EN CURSO: membership_freezes · 15 s · límite 300 s.
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py", line 30, in <module>
+    assert duplicate['duplicate_read']
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'duplicate_read'
+node:internal/errors:986
+  const err = new Error(message);
+              ^
+
+Error: Command failed: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\.venv\Scripts\python.exe D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py
+Traceback (most recent call last):
+
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py", line 30, in <module>
+
+    assert duplicate['duplicate_read']
+
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+
+KeyError: 'duplicate_read'
+
+
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///D:/a/Atlantic-Software/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x86/tests/door_access_flow.mjs:49:15 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'Traceback (most recent call last):\r\n' +
+      '  File "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\tests\\door_server_bridge.py", line 30, in <module>\r\n' +
+      "    assert duplicate['duplicate_read']\r\n" +
+      '           ~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n' +
+      "KeyError: 'duplicate_read'\r\n"
+  ],
+  pid: 3760,
+  stdout: '',
+  stderr: 'Traceback (most recent call last):\r\n' +
+    '  File "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\tests\\door_server_bridge.py", line 30, in <module>\r\n' +
+    "    assert duplicate['duplicate_read']\r\n" +
+    '           ~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n' +
+    "KeyError: 'duplicate_read'\r\n"
+}
+
+Node.js v24.21.0
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 91, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 76, in main
+    for name in SQL_TESTS:stage(name,[node,f'tests/{name}.mjs'])
+                          ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 66, in stage
+    raise RuntimeError(f'Falló {name}. {reason} Revisa {log}.')
+RuntimeError: Falló membership_freezes. La prueba detectó un error. Revisa D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\membership_freezes.log.

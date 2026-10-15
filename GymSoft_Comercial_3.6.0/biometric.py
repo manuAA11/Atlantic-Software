@@ -180,6 +180,8 @@ class BiometricAccessControl(ttk.Frame):
         if native is not None:
             ttk.Button(top, text='Huellas / lector', command=native.open).pack(side='left', padx=(8,0))
             ttk.Label(self, textvariable=native.state, wraplength=680, style='Subtitle.TLabel').pack(fill='x', pady=(4,0))
+        from door_ui import access_controls
+        access_controls(self, controller.root)
         self._update()
 
     def toggle(self):
@@ -336,8 +338,14 @@ class BiometricAccessController:
         self.busy = True
         generation = self.generation
         def worker():
-            try: result = (self.lookup(code), None)
-            except Exception as error: result = (None, error)
+            door = getattr(self.root, 'door', None)
+            if door: door._record('code_detected', stage='reader')
+            try:
+                result = (self.lookup(code), None)
+                if door and result[0] is None: door._record('code_unrecognized', stage='identification')
+            except Exception as error:
+                result = (None, error)
+                if door: door._record('identification_failed', stage='identification', error=type(error).__name__)
             self.queue.put((generation, code, origin, expected, snapshot, manual, result))
         threading.Thread(target=worker, daemon=True).start()
 

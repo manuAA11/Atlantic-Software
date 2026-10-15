@@ -1,0 +1,15 @@
+SIMULACIÓN: Alta del gimnasio, cuentas y autorización del equipo
+SIMULACIÓN: Clientes, cumpleaños, huella opcional y búsquedas
+SIMULACIÓN: Planes mensuales, tiqueteras y pagos
+SIMULACIÓN: Registro de entrada, cupos y control de acceso
+SIMULACIÓN: Corrección y anulación de pagos con auditoría
+SIMULACIÓN: Tienda, inventario y ventas desde Recepción
+SIMULACIÓN: Gastos, caja y conciliación del día
+SIMULACIÓN: Personal, turnos y rutinas
+SIMULACIÓN: Clases y reservas
+SIMULACIÓN: Dashboard, estadísticas y seguimiento comercial
+SIMULACIÓN: Marketing, contactos y autorización
+SIMULACIÓN: Excel, respaldos y restauración en un gimnasio aislado
+SIMULACIÓN: Permisos, licencia y cierre de jornada
+PASS: 111 comprobaciones de una jornada con las clases Python y el SQL comercial reales.
+EN CURSO: simulacion_gimnasio · 15 s · límite 300 s.

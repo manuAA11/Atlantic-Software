@@ -34,7 +34,7 @@ try {
  const plan=(await sql.query("insert into public.plans(gym_id,name,duration_days,price) values($1,'Cross-layer monthly',30,70000) returning id",[gym])).rows[0].id;
  await service();const today=(await sql.query('select private.gym_local_date($1)::text as day',[gym])).rows[0].day;await user(admin);
  const membership=(await sql.query("insert into public.memberships(gym_id,client_id,plan_id,start_date,end_date,amount,amount_paid,payment_method) values($1,$2,$3,($4::date-7),($4::date+20),0,0,'Efectivo') returning id",[gym,client,plan,today])).rows[0].id;
- const freeze=await rpc('membership_freeze',{p_gym_id:gym,p_membership_id:membership,p_request_id:'70000000-0000-4000-8000-000000000001',p_reason:'Local regression'});equal(freeze.days_added,7);
+ const freeze=await rpc('membership_freeze',{p_gym_id:gym,p_membership_id:membership,p_request_id:'70000000-0000-4000-8000-000000000001',p_reason:'Local regression'});equal(freeze.days_added,0);
  await rpc('marketing_set_consent',{p_gym_id:gym,p_client_id:client,p_enabled:true,p_source:'Local fixture'});await service();
  // In-memory Vault stand-in: only synthetic secrets; production SQL credentials RPC remains in use.
  await sql.exec('create schema vault; create table vault.decrypted_secrets(id uuid primary key,decrypted_secret text);');

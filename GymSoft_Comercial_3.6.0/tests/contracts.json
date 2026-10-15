@@ -48,6 +48,16 @@
     },
     {
       "file": "cloud_database.py",
+      "name": "save_membership_plan",
+      "args": [
+        "p_gym_id",
+        "p_plan_id",
+        "p_data",
+        "p_reason"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
       "name": "admin_list_store_products",
       "args": [
         "p_gym_id",
@@ -126,6 +136,22 @@
       "name": "gym_local_clock",
       "args": [
         "p_gym_id"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "membership_population",
+      "args": [
+        "p_gym_id"
+      ]
+    },
+    {
+      "file": "cloud_database.py",
+      "name": "save_membership_plan",
+      "args": [
+        "p_gym_id",
+        "p_data",
+        "p_reason"
       ]
     },
     {
@@ -757,18 +783,28 @@
       "duration_days",
       "duration_months",
       "entry_limit",
+      "has_expiration",
       "id",
+      "include_in_financial_stats",
       "name",
-      "price"
+      "plan_type",
+      "price",
+      "unlimited_access"
     ],
     "memberships": [
       "amount",
       "amount_paid",
+      "assignment_request_id",
       "client_id",
       "end_date",
       "entry_limit",
+      "freeze_archive",
+      "has_expiration",
       "id",
+      "include_in_financial_stats",
       "initial_entries_used",
+      "membership_active",
+      "membership_type",
       "notes",
       "paid_at",
       "payment_change_reason",
@@ -780,7 +816,9 @@
       "payment_status",
       "plan_id",
       "recorded_by",
-      "start_date"
+      "start_date",
+      "ticket_consumption_archive",
+      "unlimited_access"
     ],
     "checkins": [
       "checkin_at",

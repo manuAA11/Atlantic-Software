@@ -1,0 +1,12 @@
+EN CURSO: python · 15 s · límite 180 s.
+....................................................................................................................................................Creando .venv con Python 3.14.7 de 64 bits...
+Entorno listo: Python 3.14.7 de 64 bits.
+Entorno listo: Python 3.14 de 64 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261014_213412_fd01d7eb
+Creando .venv con Python 3.14.7 de 64 bits...
+Entorno listo: Python 3.14.7 de 64 bits.
+........................................................
+----------------------------------------------------------------------
+Ran 205 tests in 25.869s
+
+OK

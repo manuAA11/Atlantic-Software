@@ -1,0 +1,8 @@
+EN CURSO: membership_freezes · 15 s · límite 300 s.
+PASS: 52 freeze checks (ZTATTUZ)
+INTERNAL MEMBERSHIPS 90 CHECKS PASS (ZTATTUZ)
+EARLY RESUME 68 CHECKS PASS (ZTATTUZ)
+LEGACY FREEZE UPGRADE PASS
+EN CURSO: membership_freezes · 30 s · límite 300 s.
+DOOR SQL/DRIVER BRIDGE 60 CHECKS PASS: server responses preserved; denied never unlock; repeated reads never repeat RPC/pulse.
+DOOR ACCESS FLOW 16 SQL CHECKS PASS (ZTATTUZ; real PGlite decisions, simulated USB)

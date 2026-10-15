@@ -60,7 +60,7 @@ def main():
             plan = {'id': 1, 'name': 'Tiquetera flexible', 'duration_days': 60, 'duration_months': 2, 'entry_limit': 20, 'price': 80000}
             dialog = admin.PlanDialog(root, plan); pump(root)
             dialog.months.set('3'); dialog.entries.set('25'); dialog.save()
-            assert dialog.result == ('Tiquetera flexible', 90, 80000, 25, 3)
+            assert dialog.result == ('Tiquetera flexible', 90, 80000, 25, 3, 'COMMERCIAL', False, True, True)
             checked += 1
             db = Mock(); db.list_plans.return_value = [plan]; db._today.return_value = date(2026, 9, 8)
             for factory in (lambda: admin.MembershipDialog(root, db, 'Ana'),

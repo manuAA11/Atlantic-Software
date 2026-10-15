@@ -1,0 +1,978 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Upgrade preserved historical fields in audit_logs
++ actual - expected
+... Skipped lines
+
+  [
+    {
+      action: 'USUARIO_AGREGADO',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+...
+    },
++   {
++     action: 'PLAN_EDITADO',
++     actor_email: 'Sistema',
++     actor_role: 'system',
++     actor_user_id: null,
++     created_at: 2026-10-20T14:00:00.000Z,
++     details: {
++       active: 'true',
++       duration_days: '30',
++       name: 'Tiquetera',
++       price: '50000'
++     },
++     entity_id: '3',
++     entity_type: 'plans',
++     gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
++     id: 21,
++     summary: 'Tiquetera · $50000'
++   },
++   {
++     action: 'PLAN_EDITADO',
++     actor_email: 'Sistema',
++     actor_role: 'system',
++     actor_user_id: null,
++     created_at: 2026-10-20T14:00:00.000Z,
++     details: {
++       active: 'true',
++       duration_days: '30',
++       name: 'Tiquetera',
++       price: '50000'
++     },
++     entity_id: '6',
++     entity_type: 'plans',
++     gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
++     id: 22,
++     summary: 'Tiquetera · $50000'
++   },
++   {
++     action: 'PLAN_EDITADO',
++     actor_email: 'Sistema',
++     actor_role: 'system',
++     actor_user_id: null,
++     created_at: 2026-10-20T14:00:00.000Z,
++     details: {
++       active: 'true',
++       duration_days: '30',
++       name: 'Comercial 4',
++       price: '70000'
++     },
++     entity_id: '8',
++     entity_type: 'plans',
++     gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
++     id: 23,
++     summary: 'Comercial 4 · $70000'
++   }
+  ]
+
+    at eq (file:///workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/dashboard_upgrade.mjs:11:43)
+    at file:///workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/dashboard_upgrade.mjs:36:59 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    {
+      id: 1,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '20000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 20000000 · admin',
+      details: {
+        role: 'admin',
+        user_id: '20000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 2,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '1',
+      summary: 'Mensual · $55000',
+      details: {
+        name: 'Mensual',
+        price: '55000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 3,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '2',
+      summary: 'Semanal · $25000',
+      details: {
+        name: 'Semanal',
+        price: '25000',
+        active: 'true',
+        duration_days: '7'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 4,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '3',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 5,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '40000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 40000000 · admin',
+      details: {
+        role: 'admin',
+        user_id: '40000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 6,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '4',
+      summary: 'Mensual · $55000',
+      details: {
+        name: 'Mensual',
+        price: '55000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 7,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '5',
+      summary: 'Semanal · $25000',
+      details: {
+        name: 'Semanal',
+        price: '25000',
+        active: 'true',
+        duration_days: '7'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 8,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '6',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 9,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: null,
+      actor_email: 'Sistema',
+      actor_role: 'system',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '30000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 30000000 · receptionist',
+      details: {
+        role: 'receptionist',
+        user_id: '30000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.471Z
+    },
+    {
+      id: 10,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '1',
+      summary: 'Persona 1  · TEST-1',
+      details: { document: 'TEST-1', client_id: '1', client_name: 'Persona 1' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 11,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '7',
+      summary: 'Comercial 2 · $70000',
+      details: {
+        name: 'Comercial 2',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 12,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '1',
+      summary: 'Pago registrado · Persona 1 · $70000',
+      details: {
+        after: {
+          id: 1,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 7,
+          end_date: '2026-10-30',
+          client_id: 1,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: null,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '1',
+        client_name: 'Persona 1',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 13,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '2',
+      summary: 'Persona 3  · TEST-3',
+      details: { document: 'TEST-3', client_id: '2', client_name: 'Persona 3' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 14,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '8',
+      summary: 'Comercial 4 · $70000',
+      details: {
+        name: 'Comercial 4',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 15,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '2',
+      summary: 'Pago registrado · Persona 3 · $70000',
+      details: {
+        after: {
+          id: 2,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 8,
+          end_date: '2026-10-30',
+          client_id: 2,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: 3,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '2',
+        client_name: 'Persona 3',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 16,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '3',
+      summary: 'Persona 5  · TEST-5',
+      details: { document: 'TEST-5', client_id: '3', client_name: 'Persona 5' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 17,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '9',
+      summary: 'Comercial 6 · $70000',
+      details: {
+        name: 'Comercial 6',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 18,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '3',
+      summary: 'Pago registrado · Persona 5 · $70000',
+      details: {
+        after: {
+          id: 3,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 9,
+          end_date: '2026-10-10',
+          client_id: 3,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: null,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '3',
+        client_name: 'Persona 5',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 19,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'ENTRADA_REGISTRADA',
+      entity_type: 'checkins',
+      entity_id: '1',
+      summary: 'Entrada PERMITIDA para el Persona 1',
+      details: {
+        method: 'HUELLA BIOMÉTRICA',
+        result: 'PERMITIDA',
+        client_id: '1',
+        client_name: 'Persona 1'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 20,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'ENTRADA_REGISTRADA',
+      entity_type: 'checkins',
+      entity_id: '2',
+      summary: 'Entrada PERMITIDA para el Persona 3',
+      details: {
+        method: 'HUELLA BIOMÉTRICA',
+        result: 'PERMITIDA',
+        client_id: '2',
+        client_name: 'Persona 3'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 21,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: null,
+      actor_email: 'Sistema',
+      actor_role: 'system',
+      action: 'PLAN_EDITADO',
+      entity_type: 'plans',
+      entity_id: '3',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 22,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: null,
+      actor_email: 'Sistema',
+      actor_role: 'system',
+      action: 'PLAN_EDITADO',
+      entity_type: 'plans',
+      entity_id: '6',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 23,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: null,
+      actor_email: 'Sistema',
+      actor_role: 'system',
+      action: 'PLAN_EDITADO',
+      entity_type: 'plans',
+      entity_id: '8',
+      summary: 'Comercial 4 · $70000',
+      details: {
+        name: 'Comercial 4',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    }
+  ],
+  expected: [
+    {
+      id: 1,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '20000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 20000000 · admin',
+      details: {
+        role: 'admin',
+        user_id: '20000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 2,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '1',
+      summary: 'Mensual · $55000',
+      details: {
+        name: 'Mensual',
+        price: '55000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 3,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '2',
+      summary: 'Semanal · $25000',
+      details: {
+        name: 'Semanal',
+        price: '25000',
+        active: 'true',
+        duration_days: '7'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 4,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '3',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.386Z
+    },
+    {
+      id: 5,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '40000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 40000000 · admin',
+      details: {
+        role: 'admin',
+        user_id: '40000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 6,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '4',
+      summary: 'Mensual · $55000',
+      details: {
+        name: 'Mensual',
+        price: '55000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 7,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '5',
+      summary: 'Semanal · $25000',
+      details: {
+        name: 'Semanal',
+        price: '25000',
+        active: 'true',
+        duration_days: '7'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 8,
+      gym_id: 'b2f0ae6b-7b32-4a10-88c5-04ab60f795a1',
+      actor_user_id: '40000000-0000-4000-8000-000000000031',
+      actor_email: 'other@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '6',
+      summary: 'Tiquetera · $50000',
+      details: {
+        name: 'Tiquetera',
+        price: '50000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-14T21:25:54.451Z
+    },
+    {
+      id: 9,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: null,
+      actor_email: 'Sistema',
+      actor_role: 'system',
+      action: 'USUARIO_AGREGADO',
+      entity_type: 'gym_users',
+      entity_id: '30000000-0000-4000-8000-000000000031',
+      summary: 'Usuario 30000000 · receptionist',
+      details: {
+        role: 'receptionist',
+        user_id: '30000000-0000-4000-8000-000000000031'
+      },
+      created_at: 2026-10-14T21:25:54.471Z
+    },
+    {
+      id: 10,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '1',
+      summary: 'Persona 1  · TEST-1',
+      details: { document: 'TEST-1', client_id: '1', client_name: 'Persona 1' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 11,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '7',
+      summary: 'Comercial 2 · $70000',
+      details: {
+        name: 'Comercial 2',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 12,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '1',
+      summary: 'Pago registrado · Persona 1 · $70000',
+      details: {
+        after: {
+          id: 1,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 7,
+          end_date: '2026-10-30',
+          client_id: 1,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: null,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '1',
+        client_name: 'Persona 1',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 13,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '2',
+      summary: 'Persona 3  · TEST-3',
+      details: { document: 'TEST-3', client_id: '2', client_name: 'Persona 3' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 14,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '8',
+      summary: 'Comercial 4 · $70000',
+      details: {
+        name: 'Comercial 4',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 15,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '2',
+      summary: 'Pago registrado · Persona 3 · $70000',
+      details: {
+        after: {
+          id: 2,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 8,
+          end_date: '2026-10-30',
+          client_id: 2,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: 3,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '2',
+        client_name: 'Persona 3',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 16,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'CLIENTE_CREADO',
+      entity_type: 'clients',
+      entity_id: '3',
+      summary: 'Persona 5  · TEST-5',
+      details: { document: 'TEST-5', client_id: '3', client_name: 'Persona 5' },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 17,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PLAN_CREADO',
+      entity_type: 'plans',
+      entity_id: '9',
+      summary: 'Comercial 6 · $70000',
+      details: {
+        name: 'Comercial 6',
+        price: '70000',
+        active: 'true',
+        duration_days: '30'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 18,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'PAGO_REGISTRADO',
+      entity_type: 'memberships',
+      entity_id: '3',
+      summary: 'Pago registrado · Persona 5 · $70000',
+      details: {
+        after: {
+          id: 3,
+          notes: '',
+          amount: 70000,
+          gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+          paid_at: '2026-10-20T14:00:00+00:00',
+          plan_id: 9,
+          end_date: '2026-10-10',
+          client_id: 3,
+          start_date: '2026-10-01',
+          amount_paid: 70000,
+          entry_limit: null,
+          recorded_by: null,
+          carryover_key: null,
+          freeze_archive: null,
+          payment_method: 'Efectivo',
+          payment_source: 'MANUAL',
+          payment_status: 'posted',
+          payment_revision: 0,
+          payment_reference: '',
+          payment_changed_at: null,
+          payment_changed_by: null,
+          initial_entries_used: 0,
+          payment_change_reason: null,
+          ticket_consumption_archive: null
+        },
+        before: null,
+        reason: null,
+        client_id: '3',
+        client_name: 'Persona 5',
+        payment_revision: 0
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 19,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'ENTRADA_REGISTRADA',
+      entity_type: 'checkins',
+      entity_id: '1',
+      summary: 'Entrada PERMITIDA para el Persona 1',
+      details: {
+        method: 'HUELLA BIOMÉTRICA',
+        result: 'PERMITIDA',
+        client_id: '1',
+        client_name: 'Persona 1'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    },
+    {
+      id: 20,
+      gym_id: '048af10b-3d0c-47b4-b734-422c79f10cd3',
+      actor_user_id: '20000000-0000-4000-8000-000000000031',
+      actor_email: 'admin@example.test',
+      actor_role: 'admin',
+      action: 'ENTRADA_REGISTRADA',
+      entity_type: 'checkins',
+      entity_id: '2',
+      summary: 'Entrada PERMITIDA para el Persona 3',
+      details: {
+        method: 'HUELLA BIOMÉTRICA',
+        result: 'PERMITIDA',
+        client_id: '2',
+        client_name: 'Persona 3'
+      },
+      created_at: 2026-10-20T14:00:00.000Z
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

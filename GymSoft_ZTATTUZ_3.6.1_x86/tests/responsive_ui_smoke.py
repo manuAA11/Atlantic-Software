@@ -143,7 +143,7 @@ def main():
                     for limit in [15,20,None]:
                         win=admin.PlanDialog(root,{'name':'Prueba','duration_days':30,'price':50000,'entry_limit':limit})
                         win.geometry('460x380');pump(root);assert_buttons_fit(root)
-                        win.save();assert win.result==( 'Prueba',30,50000,limit,None);checked+=1
+                        win.save();assert win.result==('Prueba',30,50000,limit,None,'COMMERCIAL',limit is None,True,True);checked+=1
             finally:destroy_root(root)
     assert not failures,'; '.join(failures)
     print(f'PASS: {checked} comprobaciones de tamaños, navegación y formularios al 100 % y 125 %.')

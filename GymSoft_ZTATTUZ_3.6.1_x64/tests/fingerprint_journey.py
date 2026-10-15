@@ -60,7 +60,7 @@ def main():
             def reader_factory():
                 with reader.installed():return NativeReader()
             usb=FakeUSB();door_store=ConfigStore(door_folder.name,gid)
-            door=DoorController(door_store,transport=lambda config:usb);doors.append(door)
+            door=DoorController(door_store,transport=lambda config:usb,ports_provider=lambda:[dict(port='COM7',vid=0x1A86,pid=0x7523)]);doors.append(door)
             until(lambda:not door._pending)
             door_store.save(DoorConfig(True,'COM7',3,0x1A86,0x7523))
             usb.on=door._cancel.set

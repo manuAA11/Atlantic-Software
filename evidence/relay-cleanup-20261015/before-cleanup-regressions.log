@@ -1,0 +1,26 @@
+test_shutdown_returns_while_native_close_is_blocked_and_keeps_equipment_lock (test_door_cleanup.DoorCleanup.test_shutdown_returns_while_native_close_is_blocked_and_keeps_equipment_lock) ... FAIL
+test_twenty_five_different_authorized_entries_each_close_their_own_transport (test_door_cleanup.DoorCleanup.test_twenty_five_different_authorized_entries_each_close_their_own_transport) ... ok
+test_watchdog_keeps_equipment_lock_and_reports_blocked_close_until_cleanup_finishes (test_door_cleanup.DoorCleanup.test_watchdog_keeps_equipment_lock_and_reports_blocked_close_until_cleanup_finishes) ... FAIL
+
+======================================================================
+FAIL: test_shutdown_returns_while_native_close_is_blocked_and_keeps_equipment_lock (test_door_cleanup.DoorCleanup.test_shutdown_returns_while_native_close_is_blocked_and_keeps_equipment_lock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x86/tests/test_door_cleanup.py", line 72, in test_shutdown_returns_while_native_close_is_blocked_and_keeps_equipment_lock
+    self.assertLess(elapsed, 2.8, 'La llamada de cierre de Tk quedó bloqueada por el controlador USB.')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 5.00035222301085 not less than 2.8 : La llamada de cierre de Tk quedó bloqueada por el controlador USB.
+
+======================================================================
+FAIL: test_watchdog_keeps_equipment_lock_and_reports_blocked_close_until_cleanup_finishes (test_door_cleanup.DoorCleanup.test_watchdog_keeps_equipment_lock_and_reports_blocked_close_until_cleanup_finishes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x86/tests/test_door_cleanup.py", line 93, in test_watchdog_keeps_equipment_lock_and_reports_blocked_close_until_cleanup_finishes
+    self.assertTrue(self.door._pending)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 8.233s
+
+FAILED (failures=2)

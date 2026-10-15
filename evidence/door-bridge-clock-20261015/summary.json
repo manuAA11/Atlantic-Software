@@ -1,0 +1,46 @@
+{
+  "source_base": "816fcb91a6260b769a6eaf2429400fedbe7c7567",
+  "windows_failed_run": "38818623034",
+  "windows_x86_python_tests": {
+    "tests": 218,
+    "status": "PASS"
+  },
+  "windows_x86_failed_stage": "membership_freezes: door_server_bridge duplicate_read assertion after real 0.75 s debounce elapsed",
+  "controlled_reproduction": {
+    "delay_seconds_after_usb_completion": 1,
+    "before": "FAIL: KeyError duplicate_read",
+    "after": "PASS: 5 bridge checks; all original assertions retained"
+  },
+  "focused_sql_bridge_rechecks": {
+    "GymSoft_Comercial_3.6.0": {
+      "command": "PYTHON=/workspace/.venvs/multigym314/bin/python node tests/door_access_flow.mjs",
+      "exit_code": 0,
+      "bridge_checks": 60,
+      "sql_checks": 16,
+      "scope": "Linux/PGlite and simulated USB from committed sources exported to /tmp, plus the fixture fix; paused POS excluded"
+    },
+    "GymSoft_ZTATTUZ_3.6.1_x64": {
+      "command": "PYTHON=/workspace/.venvs/multigym314/bin/python node tests/door_access_flow.mjs",
+      "exit_code": 0,
+      "bridge_checks": 60,
+      "sql_checks": 16,
+      "scope": "Linux/PGlite and simulated USB from committed sources exported to /tmp, plus the fixture fix; paused POS excluded"
+    },
+    "GymSoft_ZTATTUZ_3.6.1_x86": {
+      "command": "PYTHON=/workspace/.venvs/multigym314/bin/python node tests/door_access_flow.mjs",
+      "exit_code": 0,
+      "bridge_checks": 60,
+      "sql_checks": 16,
+      "scope": "Linux/PGlite and simulated USB from committed sources exported to /tmp, plus the fixture fix; paused POS excluded"
+    }
+  },
+  "production_door_sha256": "6d346e823ce542607deed0bc8d781fae7ed0f7653f00b65f2408a297aa6760eb",
+  "fixture_sha256": "f8b239874afc3754602f65ddd3384fadb8dcd7f9df835ad359e9dc5c587a2969",
+  "production_changes": false,
+  "pending": "Full native Windows rebuild; x86 installation and physical relay/Bluetooth validation",
+  "native_failure_reports_preserved": 21,
+  "logs": {
+    "bridge-after-delay.log": "a2d1ad018b3f7a8922916b7339ef09966d0d6f0f84055dfb2f24ae9ae955737d",
+    "bridge-before-delay.log": "d57f404e79d53fe0d5caa98551bb49311d2e0a769d57146ce5ae795860e94cf9"
+  }
+}

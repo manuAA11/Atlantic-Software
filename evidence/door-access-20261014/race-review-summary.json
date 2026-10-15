@@ -1,0 +1,27 @@
+{
+  "status": "PASS_LOCAL_RACE_REGRESSIONS",
+  "tests": 55,
+  "tool_guard_tests": 53,
+  "local_sql_checks_per_product": 16,
+  "sql_driver_bridge_checks_per_product": 60,
+  "evidence": [
+    {
+      "path": "evidence/door-access-20261014/door-races-final-v2.log",
+      "sha256": "795b5b55e0024a15aca7c2f565d4b76d6a123f2fe1ab75b090312276ac065c3c"
+    },
+    {
+      "path": "evidence/door-access-20261014/door-races-flow-zt-final.log",
+      "sha256": "81a457e84cf094a325786848d550be1dc310c9b6ec6763ddfb9e53d586fcc66d"
+    },
+    {
+      "path": "evidence/door-access-20261014/door-races-flow-c-final.log",
+      "sha256": "922b5f98f7ad64ae720f01b62f2c2eee5e6cddcc63a7197ad93f42b40991f202"
+    },
+    {
+      "path": "evidence/door-access-20261014/door-guards-races-final-v2.log",
+      "sha256": "020b132f7a6776ccc1f29e776616cd766e7f9d3398b017143ee4cba7ffa23628"
+    }
+  ],
+  "scope": "Linux, simulated serial/reader and PGlite. Windows run38499829306 has original x86 test synchronization failure; two jobs passed. New source fixes request in-flight exclusion, serial ON/OFF ordering and stale replies; final Windows recheck required.",
+  "physical_hardware_tested": false
+}

@@ -1,0 +1,45 @@
+..E....E.........................................................................................................Creando .venv con Python 3.14.7 de 64 bits...
+EN CURSO: python · 15 s · límite 300 s.
+Entorno listo: Python 3.14.7 de 64 bits.
+Entorno listo: Python 3.14 de 64 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261014_002046_142b90d5
+Creando .venv con Python 3.14.7 de 64 bits...
+Entorno listo: Python 3.14.7 de 64 bits.
+.............................E..........................
+======================================================================
+ERROR: test_edit_ticket_limit_preserves_gym_scope (test_access_plans.AccessPlans.test_edit_ticket_limit_preserves_gym_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/test_access_plans.py", line 43, in test_edit_ticket_limit_preserves_gym_scope
+    value=db.client.table.return_value.update.call_args.args[0]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'args'
+
+======================================================================
+ERROR: test_ticket_limits_do_not_depend_on_plan_name (test_access_plans.AccessPlans.test_ticket_limits_do_not_depend_on_plan_name)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/test_access_plans.py", line 34, in test_ticket_limits_do_not_depend_on_plan_name
+    db=self.db();db.add_plan('Plan personalizado',30,55000,limit)
+                 ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/cloud_database.py", line 554, in add_plan
+    return int(row['id'])
+               ~~~^^^^^^
+TypeError: 'Mock' object is not subscriptable
+
+======================================================================
+ERROR: test_adapter_persists_calendar_months (test_ticket_followup.TicketTests.test_adapter_persists_calendar_months)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/tests/test_ticket_followup.py", line 49, in test_adapter_persists_calendar_months
+    db.add_plan('Bono 20', 60, 50000, 20, 2)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x64/cloud_database.py", line 554, in add_plan
+    return int(row['id'])
+               ~~~^^^^^^
+TypeError: 'Mock' object is not subscriptable
+
+----------------------------------------------------------------------
+Ran 170 tests in 24.439s
+
+FAILED (errors=3)

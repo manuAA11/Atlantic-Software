@@ -15,6 +15,8 @@ from fingerprint_store import CloudTemplateStore
 class FingerprintPanel:
     def __init__(self, controller):
         self.controller = controller; self.root = controller.root
+        from fingerprint_diagnostics import set_gym_timezone
+        set_gym_timezone(timezone_for(self.root.db))
         self.state = tk.StringVar(self.root,value='DigitalPersona: iniciando…')
         self.templates = set(); self.window = None; self.enrolling = False; self.inline_editor = None
         self.clients = {}; self.ui_events = queue.Queue(); self.closed = False

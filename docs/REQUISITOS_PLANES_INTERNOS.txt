@@ -1,0 +1,260 @@
+Quiero agregar una nueva capacidad al sistema de planes/membresías de ZTATTUZ y Atlantic Gym, manteniendo ambos productos sincronizados donde la funcionalidad sea común.
+IMPORTANTE: no quiero hardcodear únicamente una membresía llamada STAFF. Quiero ampliar correctamente el sistema de planes para que el propietario pueda crear desde la aplicación planes internos / no comerciales, y decidir libremente si los utiliza o no.
+Ejemplos futuros:
+Staff
+Entrenador
+Propietario
+Administrador
+Invitado permanente
+El propietario NO está obligado a crear ninguno.
+La aplicación simplemente debe darle la posibilidad.
+OBJETIVO
+Desde el editor de planes del propietario, permitir crear un plan con comportamiento especial como:
+Nombre: Staff
+Tipo: Interno / No comercial
+Precio: $0
+Acceso: Ilimitado
+Vigencia: Indefinida
+Vencimiento: No aplica
+Entradas: Ilimitadas
+Estadísticas financieras: Excluido
+Pero el nombre Staff NO debe ser obligatorio ni estar hardcodeado como única opción.
+El propietario puede crear cualquier plan interno con el nombre que quiera.
+MODELO DE PLANES
+Revisa primero la arquitectura existente y amplíala de la forma más limpia posible.
+El modelo de planes debería soportar conceptualmente propiedades equivalentes a:
+plan_type = COMMERCIAL | INTERNAL
+unlimited_access = true/false
+has_expiration = true/false
+commercial_price = ...
+include_in_financial_stats = true/false
+No tienes que utilizar exactamente esos nombres si la arquitectura actual tiene una solución mejor.
+NO simules acceso ilimitado utilizando:
+999999 entradas
+NO simules vigencia indefinida utilizando:
+31/12/2099
+NO uses hacks equivalentes.
+La base de datos y la lógica deben representar realmente el concepto.
+EDITOR DE PLANES — PROPIETARIO
+En el panel existente donde el propietario crea y edita los planes, agrega una opción clara siguiendo el Atlantic UI Kit:
+Tipo de plan
+Comercial
+Interno / No comercial
+Si selecciona Comercial, mantener exactamente el funcionamiento actual.
+Si selecciona Interno / No comercial, permitir configurar de manera sencilla:
+- acceso ilimitado;
+- vigencia indefinida;
+- precio $0;
+- exclusión de estadísticas financieras.
+Para el caso típico de Staff, esos deben ser los valores recomendados/predeterminados.
+Cuando Vigencia indefinida esté activa:
+- no exigir fecha de vencimiento;
+- ocultar/deshabilitar campos incompatibles;
+- no inventar una fecha futura.
+Cuando Acceso ilimitado esté activo:
+- no exigir número de entradas;
+- no utilizar lógica de tiquetera;
+- no descontar entradas.
+Cuando sea No comercial:
+- no generar venta;
+- no generar ingreso;
+- no generar cuenta por cobrar;
+- no requerir pago.
+ASIGNACIÓN AL CLIENTE/PERSONA
+Una vez creado el plan, debe aparecer normalmente entre las opciones disponibles al asignar una membresía.
+Ejemplo:
+Propietario crea:
+Staff
+Después:
+Clientes → Cliente → Asignar plan → Staff
+Si la persona tiene un plan interno activo con:
+unlimited_access = true
+y
+has_expiration = false
+debe poder ingresar mientras la membresía permanezca ACTIVE.
+Si el administrador desactiva esa membresía, el acceso debe quedar bloqueado inmediatamente.
+CONTROL DE ACCESO
+Un plan interno activo con acceso ilimitado:
+- puede ingresar sin límite de entradas;
+- puede ingresar múltiples veces;
+- no consume tiquetera;
+- no necesita renovación;
+- no depende de pagos;
+- no depende de una fecha de vencimiento inexistente.
+Las asistencias SÍ deben seguir registrándose normalmente.
+Mantener:
+- persona;
+- fecha/hora;
+- método de identificación;
+- dispositivo;
+- gimnasio;
+- resultado del acceso.
+Esto es importante porque Staff sigue formando parte de las estadísticas de asistencia/presencia, aunque no sea un cliente comercial.
+El servidor debe seguir siendo la fuente de verdad del estado de acceso.
+ESTADÍSTICAS
+Este punto es CRÍTICO.
+Un plan configurado con:
+include_in_financial_stats = false
+debe quedar completamente excluido de:
+- ingresos;
+- ventas;
+- mensualidades vendidas;
+- ticket promedio;
+- precio promedio;
+- ingresos proyectados;
+- cartera;
+- deuda;
+- pagos pendientes;
+- renovaciones comerciales;
+- estadísticas financieras equivalentes.
+Un plan de $0 NO debe reducir artificialmente los promedios.
+Sin embargo:
+- sus asistencias sí pueden contarse;
+- puede mostrarse en estadísticas operativas;
+- puede existir una métrica separada como Staff activo o Miembros internos.
+Nunca mezclar silenciosamente clientes pagos y miembros internos en un KPI donde distorsione el resultado.
+WHATSAPP / CHATBOT / AUTOMATIZACIONES
+Revisa todas las nuevas implementaciones existentes.
+Los planes internos/no comerciales con vigencia indefinida:
+- no reciben recordatorios de vencimiento;
+- no reciben mensajes de renovación;
+- no reciben links de pago;
+- no aparecen como morosos;
+- no generan automatizaciones de cobro;
+- no deben entrar en workflows destinados a clientes comerciales vencidos;
+- no deben utilizar congelación si esa lógica no tiene sentido para este tipo de plan.
+Si el chatbot consulta el estado de una persona con plan Staff/interno, puede responder de forma equivalente a:
+Estado: Activo
+Tipo: Staff
+Acceso: Ilimitado
+sin mencionar vencimientos inexistentes.
+WOMPI / PAGOS
+Los planes internos/no comerciales de $0:
+- no deben generar transacciones Wompi;
+- no deben generar links de pago;
+- no deben quedar esperando confirmación de pago;
+- no deben aparecer como pendientes en módulos financieros.
+No modifiques el funcionamiento actual de Wompi para los planes comerciales.
+CONGELACIÓN
+Revisa la lógica actual de congelación de 7 días.
+Por defecto, un plan interno con vigencia indefinida NO debe necesitar congelación.
+No permitas que la lógica actual de congelación:
+- invente vencimientos;
+- extienda fechas inexistentes;
+- convierta un plan indefinido en uno temporal.
+Mantener intacta la congelación actual de membresías comerciales.
+PERMISOS
+Solamente propietario/administradores con el permiso correspondiente pueden:
+- crear planes internos;
+- editar planes internos;
+- asignarlos si así lo determina la política actual de permisos;
+- activar/desactivar una membresía interna.
+Recepción NO debe poder crear arbitrariamente un plan Staff de $0 si actualmente no tiene permiso para administrar planes.
+Respeta el sistema de permisos existente.
+AUDITORÍA
+Registrar las operaciones importantes:
+- creación del plan interno;
+- modificación;
+- asignación a una persona;
+- activación;
+- desactivación;
+- usuario que realizó la acción;
+- fecha/hora.
+ZTATTUZ + ATLANTIC GYM
+Implementa esta capacidad en ambos productos.
+No quiero que ZTATTUZ soporte planes internos mientras Atlantic Gym no, o viceversa.
+Revisa las diferencias entre las dos ediciones y aplica la implementación común de forma consistente.
+Si existe código compartido, reutilízalo.
+No dupliques innecesariamente lógica.
+ATLANTIC UI KIT
+Toda modificación visual debe respetar las políticas existentes de Atlantic Tech Software y el Atlantic UI Kit.
+No crear estilos nuevos aislados.
+Reutiliza:
+- formularios;
+- botones;
+- toggles;
+- cards;
+- dialogs;
+- badges;
+- tablas;
+- espaciado;
+- tipografía;
+- iconografía.
+Mantener los nuevos iconos y branding oficial de Atlantic ya implementados.
+No reviertas ninguna actualización visual existente.
+COMPATIBILIDAD
+NO rompas los planes existentes.
+Deben seguir funcionando exactamente:
+- mensualidades;
+- tiqueteras;
+- planes de meses;
+- planes con fecha;
+- entradas;
+- congelaciones;
+- vencimientos;
+- recordatorios;
+- chatbot;
+- WhatsApp;
+- Wompi;
+- estadísticas.
+Si se requiere migración de base de datos, debe ser segura y mantener todos los datos existentes.
+Los planes existentes deben migrarse de forma equivalente a:
+COMMERCIAL
+y
+include_in_financial_stats = true
+salvo que la arquitectura actual determine una migración mejor.
+TESTS OBLIGATORIOS
+Agrega pruebas reales que confirmen al menos:
+1. Se puede crear un plan interno desde el panel propietario.
+2. El propietario puede llamarlo Staff o cualquier otro nombre.
+3. No es obligatorio utilizar planes internos.
+4. Staff $0 no genera venta.
+5. No genera ingreso.
+6. No genera deuda.
+7. No afecta estadísticas financieras.
+8. No reduce promedios financieros.
+9. Tiene entradas ilimitadas cuando así se configura.
+10. No consume tiquetera.
+11. Puede tener vigencia indefinida real.
+12. No necesita una fecha artificial.
+13. Sus accesos sí quedan registrados.
+14. Al desactivarlo se bloquea el acceso.
+15. No recibe recordatorios de vencimiento.
+16. No recibe links de pago.
+17. No genera Wompi.
+18. Chatbot interpreta correctamente el plan.
+19. Congelación no rompe planes indefinidos.
+20. Mensualidades y tiqueteras actuales siguen funcionando.
+21. Estadísticas existentes siguen dando resultados correctos.
+22. Funciona tanto en ZTATTUZ como en Atlantic Gym.
+Ejecuta también la regresión completa relacionada con:
+- membresías;
+- planes;
+- acceso;
+- estadísticas;
+- congelación;
+- WhatsApp;
+- chatbot;
+- automatizaciones;
+- Wompi;
+- permisos.
+Corrige cualquier regresión que encuentres.
+ENTREGA
+Implementa directamente los cambios.
+NO te detengas después de hacer un análisis.
+NO generes instaladores todavía.
+Al terminar dame:
+ZTATTUZ — implementación
+ATLANTIC GYM — implementación
+Cambios de base de datos
+Cambios del editor de planes
+Comportamiento de acceso
+Estadísticas
+WhatsApp / Chatbot
+Wompi
+Permisos
+Tests agregados
+Resultado completo de regresiones
+Archivos modificados
+Si todo pasa correctamente, deja ambos proyectos listos para que posteriormente generemos la actualización/instaladores.
+Empieza ahora.
