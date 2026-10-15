@@ -1,0 +1,58 @@
+{
+  "version": "3.6.1",
+  "started_at": "2026-10-15T22:42:40.588998+00:00",
+  "platform": "win32",
+  "scope": "all",
+  "status": "FAIL",
+  "stages": [
+    {
+      "name": "python",
+      "status": "PASS",
+      "seconds": 53.63,
+      "log": "python.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "contratos_extraidos",
+      "status": "PASS",
+      "seconds": 1.03,
+      "log": "contratos_extraidos.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "marketing_compile",
+      "status": "PASS",
+      "seconds": 2.46,
+      "log": "marketing_compile.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "backend_sql_flow",
+      "status": "PASS",
+      "seconds": 3.5,
+      "log": "backend_sql_flow.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "time_pipeline",
+      "status": "PASS",
+      "seconds": 2.45,
+      "log": "time_pipeline.log",
+      "timed_out": false,
+      "callback_failure": false
+    },
+    {
+      "name": "membership_freezes",
+      "status": "FAIL",
+      "seconds": 15.78,
+      "log": "membership_freezes.log",
+      "timed_out": false,
+      "callback_failure": true
+    }
+  ],
+  "error": "Falló membership_freezes. La prueba detectó un error. Revisa D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\membership_freezes.log."
+}

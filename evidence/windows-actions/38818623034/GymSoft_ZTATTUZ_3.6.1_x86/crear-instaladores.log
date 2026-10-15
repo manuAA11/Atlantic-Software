@@ -1,0 +1,144 @@
+Entrega bloqueada. Falta comprobar: whatsapp_pilot, wompi_sandbox, chatbot_pilot, automation_pilot, timezone, audit_clock, freeze, freeze_checkin, ticket_daily, relay_hardware, scheduler_gym_timezone, prior_regressions, added_regressions, concurrent_two_sessions
+La aceptacion final sigue pendiente. Se crearan instaladores para configurar y probar.
+Se ejecutaran todas las pruebas locales. Si alguna falla, no se publicara una nueva entrega.
+Requirement already satisfied: supabase==2.31.0 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: Pillow==12.3.0 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 2)) (12.3.0)
+Requirement already satisfied: openpyxl==3.1.5 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 3)) (3.1.5)
+Requirement already satisfied: tzdata==2026.3 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 4)) (2026.3)
+Requirement already satisfied: pyserial==3.5 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 5)) (3.5)
+Requirement already satisfied: cryptography==48.0.1 in .\.venv\Lib\site-packages (from -r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 8)) (48.0.1)
+Requirement already satisfied: pyinstaller==6.22.2 in .\.venv\Lib\site-packages (from -r requirements-build.txt (line 2)) (6.22.2)
+Requirement already satisfied: realtime==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: supabase-functions==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: storage3==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: supabase-auth==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: postgrest==2.31.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.31.0)
+Requirement already satisfied: httpx<0.29,>=0.26 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.28.1)
+Requirement already satisfied: yarl>=1.22.0 in .\.venv\Lib\site-packages (from supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (1.25.1)
+Requirement already satisfied: et-xmlfile in .\.venv\Lib\site-packages (from openpyxl==3.1.5->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 3)) (2.0.0)
+Requirement already satisfied: cffi>=2.0.0 in .\.venv\Lib\site-packages (from cryptography==48.0.1->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 8)) (2.1.1)
+Requirement already satisfied: altgraph in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (0.17.5)
+Requirement already satisfied: packaging>=22.0 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (26.3)
+Requirement already satisfied: pefile>=2022.5.30 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (2024.8.26)
+Requirement already satisfied: pyinstaller-hooks-contrib>=2026.6 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (2026.8)
+Requirement already satisfied: pywin32-ctypes>=0.2.1 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (0.2.3)
+Requirement already satisfied: setuptools>=42.0.0 in .\.venv\Lib\site-packages (from pyinstaller==6.22.2->-r requirements-build.txt (line 2)) (84.0.0)
+Requirement already satisfied: deprecation>=2.1.0 in .\.venv\Lib\site-packages (from postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: pydantic<3.0,>=1.9 in .\.venv\Lib\site-packages (from postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.14.1)
+Requirement already satisfied: typing-extensions>=4.14.0 in .\.venv\Lib\site-packages (from realtime==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (4.16.0)
+Requirement already satisfied: websockets<16,>=11 in .\.venv\Lib\site-packages (from realtime==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (15.0.1)
+Requirement already satisfied: pyjwt>=2.12.0 in .\.venv\Lib\site-packages (from pyjwt[crypto]>=2.12.0->supabase-auth==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.15.1)
+Requirement already satisfied: strenum>=0.4.15 in .\.venv\Lib\site-packages (from supabase-functions==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.4.15)
+Requirement already satisfied: anyio in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (4.15.1)
+Requirement already satisfied: certifi in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (1.0.9)
+Requirement already satisfied: idna in .\.venv\Lib\site-packages (from httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (3.20)
+Requirement already satisfied: h11>=0.16 in .\.venv\Lib\site-packages (from httpcore==1.*->httpx<0.29,>=0.26->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied: h2<5,>=3 in .\.venv\Lib\site-packages (from httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied: hyperframe<7,>=6.1 in .\.venv\Lib\site-packages (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (6.1.0)
+Requirement already satisfied: hpack<5,>=4.2 in .\.venv\Lib\site-packages (from h2<5,>=3->httpx[http2]<0.29,>=0.26->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (4.2.0)
+Requirement already satisfied: annotated-types>=0.6.0 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.8.0)
+Requirement already satisfied: pydantic-core==2.50.1 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (2.50.1)
+Requirement already satisfied: typing-inspection>=0.4.4 in .\.venv\Lib\site-packages (from pydantic<3.0,>=1.9->postgrest==2.31.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.4.4)
+Requirement already satisfied: pycparser in .\.venv\Lib\site-packages (from cffi>=2.0.0->cryptography==48.0.1->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 8)) (3.11)
+Requirement already satisfied: multidict>=4.0 in .\.venv\Lib\site-packages (from yarl>=1.22.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (7.1.0)
+Requirement already satisfied: propcache>=0.2.1 in .\.venv\Lib\site-packages (from yarl>=1.22.0->supabase==2.31.0->-r D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\requirements.txt (line 1)) (0.5.4)
+No broken requirements found.
+Verificando todas las funciones locales antes de crear los instaladores de pruebas...
+Gym soft 3.6.1 · Validación local con lector simulado
+
+PRUEBA: python
+EN CURSO: python · 15 s · límite 300 s.
+EN CURSO: python · 30 s · límite 300 s.
+..............................................................................................................................................................Creando .venv con Python 3.14.8 de 32 bits...
+EN CURSO: python · 45 s · límite 300 s.
+Entorno listo: Python 3.14.8 de 32 bits.
+Entorno listo: Python 3.14 de 32 bits.
+.Entorno anterior conservado en: .venv_respaldo_20261015_224326_fb9daf4a
+Creando .venv con Python 3.14.8 de 32 bits...
+Entorno listo: Python 3.14.8 de 32 bits.
+...........................................................
+----------------------------------------------------------------------
+Ran 218 tests in 52.666s
+
+OK
+
+PRUEBA: contratos_extraidos
+Client contract extracted
+
+PRUEBA: marketing_compile
+MARKETING SQL COMPILES
+
+PRUEBA: backend_sql_flow
+PASS: 28 cross-layer checks (HTTP, signed Meta/chatbot, real SQL freeze, payment link, signed Wompi renewal/idempotency). External transport and Vault simulated; no external pilot.
+
+PRUEBA: time_pipeline
+PASS: 55 real time pipeline checks (ZTATTUZ)
+
+PRUEBA: membership_freezes
+PASS: 52 freeze checks (ZTATTUZ)
+INTERNAL MEMBERSHIPS 90 CHECKS PASS (ZTATTUZ)
+DASHBOARD UPGRADE 40 CHECKS PASS (ZTATTUZ): missing RPC, read-only diagnosis, atomic preflight, legacy history, idempotent combined upgrade and server metrics.
+EARLY RESUME 68 CHECKS PASS (ZTATTUZ)
+LEGACY FREEZE UPGRADE PASS
+EN CURSO: membership_freezes · 15 s · límite 300 s.
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py", line 30, in <module>
+    assert duplicate['duplicate_read']
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'duplicate_read'
+node:internal/errors:986
+  const err = new Error(message);
+              ^
+
+Error: Command failed: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\.venv\Scripts\python.exe D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py
+Traceback (most recent call last):
+
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\tests\door_server_bridge.py", line 30, in <module>
+
+    assert duplicate['duplicate_read']
+
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+
+KeyError: 'duplicate_read'
+
+
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at file:///D:/a/Atlantic-Software/Atlantic-Software/GymSoft_ZTATTUZ_3.6.1_x86/tests/door_access_flow.mjs:49:15 {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'Traceback (most recent call last):\r\n' +
+      '  File "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\tests\\door_server_bridge.py", line 30, in <module>\r\n' +
+      "    assert duplicate['duplicate_read']\r\n" +
+      '           ~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n' +
+      "KeyError: 'duplicate_read'\r\n"
+  ],
+  pid: 3760,
+  stdout: '',
+  stderr: 'Traceback (most recent call last):\r\n' +
+    '  File "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\tests\\door_server_bridge.py", line 30, in <module>\r\n' +
+    "    assert duplicate['duplicate_read']\r\n" +
+    '           ~~~~~~~~~^^^^^^^^^^^^^^^^^^\r\n' +
+    "KeyError: 'duplicate_read'\r\n"
+}
+
+Node.js v24.21.0
+Traceback (most recent call last):
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 91, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 76, in main
+    for name in SQL_TESTS:stage(name,[node,f'tests/{name}.mjs'])
+                          ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\run_validation.py", line 66, in stage
+    raise RuntimeError(f'Falló {name}. {reason} Revisa {log}.')
+RuntimeError: Falló membership_freezes. La prueba detectó un error. Revisa D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\membership_freezes.log.
+FAIL · comando 1 · D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\paquete-tecnico\ejecuciones\20261015T224240Z-1868\logs\01-comando.log
+FAIL · CalledProcessError: Command '['D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe', 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\run_validation.py']' returned non-zero exit status 1.
+La compilacion no termino. Revisa el error anterior; no entregues archivos incompletos.

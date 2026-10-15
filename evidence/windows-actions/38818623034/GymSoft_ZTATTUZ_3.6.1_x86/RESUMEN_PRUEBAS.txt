@@ -1,0 +1,14 @@
+Gym soft 3.6.1 · FAIL
+Alcance: all · Plataforma: win32
+PASS: python (53.6 s) · python.log
+PASS: contratos_extraidos (1.0 s) · contratos_extraidos.log
+PASS: marketing_compile (2.5 s) · marketing_compile.log
+PASS: backend_sql_flow (3.5 s) · backend_sql_flow.log
+PASS: time_pipeline (2.5 s) · time_pipeline.log
+FAIL: membership_freezes (15.8 s) · membership_freezes.log
+
+Estas pruebas usan datos ficticios y PostgreSQL local.
+Pendiente de comprobación manual: instaladores, hardware del lector, correo de acceso,
+conexión real entre equipos y envío de WhatsApp. Un PASS no garantiza ausencia de todo bug.
+
+Falló membership_freezes. La prueba detectó un error. Revisa D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x86\salida\validacion\membership_freezes.log.
