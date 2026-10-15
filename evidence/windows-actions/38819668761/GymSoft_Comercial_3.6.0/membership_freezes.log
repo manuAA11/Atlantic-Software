@@ -1,0 +1,7 @@
+PASS: 52 freeze checks (commercial)
+INTERNAL MEMBERSHIPS 91 CHECKS PASS (Commercial)
+DASHBOARD UPGRADE 40 CHECKS PASS (Commercial): missing RPC, read-only diagnosis, atomic preflight, legacy history, idempotent combined upgrade and server metrics.
+EARLY RESUME 70 CHECKS PASS (Commercial)
+LEGACY FREEZE UPGRADE PASS
+DOOR SQL/DRIVER BRIDGE 60 CHECKS PASS: server responses preserved; denied never unlock; repeated reads never repeat RPC/pulse.
+DOOR ACCESS FLOW 16 SQL CHECKS PASS (Comercial; real PGlite decisions, simulated USB)
