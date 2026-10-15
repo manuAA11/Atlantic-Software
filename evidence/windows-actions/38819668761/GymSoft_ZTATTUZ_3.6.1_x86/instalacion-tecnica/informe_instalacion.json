@@ -1,0 +1,65 @@
+{
+  "status": "NOT_RUN",
+  "final": false,
+  "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+  "date_utc": "2026-10-15T23:02:51.298334+00:00",
+  "release_gate_modified": false,
+  "commands": [],
+  "installed_executables": [],
+  "cleanup": {
+    "status": "NOT_RUN"
+  },
+  "stage": "verify_installer_metadata",
+  "explicit_ephemeral_runner": true,
+  "runner_context": {
+    "GITHUB_ACTIONS": "true",
+    "RUNNER_ENVIRONMENT": "github-hosted",
+    "RUNNER_OS": "Windows",
+    "GITHUB_RUN_ID": "38819668761",
+    "RUNNER_TEMP": "D:\\a\\_temp",
+    "GITHUB_WORKSPACE": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "runner": {
+    "environment": "github-hosted",
+    "github_run_id": "38819668761",
+    "runner_temp": "D:\\a\\_temp",
+    "workspace": "D:\\a\\Atlantic-Software\\Atlantic-Software"
+  },
+  "run_id": "20261015T230251Z-6524",
+  "packaging_report": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\informe_empaquetado.json",
+  "packaging_report_sha256": "39e53e0a29a39d6e0151b926bac1bcc44339da86e3b3de457d49ab15e5ba38e4",
+  "native_windows_architecture": "x64",
+  "version": "3.6.1",
+  "installer_metadata": [
+    {
+      "script": "instalador_admin.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    },
+    {
+      "script": "instalador_recepcion.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    },
+    {
+      "script": "instalador_completo.iss",
+      "status": "PASS",
+      "product_names": [
+        "Atlantic Gym · Validación técnica (no final)                ",
+        "Atlantic Gym · Validación técnica (no final)                "
+      ]
+    }
+  ],
+  "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+  "sdk_log": {
+    "status": "NOT_PRESENT",
+    "reason": "El runtime no produjo el registro MSI conocido."
+  }
+}
