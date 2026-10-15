@@ -4,11 +4,13 @@
 
 ## Descargar y crear los instaladores
 
-Ya puedes descargar los instaladores compilados y verificados, sin compilar en tu PC:
+Entrega del 15 de octubre: código `751c52c`, con la corrección del cierre USB del relé y Tienda/POS pausada. Los tres jobs Windows del run `38819668761` aprobaron 111 etapas y 677 tests Python. Los tres ZIP se descargaron y verificaron con CRC, SHA256, digest/tamaño de GitHub, commit y run ID; evidencia en `evidence/installer-downloads-20261015.json`.
 
-- [ZTATTUZ x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
-- [Atlantic Gym Comercial x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
-- [ZTATTUZ x86](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-fe2a95b/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip): exclusivo para Windows32; su instalación en ese sistema sigue pendiente de validación.
+Puedes descargar los instaladores compilados y verificados, sin compilar en tu PC:
+
+- [ZTATTUZ x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-751c52c/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
+- [Atlantic Gym Comercial x64: Administrador y Recepción](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-751c52c/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip).
+- [ZTATTUZ x86](https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-751c52c/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip): exclusivo para Windows32; su instalación en ese sistema sigue pendiente de validación.
 
 Extrae el ZIP en una carpeta nueva, lee `LEER_PRIMERO.txt` y ejecuta el EXE. No requiere Python, Node ni Inno en el PC de instalación. Las dos ediciones x64 aprobaron instalación nueva, actualización y desinstalación; las tres aprobaron compilación/diagnóstico/37 etapas. Los ZIP se descargaron y verificaron de nuevo con CRC/SHA256 y digest de GitHub. Están marcados **PRUEBAS_PARA_CONFIGURAR_NO_FINAL**: permiten configurar desde la aplicación antes de los pilotos con cuentas y hardware reales. El panel Propietario no está incluido en la descarga pública de clientes.
 

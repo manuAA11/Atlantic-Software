@@ -157,8 +157,22 @@ esperar un ciclo USB real, que podía superar el debounce de 0,75 segundos. Se
 reprodujo el mismo fallo añadiendo un segundo de espera al fixture original.
 El fixture ahora fija exclusivamente sus relojes de simulación; conserva todas
 las aserciones y los plazos reales del watchdog. El código de producción no
-cambia por este ajuste. La reproducción corregida aprueba; hace falta repetir
-la compilación Windows completa antes de publicar el instalador actualizado.
+cambia por este ajuste. La reproducción corregida y los puentes SQL/relé de
+las tres ediciones aprobaron.
+
+El run Windows `38819668761`, commit `751c52c`, terminó con los tres jobs en
+success: **111 etapas y 677 tests Python**, siete programas y ocho instaladores
+reales compilados. Comercial y ZTATTUZ x64 comprobaron instalación, actualización
+y desinstalación; x86 conserva instalación `NOT_RUN` en el runner x64 por la
+restricción original del MSI. Los 254 informes/logs nativos y sus hashes están
+en `evidence/windows-actions/38819668761`. Los tres ZIP cliente se descargaron
+y verificaron con CRC, SHA256, digest/tamaño GitHub, commit y run ID; recibo en
+`evidence/installer-downloads-20261015.json`. La entrega para configurar/pruebas
+está en [configuracion-pruebas-751c52c](https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-751c52c).
+El EXE completo Administrador/Recepción está dentro del ZIP x86 y no requiere
+Python en el equipo de instalación. La instalación sobre Windows32 y la prueba
+física del relé/Bluetooth siguen pendientes; estos resultados no confirman la
+causa de la desconexión Bluetooth ni una reparación eléctrica del equipo.
 
 No se modificó `release_readiness.json` ni se acreditó aceptación de hardware.
 Tienda permanece pausada y respaldada en `wip/tienda-pos-20261015` (`6755f49`),

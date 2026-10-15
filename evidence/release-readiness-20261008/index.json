@@ -2,9 +2,9 @@
   "schema": 1,
   "scope": "Índice de evidencia de regresiones y aplicabilidad. No constituye aceptación final, piloto externo ni hardware físico.",
   "regression_acceptance_marked": false,
-  "current_full_validation": "PASS_AT_7a44de8",
-  "verified_windows_source_commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-  "verified_windows_run": "38555801086",
+  "current_full_validation": "PASS_AT_751c52c",
+  "verified_windows_source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+  "verified_windows_run": "38819668761",
   "windows_stages_passed": 111,
   "editions": [
     {
@@ -13,15 +13,15 @@
       "windows_source_validation": {
         "status": "PASS",
         "stages": 37,
-        "python_tests": 214,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
-        "result_sha256": "749746834c9f80380c7698fdfdfd3ce2ba3e84cab41bd21bfd338a9d435dda01",
-        "result_recorded_windows_sha256": "749746834c9f80380c7698fdfdfd3ce2ba3e84cab41bd21bfd338a9d435dda01",
+        "python_tests": 240,
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
+        "result_sha256": "6091aef5c613449cd4ff6331106d6c5bd0ebdefe861c936768ae5f6ee114ebb6",
+        "result_recorded_windows_sha256": "6091aef5c613449cd4ff6331106d6c5bd0ebdefe861c936768ae5f6ee114ebb6",
         "result_recorded_hash_relation": "EXACT_BYTES",
-        "metadata": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/run.json",
-        "metadata_sha256": "676d63ecff998a98bf14287ef7da5b6c5a9e761a348abbbf5c428e3f2fa13e88",
+        "metadata": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/run.json",
+        "metadata_sha256": "54e0c36154e5f3b67d4428ff6671dce903a9620b3fc4ac6f1866e6431b89c9a9",
         "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
       },
       "current_gate_tests": {
@@ -54,9 +54,9 @@
       },
       "windows_frozen_component_probe": {
         "status": "PASS",
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/frozen-windows-components.json",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/frozen-windows-components.json",
         "result_sha256": "03445fd4f8e698fe062919dbb65ea544ef5af48cb6e5511f0e11e97ea3722184",
         "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
       },
@@ -113,40 +113,54 @@
           "metadata": "evidence/windows-actions/38495253410/GymSoft_Comercial_3.6.0/run.json",
           "metadata_sha256": "5b0104753c5d86004ff4eaf78d2f17e85465d428ab2fe4566a969c58201b5097",
           "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
+        },
+        {
+          "status": "PASS",
+          "stages": 37,
+          "python_tests": 214,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/resultado_pruebas_all.json",
+          "result_sha256": "749746834c9f80380c7698fdfdfd3ce2ba3e84cab41bd21bfd338a9d435dda01",
+          "result_recorded_windows_sha256": "749746834c9f80380c7698fdfdfd3ce2ba3e84cab41bd21bfd338a9d435dda01",
+          "result_recorded_hash_relation": "EXACT_BYTES",
+          "metadata": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/run.json",
+          "metadata_sha256": "676d63ecff998a98bf14287ef7da5b6c5a9e761a348abbbf5c428e3f2fa13e88",
+          "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
         }
       ],
       "windows_technical_packaging": {
         "status": "PASS",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
         "executables": 3,
         "installers": 2,
-        "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/paquete-tecnico/informe_empaquetado.json",
-        "sha256": "8180263c1185267ec2018ddd026a64bf828d0390abd1b7ba4e8b3752acbe0a24",
-        "recorded_windows_sha256": "8180263c1185267ec2018ddd026a64bf828d0390abd1b7ba4e8b3752acbe0a24",
+        "path": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "1b0c14a517831678a292e375619405d64a52eb2f2d1c71af6db59675cb06b4bb",
+        "recorded_windows_sha256": "1b0c14a517831678a292e375619405d64a52eb2f2d1c71af6db59675cb06b4bb",
         "recorded_hash_relation": "EXACT_BYTES",
         "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
         "configuration_installers": [
           {
             "path": "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
-            "sha256": "4120e68f12734f7d5a1d3b310a6a6432752adc7c4a4d58de4795a5eba30ea30a",
-            "bytes": 95044384
+            "sha256": "bd2fcb2594f312cdf49bff055eb162369314ef49cf33ef176390ee5669455fa0",
+            "bytes": 95075193
           },
           {
             "path": "PRIVADO_PROPIETARIO/VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
-            "sha256": "696e10f17ee3fa396bc540fdf449430ea6cd2d1987c2273fd1bb00c4f640f489",
-            "bytes": 28889678
+            "sha256": "c81f9572129950b643d981cc0abebe7f9d06a5db5ffa04897e65ccc533b1bdce",
+            "bytes": 28899122
           }
         ]
       },
       "windows_technical_installation": {
         "status": "PASS",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/instalacion-tecnica/informe_instalacion.json",
-        "sha256": "775a45cf94cb0525cd906c142c1271874479b8e62e7b209d025f3ef223f82815",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "path": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "7d808d02db820a065a31a7ecb2b1573cfdc22a6f23c6c90c8ec98fbc9945ddff",
         "fresh_installation": {
           "status": "PASS",
           "entry_points": [
@@ -188,9 +202,9 @@
           "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
         },
         "sdk_log": {
-          "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/instalacion-tecnica/ejecuciones/20261014T113150Z-5868/logs/DigitalPersona_instalacion.log",
-          "sha256": "12def3221e517a28485cfb758da1711f31d6bbb21e193a7beab69249bab89584",
-          "recorded_windows_sha256": "12def3221e517a28485cfb758da1711f31d6bbb21e193a7beab69249bab89584",
+          "path": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/instalacion-tecnica/ejecuciones/20261015T225852Z-5536/logs/DigitalPersona_instalacion.log",
+          "sha256": "c4136b67260adf568240ca8a5371ad26b5d30c979608b61cfb9b0059d8fe4667",
+          "recorded_windows_sha256": "c4136b67260adf568240ca8a5371ad26b5d30c979608b61cfb9b0059d8fe4667",
           "recorded_hash_relation": "EXACT_BYTES"
         }
       },
@@ -224,6 +238,14 @@
           "run_id": "38495253410",
           "result": "evidence/windows-actions/38495253410/GymSoft_Comercial_3.6.0/frozen-windows-components.json",
           "result_sha256": "bfb0f947026a6f4f2bd00ccc0072d10cefa1bc8b23e7aca54d1a5eaa0db3c05e",
+          "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+        },
+        {
+          "status": "PASS",
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/frozen-windows-components.json",
+          "result_sha256": "03445fd4f8e698fe062919dbb65ea544ef5af48cb6e5511f0e11e97ea3722184",
           "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
         }
       ],
@@ -300,6 +322,31 @@
               "path": "PRIVADO_PROPIETARIO/VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
               "sha256": "5e0de5d62d89ad0e09ebe66373098b1697c0a303638921efb5f5071df4f44ddc",
               "bytes": 28635300
+            }
+          ]
+        },
+        {
+          "status": "PASS",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "executables": 3,
+          "installers": 2,
+          "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/paquete-tecnico/informe_empaquetado.json",
+          "sha256": "8180263c1185267ec2018ddd026a64bf828d0390abd1b7ba4e8b3752acbe0a24",
+          "recorded_windows_sha256": "8180263c1185267ec2018ddd026a64bf828d0390abd1b7ba4e8b3752acbe0a24",
+          "recorded_hash_relation": "EXACT_BYTES",
+          "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+          "configuration_installers": [
+            {
+              "path": "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+              "sha256": "4120e68f12734f7d5a1d3b310a6a6432752adc7c4a4d58de4795a5eba30ea30a",
+              "bytes": 95044384
+            },
+            {
+              "path": "PRIVADO_PROPIETARIO/VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe",
+              "sha256": "696e10f17ee3fa396bc540fdf449430ea6cd2d1987c2273fd1bb00c4f640f489",
+              "bytes": 28889678
             }
           ]
         }
@@ -454,13 +501,67 @@
             "recorded_windows_sha256": "2a92491c246589fbc05bfee54ceb3a870d2d6a961d7cc99807985689e31659c1",
             "recorded_hash_relation": "EXACT_BYTES"
           }
+        },
+        {
+          "status": "PASS",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/instalacion-tecnica/informe_instalacion.json",
+          "sha256": "775a45cf94cb0525cd906c142c1271874479b8e62e7b209d025f3ef223f82815",
+          "fresh_installation": {
+            "status": "PASS",
+            "entry_points": [
+              "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+              "VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe"
+            ]
+          },
+          "update": {
+            "status": "PASS",
+            "entry_points": [
+              "VALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0.exe",
+              "VALIDACION_NO_FINAL_GymSoft_Propietario_PRIVADO_3.6.0.exe"
+            ],
+            "same_registration_and_locations": true,
+            "existing_directories_reused_without_override": true
+          },
+          "cleanup": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "runtime": {
+            "status": "PASS",
+            "libraries": [
+              {
+                "library": "dpfpdd.dll",
+                "path": "C:\\Windows\\System32\\dpfpdd.dll",
+                "version": "3.4.0.127",
+                "sha256": "aae20aff139a69f89b3592602c4a81e4479ca91008c1e12383e57d9eaa53439a",
+                "architecture": "x64"
+              },
+              {
+                "library": "dpfj.dll",
+                "path": "C:\\Windows\\System32\\dpfj.dll",
+                "version": "3.4.0.127",
+                "sha256": "3bd05b4af0bb5e1023c6150d72d5a87fb82d5573a51bda70ceca3fa7ff20ee1a",
+                "architecture": "x64"
+              }
+            ],
+            "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
+          },
+          "sdk_log": {
+            "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/instalacion-tecnica/ejecuciones/20261014T113150Z-5868/logs/DigitalPersona_instalacion.log",
+            "sha256": "12def3221e517a28485cfb758da1711f31d6bbb21e193a7beab69249bab89584",
+            "recorded_windows_sha256": "12def3221e517a28485cfb758da1711f31d6bbb21e193a7beab69249bab89584",
+            "recorded_hash_relation": "EXACT_BYTES"
+          }
         }
       ],
       "windows_portable_guard_tests": {
         "status": "PASS",
         "tests": 53,
-        "path": "evidence/windows-actions/38555801086/GymSoft_Comercial_3.6.0/packaging-guards.log",
-        "sha256": "e4b3e320283adebe9a5c8023a26fd08a7496ca15f82d3b3574f7961b829869ad"
+        "path": "evidence/windows-actions/38819668761/GymSoft_Comercial_3.6.0/packaging-guards.log",
+        "sha256": "6b0af5a7dfc64567088ed1d15e5df7fcedd492e8d3548cbba172c94da10d51e9"
       }
     },
     {
@@ -469,15 +570,15 @@
       "windows_source_validation": {
         "status": "PASS",
         "stages": 37,
-        "python_tests": 193,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
-        "result_sha256": "d4a00dcdcadd3dc8332c6af9b7849c4c191e4c3af6c47d3eba1d965108a254c6",
-        "result_recorded_windows_sha256": "d4a00dcdcadd3dc8332c6af9b7849c4c191e4c3af6c47d3eba1d965108a254c6",
+        "python_tests": 219,
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
+        "result_sha256": "b1917774bad936e72f501ccdc5ba3601b76b867a0038f35b354eb03af60a64b0",
+        "result_recorded_windows_sha256": "b1917774bad936e72f501ccdc5ba3601b76b867a0038f35b354eb03af60a64b0",
         "result_recorded_hash_relation": "EXACT_BYTES",
-        "metadata": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
-        "metadata_sha256": "25a3dafb9fd123f1712eeaead5b43fdcd5abd04c11fad899960f175e047f7074",
+        "metadata": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+        "metadata_sha256": "32d20fa0f8cb0044eb17c8d52e334803c91f77697a58e250669df79080386b0d",
         "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
       },
       "current_gate_tests": {
@@ -509,9 +610,9 @@
       },
       "windows_frozen_component_probe": {
         "status": "PASS",
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/frozen-windows-components.json",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/frozen-windows-components.json",
         "result_sha256": "03445fd4f8e698fe062919dbb65ea544ef5af48cb6e5511f0e11e97ea3722184",
         "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
       },
@@ -568,45 +669,59 @@
           "metadata": "evidence/windows-actions/38495253410/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
           "metadata_sha256": "7950fbd6ca8aeb54a37a806e5179dda6f15b413de417fa1739a0155d35b8644e",
           "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
+        },
+        {
+          "status": "PASS",
+          "stages": 37,
+          "python_tests": 193,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/resultado_pruebas_all.json",
+          "result_sha256": "d4a00dcdcadd3dc8332c6af9b7849c4c191e4c3af6c47d3eba1d965108a254c6",
+          "result_recorded_windows_sha256": "d4a00dcdcadd3dc8332c6af9b7849c4c191e4c3af6c47d3eba1d965108a254c6",
+          "result_recorded_hash_relation": "EXACT_BYTES",
+          "metadata": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/run.json",
+          "metadata_sha256": "25a3dafb9fd123f1712eeaead5b43fdcd5abd04c11fad899960f175e047f7074",
+          "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
         }
       ],
       "windows_technical_packaging": {
         "status": "PASS",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
         "executables": 2,
         "installers": 3,
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/paquete-tecnico/informe_empaquetado.json",
-        "sha256": "dc20db803107a74c061b1a16bfbb24ae0b83b6e51bc3e63b82e627f2fa6be900",
-        "recorded_windows_sha256": "dc20db803107a74c061b1a16bfbb24ae0b83b6e51bc3e63b82e627f2fa6be900",
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "4f050282497b2045486fadf5c3a45d16d5db342668b16b24e71b2ca8129ffef9",
+        "recorded_windows_sha256": "4f050282497b2045486fadf5c3a45d16d5db342668b16b24e71b2ca8129ffef9",
         "recorded_hash_relation": "EXACT_BYTES",
         "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
         "configuration_installers": [
           {
             "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
-            "sha256": "357931f6d0592aba76aeae2fb45a6f3c0b1125091502664934f0548e6ecc8052",
-            "bytes": 68323591
+            "sha256": "9ddb76c8f7007b4aa0ba397f0a2eb42c61091c523a77a907746f626bf810542f",
+            "bytes": 68338502
           },
           {
             "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
-            "sha256": "b6576e02019f915270cc9aa14a0fceecde803cc486609446901c4d629a8b7b45",
-            "bytes": 68154046
+            "sha256": "4e44a483d9f6bfc4eb76f60b38044906b4bc7575acfaa9f09d9810f2b50bce94",
+            "bytes": 68163430
           },
           {
             "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
-            "sha256": "5927ab854421a1c4af2c2e4c8c4abcf42c8d076de32bb4d87fd0ca53e04192df",
-            "bytes": 176981269
+            "sha256": "4594aa5951e70ed5a463ed475aae66f16a4ad9100e36d5138c10f3e36c64a4b3",
+            "bytes": 177005768
           }
         ]
       },
       "windows_technical_installation": {
         "status": "PASS",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/informe_instalacion.json",
-        "sha256": "1b5b3f684fe886160b16409ff2842ed5d307b6027937211573069dafd48d2d38",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "aff0eea40a744ee1b1470b6d5ce2090d174c451e22c2fd5364a9dcf718a04634",
         "fresh_installation": {
           "status": "PASS",
           "entry_points": [
@@ -646,9 +761,9 @@
           "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
         },
         "sdk_log": {
-          "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/ejecuciones/20261014T112953Z-3440/logs/DigitalPersona_instalacion.log",
-          "sha256": "d5ca89a73940bdb4f753c5e87f073d09fbc23dc743a362880329877e2454c6c5",
-          "recorded_windows_sha256": "d5ca89a73940bdb4f753c5e87f073d09fbc23dc743a362880329877e2454c6c5",
+          "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/ejecuciones/20261015T230126Z-6052/logs/DigitalPersona_instalacion.log",
+          "sha256": "08cecce8686e1078ab2cc58c15d23f003e46031788ebaff0b1ef76c0eb1b0ff3",
+          "recorded_windows_sha256": "08cecce8686e1078ab2cc58c15d23f003e46031788ebaff0b1ef76c0eb1b0ff3",
           "recorded_hash_relation": "EXACT_BYTES"
         }
       },
@@ -682,6 +797,14 @@
           "run_id": "38495253410",
           "result": "evidence/windows-actions/38495253410/GymSoft_ZTATTUZ_3.6.1_x64/frozen-windows-components.json",
           "result_sha256": "bfb0f947026a6f4f2bd00ccc0072d10cefa1bc8b23e7aca54d1a5eaa0db3c05e",
+          "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+        },
+        {
+          "status": "PASS",
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/frozen-windows-components.json",
+          "result_sha256": "03445fd4f8e698fe062919dbb65ea544ef5af48cb6e5511f0e11e97ea3722184",
           "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
         }
       ],
@@ -773,6 +896,36 @@
               "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
               "sha256": "56a91c267de51828a7e88bd23bff1bb3fbbdfbf95c5c81621416d485928ab1d7",
               "bytes": 176962429
+            }
+          ]
+        },
+        {
+          "status": "PASS",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "executables": 2,
+          "installers": 3,
+          "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/paquete-tecnico/informe_empaquetado.json",
+          "sha256": "dc20db803107a74c061b1a16bfbb24ae0b83b6e51bc3e63b82e627f2fa6be900",
+          "recorded_windows_sha256": "dc20db803107a74c061b1a16bfbb24ae0b83b6e51bc3e63b82e627f2fa6be900",
+          "recorded_hash_relation": "EXACT_BYTES",
+          "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+          "configuration_installers": [
+            {
+              "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
+              "sha256": "357931f6d0592aba76aeae2fb45a6f3c0b1125091502664934f0548e6ecc8052",
+              "bytes": 68323591
+            },
+            {
+              "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
+              "sha256": "b6576e02019f915270cc9aa14a0fceecde803cc486609446901c4d629a8b7b45",
+              "bytes": 68154046
+            },
+            {
+              "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe",
+              "sha256": "5927ab854421a1c4af2c2e4c8c4abcf42c8d076de32bb4d87fd0ca53e04192df",
+              "bytes": 176981269
             }
           ]
         }
@@ -924,13 +1077,65 @@
             "recorded_windows_sha256": "514f659fdead5f61bbb9dee1cb9cf19d3723ce50696686cd5be5e3163fc427c6",
             "recorded_hash_relation": "EXACT_BYTES"
           }
+        },
+        {
+          "status": "PASS",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/informe_instalacion.json",
+          "sha256": "1b5b3f684fe886160b16409ff2842ed5d307b6027937211573069dafd48d2d38",
+          "fresh_installation": {
+            "status": "PASS",
+            "entry_points": [
+              "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe"
+            ]
+          },
+          "update": {
+            "status": "PASS",
+            "entry_points": [
+              "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe"
+            ],
+            "same_registration_and_locations": true,
+            "existing_directories_reused_without_override": true
+          },
+          "cleanup": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "runtime": {
+            "status": "PASS",
+            "libraries": [
+              {
+                "library": "dpfpdd.dll",
+                "path": "C:\\Windows\\System32\\dpfpdd.dll",
+                "version": "3.4.0.127",
+                "sha256": "aae20aff139a69f89b3592602c4a81e4479ca91008c1e12383e57d9eaa53439a",
+                "architecture": "x64"
+              },
+              {
+                "library": "dpfj.dll",
+                "path": "C:\\Windows\\System32\\dpfj.dll",
+                "version": "3.4.0.127",
+                "sha256": "3bd05b4af0bb5e1023c6150d72d5a87fb82d5573a51bda70ceca3fa7ff20ee1a",
+                "architecture": "x64"
+              }
+            ],
+            "scope": "Archivos del runtime instalado; no conecta ni prueba el lector."
+          },
+          "sdk_log": {
+            "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/instalacion-tecnica/ejecuciones/20261014T112953Z-3440/logs/DigitalPersona_instalacion.log",
+            "sha256": "d5ca89a73940bdb4f753c5e87f073d09fbc23dc743a362880329877e2454c6c5",
+            "recorded_windows_sha256": "d5ca89a73940bdb4f753c5e87f073d09fbc23dc743a362880329877e2454c6c5",
+            "recorded_hash_relation": "EXACT_BYTES"
+          }
         }
       ],
       "windows_portable_guard_tests": {
         "status": "PASS",
         "tests": 53,
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x64/packaging-guards.log",
-        "sha256": "32ea09613815594f60dcb12a06e60f3e975395d206cf736e05007ceef17c2661"
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x64/packaging-guards.log",
+        "sha256": "13b220dabd3b37ef2821eb371bd51493cd9a500df8f74526f01c14be643bc55c"
       }
     },
     {
@@ -939,15 +1144,15 @@
       "windows_source_validation": {
         "status": "PASS",
         "stages": 37,
-        "python_tests": 192,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
-        "result_sha256": "48bb98e9989ff6898abd59a29d20d13c3405222abf862897bab43bb79dce2278",
-        "result_recorded_windows_sha256": "48bb98e9989ff6898abd59a29d20d13c3405222abf862897bab43bb79dce2278",
+        "python_tests": 218,
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
+        "result_sha256": "378a9b26e21a86d0c0a09621eae6b4ab9f8c88850c0db4d5ff7ef7f1e606c6f2",
+        "result_recorded_windows_sha256": "378a9b26e21a86d0c0a09621eae6b4ab9f8c88850c0db4d5ff7ef7f1e606c6f2",
         "result_recorded_hash_relation": "EXACT_BYTES",
-        "metadata": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
-        "metadata_sha256": "7989554ed18ff3f44e6002777afb07d0973e0d9771839f8bc6e24f2fe92dd721",
+        "metadata": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+        "metadata_sha256": "f83d716ae73091944444db3dddc89169e3bb3ab39052bb12bbe980c88147d3c7",
         "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
       },
       "current_gate_tests": {
@@ -979,9 +1184,9 @@
       },
       "windows_frozen_component_probe": {
         "status": "PASS",
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/frozen-windows-components.json",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "result": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/frozen-windows-components.json",
         "result_sha256": "a1ddc54f2ed769bafe8ce8b6f8857017616eaf5e3c8a8a49d17e7c0173d99e1f",
         "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
       },
@@ -1038,45 +1243,59 @@
           "metadata": "evidence/windows-actions/38495253410/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
           "metadata_sha256": "e796b4b7d7dc16f8461ca93a91e2aed3c500ac2adec6f5619a2164579a5ed782",
           "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
+        },
+        {
+          "status": "PASS",
+          "stages": 37,
+          "python_tests": 192,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/resultado_pruebas_all.json",
+          "result_sha256": "48bb98e9989ff6898abd59a29d20d13c3405222abf862897bab43bb79dce2278",
+          "result_recorded_windows_sha256": "48bb98e9989ff6898abd59a29d20d13c3405222abf862897bab43bb79dce2278",
+          "result_recorded_hash_relation": "EXACT_BYTES",
+          "metadata": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/run.json",
+          "metadata_sha256": "7989554ed18ff3f44e6002777afb07d0973e0d9771839f8bc6e24f2fe92dd721",
+          "scope": "Windows offline regression at the named commit; no authenticated server, real provider accounts or physical hardware acceptance."
         }
       ],
       "windows_technical_packaging": {
         "status": "PASS",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
         "executables": 2,
         "installers": 3,
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/paquete-tecnico/informe_empaquetado.json",
-        "sha256": "daa371d730133a4564cda7e715d07b8a6097f62b5536eebd3c98577590cb8226",
-        "recorded_windows_sha256": "daa371d730133a4564cda7e715d07b8a6097f62b5536eebd3c98577590cb8226",
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/paquete-tecnico/informe_empaquetado.json",
+        "sha256": "39e53e0a29a39d6e0151b926bac1bcc44339da86e3b3de457d49ab15e5ba38e4",
+        "recorded_windows_sha256": "39e53e0a29a39d6e0151b926bac1bcc44339da86e3b3de457d49ab15e5ba38e4",
         "recorded_hash_relation": "EXACT_BYTES",
         "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
         "configuration_installers": [
           {
             "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
-            "sha256": "df8c9e54510f87e329d59c26e114921a484fc53ed7858797af1d4351d5abc6a2",
-            "bytes": 40782264
+            "sha256": "050b28c6c77febd36839639829fc4a2bdaa4743ed9f68889a00ccc5bbae34b3a",
+            "bytes": 40791567
           },
           {
             "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
-            "sha256": "8e49c85ad411fb28d6bb9338005753187d2c0e58ac74248529fcecd018f8db0a",
-            "bytes": 40608761
+            "sha256": "4d4fbc878ff905b87565eedcdc5784e08ca6ab0a65ab4bf4278837997b433d94",
+            "bytes": 40621321
           },
           {
             "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86.exe",
-            "sha256": "1c3840cddb4cb81e008a4c38750202113a22273826a098f32070a15f2ef1d6f9",
-            "bytes": 97291526
+            "sha256": "4e0be26972a286a1616743deabf0a9aaf7474c16149d64196079b6cb3681ac05",
+            "bytes": 97313438
           }
         ]
       },
       "windows_technical_installation": {
         "status": "NOT_RUN",
         "final": false,
-        "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
-        "run_id": "38555801086",
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/instalacion-tecnica/informe_instalacion.json",
-        "sha256": "20b6370c0fbf5477f5b44c0b5e93a582e24b18bc3375d97946a5a107431746e1",
+        "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+        "run_id": "38819668761",
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/instalacion-tecnica/informe_instalacion.json",
+        "sha256": "afcf9917d90ba52949c01cac006e795ea971ea38b3f510dff28f47aae73601a1",
         "fresh_installation": {
           "status": "NOT_RUN",
           "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits."
@@ -1120,6 +1339,14 @@
           "run_id": "38495253410",
           "result": "evidence/windows-actions/38495253410/GymSoft_ZTATTUZ_3.6.1_x86/frozen-windows-components.json",
           "result_sha256": "5c09a902ecf99243805cae42529df20a34b232a09c79f3f6fbc944b6e530a543",
+          "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+        },
+        {
+          "status": "PASS",
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "result": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/frozen-windows-components.json",
+          "result_sha256": "a1ddc54f2ed769bafe8ce8b6f8857017616eaf5e3c8a8a49d17e7c0173d99e1f",
           "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
         }
       ],
@@ -1213,6 +1440,36 @@
               "bytes": 97265550
             }
           ]
+        },
+        {
+          "status": "PASS",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "executables": 2,
+          "installers": 3,
+          "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/paquete-tecnico/informe_empaquetado.json",
+          "sha256": "daa371d730133a4564cda7e715d07b8a6097f62b5536eebd3c98577590cb8226",
+          "recorded_windows_sha256": "daa371d730133a4564cda7e715d07b8a6097f62b5536eebd3c98577590cb8226",
+          "recorded_hash_relation": "EXACT_BYTES",
+          "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+          "configuration_installers": [
+            {
+              "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Admin_3.6.1.exe",
+              "sha256": "df8c9e54510f87e329d59c26e114921a484fc53ed7858797af1d4351d5abc6a2",
+              "bytes": 40782264
+            },
+            {
+              "path": "COMPONENTES/VALIDACION_NO_FINAL_ZTATTUZ_Recepcion_3.6.1.exe",
+              "sha256": "8e49c85ad411fb28d6bb9338005753187d2c0e58ac74248529fcecd018f8db0a",
+              "bytes": 40608761
+            },
+            {
+              "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86.exe",
+              "sha256": "1c3840cddb4cb81e008a4c38750202113a22273826a098f32070a15f2ef1d6f9",
+              "bytes": 97291526
+            }
+          ]
         }
       ],
       "historical_windows_technical_installation": [
@@ -1271,13 +1528,33 @@
           "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
           "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
           "native_windows_architecture": "x64"
+        },
+        {
+          "status": "NOT_RUN",
+          "final": false,
+          "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+          "run_id": "38555801086",
+          "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/instalacion-tecnica/informe_instalacion.json",
+          "sha256": "20b6370c0fbf5477f5b44c0b5e93a582e24b18bc3375d97946a5a107431746e1",
+          "fresh_installation": {
+            "status": "NOT_RUN",
+            "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits."
+          },
+          "update": {
+            "status": "NOT_RUN",
+            "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits."
+          },
+          "cleanup": "NOT_RUN",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+          "native_windows_architecture": "x64"
         }
       ],
       "windows_portable_guard_tests": {
         "status": "PASS",
         "tests": 53,
-        "path": "evidence/windows-actions/38555801086/GymSoft_ZTATTUZ_3.6.1_x86/packaging-guards.log",
-        "sha256": "def3ba4a9077f3f56c4c80f582a6a8c8dd8ddbee1f423132bde7cfa2fbec7791"
+        "path": "evidence/windows-actions/38819668761/GymSoft_ZTATTUZ_3.6.1_x86/packaging-guards.log",
+        "sha256": "47678a21a97e8b177cf4c02d3b26e6ed35be09928995bc70de4e7355d8118b9f"
       }
     }
   ],
@@ -1309,26 +1586,26 @@
     }
   },
   "current_windows_summary": {
-    "path": "evidence/windows-actions/38555801086/summary.json",
-    "sha256": "1e73319bf7519d97cae85467b5141e6f5d532cdd8b60ddbb489b43fa218f5c57"
+    "path": "evidence/windows-actions/38819668761/summary.json",
+    "sha256": "7623070c11c00df508d73cd07bc54f0bd874437d16381c3df2c249510095547f"
   },
   "current_python_tests": {
-    "total": 599,
-    "status": "PASS_AT_7a44de8",
+    "total": 677,
+    "status": "PASS_AT_751c52c",
     "platform": "Windows Server 2022 / CPython 3.14.8",
     "editions": {
-      "GymSoft_Comercial_3.6.0": 214,
-      "GymSoft_ZTATTUZ_3.6.1_x64": 193,
-      "GymSoft_ZTATTUZ_3.6.1_x86": 192
+      "GymSoft_Comercial_3.6.0": 240,
+      "GymSoft_ZTATTUZ_3.6.1_x64": 219,
+      "GymSoft_ZTATTUZ_3.6.1_x86": 218
     },
     "scope": "Observed native Python log counts from the named Windows run; no final server/hardware acceptance."
   },
   "later_source_changes_validation": {
-    "status": "COVERED_AT_7a44de8",
+    "status": "COVERED_AT_751c52c",
     "changes": [
-      "Internal STAFF plans, noncommercial metrics and early resume",
-      "Optional common NC relay: serialized OFF/ON, watchdog, whole-RPC deduplication and stale reply suppression",
-      "Windows diagnostics include optional relay/pySerial and preserve original reader runtime"
+      "Relay shutdown keeps native cleanup outside Tk and retains exclusive ownership until cleanup completes",
+      "SQL/driver bridge fixture uses controlled logical scan/authorization clocks with real watchdog deadlines",
+      "Dashboard upgrade diagnosis and server metric compatibility included at this source commit"
     ],
     "scope": "These changes were checked at the named commit; any further source changes require their own verification."
   },
@@ -1402,11 +1679,11 @@
     }
   ],
   "latest_windows_attempt": {
-    "run_id": "38555801086",
-    "commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+    "run_id": "38819668761",
+    "commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
     "status": "PASS",
-    "path": "evidence/windows-actions/38555801086/summary.json",
-    "sha256": "1e73319bf7519d97cae85467b5141e6f5d532cdd8b60ddbb489b43fa218f5c57"
+    "path": "evidence/windows-actions/38819668761/summary.json",
+    "sha256": "7623070c11c00df508d73cd07bc54f0bd874437d16381c3df2c249510095547f"
   },
   "pending_windows_recheck": {
     "run_id": "38001250527",
@@ -1508,6 +1785,39 @@
           "TLS diagnostics preserving system and certifi CAs",
           "Commercial client/owner fresh installation and update",
           "ZTATTUZ x64 complete-wrapper fresh installation and update"
+        ],
+        "scope": "These changes were checked at the named commit; any further source changes require their own verification."
+      },
+      "evidence_integrity_scope": "All reports and 111 validation logs preserve exact native Windows bytes in Git. Their recorded native SHA-256 values were independently verified; no newline conversion was performed."
+    },
+    {
+      "current_full_validation": "PASS_AT_7a44de8",
+      "verified_windows_source_commit": "7a44de83f1aa6e1e7616a82f917ac3907d695568",
+      "verified_windows_run": "38555801086",
+      "windows_stages_passed": 111,
+      "windows_workflow_status": "PASS",
+      "windows_workflow_failure": null,
+      "current_python_tests": {
+        "total": 599,
+        "status": "PASS_AT_7a44de8",
+        "platform": "Windows Server 2022 / CPython 3.14.8",
+        "editions": {
+          "GymSoft_Comercial_3.6.0": 214,
+          "GymSoft_ZTATTUZ_3.6.1_x64": 193,
+          "GymSoft_ZTATTUZ_3.6.1_x86": 192
+        },
+        "scope": "Observed native Python log counts from the named Windows run; no final server/hardware acceptance."
+      },
+      "current_windows_summary": {
+        "path": "evidence/windows-actions/38555801086/summary.json",
+        "sha256": "1e73319bf7519d97cae85467b5141e6f5d532cdd8b60ddbb489b43fa218f5c57"
+      },
+      "later_source_changes_validation": {
+        "status": "COVERED_AT_7a44de8",
+        "changes": [
+          "Internal STAFF plans, noncommercial metrics and early resume",
+          "Optional common NC relay: serialized OFF/ON, watchdog, whole-RPC deduplication and stale reply suppression",
+          "Windows diagnostics include optional relay/pySerial and preserve original reader runtime"
         ],
         "scope": "These changes were checked at the named commit; any further source changes require their own verification."
       },

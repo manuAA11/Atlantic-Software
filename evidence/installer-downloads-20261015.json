@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+  "run_id": "38819668761",
+  "final": false,
+  "packages": [
+    {
+      "status": "PASS",
+      "sha256": "f29763a6c051fa6aeb7dbe90db7dec0a5033de947750f566a7ae9f7af36b7f57",
+      "bytes": 94589261,
+      "edition": "GymSoft_Comercial_3.6.0",
+      "version": "3.6.0",
+      "github_run_id": "38819668761",
+      "final": false,
+      "source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+      "github_asset_id": 645437157,
+      "github_digest": "sha256:f29763a6c051fa6aeb7dbe90db7dec0a5033de947750f566a7ae9f7af36b7f57",
+      "github_bytes": 94589261,
+      "source_and_native_receipts_match": true,
+      "public_download_url": "https://github.com/manuAA11/Atlantic-Software/releases/download/untagged-9fef68e29b0d4f738b8c/AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "acceptance_integrity": {
+        "source_sha256": "f5dff3ca67df18c25d88eec28d14640cc441a2375c18548cb0bed1a6505cce6b",
+        "windows_checkout_sha256": "e5c5309fd423a0c37244ce5a29812c9646ae3270c2cffd4c12215803bed080e0",
+        "recorded_windows_sha256": "e5c5309fd423a0c37244ce5a29812c9646ae3270c2cffd4c12215803bed080e0",
+        "relation": "Exact LF to CRLF Windows checkout conversion; source and acceptance JSON unchanged. No native evidence normalization."
+      },
+      "file": "AtlanticGym_Comercial_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    },
+    {
+      "status": "PASS",
+      "sha256": "293ead8efabebfbba0ff2f2366f40ee232321c1704877a7bb3c115bf0f4ffa75",
+      "bytes": 176533796,
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "version": "3.6.1",
+      "github_run_id": "38819668761",
+      "final": false,
+      "source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+      "github_asset_id": 645444683,
+      "github_digest": "sha256:293ead8efabebfbba0ff2f2366f40ee232321c1704877a7bb3c115bf0f4ffa75",
+      "github_bytes": 176533796,
+      "source_and_native_receipts_match": true,
+      "public_download_url": "https://github.com/manuAA11/Atlantic-Software/releases/download/untagged-9fef68e29b0d4f738b8c/AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "acceptance_integrity": {
+        "source_sha256": "8cfa3b195edcbeac7b1b31e95ac628ba6209c7038b767abd6b20eeed3770fb8a",
+        "windows_checkout_sha256": "190d660af8034cfd58dd4ccb93c6d1af4fd086a872d25fffb743e7a21ffd4354",
+        "recorded_windows_sha256": "190d660af8034cfd58dd4ccb93c6d1af4fd086a872d25fffb743e7a21ffd4354",
+        "relation": "Exact LF to CRLF Windows checkout conversion; source and acceptance JSON unchanged. No native evidence normalization."
+      },
+      "file": "AtlanticGym_ZTATTUZ_x64_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    },
+    {
+      "status": "PASS",
+      "sha256": "f395c0a584101fab580f546bb0a8336fd24df057967f0ae7364eaec58ca4803c",
+      "bytes": 96823911,
+      "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "version": "3.6.1",
+      "github_run_id": "38819668761",
+      "final": false,
+      "source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+      "github_asset_id": 645445756,
+      "github_digest": "sha256:f395c0a584101fab580f546bb0a8336fd24df057967f0ae7364eaec58ca4803c",
+      "github_bytes": 96823911,
+      "source_and_native_receipts_match": true,
+      "public_download_url": "https://github.com/manuAA11/Atlantic-Software/releases/download/untagged-9fef68e29b0d4f738b8c/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "acceptance_integrity": {
+        "source_sha256": "8cfa3b195edcbeac7b1b31e95ac628ba6209c7038b767abd6b20eeed3770fb8a",
+        "windows_checkout_sha256": "190d660af8034cfd58dd4ccb93c6d1af4fd086a872d25fffb743e7a21ffd4354",
+        "recorded_windows_sha256": "190d660af8034cfd58dd4ccb93c6d1af4fd086a872d25fffb743e7a21ffd4354",
+        "relation": "Exact LF to CRLF Windows checkout conversion; source and acceptance JSON unchanged. No native evidence normalization."
+      },
+      "file": "AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip"
+    }
+  ],
+  "scope": "Downloaded all three complete customer ZIPs from the prepared draft; verified CRC, exact file inventory, internal SHA256, GitHub digest/size, source commit, run ID and exact native report hashes. No physical hardware acceptance.",
+  "direct_executable_upload": "Blocked by HTTPS proxy for uploads.github.com; the complete validated EXE remains inside the customer ZIP.",
+  "publication": {
+    "release_id": 414346913,
+    "tag": "configuracion-pruebas-751c52c",
+    "draft": false,
+    "prerelease": true,
+    "url": "https://github.com/manuAA11/Atlantic-Software/releases/tag/configuracion-pruebas-751c52c",
+    "public_x86_download": {
+      "status": "PASS",
+      "http_status": 200,
+      "authentication": "No Authorization header, cookies or GitHub login used",
+      "bytes": 96823911,
+      "sha256": "f395c0a584101fab580f546bb0a8336fd24df057967f0ae7364eaec58ca4803c",
+      "url": "https://github.com/manuAA11/Atlantic-Software/releases/download/configuracion-pruebas-751c52c/AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip",
+      "source_commit": "751c52c1ca2c014db4874a27b228ed4e24b53bb0",
+      "run_id": "38819668761"
+    }
+  },
+  "independent_x86_audit": {
+    "status": "PASS",
+    "scope": "Read-only independent verification of CRC, exact EXE, PE x86, source commit/run, acceptance checkout conversion and native report/log hashes. No hardware or Windows32 installation acceptance."
+  }
+}
