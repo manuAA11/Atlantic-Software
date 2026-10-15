@@ -1,0 +1,57 @@
+  HUELLA: GymSoftApp / 100 % / inicio
+  HUELLA: GymSoftApp / 100 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: GymSoftApp / 100 % / sincronizar la huella registrada
+  HUELLA: GymSoftApp / 100 % / confirmar guardado con respuesta tardía
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde dashboard
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde clients
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde shop
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde finance
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde statistics
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde routines
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde classes
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde staff
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde marketing
+  HUELLA: GymSoftApp / 100 % / ingreso automático desde settings
+  HUELLA: GymSoftApp / 100 % / ingreso sin saldo
+  HUELLA: GymSoftApp / 100 % / huella desconocida
+  HUELLA: GymSoftApp / 100 % / respuesta de ingreso no confirmada
+  HUELLA: GymSoftApp / 100 % / completado
+  HUELLA: GymSoftApp / 125 % / inicio
+  HUELLA: GymSoftApp / 125 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: GymSoftApp / 125 % / sincronizar la huella registrada
+  HUELLA: GymSoftApp / 125 % / confirmar guardado con respuesta tardía
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde dashboard
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde clients
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde shop
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde finance
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde statistics
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde routines
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde classes
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde staff
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde marketing
+  HUELLA: GymSoftApp / 125 % / ingreso automático desde settings
+  HUELLA: GymSoftApp / 125 % / ingreso sin saldo
+  HUELLA: GymSoftApp / 125 % / huella desconocida
+  HUELLA: GymSoftApp / 125 % / respuesta de ingreso no confirmada
+  HUELLA: GymSoftApp / 125 % / completado
+  HUELLA: ReceptionApp / 100 % / inicio
+  HUELLA: ReceptionApp / 100 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: ReceptionApp / 100 % / sincronizar la huella registrada
+  HUELLA: ReceptionApp / 100 % / confirmar guardado con respuesta tardía
+  HUELLA: ReceptionApp / 100 % / ingreso automático desde clients
+  HUELLA: ReceptionApp / 100 % / ingreso automático desde shop
+  HUELLA: ReceptionApp / 100 % / ingreso sin saldo
+  HUELLA: ReceptionApp / 100 % / huella desconocida
+  HUELLA: ReceptionApp / 100 % / respuesta de ingreso no confirmada
+  HUELLA: ReceptionApp / 100 % / completado
+  HUELLA: ReceptionApp / 125 % / inicio
+  HUELLA: ReceptionApp / 125 % / primer ingreso sin abrir antes Registro de entrada
+  HUELLA: ReceptionApp / 125 % / sincronizar la huella registrada
+  HUELLA: ReceptionApp / 125 % / confirmar guardado con respuesta tardía
+  HUELLA: ReceptionApp / 125 % / ingreso automático desde clients
+  HUELLA: ReceptionApp / 125 % / ingreso automático desde shop
+  HUELLA: ReceptionApp / 125 % / ingreso sin saldo
+  HUELLA: ReceptionApp / 125 % / huella desconocida
+  HUELLA: ReceptionApp / 125 % / respuesta de ingreso no confirmada
+  HUELLA: ReceptionApp / 125 % / completado
+PASS: 124 comprobaciones gráficas de registro, nube, eliminación y resultado automático; lector simulado y respuestas tardías.

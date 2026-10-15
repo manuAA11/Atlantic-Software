@@ -1,0 +1,182 @@
+["C:\\ProgramData\\Chocolatey\\bin\\ISCC.exe", "/DAppVersion=3.6.0", "/DBuildValidation=1", "/DBuildDistRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261015T224114Z-4492\\dist", "/DBuildComponentRoot=D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261015T224114Z-4492\\instaladores\\componentes", "/OD:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261015T224114Z-4492\\instaladores", "/FVALIDACION_NO_FINAL_GymSoft_Instalar_o_Actualizar_3.6.0", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\instalador_clientes.iss"]
+Inno Setup 6 Command-Line Compiler
+Copyright (C) 1997-2026 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.
+Portions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.
+https://www.innosetup.com
+
+Compiler engine version: Inno Setup 6.7.1
+Non-commercial use only
+
+Preprocessing
+   Reading file: c:\program files (x86)\inno setup 6\ISPPBuiltins.iss
+   Line 68: Including file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\digitalpersona_install.iss
+   Reading file: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\digitalpersona_install.iss
+Parsing [Setup] section, line 17
+Parsing [Setup] section, line 18
+Parsing [Setup] section, line 19
+Parsing [Setup] section, line 20
+Parsing [Setup] section, line 22
+Parsing [Setup] section, line 23
+Parsing [Setup] section, line 25
+Parsing [Setup] section, line 26
+Parsing [Setup] section, line 27
+Parsing [Setup] section, line 28
+Parsing [Setup] section, line 29
+Parsing [Setup] section, line 30
+Parsing [Setup] section, line 31
+Parsing [Setup] section, line 32
+Parsing [Setup] section, line 33
+Parsing [Setup] section, line 34
+Parsing [Setup] section, line 35
+Parsing [Setup] section, line 36
+Parsing [Setup] section, line 37
+Parsing [Setup] section, line 38
+Parsing [Setup] section, line 39
+Parsing [Setup] section, line 40
+Parsing [Setup] section, line 41
+Parsing [Setup] section, line 42
+Reading file (LicenseFile)
+Reading file (WizardImageFile)
+Reading file (WizardSmallImageFile)
+Preparing Setup program executable
+   Verification successful
+   Updating icons (Setup.e32)
+   Updating version info (Setup.e32)
+Determining language code pages
+Parsing [Languages] section, line 45
+   Reading file: c:\program files (x86)\inno setup 6\Languages\Spanish.isl
+   Messages in script file
+Reading default messages from Default.isl
+Parsing [Languages] section, line 45
+   Reading file: c:\program files (x86)\inno setup 6\Languages\Spanish.isl
+Parsing [LangOptions], [Messages], and [CustomMessages] sections
+   Messages in script file
+Reading [Code] section
+Parsing [Icons] section, line 59
+Parsing [Icons] section, line 60
+Parsing [Icons] section, line 61
+Parsing [Icons] section, line 62
+Parsing [Run] section, line 65
+Parsing [Files] section, line 48
+Parsing [Files] section, line 49
+Parsing [Files] section, line 50
+Parsing [Files] section, line 51
+Parsing [Files] section, line 52
+Parsing [Files] section, line 53
+Parsing [Files] section, line 54
+Parsing [Files] section, line 55
+Parsing [Files] section, line 56
+Compiling [Code] section
+Creating setup files
+   Verification successful
+   Updating icons (Setup.exe)
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\.gitignore
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\0x0409.ini
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\Data1.cab
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\InstallOnly.bat
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\MANIFEST.json
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\README.md
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\setup.exe
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\Setup.ini
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\setup.msi
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\UninstallOnly.bat
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\DigitalPersonaRuntime\Licenses\EULA SDK.rtf
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\GymSoftAdmin.exe
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-console-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-datetime-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-debug-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-errorhandling-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-fibers-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-fibers-l1-1-1.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-file-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-file-l1-2-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-file-l2-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-handle-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-heap-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-interlocked-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-kernel32-legacy-l1-1-1.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-libraryloader-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-localization-l1-2-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-memory-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-namedpipe-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-processenvironment-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-processthreads-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-processthreads-l1-1-1.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-profile-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-rtlsupport-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-string-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-synch-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-synch-l1-2-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-sysinfo-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-sysinfo-l1-2-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-timezone-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-core-util-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-conio-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-convert-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-environment-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-filesystem-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-heap-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-locale-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-math-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-private-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-process-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-runtime-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-stdio-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-string-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-time-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\api-ms-win-crt-utility-l1-1-0.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\base_library.zip
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\gymsoft_config.json
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\icono.ico
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\icono_recepcion.ico
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\libcrypto-3.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\libffi-8.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\libssl-3.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\libtommath.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\pyexpat.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\python3.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\python314.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\select.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\sqlite3.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\tcl90.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\tcl9tk90.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\ucrtbase.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\unicodedata.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\VCRUNTIME140.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\VCRUNTIME140_1.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\zlib1.dll
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_asyncio.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_bz2.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_cffi_backend.cp314-win_amd64.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_ctypes.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_decimal.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_elementtree.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_hashlib.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_lzma.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_multiprocessing.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_overlapped.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_queue.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_socket.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_sqlite3.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_ssl.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_tkinter.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_uuid.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_wmi.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_zoneinfo.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\_zstd.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\certifi\cacert.pem
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\certifi\py.typed
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography\hazmat\bindings\_rust.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\INSTALLER
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\METADATA
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\RECORD
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\WHEEL
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\licenses\LICENSE
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\licenses\LICENSE.APACHE
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\licenses\LICENSE.BSD
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\sboms\cryptography-rust.cyclonedx.json
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\cryptography-50.0.2.dist-info\sboms\sbom.json
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\multidict\_multidict.cp314-win_amd64.pyd
+   Compressing: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261015T224114Z-4492\dist\GymSoftAdmin\_internal\PIL\_avif.cp314-win_amd64.pyd
