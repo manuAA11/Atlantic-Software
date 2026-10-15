@@ -2,6 +2,7 @@ from __future__ import annotations
 from gym_time import display_timestamp, local_datetime, timezone_for, parse_instant, parse_instant
 from plan_forms import membership_request
 from server_date import ServerDate
+from store_pos import StoreDatabaseMixin
 
 import sqlite3
 from datetime import date
@@ -12,7 +13,7 @@ from biometric import normalize_biometric_identifier
 from cloud import CloudService
 
 
-class ReceptionDatabase:
+class ReceptionDatabase(StoreDatabaseMixin):
     """Acceso mínimo permitido para la aplicación de recepción."""
 
     def __init__(self, cloud: CloudService) -> None:

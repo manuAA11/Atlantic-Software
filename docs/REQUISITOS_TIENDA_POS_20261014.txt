@@ -1,0 +1,1078 @@
+Quiero hacer una actualización completa del módulo de TIENDA / VENTAS que ya existe en:
+
+- ZTATTUZ
+- Atlantic Gym comercial
+
+Esta actualización aplica a las interfaces correspondientes de:
+
+- Administrador
+- Recepción
+
+IMPORTANTE:
+
+NO empieces reescribiendo el módulo.
+
+PRIMERO AUDITA DETALLADAMENTE LA IMPLEMENTACIÓN ACTUAL.
+
+Quiero que determines exactamente qué existe hoy y qué falta antes de modificar código.
+
+La tienda debe quedar suficientemente completa para que ZTATTUZ pueda empezar a probarla en operación real.
+
+Mantén TODAS las políticas existentes de Atlantic Tech Software:
+
+- Atlantic UI Kit
+- branding actual
+- iconos oficiales
+- tipografía
+- componentes reutilizables
+- arquitectura actual
+- permisos
+- Supabase/backend
+- multi-gym
+- auditoría
+- timezone
+- optimizaciones
+- actualizaciones recientes
+
+NO reviertas ningún cambio existente.
+
+===========================================================
+FASE 1 — AUDITORÍA OBLIGATORIA
+===========================================================
+
+Antes de implementar nada, revisa en ZTATTUZ y Atlantic Gym:
+
+1. Qué módulo de tienda existe actualmente.
+2. Qué tablas/base de datos utiliza.
+3. Cómo se crean productos.
+4. Qué campos tienen los productos.
+5. Si actualmente existe:
+   - código de barras;
+   - SKU/código interno;
+   - precio;
+   - costo;
+   - stock;
+   - categoría;
+   - descripción;
+   - estado activo/inactivo.
+6. Si el código de barras:
+   - se guarda realmente en base de datos;
+   - tiene índice;
+   - tiene restricción de unicidad cuando corresponde;
+   - puede editarse;
+   - puede buscarse.
+7. Si actualmente se puede:
+   - buscar producto por nombre;
+   - buscar por código;
+   - buscar por código de barras;
+   - vender;
+   - descontar inventario;
+   - registrar ventas;
+   - registrar pagos.
+8. Qué existe en Administrador.
+9. Qué existe en Recepción.
+10. Qué diferencias existen entre ZTATTUZ y Atlantic Gym comercial.
+
+Busca también cualquier implementación incompleta, botón sin backend, TODO, FIXME, código muerto o lógica duplicada.
+
+NO elimines funcionalidad existente que ya funcione.
+
+Después de la auditoría, continúa inmediatamente con la implementación de todo lo que falte.
+
+NO te detengas esperando mi aprobación después de la auditoría.
+
+===========================================================
+OBJETIVO FINAL
+===========================================================
+
+Quiero convertir la tienda actual en un módulo POS sencillo pero completo para un gimnasio.
+
+El flujo principal debe ser:
+
+ESCANEAR / BUSCAR PRODUCTO
+        ↓
+AGREGAR AL CARRITO
+        ↓
+MODIFICAR CANTIDADES SI ES NECESARIO
+        ↓
+COBRAR
+        ↓
+SELECCIONAR MÉTODO DE PAGO
+        ↓
+CONFIRMAR VENTA
+        ↓
+DESCONTAR INVENTARIO
+        ↓
+REGISTRAR VENTA + PAGO + AUDITORÍA
+        ↓
+MOSTRAR COMPROBANTE / RESUMEN
+
+Debe funcionar igual desde Administrador y Recepción, respetando permisos.
+
+===========================================================
+LECTORES LÁSER / CÓDIGO DE BARRAS
+===========================================================
+
+Este punto es MUY IMPORTANTE.
+
+Quiero soporte real para lectores láser USB de códigos de barras.
+
+La mayoría funcionan como teclado HID:
+
+ESCANEO
+→ escribe rápidamente los números/caracteres
+→ termina normalmente con ENTER.
+
+El sistema debe soportar ese comportamiento sin requerir drivers especiales.
+
+NO debe depender de una marca específica de lector.
+
+Debe poder utilizar:
+
+- lectores láser USB;
+- lectores CCD;
+- lectores 1D/2D que funcionen como keyboard wedge/HID;
+- entrada manual del código.
+
+Debe funcionar tanto en:
+
+- Administrador;
+- Recepción.
+
+Y en:
+
+- ZTATTUZ;
+- Atlantic Gym comercial.
+
+===========================================================
+DOS FORMAS DE AGREGAR PRODUCTOS
+===========================================================
+
+La tienda debe permitir agregar productos al carrito de DOS maneras.
+
+FORMA 1 — ESCÁNER
+
+El empleado escanea:
+
+7701234567890
+
+El sistema:
+
+1. recibe el código;
+2. busca inmediatamente el producto;
+3. si existe y está activo:
+   → lo agrega al carrito;
+4. si ya está en carrito:
+   → aumenta cantidad en 1;
+5. limpia el buffer del scanner;
+6. queda listo para el siguiente escaneo.
+
+Debe sentirse instantáneo.
+
+FORMA 2 — BÚSQUEDA MANUAL
+
+Permitir buscar por:
+
+- nombre;
+- código de barras;
+- SKU/código interno;
+- categoría cuando corresponda.
+
+El empleado selecciona el producto y lo agrega.
+
+El POS debe funcionar perfectamente incluso sin lector.
+
+===========================================================
+LECTURA AUTOMÁTICA
+===========================================================
+
+Quiero una experiencia parecida a la lectura automática del acceso.
+
+Cuando la ventana de tienda/POS esté activa, el usuario NO debería tener que hacer clic primero en un input pequeño para cada producto.
+
+Diseña un scanner input/buffer seguro que pueda reconocer una secuencia típica proveniente del lector y procesarla al recibir ENTER.
+
+Pero:
+
+NO captures indiscriminadamente todo el teclado en ventanas donde el usuario está escribiendo formularios.
+
+Evita que escribir un nombre, precio o comentario se interprete como código de barras.
+
+La implementación debe ser consciente del contexto.
+
+===========================================================
+PRODUCTOS
+===========================================================
+
+Cada producto debería soportar como mínimo:
+
+- nombre;
+- descripción;
+- código interno/SKU;
+- código de barras;
+- categoría;
+- costo;
+- precio de venta;
+- stock;
+- stock mínimo;
+- estado activo/inactivo;
+- fecha de creación;
+- fecha modificación.
+
+Si existen campos adicionales actualmente, consérvalos.
+
+Código de barras:
+
+- puede ser opcional;
+- debe poder guardarse;
+- editarse;
+- buscarse;
+- escanearse;
+- validarse.
+
+No exigir código de barras a productos que no lo tengan.
+
+Si se intenta guardar el mismo código de barras en dos productos del mismo gimnasio, mostrar un error claro y evitar ambigüedad.
+
+===========================================================
+CREACIÓN DE PRODUCTO CON ESCÁNER
+===========================================================
+
+En Administrador quiero que al crear/editar un producto exista:
+
+Código de barras
+[_______________] [Escanear]
+
+El administrador puede:
+
+- escribirlo;
+- pegarlo;
+- o simplemente escanear el producto.
+
+El código leído debe aparecer automáticamente.
+
+Esto facilitará cargar el inventario inicialmente.
+
+===========================================================
+INVENTARIO
+===========================================================
+
+Revisa primero cómo funciona actualmente.
+
+La venta debe descontar stock correctamente.
+
+NO quiero simplemente:
+
+stock = stock - 1
+
+sin historial.
+
+Debe existir o implementarse un concepto de movimientos de inventario.
+
+Por ejemplo:
+
+SALE
+PURCHASE
+ADJUSTMENT
+RETURN
+INITIAL_STOCK
+
+Cada movimiento debe guardar:
+
+- gym_id;
+- product_id;
+- cantidad;
+- stock anterior;
+- stock posterior;
+- tipo;
+- referencia;
+- usuario;
+- fecha/hora.
+
+La venta debe generar su movimiento correspondiente.
+
+===========================================================
+COMPRAS / ENTRADAS DE INVENTARIO
+===========================================================
+
+Revisa si existe actualmente una funcionalidad para registrar compras/entradas.
+
+Quiero poder hacer algo como:
+
+ADMINISTRADOR
+→ TIENDA
+→ RECIBIR / AGREGAR INVENTARIO
+
+y:
+
+escanear producto
+→ cantidad recibida
+→ costo opcional/actualizado
+→ confirmar
+
+Ejemplo:
+
+Escaneo Coca-Cola
+Cantidad recibida: 24
+Costo unidad: $2.000
+
+[Agregar inventario]
+
+Entonces:
+
+stock anterior: 10
+entrada: +24
+stock nuevo: 34
+
+Registrar movimiento.
+
+Esto es especialmente importante para utilizar el lector láser también en inventario, no solamente en ventas.
+
+===========================================================
+AJUSTES DE INVENTARIO
+===========================================================
+
+Administrador debe poder realizar ajustes autorizados.
+
+Ejemplo:
+
+Sistema:
+15
+
+Conteo físico:
+13
+
+Motivo:
+Producto dañado / diferencia inventario
+
+Ajuste:
+-2
+
+Registrar:
+
+- usuario;
+- motivo;
+- antes;
+- después;
+- fecha.
+
+Nunca cambiar silenciosamente stock sin historial.
+
+===========================================================
+CARRITO
+===========================================================
+
+Quiero implementar/revisar un carrito real.
+
+Debe mostrar:
+
+Producto
+Precio
+Cantidad
+Subtotal
+
+Ejemplo:
+
+Coca-Cola      $4.000    2    $8.000
+Agua           $3.000    1    $3.000
+Proteína       $8.000    1    $8.000
+
+TOTAL                        $19.000
+
+Permitir:
+
+- aumentar cantidad;
+- disminuir;
+- eliminar producto;
+- vaciar carrito con confirmación;
+- continuar escaneando.
+
+Si escaneo Coca-Cola otra vez:
+
+Cantidad:
+2 → 3
+
+No crear necesariamente tres filas separadas.
+
+===========================================================
+STOCK EN CARRITO
+===========================================================
+
+No permitir vender más unidades de las disponibles salvo que exista explícitamente una configuración futura de venta sin stock.
+
+Por defecto:
+
+stock = 3
+
+usuario intenta cantidad = 4
+
+mostrar:
+
+Stock disponible: 3
+
+No confirmar la venta.
+
+===========================================================
+BOTÓN COBRAR / PAGAR
+===========================================================
+
+Agregar un botón principal consistente con Atlantic UI Kit:
+
+COBRAR
+
+o:
+
+PAGAR
+
+Escoge el texto más coherente con la UI existente y úsalo consistentemente.
+
+Al presionarlo mostrar:
+
+TOTAL A PAGAR
+
+y métodos configurados.
+
+Inicialmente soportar:
+
+- EFECTIVO
+- TRANSFERENCIA
+- TARJETA
+- OTRO
+
+Si ya existen métodos actuales, reutilízalos y mejora la implementación.
+
+===========================================================
+EFECTIVO Y CAMBIO
+===========================================================
+
+Para efectivo:
+
+Total:
+$19.000
+
+Recibido:
+$20.000
+
+Cambio:
+$1.000
+
+Calcular automáticamente.
+
+No permitir confirmar si:
+
+recibido < total
+
+salvo que se implemente explícitamente pago parcial, cosa que NO es necesaria para esta actualización si no existe actualmente.
+
+===========================================================
+VENTA TRANSACCIONAL
+===========================================================
+
+Esto es CRÍTICO.
+
+Al confirmar una venta debe ejecutarse de forma segura:
+
+1. crear venta;
+2. crear líneas/items;
+3. registrar pago;
+4. descontar stock;
+5. crear movimientos de inventario;
+6. registrar usuario;
+7. registrar gym;
+8. registrar fecha/hora;
+9. registrar auditoría.
+
+No permitir:
+
+venta registrada
++
+stock sin descontar
+
+o:
+
+stock descontado
++
+venta inexistente.
+
+Utiliza transacción/RPC/backend atómico según la arquitectura actual.
+
+===========================================================
+NÚMERO DE VENTA
+===========================================================
+
+Cada venta debe tener:
+
+- UUID interno;
+- número amigable/consecutivo cuando corresponda.
+
+Ejemplo:
+
+V-000125
+
+No dependas únicamente de un número secuencial local si puede haber varios equipos.
+
+===========================================================
+HISTORIAL DE VENTAS
+===========================================================
+
+Administrador debe poder consultar:
+
+- fecha;
+- número venta;
+- productos;
+- cantidades;
+- total;
+- método de pago;
+- empleado;
+- recepción/admin;
+- estado.
+
+Permitir filtros:
+
+- hoy;
+- semana;
+- mes;
+- rango;
+- empleado;
+- producto.
+
+Recepción puede consultar sus ventas o lo permitido por el sistema actual de permisos.
+
+===========================================================
+CANCELACIONES / DEVOLUCIONES
+===========================================================
+
+Revisa si existen actualmente.
+
+NO borrar ventas.
+
+Si una venta necesita anularse:
+
+- permiso administrativo;
+- motivo obligatorio;
+- registrar auditoría;
+- devolver stock cuando corresponda;
+- mantener venta original con estado VOID/CANCELLED.
+
+Si implementar devolución completa es demasiado invasivo para esta actualización, al menos debe existir una anulación segura administrativa.
+
+Pero no dejes una función visible incompleta.
+
+===========================================================
+CLIENTE OPCIONAL
+===========================================================
+
+Una compra de tienda NO debe requerir necesariamente que la persona sea miembro del gimnasio.
+
+Permitir:
+
+Venta rápida sin cliente
+
+y opcionalmente:
+
+Asociar cliente
+
+Si se asocia un cliente, mantener historial de sus compras.
+
+No mezclar compras de tienda con pagos de membresías.
+
+===========================================================
+ESTADÍSTICAS
+===========================================================
+
+Las ventas de tienda deben tener estadísticas propias.
+
+Como mínimo:
+
+- ventas hoy;
+- ventas semana;
+- ventas mes;
+- ingresos tienda;
+- productos vendidos;
+- productos más vendidos;
+- stock bajo;
+- agotados.
+
+MUY IMPORTANTE:
+
+NO mezclar silenciosamente:
+
+INGRESOS POR MEMBRESÍAS
+
+con
+
+INGRESOS POR TIENDA.
+
+El Dashboard puede mostrar:
+
+Ingresos membresías
+Ingresos tienda
+Ingresos totales
+
+pero cada categoría debe poder distinguirse correctamente.
+
+La nueva lógica Staff/no comercial tampoco debe afectar estadísticas de tienda.
+
+===========================================================
+COSTO / GANANCIA
+===========================================================
+
+Si actualmente tenemos costo del producto, preparar correctamente:
+
+Precio venta
+Costo
+Margen estimado
+
+Ejemplo:
+
+Costo:
+$2.000
+
+Venta:
+$4.000
+
+Margen bruto:
+$2.000
+
+No hace falta crear contabilidad completa.
+
+Pero sí permitir reportes básicos de utilidad bruta de tienda cuando haya datos de costo fiables.
+
+===========================================================
+STOCK BAJO
+===========================================================
+
+Cada producto puede tener:
+
+stock_minimum
+
+Si:
+
+stock <= stock_minimum
+
+mostrar alerta.
+
+Ejemplo:
+
+Coca-Cola
+Stock: 3
+Mínimo: 5
+
+STOCK BAJO
+
+Si:
+
+stock = 0
+
+AGOTADO.
+
+Mostrarlo claramente en Administrador.
+
+===========================================================
+RECEPCIÓN
+===========================================================
+
+Recepción necesita una experiencia MUY SIMPLE.
+
+No llenes la interfaz de funciones administrativas.
+
+Principalmente:
+
+TIENDA
+→ Escanear/buscar
+→ carrito
+→ cobrar
+→ terminar
+
+Recepción NO debe:
+
+- cambiar costos;
+- modificar históricos;
+- ajustar inventario arbitrariamente;
+- editar ventas pasadas;
+- cambiar configuración sensible;
+
+salvo permisos explícitos.
+
+===========================================================
+ADMINISTRADOR
+===========================================================
+
+Administrador sí debe poder:
+
+- crear productos;
+- editar productos;
+- asignar códigos de barras;
+- modificar precio;
+- modificar costo;
+- categorías;
+- entradas inventario;
+- ajustes;
+- consultar historial;
+- estadísticas;
+- revisar ventas;
+- configurar stock mínimo.
+
+===========================================================
+ZTATTUZ + ATLANTIC GYM
+===========================================================
+
+Implementar/revisar TODO en:
+
+ZTATTUZ
+
+y
+
+ATLANTIC GYM COMERCIAL.
+
+No quiero que el módulo nuevo quede solamente en ZTATTUZ.
+
+La edición comercial debe quedar preparada para que cualquier gimnasio pueda activar/utilizar Tienda.
+
+Si un gimnasio NO quiere usar tienda:
+
+el módulo debe poder estar deshabilitado/oculto mediante la configuración apropiada existente o una opción sencilla.
+
+Ejemplo:
+
+Tienda habilitada:
+Sí / No
+
+No romper gimnasios que no la utilizan.
+
+===========================================================
+ADMINISTRADOR + RECEPCIÓN
+===========================================================
+
+Asegúrate explícitamente de probar:
+
+ZTATTUZ Admin
+ZTATTUZ Recepción
+
+Atlantic Gym Admin
+Atlantic Gym Recepción
+
+El backend/lógica de ventas debe compartirse.
+
+NO implementes cuatro lógicas independientes.
+
+===========================================================
+ATLANTIC UI KIT
+===========================================================
+
+Toda la actualización debe seguir estrictamente las políticas de Atlantic Tech Software.
+
+Usar:
+
+- Atlantic UI Kit;
+- branding actual;
+- iconos oficiales;
+- botones;
+- tarjetas;
+- tablas;
+- dialogs;
+- badges;
+- spacing;
+- tipografía;
+- estados;
+- jerarquía visual.
+
+NO crees un diseño de POS completamente distinto.
+
+La pantalla de tienda puede optimizarse para venta rápida, pero debe seguir pareciendo claramente parte de Atlantic Gym.
+
+Mantén:
+
+© Atlantic Tech Software — All rights reserved. By Manuel Cuellar
+
+donde corresponda.
+
+===========================================================
+PERFORMANCE
+===========================================================
+
+Escanear debe sentirse instantáneo.
+
+No hagas una recarga completa de toda la pantalla por cada scan.
+
+Indexar correctamente:
+
+barcode
+sku
+name cuando corresponda.
+
+Probar con una cantidad significativa de productos.
+
+No debe existir lag evidente al:
+
+- escanear;
+- agregar;
+- aumentar cantidad;
+- cobrar;
+- finalizar.
+
+===========================================================
+LECTURAS REPETIDAS
+===========================================================
+
+Si el lector manda:
+
+770...
+ENTER
+
+dos veces:
+
+debe interpretarse como:
+
+cantidad +2
+
+no como error.
+
+Pero evita procesar accidentalmente el mismo buffer dos veces por un único ENTER/evento.
+
+===========================================================
+LECTOR DESCONECTADO
+===========================================================
+
+No debe importar.
+
+Como los lectores HID funcionan como teclado:
+
+si no existe lector,
+
+búsqueda manual sigue funcionando normalmente.
+
+No mostrar errores de hardware simplemente porque no haya scanner.
+
+===========================================================
+AUDITORÍA
+===========================================================
+
+Registrar acciones importantes:
+
+PRODUCT_CREATED
+PRODUCT_UPDATED
+PRICE_CHANGED
+COST_CHANGED
+INVENTORY_RECEIVED
+INVENTORY_ADJUSTED
+SALE_COMPLETED
+SALE_VOIDED
+
+o equivalentes según el sistema actual.
+
+===========================================================
+TIMEZONE
+===========================================================
+
+Mantén toda la política existente de fechas.
+
+Usar timezone del gimnasio.
+
+Para ZTATTUZ:
+
+America/Bogota
+
+No volver a introducir los errores anteriores de 00:00 o reloj local.
+
+===========================================================
+IMPORTACIÓN
+===========================================================
+
+Revisa si la tienda actual soporta importación Excel.
+
+Si ya existe:
+verifica que permita importar códigos de barras.
+
+Idealmente columnas:
+
+Nombre
+Código
+Código de barras
+Categoría
+Costo
+Precio
+Stock
+Stock mínimo
+
+No rompas el importador existente.
+
+Si el módulo de importación actual es reutilizable, intégralo.
+
+===========================================================
+TESTS OBLIGATORIOS
+===========================================================
+
+Crear/actualizar pruebas para:
+
+- crear producto con barcode;
+- barcode único;
+- buscar por barcode;
+- buscar manualmente;
+- scanner agrega producto;
+- segundo scan aumenta cantidad;
+- Admin puede usar scanner;
+- Recepción puede usar scanner;
+- ZTATTUZ Admin;
+- ZTATTUZ Recepción;
+- Atlantic Gym Admin;
+- Atlantic Gym Recepción;
+- venta reduce stock;
+- movimiento se registra;
+- efectivo calcula cambio;
+- tarjeta/transferencia registra método;
+- no vender más stock del existente;
+- entrada de inventario aumenta stock;
+- ajuste registra historial;
+- venta anulada devuelve stock cuando corresponda;
+- ingresos tienda separados de membresías;
+- Staff no altera venta/estadísticas;
+- congelación/membresías no se rompen;
+- WhatsApp/Wompi no se rompen;
+- puerta/acceso no se rompe;
+- timezone correcto;
+- gimnasio con Tienda desactivada funciona normalmente.
+
+Ejecuta también las regresiones completas existentes.
+
+===========================================================
+PRUEBA MANUAL / CHECKLIST
+===========================================================
+
+Genera:
+
+PRUEBA_TIENDA_POS.md
+
+Debe contener un checklist sencillo para probar en ZTATTUZ con un lector láser real:
+
+1. Crear Coca-Cola.
+2. Escanear barcode durante creación.
+3. Guardar.
+4. Cerrar/volver a abrir.
+5. Confirmar que barcode persistió.
+6. Buscar escaneando.
+7. Agregar al carrito.
+8. Escanear segunda vez.
+9. Confirmar cantidad 2.
+10. Agregar producto manual.
+11. Cobrar efectivo.
+12. Verificar cambio.
+13. Verificar stock.
+14. Verificar historial.
+15. Probar transferencia.
+16. Probar stock insuficiente.
+17. Probar recepción.
+18. Probar administrador.
+19. Probar entrada de inventario escaneando.
+20. Probar alertas de stock.
+
+===========================================================
+IMPORTANTE SOBRE ALCANCE
+===========================================================
+
+Esto debe quedar como un POS de tienda sólido para gimnasio.
+
+NO conviertas esta actualización en Atlantic Commerce.
+
+NO agregues innecesariamente:
+
+- ERP;
+- contabilidad completa;
+- facturación DIAN;
+- ecommerce;
+- proveedores complejos;
+- múltiples bodegas;
+- promociones avanzadas;
+- loyalty;
+- delivery.
+
+Esta tienda debe mantenerse integrada y sencilla dentro de Atlantic Gym.
+
+Pero la arquitectura debe quedar limpia y extensible.
+
+===========================================================
+CRITERIO DE TERMINADO
+===========================================================
+
+No quiero que respondas simplemente:
+
+"Ya había soporte para código de barras."
+
+Debes verificar todo el flujo real.
+
+La actualización solamente puede considerarse lista cuando:
+
+- barcode se guarda;
+- barcode persiste;
+- barcode se puede buscar;
+- scanner funciona;
+- manual funciona;
+- carrito funciona;
+- cobrar funciona;
+- pago funciona;
+- venta queda registrada;
+- inventario se descuenta;
+- entradas de inventario funcionan;
+- historial funciona;
+- estadísticas funcionan;
+- Admin funciona;
+- Recepción funciona;
+- ZTATTUZ funciona;
+- Atlantic Gym comercial funciona;
+- pruebas pasan.
+
+No generes instaladores hasta terminar la validación.
+
+===========================================================
+REPORTE FINAL
+===========================================================
+
+Al terminar dame:
+
+AUDITORÍA DEL MÓDULO ORIGINAL
+
+QUÉ YA EXISTÍA
+
+QUÉ ESTABA INCOMPLETO
+
+QUÉ IMPLEMENTASTE
+
+ZTATTUZ ADMIN
+
+ZTATTUZ RECEPCIÓN
+
+ATLANTIC GYM ADMIN
+
+ATLANTIC GYM RECEPCIÓN
+
+CÓDIGOS DE BARRAS
+
+LECTORES LÁSER
+
+PRODUCTOS
+
+INVENTARIO
+
+CARRITO
+
+COBRO / PAGOS
+
+HISTORIAL DE VENTAS
+
+ESTADÍSTICAS
+
+PERMISOS
+
+ATLANTIC UI KIT
+
+MIGRACIONES / BASE DE DATOS
+
+TESTS EJECUTADOS
+
+RESULTADO DE REGRESIONES
+
+CHECKLIST PRUEBA_TIENDA_POS.md
+
+BLOQUEOS REALES SI EXISTEN
+
+Empieza auditando la implementación actual y después continúa directamente con las correcciones e implementación hasta que todas las pruebas relevantes pasen.

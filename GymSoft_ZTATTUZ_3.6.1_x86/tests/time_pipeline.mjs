@@ -46,8 +46,11 @@ try {
  const exp=await ins('accounting_expenses',{gym_id:gym,expense_date:'2026-10-07',category:'Otros',description:'Hora de servidor',amount:1000,created_at:'1999-01-01T00:00:00Z'});
  equal((await db.query('select created_at>\'2026-01-01\'::timestamptz as real,expense_date::text from public.accounting_expenses where id=$1',[exp])).rows[0],{real:true,expense_date:'2026-10-07'});
  equal(new Date((await db.query('select created_at from public.accounting_expenses where id=$1',[exp])).rows[0].created_at).toISOString(),'2026-10-08T02:30:00.000Z');
- const product=await ins('store_products',{gym_id:gym,name:'Prueba tiempo',sale_price:1000,stock_quantity:10});
- const sale=await ins('store_sales',{gym_id:gym,product_id:product,product_name:'Prueba tiempo',quantity:1,unit_price:1000,total_amount:1000,sold_at:'1999-01-01T00:00:00Z'});
+ const product=(await rpc('store_pos_save_product',{p_gym_id:gym,p_product_id:null,p_data:{name:'Prueba tiempo',sale_price:1000,stock_quantity:10}})).id;
+ // Direct sales writes now fail closed; the server RPC owns the full sale.
+ await assert.rejects(()=>ins('store_sales',{gym_id:gym,product_id:product,product_name:'Prueba tiempo',quantity:1,unit_price:1000,total_amount:1000,sold_at:'1999-01-01T00:00:00Z'}),/procedimientos|inmutable/i);checks++;
+ const receipt=await rpc('store_pos_checkout',{p_gym_id:gym,p_request_id:'d1000000-0000-4000-8000-000000000001',p_items:[{product_id:product,quantity:1,expected_price:1000}],p_payment:{method:'TARJETA',sold_at:'1999-01-01T00:00:00Z'}});
+ const sale=receipt.items[0].id;
  equal((await db.query('select sold_at>\'2026-01-01\'::timestamptz as real from public.store_sales where id=$1',[sale])).rows[0].real,true);
  equal(new Date((await db.query('select sold_at from public.store_sales where id=$1',[sale])).rows[0].sold_at).toISOString(),'2026-10-08T02:30:00.000Z');
  await rootUser();

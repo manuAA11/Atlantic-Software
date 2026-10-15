@@ -3,6 +3,8 @@ from plan_forms import validate_plan_options
 from gym_time import display_timestamp, local_datetime, timezone_for, parse_instant, local_wall_instant
 from plan_forms import membership_request
 from server_date import ServerDate
+from store_pos import StoreDatabaseMixin
+from store_pos_import import (POS_BACKUP_SHEETS, PRODUCT_COLUMNS, POS_COLUMNS, SALE_COLUMNS, validate_pos_import, is_missing_pos_table, StorePosBackupUnavailable)
 
 import json
 import sqlite3
@@ -247,6 +249,10 @@ EXCEL_IMPORT_COLUMNS = {
         "Enviado": "sent_at",
     },
 }
+CLOUD_BACKUP_TABLES += tuple(POS_BACKUP_SHEETS)
+EXCEL_IMPORT_COLUMNS["store_products"].update(PRODUCT_COLUMNS)
+EXCEL_IMPORT_COLUMNS["store_sales"].update(SALE_COLUMNS)
+EXCEL_IMPORT_COLUMNS.update(POS_COLUMNS)
 EXCEL_IMPORT_COLUMNS["memberships"].update(PAYMENT_EXCEL_COLUMNS)
 EXCEL_IMPORT_COLUMNS['plans'].update({'Tipo de plan': 'plan_type', 'Acceso ilimitado': 'unlimited_access', 'Tiene vencimiento': 'has_expiration', 'Incluir en finanzas': 'include_in_financial_stats'})
 EXCEL_IMPORT_COLUMNS['memberships'].update({'Tipo de membresía': 'membership_type', 'Membresía activa': 'membership_active', 'Acceso ilimitado': 'unlimited_access', 'Tiene vencimiento': 'has_expiration', 'Incluir en finanzas': 'include_in_financial_stats', 'Referencia de asignación': 'assignment_request_id'})
@@ -254,7 +260,7 @@ EXCEL_IMPORT_COLUMNS['memberships'].update({'Historial de congelaciones': 'freez
 
 
 
-class CloudDatabase:
+class CloudDatabase(StoreDatabaseMixin):
     def marketing_workspace(self):
         from marketing_client import MarketingClient
         return MarketingClient(self).workspace()
@@ -689,6 +695,9 @@ class CloudDatabase:
         data: dict[str, Any],
         product_id: int | None = None,
     ) -> int:
+        if any(key in data for key in ("barcode", "description", "category", "unit_cost")):
+            result = self.pos_save_product(data, product_id)
+            return int(result["id"] if isinstance(result, dict) else result)
         response = self._execute(
             self.client.rpc(
                 "admin_save_store_product",
@@ -1360,6 +1369,14 @@ class CloudDatabase:
         *,
         page_size: int = 750,
     ) -> list[dict[str, Any]]:
+            if table in POS_BACKUP_SHEETS:
+                try:
+                    value = self._execute(self.client.rpc("store_pos_backup_table", {"p_gym_id": self.gym_id, "p_table": table})).data
+                    return json.loads(value) if isinstance(value, str) else list(value or [])
+                except Exception as error:
+                    if str(getattr(error, "code", "") or "").upper() in {"42883", "PGRST202"}:
+                        raise StorePosBackupUnavailable("El servidor todavía usa el respaldo anterior a POS.") from error
+                    raise
             if table == "memberships":
                 value = self._execute(self.client.rpc("ticket_backup_memberships", {"p_gym_id": self.gym_id})).data
                 return json.loads(value) if isinstance(value, str) else list(value or [])
@@ -1367,12 +1384,17 @@ class CloudDatabase:
             offset = 0
 
             while True:
-                page = self._data(
-                    self.client.table(table)
-                    .select("*")
-                    .eq("gym_id", self.gym_id)
-                    .range(offset, offset + page_size - 1)
-                )
+                try:
+                    page = self._data(
+                        self.client.table(table)
+                        .select("*")
+                        .eq("gym_id", self.gym_id)
+                        .range(offset, offset + page_size - 1)
+                    )
+                except Exception as error:
+                    if table in POS_BACKUP_SHEETS and is_missing_pos_table(error):
+                        return []
+                    raise
                 rows.extend(page)
 
                 if len(page) < page_size:
@@ -1381,6 +1403,21 @@ class CloudDatabase:
                 offset += page_size
 
             return rows
+
+    def _pos_backup_snapshot(self) -> dict[str, list[dict[str, Any]]] | None:
+        if not hasattr(self, "client"):
+            return None
+        try:
+            value = self._execute(self.client.rpc("store_pos_backup", {"p_gym_id": self.gym_id})).data
+        except Exception as error:
+            if str(getattr(error, "code", "") or "").upper() in {"42883", "PGRST202"}:
+                return None
+            raise
+        result = json.loads(value) if isinstance(value, str) else value
+        if not isinstance(result, dict) or any(not isinstance(result.get(table), list)
+                for table in (*POS_BACKUP_SHEETS, "store_products", "store_sales")):
+            raise ValueError("El servidor no devolvió un respaldo POS completo.")
+        return result
 
     def backup(self, destination: str | Path) -> Path:
             destination_path = Path(destination)
@@ -1391,8 +1428,18 @@ class CloudDatabase:
                 "created_at": self._now().isoformat(timespec="seconds"),
                 "tables": {},
             }
+            pos_snapshot = self._pos_backup_snapshot()
             for table in CLOUD_BACKUP_TABLES:
-                payload["tables"][table] = self._cloud_table_rows(table)
+                if pos_snapshot is not None and table in pos_snapshot:
+                    payload["tables"][table] = pos_snapshot[table]
+                    continue
+                if pos_snapshot is None and table in POS_BACKUP_SHEETS:
+                    continue
+                try:
+                    payload["tables"][table] = self._cloud_table_rows(table)
+                except StorePosBackupUnavailable:
+                    if table not in POS_BACKUP_SHEETS:
+                        raise
 
             destination_path.write_text(
                 json.dumps(payload, ensure_ascii=False, indent=2),
@@ -1637,10 +1684,32 @@ class CloudDatabase:
                 ],
             }
 
+            table_titles.update(POS_BACKUP_SHEETS)
+            for table, columns in POS_COLUMNS.items():
+                preferred_columns[table] = [(key, label) for label, key in columns.items()]
+            preferred_columns["store_products"] = [
+                ("id", "ID"), ("sku", "Código interno / SKU"), ("barcode", "Código de barras"),
+                ("name", "Producto"), ("description", "Descripción"), ("category", "Categoría"),
+                ("unit_cost", "Costo unitario"), ("sale_price", "Precio de venta"),
+                ("stock_quantity", "Existencias"), ("low_stock_threshold", "Stock mínimo"),
+                ("has_image", "Tiene imagen"), ("active", "Activo"),
+                ("created_at", "Creado"), ("updated_at", "Actualizado"),
+            ]
+            preferred_columns["store_sales"] += [(key, label) for label, key in SALE_COLUMNS.items()]
             raw_tables: dict[str, list[dict[str, Any]]] = {}
 
+            pos_snapshot = self._pos_backup_snapshot()
             for table in CLOUD_BACKUP_TABLES:
-                raw_tables[table] = self._cloud_table_rows(table)
+                if pos_snapshot is not None and table in pos_snapshot:
+                    raw_tables[table] = pos_snapshot[table]
+                    continue
+                if pos_snapshot is None and table in POS_BACKUP_SHEETS:
+                    continue
+                try:
+                    raw_tables[table] = self._cloud_table_rows(table)
+                except StorePosBackupUnavailable:
+                    if table not in POS_BACKUP_SHEETS:
+                        raise
 
             raw_tables["audit_logs"] = sorted(
                 self._cloud_table_rows("audit_logs"),
@@ -1771,6 +1840,7 @@ class CloudDatabase:
             store_income = sum(
                 int(row.get("total_amount") or 0)
                 for row in sales
+                if str(row.get("status") or "COMPLETED").upper() != "VOID"
             )
             expense_total = sum(
                 int(row.get("amount") or 0)
@@ -1849,7 +1919,7 @@ class CloudDatabase:
                 "starts_at",
                 "sent_at",
                 "scheduled_for",
-                "whatsapp_opt_in_at",
+                "whatsapp_opt_in_at", "voided_at",
             }
 
             def excel_value(value: Any, key: str) -> Any:
@@ -1894,6 +1964,7 @@ class CloudDatabase:
                 "marketing_messages",
             ]
 
+            export_order += [table for table in POS_BACKUP_SHEETS if table in raw_tables]
             for table in export_order:
                 rows = raw_tables.get(table, [])
                 sheet = workbook.create_sheet(table_titles[table])
@@ -1946,7 +2017,7 @@ class CloudDatabase:
                     "unit_price",
                     "total_amount",
                     "hourly_rate",
-                    "estimated_pay",
+                    "estimated_pay", "unit_cost", "received", "change_amount",
                 }
 
                 for row_number, row in enumerate(rows, start=4):
@@ -1960,7 +2031,12 @@ class CloudDatabase:
                             excel_value(row.get(key), key),
                         )
 
-                        if key in money_keys:
+                        if key in {"barcode", "sku", "product_barcode", "product_sku"}:
+                            cell.number_format = "@"
+                            if cell.value is not None:
+                                cell.value = str(cell.value)
+                                cell.data_type = "s"
+                        elif key in money_keys:
                             cell.number_format = '"$"#,##0'
                         elif key in date_keys:
                             cell.number_format = "dd/mm/yyyy"
@@ -2025,6 +2101,8 @@ class CloudDatabase:
             cls._normalize_excel_label(label): key
             for label, key in EXCEL_IMPORT_COLUMNS.get(table, {}).items()
         }
+        if table == "store_products":
+            aliases["codigo interno / sku"] = "sku"
 
         if normalized in aliases:
             return aliases[normalized]
@@ -2044,7 +2122,12 @@ class CloudDatabase:
     ) -> Any:
         if value is None:
             return None
-        if key in ("ticket_consumption_archive", "freeze_archive"):
+        if key == "request_payload":
+            parsed = json.loads(value) if isinstance(value, str) else value
+            if not isinstance(parsed, dict):
+                raise ValueError("La solicitud original POS no es un objeto válido.")
+            return parsed
+        if key in ("ticket_consumption_archive", "freeze_archive", "inventory_request_archive"):
             parsed = json.loads(value) if isinstance(value, str) else value
             if not isinstance(parsed, list):
                 raise ValueError("El historial de consumo de la tiquetera no es válido.")
@@ -2071,15 +2154,16 @@ class CloudDatabase:
             "starts_at",
             "sent_at",
             "scheduled_for",
-            "whatsapp_opt_in_at",
+            "whatsapp_opt_in_at", "voided_at",
         }
         boolean_fields = {
             "ticket_consumed", "already_consumed_today",
-            "active",
+            "active", "enabled",
             "whatsapp_opt_in", "unlimited_access", "has_expiration", "include_in_financial_stats", "membership_active",
         }
         integer_fields = {
-            "duration_days",
+            "duration_days", "sale_price", "unit_cost", "sale_number", "last_sale_number",
+            "received", "change_amount", "stock_before", "stock_after",
             "price",
             "entry_limit",
             "duration_months",
@@ -2108,7 +2192,8 @@ class CloudDatabase:
             "class_id",
             "document",
             "phone",
-            "sku",
+            "sku", "barcode", "product_barcode", "product_sku", "order_id", "request_id",
+            "reference", "created_by", "voided_by", "updated_by",
             "biometric_identifier",
             "payment_reference",
             "receipt_reference",
@@ -2265,7 +2350,10 @@ class CloudDatabase:
         errors: list[str] = []
 
         try:
-            for table, sheet_name in EXCEL_IMPORT_SHEETS.items():
+            import_sheets = dict(EXCEL_IMPORT_SHEETS)
+            import_sheets.update({table: title for table, title in POS_BACKUP_SHEETS.items()
+                                  if title in workbook.sheetnames})
+            for table, sheet_name in import_sheets.items():
                 sheet = workbook[sheet_name]
                 sheet_values = list(sheet.iter_rows(values_only=True))
                 alias_keys = set(EXCEL_IMPORT_COLUMNS.get(table, {}).values())
@@ -2383,7 +2471,7 @@ class CloudDatabase:
 
                 if identifier in identifiers[table]:
                     validation_errors.append(
-                        f"{EXCEL_IMPORT_SHEETS[table]}, fila "
+                        f"{(EXCEL_IMPORT_SHEETS | POS_BACKUP_SHEETS)[table]}, fila "
                         f"{row['__excel_row']}: ID repetido ({identifier})."
                     )
                 identifiers[table].add(identifier)
@@ -2418,7 +2506,7 @@ class CloudDatabase:
                 if not value:
                     if required:
                         validation_errors.append(
-                            f"{EXCEL_IMPORT_SHEETS[table]}, fila "
+                            f"{(EXCEL_IMPORT_SHEETS | POS_BACKUP_SHEETS)[table]}, fila "
                             f"{row['__excel_row']}: falta {label}."
                         )
                     continue
@@ -2426,7 +2514,7 @@ class CloudDatabase:
                 if value in result or value in ambiguous:
                     if duplicates_are_errors:
                         validation_errors.append(
-                            f"{EXCEL_IMPORT_SHEETS[table]}, fila "
+                            f"{(EXCEL_IMPORT_SHEETS | POS_BACKUP_SHEETS)[table]}, fila "
                             f"{row['__excel_row']}: {label} repetido "
                             f"({row.get(field)})."
                         )
@@ -2455,7 +2543,7 @@ class CloudDatabase:
             "store_products",
             "sku",
             "el código del producto",
-            required=True,
+            required=False,
         )
         trainers_by_name = unique_map(
             "trainers",
@@ -2681,6 +2769,7 @@ class CloudDatabase:
                 for row in rows
             ]
 
+        validate_pos_import(clean_tables)
         counts = {
             table: len(rows)
             for table, rows in clean_tables.items()
@@ -2722,7 +2811,9 @@ class CloudDatabase:
 
         tables: dict[str, list[dict[str, Any]]] = {}
 
-        for table in EXCEL_IMPORT_SHEETS:
+        import_tables = [*EXCEL_IMPORT_SHEETS,
+                         *(table for table in POS_BACKUP_SHEETS if table in source_tables)]
+        for table in import_tables:
             rows = source_tables.get(table, [])
 
             if not isinstance(rows, list) or any(
@@ -2744,6 +2835,7 @@ class CloudDatabase:
                 if not self._excel_reference(row.get("id")):
                     row["id"] = f"__backup_{table}_{index}"
 
+        validate_pos_import(tables)
         counts = {
             table: len(rows)
             for table, rows in tables.items()

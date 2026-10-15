@@ -37,7 +37,6 @@ from PIL import Image, ImageOps, ImageTk
 
 from biometric import BiometricAccessController, BiometricAccessControl
 from biometric import (
-    AutomaticHidScanner,
     ManualAccessProvider,
     normalize_biometric_identifier,
 )
@@ -56,6 +55,8 @@ DATA_FOLDER_NAME= "GymControl"
 MONEY_VALUES_HIDDEN = False
 
 from atlantic_ui import COLORS, COPYRIGHT
+from store_pos import barcode_value
+from store_pos_ui import StorePosPanel
 
 FONT_FAMILY = UI_FONT
 ICON_FONT = "Segoe Fluent Icons"
@@ -1247,8 +1248,13 @@ class ProductDialog(BaseDialog):
             parent,
             "Editar producto" if data else "Nuevo producto",
             560,
-            710,
+            760,
         )
+        self.is_editing = bool(data)
+        self.barcode = tk.StringVar(value=str(data.get("barcode") or ""))
+        self.description = tk.StringVar(value=str(data.get("description") or ""))
+        self.category = tk.StringVar(value=str(data.get("category") or ""))
+        self.cost = tk.StringVar(value="" if data.get("unit_cost") is None else str(data["unit_cost"]))
         self.image_data = str(data.get("image_data", ""))
         self.preview_image: ImageTk.PhotoImage | None = None
         self.name = tk.StringVar(value=str(data.get("name", "")))
@@ -1267,28 +1273,36 @@ class ProductDialog(BaseDialog):
         )
 
         name_entry = self.add_entry("Nombre del producto *", self.name, 0)
-        self.add_entry("Código de barras o SKU", self.sku, 1)
-        self.add_entry("Precio de venta *", self.price, 2)
-        self.add_entry("Cantidad disponible *", self.stock, 3)
-        self.add_entry("Avisar cuando queden", self.low_stock, 4)
-        ttk.Checkbutton(
-            self.body,
-            text="Producto disponible para la venta",
-            variable=self.active,
-        ).grid(row=10, column=0, sticky="w", pady=(12, 0))
-
-        ttk.Label(
-            self.body,
-            text="Foto del producto",
-            style="Field.TLabel",
-        ).grid(row=11, column=0, sticky="w", pady=(12, 4))
+        self.add_entry("SKU / código interno", self.sku, 1)
+        barcode_entry = self.add_entry("Código de barras (opcional)", self.barcode, 2)
+        barcode_entry._hid_scanner = self
+        barcode_entry.bind("<Return>", lambda _event: "break")
+        scan_actions = ttk.Frame(self.body, style="Surface.TFrame")
+        scan_actions.grid(row=6, column=0, sticky="ew", pady=(5, 0))
+        def scan_barcode():
+            barcode_entry.focus_set()
+            barcode_entry.selection_range(0, "end")
+        ttk.Button(scan_actions, text="Escanear", command=scan_barcode).pack(side="left")
+        ttk.Label(scan_actions, text="Escanea o escribe el código y pulsa ENTER.", style="CardMuted.TLabel").pack(side="left", padx=8)
+        self.add_entry("Descripción", self.description, 4)
+        self.add_entry("Categoría", self.category, 5)
+        self.add_entry("Costo unitario (opcional)", self.cost, 6)
+        self.add_entry("Precio de venta *", self.price, 7)
+        stock_entry = self.add_entry("Existencias actuales" if self.is_editing else "Inventario inicial *", self.stock, 8)
+        if self.is_editing:
+            stock_entry.configure(state="readonly")
+        self.add_entry("Avisar cuando queden", self.low_stock, 9)
+        ttk.Checkbutton(self.body, text="Producto disponible para la venta", variable=self.active).grid(row=20, column=0, sticky="w", pady=(12, 0))
+        if self.is_editing:
+            ttk.Label(self.body, text="Usa Recibir / ajustar inventario para registrar cambios de existencias con su motivo.", style="CardMuted.TLabel", wraplength=450).grid(row=21, column=0, sticky="ew", pady=(8, 0))
+        ttk.Label(self.body, text="Foto del producto", style="Field.TLabel").grid(row=22, column=0, sticky="w", pady=(12, 4))
 
         photo_area = ttk.Frame(
             self.body,
             padding=10,
             style="Card.TFrame",
         )
-        photo_area.grid(row=12, column=0, sticky="ew")
+        photo_area.grid(row=23, column=0, sticky="ew")
 
         self.photo_preview = tk.Label(
             photo_area,
@@ -1317,7 +1331,7 @@ class ProductDialog(BaseDialog):
             command=self.remove_image,
         ).pack(anchor="w", pady=(8, 0))
 
-        self.add_buttons(self.save, 13)
+        self.add_buttons(self.save, 24)
         center_window(self, parent)
         self.update_image_preview()
         self.after_idle(name_entry.focus_force)
@@ -1369,6 +1383,10 @@ class ProductDialog(BaseDialog):
 
     def save(self) -> None:
         try:
+            barcode = barcode_value(self.barcode.get())
+            cost = parse_amount(self.cost.get()) if self.cost.get().strip() else None
+            if cost is not None and cost < 0:
+                raise ValueError("El costo no puede ser negativo.")
             price = parse_amount(self.price.get())
             stock = int(self.stock.get())
             low_stock = int(self.low_stock.get())
@@ -1387,12 +1405,18 @@ class ProductDialog(BaseDialog):
         self.result = {
             "name": self.name.get().strip(),
             "sku": self.sku.get().strip().upper(),
+            "barcode": barcode,
+            "description": self.description.get().strip(),
+            "category": self.category.get().strip(),
+            "unit_cost": cost,
             "sale_price": price,
             "stock_quantity": stock,
             "low_stock_threshold": low_stock,
             "active": bool(self.active.get()),
             "image_data": self.image_data,
         }
+        if self.is_editing:
+            self.result.pop("stock_quantity", None)
         self.destroy()
 
 
@@ -5498,6 +5522,7 @@ class ShopPage(BasePage):
         self.products: dict[int, dict[str, Any]] = {}
         self.search = tk.StringVar()
         self.product_count = tk.StringVar(value="0")
+        self.product_notice = tk.StringVar()
         self.stock_units = tk.StringVar(value="0")
         self.low_stock_count = tk.StringVar(value="0")
         self.page_header(
@@ -5545,6 +5570,9 @@ class ShopPage(BasePage):
 
         notebook = ttk.Notebook(self)
         notebook.pack(fill="both", expand=True)
+        self.shop_notebook = notebook
+        self.pos = StorePosPanel(self, notebook, administrator=True)
+        notebook.add(self.pos, text="Punto de venta")
 
         products_tab = ttk.Frame(
             notebook,
@@ -5608,12 +5636,15 @@ class ShopPage(BasePage):
             command=self.toggle_product,
         ).pack(side="left", padx=(8, 0))
 
+        ttk.Button(actions, text="Recibir / ajustar inventario", command=self.inventory).pack(side="left", padx=(8, 0))
+        ttk.Label(products_tab, textvariable=self.product_notice, style="CardMuted.TLabel", wraplength=650).grid(row=3, column=0, sticky="ew", pady=(7, 0))
+
         sales_tab = ttk.Frame(
             notebook,
             padding=14,
             style="Card.TFrame",
         )
-        notebook.add(sales_tab, text="Ventas recientes")
+        notebook.add(sales_tab, text="Ventas anteriores / detalle")
         sales_tab.columnconfigure(0, weight=1)
         sales_tab.rowconfigure(0, weight=1)
         self.sales_tree = CenteredTreeview(
@@ -5664,18 +5695,18 @@ class ShopPage(BasePage):
         if not dialog.result:
             return
         try:
-            self.db.save_store_product(dialog.result)
+            self.db.pos_save_product(dialog.result)
         except sqlite3.IntegrityError:
             messagebox.showerror(
                 "Producto repetido",
-                "Ya existe un producto con ese nombre o código.",
+                "Ya existe un producto con ese nombre, SKU o código de barras en este gimnasio.",
                 parent=self,
             )
             return
         except Exception as error:
             messagebox.showerror(
                 "No se pudo guardar",
-                str(error),
+                friendly_error(error),
                 parent=self,
             )
             return
@@ -5690,21 +5721,21 @@ class ShopPage(BasePage):
         if not dialog.result:
             return
         try:
-            self.db.save_store_product(
+            self.db.pos_save_product(
                 dialog.result,
                 int(product["id"]),
             )
         except sqlite3.IntegrityError:
             messagebox.showerror(
                 "Producto repetido",
-                "Ya existe otro producto con ese nombre o código.",
+                "Ya existe otro producto con ese nombre, SKU o código de barras en este gimnasio.",
                 parent=self,
             )
             return
         except Exception as error:
             messagebox.showerror(
                 "No se pudo guardar",
-                str(error),
+                friendly_error(error),
                 parent=self,
             )
             return
@@ -5714,27 +5745,33 @@ class ShopPage(BasePage):
         product = self.selected_product()
         if not product:
             return
-        data = dict(product)
-        data["active"] = not bool(product.get("active", True))
+        data = {"active": not bool(product.get("active", True))}
         try:
-            self.db.save_store_product(data, int(product["id"]))
+            self.db.pos_save_product(data, int(product["id"]))
         except Exception as error:
             messagebox.showerror(
                 "No se pudo cambiar el estado",
-                str(error),
+                friendly_error(error),
                 parent=self,
             )
             return
         self.refresh()
 
+    def inventory(self):
+        product = self.selected_product()
+        if product:
+            self.pos.inventory(product)
+
     def refresh_products(self) -> None:
-        term = self.search.get()
-        self.load_view("refresh_products", lambda: self.db.list_store_products(term, True), self._render_refresh_products, (term,))
+        self.pos.render_admin_products()
 
     def _render_refresh_products(self, rows):
+        if not self.pos.enabled:
+            rows = []
         self.products = {int(row["id"]): row for row in rows}
         clear_tree(self.products_tree)
-        active_rows = [row for row in rows if bool(row.get("active", True))]
+        summary_rows = list(self.pos.catalog.products.values()) or rows
+        active_rows = [row for row in summary_rows if bool(row.get("active", True))]
         self.product_count.set(str(len(active_rows)))
         self.stock_units.set(str(sum(
             int(row.get("stock_quantity") or 0)
@@ -5796,12 +5833,12 @@ class ShopPage(BasePage):
 
     def refresh(self) -> None:
         try:
-            self.refresh_products()
             self.refresh_sales()
+            self.pos.refresh()
         except Exception as error:
             messagebox.showerror(
                 "No se pudo cargar la tienda",
-                str(error),
+                friendly_error(error),
                 parent=self,
             )
 

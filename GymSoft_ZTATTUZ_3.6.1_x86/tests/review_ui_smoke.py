@@ -237,4 +237,7 @@ def main():
     print(f'PASS: {checks} comprobaciones de transiciones sin capas ni esperas, scroll sin cálculos, pagos reales de interfaz con red simulada, respuesta única, recuperación, invitaciones y catálogo al 100/120/125 %.')
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()
+    from store_pos_ui_smoke import main as test_store_pos_ui
+    test_store_pos_ui()

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-export async function database({daily=true,marketing=true,freezes=true,features=true}={}) {
+export async function database({daily=true,marketing=true,freezes=true,features=true,pos=true}={}) {
  const db=new PGlite();
  await db.exec(`
  CREATE ROLE anon NOLOGIN; CREATE ROLE authenticated NOLOGIN; CREATE ROLE service_role NOLOGIN BYPASSRLS;
@@ -32,6 +32,7 @@ export async function database({daily=true,marketing=true,freezes=true,features=
  if(features && freezes && marketing && daily) {
   await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_PLANES_INTERNOS.sql'),'utf8'));
   await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_REANUDACION_MEMBRESIAS.sql'),'utf8'));
+  if(pos) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_TIENDA_POS.sql'),'utf8'));
  }
  return db;
 }

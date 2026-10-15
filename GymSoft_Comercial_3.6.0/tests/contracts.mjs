@@ -20,3 +20,7 @@ for(const [table,expected] of Object.entries(contract.columns)){
 if(failures.length){console.error(failures.join('\n'));process.exitCode=1;}
 else console.log(`PASS: ${contract.calls.length} RPC call contracts and ${Object.keys(contract.columns).length} table contracts.`);
 await db.close();
+// POS remains part of the established required backend-contract stage.
+await import('./store_pos.mjs');
+await (await import('./store_pos_import.mjs')).testStorePosImport();
+await (await import('./store_pos_owner.mjs')).testStorePosOwner();

@@ -23,7 +23,8 @@ if a.scope in ('data','all'):
 if a.scope in ('ui','smoke','all'):
  names=run_validation.UI_TESTS if a.scope in ('ui','all') else ['marketing_ui_smoke','freeze_ui_smoke','windows_ui_smoke']
  if a.scope in ('ui','all'):
-  names=list(names)+sorted(p.stem for p in (root/'tests').glob('*_ui_smoke.py') if p.stem not in names)
+  # POS smoke is already required inside review_ui_smoke, including Windows CI.
+  names=list(names)+sorted(p.stem for p in (root/'tests').glob('*_ui_smoke.py') if p.stem not in names and p.stem != 'store_pos_ui_smoke')
  steps += [(n,[sys.executable,f'tests/{n}.py']) for n in names]
 result={'edition':a.edition,'scope':a.scope,'python':sys.version,'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stages':[],'note':'Existing source tests. Contracts extracted from current source. Offline PGlite and simulated hardware; no Windows or external-service verification.'}
 for name,cmd in steps:

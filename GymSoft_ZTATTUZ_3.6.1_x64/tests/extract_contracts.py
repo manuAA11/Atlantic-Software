@@ -10,11 +10,13 @@ calls=[]
 writes={}
 for file in sorted(root.glob('*.py')):
     for node in ast.walk(ast.parse(file.read_text(encoding='utf-8'))):
-        if (isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr=='rpc'
+        if (isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr in {'rpc', '_pos_rpc'}
             and node.args and isinstance(node.args[0],ast.Constant) and isinstance(node.args[0].value,str)):
             args=[]
             if len(node.args)>1 and isinstance(node.args[1],ast.Dict):
                 args=[k.value for k in node.args[1].keys if isinstance(k,ast.Constant)]
+            if node.func.attr == '_pos_rpc':
+                args = ['p_gym_id'] + [k.arg for k in node.keywords if k.arg]
             if file.name in ('marketing_client.py','marketing_ui.py','marketing_reception.py'):
                 args += [k.arg for k in node.keywords if k.arg]
                 if 'p_gym_id' not in args: args.insert(0,'p_gym_id')
@@ -39,7 +41,7 @@ extra={
 }
 for name,args in extra.items():calls.append({'file':'adaptadores dinámicos','name':name,'args':args})
 # Estas columnas se calculan al exportar y se resuelven a sus FK al importar.
-derived={'memberships':{'client_document','client_name','plan_name'},'checkins':{'client_document','client_name'},
+derived={'gym_store_settings':{'inventory_request_archive'},'memberships':{'client_document','client_name','plan_name'},'checkins':{'client_document','client_name'},
  'store_products':{'has_image'},'staff_shifts':{'hourly_rate','trainer_name'},'routines':{'client_name','trainer_name'},
  'exercises':{'routine_name'},'classes':{'trainer_name'},'reservations':{'class_name','client_document','client_name'}}
 for table,virtual in derived.items():columns[table]=[c for c in columns[table] if c not in virtual]

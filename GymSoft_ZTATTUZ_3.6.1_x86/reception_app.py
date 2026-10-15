@@ -34,7 +34,7 @@ from plan_forms import membership_form_values
 from plan_forms import plan_label
 from ticket_forms import CarryoverFields
 from biometric import BiometricAccessController, BiometricAccessControl
-from biometric import AutomaticHidScanner, normalize_biometric_identifier
+from biometric import normalize_biometric_identifier
 from payment_revision import open_payment_manager  # GymSoft-PAGOS-2.0.1
 
 
@@ -43,6 +43,7 @@ from product_config import RECEPTION_NAME as APP_NAME
 from product_config import VERSION as APP_VERSION
 
 from atlantic_ui import COLORS, COPYRIGHT
+from store_pos_ui import StorePosPanel
 
 FONT_FAMILY = UI_FONT
 ICON_FONT = "Segoe Fluent Icons"
@@ -1502,8 +1503,11 @@ class ReceptionShopPage(BasePage):
             "Escanea el código de barras o elige un producto para registrar la venta."
         )
 
+        self.pos = StorePosPanel(self, administrator=False, external_catalog=True)
+        self.pos.pack(fill="both", expand=True)
+
         search_bar = ttk.Frame(
-            self,
+            self.pos.catalog_host,
             padding=14,
             style="Card.TFrame",
         )
@@ -1524,15 +1528,8 @@ class ReceptionShopPage(BasePage):
             fill="x",
             expand=True,
         )
-        self.search_entry.bind("<Return>", lambda _event: "break")
+        self.search_entry._pos_search = True
         self.search.trace_add("write", self.schedule_search)
-        self.barcode_scanner = AutomaticHidScanner(
-            self,
-            self.search_entry,
-            self.search,
-            self.process_barcode,
-            minimum_length=4,
-        )
 
         ttk.Button(
             search_bar,
@@ -1547,12 +1544,12 @@ class ReceptionShopPage(BasePage):
 
         ttk.Label(
             search_bar,
-            text="Un lector compatible permite seleccionar el producto automáticamente.",
+            text="Escanea y pulsa ENTER para agregar al carrito.",
             style="CardMuted.TLabel",
         ).pack(side="right", padx=(14, 0))
 
         catalog = ttk.Frame(
-            self,
+            self.pos.catalog_host,
             padding=10,
             style="Card.TFrame",
         )
@@ -1603,7 +1600,7 @@ class ReceptionShopPage(BasePage):
         self.after_idle(self.search_entry.focus_set)
 
     def refresh(self) -> None:
-        self.refresh_products()
+        self.pos.refresh()
 
     def schedule_search(self, *_args: Any) -> None:
         if self.search_job is not None:
@@ -1634,22 +1631,7 @@ class ReceptionShopPage(BasePage):
         self.search_entry.focus_set()
 
     def process_barcode(self, code: str) -> None:
-        if self.search_job is not None:
-            self.after_cancel(self.search_job)
-            self.search_job = None
-        if not code:
-            return
-        term = self.search.get()
-        self._barcode_sequence = getattr(self, '_barcode_sequence', 0) + 1
-        def complete(rows):
-            if self.search.get() != term:
-                return
-            exact = next((row for row in rows if str(row.get('sku', '')).casefold() == code.casefold()), None)
-            if exact is not None:
-                self.products[int(exact['id'])] = exact
-                self.search.set('')
-                self.sell_product_by_id(int(exact['id']))
-        self.load_view('barcode', lambda: self.db.list_store_products(code), complete, (code, self._barcode_sequence))
+        self.pos.process_barcode(code)
 
     def sync_catalog_scroll(
         self,
@@ -1700,8 +1682,10 @@ class ReceptionShopPage(BasePage):
             )
 
     def refresh_products(self) -> None:
-        term = self.search.get()
-        self.load_view("refresh_products", lambda: self.db.list_store_products(term), self._render_refresh_products, (term,))
+        if self.search_job is not None:
+            self.after_cancel(self.search_job)
+            self.search_job = None
+        self.pos.render_products()
 
     def _render_refresh_products(self, rows):
         self.products = {int(row['id']): row for row in rows}
@@ -1835,7 +1819,7 @@ class ReceptionShopPage(BasePage):
 
         ttk.Button(
             card,
-            text="Vender",
+            text="Agregar",
             command=lambda: self.sell_product_by_id(product_id),
             style="Primary.TButton",
             state="disabled" if stock <= 0 else "normal",
@@ -1863,37 +1847,8 @@ class ReceptionShopPage(BasePage):
             )
             return
 
-        dialog = StoreSaleDialog(self, product)
-        self.wait_window(dialog)
+        self.pos.add_product(product)
 
-        if not dialog.result:
-            self.search_entry.focus_set()
-            return
-
-        try:
-            result = self.db.register_store_sale(
-                product_id,
-                **dialog.result,
-            )
-        except Exception as error:
-            messagebox.showerror(
-                "No se pudo registrar la venta",
-                str(error),
-                parent=self,
-            )
-            self.refresh_products()
-            return
-
-        self.refresh_products()
-        self.search_entry.focus_set()
-        messagebox.showinfo(
-            "Venta registrada",
-            f"Producto: {result.get('product_name', product.get('name', ''))}\n"
-            f"Cantidad: {result.get('quantity', dialog.result['quantity'])}\n"
-            f"Total: {format_money(result.get('total_amount'))}\n"
-            f"Existencias restantes: {result.get('stock_remaining', '—')}",
-            parent=self,
-        )
 class AccessPage(BasePage):
     title = "Registro de entrada"
 
