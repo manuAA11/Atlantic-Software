@@ -397,3 +397,10 @@ la asistencia sigue registrándose pero las siguientes entradas no abren.
 Relé conectado mediante un adaptador USB, tipo pendiente de confirmar.
 Continuar revisando el código aun sin diagnóstico del computador afectado.
 Conservar el trabajo POS y retomarlo después de resolver esta incidencia.
+
+ENTREGA SOLICITADA — 15 DE OCTUBRE DE 2026
+El usuario pide el instalador Windows de 32 bits con la corrección incorporada,
+sin tener que ejecutar él la compilación de GitHub. Completar las validaciones
+disponibles y entregar una descarga directa de Administrador y Recepción.
+Conservar Tienda pausada y distinguir la comprobación Windows de la prueba
+física pendiente del relé y Bluetooth en el computador afectado.

@@ -1,0 +1,37 @@
+{
+  "status": "FAIL",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x86",
+  "version": "3.6.1",
+  "mode": "installers",
+  "date_utc": "2026-10-15T22:42:40.409108+00:00",
+  "run_id": "20261015T224240Z-1868",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:06:05) [MSC v.1944 32 bit (Intel)]",
+  "process_bits": 32,
+  "release_gate_modified": false,
+  "executables": [],
+  "installers": [],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\.venv\\Scripts\\python.exe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\run_validation.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x86\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261015T224240Z-1868\\logs\\01-comando.log",
+      "status": "FAIL",
+      "returncode": 1
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "42b57754f1b62fe10a8aaca3f2ecef9766e5be38bc8aec351b0dc449e7d1e1e4",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "setup.exe": "738122915385bbaac033ac295dd1970685c5a3637382cae56caedecdc65aadc8",
+    "Setup.ini": "ec316a3f10f02efc3bcd2ac2d9615bd2a5480ed017cf0110e0033606e3037e69",
+    "setup.msi": "4310e0ab0354da2684671a04f4e61709f155251883dbc3deecfac646cd67a879",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "error": "CalledProcessError: Command '['D:\\\\a\\\\Atlantic-Software\\\\Atlantic-Software\\\\GymSoft_ZTATTUZ_3.6.1_x86\\\\.venv\\\\Scripts\\\\python.exe', 'D:\\\\a\\\\Atlantic-Software\\\\Atlantic-Software\\\\GymSoft_ZTATTUZ_3.6.1_x86\\\\run_validation.py']' returned non-zero exit status 1."
+}

@@ -150,10 +150,16 @@ relé del usuario. Se conservan reproducciones FAIL y resultados PASS en
 `evidence/relay-cleanup-20261015`. La guía y el colector de estado Windows están
 en [DIAGNOSTICO_USB_BLUETOOTH_32BITS.md](DIAGNOSTICO_USB_BLUETOOTH_32BITS.md).
 
-Estas fuentes aún necesitan compilación Windows y prueba en el equipo afectado;
-los instaladores publicados anteriormente no incorporan la corrección. El API
-GitHub/Actions sigue rechazando la conexión de este entorno con `Forbidden`.
+El acceso al API GitHub/Actions volvió a funcionar el 15 de octubre y se inició
+el run `38818623034` desde `816fcb9`, sin incluir Tienda. x86 aprobó 218 pruebas
+Python y falló después en el puente SQL/relé: exigía una lectura duplicada tras
+esperar un ciclo USB real, que podía superar el debounce de 0,75 segundos. Se
+reprodujo el mismo fallo añadiendo un segundo de espera al fixture original.
+El fixture ahora fija exclusivamente sus relojes de simulación; conserva todas
+las aserciones y los plazos reales del watchdog. El código de producción no
+cambia por este ajuste. La reproducción corregida aprueba; hace falta repetir
+la compilación Windows completa antes de publicar el instalador actualizado.
+
 No se modificó `release_readiness.json` ni se acreditó aceptación de hardware.
-El trabajo de Tienda permanece conservado como borrador en el entorno y en un
-checkpoint local, sin generar instaladores ni retomar su implementación durante
-la incidencia.
+Tienda permanece pausada y respaldada en `wip/tienda-pos-20261015` (`6755f49`),
+sin incluirse en esta entrega del relé.

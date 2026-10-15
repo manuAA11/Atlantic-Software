@@ -4,7 +4,7 @@ import json
 import sys
 import tempfile
 import time
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from door_access import ConfigStore, DoorConfig, DoorController, DoorDatabase, RELAY_ON, RELAY_OFF
 from test_door_access import FakeUSB, until
@@ -12,10 +12,13 @@ from test_door_access import FakeUSB, until
 cases=json.load(sys.stdin)
 checks=0
 for case in cases:
-    with tempfile.TemporaryDirectory() as folder:
+    # This scenario checks immediate duplicate scans in logical time. Windows
+    # USB cleanup/disk latency must not advance the 0.75 s scan debounce or
+    # the 2 s authorization age. Event/Timer/monotonic deadlines remain real.
+    with tempfile.TemporaryDirectory() as folder, patch('door_access.time.time', return_value=10_000.):
         store=ConfigStore(folder,'local-sql-contract')
         usb=FakeUSB()
-        door=DoorController(store,transport=lambda _:usb,ports_provider=lambda:[])
+        door=DoorController(store,transport=lambda _:usb,clock=lambda:10.,ports_provider=lambda:[])
         usb.on=door._cancel.set
         store.save(DoorConfig(True,'COM7',3,0x1A86,0x7523))
         backend=Mock(); backend.register_checkin.return_value=case['result']

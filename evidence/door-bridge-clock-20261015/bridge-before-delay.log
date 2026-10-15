@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/recovery-notes/windows-38818623034/reproduce_bridge_delay.py", line 14, in <module>
+    runpy.run_path(sys.argv[1],run_name='__main__')
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/recovery-notes/windows-38818623034/door_server_bridge-before.py", line 30, in <module>
+    assert duplicate['duplicate_read']
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'duplicate_read'
