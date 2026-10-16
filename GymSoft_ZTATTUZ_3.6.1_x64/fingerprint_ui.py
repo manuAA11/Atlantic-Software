@@ -29,47 +29,78 @@ class FingerprintPanel:
         if event.widget is self.root:
             self.closed = True; self.service.close()
             self.root.after_cancel(self.job)
+    def _poll_failure(self, kind, error):
+        from fingerprint_diagnostics import record
+        # Never log the event payload: it may contain a client or a template.
+        record('ui_' + kind, error)
+        if self.closed or kind == 'uncertain': return
+        try:
+            self.state.set('No se pudo actualizar la pantalla de huella. '
+                           'Revisa el historial antes de repetir un ingreso.')
+        except tk.TclError:
+            pass  # The root may have been destroyed inside a modal callback.
+
     def poll(self):
+        if self.closed: return
         try:
-            while True:
-                kind,value = self.service.events.get_nowait()
-                if kind == 'status':
-                    self.state.set(value)
-                    if self.inline_editor: self.inline_editor.reader_status(value)
-                elif kind == 'templates':
-                    self.templates = set(value); self.fill()
-                    if self.inline_editor: self.inline_editor.templates_updated()
-                elif kind == 'template_deleted':
-                    if self.inline_editor:
-                        self.inline_editor.template_deleted(value)
-                        self.inline_editor = None
-                elif kind == 'enrollment_end':
-                    self.enrolling = False
-                    result = value if isinstance(value, dict) else {'message':str(value)}
-                    self.state.set(result['message'])
-                    editor = self.inline_editor; self.inline_editor = None
-                    if editor and not editor.closed:
-                        editor.enrollment_finished(result)
-                    elif self.window and self.window.winfo_exists():
-                        self.show_completion(result, self.window)
-                elif kind == 'uncertain':
-                    self.controller.enabled.set(False); self.state.set(value)
-                    messagebox.showwarning('No se confirmó el ingreso', value, parent=self.root)
-                elif kind == 'unrecognized': self.show_unrecognized(value)
-                elif kind == 'access': self.show_access(value)
-        except queue.Empty: pass
-        try:
-            while True:
-                kind,value = self.ui_events.get_nowait()
-                if kind == 'clients':
-                    self.clients = {int(c['id']):c for c in value}; self.fill()
-                elif kind == 'error': self.state.set(value)
-        except queue.Empty: pass
-        from tk_window_state import grab_path
-        paused = (not self.controller.enabled.get() or not getattr(self.root,'ready',True)
-                  or bool(grab_path(self.root)) or bool(self.window and self.window.winfo_exists()))
-        self.service.pause(paused)
-        if not self.closed: self.job = self.root.after(100,self.poll)
+            for events, handler in ((self.service.events, self._service_event),
+                                    (self.ui_events, self._ui_event)):
+                while not self.closed:
+                    try: kind, value = events.get_nowait()
+                    except queue.Empty: break
+                    try: handler(kind, value)
+                    except Exception as error:
+                        # The event is consumed once. Replaying a confirmed
+                        # access is not a remedy for a failed UI update.
+                        self._poll_failure(kind, error)
+        finally:
+            if not self.closed:
+                try:
+                    from tk_window_state import grab_path
+                    paused = (not self.controller.enabled.get() or not getattr(self.root,'ready',True)
+                              or bool(grab_path(self.root)) or bool(self.window and self.window.winfo_exists()))
+                    self.service.pause(paused)
+                except Exception as error:
+                    self.service.pause(True)
+                    self._poll_failure('pause', error)
+                finally:
+                    if not self.closed:
+                        try: self.job = self.root.after(100,self.poll)
+                        except tk.TclError:
+                            self.closed = True
+                            self.service.close()
+
+    def _service_event(self, kind, value):
+        if kind == 'status':
+            self.state.set(value)
+            if self.inline_editor: self.inline_editor.reader_status(value)
+        elif kind == 'templates':
+            self.templates = set(value); self.fill()
+            if self.inline_editor: self.inline_editor.templates_updated()
+        elif kind == 'template_deleted':
+            if self.inline_editor:
+                self.inline_editor.template_deleted(value)
+                self.inline_editor = None
+        elif kind == 'enrollment_end':
+            self.enrolling = False
+            result = value if isinstance(value, dict) else {'message':str(value)}
+            self.state.set(result['message'])
+            editor = self.inline_editor; self.inline_editor = None
+            if editor and not editor.closed:
+                editor.enrollment_finished(result)
+            elif self.window and self.window.winfo_exists():
+                self.show_completion(result, self.window)
+        elif kind == 'uncertain':
+            self.controller.enabled.set(False); self.state.set(value)
+            messagebox.showwarning('No se confirmó el ingreso', value, parent=self.root)
+        elif kind == 'unrecognized': self.show_unrecognized(value)
+        elif kind == 'access': self.show_access(value)
+
+    def _ui_event(self, kind, value):
+        if kind == 'clients':
+            self.clients = {int(c['id']):c for c in value}; self.fill()
+        elif kind == 'error': self.state.set(value)
+
     def show_access(self,result):
         key = 'checkin' if 'checkin' in self.root.page_types else 'access'
         self.root.show_page(key); page = self.root.pages[key]

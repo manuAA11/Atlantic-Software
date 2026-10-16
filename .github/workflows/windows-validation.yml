@@ -8,7 +8,7 @@ on:
         type: boolean
         default: false
   push:
-    branches: [main]
+    branches: [main, fix/ztattuz-x86-fingerprint-checkin]
     paths:
       - '.github/workflows/windows-validation.yml'
       - 'GymSoft_*/**'

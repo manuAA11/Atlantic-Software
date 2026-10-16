@@ -157,3 +157,50 @@ No se modificó `release_readiness.json` ni se acreditó aceptación de hardware
 El trabajo de Tienda permanece conservado como borrador en el entorno y en un
 checkpoint local, sin generar instaladores ni retomar su implementación durante
 la incidencia.
+
+
+## Revisión de huella sin respuesta · 16 de octubre de 2026
+
+Base revisada: `6755f49257ab44e795092dafb89a836cc5aabdc8`, checkpoint de
+`wip/tienda-pos-20261015`, que conserva las correcciones recientes del relé.
+El usuario reporta que ZTATTUZ x86 no reacciona al colocar el dedo y que el
+relé funciona. No se dispone del diagnóstico ni del equipo afectado.
+
+Se reprodujo un fallo de continuidad en `FingerprintPanel.poll`: cualquier
+excepción de presentación (resultado de acceso, lista, editor o diálogo)
+salía del callback antes de programar el siguiente `after`. Los nuevos
+eventos dejaban de llegar a la pantalla y el estado de pausa podía quedar
+sin actualizar. Esto es compatible con una interfaz que deja de reaccionar,
+pero no confirma la causa del incidente físico ni un defecto exclusivo de x86.
+
+La corrección procesa cada evento una sola vez, registra únicamente fase/tipo
+de error y mantiene la programación del siguiente ciclo. Una incertidumbre
+del servidor conserva la pausa; un fallo al consultar la modalidad también
+pausa la captura hasta poder evaluar de nuevo su estado. Cerrar la aplicación
+interrumpe el consumo y no programa callbacks nuevos. El mismo defecto estaba
+en las tres ediciones: se aplica sólo el ciclo compartido, conservando las
+variantes de lector y el callback propio de ZTATTUZ. No cambian el driver,
+la exclusividad del lector, la autorización, las escrituras ni el relé.
+
+Validación local, Linux x64 / CPython 3.12.14:
+
+- Antes de corregir: las ocho regresiones iniciales fallaban (seis errores y
+  dos aserciones), incluida la ausencia de un siguiente callback tras fallar
+  la presentación de un ingreso.
+- Después: **59 pruebas de huella PASS en ZTATTUZ x86**, **59 en ZTATTUZ x64**
+  y **52 en Comercial**, mediante `unittest discover -s tests -p
+  'test_fingerprint*.py'`. Se incluyen nueve regresiones nuevas por edición.
+- La integración nueva usa el scheduler Tcl real, el trabajador de huella y
+  `DoorDatabase`/`DoorController` reales, con lector, servidor y USB simulados.
+  Después de provocar un fallo visual en el primer ingreso, procesa un segundo
+  cliente y comprueba exactamente una escritura y un pulso por persona.
+- Una primera ejecución conjunta de x86 terminó con `Tcl_AsyncDelete` por la
+  recolección tardía del intérprete del test en un hilo distinto. Se corrigió
+  la limpieza del fixture para finalizar Tcl en su hilo y se repitieron las
+  tres suites con los resultados PASS anteriores; no se cambió producción
+  para resolver ese fallo del test.
+
+No se ha ejecutado esta corrección en Windows32 ni con un lector/relé físico.
+No se modifica `release_readiness.json`, no se declara aceptación final y no
+se generan instaladores. Queda pendiente comprobar el paquete instalado y el
+diagnóstico de la máquina de ZTATTUZ para confirmar la causa del reporte.
