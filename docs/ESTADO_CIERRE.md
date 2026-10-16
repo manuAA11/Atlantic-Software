@@ -234,3 +234,40 @@ La prueba del instante de la venta compara instantes absolutos, admitiendo
 offsets equivalentes sin admitir fechas sin zona. SQL POS: 68 comprobaciones
 PASS; importación POS: 24 comprobaciones PASS en PGlite local x64.
 No se modifica la aceptación final ni se acredita hardware real.
+
+### Resultado Windows e instalador x86 · 16 de octubre de 2026
+
+La ejecución `38979194277`, código
+`9c1a6183ef214110dabddfce119f796bb6f00980`, terminó con **SUCCESS en las
+tres ediciones**. ZTATTUZ x86: **40 etapas PASS**, **289 pruebas Python PASS**
+con CPython 3.14.8 de 32 bits en Windows; pruebas SQL, interfaz, rendimiento,
+huella, puerta simulada, tienda POS e importación incluidas. ZTATTUZ x64:
+40 etapas PASS y 290 pruebas Python PASS. Comercial completó sus 41 etapas.
+Los ejecutables, iconos, diagnósticos congelados y empaquetado técnico pasaron.
+Las ediciones x64 aprobaron instalación, actualización y desinstalación en el
+runner efímero. La instalación **x86 permanece NOT_RUN**: el MSI original
+DigitalPersona exige `NOT VersionNT64`; el runner es Windows x64. Esto no
+acredita una instalación en un sistema operativo Windows de 32 bits.
+
+Se generó y descargó el instalador completo x86, que contiene los componentes
+de Administración y Recepción y el runtime original. Se verificaron localmente
+la estructura del ZIP, metadatos, hashes e identidad de ejecución mediante
+`tools/windows_configuration_delivery.verify_delivery`: PASS. El archivo PE
+del instalador es x86 (`0x14c`).
+
+- Instalador: `VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x86.exe`;
+  97.428.026 bytes; SHA256
+  `b50cc70dbe903f616daa9e57f25b3ef01405cd5b984fe66230a1e944c689da20`.
+- Paquete: `AtlanticGym_ZTATTUZ_x86_PRUEBAS_PARA_CONFIGURAR_NO_FINAL.zip`;
+  96.938.264 bytes; SHA256
+  `e968dd01bdae7fdddd8c63c8f1a86dedb4c801b7a642953e6e78068ed5012931`.
+- Evidencia: rama `ci/windows-evidence/38979194277/GymSoft_ZTATTUZ_3.6.1_x86`
+  y artifact `12081031397`; artifact de entrega `12080996400`.
+
+La extracción independiente mediante innoextract 1.9 no admite la versión del
+contenedor Inno actual y no se usó para validar ni modificar el instalador.
+La verificación de integridad contra el manifiesto original sí pasó. No se
+modificó `release_readiness.json`. Es una entrega **NO FINAL para configurar
+y probar**, pendiente de instalación Windows32, lector/relé físicos, servicios
+externos y las demás aceptaciones ya descritas. No se ha confirmado que la
+excepción corregida fuera la causa exacta en el equipo del gimnasio.
