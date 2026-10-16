@@ -1,0 +1,96 @@
+﻿2026-10-16 23:11:29.214   Log opened. (Time zone: UTC+00:00)
+2026-10-16 23:11:29.214   Setup version: Inno Setup version 6.7.1
+2026-10-16 23:11:29.214   Original Setup EXE: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261016T230311Z-6796\instaladores\VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe
+2026-10-16 23:11:29.214   Setup command line: /SL5="$801CE,175805605,936448,D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\paquete-tecnico\ejecuciones\20261016T230311Z-6796\instaladores\VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.6.1_x64.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /QAInstallRoot=D:\a\_temp\agym-z64-38979194277-3664-_r8_rd8j /LOG=D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\instalacion-tecnica\ejecuciones\20261016T231121Z-3664\instalar-completo.log
+2026-10-16 23:11:29.214   Windows version: 10.0.20348
+2026-10-16 23:11:29.214   Windows architecture: x64 (64-bit)
+2026-10-16 23:11:29.214   Machine types supported by system: x86 x64
+2026-10-16 23:11:29.214   User privileges: Administrative
+2026-10-16 23:11:29.214   Administrative install mode: No
+2026-10-16 23:11:29.214   Install mode root key: HKEY_CURRENT_USER
+2026-10-16 23:11:29.214   64-bit install mode: Yes
+2026-10-16 23:11:29.214   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-16 23:11:29.214   Created protected temporary directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp
+2026-10-16 23:11:30.136   Found 4 files to register with RestartManager.
+2026-10-16 23:11:30.136   Calling RestartManager's RmGetList.
+2026-10-16 23:11:30.136   RmGetList finished successfully.
+2026-10-16 23:11:30.136   RestartManager found no applications using one of our files.
+2026-10-16 23:11:30.152   Starting the installation process.
+2026-10-16 23:11:30.152   -- File entry --
+2026-10-16 23:11:30.152   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\.gitignore
+2026-10-16 23:11:30.261   Time stamp of our file: 2026-10-16 23:02:14.000
+2026-10-16 23:11:30.261   Installing the file.
+2026-10-16 23:11:30.261   Creating directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime
+2026-10-16 23:11:30.371   Successfully installed the file.
+2026-10-16 23:11:30.371   -- File entry --
+2026-10-16 23:11:30.371   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\0x0409.ini
+2026-10-16 23:11:30.371   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.371   Installing the file.
+2026-10-16 23:11:30.371   Successfully installed the file.
+2026-10-16 23:11:30.371   -- File entry --
+2026-10-16 23:11:30.371   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\Data1.cab
+2026-10-16 23:11:30.371   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.371   Installing the file.
+2026-10-16 23:11:30.590   Successfully installed the file.
+2026-10-16 23:11:30.590   -- File entry --
+2026-10-16 23:11:30.590   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\InstallOnly.bat
+2026-10-16 23:11:30.590   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.590   Installing the file.
+2026-10-16 23:11:30.590   Successfully installed the file.
+2026-10-16 23:11:30.590   -- File entry --
+2026-10-16 23:11:30.590   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\MANIFEST.json
+2026-10-16 23:11:30.590   Time stamp of our file: 2026-10-16 23:02:14.000
+2026-10-16 23:11:30.590   Installing the file.
+2026-10-16 23:11:30.590   Successfully installed the file.
+2026-10-16 23:11:30.590   -- File entry --
+2026-10-16 23:11:30.590   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\README.md
+2026-10-16 23:11:30.590   Time stamp of our file: 2026-10-16 23:02:14.000
+2026-10-16 23:11:30.590   Installing the file.
+2026-10-16 23:11:30.590   Successfully installed the file.
+2026-10-16 23:11:30.590   -- File entry --
+2026-10-16 23:11:30.590   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\setup.exe
+2026-10-16 23:11:30.590   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.590   Installing the file.
+2026-10-16 23:11:30.606   Successfully installed the file.
+2026-10-16 23:11:30.606   -- File entry --
+2026-10-16 23:11:30.606   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\Setup.ini
+2026-10-16 23:11:30.606   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.606   Installing the file.
+2026-10-16 23:11:30.606   Successfully installed the file.
+2026-10-16 23:11:30.606   -- File entry --
+2026-10-16 23:11:30.606   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\setup.msi
+2026-10-16 23:11:30.606   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.606   Installing the file.
+2026-10-16 23:11:30.668   Successfully installed the file.
+2026-10-16 23:11:30.668   -- File entry --
+2026-10-16 23:11:30.668   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\UninstallOnly.bat
+2026-10-16 23:11:30.668   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.668   Installing the file.
+2026-10-16 23:11:30.668   Successfully installed the file.
+2026-10-16 23:11:30.668   -- File entry --
+2026-10-16 23:11:30.668   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}\LumiDvcSvcWin10_x64_v7.0.34450.exe
+2026-10-16 23:11:30.668   Time stamp of our file: 2026-10-16 23:03:08.000
+2026-10-16 23:11:30.668   Installing the file.
+2026-10-16 23:11:30.668   Creating directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\ISSetupPrerequisites
+2026-10-16 23:11:30.668   Creating directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\ISSetupPrerequisites\{5193621C-1E00-428D-8F59-9220277BE61E}
+2026-10-16 23:11:30.793   Successfully installed the file.
+2026-10-16 23:11:30.793   -- File entry --
+2026-10-16 23:11:30.793   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\Licenses\EULA SDK.rtf
+2026-10-16 23:11:30.793   Time stamp of our file: 2026-10-16 23:02:14.000
+2026-10-16 23:11:30.793   Installing the file.
+2026-10-16 23:11:30.793   Creating directory: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\DigitalPersonaRuntime\Licenses
+2026-10-16 23:11:30.793   Successfully installed the file.
+2026-10-16 23:11:30.793   -- File entry --
+2026-10-16 23:11:30.793   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\ZTATTUZ_Admin_3.6.1.exe
+2026-10-16 23:11:30.793   Time stamp of our file: 2026-10-16 23:10:50.000
+2026-10-16 23:11:30.793   Installing the file.
+2026-10-16 23:11:31.199   Successfully installed the file.
+2026-10-16 23:11:31.199   -- File entry --
+2026-10-16 23:11:31.199   Dest filename: C:\Users\RUNNER~1\AppData\Local\Temp\is-ONB9NIJ4QV.tmp\ZTATTUZ_Recepcion_3.6.1.exe
+2026-10-16 23:11:31.199   Time stamp of our file: 2026-10-16 23:11:02.000
+2026-10-16 23:11:31.199   Installing the file.
+2026-10-16 23:11:31.606   Successfully installed the file.
+2026-10-16 23:11:31.606   Installation process succeeded.
+2026-10-16 23:11:56.224   Need to restart Windows? No
+2026-10-16 23:11:56.224   Deinitializing Setup.
+2026-10-16 23:11:56.240   Log closed.

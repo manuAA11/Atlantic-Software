@@ -1,0 +1,3 @@
+PASS: 74 RPC call contracts and 19 table contracts.
+STORE POS OK (68 checks; PGlite, no physical HID or multi-session PostgreSQL claim)
+STORE POS IMPORT SQL: 24 checks PASS

@@ -1,0 +1,141 @@
+133 INFO: PyInstaller: 6.22.2, contrib hooks: 2026.8
+134 INFO: Python: 3.14.8
+193 INFO: Platform: Windows-2022Server-10.0.20348-SP0
+193 INFO: Python environment: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\.venv
+193 INFO: wrote build/frozen-probe\FrozenWindowsProbe.spec
+196 INFO: Removing temporary files and cleaning cache in C:\Users\runneradmin\AppData\Local\pyinstaller
+510 INFO: Module search paths (PYTHONPATH):
+['D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\python314.zip',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\DLLs',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\Lib',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\tools',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64']
+786 INFO: Appending 'datas' from .spec
+804 INFO: checking Analysis
+804 INFO: Building Analysis because Analysis-00.toc is non existent
+804 INFO: Looking for Python shared library...
+804 INFO: Using Python shared library: C:\hostedtoolcache\windows\Python\3.14.8\x64\python314.dll
+804 INFO: Running Analysis Analysis-00.toc
+804 INFO: Target bytecode optimization level: 0
+804 INFO: Initializing module dependency graph...
+807 INFO: Initializing module graph hook caches...
+816 INFO: Analyzing modules for base_library.zip ...
+2136 INFO: Processing standard module hook 'hook-encodings.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2489 INFO: Processing standard module hook 'hook-pickle.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2674 INFO: Processing standard module hook 'hook-math.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2784 INFO: Processing standard module hook 'hook-difflib.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+2798 INFO: Processing standard module hook 'hook-heapq.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+4948 INFO: Caching module dependency graph...
+4969 INFO: Analyzing D:\a\Atlantic-Software\Atlantic-Software\tools\windows_frozen_probe.py
+4973 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+4974 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+5268 INFO: Processing standard module hook 'hook-_tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5282 INFO: Processing standard module hook 'hook-zoneinfo.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+5304 INFO: Processing standard module hook 'hook-sysconfig.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5327 INFO: Processing standard module hook 'hook-certifi.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+5704 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5778 INFO: Processing standard module hook 'hook-xml.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6009 INFO: Processing standard module hook 'hook-_ctypes.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+6368 INFO: Processing standard module hook 'hook-anyio.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+6591 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+6591 INFO: SetuptoolsInfo: initializing cached setuptools info...
+7664 INFO: Processing standard module hook 'hook-openpyxl.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+7832 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8069 INFO: Processing standard module hook 'hook-PIL.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8180 INFO: Processing standard module hook 'hook-PIL.Image.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+8500 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9019 INFO: Processing standard module hook 'hook-pydantic.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+9338 INFO: Processing standard module hook 'hook-platform.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10320 INFO: Processing standard module hook 'hook-websockets.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+10665 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+11075 INFO: Processing standard module hook 'hook-cryptography.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+11896 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+12683 INFO: Processing standard module hook 'hook-sqlite3.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+13005 INFO: Processing standard module hook 'hook-webbrowser.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+13598 INFO: Analyzing hidden import 'PIL._tkinter_finder'
+13598 INFO: Analyzing hidden import 'tzdata'
+13599 INFO: Analyzing hidden import 'tzdata.zoneinfo'
+13600 INFO: Analyzing hidden import 'tzdata.zoneinfo.Africa'
+13600 INFO: Analyzing hidden import 'tzdata.zoneinfo.America'
+13601 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Argentina'
+13601 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Indiana'
+13601 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Kentucky'
+13602 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.North_Dakota'
+13602 INFO: Analyzing hidden import 'tzdata.zoneinfo.Antarctica'
+13602 INFO: Analyzing hidden import 'tzdata.zoneinfo.Arctic'
+13603 INFO: Analyzing hidden import 'tzdata.zoneinfo.Asia'
+13603 INFO: Analyzing hidden import 'tzdata.zoneinfo.Atlantic'
+13603 INFO: Analyzing hidden import 'tzdata.zoneinfo.Australia'
+13604 INFO: Analyzing hidden import 'tzdata.zoneinfo.Brazil'
+13604 INFO: Analyzing hidden import 'tzdata.zoneinfo.Canada'
+13604 INFO: Analyzing hidden import 'tzdata.zoneinfo.Chile'
+13605 INFO: Analyzing hidden import 'tzdata.zoneinfo.Etc'
+13605 INFO: Analyzing hidden import 'tzdata.zoneinfo.Europe'
+13605 INFO: Analyzing hidden import 'tzdata.zoneinfo.Indian'
+13606 INFO: Analyzing hidden import 'tzdata.zoneinfo.Mexico'
+13606 INFO: Analyzing hidden import 'tzdata.zoneinfo.Pacific'
+13606 INFO: Analyzing hidden import 'tzdata.zoneinfo.US'
+13607 INFO: Processing module hooks (post-graph stage)...
+13960 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+13960 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+13965 INFO: Processing standard module hook 'hook-setuptools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+13975 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+13995 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+13996 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+14003 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+14004 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+14118 INFO: Processing standard module hook 'hook-_osx_support.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+14315 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+14316 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+14322 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+14322 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+15087 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+15087 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+15184 INFO: Processing standard module hook 'hook-tzdata.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+15789 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+16390 INFO: Processing standard module hook 'hook-_tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+16404 INFO: Performing binary vs. data reclassification (651 entries)
+16426 INFO: Looking for ctypes DLLs
+16486 WARNING: Ignoring /System/Library/Frameworks/IOKit.framework/IOKit imported from D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\.venv\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+16486 WARNING: Ignoring /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation imported from D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\.venv\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+16516 INFO: Analyzing run-time hooks ...
+16522 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+16524 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+16526 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+16527 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+16528 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\rthooks'
+16529 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+16550 INFO: Creating base_library.zip...
+16567 INFO: Looking for dynamic libraries
+17256 INFO: Extra DLL search directories (AddDllDirectory): []
+17256 INFO: Extra DLL search directories (PATH): []
+17915 INFO: Warnings written to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\build\frozen-probe\FrozenWindowsProbe\warn-FrozenWindowsProbe.txt
+17980 INFO: Graph cross-reference written to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\build\frozen-probe\FrozenWindowsProbe\xref-FrozenWindowsProbe.html
+18022 INFO: checking PYZ
+18022 INFO: Building PYZ because PYZ-00.toc is non existent
+18022 INFO: Building PYZ (ZlibArchive) D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\build\frozen-probe\FrozenWindowsProbe\PYZ-00.pyz
+18499 INFO: Building PYZ (ZlibArchive) D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\build\frozen-probe\FrozenWindowsProbe\PYZ-00.pyz completed successfully.
+18524 INFO: checking PKG
+18524 INFO: Building PKG because PKG-00.toc is non existent
+18524 INFO: Building PKG (CArchive) FrozenWindowsProbe.pkg
+18537 INFO: Building PKG (CArchive) FrozenWindowsProbe.pkg completed successfully.
+18538 INFO: Bootloader D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\.venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\run.exe
+18538 INFO: checking EXE
+18538 INFO: Building EXE because EXE-00.toc is non existent
+18538 INFO: Building EXE from EXE-00.toc
+18538 INFO: Copying bootloader EXE to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\build\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe
+18545 INFO: Copying icon to EXE
+18546 INFO: Copying 0 resources to EXE
+18546 INFO: Embedding manifest in EXE
+18548 INFO: Appending PKG archive to EXE
+18553 INFO: Fixing EXE headers
+18617 INFO: Building EXE from EXE-00.toc completed successfully.
+18621 INFO: checking COLLECT
+18622 INFO: Building COLLECT because COLLECT-00.toc is non existent
+18622 INFO: Building COLLECT COLLECT-00.toc
+18928 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+18937 INFO: Build complete! The results are available in: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_ZTATTUZ_3.6.1_x64\salida\validacion\frozen-probe
