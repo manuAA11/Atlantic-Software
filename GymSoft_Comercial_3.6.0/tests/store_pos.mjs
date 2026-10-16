@@ -37,7 +37,7 @@ try{
  const id=request();const payload={p_request_id:id,p_items:items,p_payment:{method:'EFECTIVO',received:20000},p_customer_name:'Venta rápida'};
  const sale=await call('store_pos_checkout',payload);
  ok(sale.total_amount===10000&&sale.payment.change_amount===10000,'cash total and change');
- ok(sale.items.length===2&&sale.number==='V-000001'&&sale.sold_at==='2026-10-20T14:00:00+00:00','server order number and instant');
+ ok(sale.items.length===2&&sale.number==='V-000001'&&/(?:Z|[+-]\d{2}:\d{2})$/.test(sale.sold_at)&&Date.parse(sale.sold_at)===Date.parse('2026-10-20T14:00:00Z'),'server order number and instant');
  ok(!('unit_cost' in sale.items[0]),'reception receipt hides costs');
  const retry=await call('store_pos_checkout',payload);ok(retry.id===sale.id&&retry.duplicate,'idempotent exact retry');
  await deny(()=>call('store_pos_checkout',{...payload,p_payment:{method:'EFECTIVO',received:15000}}),/otros datos|referencia/i);

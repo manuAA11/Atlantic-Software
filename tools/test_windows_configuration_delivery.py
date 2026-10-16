@@ -41,7 +41,7 @@ class ClientConfigurationDelivery(unittest.TestCase):
         constants = delivery.literal_constants(edition / 'run_validation.py', ('SQL_TESTS', 'UI_TESTS'))
         stage_names = ['python', 'contratos_extraidos', *constants['SQL_TESTS'],
                        'marketing_backend', 'recorrido_huellas', 'simulacion_gimnasio', *constants['UI_TESTS']]
-        self.assertEqual(len(stage_names), 37)
+        self.assertEqual(len(stage_names), 41 if edition_name == 'GymSoft_Comercial_3.6.0' else 40)
         validation = edition / 'salida/validacion'
         validation.mkdir(parents=True)
         stages = []
@@ -117,7 +117,7 @@ class ClientConfigurationDelivery(unittest.TestCase):
             with patch.dict(os.environ, {}, clear=True):
                 source, metadata, acceptance = delivery.load_inputs(fixture['edition'])
             self.assertEqual(source.parent, fixture['copies'])
-            self.assertEqual(metadata['local_validation']['stages'], 37)
+            self.assertEqual(metadata['local_validation']['stages'], 41)
             self.assertEqual(acceptance.parent, fixture['edition'])
 
     def rewrite_archive(self, archive, replacements=None, additions=None):
@@ -148,7 +148,7 @@ class ClientConfigurationDelivery(unittest.TestCase):
                     self.assertEqual(len([name for name in names if name.endswith('.exe')]), 1)
                     self.assertFalse(any('PRIVADO' in name or 'COMPONENTES' in name for name in names))
                     manifest = json.loads(package.read(delivery.MANIFEST))
-                    self.assertEqual(manifest['local_validation']['stages'], 37)
+                    self.assertEqual(manifest['local_validation']['stages'], 41 if edition_name == 'GymSoft_Comercial_3.6.0' else 40)
                     self.assertEqual(manifest['github_run_id'], '123456789')
                     self.assertIs(manifest['release_gate_modified'], False)
                     self.assertEqual(package.read(manifest['files'][0]['path']),
@@ -189,7 +189,7 @@ class ClientConfigurationDelivery(unittest.TestCase):
                     fixture['suite']['stages'].pop()
                     fixture['packaged']['full_local_validation'] = fixture['suite']
                     write_json(fixture['packaging_path'], fixture['packaged'])
-                with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'SHA256|37 etapas'):
+                with patch.dict(os.environ, {}, clear=True), self.assertRaisesRegex(RuntimeError, 'SHA256|etapas'):
                     delivery.create_delivery(fixture['edition'], fixture['output'])
                 self.assertFalse(fixture['output'].exists())
 

@@ -688,35 +688,43 @@ class StorePosPanel(ttk.Frame):
     def history_filters(self):
         filters = {"limit": 300}
         period = self.period.get()
-        if period in ("Hoy", "Semana", "Mes"):
-            today = business_today(self.owner)
-            if isinstance(today, str):
-                today = date.fromisoformat(today[:10])
-            start = today if period == "Hoy" else today - timedelta(days=today.weekday()) if period == "Semana" else today.replace(day=1)
-            filters.update(date_from=start.isoformat(), date_to=today.isoformat())
-        elif period == "Rango":
+        if period == "Rango":
             first, last = date.fromisoformat(self.date_from.get().strip()), date.fromisoformat(self.date_to.get().strip())
             if first > last:
                 raise ValueError("La fecha inicial debe ser anterior o igual a la final.")
             filters.update(date_from=first.isoformat(), date_to=last.isoformat())
-        elif period == "Últimos 2 años":
-            today = business_today(self.owner)
-            if isinstance(today, str):
-                today = date.fromisoformat(today[:10])
-            filters.update(date_from=(today - timedelta(days=730)).isoformat(), date_to=today.isoformat())
         for key, variable, mapping in (("employee_id", self.employee_filter, self.employees), ("product_id", self.product_filter, self.history_products), ("client_id", self.client_filter, self.history_clients)):
             value = mapping.get(variable.get())
             if value is not None:
                 filters[key] = value
-        return filters
+        return period, filters
+
+    def history_query(self, query):
+        # Snapshot Tk inputs here; resolve server time and query only on the
+        # background worker. A slow clock RPC must not block the event loop.
+        period, filters = self.history_filters()
+        db = self.db
+        def load():
+            resolved = dict(filters)
+            if period in ("Hoy", "Semana", "Mes", "Últimos 2 años"):
+                today = db._today()
+                if isinstance(today, str):
+                    today = date.fromisoformat(today[:10])
+                start = (today if period == "Hoy" else
+                         today - timedelta(days=today.weekday()) if period == "Semana" else
+                         today.replace(day=1) if period == "Mes" else
+                         today - timedelta(days=730))
+                resolved.update(date_from=start.isoformat(), date_to=today.isoformat())
+            return query(resolved)
+        return load, (period, str(filters))
 
     def refresh_history(self):
         try:
-            filters = self.history_filters()
+            load, signature = self.history_query(self.db.pos_history)
         except (ValueError, TypeError) as error:
             messagebox.showwarning("Revisa las fechas", str(error), parent=self)
             return
-        self.owner.load_view("pos_history", lambda: self.db.pos_history(filters), self.render_history, (str(filters),))
+        self.owner.load_view("pos_history", load, self.render_history, signature)
 
     def render_history(self, rows):
         self.history_tree.delete(*self.history_tree.get_children())
@@ -793,10 +801,10 @@ class StorePosPanel(ttk.Frame):
 
     def refresh_stats(self):
         try:
-            filters = self.history_filters()
+            load, signature = self.history_query(self.db.pos_stats)
         except (ValueError, TypeError):
             return
-        self.owner.load_view("pos_stats", lambda: self.db.pos_stats(filters), self.render_stats, (str(filters),))
+        self.owner.load_view("pos_stats", load, self.render_stats, signature)
 
     def render_stats(self, data):
         if not isinstance(data, dict):

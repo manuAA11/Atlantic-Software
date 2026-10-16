@@ -204,3 +204,33 @@ No se ha ejecutado esta corrección en Windows32 ni con un lector/relé físico.
 No se modifica `release_readiness.json`, no se declara aceptación final y no
 se generan instaladores. Queda pendiente comprobar el paquete instalado y el
 diagnóstico de la máquina de ZTATTUZ para confirmar la causa del reporte.
+
+### Compilación autorizada y bloqueo de tienda · 16 de octubre de 2026
+
+El usuario autorizó publicar en `manuAA11/Atlantic-Software` la corrección,
+pruebas, documentación y activación del workflow de Windows. Se publicó
+`960de702068f3b721882b4eaba6d7141f8a69cb1` en
+`fix/ztattuz-x86-fingerprint-checkin`. La ejecución `38938911835` comprobó las
+tres ediciones con CPython 3.14; en x86 pasaron Python, SQL de huella, recorrido
+de huella, puerta y las pruebas gráficas de huella. La validación completa se
+detuvo al abrir Tienda en `performance_ui_smoke`, sin producir instaladores.
+
+La causa identificada es `StorePosPanel.history_filters`: consultaba
+`db._today()` en el hilo de Tk. La prueba rechaza toda consulta en ese hilo y
+el aviso modal de error impedía que continuara. Ahora se capturan los filtros
+en Tk y se resuelve la fecha del servidor en el trabajador antes de consultar
+historial/estadísticas. No se sustituye el reloj del servidor por el del PC.
+Se sincronizan las mejoras ya presentes del POS compartido a sus tres copias,
+incluida la carga de productos después de conocer la disponibilidad de tienda.
+
+Se añaden cuatro regresiones por edición para consultas fuera de Tk, filtros
+capturados, fallo del reloj y rango inválido. Pasan localmente las 54 pruebas
+de núcleo POS/filtros en x86 y las 27 pruebas de empaquetado/entrega. Se incluyen
+en la validación completa las pruebas SQL POS/importación y la prueba gráfica
+POS; la copia/restauración del propietario sólo corresponde a Comercial.
+La entrega requiere ahora 40 etapas Windows en ZTATTUZ y 41 en Comercial,
+con los mismos requisitos de hashes, frescura y ausencia de callbacks fallidos.
+La prueba del instante de la venta compara instantes absolutos, admitiendo
+offsets equivalentes sin admitir fechas sin zona. SQL POS: 68 comprobaciones
+PASS; importación POS: 24 comprobaciones PASS en PGlite local x64.
+No se modifica la aceptación final ni se acredita hardware real.

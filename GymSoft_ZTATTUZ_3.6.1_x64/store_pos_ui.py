@@ -416,9 +416,10 @@ class StorePosPanel(ttk.Frame):
 
     def render_products(self):
         term = self.owner.search.get() if self.external_catalog else self.search.get()
-        matches = self.catalog.search(term, limit=201)
-        rows = matches[:200]
-        self.catalog_notice.set("Mostrando los primeros 200 productos. Refina la búsqueda por nombre, código o categoría para ver los demás." if len(matches) > 200 else "")
+        limit = 50 if self.external_catalog else 200
+        matches = self.catalog.search(term, limit=limit + 1)
+        rows = matches[:limit]
+        self.catalog_notice.set(f"Mostrando los primeros {limit} productos. Refina la búsqueda por nombre, código o categoría para ver los demás." if len(matches) > limit else "")
         if self.external_catalog:
             self.owner._render_refresh_products(rows)
             self.tag_widgets()
@@ -434,13 +435,30 @@ class StorePosPanel(ttk.Frame):
         self.history_products = {str(p.get("name")): int(p["id"]) for p in self.catalog.products.values()}
         self.history_product_combo.configure(values=("", *sorted(self.history_products)))
         self.render_products()
+        if self.administrator:
+            self.render_admin_products()
+
+    def render_admin_products(self):
+        term = self.owner.search.get().strip().casefold()
+        rows = []
+        for product in self.catalog.products.values():
+            if term in " ".join(str(product.get(key) or "") for key in ("name", "sku", "barcode", "category")).casefold():
+                rows.append(product)
+                if len(rows) > 200:
+                    break
+        self.owner.product_notice.set("Mostrando los primeros 200 productos. Refina la búsqueda para ver los demás." if len(rows) > 200 else "")
+        self.owner._render_refresh_products(rows[:200])
 
     def refresh(self):
-        self.owner.load_view("pos_settings", self.db.pos_settings, self.render_settings)
-        self.owner.load_view("pos_products", lambda: self.db.pos_products(include_inactive=self.administrator), self.set_products)
+        self.owner.load_view("pos_settings", self.db.pos_settings, self.settings_loaded)
         self.refresh_history()
         if self.administrator:
             self.refresh_stats()
+
+    def settings_loaded(self, data):
+        self.render_settings(data)
+        if self.enabled:
+            self.owner.load_view("pos_products", lambda: self.db.pos_products(include_inactive=self.administrator), self.set_products)
 
     def render_settings(self, data):
         if not isinstance(data, dict):
@@ -454,6 +472,11 @@ class StorePosPanel(ttk.Frame):
             self.render_products()
             if hasattr(self.owner, "products_tree"):
                 self.owner._render_refresh_products([])
+            for key in ("pos_products", "refresh_products"):
+                self.owner._view_errors.discard(key)
+                self.owner._view_error_details.pop(key, None)
+            if not self.owner._view_pending and not self.owner._view_errors:
+                self.owner._view_status.set("")
             self.status.set("La tienda está deshabilitada en este gimnasio.")
 
     def configure_store(self):
@@ -665,35 +688,43 @@ class StorePosPanel(ttk.Frame):
     def history_filters(self):
         filters = {"limit": 300}
         period = self.period.get()
-        if period in ("Hoy", "Semana", "Mes"):
-            today = business_today(self.owner)
-            if isinstance(today, str):
-                today = date.fromisoformat(today[:10])
-            start = today if period == "Hoy" else today - timedelta(days=today.weekday()) if period == "Semana" else today.replace(day=1)
-            filters.update(date_from=start.isoformat(), date_to=today.isoformat())
-        elif period == "Rango":
+        if period == "Rango":
             first, last = date.fromisoformat(self.date_from.get().strip()), date.fromisoformat(self.date_to.get().strip())
             if first > last:
                 raise ValueError("La fecha inicial debe ser anterior o igual a la final.")
             filters.update(date_from=first.isoformat(), date_to=last.isoformat())
-        elif period == "Últimos 2 años":
-            today = business_today(self.owner)
-            if isinstance(today, str):
-                today = date.fromisoformat(today[:10])
-            filters.update(date_from=(today - timedelta(days=730)).isoformat(), date_to=today.isoformat())
         for key, variable, mapping in (("employee_id", self.employee_filter, self.employees), ("product_id", self.product_filter, self.history_products), ("client_id", self.client_filter, self.history_clients)):
             value = mapping.get(variable.get())
             if value is not None:
                 filters[key] = value
-        return filters
+        return period, filters
+
+    def history_query(self, query):
+        # Snapshot Tk inputs here; resolve server time and query only on the
+        # background worker. A slow clock RPC must not block the event loop.
+        period, filters = self.history_filters()
+        db = self.db
+        def load():
+            resolved = dict(filters)
+            if period in ("Hoy", "Semana", "Mes", "Últimos 2 años"):
+                today = db._today()
+                if isinstance(today, str):
+                    today = date.fromisoformat(today[:10])
+                start = (today if period == "Hoy" else
+                         today - timedelta(days=today.weekday()) if period == "Semana" else
+                         today.replace(day=1) if period == "Mes" else
+                         today - timedelta(days=730))
+                resolved.update(date_from=start.isoformat(), date_to=today.isoformat())
+            return query(resolved)
+        return load, (period, str(filters))
 
     def refresh_history(self):
         try:
-            filters = self.history_filters()
+            load, signature = self.history_query(self.db.pos_history)
         except (ValueError, TypeError) as error:
             messagebox.showwarning("Revisa las fechas", str(error), parent=self)
             return
-        self.owner.load_view("pos_history", lambda: self.db.pos_history(filters), self.render_history, (str(filters),))
+        self.owner.load_view("pos_history", load, self.render_history, signature)
 
     def render_history(self, rows):
         self.history_tree.delete(*self.history_tree.get_children())
@@ -770,10 +801,10 @@ class StorePosPanel(ttk.Frame):
 
     def refresh_stats(self):
         try:
-            filters = self.history_filters()
+            load, signature = self.history_query(self.db.pos_stats)
         except (ValueError, TypeError):
             return
-        self.owner.load_view("pos_stats", lambda: self.db.pos_stats(filters), self.render_stats, (str(filters),))
+        self.owner.load_view("pos_stats", load, self.render_stats, signature)
 
     def render_stats(self, data):
         if not isinstance(data, dict):
