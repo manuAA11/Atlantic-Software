@@ -1,0 +1,3 @@
+PASS: 71 comprobaciones de transiciones sin capas ni esperas, scroll sin cálculos, pagos reales de interfaz con red simulada, respuesta única, recuperación, invitaciones y catálogo al 100/120/125 %.
+POS_UI_SMOKE_OK 41 checks; mocked server, simulated HID, no physical hardware
+EN CURSO: review_ui_smoke · 15 s · límite 300 s.

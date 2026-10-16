@@ -1,0 +1,155 @@
+["D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Scripts\\python.exe", "-m", "PyInstaller", "--noconfirm", "--clean", "--windowed", "--onedir", "--name", "GymSoftAdmin", "--icon", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico", "--version-file", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261016T230341Z-1032\\build\\GymSoftAdmin_version.txt", "--paths", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0", "--workpath", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261016T230341Z-1032\\build\\work", "--specpath", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261016T230341Z-1032\\build\\spec", "--distpath", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261016T230341Z-1032\\dist", "--add-data", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\gymsoft_config.json;.", "--add-data", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono.ico;.", "--add-data", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\icono_recepcion.ico;.", "--hidden-import", "PIL._tkinter_finder", "--collect-all", "supabase", "--collect-all", "realtime", "--collect-all", "postgrest", "--collect-all", "supabase_auth", "--collect-all", "tzdata", "--collect-all", "serial", "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\app.py"]
+122 INFO: PyInstaller: 6.22.2, contrib hooks: 2026.8
+122 INFO: Python: 3.14.8
+140 INFO: Platform: Windows-2022Server-10.0.20348-SP0
+141 INFO: Python environment: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\.venv
+141 INFO: wrote D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\spec\GymSoftAdmin.spec
+144 INFO: Removing temporary files and cleaning cache in D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\cache-pyinstaller\pyinstaller
+3440 INFO: Module search paths (PYTHONPATH):
+['D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\python314.zip',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\DLLs',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64\\Lib',
+ 'C:\\hostedtoolcache\\windows\\Python\\3.14.8\\x64',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages',
+ 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0']
+3679 INFO: Appending 'datas' from .spec
+3707 INFO: checking Analysis
+3708 INFO: Building Analysis because Analysis-00.toc is non existent
+3708 INFO: Looking for Python shared library...
+3708 INFO: Using Python shared library: C:\hostedtoolcache\windows\Python\3.14.8\x64\python314.dll
+3708 INFO: Running Analysis Analysis-00.toc
+3708 INFO: Target bytecode optimization level: 0
+3708 INFO: Initializing module dependency graph...
+3709 INFO: Initializing module graph hook caches...
+3723 INFO: Analyzing modules for base_library.zip ...
+4462 INFO: Processing standard module hook 'hook-encodings.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+5763 INFO: Processing standard module hook 'hook-math.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7398 INFO: Processing standard module hook 'hook-difflib.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7413 INFO: Processing standard module hook 'hook-heapq.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+7548 INFO: Processing standard module hook 'hook-pickle.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9374 INFO: Caching module dependency graph...
+9416 INFO: Analyzing D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\app.py
+9775 INFO: Processing standard module hook 'hook-zoneinfo.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+9806 INFO: Processing standard module hook 'hook-sysconfig.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9896 INFO: Processing standard module hook 'hook-_ctypes.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+9902 INFO: Processing standard module hook 'hook-sqlite3.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10156 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+10156 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+10608 INFO: Processing standard module hook 'hook-_tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10770 INFO: Processing standard module hook 'hook-platform.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+10884 INFO: Processing standard module hook 'hook-PIL.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+11039 INFO: Processing standard module hook 'hook-PIL.Image.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+11395 INFO: Processing standard module hook 'hook-xml.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+11421 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+11674 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+12307 INFO: Processing standard module hook 'hook-webbrowser.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+13082 INFO: Processing standard module hook 'hook-certifi.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+13317 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+14349 INFO: Processing standard module hook 'hook-anyio.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+14703 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+14704 INFO: SetuptoolsInfo: initializing cached setuptools info...
+16656 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+16950 INFO: Processing standard module hook 'hook-pydantic.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+19233 INFO: Processing standard module hook 'hook-websockets.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+20140 INFO: Processing standard module hook 'hook-cryptography.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+21515 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+22458 INFO: Processing standard module hook 'hook-openpyxl.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+24211 INFO: Analyzing hidden import 'PIL._tkinter_finder'
+24212 INFO: Analyzing hidden import 'supabase.client'
+24215 INFO: Analyzing hidden import 'tzdata'
+24216 INFO: Analyzing hidden import 'tzdata.zoneinfo'
+24216 INFO: Analyzing hidden import 'tzdata.zoneinfo.Africa'
+24217 INFO: Analyzing hidden import 'tzdata.zoneinfo.America'
+24217 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Argentina'
+24218 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Indiana'
+24218 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.Kentucky'
+24219 INFO: Analyzing hidden import 'tzdata.zoneinfo.America.North_Dakota'
+24219 INFO: Analyzing hidden import 'tzdata.zoneinfo.Antarctica'
+24220 INFO: Analyzing hidden import 'tzdata.zoneinfo.Arctic'
+24220 INFO: Analyzing hidden import 'tzdata.zoneinfo.Asia'
+24220 INFO: Analyzing hidden import 'tzdata.zoneinfo.Atlantic'
+24221 INFO: Analyzing hidden import 'tzdata.zoneinfo.Australia'
+24221 INFO: Analyzing hidden import 'tzdata.zoneinfo.Brazil'
+24222 INFO: Analyzing hidden import 'tzdata.zoneinfo.Canada'
+24222 INFO: Analyzing hidden import 'tzdata.zoneinfo.Chile'
+24222 INFO: Analyzing hidden import 'tzdata.zoneinfo.Etc'
+24223 INFO: Analyzing hidden import 'tzdata.zoneinfo.Europe'
+24223 INFO: Analyzing hidden import 'tzdata.zoneinfo.Indian'
+24224 INFO: Analyzing hidden import 'tzdata.zoneinfo.Mexico'
+24224 INFO: Analyzing hidden import 'tzdata.zoneinfo.Pacific'
+24224 INFO: Analyzing hidden import 'tzdata.zoneinfo.US'
+24225 INFO: Analyzing hidden import 'serial.__main__'
+24276 INFO: Analyzing hidden import 'serial.rfc2217'
+24329 INFO: Analyzing hidden import 'serial.rs485'
+24332 INFO: Analyzing hidden import 'serial.threaded'
+24343 INFO: Analyzing hidden import 'serial.urlhandler'
+24344 INFO: Analyzing hidden import 'serial.urlhandler.protocol_alt'
+24346 INFO: Analyzing hidden import 'serial.urlhandler.protocol_cp2110'
+24356 INFO: Analyzing hidden import 'serial.urlhandler.protocol_hwgrep'
+24359 INFO: Analyzing hidden import 'serial.urlhandler.protocol_loop'
+24371 INFO: Analyzing hidden import 'serial.urlhandler.protocol_rfc2217'
+24371 INFO: Analyzing hidden import 'serial.urlhandler.protocol_socket'
+24385 INFO: Analyzing hidden import 'serial.urlhandler.protocol_spy'
+24398 INFO: Processing module hooks (post-graph stage)...
+24888 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+24889 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+24897 INFO: Processing standard module hook 'hook-setuptools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+24916 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+24953 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+24953 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+24967 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+24968 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+25150 INFO: Processing standard module hook 'hook-_osx_support.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+25506 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+25507 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+25518 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+25518 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+26842 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+26842 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+27018 INFO: Processing standard module hook 'hook-tzdata.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+28063 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+29010 INFO: Processing standard module hook 'hook-_tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks'
+29031 INFO: Performing binary vs. data reclassification (776 entries)
+29074 INFO: Looking for ctypes DLLs
+29186 WARNING: Ignoring /System/Library/Frameworks/IOKit.framework/IOKit imported from D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\.venv\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+29186 WARNING: Ignoring /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation imported from D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\.venv\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+29295 INFO: Analyzing run-time hooks ...
+29302 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+29305 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+29307 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+29310 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+29312 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\rthooks'
+29313 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_Comercial_3.6.0\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+29344 INFO: Creating base_library.zip...
+29365 INFO: Looking for dynamic libraries
+30273 INFO: Extra DLL search directories (AddDllDirectory): []
+30273 INFO: Extra DLL search directories (PATH): []
+30960 INFO: Warnings written to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\work\GymSoftAdmin\warn-GymSoftAdmin.txt
+31065 INFO: Graph cross-reference written to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\work\GymSoftAdmin\xref-GymSoftAdmin.html
+31136 INFO: checking PYZ
+31136 INFO: Building PYZ because PYZ-00.toc is non existent
+31136 INFO: Building PYZ (ZlibArchive) D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\work\GymSoftAdmin\PYZ-00.pyz
+31799 INFO: Building PYZ (ZlibArchive) D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\work\GymSoftAdmin\PYZ-00.pyz completed successfully.
+31826 INFO: checking PKG
+31826 INFO: Building PKG because PKG-00.toc is non existent
+31826 INFO: Building PKG (CArchive) GymSoftAdmin.pkg
+31925 INFO: Building PKG (CArchive) GymSoftAdmin.pkg completed successfully.
+31926 INFO: Bootloader D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\.venv\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+31926 INFO: checking EXE
+31926 INFO: Building EXE because EXE-00.toc is non existent
+31926 INFO: Building EXE from EXE-00.toc
+31926 INFO: Copying bootloader EXE to D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\build\work\GymSoftAdmin\GymSoftAdmin.exe
+31928 INFO: Copying icon to EXE
+31930 INFO: Copying version information to EXE
+31933 INFO: Copying 0 resources to EXE
+31933 INFO: Embedding manifest in EXE
+31935 INFO: Appending PKG archive to EXE
+31940 INFO: Fixing EXE headers
+32023 INFO: Building EXE from EXE-00.toc completed successfully.
+32031 INFO: checking COLLECT
+32031 INFO: Building COLLECT because COLLECT-00.toc is non existent
+32031 INFO: Building COLLECT COLLECT-00.toc
+32415 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+32434 INFO: Build complete! The results are available in: D:\a\Atlantic-Software\Atlantic-Software\GymSoft_Comercial_3.6.0\salida\validacion\paquete-tecnico\ejecuciones\20261016T230341Z-1032\dist
