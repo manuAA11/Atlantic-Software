@@ -1,0 +1,38 @@
+{
+  "status": "FAIL",
+  "final": false,
+  "scope": "Validación técnica de empaquetado Windows; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, PostgreSQL concurrente, lector/relé físico ni aceptación de release_gate.",
+  "edition": "GymSoft_ZTATTUZ_3.6.1_x64",
+  "version": "3.6.1",
+  "mode": "installers",
+  "date_utc": "2026-10-16T17:22:08.112492+00:00",
+  "run_id": "20261016T172208Z-824",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "process_bits": 64,
+  "release_gate_modified": false,
+  "executables": [],
+  "installers": [],
+  "commands": [
+    {
+      "command": [
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\.venv\\Scripts\\python.exe",
+        "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\run_validation.py"
+      ],
+      "log": "D:\\a\\Atlantic-Software\\Atlantic-Software\\GymSoft_ZTATTUZ_3.6.1_x64\\salida\\validacion\\paquete-tecnico\\ejecuciones\\20261016T172208Z-824\\logs\\01-comando.log",
+      "status": "FAIL",
+      "returncode": 1
+    }
+  ],
+  "runtime_sha256": {
+    "0x0409.ini": "8b76df0ffc9a226b532b60936765b852b89780c6e475c152f7c320e085e43948",
+    "Data1.cab": "9f70dbfc451ec29a2bb4c95a67e5bfa1e94c2500f383c69dc1fafcdce4c42569",
+    "InstallOnly.bat": "2a8bec7ba26f606e9ecc8d190ae2883473df1094869d55996224f9ce1657926a",
+    "ISSetupPrerequisites/{5193621C-1E00-428D-8F59-9220277BE61E}/LumiDvcSvcWin10_x64_v7.0.34450.exe": "fe096e332ca2cd60b696f60d6c79e5d5f344485498ab0120e490c8e62a2402df",
+    "setup.exe": "116afd7c0eb43e2d8bf505b0717a62e8b9c95a0ff8fbd3fe44c89586a95833da",
+    "Setup.ini": "95335532a7046daecad28fa40ad7741f4c8018c1896af11bf84306f1697c1959",
+    "setup.msi": "5bb67b70ffb3ba75f2360d68f9ef79bd66b4c76de34194d6d768bb210fc72ff6",
+    "UninstallOnly.bat": "adadcbb0af915d9ffdc570bc4bcec7e9b49781ef0b8fe10ea928a7ed932e9d42",
+    "Licenses/EULA SDK.rtf": "a223167d079d999ba2f58e865e217e6fd9cace432b816bcf620f954984547ec9"
+  },
+  "error": "CalledProcessError: Command '['D:\\\\a\\\\Atlantic-Software\\\\Atlantic-Software\\\\GymSoft_ZTATTUZ_3.6.1_x64\\\\.venv\\\\Scripts\\\\python.exe', 'D:\\\\a\\\\Atlantic-Software\\\\Atlantic-Software\\\\GymSoft_ZTATTUZ_3.6.1_x64\\\\run_validation.py']' returned non-zero exit status 1."
+}

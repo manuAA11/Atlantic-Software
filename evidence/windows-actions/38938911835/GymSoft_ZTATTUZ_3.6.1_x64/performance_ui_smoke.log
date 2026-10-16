@@ -1,0 +1,25 @@
+COORDINADOR DE CARGA: 78fdc3cb7022
+CARGA: GymSoftApp / dashboard
+CARGA: GymSoftApp / checkin
+CARGA: GymSoftApp / clients
+CARGA: GymSoftApp / shop
+EN CURSO: performance_ui_smoke · 15 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 30 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 45 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 60 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 75 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 90 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 105 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 120 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 135 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 150 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 166 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 181 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 196 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 211 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 226 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 241 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 256 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 271 s · límite 300 s.
+EN CURSO: performance_ui_smoke · 286 s · límite 300 s.
+ERROR: performance_ui_smoke superó el límite de 300 s. Se detiene esta prueba; no se generará un instalador incompleto.
