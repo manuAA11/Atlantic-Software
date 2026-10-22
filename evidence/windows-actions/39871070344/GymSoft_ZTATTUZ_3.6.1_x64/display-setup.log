@@ -1,0 +1,26 @@
+**********************
+PowerShell transcript start
+Start time: 20261022232119
+Username: runnervmwtbz6\runneradmin
+RunAs User: runnervmwtbz6\runneradmin
+Configuration Name: 
+Machine: runnervmwtbz6 (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\b27e648a-2041-46b6-b5d2-16d8c0d83827.ps1'
+Process ID: 3204
+PSVersion: 7.6.7
+PSEdition: Core
+GitCommitId: 7.6.7
+OS: Microsoft Windows 10.0.20348
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is salida\validacion\display-setup.log
+
+
+**********************
+PowerShell transcript end
+End time: 20261022232131
+**********************

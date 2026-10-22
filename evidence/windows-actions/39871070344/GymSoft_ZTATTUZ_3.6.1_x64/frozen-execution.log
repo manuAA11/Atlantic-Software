@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "windows_frozen_probe.py", line 17, in <module>
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "app.py", line 43, in <module>
+    from cloud import connect_cloud
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "cloud.py", line 1, in <module>
+    from runtime_cloud import CloudService, LoginDialog, connect_cloud, SUPABASE_URL, SUPABASE_KEY
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "runtime_cloud.py", line 16, in <module>
+    from session_manager import managed_client
+  File "pyimod02_importers.py", line 457, in exec_module
+  File "session_manager.py", line 6, in <module>
+    from common import session_manager as _implementation
+ModuleNotFoundError: No module named 'common'
+[PYI-1428:ERROR] Failed to execute script 'windows_frozen_probe' due to unhandled exception!
