@@ -2223,6 +2223,8 @@ class ReceptionApp(tk.Tk):
         self.realtime_refresh_pending = False
         self.realtime_listener: RealtimeListener | None = None
         self._startup_message.destroy()
+        from session_ui import install as install_session_status
+        self.session_status = install_session_status(self, self.cloud)
         self.build_shell()
         self.biometric_access = BiometricAccessController(
             self, self.db.find_client_by_biometric_identifier, self.on_biometric_match,

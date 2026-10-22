@@ -74,7 +74,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -93,7 +93,8 @@ jobs:
           $sourceRoot = (Get-Location).Path
           $adminIcon = Join-Path $sourceRoot 'icono.ico'
           $receptionIcon = Join-Path $sourceRoot 'icono_recepcion.ico'
-          & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths $sourceRoot --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon $adminIcon --add-data "${adminIcon}:." --add-data "${receptionIcon}:." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log
+          $sharedRoot = Split-Path $sourceRoot -Parent
+          & .\.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean --onedir --console --name FrozenWindowsProbe --paths $sourceRoot --paths $sharedRoot --distpath salida/validacion/frozen-probe --workpath build/frozen-probe --specpath build/frozen-probe --icon $adminIcon --add-data "${adminIcon}:." --add-data "${receptionIcon}:." --hidden-import PIL._tkinter_finder --collect-all tzdata ..\tools\windows_frozen_probe.py 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .\.venv\Scripts\python.exe -c "from pathlib import Path; from build_windows import verify_executable_icon; verify_executable_icon(Path('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe'))" 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log -Append
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

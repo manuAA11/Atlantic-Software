@@ -38,7 +38,7 @@ def classify_read_failure(error):
     if code in {'PGRST301', 'PGRST302', 'PGRST303', '28000', '28P01'} or any(
             term in message for term in ('jwt expired', 'invalid jwt', 'refresh token', 'not authenticated')):
         category = 'session'
-        guidance = 'La sesión venció o no se pudo validar. Cierra y vuelve a abrir la aplicación para iniciar sesión.'
+        guidance = 'No se pudo validar la sesión. Usa Recuperar conexión o Iniciar sesión en el aviso de la aplicación.'
     elif code == '42501' or any(term in message for term in ('permission denied', 'row-level security')):
         category = 'permission'
         guidance = 'Tu cuenta no tiene permiso para consultar esta información. Inicia sesión de nuevo o consulta al responsable del gimnasio.'

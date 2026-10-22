@@ -153,7 +153,7 @@ def friendly_error(error) -> str:
     if 'permission denied' in lowered:
         return 'Tu cuenta no tiene permiso para esta acción. Inicia sesión de nuevo o consulta al responsable del gimnasio.'
     if 'jwt expired' in lowered or 'refresh token' in lowered:
-        return 'La sesión venció. Cierra y vuelve a abrir la aplicación para iniciar sesión.'
+        return 'La sesión necesita autenticación. Usa Iniciar sesión en el aviso de conexión de la aplicación.'
     if 'schema cache' in lowered or 'could not find the function' in lowered:
         return 'El servidor no tiene disponible esta función. Contacta al proveedor; no reinstales la base completa.'
     if 'duplicate key value' in lowered:

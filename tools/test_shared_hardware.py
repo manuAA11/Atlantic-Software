@@ -59,3 +59,11 @@ with patch('digitalpersona_native.library_directory', return_value='patched'):
         for edition in ROOT.glob('GymSoft_*'):
             with self.subTest(edition=edition.name):
                 subprocess.run([sys.executable, '-c', script], cwd=edition, check=True, capture_output=True)
+
+class FrozenSharedImports(unittest.TestCase):
+    def test_probe_and_production_build_include_shared_root(self):
+        workflow = (ROOT/'.github/workflows/windows-validation.yml').read_text()
+        self.assertIn('--paths $sourceRoot --paths $sharedRoot', workflow)
+        for edition in ROOT.glob('GymSoft_*'):
+            source = (edition/'build_windows.py').read_text()
+            self.assertIn("'--paths', str(ROOT.parent)", source)
