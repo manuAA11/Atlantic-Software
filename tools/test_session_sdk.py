@@ -1,0 +1,94 @@
+"""Pinned Supabase SDK integration over an in-memory HTTP transport, no live account."""
+import base64
+from concurrent.futures import ThreadPoolExecutor
+import json
+import sys
+import tempfile
+import time
+import unittest
+
+import httpx
+from supabase import ClientOptions, create_client
+from common.session_manager import (SessionManager, MemorySessionStore, ManagedClient,
+    WindowsSessionStore, SessionOffline)
+
+
+def token(exp):
+    def part(value):
+        return base64.urlsafe_b64encode(json.dumps(value).encode()).decode().rstrip('=')
+    return part({'alg': 'HS256'})+'.'+part({'exp': exp, 'sub': '11111111-1111-4111-8111-111111111111'})+'.fake'
+
+
+def payload(exp, refresh):
+    return {'access_token': token(exp), 'refresh_token': refresh, 'token_type': 'bearer',
+        'expires_in': 3600, 'expires_at': exp,
+        'user': {'id': '11111111-1111-4111-8111-111111111111', 'aud': 'authenticated',
+            'email': 'synthetic@example.invalid', 'created_at': '2026-10-22T00:00:00Z',
+            'app_metadata': {}, 'user_metadata': {}}}
+
+
+class SDKSessionTests(unittest.TestCase):
+    def setup_clients(self):
+        self.calls = []
+        self.offline = False
+        self.exp = int(time.time())+3600
+        def handler(request):
+            self.calls.append(request)
+            if self.offline:
+                raise httpx.ConnectError('offline', request=request)
+            if request.url.path.endswith('/token'):
+                body = json.loads(request.content)
+                if body.get('refresh_token'):
+                    self.assertEqual(body['refresh_token'], 'initial-refresh')
+                    return httpx.Response(200, json=payload(self.exp+3600, 'rotated-refresh'))
+                return httpx.Response(200, json=payload(self.exp, 'initial-refresh'))
+            if request.url.path.endswith('/rpc/test_write'):
+                self.assertEqual(request.headers['Authorization'], 'Bearer '+token(self.exp+3600))
+                return httpx.Response(200, json={'ok': True})
+            return httpx.Response(404, json={})
+        self.transport = httpx.MockTransport(handler)
+        self.store = MemorySessionStore()
+        self.managers = []
+        for _ in range(2):
+            http = httpx.Client(transport=self.transport)
+            self.addCleanup(http.close)
+            raw = create_client('https://synthetic.supabase.co', 'public-test-key', options=ClientOptions(
+                auto_refresh_token=False, persist_session=False, httpx_client=http))
+            self.managers.append(SessionManager(raw, self.store, clock=lambda: self.exp))
+        return self.managers
+
+    def test_shared_store_rotation_and_query_headers(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            sessions = list(pool.map(lambda manager: manager.ensure(), (first, second)))
+        self.assertEqual([session.refresh_token for session in sessions], ['rotated-refresh']*2)
+        refreshes = [r for r in self.calls if r.url.params.get('grant_type') == 'refresh_token']
+        self.assertEqual(len(refreshes), 1)
+        result = ManagedClient(second.client, second).rpc('test_write').execute()
+        self.assertEqual(result.data, {'ok': True})
+        self.assertEqual(self.store.load()['refresh_token'], 'rotated-refresh')
+
+    def test_restore_and_network_failure_keep_recoverable_tokens(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        self.assertIsNotNone(second.restore())
+        self.offline = True
+        with self.assertRaises(SessionOffline):
+            second.ensure(force=True)
+        self.assertEqual(second.session.refresh_token, 'initial-refresh')
+        self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
+
+    @unittest.skipUnless(sys.platform == 'win32', 'Windows DPAPI round-trip runs in Windows CI x86/x64')
+    def test_dpapi_encrypted_at_rest_and_namespace_isolation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            store = WindowsSessionStore('synthetic-provider|reception', directory=folder)
+            value = {'refresh_token': 'synthetic-secret-for-qa'}
+            with store.transaction():
+                store.save(value)
+                self.assertNotIn(b'synthetic-secret-for-qa', store.path.read_bytes())
+                self.assertEqual(store.load(), value)
+            other = WindowsSessionStore('synthetic-provider|admin', directory=folder)
+            self.assertIsNone(other.load())
+            store.clear()
+            self.assertIsNone(store.load())

@@ -112,7 +112,7 @@ class OwnerPanel(tk.Tk):
                 self.wait_window(dialog)
                 if not dialog.result:
                     self.destroy(); return
-                self.cloud=CloudService()
+                self.cloud=CloudService(session_role='owner')
                 self.cloud.sign_in(*dialog.result)
                 data=self.cloud.client.rpc('owner_list_gyms').execute().data
                 break

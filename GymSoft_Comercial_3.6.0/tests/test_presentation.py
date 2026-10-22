@@ -81,13 +81,17 @@ class PresentationTest(unittest.TestCase):
         attempts = []
 
         class FakeCloud:
-            def __init__(self):
+            def __init__(self, **kwargs):
                 self.client = Mock()
+                self.sessions = Mock()
                 self.role = 'admin'
                 self.gym_id = 'gym-1'
                 self.gym_name = 'Demo'
                 self.email = ''
                 self.load_count = 0
+
+            def restore_session(self):
+                return False
 
             def sign_in(self, email, password):
                 attempts.append((email, password))
@@ -106,12 +110,13 @@ class PresentationTest(unittest.TestCase):
                 self.creating_account = creating_account
                 self.created.append(self)
 
-        parent = NS(wait_window=Mock())
+        parent = NS(wait_window=Mock(), bind=Mock())
         with patch.object(runtime_cloud, 'CloudService', FakeCloud), \
              patch.object(runtime_cloud, 'LoginDialog', FakeLogin), \
              patch.object(runtime_cloud.messagebox, 'askyesno', return_value=True) as choice, \
-             patch.object(runtime_cloud.messagebox, 'askretrycancel', return_value=True) as retry, \
-             patch('licensing.check_license', return_value={'allowed': True}):
+             patch.object(runtime_cloud.messagebox, 'askretrycancel', side_effect=[True]) as retry, \
+             patch('licensing.check_license', return_value={'allowed': True}), \
+             patch('ui_tasks.run_io', side_effect=lambda parent, fn: fn()):
             result = runtime_cloud.connect_cloud(parent)
 
         self.assertIsInstance(result, FakeCloud)

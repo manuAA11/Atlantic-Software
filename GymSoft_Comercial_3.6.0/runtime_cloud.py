@@ -13,15 +13,18 @@ from pathlib import Path
 import traceback
 from supabase import Client, create_client
 from product_config import load_config
+from session_manager import managed_client
 
 _config = load_config(validate=False)
 SUPABASE_URL = _config.get('supabase_url', '')
 SUPABASE_KEY = _config.get('supabase_publishable_key', '')
 
 class CloudService:
-    def __init__(self) -> None:
+    def __init__(self, *, session_role='admin') -> None:
         config = load_config()
-        self.client: Client = create_client(config['supabase_url'], config['supabase_publishable_key'])
+        self.client = managed_client(config['supabase_url'], config['supabase_publishable_key'],
+            config['supabase_url']+'|'+session_role, create_client=create_client)
+        self.sessions = self.client.session_manager
         info = self.client.rpc('commercial_system_info').execute().data
         if not isinstance(info, dict) or info.get('product') != 'gymsoft-commercial' or info.get('schema_version') != '3.0.0':
             raise ValueError('El servidor no tiene instalada la base comercial compatible. Contacta al proveedor.')
@@ -31,6 +34,15 @@ class CloudService:
         self.gym_name = self.join_code = self.role = ''
         self.timezone = 'America/Bogota'
         self.license_status: dict[str, Any] = {}
+
+    def restore_session(self) -> bool:
+        session = self.sessions.restore()
+        if not session:
+            return False
+        session = self.sessions.ensure(force=True)
+        self.user_id = str(session.user.id)
+        self.email = session.user.email or ''
+        return True
 
     def sign_in(self, email: str, password: str) -> None:
         response = self.client.auth.sign_in_with_password({'email': email.strip(), 'password': password})
@@ -153,6 +165,7 @@ def _friendly_login_error(error: Exception) -> str:
 
 def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService | None:
     from licensing import check_license
+    from ui_tasks import run_io
     # None significa que todavía no se ha elegido entre iniciar sesión y
     # crear una cuenta. Después de conocer el modo, un reintento vuelve
     # directamente al formulario de correo y contraseña, sin mostrar de
@@ -160,8 +173,9 @@ def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService |
     account_mode: bool | None = None  # True: existente; False: crear
     while True:
         try:
-            cloud = CloudService()
-            if account_mode is None:
+            cloud = CloudService(session_role='reception' if reception else 'admin')
+            restored = run_io(parent, cloud.restore_session)
+            if not restored and account_mode is None:
                 account_mode = messagebox.askyesno(
                     'Gym soft',
                     'Accede con tu correo y contraseña. Si es tu primera vez, '
@@ -169,28 +183,28 @@ def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService |
                     yeslabel='Iniciar sesión', nolabel='Crear cuenta', icon_kind='account',
                     parent=parent,
                 )
-            dialog = LoginDialog(parent, creating_account=account_mode is False)
-            parent.wait_window(dialog)
-            if not dialog.result:
-                return None
-            email, password = dialog.result
-            if account_mode:
-                cloud.sign_in(email, password)
-            elif cloud.sign_up(email, password):
-                pass
-            else:
-                messagebox.showinfo(
-                    'Confirma tu correo',
-                    'Abre el correo de confirmación. Después pulsa Aceptar '
-                    'para volver a la pantalla de inicio de sesión.',
-                    parent=parent,
-                )
-                # A partir de aquí el usuario ya creó la cuenta: el siguiente
-                # formulario siempre es el de correo y contraseña.
-                account_mode = True
-                continue
-
-            if not cloud.load_gym():
+            if not restored:
+                dialog = LoginDialog(parent, creating_account=account_mode is False)
+                parent.wait_window(dialog)
+                if not dialog.result:
+                    return None
+                email, password = dialog.result
+                if account_mode:
+                    run_io(parent, lambda: cloud.sign_in(email, password))
+                elif run_io(parent, lambda: cloud.sign_up(email, password)):
+                    pass
+                else:
+                    messagebox.showinfo(
+                        'Confirma tu correo',
+                        'Abre el correo de confirmación. Después pulsa Aceptar '
+                        'para volver a la pantalla de inicio de sesión.',
+                        parent=parent,
+                    )
+                    # A partir de aquí el usuario ya creó la cuenta: el siguiente
+                    # formulario siempre es el de correo y contraseña.
+                    account_mode = True
+                    continue
+            if not run_io(parent, cloud.load_gym):
                 code = simpledialog.askstring(
                     'Activar cuenta',
                     'Introduce el código de activación que recibiste para este gimnasio:',
@@ -198,14 +212,16 @@ def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService |
                 )
                 if not code:
                     return None
-                cloud.join_gym(code)
+                run_io(parent, lambda: cloud.join_gym(code))
             if not reception and cloud.role != 'admin':
                 raise PermissionError('Esta cuenta utiliza Gym soft Recepción.')
             if cloud.role not in {'admin', 'receptionist'}:
                 raise PermissionError('Rol no autorizado.')
-            status = check_license(cloud)
+            status = run_io(parent, lambda: check_license(cloud))
             if status.get('allowed') is not True:
                 raise PermissionError(status.get('message', 'Suscripción no disponible.'))
+            cloud.sessions.start()
+            parent.bind('<Destroy>', lambda event, service=cloud: service.sessions.close() if event.widget is parent else None, add='+')
             return cloud
         except Exception as error:
             _record_login_error(error)
