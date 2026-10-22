@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "python": "3.14.9 (tags/v3.14.9:ead82c0, Oct 21 2026, 06:14:24) [MSC v.1944 32 bit (Intel)]",
+  "process_bits": 32,
+  "tk": "9.0.4",
+  "frozen": true,
+  "checks": [
+    "Frozen Admin and Reception module imports",
+    "Product-specific module imports",
+    "Optional door and pySerial imports (no USB access)",
+    "Tk and Atlantic dark styles",
+    "Role window icons",
+    "Pillow ImageTk",
+    "Supabase/realtime/httpx imports",
+    "Excel import",
+    "SSL certificates",
+    "Bogota timezone"
+  ],
+  "scope": "Windows frozen component probe only. No account, hardware, installer or final release acceptance."
+}
