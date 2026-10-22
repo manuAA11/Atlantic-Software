@@ -74,7 +74,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |

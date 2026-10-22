@@ -79,7 +79,7 @@ def pyinstaller_command(name, entry, *, dist_root=None, build_root=None):
                '--windowed', '--onedir', '--name', name,
                '--icon', str(ROOT / ('icono_recepcion.ico' if entry == 'reception_app.py' else 'icono.ico')),
                '--version-file', str(version_file(name, build_root=build_root)),
-               '--paths', str(ROOT), '--workpath', str(build_root / 'work'),
+               '--paths', str(ROOT), '--paths', str(ROOT.parent), '--workpath', str(build_root / 'work'),
                '--specpath', str(build_root / 'spec'),
                '--distpath', str(Path(dist_root).resolve() if dist_root else ROOT / 'dist')]
     # Spec files resolve data relative to their own directory, not the shell cwd.

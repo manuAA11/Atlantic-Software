@@ -20,7 +20,8 @@ class FingerprintPanel:
         self.state = tk.StringVar(self.root,value='DigitalPersona: iniciando…')
         self.templates = set(); self.window = None; self.enrolling = False; self.inline_editor = None
         self.clients = {}; self.ui_events = queue.Queue(); self.closed = False
-        self.service = FingerprintService(CloudTemplateStore(self.root.db),self.root.db.register_checkin)
+        self.service = FingerprintService(CloudTemplateStore(self.root.db),(self.root.db.register_fingerprint_checkin if hasattr(self.root, 'door')
+                            else self.root.db.register_checkin))
         self.root.bind('<Destroy>',self.destroy,add='+')
         self.service.pause(True); self.service.start(); self.job = self.root.after(100,self.poll)
     def destroy(self,event):
@@ -136,7 +137,7 @@ class FingerprintPanel:
         if self.window and self.window.winfo_exists(): self.window.lift(); return
         self.service.pause(True)
         win = self.window = tk.Toplevel(self.root)
-        win.title('Huellas · DigitalPersona U.are.U 4500'); decorate_window(win); win.configure(bg='#0B1220')
+        win.title('Huellas · DigitalPersona U.are.U 4500 / 5160'); decorate_window(win); win.configure(bg='#0B1220')
         win.geometry('780x540'); win.minsize(600,420); win.transient(self.root)
         body = ttk.Frame(win,padding=16); body.pack(fill='both',expand=True)
         ttk.Label(body,text='Registra una huella por cliente. Se sincroniza con los equipos del gimnasio.').pack(anchor='w')
