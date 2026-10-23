@@ -7,10 +7,10 @@ from pathlib import Path
 import sys
 from urllib.parse import urlsplit
 
-PRODUCT_NAME = 'Atlantic Gym · ZTATTUZ'
+PRODUCT_NAME = 'Atlantic Gym'
 ADMIN_NAME = PRODUCT_NAME + " Administrador"
 RECEPTION_NAME = PRODUCT_NAME + " Recepción"
-VERSION = '3.6.1'
+from release_info import VERSION
 
 def resource_root() -> Path:
     return Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent))
@@ -19,6 +19,7 @@ def load_config(*, validate: bool = True) -> dict[str, str]:
     path = resource_root() / 'gymsoft_config.json'
     value = json.loads(path.read_text(encoding='utf-8')) if path.is_file() else {}
     config = {
+        'core_endpoint': value.get('core_endpoint', '').strip(),
         'supabase_url': os.environ.get('GYMSOFT_SUPABASE_URL', value.get('supabase_url', '')).strip().rstrip('/'),
         'supabase_publishable_key': os.environ.get('GYMSOFT_SUPABASE_KEY', value.get('supabase_publishable_key', '')).strip(),
     }

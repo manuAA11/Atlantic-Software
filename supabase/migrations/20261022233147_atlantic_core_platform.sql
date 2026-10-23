@@ -1,0 +1,243 @@
+-- Core control plane, hosted alongside the Commercial owner service.
+-- No member data is copied. External gyms keep their source UUID and project.
+begin;
+create table if not exists private.core_sources (
+ project_ref text primary key check(project_ref ~ '^[a-z0-9]{20}$'),
+ publishable_key text not null,
+ context_rpc text not null check(context_rpc in ('commercial_context','reception_account_context')),
+ created_at timestamptz not null default now()
+);
+create table if not exists private.core_gyms (
+ gym_id uuid primary key, source_project_ref text not null check(source_project_ref ~ '^[a-z0-9]{20}$'),
+ source_gym_id uuid not null, name text not null check(length(name) between 1 and 120),
+ product text not null default 'Atlantic Gym' check(product='Atlantic Gym'),
+ status text not null default 'ACTIVE' check(status in ('ACTIVE','SUSPENDED','CANCELLED')),
+ license_status text not null default 'ACTIVE' check(license_status in ('ACTIVE','SUSPENDED','CANCELLED')),
+ configuration jsonb not null default '{"update_channel":"stable","notifications_enabled":true}'::jsonb,
+ created_at timestamptz not null default now(), updated_at timestamptz not null default now(),
+ unique(source_project_ref,source_gym_id), check(gym_id=source_gym_id)
+);
+create table if not exists private.core_subscriptions (
+ id uuid primary key default gen_random_uuid(), gym_id uuid not null unique references private.core_gyms(gym_id),
+ plan text not null default 'Atlantic Gym', status text not null default 'ACTIVE'
+ check(status in ('ACTIVE','DUE_SOON','PAST_DUE','SUSPENDED','CANCELLED')),
+ billing_cycle text not null default 'MONTHLY' check(billing_cycle='MONTHLY'),
+ price numeric(14,2) not null check(price>0), currency text not null default 'COP' check(currency='COP'),
+ renewal_day int not null check(renewal_day between 1 and 28), next_renewal_date date not null,
+ grace_days int not null default 7 check(grace_days between 0 and 90),
+ auto_suspend boolean not null default false check(not auto_suspend),
+ created_at timestamptz not null default now(), updated_at timestamptz not null default now()
+);
+create table if not exists private.core_payments (
+ id uuid primary key default gen_random_uuid(), subscription_id uuid not null references private.core_subscriptions(id),
+ gym_id uuid not null references private.core_gyms(gym_id), amount numeric(14,2) not null check(amount>0),
+ currency text not null check(currency='COP'), period_start date not null, period_until date not null,
+ due_date date not null, paid_at timestamptz not null, payment_method text not null,
+ reference text not null default '', notes text not null default '', created_by uuid not null,
+ idempotency_key uuid not null, created_at timestamptz not null default now(),
+ check(period_until>period_start), unique(gym_id,idempotency_key), unique(subscription_id,period_start)
+);
+create table if not exists private.core_reminders (
+ gym_id uuid primary key references private.core_gyms(gym_id), enabled boolean not null default false,
+ offsets_days int[] not null default array[-5,-2,0,1], updated_at timestamptz not null default now(),
+ check(cardinality(offsets_days)<=20), check(offsets_days <@ array[-30,-15,-10,-7,-5,-3,-2,-1,0,1,2,3,5,7,10,15,30])
+);
+create table if not exists private.core_devices (
+ gym_id uuid not null references private.core_gyms(gym_id), device_id text not null check(device_id ~ '^[a-f0-9]{64}$'),
+ device_name text not null check(length(device_name) between 1 and 120),
+ architecture text not null check(architecture in ('windows-x86','windows-x64')),
+ os text not null check(length(os)<=120), app_version text not null check(length(app_version)<=40),
+ edition text not null check(edition in ('admin','reception','owner')),
+ status text not null default 'AUTHORIZED' check(status in ('AUTHORIZED','REVOKED')),
+ metadata jsonb not null default '{}', authorized_at timestamptz not null default now(),
+ last_seen timestamptz not null default now(), primary key(gym_id,device_id)
+);
+create table if not exists private.core_notifications (
+ id uuid primary key default gen_random_uuid(), gym_id uuid references private.core_gyms(gym_id),
+ global boolean not null default false, title text not null check(length(title) between 1 and 150),
+ message text not null check(length(message) between 1 and 3000),
+ type text not null check(type in ('INFO','WARNING','UPDATE','BILLING','MAINTENANCE')),
+ created_at timestamptz not null default now(), expires_at timestamptz,
+ created_by uuid not null, check((gym_id is null)=global), check(expires_at is null or expires_at>created_at)
+);
+create table if not exists private.core_notification_reads (
+ notification_id uuid not null references private.core_notifications(id), gym_id uuid not null references private.core_gyms(gym_id),
+ user_id uuid not null, read_at timestamptz not null default now(), primary key(notification_id,gym_id,user_id)
+);
+create table if not exists private.core_releases (
+ id uuid primary key default gen_random_uuid(), gym_id uuid references private.core_gyms(gym_id),
+ product text not null default 'Atlantic Gym' check(product='Atlantic Gym'),
+ version text not null check(version ~ '^[0-9]+\.[0-9]+\.[0-9]+$'),
+ architecture text not null check(architecture in ('windows-x86','windows-x64')),
+ channel text not null check(channel in ('stable','beta')),
+ policy text not null default 'OPTIONAL' check(policy in ('OPTIONAL','RECOMMENDED','REQUIRED')),
+ installer_url text not null check(installer_url ~ '^https://github[.]com/manuAA11/Atlantic-Software/releases/download/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+[.]exe$'
+ and installer_url not like '%..%'),
+ sha256 text not null check(sha256 ~ '^[a-f0-9]{64}$'), bytes bigint not null check(bytes between 1 and 1073741824),
+ minimum_schema text not null, notes text not null default '' check(length(notes)<=10000),
+ signature_metadata jsonb not null default '{}', published boolean not null default false,
+ created_by uuid not null, created_at timestamptz not null default now()
+);
+create unique index if not exists core_release_global on private.core_releases(product,version,architecture,channel) where gym_id is null;
+create unique index if not exists core_release_gym on private.core_releases(gym_id,product,version,architecture,channel) where gym_id is not null;
+create table if not exists private.core_events (
+ id uuid primary key default gen_random_uuid(), gym_id uuid references private.core_gyms(gym_id),
+ actor uuid not null, action text not null, created_at timestamptz not null default now()
+);
+alter table private.core_sources enable row level security;
+alter table private.core_gyms enable row level security;
+alter table private.core_subscriptions enable row level security;
+alter table private.core_payments enable row level security;
+alter table private.core_reminders enable row level security;
+alter table private.core_devices enable row level security;
+alter table private.core_notifications enable row level security;
+alter table private.core_notification_reads enable row level security;
+alter table private.core_releases enable row level security;
+alter table private.core_events enable row level security;
+revoke all on private.core_sources,private.core_gyms,private.core_subscriptions,private.core_payments,private.core_reminders,
+ private.core_devices,private.core_notifications,private.core_notification_reads,private.core_releases,private.core_events from public,anon,authenticated;
+
+create or replace function public.core_owner(p_action text,p_data jsonb default '{}') returns jsonb
+language plpgsql security definer set search_path='' as $$
+declare g uuid; result jsonb; sub private.core_subscriptions%rowtype; payment private.core_payments%rowtype;
+ start_day date; end_day date; idempotency uuid; cfg jsonb; item jsonb;
+begin
+ perform private.require_owner();
+ if octet_length(p_data::text)>50000 then raise exception 'Solicitud demasiado grande.'; end if;
+ g:=nullif(p_data->>'gym_id','')::uuid;
+ if g is not null and p_action<>'register_gym' and not exists(select 1 from private.core_gyms where gym_id=g) then raise exception 'Gimnasio no registrado.'; end if;
+ if p_action='register_source' then
+  if not (p_data->>'publishable_key' like 'sb_publishable_%') then raise exception 'Usa una clave publicable moderna, nunca una clave secreta.'; end if;
+  insert into private.core_sources(project_ref,publishable_key,context_rpc)
+   values(p_data->>'project_ref',p_data->>'publishable_key',p_data->>'context_rpc')
+   on conflict(project_ref) do update set publishable_key=excluded.publishable_key,context_rpc=excluded.context_rpc;
+ elsif p_action='list' then
+  return coalesce((select jsonb_agg(to_jsonb(t) order by t.name) from (
+   select x.*,s.id subscription_id,s.status subscription_status,s.price,s.currency,s.renewal_day,s.next_renewal_date,
+    (select max(p.paid_at) from private.core_payments p where p.gym_id=x.gym_id) last_payment,
+    (select count(*) from private.core_devices d where d.gym_id=x.gym_id) devices
+   from private.core_gyms x join private.core_subscriptions s using(gym_id)) t),'[]');
+ elsif p_action='register_gym' then
+  if g is null or nullif(p_data->>'source_gym_id','') is null or g<>nullif(p_data->>'source_gym_id','')::uuid then raise exception 'Conserva el UUID del gimnasio origen.'; end if;
+  insert into private.core_gyms(gym_id,source_gym_id,source_project_ref,name)
+   values(g,g,p_data->>'source_project_ref',trim(p_data->>'name'));
+  insert into private.core_subscriptions(gym_id,price,renewal_day,next_renewal_date)
+   values(g,(p_data->>'price')::numeric,(p_data->>'renewal_day')::int,(p_data->>'next_renewal_date')::date);
+  insert into private.core_reminders(gym_id) values(g);
+ elsif p_action='detail' then
+  if not exists(select 1 from private.core_gyms where gym_id=g) then raise exception 'Gimnasio no registrado.'; end if;
+  return jsonb_build_object('gym',(select to_jsonb(x) from private.core_gyms x where gym_id=g),
+   'subscription',(select to_jsonb(x) from private.core_subscriptions x where gym_id=g),
+   'payments',coalesce((select jsonb_agg(to_jsonb(x) order by paid_at desc) from private.core_payments x where gym_id=g),'[]'),
+   'devices',coalesce((select jsonb_agg(to_jsonb(x) order by last_seen desc) from private.core_devices x where gym_id=g),'[]'),
+   'reminders',(select to_jsonb(x) from private.core_reminders x where gym_id=g),
+   'notifications',coalesce((select jsonb_agg(to_jsonb(x) order by created_at desc) from private.core_notifications x where gym_id=g or global),'[]'));
+ elsif p_action='record_payment' then
+  select * into strict sub from private.core_subscriptions where gym_id=g for update;
+  idempotency:=(p_data->>'idempotency_key')::uuid;
+  select * into payment from private.core_payments where gym_id=g and idempotency_key=idempotency;
+  if found then
+   if payment.amount<>(p_data->>'amount')::numeric or payment.period_start<>(p_data->>'period_start')::date
+    or payment.payment_method is distinct from p_data->>'payment_method' or payment.reference<>coalesce(p_data->>'reference','')
+    or payment.currency is distinct from coalesce(p_data->>'currency','COP') or payment.paid_at is distinct from (p_data->>'paid_at')::timestamptz
+    or payment.notes<>coalesce(p_data->>'notes','') then
+    raise exception 'La misma clave corresponde a otro pago.' using errcode='23505';
+   end if;
+   return to_jsonb(payment);
+  end if;
+  start_day:=(p_data->>'period_start')::date; end_day:=(start_day+interval '1 month')::date;
+  if extract(day from start_day)<>sub.renewal_day or (p_data->>'amount')::numeric is distinct from sub.price
+   or coalesce(p_data->>'currency','COP')<>sub.currency or length(trim(p_data->>'payment_method')) not between 1 and 80
+   or (p_data->>'paid_at')::timestamptz>now()+interval '1 day' then raise exception 'Revisa monto, período y fecha reales del pago.'; end if;
+  insert into private.core_payments(subscription_id,gym_id,amount,currency,period_start,period_until,due_date,paid_at,
+   payment_method,reference,notes,created_by,idempotency_key)
+  values(sub.id,g,sub.price,sub.currency,start_day,end_day,start_day,(p_data->>'paid_at')::timestamptz,
+   trim(p_data->>'payment_method'),coalesce(p_data->>'reference',''),coalesce(p_data->>'notes',''),auth.uid(),idempotency)
+  returning * into payment;
+  update private.core_subscriptions set status='ACTIVE',next_renewal_date=greatest(next_renewal_date,end_day),updated_at=now() where gym_id=g;
+  -- A recorded payment does not undo an explicit security/license suspension.
+  result:=to_jsonb(payment);
+ elsif p_action='set_status' then
+  if length(trim(coalesce(p_data->>'reason','')))<5 then raise exception 'Escribe un motivo.'; end if;
+  update private.core_gyms set status=p_data->>'status',license_status=p_data->>'license_status',updated_at=now() where gym_id=g;
+ elsif p_action='configure' then
+  cfg:=p_data->'configuration';
+  if jsonb_typeof(cfg)<>'object' or exists(select 1 from jsonb_object_keys(cfg) k where k not in
+    ('update_channel','notifications_enabled','automatic_door_enabled','store_enabled','whatsapp_enabled')) then raise exception 'Configuración no permitida.'; end if;
+  for item in select jsonb_build_object('key',key,'value',value) from jsonb_each(cfg) loop
+   if item->>'key'='update_channel' then
+    if item->>'value' not in ('stable','beta') then raise exception 'Canal no permitido.'; end if;
+   elsif jsonb_typeof(item->'value')<>'boolean' then raise exception 'La opción requiere true/false.'; end if;
+  end loop;
+  update private.core_gyms set configuration=configuration||cfg,updated_at=now() where gym_id=g;
+ elsif p_action='reminders' then
+  update private.core_reminders set enabled=(p_data->>'enabled')::boolean,
+   offsets_days=array(select jsonb_array_elements_text(p_data->'offsets_days')::int),updated_at=now() where gym_id=g;
+ elsif p_action='notify' then
+  insert into private.core_notifications(gym_id,global,title,message,type,expires_at,created_by)
+   values(g,coalesce((p_data->>'global')::boolean,false),p_data->>'title',p_data->>'message',p_data->>'type',
+    nullif(p_data->>'expires_at','')::timestamptz,auth.uid()) returning to_jsonb(core_notifications.*) into result;
+ elsif p_action='device_status' then
+  update private.core_devices set status=p_data->>'status' where gym_id=g and device_id=p_data->>'device_id';
+ elsif p_action='publish_release' then
+  insert into private.core_releases(gym_id,version,architecture,channel,policy,installer_url,sha256,bytes,minimum_schema,notes,signature_metadata,published,created_by)
+   values(g,p_data->>'version',p_data->>'architecture',p_data->>'channel',coalesce(p_data->>'policy','OPTIONAL'),
+    p_data->>'installer_url',p_data->>'sha256',(p_data->>'bytes')::bigint,p_data->>'minimum_schema',coalesce(p_data->>'notes',''),
+    coalesce(p_data->'signature_metadata','{}'),coalesce((p_data->>'published')::boolean,false),auth.uid())
+   returning to_jsonb(core_releases.*) into result;
+ else raise exception 'Acción de Core no permitida.'; end if;
+ insert into private.core_events(gym_id,actor,action) values(g,auth.uid(),p_action);
+ return coalesce(result,jsonb_build_object('ok',true));
+end $$;
+revoke all on function public.core_owner(text,jsonb) from public,anon;
+grant execute on function public.core_owner(text,jsonb) to authenticated;
+
+create or replace function public.core_source_configuration(p_project_ref text) returns jsonb
+language sql stable security definer set search_path='' as $$
+ select jsonb_build_object('project_ref',project_ref,'publishable_key',publishable_key,'context_rpc',context_rpc)
+ from private.core_sources where project_ref=p_project_ref
+$$;
+revoke all on function public.core_source_configuration(text) from public,anon,authenticated;
+grant execute on function public.core_source_configuration(text) to service_role;
+
+-- Called only by the edge bridge AFTER it validates the caller against the
+-- allowlisted source provider and obtains gym context using the caller's JWT.
+create or replace function public.core_client_snapshot(p_project_ref text,p_gym_id uuid,p_user_id uuid,
+ p_device_id text,p_metadata jsonb,p_read_id uuid default null) returns jsonb
+language plpgsql security definer set search_path='' as $$
+declare gym private.core_gyms%rowtype; clean jsonb; device_state text; arch text;
+begin
+ select * into strict gym from private.core_gyms where gym_id=p_gym_id and source_project_ref=p_project_ref;
+ if p_user_id is null then raise exception 'Identidad requerida.'; end if;
+ arch:=p_metadata->>'architecture';
+ select coalesce(jsonb_object_agg(key,value),'{}') into clean from jsonb_each(p_metadata)
+ where key in ('sync_status','last_successful_login','update_status','relay_configured','fingerprint_configured');
+ if jsonb_typeof(clean->'relay_configured') not in ('boolean') or jsonb_typeof(clean->'fingerprint_configured') not in ('boolean') then raise exception 'Estado de hardware inválido.'; end if;
+ if clean ? 'last_successful_login' then perform (clean->>'last_successful_login')::timestamptz; end if;
+ if clean ? 'sync_status' and clean->>'sync_status' not in ('SYNCED','OFFLINE','DEGRADED','UNKNOWN') then raise exception 'Estado de sync inválido.'; end if;
+ if clean ? 'update_status' and clean->>'update_status' not in ('NO_UPDATE','UPDATE_AVAILABLE','UPDATE_DOWNLOADED','UPDATE_VERIFIED','UPDATE_INSTALLED','UPDATE_FAILED','UPDATE_ROLLED_BACK') then raise exception 'Estado de actualización inválido.'; end if;
+ if octet_length(clean::text)>2048 then raise exception 'Telemetría demasiado grande.'; end if;
+ insert into private.core_devices(gym_id,device_id,device_name,architecture,os,app_version,edition,metadata)
+ values(p_gym_id,p_device_id,p_metadata->>'device_name',arch,p_metadata->>'os',p_metadata->>'app_version',p_metadata->>'edition',clean)
+ on conflict(gym_id,device_id) do update set device_name=excluded.device_name,architecture=excluded.architecture,
+ os=excluded.os,app_version=excluded.app_version,edition=excluded.edition,metadata=excluded.metadata,last_seen=now()
+ returning status into device_state;
+ if p_read_id is not null then
+  if not exists(select 1 from private.core_notifications n where n.id=p_read_id and (n.gym_id=p_gym_id or n.global)) then raise exception 'Notificación no disponible.'; end if;
+  insert into private.core_notification_reads(notification_id,gym_id,user_id) values(p_read_id,p_gym_id,p_user_id) on conflict do nothing;
+ end if;
+ return jsonb_build_object('gym_id',p_gym_id,'status',gym.status,'license_status',gym.license_status,
+ 'device_status',device_state,'configuration',gym.configuration,'server_time',now(),
+ 'grace_days',(select grace_days from private.core_subscriptions where gym_id=p_gym_id),
+ 'subscription',(select jsonb_build_object('status',status,'price',price,'currency',currency,'renewal_day',renewal_day,
+ 'next_renewal_date',next_renewal_date) from private.core_subscriptions where gym_id=p_gym_id),
+ 'notifications',coalesce((select jsonb_agg(to_jsonb(n)||jsonb_build_object('read_at',r.read_at) order by n.created_at desc)
+ from private.core_notifications n left join private.core_notification_reads r on r.notification_id=n.id and r.gym_id=p_gym_id and r.user_id=p_user_id
+ where (n.gym_id=p_gym_id or n.global) and (n.expires_at is null or n.expires_at>now())),'[]'),
+ 'releases',coalesce((select jsonb_agg(to_jsonb(v) order by v.created_at desc) from private.core_releases v
+ where v.published and (v.gym_id=p_gym_id or v.gym_id is null) and v.architecture=arch
+ and v.channel=coalesce(gym.configuration->>'update_channel','stable')),'[]'));
+end $$;
+revoke all on function public.core_client_snapshot(text,uuid,uuid,text,jsonb,uuid) from public,anon,authenticated;
+grant execute on function public.core_client_snapshot(text,uuid,uuid,text,jsonb,uuid) to service_role;
+commit;

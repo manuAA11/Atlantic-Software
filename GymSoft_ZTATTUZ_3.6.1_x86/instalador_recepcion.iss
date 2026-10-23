@@ -11,11 +11,11 @@
 #endif
 #define RuntimeBits 32
 #ifndef AppVersion
-#define AppVersion "3.6.1"
+#define AppVersion "3.7.0"
 #endif
 [Setup]
 AppId={{8F529E62-5D29-49E0-99AA-28255D920ECE}
-AppName=Atlantic Gym · ZTATTUZ Recepción{#BuildSuffix}
+AppName=Atlantic Gym Recepción{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
 #ifdef BuildValidation
@@ -54,9 +54,9 @@ Source: "LEEME_ACTUALIZAR_{#AppVersion}.md"; DestDir: "{app}"; Flags: ignorevers
 Source: "GUIA_PUERTA_LCUS1.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
-Name: "{autodesktop}\Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
-Name: "{group}\Diagnóstico de Atlantic Gym · ZTATTUZ Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{group}\Atlantic Gym Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{autodesktop}\Atlantic Gym Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
+Name: "{group}\Diagnóstico de Atlantic Gym Recepción"; Filename: "{app}\ZTATTUZ Recepcion.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-Recepcion-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Recepcion"
 
 [Code]
 #include "digitalpersona_install.iss"

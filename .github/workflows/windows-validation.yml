@@ -18,12 +18,15 @@ on:
       - 'tools/windows_packaging_qa.py'
       - 'tools/windows_installation_qa.py'
       - 'tools/windows_configuration_delivery.py'
-      - 'tools/test_windows_*.py'
+      - 'tools/test_*.py'
+      - 'tools/platform_ui_smoke.py'
+      - 'tools/login_ui_smoke.py'
+      - 'supabase/migrations/**'
       - 'tools/test_backup_complete_sources.py'
       - 'tools/backup_complete_sources.py'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: windows-validation-${{ github.ref }}
@@ -74,7 +77,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity tools.test_core_client tools.test_updater tools.test_commercial_unification tools.test_official_baseline tools.test_interface_texts 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -88,6 +91,16 @@ jobs:
           } finally {
             Stop-Transcript
           }
+      - name: Validate Core targeting and shared platform UI
+        run: |
+          if ('${{ matrix.edition }}' -eq 'GymSoft_Comercial_3.6.0') {
+            node ..\tools\test_core_sql.mjs
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+          & .\.venv\Scripts\python.exe ..\tools\login_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\login-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe ..\tools\platform_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\platform-ui.log
+          exit $LASTEXITCODE
       - name: Freeze and run a Windows component probe
         run: |
           $sourceRoot = (Get-Location).Path
@@ -130,64 +143,10 @@ jobs:
           }
           Write-Output 'Acceptance guard verified. No final installers produced by this workflow.'
           exit 0
-      - name: Package the customer installers and upload only to an explicitly prepared draft
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Package technical installers as validation artifacts
         run: |
           & .\.venv\Scripts\python.exe ..\tools\windows_configuration_delivery.py --output salida/PRUEBAS_DESCARGABLES
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $archives = @(Get-ChildItem salida/PRUEBAS_DESCARGABLES -File -Filter '*.zip')
-          if ($archives.Count -ne 1) { throw 'Expected one complete customer installer archive.' }
-          $sha = '${{ github.sha }}'
-          $tag = 'configuracion-pruebas-' + $sha.Substring(0, 7)
-          $releases = gh api 'repos/${{ github.repository }}/releases' | ConvertFrom-Json
-          if ($LASTEXITCODE -ne 0) { throw 'Could not check the prepared release draft.' }
-          $prepared = @($releases | Where-Object { $_.tag_name -eq $tag })
-          if ($prepared.Count -eq 0) {
-            Write-Output 'No release draft prepared for this commit. The complete archive remains available as an artifact.'
-            exit 0
-          }
-          if ($prepared.Count -ne 1 -or -not $prepared[0].draft -or -not $prepared[0].prerelease -or $prepared[0].target_commitish -ne $sha) {
-            throw 'Only a prepared NO FINAL draft for this exact commit can receive these archives.'
-          }
-          gh release upload $tag $archives[0].FullName --repo '${{ github.repository }}'
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          if ('${{ matrix.edition }}' -eq 'GymSoft_Comercial_3.6.0') {
-            gh release upload $tag ACTUALIZAR_PLANES_INTERNOS.sql ACTUALIZAR_REANUDACION_MEMBRESIAS.sql ..\docs\MEMBRESIAS_STAFF_REANUDACION.md ..\PRUEBA_PUERTA_ZTATTUZ.md --repo '${{ github.repository }}' --clobber
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          }
-          exit 0
-      - name: Preserve diagnostic reports in a separate Git branch
-        if: always()
-        run: |
-          $reportDir = Join-Path $env:GITHUB_WORKSPACE "evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}"
-          New-Item -ItemType Directory -Force $reportDir | Out-Null
-          $validationDir = Join-Path $env:GITHUB_WORKSPACE "${{ matrix.edition }}/salida/validacion"
-          if (Test-Path $validationDir) {
-            Get-ChildItem $validationDir -Recurse -File | Where-Object { ($_.Extension -in '.json', '.log', '.txt') -and $_.FullName -notmatch '[\\/](dist|frozen-probe|cache-pyinstaller|build|instalacion)[\\/]' } | ForEach-Object {
-              $relative = $_.FullName.Substring($validationDir.Length).TrimStart([char[]]'\/')
-              $destination = Join-Path $reportDir $relative
-              New-Item -ItemType Directory -Force (Split-Path -Parent $destination) | Out-Null
-              Copy-Item $_.FullName -Destination $destination
-            }
-          }
-          @{ run_id = '${{ github.run_id }}'; commit = '${{ github.sha }}'; edition = '${{ matrix.edition }}'; scope = 'Windows validation and technical packaging/installation only; no final release, real accounts or hardware acceptance.' } | ConvertTo-Json | Set-Content -Encoding utf8 (Join-Path $reportDir 'run.json')
-          Push-Location $env:GITHUB_WORKSPACE
-          try {
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            $branch = "ci/windows-evidence/${{ github.run_id }}/${{ matrix.edition }}"
-            git checkout -b $branch
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            git add -f -- "evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}"
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            git commit -m "Preserve Windows QA reports for ${{ matrix.edition }} run ${{ github.run_id }}"
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            git push origin "HEAD:refs/heads/$branch"
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          } finally {
-            Pop-Location
-          }
+          exit $LASTEXITCODE
       - name: Save the complete customer installer download
         if: success()
         uses: actions/upload-artifact@v4
@@ -201,7 +160,14 @@ jobs:
         with:
           name: windows-evidence-${{ matrix.edition }}-python${{ matrix.python }}
           if-no-files-found: error
-          path: evidence/windows-actions/${{ github.run_id }}/${{ matrix.edition }}/
+          path: |
+            ${{ matrix.edition }}/salida/validacion/**/*.json
+            ${{ matrix.edition }}/salida/validacion/**/*.log
+            ${{ matrix.edition }}/salida/validacion/**/*.txt
+            !${{ matrix.edition }}/salida/validacion/**/frozen-probe/**
+            !${{ matrix.edition }}/salida/validacion/**/instalacion/**
+            !${{ matrix.edition }}/salida/validacion/**/build/**
+            !${{ matrix.edition }}/salida/validacion/**/cache-pyinstaller/**
       - name: Save the separate owner installer for the repository operator
         if: success() && matrix.edition == 'GymSoft_Comercial_3.6.0'
         uses: actions/upload-artifact@v4

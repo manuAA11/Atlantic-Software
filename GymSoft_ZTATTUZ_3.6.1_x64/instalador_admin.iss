@@ -11,11 +11,11 @@
 #endif
 #define RuntimeBits 64
 #ifndef AppVersion
-#define AppVersion "3.6.1"
+#define AppVersion "3.7.0"
 #endif
 [Setup]
 AppId={{E89DF404-FD78-4A97-89E8-9BA23D3B0B19}
-AppName=Atlantic Gym · ZTATTUZ Administrador{#BuildSuffix}
+AppName=Atlantic Gym Administrador{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
 #ifdef BuildValidation
@@ -55,9 +55,9 @@ Source: "LEEME_ACTUALIZAR_{#AppVersion}.md"; DestDir: "{app}"; Flags: ignorevers
 Source: "GUIA_PUERTA_LCUS1.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
-Name: "{autodesktop}\Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
-Name: "{group}\Diagnóstico de Atlantic Gym · ZTATTUZ Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{group}\Atlantic Gym Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{autodesktop}\Atlantic Gym Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
+Name: "{group}\Diagnóstico de Atlantic Gym Administrador"; Filename: "{app}\ZTATTUZ Admin.exe"; Parameters: "--diagnostico"; WorkingDir: "{app}"; IconFilename: "{app}\ZTATTUZ-{#AppVersion}.ico"; AppUserModelID: "ZTATTUZ.Administracion"
 
 [Code]
 #include "digitalpersona_install.iss"

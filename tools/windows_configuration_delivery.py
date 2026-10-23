@@ -79,6 +79,14 @@ def literal_constants(path, names):
         for target in targets:
             if isinstance(target, ast.Name) and target.id in names:
                 result[target.id] = ast.literal_eval(node.value)
+    if 'VERSION' in names and 'VERSION' not in result and Path(path).name == 'product_config.py':
+        tree = ast.parse(Path(path).read_text(encoding='utf-8-sig'))
+        shared_import = any(isinstance(node, ast.ImportFrom) and node.module == 'release_info'
+                            and any(alias.name == 'VERSION' and alias.asname is None for alias in node.names)
+                            for node in tree.body)
+        canonical = Path(path).resolve().parent.parent / 'common' / 'release_info.py'
+        if shared_import and canonical.is_file():
+            result['VERSION'] = literal_constants(canonical, ('VERSION',))['VERSION']
     if set(result) != set(names):
         raise RuntimeError('Faltan constantes de versión o de las pruebas completas.')
     return result

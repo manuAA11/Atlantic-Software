@@ -1,0 +1,22 @@
+{
+  "official_application": "Atlantic Gym",
+  "baseline_edition": "ZTATTUZ x86 (32-bit)",
+  "baseline_commit": "9c1a6183ef214110dabddfce119f796bb6f00980",
+  "baseline_windows_run": 38979194277,
+  "policy": "Preserve the working x86 reader/relay baseline; develop the shared Commercial application from it.",
+  "hardware_proof": {
+    "digitalpersona_native.py": {
+      "sha256": "c6a66e47303a9e548d88fe285a76746eb3e4e6bc4331bcdb77c4a349c93d2f33",
+      "match": "byte-identical"
+    },
+    "fingerprint_service.py": {
+      "sha256": "87ff6e60769b8ebeff4c7ec876d482fadec36ef4063ef11453375ae111f0e232",
+      "match": "byte-identical"
+    },
+    "door_access.py": {
+      "normalized_ast_sha256": "22a7c072ea5450e63e9180e16adbe4a4230c58506cbfcf4792dfb1750d12509c",
+      "match": "same logic; read-only is_busy property added for updater"
+    }
+  },
+  "physical_scope": "Operator reports the installed x86 reader/relay works. Exact installed build identity and new-version physical acceptance remain unverified."
+}

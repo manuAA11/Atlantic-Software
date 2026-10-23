@@ -154,9 +154,41 @@ class SessionManager:
         self.worker = None
         self.persistence_error = False
         self.local = threading.local()
+        self.requests = threading.Condition()
+        self.active_requests = 0
+        self.maintenance = False
         self.auth.on_auth_state_change(self._changed)
         # SDK methods such as sign_out/get_user also use the serialized owner.
         self.auth.get_session = self.ensure
+
+    @contextmanager
+    def request(self):
+        with self.requests:
+            if self.maintenance:
+                raise RuntimeError('Se está preparando una actualización. Espera su resultado.')
+            self.active_requests += 1
+        try:
+            yield
+        finally:
+            with self.requests:
+                self.active_requests -= 1
+                self.requests.notify_all()
+
+    @contextmanager
+    def quiesce(self, timeout=30):
+        with self.requests:
+            if self.maintenance:
+                raise RuntimeError('Ya hay una actualización en preparación.')
+            self.maintenance = True
+            if not self.requests.wait_for(lambda: self.active_requests == 0, timeout):
+                self.maintenance = False
+                raise TimeoutError('Hay operaciones pendientes; la aplicación permanecerá abierta.')
+        try:
+            yield
+        finally:
+            with self.requests:
+                self.maintenance = False
+                self.requests.notify_all()
 
     @contextmanager
     def _guard(self):
@@ -330,7 +362,13 @@ class DeferredQuery:
         return query.execute()
 
     def execute(self):
+        with self.client.session_manager.request():
+            return self._execute_authorized()
+
+    def _execute_authorized(self):
         manager = self.client.session_manager
+        if self.client.core_control is not None:
+            self.client.core_control.require_operation()
         session = manager.ensure()
         token = session.access_token if session else None
         try:
@@ -344,10 +382,28 @@ class DeferredQuery:
             return self._execute()
 
 
+class ManagedFunctions:
+    def __init__(self, client):
+        self.client=client
+
+    def invoke(self, *args, **kwargs):
+        with self.client.session_manager.request():
+            if self.client.core_control is not None:
+                self.client.core_control.require_operation()
+            self.client.session_manager.ensure()
+            # No replay: an Edge write may have succeeded before a lost response.
+            return self.client.raw.functions.invoke(*args, **kwargs)
+
+
 class ManagedClient:
     def __init__(self, raw, manager):
         self.raw, self.session_manager = raw, manager
+        self.core_control = None
         self.auth = AuthFacade(manager)
+
+    @property
+    def functions(self):
+        return ManagedFunctions(self)
 
     def table(self, *args, **kwargs):
         return DeferredQuery(self, [('table', args, kwargs)])

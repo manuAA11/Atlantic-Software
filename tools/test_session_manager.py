@@ -104,6 +104,16 @@ class Sessions(unittest.TestCase):
         self.assertEqual(self.client.rpc.call_count, 2)
         self.client.auth.refresh_session.assert_called_once_with('valid-refresh')
 
+    def test_edge_calls_refresh_before_invocation_and_never_replay(self):
+        manager = self.manager()
+        client = ManagedClient(self.client, manager)
+        self.client.functions.invoke.side_effect = TimeoutError('uncertain Edge write')
+        with self.assertRaises(TimeoutError):
+            client.functions.invoke('marketing/admin', invoke_options={'body': {'action': 'synthetic'}})
+        self.client.auth.refresh_session.assert_called_once()
+        self.client.functions.invoke.assert_called_once()
+        self.assertEqual(manager.active_requests, 0)
+
     def test_query_constructed_before_expiry_uses_latest_headers(self):
         manager = self.manager()
         client = ManagedClient(self.client, manager)

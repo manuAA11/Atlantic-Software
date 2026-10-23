@@ -113,8 +113,12 @@ class OwnerPanel(tk.Tk):
                 if not dialog.result:
                     self.destroy(); return
                 self.cloud=CloudService(session_role='owner')
-                self.cloud.sign_in(*dialog.result)
-                data=self.cloud.client.rpc('owner_list_gyms').execute().data
+                from ui_tasks import run_io
+                def authenticate():
+                    self.cloud.sign_in(*dialog.result)
+                    self.cloud.verify_server()
+                    return self.cloud.client.rpc('owner_list_gyms').execute().data
+                data=run_io(self,authenticate,title='Comprobando el acceso')
                 break
             except Exception as error:
                 if not messagebox.askretrycancel('Acceso al panel',friendly_error(error),parent=self):
@@ -149,6 +153,8 @@ class OwnerPanel(tk.Tk):
         header=ttk.Frame(outer);header.pack(fill='x')
         ttk.Label(header,text='Atlantic Gym · Control comercial',font=(UI_FONT,25,'bold')).pack(side='left')
         ttk.Button(header,text='↻  Actualizar',command=self.refresh).pack(side='right')
+        from core_admin_ui import open_panel as open_core
+        ttk.Button(header,text='Atlantic Core',command=lambda:open_core(self)).pack(side='right',padx=6)
         ttk.Button(header,text='✎  Editor del propietario',command=self.open_editor).pack(side='right',padx=10)
         ttk.Label(outer,text='Gimnasios, mensualidades y accesos desde tu cuenta de propietario.',style='Muted.TLabel').pack(anchor='w',pady=(4,18))
         ttk.Label(outer,text=COPYRIGHT,style='Muted.TLabel',wraplength=700).pack(anchor='w',pady=(0,12))

@@ -90,6 +90,9 @@ class PresentationTest(unittest.TestCase):
                 self.email = ''
                 self.load_count = 0
 
+            def verify_server(self):
+                pass
+
             def restore_session(self):
                 return False
 
@@ -124,7 +127,7 @@ class PresentationTest(unittest.TestCase):
             ('first@example.test', 'wrong-password'),
             ('again@example.test', 'correct-password'),
         ])
-        self.assertEqual(choice.call_count, 1)
+        choice.assert_not_called()
         self.assertEqual(retry.call_count, 1)
         self.assertEqual(len(FakeLogin.created), 2)
         self.assertFalse(FakeLogin.created[0].creating_account)

@@ -81,6 +81,11 @@ def pyinstaller_command(name, entry, *, dist_root=None, build_root=None):
                '--paths', str(ROOT), '--paths', str(ROOT.parent), '--workpath', str(build_root / 'work'),
                '--specpath', str(build_root / 'spec'),
                '--distpath', str(Path(dist_root).resolve() if dist_root else ROOT / 'dist')]
+    from release_info import metadata
+    build_info = build_root / 'build-info.json'
+    build_info.parent.mkdir(parents=True, exist_ok=True)
+    build_info.write_text(json.dumps(metadata(PRODUCT_NAME, EXPECTED_BITS, repository=ROOT.parent), indent=2), encoding='utf-8')
+    command.extend(('--add-data', str(build_info) + os.pathsep + '.'))
     # Spec files resolve data relative to their own directory, not the shell cwd.
     for resource in ('gymsoft_config.json', 'icono.ico', 'icono_recepcion.ico'):
         command.extend(('--add-data', str(ROOT / resource) + os.pathsep + '.'))

@@ -4,9 +4,9 @@ from desktop_ui import messagebox, friendly_error
 from ui_tasks import run_io
 
 LABELS = {
-    'OFFLINE': 'Sin conexión. La sesión se conserva; reintentando…',
+    'OFFLINE': 'Sin conexión. Reintentaremos automáticamente.',
     'RECOVERING': 'Recuperando conexión…',
-    'AUTH_REQUIRED': 'La sesión necesita autenticación. Puedes recuperarla aquí.',
+    'AUTH_REQUIRED': 'Inicia sesión de nuevo para continuar.',
     'SIGNED_OUT': 'Sesión cerrada.',
 }
 
@@ -77,7 +77,8 @@ class SessionStatus:
         try:
             if self.cloud.sessions.state in {'AUTH_REQUIRED', 'SIGNED_OUT'}:
                 from runtime_cloud import LoginDialog
-                dialog = LoginDialog(self.root)
+                dialog = LoginDialog(self.root, allow_signup=False)
+                dialog.email.set(self.cloud.email)
                 self.root.wait_window(dialog)
                 if not dialog.result:
                     return

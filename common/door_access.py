@@ -623,6 +623,11 @@ class DoorController:
                 with self._guard: self._pending = False
                 self._commands.task_done()
 
+    @property
+    def is_busy(self):
+        with self._guard:
+            return self._pending
+
     def close(self):
         self._stop.set(); self._cancel.set()
         shutdown = None

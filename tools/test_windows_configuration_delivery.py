@@ -36,6 +36,8 @@ class ClientConfigurationDelivery(unittest.TestCase):
         # Read the actual edition's declared stage list without executing it.
         for name in ('build_windows.py', 'product_config.py', 'run_validation.py'):
             (edition / name).write_bytes((ROOT / edition_name / name).read_bytes())
+        (folder / 'common').mkdir(exist_ok=True)
+        (folder / 'common' / 'release_info.py').write_bytes((ROOT / 'common' / 'release_info.py').read_bytes())
         (edition / 'release_readiness.json').write_text('{"unit_fixture":true,"final":false}\n')
         version = delivery.literal_constants(edition / 'product_config.py', ('VERSION',))['VERSION']
         constants = delivery.literal_constants(edition / 'run_validation.py', ('SQL_TESTS', 'UI_TESTS'))

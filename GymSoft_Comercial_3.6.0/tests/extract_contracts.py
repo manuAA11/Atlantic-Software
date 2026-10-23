@@ -6,12 +6,17 @@ import sys
 root=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(root))
 from cloud_database import EXCEL_IMPORT_COLUMNS
+from common.source_layout import resolve_source
+from common.deployment_profile import PROFILE
 from owner_forms import new_gym_params,renewal_params,contract_params,invite_params,grace_params
 from owner_editor_forms import profile_params,email_params
 calls=[]
 writes={}
 for file in sorted(root.glob('*.py')):
-    for node in ast.walk(ast.parse(file.read_text(encoding='utf-8'))):
+    # These RPCs belong to the external Core control plane, tested separately.
+    if file.stem in {'core_admin_ui', 'core_client', 'platform_ui', 'updater'}:
+        continue
+    for node in ast.walk(ast.parse(resolve_source(file).read_text(encoding='utf-8'))):
         if (isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr in {'rpc', '_pos_rpc'}
             and node.args and isinstance(node.args[0],ast.Constant) and isinstance(node.args[0].value,str)):
             args=[]
@@ -22,6 +27,8 @@ for file in sorted(root.glob('*.py')):
             if file.name in ('marketing_client.py','marketing_ui.py','marketing_reception.py'):
                 args += [k.arg for k in node.keywords if k.arg]
                 if 'p_gym_id' not in args: args.insert(0,'p_gym_id')
+            if file.stem == 'runtime_cloud' and node.args[0].value == 'create_gym' and not PROFILE.legacy_provider:
+                continue
             calls.append({'file':file.name,'name':node.args[0].value,'args':args})
         if (isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute)
             and node.func.attr in {'insert','update','upsert'} and node.args
@@ -33,6 +40,14 @@ for file in sorted(root.glob('*.py')):
                     writes.setdefault(table,set()).update(k.value for k in node.args[0].keys if isinstance(k,ast.Constant))
                     break
                 source=source.func.value
+# RPC names selected by the shared provider adapter must remain in SQL checks.
+provider_calls = {PROFILE.context_rpc: [], PROFILE.system_rpc: []}
+if PROFILE.legacy_provider:
+    provider_calls.update({'join_gym':['p_join_code'], 'redeem_reception_invite':['p_code']})
+else:
+    provider_calls.update({'commercial_accept_invite':['p_code'], 'commercial_check_license':['p_device_hash','p_device_name']})
+for name,args in provider_calls.items():
+    calls.append({'file':'common/deployment_profile.py', 'name':name, 'args':args})
 columns={k:sorted(set(v.values())) for k,v in EXCEL_IMPORT_COLUMNS.items()}
 gym={'id':'a0000000-0000-4000-8000-000000000001','currency':'COP'}
 owner_calls={

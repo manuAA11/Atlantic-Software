@@ -68,7 +68,12 @@ with TemporaryDirectory() as folder:
             assert command[command.index('--icon')+1] == str(build.ROOT/role_icon)
             assert '--windowed' in command and '--onedir' in command
             resources = [command[index+1] for index, arg in enumerate(command) if arg == '--add-data']
-            assert resources == [str(build.ROOT/resource)+os.pathsep+'.' for resource in ('gymsoft_config.json', 'icono.ico', 'icono_recepcion.ico')]
+            assert resources == [str(target/'build'/'build-info.json')+os.pathsep+'.'] + [str(build.ROOT/resource)+os.pathsep+'.' for resource in ('gymsoft_config.json', 'icono.ico', 'icono_recepcion.ico')]
+            import json
+            info = json.loads((target/'build'/'build-info.json').read_text())
+            assert info['version'] == build.VERSION and info['product'] == build.PRODUCT_NAME
+            assert info['architecture'] == ('windows-x86' if build.EXPECTED_BITS == 32 else 'windows-x64')
+            assert info['build_date'] and info['commit']
             assert 'PIL._tkinter_finder' in command
 ''')
 

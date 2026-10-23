@@ -11,11 +11,11 @@
 #endif
 #define RuntimeBits 32
 #ifndef AppVersion
-#define AppVersion "3.6.1"
+#define AppVersion "3.7.0"
 #endif
 [Setup]
 AppId=ZTATTUZActualizadorCompleto
-AppName=Atlantic Gym · ZTATTUZ{#BuildSuffix}
+AppName=Atlantic Gym{#BuildSuffix}
 AppVersion={#AppVersion}
 AppPublisher=Atlantic Tech Software
 #ifdef BuildValidation

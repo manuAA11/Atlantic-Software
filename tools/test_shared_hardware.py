@@ -67,3 +67,12 @@ class FrozenSharedImports(unittest.TestCase):
         for edition in ROOT.glob('GymSoft_*'):
             source = (edition/'build_windows.py').read_text()
             self.assertIn("'--paths', str(ROOT.parent)", source)
+
+
+class DevelopmentPipelinePermissions(unittest.TestCase):
+    def test_validation_does_not_publish_or_replace_installed_versions(self):
+        workflow=(ROOT/'.github/workflows/windows-validation.yml').read_text()
+        self.assertIn('contents: read',workflow)
+        self.assertNotIn('contents: write',workflow)
+        for publication in ('git push','gh release','GH_TOKEN'):
+            self.assertNotIn(publication,workflow)

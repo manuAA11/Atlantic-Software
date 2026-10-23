@@ -59,12 +59,10 @@ class AsyncReadErrors(unittest.TestCase):
             'Could not find the function public.membership_population(p_gym_id) in the schema cache'))
         self.assertEqual(failure.category, 'membership_update')
         self.assertEqual(failure.code, 'PGRST202')
-        self.assertLess(failure.message.index('ACTUALIZAR_PLANES_INTERNOS.sql'),
-                        failure.message.index('ACTUALIZAR_REANUDACION_MEMBRESIAS.sql'))
-        self.assertIn('proyecto existente', failure.message)
-        self.assertIn('verificar las actualizaciones previas', failure.message)
-        self.assertIn('caché de funciones', failure.message)
-        self.assertNotIn('schema.sql', failure.message)
+        self.assertIn('actualización del servidor', failure.message)
+        self.assertIn('soporte de Atlantic Gym', failure.message)
+        self.assertNotIn('.sql', failure.message)
+        self.assertNotIn('caché', failure.message)
         self.assertRegex(failure.reference, r'^GS-LECTURA-[A-F0-9]{12}$')
 
     def test_missing_other_function_and_missing_column_are_distinct(self):
@@ -220,10 +218,9 @@ class AsyncReadErrors(unittest.TestCase):
                 with patch('desktop_ui.messagebox.showerror') as dialog:
                     root.report_callback_exception(APIError, error, None)
                 shown = dialog.call_args.args[1]
-                self.assertIn('verificar las actualizaciones previas', shown)
-                self.assertIn('caché de funciones', shown)
-                self.assertLess(shown.index('ACTUALIZAR_PLANES_INTERNOS.sql'),
-                                shown.index('ACTUALIZAR_REANUDACION_MEMBRESIAS.sql'))
+                self.assertIn('actualización del servidor', shown)
+                self.assertIn('soporte de Atlantic Gym', shown)
+                self.assertNotIn('.sql', shown)
                 self.assertIn('Referencia: GS-', shown)
                 self.assertNotIn(private, shown)
                 root.refresh.assert_not_called()

@@ -6,6 +6,7 @@ import unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from product_config import VERSION
+from common.source_layout import resolve_source
 
 
 class PackageTest(unittest.TestCase):
@@ -42,13 +43,13 @@ class PackageTest(unittest.TestCase):
 
     def test_all_app_dialogs_use_dark_module(self):
         for path in ROOT.glob('*.py'):
-            for node in ast.walk(ast.parse(path.read_text(encoding='utf-8'))):
+            for node in ast.walk(ast.parse(resolve_source(path).read_text(encoding='utf-8'))):
                 if isinstance(node,ast.ImportFrom) and node.module=='tkinter':
                     self.assertFalse({'messagebox','simpledialog','filedialog'} & {x.name for x in node.names},path.name)
 
     def test_parity_entry_points_visible(self):
-        admin=(ROOT/'app.py').read_text(encoding='utf-8')
-        reception=(ROOT/'reception_app.py').read_text(encoding='utf-8')
+        admin=resolve_source(ROOT/'app.py').read_text(encoding='utf-8')
+        reception=resolve_source(ROOT/'reception_app.py').read_text(encoding='utf-8')
         self.assertIn('Consultar y editar pagos',admin)
         self.assertIn('Corregir el pago seleccionado',admin)
         self.assertIn('open_payment_manager(',admin)
