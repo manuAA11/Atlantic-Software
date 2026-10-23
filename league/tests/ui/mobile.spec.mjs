@@ -1,0 +1,34 @@
+import {test,expect} from '@playwright/test';
+test('phone demo completes a workout, reserves a class and opens story templates',async({page})=>{
+ const errors=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.goto('/');
+ await page.getByRole('button',{name:'Explorar demostración'}).click();
+ await expect(page.getByText('Demostración · Datos simulados · Sin conexión con gimnasios')).toBeVisible();
+ await page.getByRole('button',{name:'Registrar entrenamiento'}).click();
+ await page.getByLabel('Peso total · kg',{exact:true}).fill('35');
+ await page.getByLabel('Repeticiones',{exact:true}).fill('8');
+ await page.getByRole('button',{name:'Añadir serie',exact:true}).click();
+ await expect(page.getByText('1 series registradas',{exact:true})).toBeVisible();
+ if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ await page.getByRole('button',{name:'Terminar y guardar'}).click();
+ if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ await expect(page.getByText('Mi entrenamiento',{exact:true})).toBeVisible();
+ await page.getByRole('tab',{name:/Gimnasio/}).click();
+ await page.getByRole('button',{name:'Reservar clase',exact:true}).click();
+ if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ await expect(page.getByRole('button',{name:'Cancelar mi reserva'})).toBeVisible();
+ await page.getByRole('tab',{name:/Inicio/}).click();
+ await page.getByRole('button',{name:'Crear historia',exact:true}).click();
+ await expect(page.getByText('Así se ve tu progreso')).toBeVisible();
+ await page.getByRole('button',{name:'Racha',exact:true}).click();
+ await expect(page.getByText('Seguir cuenta')).toBeVisible();
+ expect(errors).toEqual([]);
+});
+test('small phone sign-in and demo have no horizontal overflow',async({page})=>{
+ await page.setViewportSize({width:320,height:640});await page.goto('/');
+ await expect(page.getByRole('button',{name:'Explorar demostración'})).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+ await page.getByRole('button',{name:'Explorar demostración'}).click();
+ await expect(page.getByText('Tu objetivo de la semana')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});

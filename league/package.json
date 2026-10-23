@@ -1,0 +1,22 @@
+{
+  "name": "@atlantic/league",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "mobile"
+  ],
+  "scripts": {
+    "mobile": "npm --workspace @atlantic/league-mobile start",
+    "typecheck": "npm --workspace @atlantic/league-mobile run typecheck",
+    "test": "node --import tsx --test tests/*.test.mjs",
+    "test:postgres": "node tests/postgres.mjs",
+    "test:ui": "playwright test"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@playwright/test": "1.64.1",
+    "pg": "8.23.1",
+    "tsx": "4.23.15"
+  }
+}

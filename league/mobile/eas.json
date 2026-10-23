@@ -1,0 +1,11 @@
+{
+  "cli": {"version": ">= 16.0.0", "appVersionSource": "local"},
+  "build": {
+    "development": {"developmentClient": true, "distribution": "internal", "environment": "development"},
+    "simulator": {"developmentClient": true, "distribution": "internal", "ios": {"simulator": true}, "environment": "development"},
+    "preview": {"distribution": "internal", "android": {"buildType": "apk"}, "environment": "preview"},
+    "testflight": {"distribution": "store", "environment": "preview"},
+    "production": {"distribution": "store", "environment": "production"}
+  },
+  "submit": {"testflight": {}, "production": {}}
+}

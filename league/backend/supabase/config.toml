@@ -1,0 +1,6 @@
+project_id = "atlantic-league-gateway-qa"
+
+[functions.atlantic-league]
+# Athlete JWTs belong to the hub; desktop JWTs belong to registered source projects.
+# handler.mjs validates them against the correct Auth server on every request.
+verify_jwt = false
