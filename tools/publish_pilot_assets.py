@@ -33,15 +33,16 @@ def stage(source, output, *, version, source_commit, run_id, tag):
     output.mkdir(parents=True)
     releases = []
     for path, manifest, name, item, verified in receipts:
-        with zipfile.ZipFile(path) as archive, archive.open(name) as src, (output / name).open('xb') as dst:
+        published_name='AtlanticGym_Actualizar_'+version+'_'+manifest['architecture']+('_proveedor2' if manifest['edition']=='GymSoft_Comercial_3.6.0' else '')+'.exe'
+        with zipfile.ZipFile(path) as archive, archive.open(name) as src, (output / published_name).open('xb') as dst:
             shutil.copyfileobj(src, dst)
-        target = output / name
+        target = output / published_name
         with target.open('rb') as stream:
             if hashlib.file_digest(stream, 'sha256').hexdigest() != item['sha256']:
                 raise ValueError('El instalador cambió durante la preparación.')
         releases.append(dict(version=version, product='Atlantic Gym', variant='commercial' if manifest['edition']=='GymSoft_Comercial_3.6.0' else 'ztattuz',
-            architecture='windows-'+manifest['architecture'], file=name, sha256=item['sha256'], bytes=item['bytes'],
-            minimum_schema='core-1', installer_url='https://github.com/manuAA11/Atlantic-Software/releases/download/'+tag+'/'+name,
+            architecture='windows-'+manifest['architecture'], file=published_name, sha256=item['sha256'], bytes=item['bytes'],
+            minimum_schema='core-1', installer_url='https://github.com/manuAA11/Atlantic-Software/releases/download/'+tag+'/'+published_name,
             validation=verified, installation=manifest['installation']))
     payload=dict(version=version, final=False, source_commit=source_commit, github_run_id=str(run_id), releases=releases)
     (output/'PILOT_UPDATE_MANIFEST.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n')

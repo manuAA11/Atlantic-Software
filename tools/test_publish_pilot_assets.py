@@ -28,6 +28,7 @@ class PilotAssets(unittest.TestCase):
             source,version=self.packages(folder);output=Path(folder)/'publication'
             result=self.publish(source,output,version)
             self.assertIs(result['final'],False);self.assertEqual(len(result['releases']),3)
+            self.assertTrue(all(r['file'].startswith('AtlanticGym_') and 'ZTATTUZ' not in r['file'] for r in result['releases']))
             self.assertEqual({r['architecture'] for r in result['releases']},{'windows-x86','windows-x64'})
             self.assertFalse(any('PROPIETARIO' in p.name or p.suffix=='.zip' for p in output.iterdir()))
             self.assertEqual(json.loads((output/'PILOT_UPDATE_MANIFEST.json').read_text())['source_commit'],'a'*40)
