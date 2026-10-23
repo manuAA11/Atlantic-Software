@@ -1,6 +1,9 @@
 # Atlantic Tech Software: políticas de este repositorio
 
-Estos requisitos vienen del usuario y se aplican a todo cambio de Multi-Gym.
+Estos requisitos vienen del usuario y se aplican a todo cambio de Atlantic Gym y sus módulos.
+
+- Atlantic Gym es una sola aplicación compartida para todas las instalaciones, con ejecutables x86 y x64. Los perfiles históricos sólo adaptan proveedores e instalaciones existentes; no crear ramas funcionales por gimnasio.
+- Ramas activas: `main` es la oficial y sólo recibe actualizaciones verificadas; `pruebas` concentra el desarrollo y la validación de funciones nuevas, incluida Atlantic League. No abrir ramas de trabajo adicionales sin petición del usuario.
 
 - Continúa desde el código recuperado; no reimplementes ni retires funciones existentes.
 - Revisa las funciones comunes en Comercial y ZTATTUZ x86/x64. Conserva las funciones exclusivas de cada producto y su compatibilidad con instalaciones actuales.

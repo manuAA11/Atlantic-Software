@@ -58,6 +58,7 @@ def main():
                     action=QuickActionButton(frame,'\uE716','Registrar cliente',lambda:called.append('quick'));action.pack(fill='x',pady=12)
                     original_background=action.cget('background')
                     preferences=appearance_settings(frame);preferences.pack(fill='x')
+                    root.event_generate('<Motion>',x=1,y=1,warp=True)
                     pump(root)
                     original_layout=ttk.Style(root).layout('TButton')
                     with patch('common.appearance.save_theme',side_effect=OSError('disk unavailable')):
@@ -69,7 +70,9 @@ def main():
                     checks+=2
                     widgets=(entry,tree,nav)
                     for name in ('minimal','dark','minimal','dark'):
-                        manager.change(name);pump(root)
+                        manager.change(name)
+                        root.event_generate('<Motion>',x=1,y=1,warp=True)
+                        pump(root)
                         assert form.get()=='Cliente sin guardar'
                         assert tree.selection()==('saved',)
                         assert tree.item('saved','values')==('Laura Méndez',)
