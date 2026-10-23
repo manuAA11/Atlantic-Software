@@ -16,12 +16,12 @@ from PIL import Image, ImageTk
 from desktop_ui import configure_dark_styles, decorate_window
 import app
 import reception_app
-from product_config import PRODUCT_NAME
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--report', type=Path, required=True)
+    parser.add_argument('--owner-console', action='store_true', help='Verify the separately packaged private owner console.')
     args = parser.parse_args()
     assert sys.platform == 'win32', 'This probe must run on Windows.'
     assert callable(app.GymSoftApp) and callable(reception_app.ReceptionApp)
@@ -31,7 +31,7 @@ def main():
     from serial.tools import list_ports
     from door_access import RELAY_ON, RELAY_OFF
     assert len(RELAY_ON) == len(RELAY_OFF) == 4
-    if PRODUCT_NAME == 'Atlantic Gym':
+    if args.owner_console:
         import owner_panel
         assert callable(owner_panel.OwnerPanel)
     root = tk.Tk()
@@ -46,7 +46,7 @@ def main():
         assert ZoneInfo('America/Bogota').key == 'America/Bogota'
         report = {'status': 'PASS', 'python': sys.version, 'process_bits': struct.calcsize('P') * 8,
                   'tk': root.tk.call('info', 'patchlevel'), 'frozen': bool(getattr(sys, 'frozen', False)),
-                  'checks': ['Frozen Admin and Reception module imports', 'Product-specific module imports',
+                  'checks': ['Frozen Admin and Reception module imports', 'Shared application imports; explicit optional owner-console check',
                              'Optional door and pySerial imports (no USB access)',
                              'Tk and Atlantic dark styles', 'Role window icons', 'Pillow ImageTk',
                              'Supabase/realtime/httpx imports', 'Excel import', 'SSL certificates', 'Bogota timezone'],

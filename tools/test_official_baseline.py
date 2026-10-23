@@ -11,6 +11,7 @@ class OfficialX86Baseline(unittest.TestCase):
     def test_reader_worker_and_relay_logic_match_official_baseline(self):
         reference=json.loads((ROOT/'deployment/official_baseline.json').read_text())
         self.assertEqual(reference['baseline_edition'],'ZTATTUZ x86 (32-bit)')
+        self.assertEqual(set(reference['official_architectures']),{'windows-x86','windows-x64'})
         for name,proof in reference['hardware_proof'].items():
             with self.subTest(module=name):
                 data=(ROOT/'common'/name).read_bytes()

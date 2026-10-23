@@ -76,3 +76,13 @@ class DevelopmentPipelinePermissions(unittest.TestCase):
         self.assertNotIn('contents: write',workflow)
         for publication in ('git push','gh release','GH_TOKEN'):
             self.assertNotIn(publication,workflow)
+
+
+class SharedBrandProbe(unittest.TestCase):
+    def test_owner_console_probe_is_explicit_not_inferred_from_product_name(self):
+        source=(ROOT/'tools/windows_frozen_probe.py').read_text()
+        workflow=(ROOT/'.github/workflows/windows-validation.yml').read_text()
+        self.assertIn('if args.owner_console:',source)
+        self.assertNotIn('if PRODUCT_NAME',source)
+        self.assertIn("$probeOptions += '--owner-console'",workflow)
+        self.assertIn('FrozenWindowsProbe.exe @probeOptions',workflow)

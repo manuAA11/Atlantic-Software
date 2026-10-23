@@ -111,7 +111,9 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .\.venv\Scripts\python.exe -c "from pathlib import Path; from build_windows import verify_executable_icon; verify_executable_icon(Path('salida/validacion/frozen-probe/FrozenWindowsProbe/FrozenWindowsProbe.exe'))" 2>&1 | Tee-Object -FilePath salida\validacion\frozen-build.log -Append
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe --report salida/validacion/frozen-windows-components.json 2>&1 | Tee-Object -FilePath salida\validacion\frozen-execution.log
+          $probeOptions = @('--report', 'salida/validacion/frozen-windows-components.json')
+          if ('${{ matrix.edition }}' -eq 'GymSoft_Comercial_3.6.0') { $probeOptions += '--owner-console' }
+          & .\salida\validacion\frozen-probe\FrozenWindowsProbe\FrozenWindowsProbe.exe @probeOptions 2>&1 | Tee-Object -FilePath salida\validacion\frozen-execution.log
           exit $LASTEXITCODE
       - name: Restore the verified runtime incorporated in the application package
         run: |

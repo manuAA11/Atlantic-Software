@@ -1,14 +1,35 @@
-# Atlantic Software · Multi-Gym
+# Atlantic Software · Atlantic Gym
 
-Aplicaciones recuperadas de Atlantic Gym Comercial 3.6.0 y ZTATTUZ 3.6.1 x86/x64, con correcciones posteriores, Atlantic UI Kit y Runtime DigitalPersona original completo. Los paquetes incluyen las fuentes y los recursos necesarios para crear instaladores; la aceptación final de servidor, integraciones y hardware continúa pendiente.
+Atlantic Gym se desarrolla como una sola aplicación de Administración y Recepción.
+Hay dos versiones oficiales: **x86 (32 bits) y x64 (64 bits)**, con las mismas
+funciones y el mismo código compartido. Se conserva el lector DigitalPersona y
+el relé de la referencia funcional recuperada de ZTATTUZ. La versión de desarrollo
+es **3.7.0 beta**; las instalaciones actuales continúan operativas.
 
-- `GymSoft_Comercial_3.6.0`: Administrador, Recepción y panel privado del propietario; sin relé.
-- `GymSoft_ZTATTUZ_3.6.1_x86` y `GymSoft_ZTATTUZ_3.6.1_x64`: Administrador y Recepción ZTATTUZ, con control de puerta y loader de su arquitectura.
-- `common`, `backend`, `supabase`, `onboarding`, `deployment`: componentes compartidos, servicios, migraciones y utilidades del operador.
-- `assets/atlantic`: referencia de iconos azul/cian recreada a partir de la lámina aprobada, convertida a ICO y copiada a cada edición.
-- `evidence`: resultados históricos, fragmentos recuperados y validación actual separados.
+- `common`: implementación única de la aplicación, acceso a datos, sesiones, interfaz,
+  lector, puerta, Core y actualizador. Ver [arquitectura y compatibilidad](docs/ARQUITECTURA_COMERCIAL_CORE.md).
+- `GymSoft_ZTATTUZ_3.6.1_x86`, `GymSoft_ZTATTUZ_3.6.1_x64` y `GymSoft_Comercial_3.6.0`:
+  directorios históricos de entrada y empaquetado. Usan el mismo código compartido;
+  conservan arquitectura, AppId, rutas y configuración de instalaciones existentes.
+  La puerta es opcional y requiere configuración local en cualquier perfil.
+- `backend`, `supabase`, `onboarding`, `deployment`: servicios compartidos,
+  migraciones y herramientas del operador. Core registra los gimnasios por su UUID
+  y selecciona actualizaciones generales o dirigidas a un `gym_id`, canal y arquitectura.
+- `assets/atlantic`: iconos aprobados de Administrador (azul) y Recepción (cian).
+- `evidence`: resultados históricos y validaciones, con su alcance indicado.
+
+Registrar un gimnasio en Core no traslada sus tablas operativas. La compatibilidad
+con el proveedor actual permite mantener las instalaciones trabajando durante la
+integración. No cambiar conexiones ni eliminar datos de origen como parte de una
+actualización de código. Las credenciales privadas y los datos de clientes no se
+publican en este repositorio.
 
 Leer [estado y límites](docs/ESTADO_CIERRE.md), [acciones externas y Windows](docs/INTEGRACIONES_Y_WINDOWS.md), [UI Kit](docs/ATLANTIC_UI_KIT.md) y [políticas permanentes](AGENTS.md). Los requisitos del usuario están en `docs/REQUISITOS_CIERRE_MULTIGYM.txt`.
+
+## Referencias de versiones anteriores
+
+Los enlaces de esta sección corresponden a versiones anteriores; no contienen la
+actualización 3.7.0. Sus resultados no acreditan la aceptación de la versión nueva.
 
 El run Windows `38001250527`, commit `fe2a95b`, aprobó los tres jobs completos con Python 3.14.8: **111 etapas y 484 tests Python**, creación mediante el `.bat` real, **siete programas y ocho instaladores** con iconos PE/diagnósticos correctos. Comercial y ZTATTUZ x64 aprobaron instalación nueva, actualización conservando directorios/registros y desinstalación; ZTATTUZ utilizó su instalador completo en ambos pasos. La variante x86 se compila y diagnostica, pero su Runtime requiere Windows de 32 bits para instalarse. Los logs y alcances están en [el estado](docs/ESTADO_CIERRE.md) y `evidence/windows-actions`. Las pruebas simuladas no acreditan cuentas reales ni lector/relé físicos. Ambos servidores reportan base y scheduler disponibles en la comprobación pública del 9 de octubre.
 
@@ -16,7 +37,7 @@ Los [instaladores ya compilados](https://github.com/manuAA11/Atlantic-Software/r
 
 ## Crear e instalar los programas en Windows
 
-1. Descarga el [paquete completo de tu aplicación](docs/PAQUETES_APLICACION_COMPLETA.md) y extráelo en una carpeta nueva. Para tu Python 3.14 de 64 bits usa Comercial o ZTATTUZ x64. Los Runtime y sus licencias ya están incluidos; no hace falta volver a buscarlos.
+1. Para compilar la versión de desarrollo, descarga o clona el repositorio actual completo. Los [paquetes históricos](docs/PAQUETES_APLICACION_COMPLETA.md) sirven como referencia y recuperación de versiones anteriores. Para tu Python 3.14 de 64 bits usa Comercial o ZTATTUZ x64. Los Runtime y sus licencias ya están incluidos; no hace falta volver a buscarlos.
 2. En el PC que compila, instala CPython 3.14 o 3.13 estándar de la arquitectura correspondiente, Node LTS e Inno Setup 6. Dentro de la edición, ejecuta **`CREAR_INSTALADORES.bat`**. Prepara las dependencias y repite todas las pruebas antes de compilar. Si falta la aceptación final, genera instaladores reales marcados `VALIDACION_NO_FINAL_` en `salida/PRUEBAS_PARA_CONFIGURAR/<identificador>/`; una prueba fallida detiene la publicación.
 3. Abre `LEER_PRIMERO.txt` en esa carpeta y ejecuta el instalador para configurar y probar la aplicación. ZTATTUZ ofrece el instalador completo y sus componentes; Comercial mantiene el panel del propietario separado en `PRIVADO_PROPIETARIO`. **El PC donde instalas los EXE no necesita Python, Node ni Inno.** WhatsApp/Wompi se conectan desde Administrador, una vez habilitado el backend según [la guía](docs/INTEGRACIONES_Y_WINDOWS.md).
 

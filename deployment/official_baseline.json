@@ -3,7 +3,7 @@
   "baseline_edition": "ZTATTUZ x86 (32-bit)",
   "baseline_commit": "9c1a6183ef214110dabddfce119f796bb6f00980",
   "baseline_windows_run": 38979194277,
-  "policy": "Preserve the working x86 reader/relay baseline; develop the shared Commercial application from it.",
+  "policy": "Maintain official x86 and x64 builds with the same shared application and feature set. Preserve the working reader/relay baseline in both.",
   "hardware_proof": {
     "digitalpersona_native.py": {
       "sha256": "c6a66e47303a9e548d88fe285a76746eb3e4e6bc4331bcdb77c4a349c93d2f33",
@@ -18,5 +18,9 @@
       "match": "same logic; read-only is_busy property added for updater"
     }
   },
-  "physical_scope": "Operator reports the installed x86 reader/relay works. Exact installed build identity and new-version physical acceptance remain unverified."
+  "physical_scope": "Operator reports the installed x86 reader/relay works. Exact installed build identity and new-version physical acceptance remain unverified.",
+  "official_architectures": [
+    "windows-x86",
+    "windows-x64"
+  ]
 }

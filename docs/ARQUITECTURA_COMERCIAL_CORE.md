@@ -4,9 +4,11 @@ Atlantic Gym es una aplicación común de Administración y Recepción. ZTATTUZ
 se administra en Core como un gimnasio identificado por su UUID existente.
 No se generan IDs nuevos ni se copian clientes al registrar el gimnasio.
 
-## Base oficial
+## Versiones oficiales y referencia de hardware
 
-La referencia funcional es ZTATTUZ x86 (32 bits), la versión que el operador
+Atlantic Gym mantiene dos versiones oficiales: x86 (32 bits) y x64 (64 bits),
+con el mismo conjunto de funciones. Ambas deben aprobar sus verificaciones de
+Windows y hardware. La referencia funcional recuperada es ZTATTUZ x86, que el operador
 reporta que funciona con el relé. Se contrastó con la entrega Windows del commit
 `9c1a6183ef214110dabddfce119f796bb6f00980`. El adaptador DigitalPersona y su
 trabajador coinciden byte por byte; la lógica del relé se conserva. Sólo se añade
