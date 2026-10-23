@@ -1,0 +1,88 @@
+name: Publish Atlantic Gym optional pilot
+on:
+  push:
+    branches: [pruebas]
+    paths: ['deployment/pilot_update.json', '.github/workflows/publish-pilot-update.yml']
+permissions:
+  contents: read
+concurrency:
+  group: pilot-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Check the user-requested candidate marker
+        id: candidate
+        run: |
+          python3 - <<'PY'
+          import json,os,re,subprocess
+          from pathlib import Path
+          changed=subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r','HEAD'],text=True).splitlines()
+          value=json.loads(Path('deployment/pilot_update.json').read_text())
+          active=('deployment/pilot_update.json' in changed and value.get('publish') is True and value.get('final') is False)
+          if active:
+              assert re.fullmatch(r'\d+\.\d+\.\d+',value['version'])
+              assert re.fullmatch(r'[A-Za-z0-9_.-]+',value['tag'])
+              assert "VERSION = '"+value['version']+"'" in Path('common/release_info.py').read_text()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write('publish='+str(active).lower()+'\n')
+              if active:out.write('version='+value['version']+'\ntag='+value['tag']+'\n')
+          PY
+      - name: Require successful read-only Windows validation of this exact commit
+        if: steps.candidate.outputs.publish == 'true'
+        id: validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 150); do
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/windows-validation.yml/runs?head_sha=$GITHUB_SHA&per_page=5" > validation-runs.json
+            result=$(python3 -c "import json; r=json.load(open('validation-runs.json'))['workflow_runs']; print(str(r[0]['id'])+' '+r[0]['status']+' '+str(r[0]['conclusion']) if r else 'waiting')")
+            read -r run_id status conclusion <<< "$result"
+            if [ "$status" = "completed" ]; then
+              if [ "$conclusion" != "success" ]; then
+                echo "Windows validation did not succeed; publication is blocked."
+                exit 1
+              fi
+              echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "Windows validation is not complete; no installer is published."
+          exit 1
+      - uses: actions/download-artifact@v4
+        if: steps.candidate.outputs.publish == 'true'
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.validation.outputs.run_id }}
+          pattern: NO_FINAL-client-download-*
+          path: pilot-artifacts
+      - name: Verify original receipts and stage client installers
+        if: steps.candidate.outputs.publish == 'true'
+        run: >-
+          python3 -m tools.publish_pilot_assets --source pilot-artifacts --output pilot-publication
+          --version ${{ steps.candidate.outputs.version }} --tag ${{ steps.candidate.outputs.tag }} --commit ${{ github.sha }} --run-id ${{ steps.validation.outputs.run_id }}
+      - name: Publish the optional prerelease
+        if: steps.candidate.outputs.publish == 'true'
+        env:
+          PILOT_TAG: ${{ steps.candidate.outputs.tag }}
+          PILOT_VERSION: ${{ steps.candidate.outputs.version }}
+        run: |
+          set -euo pipefail
+          if gh release view "$PILOT_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "The immutable pilot tag already exists. Review it before retrying."
+            exit 1
+          fi
+          gh release create "$PILOT_TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "Atlantic Gym $PILOT_VERSION · Prueba de actualización · NO FINAL" --notes-file pilot-publication/LEER_PRIMERO.txt
+          gh release upload "$PILOT_TAG" pilot-publication/* --repo "$GITHUB_REPOSITORY"
+          gh release edit "$PILOT_TAG" --repo "$GITHUB_REPOSITORY" --draft=false --prerelease --latest=false

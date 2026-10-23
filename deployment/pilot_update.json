@@ -3,5 +3,6 @@
   "tag": "atlantic-gym-3.7.1-piloto",
   "publish": true,
   "final": false,
-  "notes": "Actualización opcional de prueba: tema Minimal y avisos de nuevas versiones. Atlantic League permanece en desarrollo. No aplica cambios a bases de datos."
+  "notes": "Actualización opcional de prueba: tema Minimal y avisos de nuevas versiones. Atlantic League permanece en desarrollo. No aplica cambios a bases de datos.",
+  "publication_attempt": 2
 }
