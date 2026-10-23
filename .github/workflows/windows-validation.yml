@@ -21,6 +21,8 @@ on:
       - 'tools/test_*.py'
       - 'tools/platform_ui_smoke.py'
       - 'tools/login_ui_smoke.py'
+      - 'tools/theme_ui_smoke.py'
+      - 'tools/test_theme_settings.py'
       - 'supabase/migrations/**'
       - 'tools/test_backup_complete_sources.py'
       - 'tools/backup_complete_sources.py'
@@ -77,7 +79,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity tools.test_core_client tools.test_updater tools.test_commercial_unification tools.test_official_baseline tools.test_interface_texts 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity tools.test_core_client tools.test_updater tools.test_commercial_unification tools.test_official_baseline tools.test_interface_texts tools.test_theme_settings 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -100,6 +102,10 @@ jobs:
           & .\.venv\Scripts\python.exe ..\tools\login_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\login-ui.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .\.venv\Scripts\python.exe ..\tools\platform_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\platform-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $env:ATLANTIC_TEST_EDITION = '${{ matrix.edition }}'
+          & .\.venv\Scripts\python.exe ..\tools\theme_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\appearance-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           exit $LASTEXITCODE
       - name: Freeze and run a Windows component probe
         run: |

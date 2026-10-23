@@ -73,7 +73,9 @@ def decorate_window(window: tk.Misc) -> None:
             if setter(hwnd, 20, ctypes.byref(dark), ctypes.sizeof(dark)):
                 setter(hwnd, 19, ctypes.byref(dark), ctypes.sizeof(dark))
             # Windows 11: color BGR de título y texto. Versiones anteriores lo ignoran.
-            for attribute, value in [(35, 0x20120B), (36, 0xFCFAF8)]:
+            def bgr(color):
+                return int(color[5:7]+color[3:5]+color[1:3],16)
+            for attribute, value in [(35, bgr(COLORS['background'])), (36, bgr(COLORS['text']))]:
                 color = wintypes.DWORD(value)
                 setter(hwnd, attribute, ctypes.byref(color), ctypes.sizeof(color))
         except (OSError, AttributeError, tk.TclError):
@@ -83,6 +85,8 @@ def decorate_window(window: tk.Misc) -> None:
 
 
 def configure_dark_styles(root: tk.Misc) -> None:
+    from common.appearance import install
+    install(root).schedule()
     style = ttk.Style(root)
     if 'clam' in style.theme_names():
         style.theme_use('clam')

@@ -252,9 +252,11 @@ def minimum_layout_width(widget):
 
 class ScrollArea(ttk.Frame):
     """Primero adapta el ancho; desplaza lo que exceda el alto disponible."""
-    def __init__(self, parent, *, style='TFrame', padding=0, background=BG,
+    def __init__(self, parent, *, style='TFrame', padding=0, background=None,
                  minimum_width=300, width=600, height=450, adaptive=True):
         super().__init__(parent, style=style)
+        if background is None:
+            background = COLORS['background']
         self.minimum_width = minimum_width
         self.adaptive = adaptive
         self._job = None
@@ -681,7 +683,8 @@ def notebook_selector(notebook):
 
 def adapt_tree(parent):
     if isinstance(parent, ScrollArea): return
-    children = list(parent.winfo_children())
+    children = [child for child in parent.winfo_children()
+                if not getattr(child, '_appearance_decoration', False)]
     seen = getattr(parent, '_responsive_seen', set())
     parent._responsive_seen = set(children)
     for child in children:

@@ -509,6 +509,7 @@ class SidebarButton(tk.Frame):
             bg=COLORS["sidebar"],
             cursor="hand2",
         )
+        self.appearance_icon = text
         self.command = command
         self.active = False
 
@@ -549,6 +550,8 @@ class SidebarButton(tk.Frame):
     def _paint(self, background: str) -> None:
         self.configure(bg=background)
         self.icon.configure(bg=background)
+        from common.appearance import refresh_icon
+        refresh_icon(self)
         self.label.configure(bg=background)
 
     def _enter(self, _event: tk.Event[Any]) -> None:
@@ -2337,6 +2340,9 @@ class ReceptionApp(tk.Tk):
             button.pack(fill="x", pady=2)
             self.nav_buttons[key] = button
 
+        from common.appearance import open_appearance
+        ttk.Button(sidebar, text="Configuración · Apariencia",
+                   command=lambda: open_appearance(self)).pack(fill="x", padx=16, pady=10)
         footer = tk.Frame(sidebar, bg=COLORS["sidebar"])
         footer.pack(side="bottom", fill="x", padx=22, pady=20)
         tk.Label(footer, text="●  DATOS EN LA NUBE", bg=COLORS["sidebar"], fg=COLORS["success"], font=(FONT_FAMILY, 7, "bold")).pack(anchor="w")

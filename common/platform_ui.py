@@ -85,6 +85,8 @@ class SystemPanel(tk.Toplevel):
         self.history=ttk.Treeview(tabs,columns=('at','version','state'),show='headings',height=8)
         for key,title,width in [('at','Fecha',250),('version','Versión',130),('state','Estado',300)]:self.history.heading(key,text=title);self.history.column(key,width=width)
         tabs.add(self.history,text='Actualizaciones')
+        from common.appearance import appearance_settings
+        tabs.add(appearance_settings(tabs),text='Apariencia')
         self.release=None;self.render()
 
     def render(self):

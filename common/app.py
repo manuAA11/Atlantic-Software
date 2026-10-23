@@ -447,6 +447,7 @@ class SidebarButton(tk.Frame):
             cursor="hand2",
         )
         self.pack_propagate(False)
+        self.appearance_icon = text
         self.command = command
         self.active = False
 
@@ -500,7 +501,12 @@ class SidebarButton(tk.Frame):
     def _paint(self, background: str) -> None:
         self.configure(bg=background)
         self.icon_label.configure(bg=background)
+        self._refresh_appearance_icon()
         self.text_label.configure(bg=background)
+
+    def _refresh_appearance_icon(self):
+        from common.appearance import refresh_icon
+        refresh_icon(self)
 
     def _enter(self, _event: tk.Event[Any]) -> None:
         if not self.active:
@@ -562,6 +568,7 @@ class QuickActionButton(tk.Frame):
             highlightbackground=COLORS["line"],
             highlightthickness=1,
         )
+        self.appearance_icon = text
         self.command = command
 
         self.icon_label = tk.Label(
@@ -621,6 +628,8 @@ class QuickActionButton(tk.Frame):
         self.configure(bg=background)
         self.icon_label.configure(bg=background)
         self.text_label.configure(bg=background)
+        from common.appearance import refresh_icon
+        refresh_icon(self)
 
 
 class MembershipStatusCard(tk.Frame):
@@ -642,6 +651,7 @@ class MembershipStatusCard(tk.Frame):
             highlightthickness=1,
         )
         self.normal_background = background
+        self.appearance_icon = title
         self.command = command
 
         header = tk.Frame(
@@ -719,6 +729,11 @@ class MembershipStatusCard(tk.Frame):
     def _paint(self, background: str) -> None:
         for widget in self.widgets:
             widget.configure(bg=background)
+        self._refresh_appearance_icon()
+
+    def _refresh_appearance_icon(self):
+        from common.appearance import refresh_icon
+        refresh_icon(self)
 
     def _enter(self, _event: tk.Event[Any]) -> None:
         self._paint(COLORS["surface_hover"])
@@ -1819,14 +1834,16 @@ class DashboardPage(BasePage):
                 bg=COLORS["surface"],
             ).pack(side="left")
 
-            tk.Label(
+            metric_icon = tk.Label(
                 header,
                 text=icon,
                 width=2,
                 bg=icon_background,
                 fg=color,
                 font=(ICON_FONT, 13),
-            ).pack(side="right", ipady=5)
+            )
+            metric_icon._appearance_glyph = label
+            metric_icon.pack(side="right", ipady=5)
 
             value = tk.Label(
                 card,
@@ -6440,6 +6457,8 @@ class SettingsPage(BasePage):
             style="Card.TFrame",
         )
         notebook.add(plans_tab, text="Planes")
+        from common.appearance import appearance_settings
+        notebook.add(appearance_settings(notebook), text="Apariencia")
 
         plans_tab.columnconfigure(0, weight=1)
         plans_tab.rowconfigure(0, weight=1)

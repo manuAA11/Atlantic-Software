@@ -115,8 +115,28 @@ class LoginDialog(tk.Toplevel):
         if str(parent.state()) != 'withdrawn':
             self.transient(parent)
         self.protocol('WM_DELETE_WINDOW', self.destroy)
-        self.viewport = ScrollArea(self, padding=28, width=520, height=640)
-        self.viewport.pack(fill='both', expand=True)
+        from common import atlantic_ui as appearance_kit
+        minimal = appearance_kit.THEME == 'minimal'
+        self._minimal_brand = None
+        self._login_width = 940 if minimal else 520
+        if minimal:
+            from atlantic_ui import COLORS
+            self._minimal_brand = tk.Frame(self, bg=COLORS['background'], width=340)
+            self._minimal_brand.pack(side='left', fill='both', expand=True, padx=(30,10))
+            from product_config import resource_root
+            from PIL import Image, ImageTk
+            with Image.open(resource_root() / self._atlantic_icon_name) as source:
+                brand_image = source.convert('RGBA')
+                brand_image.thumbnail((112,112))
+            self._minimal_brand_image = ImageTk.PhotoImage(brand_image, master=self)
+            tk.Label(self._minimal_brand,image=self._minimal_brand_image,bg=COLORS['background']).pack(expand=True,anchor='s',pady=(24,14))
+            tk.Label(self._minimal_brand,text=PRODUCT_NAME,bg=COLORS['background'],fg=COLORS['text'],
+                     font=(UI_FONT,28,'bold')).pack()
+            tk.Label(self._minimal_brand,text='La gestión de tu gimnasio,\nen un solo lugar.',
+                     bg=COLORS['background'],fg=COLORS['muted'],justify='center',
+                     font=(UI_FONT,12)).pack(expand=True,anchor='n',pady=(12,24))
+        self.viewport = ScrollArea(self, padding=28, width=480 if minimal else 520, height=640)
+        self.viewport.pack(side='right' if minimal else 'top', fill='both', expand=True)
         body = self.viewport.body
         from atlantic_ui import COLORS
         from product_config import resource_root
@@ -164,7 +184,7 @@ class LoginDialog(tk.Toplevel):
         self.bind('<Escape>', lambda _: self.destroy())
         self.bind('<Configure>', self.resize_text, add='+')
         self.update_idletasks()
-        fit_window(self, 520, max(640, self.viewport.body.winfo_reqheight()+60), parent=parent, minimum=(380, 400))
+        fit_window(self, self._login_width, max(640, self.viewport.body.winfo_reqheight()+60), parent=parent, minimum=(380, 400))
         self.deiconify()
         self.lift()
         self.grab_set()
@@ -172,7 +192,12 @@ class LoginDialog(tk.Toplevel):
 
     def resize_text(self, event):
         if event.widget is self:
-            width = max(220, self.winfo_width() - 72)
+            if self._minimal_brand is not None:
+                if self.winfo_width() < 820:
+                    self._minimal_brand.pack_forget()
+                elif not self._minimal_brand.winfo_manager():
+                    self._minimal_brand.pack(side='left', fill='both', expand=True, padx=(30,10),before=self.viewport)
+            width = max(220, self.viewport.winfo_width() - 72)
             self.subtitle.configure(wraplength=width)
             self.feedback_label.configure(wraplength=width)
 
