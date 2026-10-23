@@ -168,6 +168,12 @@ class PlatformControls:
             schema_supported=lambda schema:schema in SUPPORTED_SCHEMAS,busy=self.critical_busy,variant=variant)
         self.button=ttk.Button(sidebar,text='Sistema y avisos',command=self.open)
         self.button.pack(side='bottom',fill='x',padx=16,pady=10)
+        self.update_notice=ttk.Frame(sidebar)
+        ttk.Label(self.update_notice,text='Nueva versión disponible',wraplength=160).pack(anchor='w',pady=(0,5))
+        self.notice_button=ttk.Button(self.update_notice,style='Primary.TButton',command=self.open_update)
+        self.notice_button.pack(fill='x')
+        self._release_identity=None
+        self.available_release=None
         root.bind('<Destroy>',self.close,add='+')
         self.job=root.after(1500,self.start)
 
@@ -191,6 +197,7 @@ class PlatformControls:
         self.job=None
         if not getattr(self.root,'ready',False):self.job=self.root.after(500,self.start);return
         self.updater.confirm_started(healthy=self.core.cloud.sessions.state=='ONLINE')
+        self.core.update_status=self.updater.journal.value['state']
         door=getattr(self.root,'door',None)
         if door is not None:
             try:self.core.hardware_metadata['relay_configured']=bool(door.store.load().enabled)
@@ -204,7 +211,26 @@ class PlatformControls:
         self.job=None
         count=sum(not row.get('read_at') for row in (self.core.snapshot or {}).get('notifications',[]))
         self.button.configure(text=f'Sistema y avisos ({count})' if count else 'Sistema y avisos')
+        snapshot=self.core.snapshot or {}
+        channel=snapshot.get('configuration',{}).get('update_channel',CHANNEL)
+        releases=snapshot.get('releases',[])
+        identity=(channel,json.dumps(releases,sort_keys=True,separators=(',',':')))
+        if identity!=self._release_identity:
+            self.updater.channel=channel
+            self.available_release=self.updater.select(releases)
+            self._release_identity=identity
+        release=self.available_release
+        if release:
+            self.notice_button.configure(text=('Actualizar a ' if self.core.cloud.role=='admin' else 'Ver versión ')+release.version)
+            if not self.update_notice.winfo_manager():
+                self.update_notice.pack(side='bottom',fill='x',padx=16,pady=(2,6))
+        else:self.update_notice.pack_forget()
         self.job=self.root.after(5000,self.poll)
+
+    def open_update(self):
+        panel=self.open()
+        if self.core.cloud.role=='admin':
+            panel.after_idle(panel.update)
 
     def open(self):
         if self.panel is not None and self.panel.winfo_exists():self.panel.lift();return self.panel

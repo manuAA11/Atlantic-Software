@@ -252,7 +252,7 @@ def readme_for(metadata):
             'Este ZIP no modifica ni despliega bases de datos o el backend.\n\n'
             'Esta es una versión para configuración y pruebas. La aceptación final sigue pendiente; '
             'las pruebas locales no acreditan WhatsApp/Wompi reales, PostgreSQL concurrente ni lector/relé físico.\n\n'
-            'El panel PRIVADO_PROPIETARIO no está incluido. No mezcles Comercial con ZTATTUZ. '
+            'El panel PRIVADO_PROPIETARIO no está incluido. Atlantic Gym comparte la misma aplicación; conserva el perfil de conexión y la arquitectura de tu instalación. '
             'El runtime DigitalPersona se incluye dentro de la aplicación y no se distribuye aquí por separado.\n')
 
 

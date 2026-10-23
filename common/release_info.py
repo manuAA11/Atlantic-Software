@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-VERSION = '3.7.0'
+VERSION = '3.7.1'
 CHANNEL = 'beta'
 SUPPORTED_SCHEMAS = frozenset({'core-1'})
 
