@@ -1,8 +1,8 @@
 {
-  "version": "3.8.0",
-  "tag": "atlantic-gym-3.8.0-piloto",
+  "version": "3.8.1",
+  "tag": "atlantic-gym-3.8.1-piloto",
   "publish": true,
   "final": false,
-  "notes": "Actualización opcional de prueba 3.8.0: rutinas, ejercicios, clases, reservas y apariencia. Servidor de entrenamiento habilitado. Conserva los perfiles actuales. Instalación Windows de 32 bits y lector/relé físicos pendientes; NO FINAL.",
-  "publication_attempt": 2
+  "notes": "Corrección opcional de inicio de sesión: vuelve al formulario si falla la sesión guardada, permite corregir la contraseña y espera de forma limitada ante un token aún no válido. Mantiene acceso de versiones anteriores. Instalación Windows de 32 bits y lector/relé físicos pendientes; NO FINAL.",
+  "publication_attempt": 1
 }

@@ -8,11 +8,13 @@ import sys
 import time
 import tkinter as tk
 from tkinter import ttk
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'GymSoft_Comercial_3.6.0'))
 from desktop_ui import configure_dark_styles, decorate_window
 from runtime_cloud import LoginDialog
+from common import runtime_cloud as access
 
 
 def settle(root):
@@ -67,6 +69,39 @@ def main():
         # Reauthentication cannot create a different account.
         recovery=LoginDialog(root,allow_signup=False);settle(root)
         assert not recovery.mode_button.winfo_manager();checks+=1;recovery.destroy()
+        # Actual Tk form after a saved-token failure, then a rejected password.
+        # Neither failure displays an error dialog whose Cancel closes startup.
+        cloud=Mock(email='demo@example.invalid',role='admin')
+        cloud.restore_session.side_effect=ValueError('JWT issued at future')
+        cloud.load_gym.return_value=True
+        cloud.sign_in.side_effect=[ValueError('Invalid login credentials'),None]
+        forms=[]
+        def recovered_form(*args,**kwargs):
+            login=LoginDialog(*args,**kwargs);settle(root)
+            assert login.winfo_viewable() and root.winfo_exists()
+            assert login.email.get()=='demo@example.invalid' and login.password.get()==''
+            assert login.feedback.get() and 'JWT' not in login.feedback.get()
+            assert login.submit.winfo_rooty()+login.submit.winfo_height()<=login.winfo_rooty()+login.winfo_height()
+            assert login.password_entry.cget('show')=='*'
+            if args and args[0].state()!='withdrawn':
+                assert login.focus_get() is login.password_entry
+            forms.append(login)
+            root.after(60,lambda:(login.password.set('SyntheticPass123'),login.accept()))
+            return login
+        with patch.object(access,'CloudService',return_value=cloud), \
+             patch.object(access,'LoginDialog',side_effect=recovered_form), \
+             patch.object(access,'_record_login_error'), \
+             patch.object(access,'messagebox') as messages, \
+             patch('ui_tasks.run_io',side_effect=lambda parent,fn,**kw:fn()), \
+             patch('licensing.check_license',return_value={'allowed':True}):
+            assert access.connect_cloud(root) is cloud;checks+=1
+            assert len(forms)==2;checks+=1
+            cloud.restore_session.assert_called_once();checks+=1
+            assert cloud.sign_in.call_count==2;checks+=1
+            messages.askretrycancel.assert_not_called();checks+=1
+            messages.showerror.assert_not_called();checks+=1
+            cloud.sessions.logout.assert_not_called();checks+=1
+            assert root.winfo_exists();checks+=1
         root.withdraw();hidden=LoginDialog(root);settle(root)
         assert hidden.winfo_viewable();checks+=1;hidden.destroy()
         assert not errors,errors;checks+=1

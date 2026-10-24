@@ -26,6 +26,10 @@ class SessionOffline(ConnectionError):
     pass
 
 
+class SessionClockError(RuntimeError):
+    pass
+
+
 class MemorySessionStore:
     """Non-Windows fallback: intentionally never persists credentials in plaintext."""
     def __init__(self):
@@ -141,9 +145,10 @@ def revoked(error):
 
 
 class SessionManager:
-    def __init__(self, client, store, *, clock=time.time, monotonic=time.monotonic):
+    def __init__(self, client, store, *, clock=time.time, monotonic=time.monotonic, wait=time.sleep):
         self.client, self.auth, self.store = client, client.auth, store
         self.clock, self.monotonic = clock, monotonic
+        self.wait = wait
         self.lock = threading.RLock()
         self.session = None
         self.state = 'SIGNED_OUT'
@@ -371,15 +376,33 @@ class DeferredQuery:
             self.client.core_control.require_operation()
         session = manager.ensure()
         token = session.access_token if session else None
-        try:
-            return self._execute()
-        except Exception as error:
-            # PostgREST rejects JWT before executing SQL. Never retry generic 401,
-            # transport failure, timeout, constraint error, or an ambiguous write.
-            if not token or str(getattr(error, 'code', '')) not in {'PGRST301', 'PGRST303'}:
-                raise
-            manager.ensure(force=True, rejected_token=token)
-            return self._execute()
+        refreshed = False
+        future_attempt = 0
+        delays = (1., 2., 3.)
+        while True:
+            try:
+                return self._execute()
+            except Exception as error:
+                # PostgREST rejects JWT before executing SQL. Never retry generic
+                # 401, transport errors, timeouts or an ambiguous write.
+                if not token or str(getattr(error, 'code', '')) not in {'PGRST301', 'PGRST303'}:
+                    raise
+                message = str(getattr(error, 'message', error)).casefold()
+                if 'jwt issued at future' in message or 'jwt not yet valid' in message:
+                    # A fresh token needs time, not another rotation. This runs
+                    # in the existing IO worker and never bypasses server checks.
+                    if future_attempt == len(delays):
+                        raise SessionClockError(
+                            'El servidor todavía no pudo validar la sesión. '
+                            'Espera unos segundos y vuelve a intentarlo.') from None
+                    manager.wait(delays[future_attempt])
+                    future_attempt += 1
+                    continue
+                if refreshed:
+                    raise
+                session = manager.ensure(force=True, rejected_token=token)
+                token = session.access_token if session else None
+                refreshed = True
 
 
 class ManagedFunctions:

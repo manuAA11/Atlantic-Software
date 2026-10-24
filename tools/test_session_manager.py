@@ -5,12 +5,14 @@ from types import SimpleNamespace as NS
 from unittest.mock import Mock
 
 from common.session_manager import (MemorySessionStore, SessionManager, SessionOffline,
-    SessionUnavailable, ManagedClient)
+    SessionUnavailable, SessionClockError, ManagedClient)
 
 
 class Error(Exception):
-    def __init__(self, code):
+    def __init__(self, code, message=''):
         self.code = code
+        self.message = message
+        super().__init__(message)
 
 
 def session(token='old', expires=100):
@@ -103,6 +105,66 @@ class Sessions(unittest.TestCase):
         self.assertEqual(client.rpc('register_checkin', {}).execute().data, ['result'])
         self.assertEqual(self.client.rpc.call_count, 2)
         self.client.auth.refresh_session.assert_called_once_with('valid-refresh')
+
+    def test_future_jwt_waits_without_rotating_or_logging_out(self):
+        manager = self.manager()
+        manager.session = session('valid', 3000)
+        manager.wait = Mock()
+        query = self.client.rpc.return_value
+        query.execute.side_effect = [Error('PGRST303', 'JWT issued at future'),
+            Error('PGRST303', 'JWT issued at future'), NS(data='saved')]
+        self.assertEqual(ManagedClient(self.client, manager).rpc('write').execute().data, 'saved')
+        self.assertEqual([c.args[0] for c in manager.wait.call_args_list], [1., 2.])
+        self.client.auth.refresh_session.assert_not_called()
+        self.client.auth.sign_out.assert_not_called()
+        self.assertEqual(query.execute.call_count, 3)
+
+    def test_future_jwt_exhaustion_is_bounded_and_preserves_session(self):
+        manager = self.manager()
+        original = manager.session = session('valid', 3000)
+        manager.wait = Mock()
+        query = self.client.rpc.return_value
+        query.execute.side_effect = Error('PGRST303', 'JWT issued at future')
+        with self.assertRaisesRegex(SessionClockError, 'servidor'):
+            ManagedClient(self.client, manager).rpc('write').execute()
+        self.assertEqual(query.execute.call_count, 4)
+        self.assertEqual(sum(c.args[0] for c in manager.wait.call_args_list), 6.)
+        self.assertIs(manager.session, original)
+        self.client.auth.refresh_session.assert_not_called()
+        self.client.auth.sign_out.assert_not_called()
+
+    def test_expired_then_future_jwt_refreshes_once_then_waits(self):
+        manager = self.manager()
+        manager.session = session('valid', 3000)
+        manager.wait = Mock()
+        self.client.rpc.return_value.execute.side_effect = [Error('PGRST303', 'JWT expired'),
+            Error('PGRST303', 'JWT issued at future'), NS(data='saved')]
+        self.assertEqual(ManagedClient(self.client, manager).rpc('write').execute().data, 'saved')
+        self.client.auth.refresh_session.assert_called_once()
+        manager.wait.assert_called_once_with(1.)
+
+    def test_generic_401_or_future_message_without_jwt_code_never_replays(self):
+        for error in (Error('401', 'JWT issued at future'), Error('42501', 'JWT issued at future')):
+            manager = Sessions.manager(self)
+            manager.session = session('valid', 3000)
+            manager.wait = Mock()
+            self.client.rpc.return_value.execute.side_effect = error
+            with self.assertRaises(Error):
+                ManagedClient(self.client, manager).rpc('write').execute()
+            self.client.rpc.return_value.execute.assert_called_once()
+            manager.wait.assert_not_called()
+            self.client.auth.refresh_session.assert_not_called()
+
+    def test_transport_failure_after_future_rejection_never_replays(self):
+        manager = self.manager()
+        manager.session = session('valid', 3000)
+        manager.wait = Mock()
+        self.client.rpc.return_value.execute.side_effect = [Error('PGRST303', 'JWT issued at future'),
+            TimeoutError('uncertain write')]
+        with self.assertRaises(TimeoutError):
+            ManagedClient(self.client, manager).rpc('write').execute()
+        self.assertEqual(self.client.rpc.return_value.execute.call_count, 2)
+        manager.wait.assert_called_once_with(1.)
 
     def test_edge_calls_refresh_before_invocation_and_never_replay(self):
         manager = self.manager()

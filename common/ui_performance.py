@@ -35,7 +35,10 @@ def classify_read_failure(error):
     code = raw_code if raw_code in safe_codes else ''
     message = str(getattr(error, 'message', '') or error).casefold()
     kind = type(error).__name__.casefold()
-    if code in {'PGRST301', 'PGRST302', 'PGRST303', '28000', '28P01'} or any(
+    if kind == 'sessionclockerror':
+        category = 'server_clock'
+        guidance = 'El servidor todavía no pudo validar la sesión. Espera unos segundos y vuelve a actualizar esta sección.'
+    elif code in {'PGRST301', 'PGRST302', 'PGRST303', '28000', '28P01'} or any(
             term in message for term in ('jwt expired', 'invalid jwt', 'refresh token', 'not authenticated')):
         category = 'session'
         guidance = 'La sesión necesita volver a validarse. Selecciona Iniciar sesión en el aviso de conexión.'

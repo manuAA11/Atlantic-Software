@@ -8,6 +8,13 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'GymSoft_ZTATTUZ_3.6.1
 from ui_performance import AsyncPageMixin,ReadFailure,classify_read_failure
 
 class InterfaceTexts(unittest.TestCase):
+    def test_future_token_has_safe_server_guidance(self):
+        from common.session_manager import SessionClockError
+        result=classify_read_failure(SessionClockError('synthetic'))
+        self.assertEqual(result.category,'server_clock')
+        self.assertIn('servidor',result.message)
+        self.assertNotIn('contraseña',result.message)
+
     def test_same_cause_is_not_repeated_for_two_sections(self):
         text='Inicia sesión de nuevo para continuar.'
         page=NS(_view_error_details={

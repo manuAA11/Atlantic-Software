@@ -79,6 +79,26 @@ class SDKSessionTests(unittest.TestCase):
         self.assertEqual(second.session.refresh_token, 'initial-refresh')
         self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
 
+    def test_actual_postgrest_future_rejection_waits_with_same_auth_header(self):
+        first, _ = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        first.clock = lambda: self.exp-1000
+        waits, calls = [], []
+        first.wait = waits.append
+        def handler(request):
+            calls.append(request)
+            self.assertTrue(request.url.path.endswith('/rpc/test_write'))
+            self.assertEqual(request.headers['Authorization'], 'Bearer '+token(self.exp))
+            if len(calls) <= 2:
+                return httpx.Response(401, json={'code': 'PGRST303', 'message': 'JWT issued at future',
+                    'details': None, 'hint': None})
+            return httpx.Response(200, json={'ok': True})
+        self.transport.handler = handler
+        self.assertEqual(ManagedClient(first.client, first).rpc('test_write').execute().data, {'ok': True})
+        self.assertEqual(waits, [1., 2.])
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
+
     @unittest.skipUnless(sys.platform == 'win32', 'Windows DPAPI round-trip runs in Windows CI x86/x64')
     def test_dpapi_encrypted_at_rest_and_namespace_isolation(self):
         with tempfile.TemporaryDirectory() as folder:

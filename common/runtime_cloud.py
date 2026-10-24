@@ -104,7 +104,8 @@ class CloudService:
             raise ValueError('No se pudo confirmar el gimnasio creado.')
 
 class LoginDialog(tk.Toplevel):
-    def __init__(self, parent: tk.Misc, creating_account: bool = False, *, owner: bool = False, allow_signup: bool = True) -> None:
+    def __init__(self, parent: tk.Misc, creating_account: bool = False, *, owner: bool = False,
+                 allow_signup: bool = True, initial_email: str = '', error_message: str = '') -> None:
         super().__init__(parent)
         self.result: tuple[str, str] | None = None
         self.owner = owner
@@ -153,7 +154,7 @@ class LoginDialog(tk.Toplevel):
         self.heading.pack(anchor='w')
         self.subtitle = ttk.Label(body, wraplength=420, foreground=COLORS['muted'])
         self.subtitle.pack(anchor='w', fill='x', pady=(6, 22))
-        self.email, self.password = tk.StringVar(), tk.StringVar()
+        self.email, self.password = tk.StringVar(value=initial_email), tk.StringVar()
         ttk.Label(body, text='Correo electrónico').pack(anchor='w')
         self.email_entry = ttk.Entry(body, textvariable=self.email)
         self.email_entry.pack(fill='x', pady=(6, 16))
@@ -165,7 +166,7 @@ class LoginDialog(tk.Toplevel):
                         command=lambda: self.password_entry.configure(show='' if self.show_password.get() else '*')).pack(anchor='w')
         self.password_hint = ttk.Label(body, text='Usa al menos 12 caracteres.', foreground=COLORS['muted'])
         self.password_hint.pack(anchor='w', pady=(6, 0))
-        self.feedback = tk.StringVar()
+        self.feedback = tk.StringVar(value=error_message)
         self.feedback_label = ttk.Label(body, textvariable=self.feedback, foreground=COLORS['danger'], wraplength=420)
         self.feedback_label.pack(anchor='w', fill='x', pady=(10, 10))
         style = ttk.Style(self)
@@ -188,7 +189,7 @@ class LoginDialog(tk.Toplevel):
         self.deiconify()
         self.lift()
         self.grab_set()
-        self.email_entry.focus_force()
+        (self.password_entry if initial_email else self.email_entry).focus_force()
 
     def resize_text(self, event):
         if event.widget is self:
@@ -258,6 +259,9 @@ def _record_login_error(error: Exception) -> None:
 def _friendly_login_error(error: Exception) -> str:
     message = friendly_error(error)
     lowered = message.casefold()
+    if 'jwt issued at future' in lowered or 'jwt not yet valid' in lowered:
+        return ('El servidor todavía no pudo validar la sesión. Espera unos segundos '
+                'y vuelve a iniciar sesión. Si continúa, contacta al soporte de Atlantic Gym.')
     if 'invalid login credentials' in lowered:
         return 'Correo o contraseña incorrectos.'
     if 'email not confirmed' in lowered:
@@ -273,16 +277,25 @@ def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService |
     from ui_tasks import run_io
     # The sign-in form includes account creation; no preliminary modal.
     account_mode = True
+    cloud = None
+    use_saved_session = True
+    last_email = ''
+    feedback = ''
     while True:
         try:
-            cloud = CloudService(session_role='reception' if reception else 'admin')
-            restored = run_io(parent, cloud.restore_session)
+            if cloud is None:
+                cloud = CloudService(session_role='reception' if reception else 'admin')
+            restored = use_saved_session and run_io(parent, cloud.restore_session)
+            use_saved_session = False
             if not restored:
-                dialog = LoginDialog(parent, creating_account=account_mode is False)
+                dialog = LoginDialog(parent, creating_account=account_mode is False,
+                    initial_email=last_email or cloud.email, error_message=feedback)
                 parent.wait_window(dialog)
                 if not dialog.result:
+                    cloud.sessions.close()
                     return None
                 email, password = dialog.result
+                last_email = email
                 account_mode = not dialog.creating_account
                 if account_mode:
                     run_io(parent, lambda: cloud.sign_in(email, password))
@@ -320,13 +333,14 @@ def connect_cloud(parent: tk.Misc, *, reception: bool = False) -> CloudService |
             return cloud
         except Exception as error:
             _record_login_error(error)
-            message = _friendly_login_error(error)
-            retry = messagebox.askretrycancel(
-                'No se pudo iniciar sesión',
-                message + '\n\nPuedes volver a intentarlo o cancelar el acceso.',
-                parent=parent,
-            )
-            if not retry:
+            if cloud is None:
+                # Configuration errors cannot be corrected with credentials.
+                messagebox.showerror('No se pudo conectar', _friendly_login_error(error), parent=parent)
                 return None
-            # Mantiene el modo elegido. Reintentar abre directamente el
-            # formulario de acceso y permite corregir correo o contraseña.
+            # A failed restore must never load the same saved session in a loop.
+            # Return to the real access form, with no Cancel action that exits
+            # the application and no stored password. Only closing that form
+            # explicitly cancels startup. Existing sessions are not revoked.
+            use_saved_session = False
+            account_mode = True
+            feedback = _friendly_login_error(error)
