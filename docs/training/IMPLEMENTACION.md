@@ -63,19 +63,29 @@ La restricción única existente evita reservas repetidas. Cambiar capacidad no 
 invalidar cupos ocupados; cancelar una clase cancela sus reservas pendientes y deja
 el historial. Una clase puede exigir membresía vigente: se consulta el estado
 canónico del servidor, incluida congelación. La política anterior de inscripción
-manual se conserva para clases existentes.
+manual se conserva para clases existentes. La condición queda sin especificar en
+las filas antiguas: se conserva la membresía obligatoria del flujo móvil anterior.
+Las clases creadas o editadas eligen una condición explícita, igual en ambos
+clientes. Una clase abierta sólo admite al deportista previamente vinculado y
+autorizado; reservar no habilita la puerta ni modifica su membresía.
 
 League sigue leyendo las mismas tablas mediante sus servicios existentes.
 Se reutiliza `gym_events` para avisar cambios de rutinas, ejercicios, clases y
 reservas a las sesiones de personal. La página vuelve a consultar sus datos aun
-si la identidad y los permisos no cambiaron. Agenda en la PWA consulta al abrirla,
-al volver al primer plano y cada 30 segundos mientras está visible; descarta
-respuestas anteriores al cambiar de gimnasio. Este código también requiere
+si la identidad y los permisos no cambiaron. Agenda y Mis rutinas en la PWA
+consultan al abrirse, al volver al primer plano y cada 30 segundos mientras están
+visibles; descartan respuestas anteriores al cambiar de gimnasio. Este código también requiere
 publicar la nueva PWA antes de aparecer en la versión operativa. La nueva
 RPC no crea cuentas deportivas, vínculos ni mensualidades ficticias, ni cambia la
 lista del piloto. Los ejercicios desactivados se ocultan de los catálogos de League
 sin borrar entrenamientos anteriores. Los datos de ejemplo nunca se muestran como
 actividad real de deportistas.
+
+El adaptador source amplía las respuestas existentes con duración, condiciones,
+zona IANA y requisito de membresía de las clases e indicaciones de ejercicios.
+Conserva la comprobación del perfil y la lista permitida del piloto. Las horas de
+Agenda se muestran en la zona del gimnasio; una respuesta antigua sin esa zona se
+identifica como hora del dispositivo. No se rellenan duraciones históricas.
 
 ## Archivos principales
 
@@ -84,6 +94,7 @@ actividad real de deportistas.
 | Pantallas | `common/training_ui.py`, puntos de entrada de `app.py` y `reception_app.py` |
 | Modelo y conexión | `training_models.py`, `training_service.py`, ambos adaptadores de base de datos |
 | Apariencia y carga | `appearance.py`, `platform_ui.py`, `ui_performance.py` |
+| PWA compartida | `GymScreen.tsx`, `TrainingScreen.tsx`, `WorkoutScreen.tsx`, `gymSchedule.ts`, `useVisibleRefresh.ts` |
 | Migración | `training/supabase/migrations/20261024013933_gym_training_workspace.sql` |
 | Ejemplos controlados | `training/seeds/examples.sql`, `examples.json`, generador sin conexión |
 | Reversión | `training/rollback/disable_workspace.sql` |

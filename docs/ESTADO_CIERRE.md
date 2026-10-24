@@ -307,5 +307,8 @@ Diagnóstico, archivos, migración, carga controlada, reversión y límites:
 `docs/training/DIAGNOSTICO.md`, `IMPLEMENTACION.md` y `VALIDACION.md`.
 No se aplica SQL ni se cargan ejemplos en ZTATTUZ. No se publica una actualización
 remota ni se modifica `release_readiness.json`. La integración nativa con datos
-sintéticos y los servicios source de League pasa; Windows físico y concurrencia
-entre dos backends reales quedan sujetos a los gates de publicación.
+sintéticos y los servicios source de League pasa. El run de League `40085884463`
+aprobó 27 pruebas de integración, las carreras con dos backends PostgreSQL 17 y
+8 pruebas de navegador sobre `66f1eba`. La matriz Windows de esta revisión y los
+gates de publicación se registran en `docs/training/VALIDACION.md`; no se acredita
+hardware ni aceptación productiva con estos fixtures.
