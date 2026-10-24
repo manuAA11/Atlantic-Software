@@ -34,6 +34,6 @@ export function AccountScreen(){
   <Card><Label>Mi objetivo semanal</Label><Chips value={goal} onChange={setGoal} items={[1,2,3,4,5,6,7].map(n=>({value:String(n),label:String(n)+(n===1?' día':' días')}))}/><Button label="Guardar objetivo" kind="quiet" busy={busy} onPress={()=>void perform('profile.update',{alias,leaderboard_opt_in:optIn,weekly_goal:Number(goal)},'Objetivo actualizado.')}/></Card>
   <Button label="Cerrar sesión" kind="quiet" onPress={logout}/>
   {!demo&&<Card><Label>Eliminar mi cuenta de League</Label><Label muted>Se eliminarán tu perfil deportivo, entrenamientos y evidencias de League. Tu registro y las obligaciones con el gimnasio se conservan en Atlantic Gym.</Label><Field label="Confirma tu contraseña" value={password} onChangeText={setPassword} secureTextEntry autoCapitalize="none"/><Button label="Eliminar mi cuenta" kind="danger" busy={busy} onPress={()=>confirmAction('¿Eliminar tu cuenta de League?','Esta operación no se puede deshacer. Sincroniza o conserva tus registros antes de continuar.','Eliminar cuenta',()=>void remove())}/></Card>}
-  <Text style={[s.body,{textAlign:'center',fontSize:11}]}>Atlantic League · 0.2.0 · Piloto{'\n'}© Atlantic Tech Software — All rights reserved. By Manuel Cuellar</Text>
+  <Text style={[s.body,{textAlign:'center',fontSize:11}]}>Atlantic League · 0.3.0 · Piloto{'\n'}© Atlantic Tech Software — All rights reserved. By Manuel Cuellar</Text>
  </Screen>;
 }
