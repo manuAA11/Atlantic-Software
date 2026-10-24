@@ -99,8 +99,10 @@ class AsyncPanel(AsyncPageMixin,ttk.Frame):
 
 class Window(tk.Toplevel):
     def __init__(self,parent,title,width=980,height=740):
-        super().__init__(parent);self.title('Atlantic Gym · '+title);decorate_window(self)
+        super().__init__(parent._root());self.title('Atlantic Gym · '+title);decorate_window(self)
+        self.configure(bg=kit.COLORS['background'])
         self.transient(parent.winfo_toplevel());fit_window(self,width,height,parent=parent)
+        ttk.Label(self,text=kit.COPYRIGHT,font=(kit.UI_FONT,7),style='CardMuted.TLabel').pack(side='bottom',anchor='w',padx=14,pady=(0,5))
         self.result=None;self.db=parent.db;self.writes=PendingWrites()
         footer=ttk.Frame(self,padding=12);footer.pack(side='bottom',fill='x')
         self.footer=footer
@@ -462,7 +464,7 @@ class ClassEditor(Window):
             value=(self.initial.get(key) if self.initial.get(key) is not None else default) if key!='starts_at' else current
             if key=='trainer':value=next((k for k,v in self.coaches.items() if v==self.initial.get('trainer_id')),'Sin asignar')
             self.fields[key]=tk.StringVar(value=value);text_field(self.body,title,self.fields[key],i//2,i%2,options)
-        self.membership=tk.BooleanVar(value=self.initial.get('requires_membership',True))
+        self.membership=tk.BooleanVar(value=self.initial.get('requires_membership') is not False)
         ttk.Checkbutton(self.body,text='Requiere membresía vigente y habilitada para inscribirse',variable=self.membership).grid(row=6,column=0,columnspan=2,sticky='w',pady=10)
         ttk.Label(self.body,text='Las repeticiones se crean como fechas independientes. Puedes editar o cancelar cada una sin afectar las demás.',style='CardMuted.TLabel',wraplength=620).grid(row=7,column=0,columnspan=2,sticky='w',pady=8)
         ttk.Button(self.footer,text='Guardar clase',style='Primary.TButton',command=self.save).pack(side='left')

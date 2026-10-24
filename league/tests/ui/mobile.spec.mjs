@@ -9,13 +9,13 @@ test('phone demo completes a workout, reserves a class and opens story templates
  await page.getByLabel('Repeticiones',{exact:true}).fill('8');
  await page.getByRole('button',{name:'Añadir serie',exact:true}).click();
  await expect(page.getByText('1 serie registrada',{exact:true})).toBeVisible();
- if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ if(await page.getByText('Toca para cerrar',{exact:true}).isVisible())await page.getByText('Toca para cerrar',{exact:true}).click();
  await page.getByRole('button',{name:'Terminar y guardar'}).click();
- if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ if(await page.getByText('Toca para cerrar',{exact:true}).isVisible())await page.getByText('Toca para cerrar',{exact:true}).click();
  await expect(page.getByText('Mi entrenamiento',{exact:true})).toBeVisible();
  await page.getByRole('tab',{name:/Agenda/}).click();
  await page.getByRole('button',{name:'Reservar clase',exact:true}).click();
- if(await page.getByText('Toca para cerrar').isVisible())await page.getByText('Toca para cerrar').click();
+ if(await page.getByText('Toca para cerrar',{exact:true}).isVisible())await page.getByText('Toca para cerrar',{exact:true}).click();
  await expect(page.getByRole('button',{name:'Cancelar mi reserva'})).toBeVisible();
  await page.getByRole('tab',{name:/Inicio/}).click();
  await page.getByRole('button',{name:'Crear historia',exact:true}).click();

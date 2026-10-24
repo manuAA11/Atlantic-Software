@@ -16,7 +16,7 @@ html=html.replace('<html lang="en">','<html lang="es">').replace('</head>','<lin
 html=html.replace('width=device-width, initial-scale=1, shrink-to-fit=no','width=device-width, initial-scale=1, viewport-fit=cover');
 html=html.replace('</head>',`<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="mobile-web-app-capable" content="yes"><style>
 html,body{width:100%;height:100%;margin:0;background:#F5F8FB;overflow:hidden;overscroll-behavior-y:none}
-#root{width:100%;height:100%;height:100dvh;height:var(--league-viewport-height,100dvh);max-height:var(--league-viewport-height,100dvh);min-height:0;overflow:hidden;isolation:isolate}
+#root{width:100%;height:100%;height:100dvh;height:min(100dvh,var(--league-viewport-height,100dvh));max-height:100dvh;min-height:0;overflow:hidden;isolation:isolate}
 </style></head>`);
 await writeFile(path.join(out,'index.html'),html);
 async function walk(dir){const result=[];for(const entry of await readdir(dir,{withFileTypes:true})){const name=path.join(dir,entry.name);if(entry.isDirectory())result.push(...await walk(name));else result.push(name);}return result;}

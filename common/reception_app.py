@@ -525,7 +525,7 @@ class SidebarButton(tk.Frame):
             text=icon,
             width=3,
             bg=COLORS["sidebar"],
-            fg="#8EA0BA",
+            fg=COLORS["muted"],
             font=(ICON_FONT, 13),
             cursor="hand2",
         )
@@ -536,7 +536,7 @@ class SidebarButton(tk.Frame):
             text=text,
             anchor="w",
             bg=COLORS["sidebar"],
-            fg="#B7C3D4",
+            fg=COLORS["muted"],
             font=(FONT_FAMILY, 9, "bold"),
             cursor="hand2",
         )
@@ -574,10 +574,10 @@ class SidebarButton(tk.Frame):
             bg=COLORS["accent"] if active else COLORS["sidebar"]
         )
         self.icon.configure(
-            fg="#FFFFFF" if active else "#8EA0BA"
+            fg=COLORS["text"] if active else COLORS["muted"]
         )
         self.label.configure(
-            fg="#FFFFFF" if active else "#B7C3D4"
+            fg=COLORS["text"] if active else COLORS["muted"]
         )
 
 

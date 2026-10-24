@@ -70,7 +70,14 @@ for factor in (1,1.25):
         pump(root,lambda:any(a=='routines' and d.get('query')=='Búsqueda QA' for a,d in db.calls))
         db.slow=False;root.after_cancel(timer[0]);assert len(ticks)>=3,'Tk blocked during the simulated network read';checks+=1
         workspace.catalog_query.set('cuadriceps');pump(root,lambda:len(workspace.catalog_tree.get_children())==1)
+        root._atlantic_icon_name='icono_recepcion.ico'
         editor=RoutineEditor(workspace);editor.tabs.select(1);pump(root)
+        assert editor._atlantic_icon_name=='icono_recepcion.ico'
+        from common.platform_ui import application_busy
+        assert application_busy(root)
+        assert editor.cget('bg')==kit.COLORS['background']
+        assert ttk.Style(root).lookup(editor.footer.cget('style') or 'TFrame','background')==kit.COLORS['background']
+        checks+=4
         chosen=DATA['exercises'][0];editor.picker.toggle(chosen['id']);pump(root)
         editor.query.set('remo');pump(root,lambda:editor.picker.tree.get_children() and chosen['id'] not in editor.picker.tree.get_children())
         assert editor.selection.catalog_ids=={chosen['id']};checks+=1

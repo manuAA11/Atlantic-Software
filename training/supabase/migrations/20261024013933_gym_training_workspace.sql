@@ -16,8 +16,9 @@ alter table public.routines add column if not exists assigned_by uuid;
 alter table public.routines add column if not exists assigned_at timestamptz;
 alter table public.classes add column if not exists duration_minutes integer check(duration_minutes between 5 and 600);
 alter table public.classes add column if not exists conditions text not null default '';
--- Preserve legacy desktop enrollment rules. New editor explicitly chooses a condition.
-alter table public.classes add column if not exists requires_membership boolean not null default false;
+-- NULL preserves both legacy paths: manual enrollment unchanged; mobile still
+-- requires membership. New/edited classes choose an explicit shared condition.
+alter table public.classes add column if not exists requires_membership boolean;
 alter table public.classes add column if not exists recurrence_id uuid;
 alter table public.classes add column if not exists version integer not null default 1;
 create table if not exists public.gym_routine_templates(
@@ -123,6 +124,23 @@ begin
 end $$;
 drop trigger if exists gym_training_reservation_history on public.reservations;
 create trigger gym_training_reservation_history after insert or update on public.reservations for each row execute function league_source_private.training_reservation_history();
+
+-- Private shared enrollment primitive. Each caller authorizes its own actor;
+-- the trigger also protects legacy/direct writers under this same class lock.
+create or replace function league_source_private.training_reserve(g uuid,c bigint,k bigint) returns bigint language plpgsql security definer set search_path='' as $$
+declare r bigint;
+begin
+ perform 1 from public.classes where id=k and gym_id=g for update;
+ if not found then raise exception 'Clase no disponible.' using errcode='42501';end if;
+ select id into r from public.reservations where gym_id=g and class_id=k and client_id=c;
+ if r is null then
+  insert into public.reservations(gym_id,class_id,client_id,status) values(g,k,c,'RESERVADA') returning id into r;
+ else
+  update public.reservations set status=case when status='ASISTIO' then 'ASISTIO' else 'RESERVADA' end where gym_id=g and id=r;
+ end if;
+ return r;
+end $$;
+revoke all on function league_source_private.training_reserve(uuid,bigint,bigint) from public,anon,authenticated,service_role;
 
 create or replace function league_source_private.training(g uuid,a text,d jsonb) returns jsonb language plpgsql security definer set search_path='' as $$
 declare role_name text:=league_source_private.training_role(g);result jsonb;items jsonb;picked jsonb;
@@ -275,7 +293,7 @@ begin
    if not found then raise exception 'Clase no disponible.' using errcode='42501';end if;
    if cl.version<>coalesce((d->>'version')::int,0) then raise exception 'La clase cambió. Actualiza antes de guardar.';end if;
    update public.classes set name=trim(d->>'name'),trainer_id=tid,starts_at=stamp,capacity=(d->>'capacity')::int,notes=coalesce(d->>'notes',''),duration_minutes=(d->>'duration_minutes')::int,
-    conditions=coalesce(d->>'conditions',''),requires_membership=coalesce((d->>'requires_membership')::boolean,false),status=coalesce(d->>'status','PROGRAMADA') where id=cl.id and gym_id=g;
+    conditions=coalesce(d->>'conditions',''),requires_membership=coalesce((d->>'requires_membership')::boolean,true),status=coalesce(d->>'status','PROGRAMADA') where id=cl.id and gym_id=g;
    result:=jsonb_build_array(jsonb_build_object('class_id',cl.id));
   else
    if stamp<=now() then raise exception 'Selecciona una fecha futura.';end if;
@@ -294,21 +312,13 @@ begin
     -- Keep the first explicit instant and preserve local time on later dates.
     insert into public.classes(gym_id,name,trainer_id,starts_at,capacity,notes,status,duration_minutes,conditions,requires_membership,recurrence_id)
      values(g,trim(d->>'name'),tid,next_stamp,
-      (d->>'capacity')::int,coalesce(d->>'notes',''),'PROGRAMADA',(d->>'duration_minutes')::int,coalesce(d->>'conditions',''),coalesce((d->>'requires_membership')::boolean,false),recur) returning id into rid;
+      (d->>'capacity')::int,coalesce(d->>'notes',''),'PROGRAMADA',(d->>'duration_minutes')::int,coalesce(d->>'conditions',''),coalesce((d->>'requires_membership')::boolean,true),recur) returning id into rid;
     result:=result||jsonb_build_array(jsonb_build_object('class_id',rid));
    end loop;
   end if;
  elsif a in ('reservation.reserve','reservation.cancel','reservation.attend') then
   if a='reservation.reserve' then
-   select * into cl from public.classes where gym_id=g and id=(d->>'class_id')::bigint for update;
-   if not found then raise exception 'Clase no disponible.' using errcode='42501';end if;
-   cid:=(d->>'client_id')::bigint;
-   select id into rid from public.reservations where gym_id=g and class_id=cl.id and client_id=cid;
-   if rid is null then
-    insert into public.reservations(gym_id,class_id,client_id,status) values(g,cl.id,cid,'RESERVADA') returning id into rid;
-   else
-    update public.reservations set status=case when status='ASISTIO' then 'ASISTIO' else 'RESERVADA' end where gym_id=g and id=rid;
-   end if;
+   rid:=league_source_private.training_reserve(g,(d->>'client_id')::bigint,(d->>'class_id')::bigint);
   else
    -- Lock order: class before reservation, same as mobile and enrollment.
    select * into cl from public.classes where gym_id=g and id=(select class_id from public.reservations where gym_id=g and id=(d->>'id')::bigint) for update;
@@ -341,6 +351,53 @@ do $$ declare relation text;begin
   end loop;
  end if;
 end $$;
+
+-- Extend the existing service-only source adapter, retaining its verified
+-- profile/pilot checks and the original policies for classes without a condition.
+do $$ begin
+ if to_regprocedure('league_source_private.athlete_before_training(uuid,uuid,text,jsonb)') is null then
+  alter function league_source_private.athlete(uuid,uuid,text,jsonb) rename to athlete_before_training;
+ end if;
+end $$;
+create or replace function league_source_private.athlete(g uuid,p uuid,a text,d jsonb) returns jsonb language plpgsql security definer set search_path='' as $$
+declare result jsonb;c bigint;class_row public.classes;plan jsonb;
+begin
+ if a='reserve' then
+  result:=league_source_private.athlete_before_training(g,p,'membership','{}');
+  select client_id into c from public.league_client_profiles where gym_id=g and profile_id=p;
+  select * into class_row from public.classes where gym_id=g and id=(d->>'class_id')::bigint for update;
+  if not found then raise exception 'Clase no disponible.' using errcode='42501';end if;
+  if class_row.requires_membership is distinct from false and not coalesce((result->>'active')::boolean,false) then
+   raise exception 'Necesitas una membresía activa para reservar.' using errcode='42501';
+  end if;
+  perform league_source_private.training_reserve(g,c,class_row.id);
+  return jsonb_build_object('reserved',true);
+ end if;
+ result:=league_source_private.athlete_before_training(g,p,a,d);
+ if a='calendar' then
+  select coalesce(jsonb_agg(e.value||jsonb_build_object('duration_minutes',k.duration_minutes,'conditions',k.conditions,
+   'requires_membership',k.requires_membership,'timezone',nullif(btrim(t.timezone),'')) order by e.ordinality),'[]') into result
+   from jsonb_array_elements(result) with ordinality e(value,ordinality)
+   join public.classes k on k.gym_id=g and k.id=(e.value->>'id')::bigint join public.gyms t on t.id=g;
+ elsif a='routine.snapshot' and result is not null then
+  select coalesce(jsonb_agg(e.value||jsonb_build_object('notes',x.notes) order by e.ordinality),'[]') into plan
+   from jsonb_array_elements(result->'exercises') with ordinality e(value,ordinality)
+   join public.exercises x on x.gym_id=g and x.id=(e.value->>'id')::bigint;
+  result:=result||jsonb_build_object('exercises',plan);
+ elsif a='routines' then
+  select coalesce(jsonb_agg(r.value||jsonb_build_object('exercises',(
+   select coalesce(jsonb_agg(e.value||jsonb_build_object('notes',x.notes) order by e.ordinality),'[]')
+   from jsonb_array_elements(r.value->'exercises') with ordinality e(value,ordinality)
+   join public.exercises x on x.gym_id=g and x.id=(e.value->>'id')::bigint)) order by r.ordinality),'[]') into result
+   from jsonb_array_elements(result) with ordinality r(value,ordinality);
+ end if;
+ return result;
+end $$;
+create or replace function public.league_source(p_gym_id uuid,p_profile_id uuid,p_action text,p_data jsonb default '{}') returns jsonb language sql security invoker set search_path='' as $$
+ select league_source_private.athlete(p_gym_id,p_profile_id,p_action,p_data)
+$$;
+revoke all on function league_source_private.athlete_before_training(uuid,uuid,text,jsonb),league_source_private.athlete(uuid,uuid,text,jsonb),public.league_source(uuid,uuid,text,jsonb) from public,anon,authenticated;
+grant execute on function league_source_private.athlete(uuid,uuid,text,jsonb),public.league_source(uuid,uuid,text,jsonb) to service_role;
 
 -- Keep the existing athlete/gateway checks; hide deactivated exercises in catalogs.
 do $$ begin

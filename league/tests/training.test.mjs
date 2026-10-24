@@ -75,3 +75,44 @@ test('training persistence, revisions, templates, class lifecycle, tenant/role i
  assert.equal((await db.query("select count(*)::int n from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname='gym_training' and p.prosecdef")).rows[0].n,0);
  }finally{await db.close();}
 });
+
+test('League receives class conditions and exercise notes, with shared enrollment and legacy membership policy',async()=>{
+ const db=new PGlite();try{
+  await setupTraining(db);
+  const call=async(a,d={})=>(await db.query('select public.gym_training($1,$2,$3) value',[GYM,a,d])).rows[0].value;
+  const write=(a,d={})=>call(a,{...d,request_id:randomUUID()});
+  await db.exec('reset role');
+  await db.query('insert into public.league_gym_settings(gym_id,enabled,pilot_client_ids) values($1,true,array[1,3]::bigint[])',[GYM]);
+  await identity(db,ADMIN);
+  const provision=async client_id=>(await db.query("select public.league_staff($1,'provision',$2) value",[GYM,{client_id}])).rows[0].value.profile_id;
+  const linked=await provision(1),inactive=await provision(3);
+  const plans=await write('routine.assign',{name:'Instructions QA',clients:[1],exercises:[{...item,notes:'Mantén el movimiento controlado.'}]});
+  const classData={name:'Open QA',starts_at:new Date(Date.now()+86400000).toISOString(),capacity:3,duration_minutes:50,conditions:'Lleva una toalla.',requires_membership:false};
+  const open=(await write('class.save',classData))[0].class_id;
+  const closed=(await write('class.save',{...classData,name:'Members QA',requires_membership:true}))[0].class_id;
+  await db.exec('reset role');
+  const legacy=(await db.query("insert into public.classes(gym_id,name,starts_at,capacity,status) values($1,'Legacy QA',now()+interval '1 day',2,'PROGRAMADA') returning id",[GYM])).rows[0].id;
+  assert.equal((await db.query('select requires_membership from public.classes where id=$1',[legacy])).rows[0].requires_membership,null);
+  await identity(db,null,'service_role');
+  const source=async(profile,a,d={})=>(await db.query('select public.league_source($1,$2,$3,$4) value',[GYM,profile,a,d])).rows[0].value;
+  const calendar=await source(linked,'calendar'),event=calendar.find(e=>e.id===String(open));
+  assert.equal(event.duration_minutes,50);assert.equal(event.conditions,'Lleva una toalla.');assert.equal(event.timezone,'America/Bogota');assert.equal(event.requires_membership,false);
+  const routines=await source(linked,'routines');assert.equal(routines[0].exercises[0].notes,'Mantén el movimiento controlado.');
+  const snapshot=await source(linked,'routine.snapshot',{routine_id:plans[0].routine_id});assert.equal(snapshot.exercises[0].notes,routines[0].exercises[0].notes);
+  assert.equal(await source(inactive,'routine.snapshot',{routine_id:plans[0].routine_id}),null);
+  assert.equal((await source(inactive,'membership')).active,false);
+  await source(inactive,'reserve',{class_id:open});await source(inactive,'reserve',{class_id:open});
+  assert.equal((await source(inactive,'calendar')).find(e=>e.id===String(open)).mine,true);
+  await assert.rejects(source(inactive,'reserve',{class_id:closed}),/membresía/);
+  await assert.rejects(source(inactive,'reserve',{class_id:legacy}),/membresía/);
+  await assert.rejects(db.query('select public.league_source($1,$2,$3,$4)',[OTHER,inactive,'reserve',{class_id:open}]),/Perfil no disponible/);
+  await assert.rejects(db.query('select league_source_private.training_reserve($1,3,$2)',[GYM,open]),/permission denied/);
+  assert.equal((await source(inactive,'membership')).active,false);
+  await identity(db,ADMIN);const reservations=await call('reservations',{class_id:open});assert.equal(reservations.length,1);assert.equal(reservations[0].client_id,3);
+  await write('reservation.reserve',{class_id:legacy,client_id:3}); // legacy manual enrollment remains available
+  await db.exec('reset role');assert.equal((await db.query('select count(*)::int n from public.checkins')).rows[0].n,0);
+  await db.query('update public.league_gym_settings set enabled=false where gym_id=$1',[GYM]);await identity(db,null,'service_role');
+  await assert.rejects(source(inactive,'reserve',{class_id:open}),/habilitado/);
+  await identity(db,ALICE);await assert.rejects(source(linked,'calendar'),/permission denied/);
+ }finally{await db.close();}
+});

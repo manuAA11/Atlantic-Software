@@ -44,6 +44,8 @@ def assert_buttons_fit(root):
 
 def fake_db():
     db=Mock();db._today.return_value=date(2026,9,8)
+    # Explicit RPC data for the asynchronous training controls created by tabs.
+    db.training.side_effect=lambda action,data=None: ({'role':'admin','schema':'training-1'} if action=='context' else [])
     db.list_clients.return_value=[];db.list_checkins.return_value=[]
     db._execute.return_value.data={"conversations":[],"links":[],"connected":False}
     db.marketing_settings.return_value={}

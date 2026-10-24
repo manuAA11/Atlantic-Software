@@ -1,18 +1,23 @@
-import React,{useEffect,useState} from 'react';
+import React,{useCallback,useEffect,useState} from 'react';
 import {Pressable,Text,View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RootStack} from '../navigation';
 import type {Routine} from '../lib/domain';
 import {useAthlete} from '../state/AthleteContext';
+import {useVisibleRefresh} from '../lib/useVisibleRefresh';
 import {Icon} from '../components/Icon';
 import {Screen,Heading,Card,Label,Button,Chips,Empty,Field,useUi} from '../components/ui';
 export function TrainingScreen(){
  const {api,snapshot,catalog,setNotice}=useAthlete(),{color,s}=useUi(),nav=useNavigation<NativeStackNavigationProp<RootStack>>();
  const [gymId,setGymId]=useState(''),[plans,setPlans]=useState<Routine[]>([]),[query,setQuery]=useState(''),[expanded,setExpanded]=useState<string|null>(null);
  const links=snapshot?.links.filter(g=>g.status==='APPROVED')||[];
- useEffect(()=>{if(!gymId&&links.length)setGymId(links[0].gym_id);},[snapshot,gymId]);
- useEffect(()=>{let active=true;if(gymId)api.call<Routine[]>('gym.routines',{gym_id:gymId}).then(rows=>{if(active)setPlans(rows);}).catch(e=>{if(active){setPlans([]);setNotice(e.message);}});return()=>{active=false;};},[gymId,api,setNotice]);
+ useEffect(()=>{if(!links.some(link=>link.gym_id===gymId)){setGymId(links[0]?.gym_id||'');setPlans([]);}},[snapshot,gymId]);
+ useVisibleRefresh(useCallback(async isCurrent=>{
+  if(!gymId){setPlans([]);return;}
+  try{const rows=await api.call<Routine[]>('gym.routines',{gym_id:gymId});if(isCurrent())setPlans(rows);}
+  catch(e){if(isCurrent()){setPlans([]);setNotice(e instanceof Error?e.message:'No se pudieron consultar tus rutinas.');}}
+ },[gymId,api,setNotice]));
  const normalize=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  const filtered=catalog.filter(e=>normalize(e.name+' '+e.muscle+' '+e.equipment).includes(normalize(query.trim())));
  return <Screen>

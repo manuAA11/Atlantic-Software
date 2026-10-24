@@ -220,7 +220,7 @@ class Appearance:
         for name, fill, ink in [('TButton',c['surface_hover'],c['text']),
                                 ('Primary.TButton',c['primary'],'#FFFFFF' if kit.THEME.startswith('league_') else c['background']),
                                 ('Login.Primary.TButton',c['primary'],'#FFFFFF' if kit.THEME.startswith('league_') else c['background']),
-                                ('Accent.TButton',c['accent'],c['text']),
+                                ('Accent.TButton',c['blue_bg'] if kit.THEME.startswith('league_') else c['accent'],c['text']),
                                 ('Danger.TButton',c['danger_bg'],c['danger']),
                                 ('Calendar.TButton',c['surface_hover'],c['text'])]:
             compact=kit.THEME.startswith('league_')

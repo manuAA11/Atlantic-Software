@@ -87,6 +87,11 @@ def main():
                         command.state(['!disabled'])
                         command.invoke();assert called[-1]=='button'
                         nav.event_generate('<Button-1>');assert called[-1]=='nav'
+                        nav.set_active(True);pump(root)
+                        label=nav.text_label if cls is GymSoftApp else nav.label
+                        assert label.cget('fg')==kit.COLORS['text']
+                        nav.set_active(False);pump(root)
+                        assert label.cget('fg')==kit.COLORS['muted']
                         if name!='dark':
                             assert str(text.cget('background'))==kit.COLORS['surface'],(text.cget('background'),kit.COLORS['surface'])
                             assert nav.icon_label.cget('image') if cls is GymSoftApp else nav.icon.cget('image')

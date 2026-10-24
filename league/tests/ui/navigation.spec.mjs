@@ -20,7 +20,7 @@ for(const viewport of [{width:320,height:640},{width:390,height:844},{width:430,
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   expect(await page.evaluate(()=>/[\uE000-\uF8FF]/.test(document.body.textContent||''))).toBe(false);
   await page.setViewportSize({width:viewport.width,height:460});
-  const bar=await page.getByRole('tablist').boundingBox();expect(bar.y+bar.height).toBeLessThanOrEqual(460);
+  await expect.poll(async()=>{const bar=await page.getByRole('tablist').boundingBox();return bar.y+bar.height;},{timeout:2000}).toBeLessThanOrEqual(460);
   await page.getByLabel('Buscar ejercicio',{exact:true}).fill('');
   await page.getByRole('button',{name:'Empezar rutina',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Cada serie cuenta'})).toBeVisible();
