@@ -1,8 +1,8 @@
 {
   "version": "3.8.0",
   "tag": "atlantic-gym-3.8.0-piloto",
-  "publish": false,
+  "publish": true,
   "final": false,
-  "notes": "Candidata de prueba: catálogo de ejercicios, rutinas, clases, reservas y apariencia. Requiere despliegue controlado del servidor antes de habilitar estas herramientas.",
-  "publication_attempt": 1
+  "notes": "Actualización opcional de prueba 3.8.0: rutinas, ejercicios, clases, reservas y apariencia. Servidor de entrenamiento habilitado. Conserva los perfiles actuales. Instalación Windows de 32 bits y lector/relé físicos pendientes; NO FINAL.",
+  "publication_attempt": 2
 }
