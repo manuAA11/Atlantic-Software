@@ -1,8 +1,9 @@
 # Rutinas, clases y reservas de Atlantic Gym
 
 Candidata 3.8.0 compartida en `pruebas`, para los perfiles x86/x64. No hay una edición
-funcional separada para ZTATTUZ. No se ha enviado una actualización productiva ni aplicado
-esta migración a datos productivos.
+funcional separada para ZTATTUZ. Este documento describe la implementación y no
+representa el estado operativo de un gimnasio. Consultar `DESPLIEGUE_COMPATIBLE.md`
+para publicar; conservar recibos y comprobaciones de entornos reales en privado.
 
 ## Implementado
 
