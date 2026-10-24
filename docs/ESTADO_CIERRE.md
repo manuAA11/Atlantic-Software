@@ -316,3 +316,12 @@ aprobó los tres perfiles, incluida instalación/actualización/desinstalación 
 La instalación x86 permanece NOT_RUN por requerir Windows de 32 bits. El recheck
 PWA `40086794784` volvió a aprobar 27 casos y 8 pruebas de navegador. Los
 instaladores técnicos NO_FINAL no se publicaron en el actualizador del gimnasio.
+
+
+## Candidata Atlantic Gym 3.8.0 — preparación de despliegue
+
+Versión compartida x86/x64 en `pruebas`. Publicación desactivada; aceptación
+3.8.0 pendiente. Preflight real de sólo lectura compatible, actualización de
+entrenamiento aún sin aplicar al servidor. Ensayo de respaldos PostgreSQL con
+22 tablas sintéticas aprobado en League `40101080081`; compilación Windows
+`40101080087` en validación. Guía y resultados en `docs/training`.

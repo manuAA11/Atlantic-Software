@@ -137,3 +137,32 @@ La corrección automática propuesta cambia Expo a 44.0.6; no se ejecuta esa
 incompatibilidad sobre el SDK actual. Queda pendiente actualizar el CLI con una
 combinación compatible. No se presenta la auditoría npm como limpia ni se cambian
 certificados o credenciales de firma durante este desarrollo.
+
+
+## Candidata 3.8.0 y preparación del despliegue
+
+El desarrollo continúa en `pruebas` con versión nativa 3.8.0. El marcador de
+publicación está en `publish: false`; las tres fichas de aceptación tienen la
+versión nueva y conservan sus comprobaciones pendientes.
+
+Se consultó el servidor actual mediante una transacción de sólo lectura:
+PostgreSQL 17.6 y esquema previo compatible, con RPC nueva aún sin instalar.
+`evidence/training-preflight-20261024.json` conserva el resultado sin datos de
+clientes. El comprobador rechaza un despliegue parcial, permisos incorrectos,
+metadatos incompletos y ausencia de restricciones de duplicados/cupos.
+
+[League 40101080081](https://github.com/manuAA11/Atlantic-Software/actions/runs/40101080081)
+aprobó 29 casos, 8 pruebas de navegador y el nuevo ensayo `pg_dump`/`pg_restore`:
+respaldo previo y posterior, restauración de 22 tablas sintéticas, secuencias,
+permisos, reintentos idempotentes, reversión sin pérdida de datos y rechazo de un
+archivo corrupto. No se presenta ese ensayo como respaldo del Supabase real.
+
+[Windows 40101080087](https://github.com/manuAA11/Atlantic-Software/actions/runs/40101080087)
+valida los instaladores técnicos de la candidata 3.8.0; su resultado se registra
+al terminar. La publicación opcional `40101080102` omitió sus pasos de entrega
+porque el marcador está desactivado. No se crea una release ni un aviso productivo.
+
+Se añaden pruebas del rechazo de destinos remotos, URLs con sustitución de host y
+URLs mal formadas sin registrar contraseñas. La guía operativa actual es
+`DESPLIEGUE_CONTROLADO.md`. Las pruebas previas de 3.7.1 arriba se conservan como
+históricas; no se trasladan sus aceptaciones físicas a 3.8.0.

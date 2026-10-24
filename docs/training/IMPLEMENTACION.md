@@ -1,7 +1,7 @@
 # Rutinas, clases y reservas de Atlantic Gym
 
-Desarrollo compartido en `pruebas`, para los perfiles x86/x64. No hay una edición
-funcional separada para ZTATTUZ. No se ha publicado un instalador nuevo ni aplicado
+Candidata 3.8.0 compartida en `pruebas`, para los perfiles x86/x64. No hay una edición
+funcional separada para ZTATTUZ. No se ha enviado una actualización productiva ni aplicado
 esta migración a datos productivos.
 
 ## Implementado
@@ -145,3 +145,5 @@ artefactos de CI son técnicos NO_FINAL, no una publicación en el actualizador.
 - No se han aplicado migraciones, semillas, cambios de clientes, cuentas o licencias
   en ZTATTUZ durante esta tarea. Windows físico, hardware y aceptación del piloto
   siguen siendo necesarios para una publicación final.
+
+Preparación actual de servidor y respaldos: `DESPLIEGUE_CONTROLADO.md`.

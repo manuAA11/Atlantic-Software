@@ -10,7 +10,9 @@ import {authFixture,sourceFixture,migrations,identity,ADMIN,GYM,app} from './dat
 import {trainingMigration,trainingSeed} from './training-fixture.mjs';
 import {assessPreflight,readPreflight} from '../scripts/training-preflight.mjs';
 
-const url=new URL(process.env.LEAGUE_TEST_DATABASE_URL||'invalid:');
+let url;
+try{url=new URL(process.env.LEAGUE_TEST_DATABASE_URL||'invalid:');}
+catch{throw Error('Invalid disposable local PostgreSQL configuration');}
 if(!['postgres:','postgresql:'].includes(url.protocol)||!['localhost','127.0.0.1','[::1]'].includes(url.hostname)||url.search||url.hash||!(process.env.CI==='true'||process.env.LEAGUE_TEST_DATABASE_ALLOW_LOCAL==='1'))throw Error('Explicit disposable local PostgreSQL required; URL overrides are not allowed');
 const container=process.env.LEAGUE_TEST_POSTGRES_CONTAINER;
 if(container&&(!(process.env.CI==='true')||!(/^[\da-f]{12,64}$/i.test(container))))throw Error('Only the CI PostgreSQL service container is allowed');
