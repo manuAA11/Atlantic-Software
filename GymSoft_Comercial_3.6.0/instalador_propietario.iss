@@ -10,7 +10,7 @@
 #define BuildSuffix ""
 #endif
 #ifndef AppVersion
-#define AppVersion "3.7.1"
+#define AppVersion "3.8.0"
 #endif
 [Setup]
 AppId={{58D6DD62-FD67-4CC1-8D87-153AFB4EE44A}

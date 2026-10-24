@@ -11,7 +11,7 @@
 #endif
 #define RuntimeBits 64
 #ifndef AppVersion
-#define AppVersion "3.7.1"
+#define AppVersion "3.8.0"
 #endif
 [Setup]
 AppId={{6C58E8B8-C2ED-4B60-A080-EEA57BB407C2}
