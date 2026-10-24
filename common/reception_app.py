@@ -1049,6 +1049,54 @@ class BasePage(AsyncPageMixin, ttk.Frame):
 
 
 
+class ReceptionSettingsPage(BasePage):
+    title = "Configuración"
+
+    def __init__(self, parent, app):
+        super().__init__(parent, app)
+        self.page_header("Preferencias de Atlantic Gym en este equipo.")
+        tabs = ttk.Notebook(self)
+        tabs.pack(fill="both", expand=True)
+        from common.appearance import appearance_settings
+        tabs.add(appearance_settings(tabs), text="Apariencia")
+
+    def refresh(self):
+        # A local preferences page has no server read to complete its view state.
+        import time
+        self._view_loaded = True
+        self._view_dirty = False
+        self._view_updated_at = time.monotonic()
+        self._view_status.set('')
+
+
+class ReceptionTrainingPage(BasePage):
+    workspace_name = ''
+
+    def __init__(self, parent, app):
+        super().__init__(parent, app)
+        if not app.can_manage_training:
+            raise PermissionError("Tu cuenta no tiene permiso para gestionar entrenamiento.")
+        from common.training_ui import RoutinesWorkspace, ClassesWorkspace
+        workspace_type = RoutinesWorkspace if self.workspace_name == 'routines' else ClassesWorkspace
+        self.page_header("Herramientas de entrenamiento del gimnasio.")
+        self.workspace = workspace_type(self, self.db, autostart=False)
+        self.workspace.pack(fill='both', expand=True)
+
+    def refresh(self):
+        self._training_refresh = getattr(self, '_training_refresh', 0) + 1
+        self.load_view('training_context', lambda:self.db.training('context'), lambda _:self.workspace.refresh(), (self._training_refresh,))
+
+
+class ReceptionRoutinesPage(ReceptionTrainingPage):
+    title = 'Rutinas'
+    workspace_name = 'routines'
+
+
+class ReceptionClassesPage(ReceptionTrainingPage):
+    title = 'Clases y reservas'
+    workspace_name = 'classes'
+
+
 class ClientsPage(BasePage):
     title = "Clientes y pagos"
 
@@ -2229,6 +2277,13 @@ class ReceptionApp(tk.Tk):
         self._startup_message.destroy()
         from session_ui import install as install_session_status
         self.session_status = install_session_status(self, self.cloud)
+        # Authorization comes from the server. An ordinary reception account
+        # never receives these pages merely by changing appearance.
+        try:
+            context = self.db.training('context')
+            self.can_manage_training = context.get('role') in ('admin', 'coach')
+        except Exception:
+            self.can_manage_training = False
         self.build_shell()
         self.biometric_access = BiometricAccessController(
             self, self.db.find_client_by_biometric_identifier, self.on_biometric_match,
@@ -2332,7 +2387,11 @@ class ReceptionApp(tk.Tk):
             ("access", "\uE8FB", "Registro de entrada", AccessPage),
             ("clients", "\uE716", "Clientes y pagos", ClientsPage),
             ("shop", "\uE719", "Tienda", ReceptionShopPage),
+            ("settings", "\uE713", "Configuración", ReceptionSettingsPage),
         )
+        if getattr(self, 'can_manage_training', False):
+            nav = nav + (("routines", "\uE7C3", "Rutinas", ReceptionRoutinesPage),
+                         ("classes", "\uE787", "Clases y reservas", ReceptionClassesPage))
         self.page_types = {key: page_type for key, _icon, _label, page_type in nav}
 
         for key, icon, label, _page_type in nav:
@@ -2340,9 +2399,6 @@ class ReceptionApp(tk.Tk):
             button.pack(fill="x", pady=2)
             self.nav_buttons[key] = button
 
-        from common.appearance import open_appearance
-        ttk.Button(sidebar, text="Configuración · Apariencia",
-                   command=lambda: open_appearance(self)).pack(fill="x", padx=16, pady=10)
         footer = tk.Frame(sidebar, bg=COLORS["sidebar"])
         footer.pack(side="bottom", fill="x", padx=22, pady=20)
         tk.Label(footer, text="●  DATOS EN LA NUBE", bg=COLORS["sidebar"], fg=COLORS["success"], font=(FONT_FAMILY, 7, "bold")).pack(anchor="w")

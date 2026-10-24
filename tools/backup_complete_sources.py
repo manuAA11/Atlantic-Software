@@ -16,7 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SDK_MANIFEST = ROOT / "docs/vendor/digitalpersona/sdk-manifest.json"
-SHARED = {"backend", "common", "supabase", "onboarding", "deployment", "assets", "docs", "evidence", "tools", "recovery", "research"}
+SHARED = {"training", "league", "backend", "common", "supabase", "onboarding", "deployment", "assets", "docs", "evidence", "tools", "recovery", "research"}
 ROOT_FILES = {"AGENTS.md", ".env.example", ".gitignore", "CHANGELOG_EN_DESARROLLO.md", "ESTADO_IMPLEMENTACION.md", "GUIA_CONGELACION_Y_HORAS.md", "INFORME_VALIDACION_EN_DESARROLLO.md", "temporal_inventory.txt", "temporal_inventory_current.txt"}
 PRODUCTS = {
     "AtlanticGym": {"GymSoft_Comercial_3.6.0": "x64"},

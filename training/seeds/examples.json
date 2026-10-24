@@ -1,0 +1,880 @@
+{
+  "exercises": [
+    {
+      "id": "10000000-0000-4000-8000-000000000002",
+      "name": "Press de banca",
+      "muscle": "Pecho",
+      "equipment": "Banco y barra",
+      "standard_key": "bench-press",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "b002c66a-0df2-5455-9c35-796d83d3a5c2",
+      "name": "Press inclinado",
+      "muscle": "Pecho",
+      "equipment": "Banco y mancuernas",
+      "standard_key": "incline-press",
+      "instructions": "Empuje en banco inclinado con mancuernas. Registra el peso de cada mancuerna."
+    },
+    {
+      "id": "39850687-a42e-5217-964b-bb4f73799ae3",
+      "name": "Press declinado",
+      "muscle": "Pecho",
+      "equipment": "Banco y barra",
+      "standard_key": "decline-press",
+      "instructions": "Empuje en banco declinado con barra. Registra el peso total de la barra y los discos."
+    },
+    {
+      "id": "7a8d8ece-b4d1-5a27-8577-2d679a49ad6f",
+      "name": "Aperturas con mancuernas",
+      "muscle": "Pecho",
+      "equipment": "Banco y mancuernas",
+      "standard_key": "dumbbell-fly",
+      "instructions": "Aperturas en banco con mancuernas. Ajusta el recorrido con el entrenador y registra la carga por mano."
+    },
+    {
+      "id": "2fcf8eac-f317-5636-b676-040becb3a5f7",
+      "name": "Crossover en polea",
+      "muscle": "Pecho",
+      "equipment": "Polea",
+      "standard_key": "cable-crossover",
+      "instructions": "Aproximación de brazos en poleas para trabajar el pecho. Anota la carga y la altura de las poleas."
+    },
+    {
+      "id": "b01e3b5d-cb64-5026-a4fe-6a623acfcc7e",
+      "name": "Press en máquina",
+      "muscle": "Pecho",
+      "equipment": "Máquina de pecho",
+      "standard_key": "machine-chest-press",
+      "instructions": "Empuje en máquina de pecho. Ajusta el asiento y anota la carga indicada en la máquina."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000005",
+      "name": "Flexiones",
+      "muscle": "Pecho",
+      "equipment": "Sin equipamiento",
+      "standard_key": "push-up",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000006",
+      "name": "Jalón al pecho",
+      "muscle": "Espalda",
+      "equipment": "Polea alta",
+      "standard_key": "lat-pulldown",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "217c6e86-e55a-5515-988e-1f777903f541",
+      "name": "Dominadas",
+      "muscle": "Espalda",
+      "equipment": "Barra fija",
+      "standard_key": "pull-up",
+      "instructions": "Tracción en barra fija. Indica en las notas si se utiliza asistencia o lastre."
+    },
+    {
+      "id": "55e7d534-0893-55f0-b985-ab913fe708f7",
+      "name": "Remo con barra",
+      "muscle": "Espalda",
+      "equipment": "Barra",
+      "standard_key": "barbell-row",
+      "instructions": "Remo con barra para espalda. Registra la carga total y la variante de agarre acordada."
+    },
+    {
+      "id": "b5263ea6-57d9-5b03-84a6-4ab651497dba",
+      "name": "Remo sentado",
+      "muscle": "Espalda",
+      "equipment": "Polea baja",
+      "standard_key": "seated-row",
+      "instructions": "Remo sentado en polea baja. Anota el accesorio utilizado y la carga de la máquina."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000004",
+      "name": "Remo con mancuerna",
+      "muscle": "Espalda",
+      "equipment": "Mancuerna",
+      "standard_key": "dumbbell-row",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "d8cdab8b-c1d4-5f0c-ac78-d196b625ab24",
+      "name": "Pullover en polea",
+      "muscle": "Espalda",
+      "equipment": "Polea",
+      "standard_key": "cable-pullover",
+      "instructions": "Extensión de hombros en polea para espalda. Registra el accesorio y la carga utilizada."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000001",
+      "name": "Sentadilla con barra",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Barra",
+      "standard_key": "barbell-squat",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000007",
+      "name": "Prensa de piernas",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Prensa",
+      "standard_key": "leg-press",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "ea456659-8410-5754-80b5-fcc6b88172d2",
+      "name": "Extensión de cuádriceps",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Máquina de extensión",
+      "standard_key": "leg-extension",
+      "instructions": "Extensión de rodillas en máquina. Ajusta asiento y rodillo con el entrenador antes de comenzar."
+    },
+    {
+      "id": "a4c64541-33a9-54dd-bb2f-334b97373590",
+      "name": "Curl femoral",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Máquina de curl femoral",
+      "standard_key": "leg-curl",
+      "instructions": "Flexión de rodillas en máquina para femorales. Indica si la variante es sentada o acostada."
+    },
+    {
+      "id": "6d68d717-4ff4-5466-ad73-e7841dfe7ebc",
+      "name": "Peso muerto rumano",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Barra",
+      "standard_key": "romanian-deadlift",
+      "instructions": "Peso muerto rumano para la cadena posterior. Registra el peso total de la barra y los discos."
+    },
+    {
+      "id": "21c5f331-2e23-50d3-b722-1c11e9fb83d2",
+      "name": "Hip thrust",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Banco y barra",
+      "standard_key": "hip-thrust",
+      "instructions": "Extensión de cadera con apoyo en banco. Indica si se realiza con barra o máquina y registra la carga."
+    },
+    {
+      "id": "21b74cf0-b65c-53bd-a05d-84a9517d507f",
+      "name": "Zancadas",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Mancuernas",
+      "standard_key": "lunge",
+      "instructions": "Zancadas con mancuernas. Registra las repeticiones por pierna y la carga de cada mancuerna."
+    },
+    {
+      "id": "79a51d60-e434-52cb-b3ab-e7987cf8af70",
+      "name": "Elevación de gemelos",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Máquina de gemelos",
+      "standard_key": "calf-raise",
+      "instructions": "Elevación de talones para gemelos. Indica la máquina y la carga utilizadas."
+    },
+    {
+      "id": "cd262a24-75a7-50c5-ad8f-2545b2b44771",
+      "name": "Sentadilla búlgara",
+      "muscle": "Piernas y glúteos",
+      "equipment": "Banco y mancuernas",
+      "standard_key": "bulgarian-squat",
+      "instructions": "Sentadilla con apoyo posterior en banco. Registra las repeticiones por pierna y la carga por mano."
+    },
+    {
+      "id": "22889337-4789-5cb7-ad7a-14a672a4dabd",
+      "name": "Press militar",
+      "muscle": "Hombros",
+      "equipment": "Barra",
+      "standard_key": "military-press",
+      "instructions": "Empuje vertical con barra. Registra el peso total y la variante sentada o de pie."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000008",
+      "name": "Press de hombros con mancuernas",
+      "muscle": "Hombros",
+      "equipment": "Mancuernas",
+      "standard_key": "dumbbell-shoulder-press",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "368450b1-a8c4-5258-b838-4bfa0fbd4381",
+      "name": "Elevaciones laterales",
+      "muscle": "Hombros",
+      "equipment": "Mancuernas",
+      "standard_key": "lateral-raise",
+      "instructions": "Elevaciones laterales para hombros. Registra el peso de cada mancuerna."
+    },
+    {
+      "id": "651cd75e-15f8-5a42-9583-0dbcf6bac99e",
+      "name": "Elevaciones frontales",
+      "muscle": "Hombros",
+      "equipment": "Mancuernas",
+      "standard_key": "front-raise",
+      "instructions": "Elevaciones frontales para hombros. Indica si se alternan los brazos y la carga utilizada."
+    },
+    {
+      "id": "7745d112-f00e-551b-973d-568fb74d4823",
+      "name": "Pájaros",
+      "muscle": "Hombros",
+      "equipment": "Mancuernas",
+      "standard_key": "reverse-fly",
+      "instructions": "Aperturas inversas para la parte posterior del hombro. Registra la carga por mano."
+    },
+    {
+      "id": "80b5771e-845f-5b8f-ad80-fdec2d08b208",
+      "name": "Face pulls",
+      "muscle": "Hombros",
+      "equipment": "Polea",
+      "standard_key": "face-pull",
+      "instructions": "Tracción hacia el rostro con cuerda en polea. Ajusta la altura con el entrenador y registra la carga."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000009",
+      "name": "Curl de bíceps con mancuernas",
+      "muscle": "Bíceps",
+      "equipment": "Mancuernas",
+      "standard_key": "dumbbell-curl",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "a10aaefd-e874-5e7e-be10-b20e3c2b89ca",
+      "name": "Curl martillo",
+      "muscle": "Bíceps",
+      "equipment": "Mancuernas",
+      "standard_key": "hammer-curl",
+      "instructions": "Flexión de codo con agarre neutro. Registra el peso de cada mancuerna y las repeticiones por lado."
+    },
+    {
+      "id": "f53fbd1b-085b-5d96-843f-4bbb2996dd7b",
+      "name": "Curl predicador",
+      "muscle": "Bíceps",
+      "equipment": "Banco predicador",
+      "standard_key": "preacher-curl",
+      "instructions": "Curl con apoyo en banco predicador. Indica el implemento y la carga total utilizados."
+    },
+    {
+      "id": "ce3d19ac-c175-5874-9dc7-79aebf8d0222",
+      "name": "Extensiones de tríceps",
+      "muscle": "Tríceps",
+      "equipment": "Mancuerna",
+      "standard_key": "triceps-extension",
+      "instructions": "Extensión de codo con mancuerna. Indica la variante y si la carga se sostiene con una o dos manos."
+    },
+    {
+      "id": "c705db7a-24bb-5b64-aa39-e7c7d10983d3",
+      "name": "Fondos",
+      "muscle": "Tríceps",
+      "equipment": "Barras paralelas",
+      "standard_key": "dip",
+      "instructions": "Fondos en barras paralelas. Indica si se utiliza asistencia, peso corporal o lastre."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000010",
+      "name": "Extensión de tríceps en polea",
+      "muscle": "Tríceps",
+      "equipment": "Polea",
+      "standard_key": "triceps-pushdown",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "4bdcf93d-c344-5aaf-91c4-09919cf74939",
+      "name": "Plancha",
+      "muscle": "Abdomen y core",
+      "equipment": "Colchoneta",
+      "standard_key": "plank",
+      "instructions": "Trabajo isométrico de core. Especifica en las indicaciones la duración de cada sostén."
+    },
+    {
+      "id": "8670ec6a-0782-599f-885a-de25c39d4f35",
+      "name": "Crunch",
+      "muscle": "Abdomen y core",
+      "equipment": "Colchoneta",
+      "standard_key": "crunch",
+      "instructions": "Flexión de tronco en colchoneta. Registra las repeticiones y cualquier carga adicional."
+    },
+    {
+      "id": "6a5380a1-6e14-56a5-8544-3997d7721f5f",
+      "name": "Elevación de piernas",
+      "muscle": "Abdomen y core",
+      "equipment": "Colchoneta",
+      "standard_key": "leg-raise",
+      "instructions": "Elevación de piernas para abdomen. Indica la variante y registra las repeticiones completadas."
+    },
+    {
+      "id": "07052508-2390-5786-a440-e78aa3e7aa62",
+      "name": "Abdominales en polea",
+      "muscle": "Abdomen y core",
+      "equipment": "Polea",
+      "standard_key": "cable-crunch",
+      "instructions": "Flexión de tronco con polea. Registra la carga y las repeticiones realizadas."
+    },
+    {
+      "id": "9a0ce0bc-97fa-53a8-8124-cede6cfdd8fc",
+      "name": "Caminadora",
+      "muscle": "Cardio",
+      "equipment": "Caminadora",
+      "standard_key": "treadmill",
+      "instructions": "Trabajo cardiovascular en caminadora. Especifica tiempo, velocidad e inclinación en las indicaciones."
+    },
+    {
+      "id": "a57a7475-812c-554c-95d1-e1dd022a8807",
+      "name": "Bicicleta estática",
+      "muscle": "Cardio",
+      "equipment": "Bicicleta",
+      "standard_key": "stationary-bike",
+      "instructions": "Trabajo cardiovascular en bicicleta estática. Especifica tiempo y resistencia en las indicaciones."
+    },
+    {
+      "id": "9d082a39-0f5d-5d45-9c3d-2c705f27fe62",
+      "name": "Elíptica",
+      "muscle": "Cardio",
+      "equipment": "Elíptica",
+      "standard_key": "elliptical",
+      "instructions": "Trabajo cardiovascular en elíptica. Especifica tiempo y resistencia en las indicaciones."
+    },
+    {
+      "id": "e47bf05a-1eff-54b4-9c72-bc3a0910fd41",
+      "name": "Remo ergómetro",
+      "muscle": "Cardio",
+      "equipment": "Remo ergómetro",
+      "standard_key": "rowing-machine",
+      "instructions": "Trabajo cardiovascular en ergómetro de remo. Especifica tiempo o distancia en las indicaciones."
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000003",
+      "name": "Peso muerto",
+      "muscle": "Cuerpo completo",
+      "equipment": "Barra",
+      "standard_key": "deadlift",
+      "instructions": "Registra las series, repeticiones y cargas realizadas según las indicaciones de tu entrenador."
+    },
+    {
+      "id": "50f1165a-3fa9-57aa-830f-b162e1b65c7e",
+      "name": "Burpees",
+      "muscle": "Cuerpo completo",
+      "equipment": "Sin equipamiento",
+      "standard_key": "burpee",
+      "instructions": "Movimiento de cuerpo completo. Adapta el salto, la variante y el ritmo con el entrenador."
+    }
+  ],
+  "templates": [
+    {
+      "id": "21455dd5-71a3-534b-b8eb-9ed38924cd87",
+      "name": "Push — pecho, hombros y tríceps",
+      "seed_key": "atlantic-example-1",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000002",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "b002c66a-0df2-5455-9c35-796d83d3a5c2",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "368450b1-a8c4-5258-b838-4bfa0fbd4381",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000010",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "7e81241d-d8d2-5fd9-9ca2-03dfb6c512fe",
+      "name": "Pull — espalda y bíceps",
+      "seed_key": "atlantic-example-2",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000006",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "b5263ea6-57d9-5b03-84a6-4ab651497dba",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000004",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000009",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "id": "7eeeaca0-64ff-55d8-97b0-a3c86ce8f6d9",
+      "name": "Legs — piernas y glúteos",
+      "seed_key": "atlantic-example-3",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000001",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000007",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "a4c64541-33a9-54dd-bb2f-334b97373590",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "21c5f331-2e23-50d3-b722-1c11e9fb83d2",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        },
+        {
+          "catalog_id": "79a51d60-e434-52cb-b3ab-e7987cf8af70",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "41c2719c-ca11-5c89-9b47-3adf8dc11035",
+      "name": "Full Body — cuerpo completo",
+      "seed_key": "atlantic-example-4",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000001",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000002",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000006",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000008",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        },
+        {
+          "catalog_id": "8670ec6a-0782-599f-885a-de25c39d4f35",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "f6f5f025-85df-5ceb-bd31-03249bed3c42",
+      "name": "Upper Body — tren superior",
+      "seed_key": "atlantic-example-5",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000002",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "b5263ea6-57d9-5b03-84a6-4ab651497dba",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "368450b1-a8c4-5258-b838-4bfa0fbd4381",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000009",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000010",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "f9ff95c6-2928-57a4-be92-40053d499c20",
+      "name": "Lower Body — tren inferior",
+      "seed_key": "atlantic-example-6",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000007",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "6d68d717-4ff4-5466-ad73-e7841dfe7ebc",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "21b74cf0-b65c-53bd-a05d-84a9517d507f",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "a4c64541-33a9-54dd-bb2f-334b97373590",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        },
+        {
+          "catalog_id": "79a51d60-e434-52cb-b3ab-e7987cf8af70",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "id": "7baf2898-73dd-53ee-9bc0-c60c1ebf62a7",
+      "name": "Hipertrofia de 4 días",
+      "seed_key": "atlantic-example-7",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000002",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "b5263ea6-57d9-5b03-84a6-4ab651497dba",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "368450b1-a8c4-5258-b838-4bfa0fbd4381",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000001",
+          "day": "Día 2",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "a4c64541-33a9-54dd-bb2f-334b97373590",
+          "day": "Día 2",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "79a51d60-e434-52cb-b3ab-e7987cf8af70",
+          "day": "Día 2",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "b002c66a-0df2-5455-9c35-796d83d3a5c2",
+          "day": "Día 3",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000006",
+          "day": "Día 3",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000009",
+          "day": "Día 3",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000010",
+          "day": "Día 3",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        },
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000007",
+          "day": "Día 4",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "21c5f331-2e23-50d3-b722-1c11e9fb83d2",
+          "day": "Día 4",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "ea456659-8410-5754-80b5-fcc6b88172d2",
+          "day": "Día 4",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "29253d3e-e312-5bb1-a972-9bdb324933f1",
+      "name": "Rutina básica de principiantes",
+      "seed_key": "atlantic-example-8",
+      "goal": "Plantilla de ejemplo para revisar y adaptar con el entrenador.",
+      "notes": "No es una prescripción personalizada. Peso pendiente de definir. En ejercicios por tiempo, adaptar las indicaciones y el registro.",
+      "exercises": [
+        {
+          "catalog_id": "10000000-0000-4000-8000-000000000007",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 1
+        },
+        {
+          "catalog_id": "b01e3b5d-cb64-5026-a4fe-6a623acfcc7e",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 2
+        },
+        {
+          "catalog_id": "b5263ea6-57d9-5b03-84a6-4ab651497dba",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 3
+        },
+        {
+          "catalog_id": "8670ec6a-0782-599f-885a-de25c39d4f35",
+          "day": "Día 1",
+          "sets": 3,
+          "reps": 10,
+          "weight_kg": 0,
+          "rest_seconds": 90,
+          "notes": "Ajustar antes de asignar.",
+          "position": 4
+        }
+      ]
+    }
+  ]
+}

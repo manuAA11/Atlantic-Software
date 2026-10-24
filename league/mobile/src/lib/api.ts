@@ -1,11 +1,12 @@
 import 'react-native-url-polyfill/auto';
 import {AppState,Platform} from 'react-native';
-import {createClient,processLock} from '@supabase/supabase-js';
+import {createClient,processLock,navigatorLock} from '@supabase/supabase-js';
+import {signOutDevice} from './session-policy';
 import {secureStorage} from './storage';
 const url=process.env.EXPO_PUBLIC_SUPABASE_URL||'',key=process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY||'';
 export const endpoint=process.env.EXPO_PUBLIC_LEAGUE_ENDPOINT||'';
 export const configured=/^https:\/\/[a-z0-9]{20}\.supabase\.co$/.test(url)&&key.startsWith('sb_publishable_')&&/^https:\/\/[a-z0-9]{20}\.supabase\.co\/functions\/v1\/atlantic-league$/.test(endpoint);
-export const supabase=configured?createClient(url,key,{auth:{storage:secureStorage,storageKey:'atlantic-league-auth',autoRefreshToken:true,persistSession:Platform.OS!=='web',detectSessionInUrl:false,flowType:'pkce',lock:processLock}}):null;
+export const supabase=configured?createClient(url,key,{auth:{storage:secureStorage,storageKey:'atlantic-league-auth',autoRefreshToken:true,persistSession:true,detectSessionInUrl:false,flowType:'pkce',lock:Platform.OS==='web'&&typeof navigator!=='undefined'&&navigator.locks?navigatorLock:processLock}}):null;
 // Suspension stops the refresh timer. The SDK refreshes the session after foregrounding.
 if(supabase&&Platform.OS!=='web'){
  if(AppState.currentState==='active')supabase.auth.startAutoRefresh();
@@ -23,3 +24,11 @@ export const liveApi:LeagueApi={async call<T>(action:string,data:Record<string,u
  if(!response.ok)throw new ApiError(value.message||'No se pudo completar la operación. Inténtalo de nuevo.',value.error||'REQUEST_FAILED',response.status);
  return value.data as T;
 }};
+
+export const authRedirect=()=>Platform.OS==='web'?window.location.origin+'/':'atlanticleague://auth';
+
+export async function signOutCurrentSession(){
+ if(!supabase)return;
+ const {error}=await signOutDevice(supabase.auth);
+ if(error)throw new ApiError('No se pudo cerrar la sesión. Vuelve a intentarlo.','SIGNOUT_FAILED',503);
+}

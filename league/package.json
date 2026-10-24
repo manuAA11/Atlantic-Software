@@ -1,7 +1,7 @@
 {
   "name": "@atlantic/league",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "workspaces": [
     "mobile"
@@ -11,10 +11,13 @@
     "typecheck": "npm --workspace @atlantic/league-mobile run typecheck",
     "test": "node --import tsx --test tests/*.test.mjs",
     "test:postgres": "node tests/postgres.mjs",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "build:pwa": "node scripts/build-pwa.mjs",
+    "test:training:postgres": "node tests/training-postgres.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.8",
+    "@expo/image-utils": "0.12.5",
     "@playwright/test": "1.64.1",
     "pg": "8.23.1",
     "tsx": "4.23.15"

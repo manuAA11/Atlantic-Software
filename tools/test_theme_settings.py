@@ -13,7 +13,7 @@ class AppearancePreferences(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)/'nested'/'appearance.json'
             self.assertEqual(load_theme(path),'dark')
-            for theme in ('minimal','dark'):
+            for theme in ('minimal','league_light','league_dark','dark'):
                 save_theme(theme,path)
                 self.assertEqual(load_theme(path),theme)
                 self.assertEqual(json.loads(path.read_text()),{'theme':theme})

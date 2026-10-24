@@ -69,7 +69,7 @@ def main():
                     assert ttk.Style(root).layout('TButton')==original_layout
                     checks+=2
                     widgets=(entry,tree,nav)
-                    for name in ('minimal','dark','minimal','dark'):
+                    for name in ('minimal','league_light','league_dark','dark','league_dark','league_light','minimal','dark'):
                         manager.change(name)
                         root.event_generate('<Motion>',x=1,y=1,warp=True)
                         pump(root)
@@ -87,15 +87,20 @@ def main():
                         command.state(['!disabled'])
                         command.invoke();assert called[-1]=='button'
                         nav.event_generate('<Button-1>');assert called[-1]=='nav'
-                        if name=='minimal':
+                        if name!='dark':
                             assert str(text.cget('background'))==kit.COLORS['surface'],(text.cget('background'),kit.COLORS['surface'])
                             assert nav.icon_label.cget('image') if cls is GymSoftApp else nav.icon.cget('image')
                             assert 'Atlantic.Minimal' in str(ttk.Style(root).layout('TButton'))
+                            if name.startswith('league_'):
+                                assert ttk.Style(root).lookup('Primary.TButton','foreground')=='#FFFFFF'
+                                assert kit.THEME in str(ttk.Style(root).layout('Primary.TButton'))
+                                assert ttk.Style(root).lookup('Section.TLabel','foreground')==kit.COLORS['text']
+                                assert ttk.Style(root).lookup('Treeview','foreground')==kit.COLORS['text']
                         else:
                             assert ttk.Style(root).layout('TButton')==original_layout
                             assert action.cget('background')==original_background,(action.cget('background'),original_background)
                         checks+=14
-                    manager.change('minimal',persist=False);pump(root)
+                    manager.change('league_light',persist=False);pump(root)
                     # Newly created widgets/dialogs also inherit the selected presentation.
                     login=LoginDialog(root);pump(root)
                     assert login.email_entry.winfo_viewable()

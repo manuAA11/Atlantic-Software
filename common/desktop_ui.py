@@ -69,7 +69,8 @@ def decorate_window(window: tk.Misc) -> None:
             hwnd = ancestor(window.winfo_id(), 2)
             setter = ctypes.windll.dwmapi.DwmSetWindowAttribute
             setter.argtypes = [wintypes.HWND, wintypes.DWORD, ctypes.c_void_p, wintypes.DWORD]
-            dark = ctypes.c_int(1)
+            from common import atlantic_ui as kit
+            dark = ctypes.c_int(0 if kit.THEME == 'league_light' else 1)
             if setter(hwnd, 20, ctypes.byref(dark), ctypes.sizeof(dark)):
                 setter(hwnd, 19, ctypes.byref(dark), ctypes.sizeof(dark))
             # Windows 11: color BGR de título y texto. Versiones anteriores lo ignoran.

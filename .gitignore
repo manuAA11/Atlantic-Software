@@ -16,3 +16,9 @@
 !evidence/**/*.log
 
 **/.venv_respaldo_*/
+
+**/dist-web/
+**/dist-native/
+**/.expo/
+league/.qa/
+league/.openai/

@@ -46,3 +46,23 @@ grant execute on function private.league_search(text),public.core_league_search(
 grant execute on function public.core_league_owner(uuid,boolean) to authenticated;
 grant execute on function public.core_league_entitlement(uuid) to service_role;
 commit;
+
+-- Public opt-in directory metadata only. Never returns billing, roles, member or owner data.
+begin;
+create schema if not exists league_directory_private;
+revoke all on schema league_directory_private from public;
+create function league_directory_private.directory(p_gym_id uuid,p_query text) returns jsonb language sql stable security definer set search_path='' as $$
+ select coalesce(jsonb_agg(to_jsonb(t)),'[]') from (
+  select g.gym_id,g.name,g.source_project_ref as source_ref,m.athlete_code,true as enabled
+  from private.core_gyms g join private.core_league_modules m using(gym_id)
+  where g.status='ACTIVE' and m.enabled and
+   ((p_gym_id is not null and g.gym_id=p_gym_id) or (p_gym_id is null and length(trim(p_query))>=2 and (m.athlete_code=upper(trim(p_query)) or g.name ilike '%'||left(trim(p_query),80)||'%')))
+  order by g.name limit 20)t
+$$;
+create function public.core_league_public_directory(p_gym_id uuid default null,p_query text default null) returns jsonb language sql stable security invoker set search_path='' as $$
+ select league_directory_private.directory(p_gym_id,p_query)
+$$;
+revoke all on function league_directory_private.directory(uuid,text),public.core_league_public_directory(uuid,text) from public;
+grant usage on schema league_directory_private to anon,authenticated,service_role;
+grant execute on function league_directory_private.directory(uuid,text),public.core_league_public_directory(uuid,text) to anon,authenticated,service_role;
+commit;

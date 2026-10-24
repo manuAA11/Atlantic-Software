@@ -6138,18 +6138,21 @@ class CheckinPage(BasePage):
         self.app.refresh_all(except_page=self)
 
 
-class RoutinesPage(BasePage):
+class LegacyRoutinesPage(BasePage):
     title = "Rutinas y entrenadores"
 
     def __init__(self, parent: tk.Misc, app: "GymSoftApp"):
         super().__init__(parent, app)
         self.page_header("Asigna entrenadores y construye planes de entrenamiento por cliente.")
         notebook = ttk.Notebook(self)
+        self.notebook = notebook
         notebook.pack(fill="both", expand=True)
         trainers_tab = ttk.Frame(notebook, padding=14, style="Card.TFrame")
         routines_tab = ttk.Frame(notebook, padding=14, style="Card.TFrame")
         notebook.add(routines_tab, text="Rutinas")
         notebook.add(trainers_tab, text="Entrenadores")
+        from common.league_ui import add_league_tab
+        add_league_tab(notebook, self)
 
         self.routines = CenteredTreeview(
             routines_tab,
@@ -6293,7 +6296,7 @@ class RoutinesPage(BasePage):
             self.refresh_exercises()
 
 
-class ClassesPage(BasePage):
+class LegacyClassesPage(BasePage):
     title = "Clases y Reservas"
 
     def __init__(self, parent: tk.Misc, app: "GymSoftApp"):
@@ -6418,6 +6421,77 @@ class ClassesPage(BasePage):
             if class_id:
                 self.classes.selection_set(str(class_id))
                 self.refresh_reservations()
+
+class TrainingPage(BasePage):
+    workspace_type = None
+    legacy_type = None
+
+    def __init__(self, parent, app):
+        super().__init__(parent, app)
+        self.page_header(self.subtitle)
+        self.workspace = self.workspace_type(self, self.db, autostart=False)
+        self.workspace.pack(fill="both", expand=True)
+        # Compatibility during staged rollout: existing operations remain usable
+        # until training-1 has been approved on that gym's server.
+        self.compatibility = ttk.Button(self, text="Herramientas anteriores (compatibilidad)", command=self.open_legacy)
+        self.compatibility.pack(anchor="w", pady=(8, 0))
+
+    def refresh(self):
+        self._training_refresh = getattr(self, '_training_refresh', 0) + 1
+        self.load_view('training_context', lambda: self.db.training('context'), self._render_context, (self._training_refresh,))
+
+    def _render_context(self, context):
+        if context.get('schema') == 'training-1':
+            self.compatibility.pack_forget()
+        self.workspace.refresh()
+
+    def open_legacy(self):
+        from responsive_ui import fit_window
+        window = tk.Toplevel(self)
+        window.title("Atlantic Gym · " + self.title)
+        fit_window(window, 1100, 760, parent=self)
+        area = ScrollArea(window, padding=10)
+        area.pack(fill="both", expand=True)
+        page = self.legacy_type(area.body, self.app)
+        page.pack(fill="both", expand=True)
+        page.refresh()
+        return page
+
+
+from common.training_ui import RoutinesWorkspace, ClassesWorkspace
+
+
+class RoutinesPage(TrainingPage):
+    title = "Rutinas y entrenadores"
+    subtitle = "Prepara planes, selecciona ejercicios y asigna rutinas a tus clientes."
+    workspace_type = RoutinesWorkspace
+    legacy_type = LegacyRoutinesPage
+
+    def __init__(self, parent, app):
+        super().__init__(parent, app)
+        # Reuse the existing trainer editor without rebuilding its business logic.
+        actions = ttk.Frame(self, style="Page.TFrame")
+        actions.pack(fill="x", pady=5)
+        ttk.Button(actions, text="Gestionar entrenadores", command=self.manage_trainers).pack(side="left")
+        ttk.Button(actions, text="Permisos de entrenamiento", command=self.training_permissions).pack(side="left", padx=6)
+
+    def manage_trainers(self):
+        page = self.open_legacy()
+        page.notebook.select(1)
+        for tab in page.notebook.tabs():
+            if page.notebook.tab(tab,"text") != "Entrenadores":page.notebook.hide(tab)
+
+    def training_permissions(self):
+        from common.training_ui import TrainingStaffEditor, guarded
+        guarded(lambda panel: TrainingStaffEditor(panel))(self.workspace)
+
+
+class ClassesPage(TrainingPage):
+    title = "Clases y reservas"
+    subtitle = "Organiza el calendario, consulta los cupos y gestiona las inscripciones."
+    workspace_type = ClassesWorkspace
+    legacy_type = LegacyClassesPage
+
 
 class SettingsPage(BasePage):
     title = "Configuración"

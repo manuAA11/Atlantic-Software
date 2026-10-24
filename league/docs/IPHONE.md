@@ -1,3 +1,7 @@
+# Instalación principal: PWA
+
+La entrega solicitada ahora es la PWA instalable desde Safari y Chrome. Consulta [PWA](PWA.md). Las instrucciones nativas siguientes se conservan sólo como alternativa futura y no son requisito para este piloto.
+
 # Desarrollo e instalación en iPhone
 
 El proyecto tiene perfiles EAS, pero todavía no existe un build firmado ni una instalación probada en un iPhone real.

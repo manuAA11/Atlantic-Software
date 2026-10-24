@@ -3,6 +3,13 @@
 begin;
 create schema if not exists league_private;
 revoke all on schema league_private from public,anon;
+-- Empty by default; a controlled co-located pilot can limit admission explicitly.
+create table league_private.pilot_settings(singleton boolean primary key default true check(singleton),enabled boolean not null default false);
+create table league_private.pilot_accounts(user_id uuid primary key references auth.users(id));
+alter table league_private.pilot_settings enable row level security;
+alter table league_private.pilot_accounts enable row level security;
+revoke all on league_private.pilot_settings,league_private.pilot_accounts from public,anon,authenticated;
+
 create table public.league_profiles (
  id uuid primary key references auth.users(id) on delete cascade,
  alias text not null check(length(alias) between 2 and 60),
@@ -127,6 +134,8 @@ declare u uuid:=auth.uid();
 begin
  if u is null or not exists(select 1 from auth.users where id=u and email_confirmed_at is not null) then
   raise exception 'Confirma tu cuenta e inicia sesión.' using errcode='42501';end if;
+ if exists(select 1 from league_private.pilot_settings where enabled) and not exists(select 1 from league_private.pilot_accounts where user_id=u) then
+  raise exception 'Esta cuenta todavía no está habilitada para el piloto.' using errcode='42501';end if;
  return u;
 end $$;
 create function league_private.require_module(g uuid) returns void language plpgsql stable security definer set search_path='' as $$
@@ -268,13 +277,23 @@ insert into public.league_exercise_catalog(id,name,muscle,equipment,instructions
  ('10000000-0000-4000-8000-000000000002','Press de banca','Pecho','Banco y barra','Usa las indicaciones y la supervisión de tu entrenador.','bench-press'),
  ('10000000-0000-4000-8000-000000000003','Peso muerto','Cadena posterior','Barra','Registra el peso total de la barra y los discos.','deadlift'),
  ('10000000-0000-4000-8000-000000000004','Remo con mancuerna','Espalda','Mancuerna','Registra el peso utilizado en cada lado.','dumbbell-row'),
- ('10000000-0000-4000-8000-000000000005','Flexiones','Pecho','Sin equipamiento','Registra las repeticiones completadas.','push-up');
+ ('10000000-0000-4000-8000-000000000005','Flexiones','Pecho','Sin equipamiento','Registra las repeticiones completadas.','push-up'),
+ ('10000000-0000-4000-8000-000000000006','Jalón al pecho','Espalda','Polea alta','Ajusta el asiento y usa la carga indicada por tu entrenador.','lat-pulldown'),
+ ('10000000-0000-4000-8000-000000000007','Prensa de piernas','Piernas','Prensa','Ajusta el recorrido con tu entrenador y registra la carga utilizada.','leg-press'),
+ ('10000000-0000-4000-8000-000000000008','Press de hombros con mancuernas','Hombros','Mancuernas','Registra el peso de cada mancuerna y las repeticiones completadas.','dumbbell-shoulder-press'),
+ ('10000000-0000-4000-8000-000000000009','Curl de bíceps con mancuernas','Bíceps','Mancuernas','Registra las repeticiones por lado y el peso de cada mancuerna.','dumbbell-curl'),
+ ('10000000-0000-4000-8000-000000000010','Extensión de tríceps en polea','Tríceps','Polea','Usa el accesorio y la carga indicados por tu entrenador.','triceps-pushdown');
 -- Service-only gateway commands. Source staff identity/role and Core module are
 -- verified by the gateway before invoking this function. No browser grants.
 create function league_private.service(a text,d jsonb) returns jsonb language plpgsql security definer set search_path='' as $$
 declare g uuid:=(d->>'gym_id')::uuid;actor uuid:=(d->>'actor_id')::uuid;r record;v uuid;result jsonb;
 begin
- if a='directory.sync' then
+ if a='profile.delete' then
+  -- Service-only command: the gateway supplies the authenticated athlete ID.
+  -- A shared Auth identity may still own Gym/Core records and must survive.
+  delete from public.league_profiles where id=(d->>'athlete_id')::uuid;
+  return jsonb_build_object('deleted',true);
+ elsif a='directory.sync' then
   if exists(select 1 from public.league_gym_directory where gym_id=g and source_ref<>d->>'source_ref') then raise exception 'Origen del gimnasio no coincide.';end if;
   insert into public.league_gym_directory(gym_id,source_ref,name,athlete_code,enabled,entitlement_until)
    values(g,d->>'source_ref',d->>'name',upper(d->>'athlete_code'),(d->>'enabled')::boolean,now()+interval '60 seconds')
@@ -343,4 +362,15 @@ $$;
 revoke all on function league_private.service(text,jsonb) from public,anon,authenticated;
 revoke all on function public.league_gateway(text,jsonb) from public,anon,authenticated;
 grant execute on function league_private.service(text,jsonb),public.league_gateway(text,jsonb) to service_role;
+commit;
+
+begin;
+create function league_private.pilot_allowed(p_user_id uuid) returns boolean language sql stable security definer set search_path='' as $$
+ select not exists(select 1 from league_private.pilot_settings where enabled) or exists(select 1 from league_private.pilot_accounts where user_id=p_user_id)
+$$;
+create function public.league_pilot_allowed(p_user_id uuid) returns boolean language sql security invoker set search_path='' as $$
+ select league_private.pilot_allowed(p_user_id)
+$$;
+revoke all on function league_private.pilot_allowed(uuid),public.league_pilot_allowed(uuid) from public,anon,authenticated;
+grant execute on function league_private.pilot_allowed(uuid),public.league_pilot_allowed(uuid) to service_role;
 commit;

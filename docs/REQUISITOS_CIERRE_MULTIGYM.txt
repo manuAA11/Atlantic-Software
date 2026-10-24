@@ -397,3 +397,15 @@ la asistencia sigue registrándose pero las siguientes entradas no abren.
 Relé conectado mediante un adaptador USB, tipo pendiente de confirmar.
 Continuar revisando el código aun sin diagnóstico del computador afectado.
 Conservar el trabajo POS y retomarlo después de resolver esta incidencia.
+
+ENTRENAMIENTO, CLASES Y RESERVAS
+- Reutilizar el catálogo League y las tablas operativas compartidas, sin activar
+  membresías o perfiles ficticios. Casillas, filtros, parámetros, plantillas y
+  asignación grupal; conservar las versiones anteriores de planes y entrenamientos.
+- Clases editables/recurrentes, filtros/calendario, cupos, reservas y asistencia
+  de clase; bloqueo transaccional compartido con móvil, historial e idempotencia.
+- Apariencia únicamente en Configuración en Administración y Recepción. Permisos
+  de entrenamiento explícitos por gimnasio, sin elevar el rol de recepción.
+- Ejemplos sólo mediante carga idempotente autorizada; primero QA y respaldo.
+- Validación y despliegue detallados en docs/training/. No acreditar Windows ni
+  carreras de dos sesiones mediante pruebas de Tk/Linux o PGlite.

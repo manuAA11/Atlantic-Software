@@ -4,7 +4,7 @@
 
 Atlantic Gym comparte app.py, recepción, UI Kit, sesión, hardware y plataforma en common/. x86/x64 son arquitecturas del mismo producto. Los perfiles existentes conservan sus proveedores y carpetas para que las instalaciones actuales sigan trabajando. No se fusionan bases de clientes mediante copias ni se reemplazan IDs.
 
-League usa una identidad deportiva independiente en un hub. Al cambiar de gimnasio, el deportista conserva su cuenta y entrenamientos. Core conserva el directorio de gimnasios y la autorización del módulo; la aplicación personal no depende de esa autorización.
+League usa un perfil deportivo independiente dentro de un hub lógico. Ese hub puede compartir el proyecto, Auth y la base de datos con Atlantic Gym; no requiere un tercer proyecto. El perfil deportivo se conserva separado de los roles de administración. Al cambiar de gimnasio, el deportista conserva su cuenta y entrenamientos. Core conserva el directorio de gimnasios y la autorización del módulo; la aplicación personal no depende de esa autorización.
 
 La pasarela recibe un JWT de deportista del hub o un JWT de personal del proveedor original. Lo valida en Auth, exige correo confirmado y consulta permisos actuales en gym_users/league_coaches. Las URLs y claves de proveedores proceden de la configuración privada del servidor; ningún cliente puede suministrar un servidor arbitrario.
 
@@ -58,3 +58,5 @@ Fuerza: sólo las solicitudes aprobadas influyen en la clasificación. Se compar
 ## Historias
 
 Cuatro plantillas: entrenamiento, marca verificada, racha y clasificación. Cámara/galería del usuario, composición local y exportación PNG. Se comprueban 1080 × 1920 antes de guardar o abrir la hoja de compartir del sistema. Instagram/WhatsApp dependen de las opciones instaladas y compatibles. Sin feed, seguidores, comentarios ni likes.
+
+En modo de proyecto compartido, eliminar League nunca elimina el usuario de Auth: se borra sólo el perfil deportivo y sus dependencias. Esto conserva el acceso y los registros de Atlantic Gym asociados a la misma identidad.

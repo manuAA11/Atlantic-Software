@@ -2,7 +2,7 @@
 
 Aplicación personal iPhone/Android y módulo deportivo de la única aplicación Atlantic Gym. Desarrollo en **pruebas**; **main** conserva la versión oficial validada. Los adaptadores históricos identifican proveedores existentes, no aplicaciones distintas.
 
-Esta fase contiene código ejecutable y pruebas. No se ha desplegado ninguna migración de League en los proyectos operativos. No acredita un piloto con clientes reales ni una instalación en iPhone.
+Esta fase contiene código ejecutable y pruebas. El piloto limitado ya está desplegado en el proyecto existente de Gym y en Core. Falta completar el recorrido desde el iPhone del propietario; esto no acredita una instalación física ni habilitación masiva.
 
 ## Ejecutar
 
@@ -12,7 +12,9 @@ Requisitos: Node 24, npm y una instalación de Expo compatible con SDK 58.
     npm ci
     npm run typecheck
     npm test
-    npm run mobile
+    npm run build:pwa
+
+Instalación en iPhone y Android desde el navegador: [PWA](docs/PWA.md).
 
 La pantalla de acceso permite explorar una **demostración identificada con datos simulados** sin conexión con gimnasios. El modo real requiere copiar mobile/.env.example a mobile/.env y usar exclusivamente un hub, Core y proveedor de gimnasio aislados. Nunca colocar claves secretas en variables EXPO_PUBLIC_*.
 
@@ -31,3 +33,5 @@ La pantalla de acceso permite explorar una **demostración identificada con dato
 Ver [arquitectura](docs/ARQUITECTURA.md), [instalación iPhone](docs/IPHONE.md), [despliegue y reversión](docs/DESPLIEGUE.md) y [estado y piloto](docs/ESTADO.md).
 
 Las dependencias están fijadas y el lockfile se incluye. La licencia del punto de partida de Expo se conserva en mobile/LICENSE.
+
+La configuración elegida comparte el proyecto actual con Atlantic Gym, sin contratar otra base. Ver [proyecto compartido](docs/PROYECTO_COMPARTIDO.md).

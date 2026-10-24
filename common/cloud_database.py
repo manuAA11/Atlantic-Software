@@ -5,6 +5,7 @@ from gym_time import display_timestamp, local_datetime, timezone_for, parse_inst
 from plan_forms import membership_request
 from server_date import ServerDate
 from store_pos import StoreDatabaseMixin
+from common.training_service import TrainingDatabaseMixin
 from store_pos_import import (POS_BACKUP_SHEETS, PRODUCT_COLUMNS, POS_COLUMNS, SALE_COLUMNS, validate_pos_import, is_missing_pos_table, StorePosBackupUnavailable)
 
 import json
@@ -265,7 +266,7 @@ if PROFILE.legacy_provider:
     EXCEL_IMPORT_COLUMNS["clients"].pop("Actualizado", None)
 
 
-class CloudDatabase(StoreDatabaseMixin):
+class CloudDatabase(TrainingDatabaseMixin, StoreDatabaseMixin):
     def marketing_workspace(self):
         from marketing_client import MarketingClient
         return MarketingClient(self).workspace()

@@ -5,7 +5,8 @@ from pathlib import Path
 import sys
 import tempfile
 
-THEMES = {'dark': 'Oscuro', 'minimal': 'Minimal'}
+THEMES = {'dark': 'Oscuro', 'minimal': 'Minimal',
+          'league_light': 'League claro', 'league_dark': 'League oscuro'}
 
 
 def preference_path():

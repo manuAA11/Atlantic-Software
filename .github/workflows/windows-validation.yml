@@ -22,6 +22,9 @@ on:
       - 'tools/platform_ui_smoke.py'
       - 'tools/login_ui_smoke.py'
       - 'tools/theme_ui_smoke.py'
+      - 'tools/league_ui_smoke.py'
+      - 'tools/training_ui_smoke.py'
+      - 'training/**'
       - 'tools/update_notice_ui_smoke.py'
       - 'tools/publish_pilot_assets.py'
       - 'deployment/pilot_update.json'
@@ -82,7 +85,7 @@ jobs:
         working-directory: .
         run: |
           New-Item -ItemType Directory -Force "${{ matrix.edition }}/salida/validacion" | Out-Null
-          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity tools.test_core_client tools.test_updater tools.test_commercial_unification tools.test_official_baseline tools.test_interface_texts tools.test_theme_settings tools.test_publish_pilot_assets 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
+          & .\${{ matrix.edition }}\.venv\Scripts\python.exe -m unittest tools.test_windows_packaging_qa tools.test_backup_complete_sources tools.test_windows_installation_qa tools.test_windows_configuration_delivery tools.test_shared_hardware tools.test_session_manager tools.test_session_sdk tools.test_realtime_session tools.test_session_identity tools.test_core_client tools.test_updater tools.test_commercial_unification tools.test_official_baseline tools.test_interface_texts tools.test_theme_settings tools.test_publish_pilot_assets tools.test_league_client tools.test_training_models tools.test_appearance_location 2>&1 | Tee-Object -FilePath "${{ matrix.edition }}/salida/validacion/packaging-guards.log"
           exit $LASTEXITCODE
       - name: Prepare the desktop for medium and large window checks
         run: |
@@ -108,6 +111,12 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $env:ATLANTIC_TEST_EDITION = '${{ matrix.edition }}'
           & .\.venv\Scripts\python.exe ..\tools\theme_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\appearance-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe ..\tools\league_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\league-catalog-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe ..\tools\training_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\training-ui.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & .\.venv\Scripts\python.exe ..\tools\training_integrated_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\training-integrated-ui.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           & .\.venv\Scripts\python.exe ..\tools\update_notice_ui_smoke.py 2>&1 | Tee-Object -FilePath salida\validacion\update-notice-ui.log
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

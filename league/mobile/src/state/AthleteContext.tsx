@@ -1,5 +1,5 @@
 import React,{createContext,useCallback,useContext,useEffect,useMemo,useState} from 'react';
-import {AppState} from 'react-native';
+import {AppState,Platform} from 'react-native';
 import type {LeagueApi} from '../lib/api';
 import type {Snapshot,Exercise,WorkoutPayload} from '../lib/domain';
 import {secureStorage} from '../lib/storage';
@@ -16,18 +16,20 @@ export function AthleteProvider({children,api,userId,demo,signOut}:{children:Rea
   setBusy(true);
   try{
    await api.call('profile.ensure');
-   await outbox.flush(api);
+   let syncNotice='';
+   try{await outbox.flush(api);}catch(error){syncNotice=error instanceof Error?error.message:'Hay entrenamientos pendientes de sincronización.';}
    const [next,exercises]=await Promise.all([api.call<Snapshot>('snapshot'),api.call<Exercise[]>('catalog')]);
-   setSnapshot(next);setCatalog(exercises);setNotice('');
+   setSnapshot(next);setCatalog(exercises);setNotice(syncNotice);
    await secureStorage.setItem(cacheKey,JSON.stringify({snapshot:{...next,workouts:next.workouts.slice(0,20)},catalog:exercises.slice(0,100)}));
   }catch(error){setNotice(error instanceof Error?error.message:'No se pudieron actualizar los datos.');}
-  finally{setPending((await outbox.list()).length);setBusy(false);}
+  finally{try{setPending((await outbox.list()).length);}catch{/* The storage error above is already visible. */}finally{setBusy(false);}}
  },[api,outbox,cacheKey]);
  useEffect(()=>{
   let mounted=true;
   void (async()=>{try{const cached=await secureStorage.getItem(cacheKey);if(cached&&mounted){const data=JSON.parse(cached);setSnapshot(data.snapshot);setCatalog(data.catalog);}}catch{}if(mounted)await refresh();})();
   const subscription=AppState.addEventListener('change',state=>{if(state==='active')void refresh();});
-  return()=>{mounted=false;subscription.remove();};
+  if(Platform.OS==='web')window.addEventListener('online',refresh);
+  return()=>{mounted=false;subscription.remove();if(Platform.OS==='web')window.removeEventListener('online',refresh);};
  },[refresh,cacheKey]);
  const saveWorkout=async(payload:WorkoutPayload)=>{
   await outbox.add(payload);setPending((await outbox.list()).length);

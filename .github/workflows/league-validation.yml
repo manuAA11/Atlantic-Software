@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches: [pruebas, main]
-    paths: ['league/**', 'common/league_*.py', '.github/workflows/league-validation.yml']
+    paths: ['league/**', 'common/league_*.py', 'common/training_*.py', 'training/**', '.github/workflows/league-validation.yml']
   pull_request:
     branches: [main]
-    paths: ['league/**', 'common/league_*.py', '.github/workflows/league-validation.yml']
+    paths: ['league/**', 'common/league_*.py', 'common/training_*.py', 'training/**', '.github/workflows/league-validation.yml']
 permissions:
   contents: read
 concurrency:
@@ -40,12 +40,15 @@ jobs:
       - name: Actual PostgreSQL race for the final slot
         env:
           LEAGUE_TEST_DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/postgres
-        run: npm run test:postgres | tee postgres-evidence.json
+        run: |
+          set -o pipefail
+          npm run test:postgres | tee postgres-evidence.json
+          npm run test:training:postgres | tee training-postgres-evidence.json
       - name: Bundle iOS and Android JavaScript
         run: npm exec --workspace @atlantic/league-mobile -- expo export --platform ios --platform android --output-dir dist-native
       - name: Browser checks of the shared phone UI with simulated data
         run: |
-          npm exec --workspace @atlantic/league-mobile -- expo export --platform web --output-dir dist-web
+          npm run build:pwa
           npx playwright install --with-deps chromium
           npm run test:ui
       - uses: actions/upload-artifact@v4
@@ -54,5 +57,6 @@ jobs:
           name: league-isolated-validation
           path: |
             league/postgres-evidence.json
+            league/training-postgres-evidence.json
             league/.qa/browser-report/
             league/.qa/browser-results/

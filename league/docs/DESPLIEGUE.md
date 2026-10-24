@@ -1,3 +1,7 @@
+# Despliegue compartido: decisión actual
+
+El propietario decidió no contratar otro proyecto ni rama de pago. Usar [proyecto compartido](PROYECTO_COMPARTIDO.md): Gym y League conviven en el proyecto existente; Core conserva su proyecto actual. La separación en tres proyectos descrita más abajo queda como alternativa, no como requisito. Validar primero localmente, respaldar y desplegar sólo un piloto limitado.
+
 # Pruebas, respaldo, despliegue y reversión
 
 ## Límites de esta entrega

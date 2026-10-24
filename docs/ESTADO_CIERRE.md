@@ -271,3 +271,41 @@ modificó `release_readiness.json`. Es una entrega **NO FINAL para configurar
 y probar**, pendiente de instalación Windows32, lector/relé físicos, servicios
 externos y las demás aceptaciones ya descritas. No se ha confirmado que la
 excepción corregida fuera la causa exacta en el equipo del gimnasio.
+
+
+## Diseño League en Atlantic Gym — desarrollo
+
+Se añaden League claro y League oscuro a Configuración → Apariencia, usando
+los colores de la PWA y los componentes compartidos de escritorio. Se mantienen
+Oscuro y Minimal y la preferencia local. Los botones, campos, tarjetas e iconos
+circulares reutilizan el UI Kit; no se incorpora un navegador ni se cambia
+la lógica de sesiones, datos o hardware. CSS no se ejecuta en Tkinter.
+
+La caché de imágenes y fondos distingue las paletas para permitir alternarlas
+sin conservar colores del tema anterior. Pruebas locales: persistencia y
+conmutación real Tk en Administración/Recepción a escalas 100 y 125 %.
+Pendiente: revisión visual completa de las pantallas reales en Windows x86/x64
+y validación de publicación; estos cambios aún no están en el instalador ni
+en el aviso de actualización. No se afirma una reproducción idéntica de la web:
+la estructura de escritorio y los controles nativos se conservan.
+
+Fluidez: la aplicación de apariencia agrupa controles nuevos y procesa sólo
+los subárboles abiertos; ya no recorre todas las páginas ocultas cada vez que
+aparece un control. Las lecturas existentes en segundo plano y las búsquedas
+con pausa se conservan. Pendiente medir tiempos en el equipo Windows real;
+no se garantiza equivalencia de animación con la PWA.
+
+## Rutinas, clases, reservas y Configuración — pruebas
+
+Desarrollo compartido: catálogo League reutilizado, 44 ejercicios y 8 plantillas
+opcionales, editor con casillas y parámetros, asignación grupal, revisiones sin
+borrado, calendario/lista, clases recurrentes, reservas e historial. Apariencia se
+ubica sólo en Configuración en Administración y Recepción. Los coaches usan una
+concesión explícita del gimnasio y no reciben privilegios administrativos.
+
+Diagnóstico, archivos, migración, carga controlada, reversión y límites:
+`docs/training/DIAGNOSTICO.md`, `IMPLEMENTACION.md` y `VALIDACION.md`.
+No se aplica SQL ni se cargan ejemplos en ZTATTUZ. No se publica una actualización
+remota ni se modifica `release_readiness.json`. La integración nativa con datos
+sintéticos y los servicios source de League pasa; Windows físico y concurrencia
+entre dos backends reales quedan sujetos a los gates de publicación.

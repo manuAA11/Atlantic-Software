@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
 import {Image,KeyboardAvoidingView,Platform,Text,View} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
-import {supabase,configured} from '../lib/api';
-import {Screen,Heading,Card,Button,Field,color,s} from '../components/ui';
+import {supabase,configured,authRedirect} from '../lib/api';
+import {useUi,Screen,Heading,Card,Button,Field} from '../components/ui';
 export function AuthScreen({onDemo,recovery=false,onRecovered}:{onDemo:()=>void;recovery?:boolean;onRecovered:()=>void}){
+ const {color,s}=useUi();
  const [mode,setMode]=useState<'login'|'register'|'reset'>('login'),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[busy,setBusy]=useState(false),[message,setMessage]=useState('');
  const submit=async()=>{
   setMessage('');if(!supabase)return;
@@ -13,13 +13,13 @@ export function AuthScreen({onDemo,recovery=false,onRecovered}:{onDemo:()=>void;
    if(recovery){const {error}=await supabase.auth.updateUser({password});if(error)throw error;setMessage('Contraseña actualizada.');onRecovered();}
    else if(mode==='login'){const {error}=await supabase.auth.signInWithPassword({email:email.trim(),password});if(error)throw error;}
    else if(mode==='register'){
-    const {error}=await supabase.auth.signUp({email:email.trim(),password,options:{emailRedirectTo:'atlanticleague://auth'}});if(error)throw error;
+    const {error}=await supabase.auth.signUp({email:email.trim(),password,options:{emailRedirectTo:authRedirect()}});if(error)throw error;
     setMessage('Revisa tu correo para confirmar la cuenta. Después podrás iniciar sesión.');
-   }else{const {error}=await supabase.auth.resetPasswordForEmail(email.trim(),{redirectTo:'atlanticleague://auth'});if(error)throw error;setMessage('Si el correo tiene una cuenta, recibirás un enlace para cambiar la contraseña.');}
+   }else{const {error}=await supabase.auth.resetPasswordForEmail(email.trim(),{redirectTo:authRedirect()});if(error)throw error;setMessage('Si el correo tiene una cuenta, recibirás un enlace para cambiar la contraseña.');}
   }catch{setMessage(mode==='login'?'No pudimos iniciar sesión. Revisa el correo y la contraseña, y confirma tu cuenta.':'No se pudo completar la solicitud. Revisa los datos y vuelve a intentarlo.');}
   finally{setBusy(false);}
  };
- return <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS==='ios'?'padding':undefined}><Screen>
+ return <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS==='ios'?'padding':undefined}><Screen insetTop>
   <View style={{width:58,height:58,borderRadius:29,backgroundColor:color.ink,overflow:'hidden',marginTop:30}}><Image source={require('../../assets/atlantic-icon.png')} style={{width:58,height:58}} accessibilityLabel="Atlantic Tech Software"/></View>
   <Heading eyebrow="Atlantic Tech Software" title="Atlantic League" detail="Tu entrenamiento. Tu progreso."/>
   <Card><Text style={s.label}>{recovery?'Cambia tu contraseña':mode==='register'?'Crea tu cuenta':mode==='reset'?'Recupera tu acceso':'Qué bueno verte de nuevo'}</Text>

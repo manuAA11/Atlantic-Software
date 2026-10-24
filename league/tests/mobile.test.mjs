@@ -23,3 +23,31 @@ test('outbox preserves the exact UUID/body through ambiguous network failure, co
  await assert.rejects(()=>alice.add({...payload,name:'Edited after send'}));
  await Promise.all([alice.flush(api),alice.flush(api)]);assert.equal((await alice.list()).length,0);assert.equal(server.size,1);
 });
+
+test('slow browser autosave cannot restore a deleted draft; failed writes do not block future saves',async()=>{
+ const {serializedStorage}=await import('../mobile/src/lib/storage-queue.ts');
+ const data=new Map();let release,first=true;
+ const slow=new Promise(resolve=>release=resolve);
+ const store=serializedStorage({getItem:async k=>data.get(k)||null,setItem:async(k,v)=>{if(first){first=false;await slow;}if(v==='fail')throw Error('Disk full');data.set(k,v);},removeItem:async k=>{data.delete(k);}});
+ const a=store.setItem('draft','one set'),b=store.setItem('draft','two sets'),c=store.removeItem('draft');
+ await store.setItem('other-account','other workout');assert.equal(await store.getItem('other-account'),'other workout');
+ release();await Promise.all([a,b,c]);assert.equal(await store.getItem('draft'),null);
+ await assert.rejects(store.setItem('draft','fail'),/Disk full/);await store.setItem('draft','new workout');assert.equal(await store.getItem('draft'),'new workout');
+});
+
+test('leaving League sends a local logout to the actual SDK without revoking other devices',async()=>{
+ const {createClient}=await import('@supabase/supabase-js');
+ const {signOutDevice}=await import('../mobile/src/lib/session-policy.ts');
+ const logout=[];
+ const client=createClient('https://synthetic-test.supabase.co','sb_publishable_test-only',{
+  auth:{autoRefreshToken:false,persistSession:false,detectSessionInUrl:false},
+  global:{fetch:async(url)=>{
+   if(String(url).includes('/token'))return Response.json({access_token:'synthetic-user-token',refresh_token:'synthetic-refresh',expires_in:3600,token_type:'bearer',user:{id:'a0000000-0000-4000-8000-000000000001'}});
+   if(String(url).includes('/logout')){logout.push(new URL(url).searchParams.get('scope'));return new Response(null,{status:204});}
+   throw Error('Unexpected Auth call');
+  }},
+ });
+ const signed=await client.auth.signInWithPassword({email:'athlete@example.test',password:'synthetic-test-only'});assert.equal(signed.error,null);
+ const result=await signOutDevice(client.auth);assert.equal(result.error,null);assert.deepEqual(logout,['local']);
+ assert.equal((await client.auth.getSession()).data.session,null);
+});

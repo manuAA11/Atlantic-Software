@@ -70,7 +70,8 @@ test('account removal requires an explicit recent reauthentication',async()=>{
  assert.equal((await handler(request({action:'account.delete',data:{}}))).status,403);
  assert.ok(!calls.some(c=>String(c[1]).startsWith('/auth/v1/admin')));
  assert.equal((await handler(request({action:'account.delete',data:{confirm:'ELIMINAR'}}))).status,200);
- assert.ok(calls.some(c=>c[1]==='/auth/v1/admin/users/'+ALICE));
+ assert.ok(calls.some(c=>c[1]==='league_gateway'&&c[2].p_action==='profile.delete'&&c[2].p_data.athlete_id===ALICE));
+ assert.ok(!calls.some(c=>String(c[1]).startsWith('/auth/v1/admin')));
 });
 test('new secret keys stay server-side in apikey and user JWTs are forwarded separately',async()=>{
  const seen=[];

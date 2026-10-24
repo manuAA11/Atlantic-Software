@@ -12,7 +12,7 @@ async function bodyOf(request){
 }
 
 /** All injected transports are server-owned. No client-selected URL/key/project. */
-export function createLeagueHandler({hub,core,sources,allowedOrigins=[],invitationBase='atlanticleague://activate',deliverInvitation}){
+export function createLeagueHandler({hub,core,sources,allowedOrigins=[],invitationBase='atlanticleague://activate',deliverInvitation,authorizePilot}){
  const rate=new Map();
  function limited(id){
   const now=Date.now(),old=rate.get(id);const entry=old&&old.until>now?old:{until:now+60000,hits:0};entry.hits++;rate.set(id,entry);
@@ -48,7 +48,7 @@ export function createLeagueHandler({hub,core,sources,allowedOrigins=[],invitati
    const action=body.action;
    if(body.audience==='staff'){
     const source=sources[body.project_ref];if(!source)throw failure('SOURCE_NOT_REGISTERED','Origen no autorizado.',403);
-    const actor=await userOf(source,jwt);limited('staff:'+body.project_ref+':'+actor.id);
+    const actor=await userOf(source,jwt);if(authorizePilot&&!await authorizePilot(actor.id))throw failure('PILOT_ONLY','Esta cuenta todavía no está habilitada para el piloto.',403);limited('staff:'+body.project_ref+':'+actor.id);
     const context=await source.withUser(jwt).rpc('league_staff',{p_gym_id:body.gym_id,p_action:'context',p_data:{}});
     if(context?.actor_id!==actor.id||context.gym_id!==body.gym_id||!['admin','coach'].includes(context.role))throw failure('NOT_AUTHORIZED','Tu cuenta no tiene permiso para esta acción.',403);
     const {config}=await moduleFor(context.gym_id);
@@ -91,7 +91,7 @@ export function createLeagueHandler({hub,core,sources,allowedOrigins=[],invitati
     return respond({data:await hub.rpc('league_gateway',{p_action:'staff.'+action,p_data:{...data,...staff}})});
    }
    if(body.audience&&body.audience!=='athlete')throw failure('INVALID_REQUEST','Revisa la solicitud.');
-   const athlete=await userOf(hub,jwt);limited('athlete:'+athlete.id);
+   const athlete=await userOf(hub,jwt);if(authorizePilot&&!await authorizePilot(athlete.id))throw failure('PILOT_ONLY','Esta cuenta todavía no está habilitada para el piloto.',403);limited('athlete:'+athlete.id);
    const actorHub=hub.withUser(jwt),app=(a,d={})=>actorHub.rpc('league_app',{p_action:a,p_data:d});
    if(action==='gym.search'){
     if(typeof data.query!=='string'||data.query.trim().length<2)return respond({data:[]});
@@ -136,7 +136,8 @@ export function createLeagueHandler({hub,core,sources,allowedOrigins=[],invitati
      await hub.request('/storage/v1/object/league-evidence',{method:'DELETE',body:{prefixes:paths}});
      if(page===49)throw failure('TRY_LATER','Vuelve a intentarlo para terminar la eliminación.',503);
     }
-    await hub.request('/auth/v1/admin/users/'+athlete.id,{method:'DELETE',body:{should_soft_delete:false}});
+    // Auth may be shared with Gym/Core. Delete League data only, never the shared identity.
+    await hub.rpc('league_gateway',{p_action:'profile.delete',p_data:{athlete_id:athlete.id}});
     return respond({data:{deleted:true}});
    }
    const personal=['profile.ensure','profile.update','snapshot','catalog','exercise.personal','workout.save','gym.search','invitation.accept','record.submit','leaderboard'];

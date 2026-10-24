@@ -60,3 +60,22 @@ test('Core toggles League independently and exposes no public SECURITY DEFINER f
   assert.deepEqual((await db.query("select proname from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.prosecdef and proname like '%league%'")).rows,[]);
  }finally{await db.close();}
 });
+
+test('public Core directory exposes only enabled opt-in gym metadata and does not open the private Core schema',async()=>{
+ const db=new PGlite();try{
+  await db.exec(authFixture+`create schema private;
+   create table private.core_gyms(gym_id uuid primary key,name text,source_project_ref text,status text);
+   create function private.require_owner() returns void language plpgsql as $$begin if auth.uid() is distinct from '${ADMIN}'::uuid then raise exception 'Owner required';end if;end$$;
+   insert into private.core_gyms values('${GYM}','QA Directory','aaaaaaaaaaaaaaaaaaaa','ACTIVE');`);
+  await migrations(db,'core');
+  await identity(db,null,'anon');assert.deepEqual((await db.query('select public.core_league_public_directory($1,null) as value',[GYM])).rows[0].value,[]);
+  await identity(db,ADMIN);await db.query('select public.core_league_owner($1,true)',[GYM]);
+  await identity(db,null,'anon');
+  const row=(await db.query('select public.core_league_public_directory($1,null) as value',[GYM])).rows[0].value[0];
+  assert.deepEqual(Object.keys(row).sort(),['athlete_code','enabled','gym_id','name','source_ref']);
+  assert.equal(row.name,'QA Directory');assert.equal((await db.query("select has_schema_privilege('anon','private','USAGE') as allowed")).rows[0].allowed,false);
+  await assert.rejects(db.query('select public.core_league_owner($1,false)',[GYM]),/permission denied/);
+  await identity(db,ADMIN);await db.query('select public.core_league_owner($1,false)',[GYM]);
+  await identity(db,null,'anon');assert.deepEqual((await db.query('select public.core_league_public_directory($1,null) as value',[GYM])).rows[0].value,[]);
+ }finally{await db.close();}
+});

@@ -5,6 +5,8 @@ export const demoCatalog:Exercise[]=[
  {id:'10000000-0000-4000-8000-000000000001',name:'Sentadilla con barra',muscle:'Piernas',equipment:'Barra',instructions:'Sigue las indicaciones de tu entrenador.'},
  {id:'10000000-0000-4000-8000-000000000002',name:'Press de banca',muscle:'Pecho',equipment:'Banco y barra',instructions:'Registra el peso total de la barra y los discos.'},
  {id:'10000000-0000-4000-8000-000000000003',name:'Peso muerto',muscle:'Cadena posterior',equipment:'Barra',instructions:'Registra las repeticiones completadas.'},
+ {id:'10000000-0000-4000-8000-000000000006',name:'Jalón al pecho',muscle:'Espalda',equipment:'Polea alta',instructions:'Sigue las indicaciones de tu entrenador.'},
+ {id:'10000000-0000-4000-8000-000000000007',name:'Prensa de piernas',muscle:'Piernas',equipment:'Prensa',instructions:'Registra la carga y las repeticiones completadas.'},
 ];
 /** Explicitly simulated. This implementation never calls a real gym or database. */
 export function demoApi():LeagueApi{

@@ -111,6 +111,21 @@ def read_error_status(owner):
     return prefix + ' Haz clic aquí para ver el motivo y reintentar.'
 
 
+def modal_blocks_read(root, owner):
+    grab = grab_path(root)
+    if not grab:
+        return False
+    # Explicit opt-in for a picker that belongs to the active modal. Background
+    # pages still defer updates so an unrelated form is never repainted.
+    if getattr(owner, '_read_inside_modal', False):
+        ancestor = owner
+        while ancestor is not None:
+            if str(ancestor) == str(grab):
+                return False
+            ancestor = ancestor.master
+    return True
+
+
 class BackgroundReads:
     """Dos trabajadores; Tk solo se utiliza desde el hilo de la ventana.
 
@@ -249,7 +264,7 @@ class BackgroundReads:
                     owner._view_pending.discard(key)
                 owner._view_dirty = True
                 continue
-            if grab_path(self.root) or getattr(self.root, '_foreground_io', False):
+            if modal_blocks_read(self.root, owner) or getattr(self.root, '_foreground_io', False):
                 deferred = True
                 continue
             # Las pantallas ocultas conservan sus datos para el siguiente acceso.
