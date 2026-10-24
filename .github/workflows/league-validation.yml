@@ -23,7 +23,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         ports: ['5432:5432']
         options: >-
-          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
     defaults:
       run:
         working-directory: league
@@ -35,6 +35,10 @@ jobs:
           cache: npm
           cache-dependency-path: league/package-lock.json
       - run: npm ci
+      - name: Install pinned dependencies of the existing Gym schema fixtures
+        run: |
+          npm ci --prefix ../GymSoft_Comercial_3.6.0 --ignore-scripts --no-audit --no-fund
+          npm ci --prefix ../GymSoft_ZTATTUZ_3.6.1_x86 --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
       - run: npm test
       - name: Actual PostgreSQL race for the final slot
