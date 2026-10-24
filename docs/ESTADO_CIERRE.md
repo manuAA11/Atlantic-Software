@@ -2,6 +2,14 @@
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
+**Corrección del acceso, 24 de octubre de 2026 (3.8.1):** los errores recuperables
+de sesión y contraseña regresan directamente al formulario, conservando el correo.
+Se elimina el cuadro Reintentar/Cancelar que podía restaurar otra vez la sesión
+fallida o cerrar el inicio. Se limita la espera por un token todavía no válido.
+La publicación sigue siendo opcional y NO FINAL; instalación en Windows de 32
+bits y lector/relé físicos pendientes. Detalle y verificación:
+[Recuperación del acceso 3.8.1](RECUPERACION_ACCESO_3.8.1.md).
+
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
 **Incidencia del relé USB comunicada el 14 de octubre:** botón de salida

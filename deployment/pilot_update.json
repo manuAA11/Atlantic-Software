@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Corrección opcional de inicio de sesión: vuelve al formulario si falla la sesión guardada, permite corregir la contraseña y espera de forma limitada ante un token aún no válido. Mantiene acceso de versiones anteriores. Instalación Windows de 32 bits y lector/relé físicos pendientes; NO FINAL.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }

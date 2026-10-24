@@ -89,11 +89,13 @@ class PresentationTest(unittest.TestCase):
                 self.gym_name = 'Demo'
                 self.email = ''
                 self.load_count = 0
+                self.restore_count = 0
 
             def verify_server(self):
                 pass
 
             def restore_session(self):
+                self.restore_count += 1
                 return False
 
             def sign_in(self, email, password):
@@ -111,13 +113,14 @@ class PresentationTest(unittest.TestCase):
             def __init__(self, _parent, creating_account=False, **_kwargs):
                 self.result = ('first@example.test', 'wrong-password') if not self.created else ('again@example.test', 'correct-password')
                 self.creating_account = creating_account
+                self.options = _kwargs
                 self.created.append(self)
 
         parent = NS(wait_window=Mock(), bind=Mock())
         with patch.object(runtime_cloud, 'CloudService', FakeCloud), \
              patch.object(runtime_cloud, 'LoginDialog', FakeLogin), \
              patch.object(runtime_cloud.messagebox, 'askyesno', return_value=True) as choice, \
-             patch.object(runtime_cloud.messagebox, 'askretrycancel', side_effect=[True]) as retry, \
+             patch.object(runtime_cloud.messagebox, 'askretrycancel') as retry, \
              patch('licensing.check_license', return_value={'allowed': True}), \
              patch('ui_tasks.run_io', side_effect=lambda parent, fn: fn()):
             result = runtime_cloud.connect_cloud(parent)
@@ -128,8 +131,11 @@ class PresentationTest(unittest.TestCase):
             ('again@example.test', 'correct-password'),
         ])
         choice.assert_not_called()
-        self.assertEqual(retry.call_count, 1)
+        retry.assert_not_called()
+        self.assertEqual(result.restore_count, 1)
         self.assertEqual(len(FakeLogin.created), 2)
+        self.assertEqual(FakeLogin.created[1].options['initial_email'], 'first@example.test')
+        self.assertEqual(FakeLogin.created[1].options['error_message'], 'Correo o contraseña incorrectos.')
         self.assertFalse(FakeLogin.created[0].creating_account)
         self.assertFalse(FakeLogin.created[1].creating_account)
 
