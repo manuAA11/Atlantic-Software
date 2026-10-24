@@ -29,6 +29,21 @@ for(const [name,factory] of [['commercial',commercial],['legacy',legacy]])test('
   const created=await training('class.save',{name:'Realtime QA',starts_at:new Date(Date.now()+86400000).toISOString(),capacity:2,duration_minutes:45,request_id:randomUUID()});
   assert.equal((await db.query("select count(*)::int n from public.gym_events where gym_id=$1 and event_type='classes:insert'",[gym.gym_id])).rows[0].n,1);
 
+  // The existing JSON replacement must fail atomically when a League profile
+  // references a client: do not silently remap identity or erase a linked athlete.
+  await db.exec('reset role');
+  const client=(await db.query("insert into public.clients(gym_id,document,first_name,last_name) values($1,'930038001','Backup','QA') returning *",[gym.gym_id])).rows[0];
+  const plan=(await db.query("insert into public.plans(gym_id,name,duration_days,price) values($1,'Backup QA',30,50) returning *",[gym.gym_id])).rows[0];
+  await db.query('insert into public.league_client_profiles(gym_id,client_id) values($1,$2)',[gym.gym_id,client.id]);
+  await user(ADMIN);await db.exec('begin');
+  try{
+   await assert.rejects(rpc('admin_replace_gym_from_excel',[{format:'GymSoft-EXCEL-REPLACE-2',tables:{clients:[client],plans:[plan]}}]),e=>e.code==='23503'&&e.message.includes('league_client_profiles'));
+  }finally{await db.exec('rollback');}
+  await db.exec('reset role');
+  assert.equal((await db.query('select count(*)::int n from public.clients where id=$1',[client.id])).rows[0].n,1);
+  assert.equal((await db.query('select count(*)::int n from public.league_client_profiles where client_id=$1',[client.id])).rows[0].n,1);
+  assert.equal((await db.query('select count(*)::int n from public.classes where id=$1',[created[0].class_id])).rows[0].n,1);
+
   await user(RECEPTION);await rpc('commercial_accept_invite',[invite]);await rpc('commercial_check_license',['a'.repeat(64),'QA PC']);
   await assert.rejects(training('context'),/permiso/);
   await user(ADMIN);await training('coach.grant',{user_id:RECEPTION,enabled:true,request_id:randomUUID()});

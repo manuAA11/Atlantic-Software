@@ -1,4 +1,5 @@
 import ast
+import re
 from pathlib import Path
 import struct
 import sys
@@ -18,6 +19,8 @@ class PackageTest(unittest.TestCase):
             self.assertIn('MinVersion=10.0',source)
             self.assertIn('ArchitecturesAllowed=x64os',source)
             self.assertIn(f'#define AppVersion "{VERSION}"',source)
+            for resource in re.findall(r'Source: "(LEEME_[^"]+)"',source):
+                self.assertTrue((ROOT/resource.replace('{#AppVersion}',VERSION)).is_file(),resource)
             self.assertEqual(source.count('IconFilename:'),3)
             self.assertIn('SHChangeNotify($08000000, 0, 0, 0)',source)
         bundle=(ROOT/'instalador_completo.iss').read_text()
