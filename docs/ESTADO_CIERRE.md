@@ -323,5 +323,13 @@ instaladores técnicos NO_FINAL no se publicaron en el actualizador del gimnasio
 Versión compartida x86/x64 en `pruebas`. Publicación desactivada; aceptación
 3.8.0 pendiente. Preflight real de sólo lectura compatible, actualización de
 entrenamiento aún sin aplicar al servidor. Ensayo de respaldos PostgreSQL con
-22 tablas sintéticas aprobado en League `40101080081`; compilación Windows
-`40101080087` en validación. Guía y resultados en `docs/training`.
+22 tablas sintéticas aprobado en League `40103947068`, con 30 casos de integración
+y 8 de navegador. Windows `40103947031` aprobó los tres perfiles, sus regresiones,
+compilación y las instalaciones/actualizaciones/desinstalaciones x64. La instalación
+x86 sigue NOT_RUN por requerir Windows de 32 bits. Los ZIP de cliente x86/x64 se
+descargaron y comprobaron contra sus manifiestos y los informes originales de CI;
+son NO_FINAL y no activan el aviso remoto. Evidencia:
+`evidence/candidate-3.8.0-validation.json`; entrega: `docs/training/ENTREGA_3.8.0.md`.
+Se corrigieron
+los valores de versión Inno y las instrucciones ausentes detectados por los dos
+runs previos. Guía y resultados en `docs/training`.

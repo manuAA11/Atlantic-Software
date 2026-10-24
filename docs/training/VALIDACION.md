@@ -151,18 +151,51 @@ PostgreSQL 17.6 y esquema previo compatible, con RPC nueva aún sin instalar.
 clientes. El comprobador rechaza un despliegue parcial, permisos incorrectos,
 metadatos incompletos y ausencia de restricciones de duplicados/cupos.
 
-[League 40101080081](https://github.com/manuAA11/Atlantic-Software/actions/runs/40101080081)
-aprobó 29 casos, 8 pruebas de navegador y el nuevo ensayo `pg_dump`/`pg_restore`:
+[League 40103947068](https://github.com/manuAA11/Atlantic-Software/actions/runs/40103947068)
+aprobó 30 casos, 8 pruebas de navegador y el nuevo ensayo `pg_dump`/`pg_restore`
+sobre el código `5f738c2ab06ddd47fb46a174557e6eafad4613bf`:
 respaldo previo y posterior, restauración de 22 tablas sintéticas, secuencias,
 permisos, reintentos idempotentes, reversión sin pérdida de datos y rechazo de un
 archivo corrupto. No se presenta ese ensayo como respaldo del Supabase real.
 
-[Windows 40101080087](https://github.com/manuAA11/Atlantic-Software/actions/runs/40101080087)
-valida los instaladores técnicos de la candidata 3.8.0; su resultado se registra
-al terminar. La publicación opcional `40101080102` omitió sus pasos de entrega
+[Windows 40103947031](https://github.com/manuAA11/Atlantic-Software/actions/runs/40103947031)
+terminó **SUCCESS en los tres perfiles** sobre el mismo código `5f738c2a`.
+Cada perfil aprobó 110 guardas, 468 comprobaciones de apariencia, 77 del editor
+nuevo, integración Tk/SQL, aviso de actualización y las regresiones completas.
+Los ejecutables congelados verificaron su proceso x86/x64, versión, código e
+iconos. Se conservan los fallos de empaquetado `40101080087` (versión por
+defecto antigua en los scripts Inno) y `40101933245` (faltaban instrucciones de
+actualización de 3.8.0). Se corrigieron los ocho valores por defecto, se añadieron
+las instrucciones de los tres perfiles y una comprobación de su existencia. No
+se omite ninguna prueba para repetir la compilación. La publicación opcional
+`40101080102` omitió sus pasos de entrega
 porque el marcador está desactivado. No se crea una release ni un aviso productivo.
 
 Se añaden pruebas del rechazo de destinos remotos, URLs con sustitución de host y
 URLs mal formadas sin registrar contraseñas. La guía operativa actual es
 `DESPLIEGUE_CONTROLADO.md`. Las pruebas previas de 3.7.1 arriba se conservan como
 históricas; no se trasladan sus aceptaciones físicas a 3.8.0.
+
+| Perfil compartido | Casos Python / etapas de regresión | Compilación | Instalar, actualizar y desinstalar |
+|---|---|---|---|
+| Comercial x64 | 318 / 41 | PASS | PASS, Windows x64 desechable |
+| Proveedor histórico x64 | 290 / 40 | PASS | PASS, Windows x64 desechable |
+| Proveedor histórico x86 | 289 / 40 | PASS, proceso real x86 | NOT_RUN, requiere Windows de 32 bits |
+
+Los ZIP de cliente x86 y x64 de esa ejecución se descargaron y comprobaron de
+nuevo: SHA-256 del artefacto original, CRC del ZIP interior, nombres permitidos,
+SHA-256 y tamaño del instalador, manifiesto, versión 3.8.0, arquitectura y commit
+exacto. Se contrastaron los hashes de los informes originales de regresión e
+instalación. No incluyen el panel privado del propietario. La instalación x86
+conserva explícitamente `NOT_RUN` por `NOT VersionNT64`; no se transforma en PASS
+porque la compilación y el job hayan aprobado.
+
+Evidencia específica: `evidence/candidate-3.8.0-validation.json`. Guía de entrega,
+archivos, migración y pendientes: `ENTREGA_3.8.0.md`. Todos los paquetes siguen
+identificados **PRUEBAS / NO FINAL** y la publicación productiva está desactivada.
+
+El caso de integración con el esquema Comercial completo comprueba que el
+restaurador JSON anterior rechaza borrar un cliente vinculado a League y revierte
+la transacción (`23503`, FK `league_client_profiles`). El cliente, su perfil y la
+clase previa permanecen. Esta comprobación no sustituye el respaldo completo del
+servidor ni convierte la exportación JSON antigua en un respaldo de League.

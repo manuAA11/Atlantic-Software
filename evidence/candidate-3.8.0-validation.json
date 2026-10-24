@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "verified_at_utc": "2026-10-24T15:11:35.599738+00:00",
+  "repository": "manuAA11/Atlantic-Software",
+  "branch": "pruebas",
+  "version": "3.8.0",
+  "source_commit": "5f738c2ab06ddd47fb46a174557e6eafad4613bf",
+  "windows": {
+    "run_id": 40103947031,
+    "url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/40103947031",
+    "conclusion": "success",
+    "os": "Windows Server 2022 x64",
+    "python": "3.14.9",
+    "profiles": [
+      {
+        "profile": "GymSoft_Comercial_3.6.0",
+        "version": "3.8.0",
+        "process_bits": 64,
+        "guards": 110,
+        "python_regression_cases": 318,
+        "regression_stages": 41,
+        "appearance_checks": 468,
+        "training_ui_checks": 77,
+        "package_status": "PASS",
+        "frozen_probe_status": "PASS",
+        "installation_status": "PASS",
+        "installation": {
+          "fresh_installation": "PASS",
+          "runtime": "PASS",
+          "shortcuts": "PASS",
+          "update": "PASS",
+          "cleanup": "PASS"
+        },
+        "installation_reason": null,
+        "reports_sha256": {
+          "paquete-tecnico/informe_empaquetado.json": "3000934f61cc09c4605766a2064de465e44b06982a3d9910be5ab781e84a0d5a",
+          "instalacion-tecnica/informe_instalacion.json": "efd2bb8514367e5721e876c87d124ecf8b447e634a68374fe8c62278a92e7ed4",
+          "resultado_pruebas_all.json": "b29a3e53d95b21e38824b799bf44e6da6b7be9c32f041c961884546e6fbdb30c"
+        },
+        "job_id": 120901627313,
+        "conclusion": "success"
+      },
+      {
+        "profile": "GymSoft_ZTATTUZ_3.6.1_x64",
+        "version": "3.8.0",
+        "process_bits": 64,
+        "guards": 110,
+        "python_regression_cases": 290,
+        "regression_stages": 40,
+        "appearance_checks": 468,
+        "training_ui_checks": 77,
+        "package_status": "PASS",
+        "frozen_probe_status": "PASS",
+        "installation_status": "PASS",
+        "installation": {
+          "fresh_installation": "PASS",
+          "runtime": "PASS",
+          "shortcuts": "PASS",
+          "update": "PASS",
+          "cleanup": "PASS"
+        },
+        "installation_reason": null,
+        "reports_sha256": {
+          "paquete-tecnico/informe_empaquetado.json": "aaf0b4226cce003a27b6cd324e7caf7a4fda6f6aab3f75ddc0c164579ef63a7d",
+          "instalacion-tecnica/informe_instalacion.json": "aac1b183bb19bd45602567f79663a0cecc401bafbcf5a58ac12ce4668a906567",
+          "resultado_pruebas_all.json": "2a563d343d7ef8490165928a2ff0a1f34dbedb10af88d28d28ef022382ca0127"
+        },
+        "job_id": 120901627378,
+        "conclusion": "success"
+      },
+      {
+        "profile": "GymSoft_ZTATTUZ_3.6.1_x86",
+        "version": "3.8.0",
+        "process_bits": 32,
+        "guards": 110,
+        "python_regression_cases": 289,
+        "regression_stages": 40,
+        "appearance_checks": 468,
+        "training_ui_checks": 77,
+        "package_status": "PASS",
+        "frozen_probe_status": "PASS",
+        "installation_status": "NOT_RUN",
+        "installation": {
+          "fresh_installation": null,
+          "runtime": null,
+          "shortcuts": null,
+          "update": null,
+          "cleanup": "NOT_RUN"
+        },
+        "installation_reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+        "reports_sha256": {
+          "paquete-tecnico/informe_empaquetado.json": "aae21f97129e7bb05bd7ffb5237e1c1dfccf52018833a0059022e8715ef060c9",
+          "instalacion-tecnica/informe_instalacion.json": "e50adc170996818f5da9f1099ccf51be8558f529a5c27d41d02fccdd51e2b5f1",
+          "resultado_pruebas_all.json": "104636c78609087a2d32724e488deabe5de5f0651795c92ecfcf977c06f82d07"
+        },
+        "job_id": 120901627512,
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 12564706271,
+        "name": "windows-evidence-GymSoft_ZTATTUZ_3.6.1_x64-python3.14",
+        "bytes": 200346,
+        "sha256": "9c24da3f7e1969f35fb9a0146ee71bb4f65a38bb65fd1806d86f7d020a4aa0ac"
+      },
+      {
+        "id": 12564642106,
+        "name": "windows-evidence-GymSoft_ZTATTUZ_3.6.1_x86-python3.14",
+        "bytes": 107292,
+        "sha256": "5e1844b96f83f6b9f68bc3860fc1dfe0bfa78cac0e4cf4fd2487f1dba72b10a6"
+      },
+      {
+        "id": 12564457933,
+        "name": "windows-evidence-GymSoft_Comercial_3.6.0-python3.14",
+        "bytes": 293419,
+        "sha256": "5317ddf9e50001d62cd62edff8de1d3a93d06ef57d13a6e14340fd8bfe2dbb54"
+      },
+      {
+        "id": 12564378510,
+        "name": "NO_FINAL-client-download-GymSoft_ZTATTUZ_3.6.1_x86",
+        "bytes": 97396384,
+        "sha256": "851e2e8102895a7004c0c860ed22660e4f8b377ea4b77240aab8fa9bb8501fe7"
+      },
+      {
+        "id": 12564348409,
+        "name": "NO_FINAL-client-download-GymSoft_Comercial_3.6.0",
+        "bytes": 94932166,
+        "sha256": "532ccc07dae8b79a74d255777e4c7eeb72dbcd5a3b6822e869306668c35f4b53"
+      },
+      {
+        "id": 12564198490,
+        "name": "NO_FINAL-client-download-GymSoft_ZTATTUZ_3.6.1_x64",
+        "bytes": 177126333,
+        "sha256": "59c02495580a08306f9f9b94d00256c2c43c68a3397c641d77f00eb04d7f8a5d"
+      }
+    ]
+  },
+  "league": {
+    "run_id": 40103947068,
+    "job_id": 120901627306,
+    "url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/40103947068",
+    "conclusion": "success",
+    "integration_security_cases": 30,
+    "browser_cases": 8,
+    "artifact_id": 12563727340,
+    "artifact_sha256": "de0b4f240910f7c788fd75806e5512dd117babd05320302919729059587411eb",
+    "postgres_races": {
+      "scope": "Independent local PostgreSQL sessions, synthetic data only",
+      "evidence": [
+        {
+          "mode": "desktop-vs-desktop",
+          "backend_a": 154,
+          "backend_b": 155,
+          "waited_on_lock": true,
+          "confirmed": 1,
+          "second": {
+            "ok": false,
+            "code": "23514"
+          }
+        },
+        {
+          "mode": "desktop-vs-mobile",
+          "backend_a": 154,
+          "backend_b": 155,
+          "waited_on_lock": true,
+          "confirmed": 1,
+          "second": {
+            "ok": false,
+            "code": "23514"
+          }
+        },
+        {
+          "mode": "duplicate-desktop-retry",
+          "backend_a": 154,
+          "backend_b": 155,
+          "waited_on_lock": true,
+          "confirmed": 1,
+          "second": {
+            "ok": true
+          }
+        }
+      ]
+    },
+    "existing_source_races": {
+      "scope": "Actual local PostgreSQL, independent sessions, synthetic fixtures",
+      "version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "evidence": [
+        {
+          "mode": "mobile-rpc",
+          "backend_a": 150,
+          "backend_b": 151,
+          "waited_on_lock": true,
+          "last_slot_winners": 1,
+          "second_sqlstate": "23514"
+        },
+        {
+          "mode": "legacy-desktop-writer",
+          "backend_a": 150,
+          "backend_b": 151,
+          "waited_on_lock": true,
+          "last_slot_winners": 1,
+          "second_sqlstate": "23514"
+        }
+      ],
+      "duplicate_retry_rows": 1
+    },
+    "restore_rehearsal": {
+      "scope": "Plain PostgreSQL 17 synthetic fixtures only; not a Supabase production backup",
+      "before_restore": true,
+      "after_restore": true,
+      "rollback_reenable": true,
+      "credentials_logged": false,
+      "tables_compared": 22,
+      "before_sha256": "42909b892ea959fe5d7937fc11eeefcdbd5fdb2d8ce6cecdd50e210762f618b7",
+      "after_sha256": "d05b540895848728e5a380d29882b3c126811dcbb9d446008fe0ddaaa8833bf5",
+      "corrupt_archive_rejected": true,
+      "sequence_advanced": true
+    },
+    "real_phone_tested": false
+  },
+  "downloads": [
+    {
+      "file": "AtlanticGym_3.8.0_32bits_PRUEBAS_NO_FINAL.zip",
+      "profile": "GymSoft_ZTATTUZ_3.6.1_x86",
+      "bits": 32,
+      "version": "3.8.0",
+      "source_commit": "5f738c2ab06ddd47fb46a174557e6eafad4613bf",
+      "github_run_id": "40103947031",
+      "artifact_id": 12564378510,
+      "artifact_sha256": "851e2e8102895a7004c0c860ed22660e4f8b377ea4b77240aab8fa9bb8501fe7",
+      "artifact_bytes": 97396384,
+      "sha256": "ec96890157a1efc5177c983eec669e166fd7fa225a22f047cfeb93b4133f38ad",
+      "bytes": 97366730,
+      "integrity": "PASS",
+      "final": false,
+      "installation": {
+        "status": "NOT_RUN",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+        "native_windows_architecture": "x64",
+        "report_sha256": "e50adc170996818f5da9f1099ccf51be8558f529a5c27d41d02fccdd51e2b5f1"
+      },
+      "local_validation": {
+        "status": "PASS",
+        "scope": "all",
+        "platform": "win32",
+        "stages": 40,
+        "report_sha256": "104636c78609087a2d32724e488deabe5de5f0651795c92ecfcf977c06f82d07"
+      },
+      "installer": {
+        "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.8.0_x86.exe",
+        "sha256": "9a5abfea87a07784e21a43d5ba6bb727ff702ebb6a40b0c5d303fe4674ca3a9b",
+        "bytes": 97856263
+      },
+      "release_checks_approved": false
+    },
+    {
+      "file": "AtlanticGym_3.8.0_64bits_PRUEBAS_NO_FINAL.zip",
+      "profile": "GymSoft_ZTATTUZ_3.6.1_x64",
+      "bits": 64,
+      "version": "3.8.0",
+      "source_commit": "5f738c2ab06ddd47fb46a174557e6eafad4613bf",
+      "github_run_id": "40103947031",
+      "artifact_id": 12564198490,
+      "artifact_sha256": "59c02495580a08306f9f9b94d00256c2c43c68a3397c641d77f00eb04d7f8a5d",
+      "artifact_bytes": 177126333,
+      "sha256": "dbe4858ce4fc6d62f2f2094cbe1a1b8189b01864a5c92a3343a2e0de8cd3548c",
+      "bytes": 177072372,
+      "integrity": "PASS",
+      "final": false,
+      "installation": {
+        "status": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "report_sha256": "aac1b183bb19bd45602567f79663a0cecc401bafbcf5a58ac12ce4668a906567"
+      },
+      "local_validation": {
+        "status": "PASS",
+        "scope": "all",
+        "platform": "win32",
+        "stages": 40,
+        "report_sha256": "2a563d343d7ef8490165928a2ff0a1f34dbedb10af88d28d28ef022382ca0127"
+      },
+      "installer": {
+        "path": "VALIDACION_NO_FINAL_ZTATTUZ_Instalar_o_Actualizar_3.8.0_x64.exe",
+        "sha256": "58fc824325a33a2790213b89bc8b281e4a346fe0819407534147613e7ab19b48",
+        "bytes": 177544846
+      },
+      "release_checks_approved": false
+    }
+  ],
+  "migration": {
+    "path": "training/supabase/migrations/20261024013933_gym_training_workspace.sql",
+    "sha256": "537a19b7309874beee9c2a79347766b13faf7ff5fef7d9b69180d49915c3cc41",
+    "production_applied": false
+  },
+  "preflight": {
+    "evidence": "evidence/training-preflight-20261024.json",
+    "mode": "READ ONLY metadata; no customer rows",
+    "state": "ready_for_migration",
+    "new_rpc_installed": false
+  },
+  "production_backup_verified": false,
+  "production_seeds_applied": false,
+  "production_customer_records_changed": false,
+  "production_update_notice_published": false,
+  "pwa_deployed": false,
+  "official_main_changed": false,
+  "official_main_sha": "9c2d175adb32ebb4ae34624f2a578eacc35c4953",
+  "hardware_tested": false,
+  "acceptance": {
+    "version": "3.8.0",
+    "checks_approved": false,
+    "gates_bypassed": false,
+    "final_installers": false,
+    "publication_marker_enabled": false
+  },
+  "superseded_failed_runs": [
+    {
+      "id": 40101080087,
+      "reason": "Inno defaults still referenced 3.7.1; corrected all eight scripts"
+    },
+    {
+      "id": 40101933245,
+      "reason": "3.8.0 update instructions missing from installer input; added for all profiles plus resource guard"
+    }
+  ],
+  "pending": [
+    "Restore-tested complete real Supabase backup and authorized controlled migration/seed rollout",
+    "Actual Windows 32-bit installation, update and removal",
+    "Physical fingerprint reader/relay, real Windows 100/125 percent scaling and pilot acceptance",
+    "PWA publication and authorized end-to-end phone pilot",
+    "Version-specific release_readiness acceptances",
+    "Compatible Expo CLI audit advisory resolution"
+  ]
+}
