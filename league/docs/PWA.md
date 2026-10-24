@@ -8,6 +8,14 @@ Desde `league`, ejecutar `npm ci`, `npm run typecheck`, `npm test` y `npm run bu
 
 Configurar las tres variables públicas de `mobile/.env.example` con proyectos de QA. Registrar el origen HTTPS exacto en CORS de la pasarela y la raíz del sitio en las URLs de redirección de Supabase Auth. Configurar el enlace de invitación del backend como `https://DOMINIO-PWA/` en lugar del esquema nativo. Nunca incluir una clave privilegiada en el bundle.
 
+Antes de una compilación conectada al servidor real, ejecutar
+`node scripts/check-live-pwa-env.mjs` y después `npm run build:pwa`. La validación
+exige la clave `sb_publishable_` que admite el cliente móvil, la URL y la pasarela
+del mismo proyecto. La clave `anon` heredada no activa ese cliente. Reutilizar la
+clave publicable existente; no rotar claves ni revocar sesiones para publicar.
+Las compilaciones de demostración y las pruebas de navegador pueden seguir sin
+configuración real.
+
 ## Instalar
 
 - iPhone: abrir el enlace HTTPS en Safari, Compartir, Añadir a pantalla de inicio.
