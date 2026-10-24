@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "repository": "manuAA11/Atlantic-Software",
+  "branch": "pruebas",
+  "native_source_commit": "66f1eba953a24c606d7cc73031546ccd37dad025",
+  "pwa_source_commit": "758ca0416c63c95b07a4aff74a212dcb5d7c46e2",
+  "windows": {
+    "run_id": 40085884474,
+    "conclusion": "success",
+    "url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/40085884474",
+    "os": "Windows Server 2022 x64",
+    "python": "3.14.9",
+    "jobs": [
+      {
+        "job_id": 120848605597,
+        "profile": "GymSoft_Comercial_3.6.0",
+        "process_bits": 64,
+        "regressions": "PASS",
+        "build": "PASS",
+        "fresh_installation": "PASS",
+        "update": "PASS",
+        "uninstall": "PASS"
+      },
+      {
+        "job_id": 120848605400,
+        "profile": "GymSoft_ZTATTUZ_3.6.1_x64",
+        "process_bits": 64,
+        "regressions": "PASS",
+        "build": "PASS",
+        "fresh_installation": "PASS",
+        "update": "PASS",
+        "uninstall": "PASS"
+      },
+      {
+        "job_id": 120848605500,
+        "profile": "GymSoft_ZTATTUZ_3.6.1_x86",
+        "process_bits": 32,
+        "regressions": "PASS",
+        "build": "PASS",
+        "fresh_installation": "NOT_RUN",
+        "update": "NOT_RUN",
+        "uninstall": "NOT_RUN",
+        "limitation": "DigitalPersona x86 MSI requires NOT VersionNT64; actual 32-bit Windows required"
+      }
+    ],
+    "guards_per_profile": 110,
+    "appearance_checks_per_profile": 468,
+    "training_ui_checks_per_profile": 77,
+    "final_installers": false,
+    "release_gate_modified": false
+  },
+  "league": {
+    "run_id": 40086794784,
+    "job_id": 120851277951,
+    "conclusion": "success",
+    "url": "https://github.com/manuAA11/Atlantic-Software/actions/runs/40086794784",
+    "integration_security_cases": 27,
+    "browser_cases": 8,
+    "postgres_major": 17,
+    "independent_backend_races": [
+      "desktop-vs-desktop",
+      "desktop-vs-mobile",
+      "duplicate-desktop-retry"
+    ],
+    "real_phone_tested": false
+  },
+  "local": {
+    "pure_python_cases": 24,
+    "native_ui_sql_integration": "PASS",
+    "transport": "private STDIN to isolated PGlite; synthetic authenticated actors"
+  },
+  "data_scope": "Synthetic fixtures only; no production migrations, seeds, customer records or licenses changed in this task",
+  "hardware_tested": false,
+  "official_main_changed": false,
+  "production_update_notice_published": false,
+  "pending": [
+    "Authorized controlled database rollout and restore-tested backup",
+    "Actual 32-bit Windows installation",
+    "Physical reader/relay and customer scaling acceptance",
+    "Existing release_readiness acceptance gates",
+    "Compatible Expo CLI audit advisory resolution"
+  ],
+  "superseded_failed_runs": [
+    40054590505,
+    40054860899,
+    40054590456
+  ]
+}

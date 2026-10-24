@@ -127,7 +127,10 @@ identifica como hora del dispositivo. No se rellenan duraciones históricas.
 
 ## Pruebas y límites
 
-Ver `VALIDACION.md` para los resultados y el alcance exacto.
+Ver `VALIDACION.md` para los resultados y el alcance exacto. CI de League y los
+tres perfiles Windows aprobados. La instalación x64 se verificó en el runner;
+la instalación x86 requiere un Windows de 32 bits y sigue sin acreditar. Los
+artefactos de CI son técnicos NO_FINAL, no una publicación en el actualizador.
 
 - La topología con hub League remoto necesita sincronizar el catálogo con IDs
   verificables antes de habilitar esta RPC allí. No se simula esa conexión.

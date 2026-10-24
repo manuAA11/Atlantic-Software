@@ -311,4 +311,8 @@ sintéticos y los servicios source de League pasa. El run de League `40085884463
 aprobó 27 pruebas de integración, las carreras con dos backends PostgreSQL 17 y
 8 pruebas de navegador sobre `66f1eba`. La matriz Windows de esta revisión y los
 gates de publicación se registran en `docs/training/VALIDACION.md`; no se acredita
-hardware ni aceptación productiva con estos fixtures.
+hardware ni aceptación productiva con estos fixtures. El run Windows `40085884474`
+aprobó los tres perfiles, incluida instalación/actualización/desinstalación x64.
+La instalación x86 permanece NOT_RUN por requerir Windows de 32 bits. El recheck
+PWA `40086794784` volvió a aprobar 27 casos y 8 pruebas de navegador. Los
+instaladores técnicos NO_FINAL no se publicaron en el actualizador del gimnasio.

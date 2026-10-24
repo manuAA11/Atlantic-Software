@@ -91,13 +91,41 @@ existente incorpora las nuevas pruebas de formularios y la integración SQL nati
 reutilizando Node/PGlite de cada perfil.
 
 [Run Windows 40085884474](https://github.com/manuAA11/Atlantic-Software/actions/runs/40085884474):
-en curso para la misma revisión, con los tres perfiles. Incluye las pruebas
-nuevas, regresiones existentes, compilación, instaladores técnicos e instalación
-en un Windows Server 2022 desechable. No modifica `release_readiness.json`.
+**SUCCESS en los tres perfiles**, código nativo `66f1eba`. Windows Server 2022
+x64, con procesos Python 3.14 x64 y x86 según el perfil. Cada uno aprobó 110
+pruebas de guardas, 468 comprobaciones de apariencia y 77 del flujo nuevo, la
+integración Tk/SQL, el aviso de actualización y las regresiones completas de su
+programa. Se construyeron los ejecutables e instaladores técnicos, se verificaron
+arquitecturas/iconos y se confirmó que la entrega final continúa bloqueada sin
+aceptación. No se modifica `release_readiness.json`.
 
-Pendientes para publicar: resultado de CI Windows de la revisión definitiva,
-escalado en el equipo del gimnasio, gates de la versión nueva, aceptación de instalación y prueba
-controlada del piloto. No se han generado ni anunciado instaladores finales.
+| Perfil de compatibilidad de la aplicación compartida | Compilación/regresiones | Instalación, actualización y desinstalación |
+|---|---|---|
+| Comercial x64 | PASS | PASS, runner Windows x64 desechable |
+| Proveedor histórico x64 | PASS | PASS, runner Windows x64 desechable |
+| Proveedor histórico x86 | PASS, proceso real de 32 bits | **NOT_RUN**: falta Windows de 32 bits |
+
+El MSI DigitalPersona x86 exige `NOT VersionNT64`. El runner de 64 bits no puede
+acreditar esa instalación; el job exitoso no se presenta como instalación x86
+aprobada. El lector y el relé físicos, el escalado de Windows en el equipo del
+cliente y la aceptación del piloto siguen pendientes. Los paquetes publicados
+por este workflow están identificados **NO_FINAL** y no se enviaron al actualizador
+productivo. La ejecución anterior `40054590456` conserva el FAIL del fixture de
+`responsive_ui_smoke`; la respuesta simulada se corrigió en los tres perfiles y
+se repitieron las validaciones completas.
+
+[Run League 40086794784](https://github.com/manuAA11/Atlantic-Software/actions/runs/40086794784):
+**SUCCESS** sobre `758ca041`, posterior a Windows únicamente en la pantalla PWA.
+Repite 27 casos, dos conexiones PostgreSQL y 8 pruebas de navegador. Incluye la
+presentación de indicaciones generales del plan y el nombre conservado del
+ejercicio asignado cuando se desactiva en el catálogo. El código nativo coincide
+con el validado en el run Windows anterior.
+
+Pendientes para publicar en clientes: respaldo restaurable y migración/carga
+controlada en el servidor autorizado; instalación en Windows de 32 bits; prueba
+física del equipo y aceptación de los gates vigentes de la versión. No se han
+generado ni anunciado instaladores finales. El resumen estructurado de evidencias
+está en `evidence/training-validation-20261024.json`.
 
 
 ## Herramientas de compilación
