@@ -1,0 +1,106 @@
+{
+  "format": "atlantic.training.rollout.v1",
+  "state": "ready_for_migration",
+  "blockers": [],
+  "migration_sha256": "537a19b7309874beee9c2a79347766b13faf7ff5fef7d9b69180d49915c3cc41",
+  "preflight_sha256": "4ca6d266582470f93b225aac2c35a351dffc1f9bddf11b3b3b69c569114a6e2d",
+  "scope": "Schema metadata only. Does not authorize a deployment or prove a production backup.",
+  "snapshot": {
+    "rpc": null,
+    "format": "atlantic.training.preflight.v1",
+    "new_tables": {
+      "public.gym_routine_templates": {
+        "rls": false,
+        "exists": false,
+        "client_grants": false
+      },
+      "league_source_private.training_audit": {
+        "rls": false,
+        "exists": false,
+        "client_grants": false
+      },
+      "league_source_private.training_requests": {
+        "rls": false,
+        "exists": false,
+        "client_grants": false
+      },
+      "league_source_private.reservation_history": {
+        "rls": false,
+        "exists": false,
+        "client_grants": false
+      }
+    },
+    "source_api": {
+      "definer": false,
+      "anon_execute": false,
+      "service_execute": true,
+      "authenticated_execute": false
+    },
+    "new_columns": {
+      "public.classes.version": false,
+      "public.classes.conditions": false,
+      "public.routines.assigned_at": false,
+      "public.routines.assigned_by": false,
+      "public.classes.recurrence_id": false,
+      "public.classes.duration_minutes": false,
+      "public.classes.requires_membership": false,
+      "public.routines.previous_routine_id": false,
+      "public.league_exercise_catalog.active": false,
+      "public.league_exercise_catalog.image_url": false,
+      "public.league_exercise_catalog.video_url": false,
+      "public.league_exercise_catalog.sort_order": false
+    },
+    "new_functions": {
+      "public.gym_training(uuid,text,jsonb)": false,
+      "league_source_private.training(uuid,text,jsonb)": false,
+      "league_source_private.training_reserve(uuid,bigint,bigint)": false,
+      "league_source_private.athlete_before_training(uuid,uuid,text,jsonb)": false
+    },
+    "capacity_guard": true,
+    "required_tables": {
+      "public.gyms": true,
+      "public.classes": true,
+      "public.clients": true,
+      "public.routines": true,
+      "public.trainers": true,
+      "public.exercises": true,
+      "public.gym_users": true,
+      "public.reservations": true,
+      "public.league_coaches": true,
+      "public.league_gym_directory": true,
+      "public.league_client_profiles": true,
+      "public.league_exercise_catalog": true
+    },
+    "required_columns": {
+      "public.gyms.timezone": true,
+      "public.classes.status": true,
+      "public.clients.active": true,
+      "public.gym_users.role": true,
+      "public.exercises.notes": true,
+      "public.routines.active": true,
+      "public.classes.capacity": true,
+      "public.classes.starts_at": true,
+      "public.routines.client_id": true,
+      "public.reservations.gym_id": true,
+      "public.reservations.status": true,
+      "public.reservations.client_id": true,
+      "public.exercises.league_catalog_id": true,
+      "public.exercises.league_rest_seconds": true
+    },
+    "required_functions": {
+      "private.gym_local_date(uuid)": true,
+      "league_private.app(text,jsonb)": true,
+      "league_private.service(text,jsonb)": true,
+      "league_source_private.staff_role(uuid)": true,
+      "league_source_private.enabled(uuid,bigint)": true,
+      "public.league_source(uuid,uuid,text,jsonb)": true,
+      "private.membership_snapshot_json(uuid,bigint)": true,
+      "league_source_private.athlete(uuid,uuid,text,jsonb)": true
+    },
+    "reservation_unique": true,
+    "server_version_num": 170006
+  },
+  "checked_date": "2026-10-24",
+  "operation": "read-only PostgreSQL metadata, live Gym source",
+  "production_backup_verified": false
+}

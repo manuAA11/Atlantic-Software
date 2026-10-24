@@ -48,6 +48,13 @@ jobs:
           set -o pipefail
           npm run test:postgres | tee postgres-evidence.json
           npm run test:training:postgres | tee training-postgres-evidence.json
+      - name: Restore synthetic training backups before and after migration
+        env:
+          LEAGUE_TEST_DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/postgres
+          LEAGUE_TEST_POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          set -o pipefail
+          node tests/training-restore-postgres.mjs | tee training-restore-evidence.json
       - name: Bundle iOS and Android JavaScript
         run: npm exec --workspace @atlantic/league-mobile -- expo export --platform ios --platform android --output-dir dist-native
       - name: Browser checks of the shared phone UI with simulated data
@@ -62,5 +69,6 @@ jobs:
           path: |
             league/postgres-evidence.json
             league/training-postgres-evidence.json
+            league/training-restore-evidence.json
             league/.qa/browser-report/
             league/.qa/browser-results/

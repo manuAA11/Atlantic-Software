@@ -1,8 +1,8 @@
 {
-  "version": "3.7.1",
-  "tag": "atlantic-gym-3.7.1-piloto",
-  "publish": true,
+  "version": "3.8.0",
+  "tag": "atlantic-gym-3.8.0-piloto",
+  "publish": false,
   "final": false,
-  "notes": "Actualización opcional de prueba: tema Minimal y avisos de nuevas versiones. Atlantic League permanece en desarrollo. No aplica cambios a bases de datos.",
-  "publication_attempt": 3
+  "notes": "Candidata de prueba: catálogo de ejercicios, rutinas, clases, reservas y apariencia. Requiere despliegue controlado del servidor antes de habilitar estas herramientas.",
+  "publication_attempt": 1
 }
