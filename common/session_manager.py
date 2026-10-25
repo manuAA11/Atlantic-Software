@@ -226,6 +226,25 @@ class SessionManager:
             self.store.clear()
             self.state = 'SIGNED_OUT'
 
+    def _bind_session(self, session):
+        """Apply a peer's rotated credential to every pinned SDK transport.
+
+        Updating PostgREST alone leaves cached Edge/Storage clients and Auth
+        headers on the previous access token. Use the same SDK binding callback
+        as a normal TOKEN_REFRESHED event, without rotating or emitting events.
+        """
+        token = session.access_token if session else self.client.supabase_key
+        header = 'Bearer '+token
+        if self.client.options.headers.get('Authorization') != header:
+            bind = getattr(self.client, '_listen_to_auth_events', None)
+            if callable(bind):
+                bind('TOKEN_REFRESHED' if session else 'SIGNED_OUT', session)
+            self.client.options.headers['Authorization'] = header
+            auth_headers = getattr(self.auth, '_headers', None)
+            if isinstance(auth_headers, dict):
+                auth_headers['Authorization'] = header
+        self.client.postgrest.auth(token)
+
     def _load(self):
         from supabase_auth.types import Session
         if self.persistence_error and self.session:
@@ -234,12 +253,17 @@ class SessionManager:
             return self.session
         value = self.store.load()
         if value:
+            previous = self.session.access_token if self.session else None
             self.session = Session.model_validate(value)
-            token = self.session.access_token
-            self.client.options.headers['Authorization'] = 'Bearer '+token
-            self.client.postgrest.auth(token)
+            if self.session.access_token != previous:
+                self.state = 'ONLINE'
+                self.retry_at = 0.
+                self.failures = 0
         else:
             self.session = None
+            if self.state != 'AUTH_REQUIRED':
+                self.state = 'SIGNED_OUT'
+        self._bind_session(self.session)
         return self.session
 
     def restore(self):
@@ -266,8 +290,11 @@ class SessionManager:
                 response = self.auth.refresh_session(session.refresh_token)
                 if not response.session:
                     raise SessionUnavailable('La sesión necesita autenticación.')
-                # The SDK event also persists, but this handles compatible auth adapters.
-                self.session = response.session
+                # The pinned SDK normally emits TOKEN_REFRESHED. An adapter
+                # without that callback must still persist and bind the result.
+                if self.session is not response.session:
+                    self._changed('TOKEN_REFRESHED', response.session)
+                self._bind_session(response.session)
                 self.state = 'ONLINE'
                 self.failures = 0
                 self.retry_at = 0.
@@ -296,9 +323,7 @@ class SessionManager:
                 self.store.clear()
                 self.state = 'SIGNED_OUT'
                 self.close()
-                key = self.client.supabase_key
-                self.client.options.headers['Authorization'] = 'Bearer '+key
-                self.client.postgrest.auth(key)
+                self._bind_session(None)
 
     def tick(self):
         now = self.clock()

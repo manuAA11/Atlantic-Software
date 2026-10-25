@@ -10,6 +10,12 @@ La publicación sigue siendo opcional y NO FINAL; instalación en Windows de 32
 bits y lector/relé físicos pendientes. Detalle y verificación:
 [Recuperación del acceso 3.8.1](RECUPERACION_ACCESO_3.8.1.md).
 
+**Auditoría posterior de tokens:** se reproduce y corrige una sincronización
+incompleta del SDK al cargar la sesión renovada por otro proceso, y se elimina
+la rotación forzada de una sesión vigente al arrancar. El rechazo persistente
+PGRST303 del proveedor es una incidencia distinta; el acceso real no se declara
+recuperado con estas pruebas locales. [Alcance y verificación](SINCRONIZACION_SESIONES.md).
+
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
 **Incidencia del relé USB comunicada el 14 de octubre:** botón de salida

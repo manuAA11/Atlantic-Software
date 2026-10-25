@@ -93,5 +93,18 @@ class LoginRecovery(unittest.TestCase):
         access.messagebox.showerror.assert_called_once()
 
 
+class SavedSessionStartup(unittest.TestCase):
+    def test_startup_does_not_force_rotation_of_a_valid_saved_session(self):
+        saved = NS(user=NS(id='synthetic-user', email='synthetic@example.invalid'))
+        sessions = Mock()
+        sessions.restore.return_value = saved
+        sessions.ensure.return_value = saved
+        cloud = NS(sessions=sessions)
+        self.assertTrue(access.CloudService.restore_session(cloud))
+        sessions.ensure.assert_called_once_with()
+        self.assertEqual(cloud.user_id, 'synthetic-user')
+        self.assertEqual(cloud.email, 'synthetic@example.invalid')
+
+
 if __name__ == '__main__':
     unittest.main()

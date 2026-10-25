@@ -37,7 +37,7 @@ class CloudService:
         session = self.sessions.restore()
         if not session:
             return False
-        session = self.sessions.ensure(force=True)
+        session = self.sessions.ensure()
         self.user_id = str(session.user.id)
         self.email = session.user.email or ''
         return True

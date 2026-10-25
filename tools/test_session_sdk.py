@@ -79,6 +79,63 @@ class SDKSessionTests(unittest.TestCase):
         self.assertEqual(second.session.refresh_token, 'initial-refresh')
         self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
 
+    def test_peer_rotation_updates_already_created_edge_client(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        second.restore()
+        previous = second.client.functions
+        self.assertEqual(previous.headers['Authorization'], 'Bearer '+token(self.exp))
+        first.ensure(force=True)
+        received = []
+        def handler(request):
+            received.append(request)
+            self.assertTrue(request.url.path.endswith('/functions/v1/session_probe'))
+            self.assertEqual(request.headers['Authorization'], 'Bearer '+token(self.exp+3600))
+            return httpx.Response(200, json={'ok': True})
+        self.transport.handler = handler
+        ManagedClient(second.client, second).functions.invoke('session_probe', invoke_options={'body': {}})
+        self.assertEqual(len(received), 1)
+        self.assertEqual(second.auth._headers['Authorization'], 'Bearer '+token(self.exp+3600))
+
+    def test_peer_logout_removes_cached_authenticated_headers(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        second.restore()
+        previous = second.client.functions
+        self.store.clear()
+        self.assertIsNone(second.ensure())
+        self.assertEqual(second.state, 'SIGNED_OUT')
+        self.assertIsNot(second.client.functions, previous)
+        self.assertEqual(second.client.functions.headers['Authorization'], 'Bearer public-test-key')
+        self.assertEqual(second.auth._headers['Authorization'], 'Bearer public-test-key')
+
+    def test_valid_restored_session_reuses_token_without_rotation(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        second.clock = lambda: self.exp-1000
+        expected = second.restore().access_token
+        self.assertEqual(second.ensure().access_token, expected)
+        self.assertEqual(second.state, 'ONLINE')
+        self.assertFalse(any(r.url.params.get('grant_type') == 'refresh_token' for r in self.calls))
+
+    def test_peer_rotation_replaces_cached_storage_client(self):
+        first, second = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        second.restore()
+        previous = second.client.storage
+        first.ensure(force=True)
+        second.ensure()
+        received = []
+        def handler(request):
+            received.append(request)
+            self.assertIn('/storage/v1/object/list/', request.url.path)
+            self.assertEqual(request.headers['Authorization'], 'Bearer '+token(self.exp+3600))
+            return httpx.Response(200, json=[])
+        self.transport.handler = handler
+        self.assertEqual(second.client.storage.from_('synthetic').list(), [])
+        self.assertEqual(len(received), 1)
+        self.assertIsNot(second.client.storage, previous)
+
     def test_actual_postgrest_future_rejection_waits_with_same_auth_header(self):
         first, _ = self.setup_clients()
         first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
