@@ -409,3 +409,13 @@ ENTRENAMIENTO, CLASES Y RESERVAS
 - Ejemplos sólo mediante carga idempotente autorizada; primero QA y respaldo.
 - Validación y despliegue detallados en docs/training/. No acreditar Windows ni
   carreras de dos sesiones mediante pruebas de Tk/Linux o PGlite.
+
+CONTINUIDAD DE SESIÓN — 24 DE OCTUBRE DE 2026
+- Conservar Atlantic Gym abierto y la sesión recuperable ante suspensión de
+  Windows o corte de internet. Renovar cuando corresponda y reconectar con
+  espera limitada, sin repetir escrituras cuyo resultado sea incierto.
+- Si la sesión fue revocada, exigir autenticación y permitir reincorporarse
+  con la misma cuenta, gimnasio y rol. Los errores de contraseña vuelven al
+  formulario; Cancelar conserva la ventana abierta sin autorizar operaciones.
+- Corregir la causa del rechazo de tokens del proveedor. Un reinicio o una
+  prueba HTTP simulada no acredita solución permanente ni entrega final.

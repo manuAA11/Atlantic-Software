@@ -2,7 +2,7 @@ import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace as NS
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from common.session_manager import (MemorySessionStore, SessionManager, SessionOffline,
     SessionUnavailable, SessionClockError, ManagedClient)
@@ -62,6 +62,31 @@ class Sessions(unittest.TestCase):
             manager.ensure()
         self.assertIsNone(manager.session)
         self.assertEqual(manager.state, 'AUTH_REQUIRED')
+
+    def test_requests_after_session_loss_never_fall_back_to_anonymous(self):
+        manager = self.manager()
+        manager.session = None
+        manager.state = 'AUTH_REQUIRED'
+        client = ManagedClient(self.client, manager)
+        for operation in (lambda: client.rpc('register_checkin', {}).execute(),
+                          lambda: client.functions.invoke('write', invoke_options={'body': {}})):
+            with self.assertRaises(SessionUnavailable):
+                operation()
+        self.client.rpc.assert_not_called()
+        self.client.functions.invoke.assert_not_called()
+
+    def test_relogin_restarts_worker_while_previous_worker_is_exiting(self):
+        manager = self.manager()
+        manager.worker = Mock()
+        manager.worker.is_alive.return_value = True
+        previous_stop = manager.stop_event
+        manager.close()
+        with patch('common.session_manager.threading.Thread') as thread:
+            manager.start()
+        thread.return_value.start.assert_called_once()
+        self.assertTrue(previous_stop.is_set())
+        self.assertIsNot(manager.stop_event, previous_stop)
+        self.assertFalse(manager.stop_event.is_set())
 
     def test_resume_resets_backoff(self):
         manager = self.manager()

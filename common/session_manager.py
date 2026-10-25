@@ -304,11 +304,18 @@ class SessionManager:
                     self.session = None
                     self.store.clear()
                     self.state = 'AUTH_REQUIRED'
+                    self._bind_session(None)
                     raise SessionUnavailable('La sesión fue revocada. Inicia sesión de nuevo.') from None
                 self.failures += 1
                 self.retry_at = self.monotonic()+min(60., 2.**min(self.failures, 6))
                 self.state = 'OFFLINE'
                 raise SessionOffline('No se pudo recuperar la conexión. La sesión se conserva.') from None
+
+    def require_session(self):
+        session = self.ensure()
+        if session is None:
+            raise SessionUnavailable('Inicia sesión de nuevo para continuar.')
+        return session
 
     def operation(self, name, *args, **kwargs):
         with self._guard():
@@ -334,20 +341,25 @@ class SessionManager:
         return self.ensure()
 
     def start(self):
-        if self.worker and self.worker.is_alive():
-            return
-        self.stop_event.clear()
-        def run():
-            while not self.stop_event.wait(10):
-                try:
-                    self.tick()
-                except Exception:
-                    # UI reads state. No tokens or server error payloads in logs.
-                    pass
-        self.worker = threading.Thread(target=run, name='Atlantic-Session', daemon=True)
-        self.worker.start()
+        with self.lock:
+            if self.worker and self.worker.is_alive() and not self.stop_event.is_set():
+                return
+            # A just-stopped worker may still be exiting during reauthentication.
+            # Each generation retains its own stop signal; never revive the old one.
+            stop_event = threading.Event()
+            self.stop_event = stop_event
+            def run():
+                while not stop_event.wait(10):
+                    try:
+                        self.tick()
+                    except Exception:
+                        # UI reads state. No tokens or server error payloads in logs.
+                        pass
+            self.worker = threading.Thread(target=run, name='Atlantic-Session', daemon=True)
+            self.worker.start()
 
     def close(self):
+        # Root destruction must not wait for an in-flight HTTP refresh.
         self.stop_event.set()
 
 
@@ -399,7 +411,7 @@ class DeferredQuery:
         manager = self.client.session_manager
         if self.client.core_control is not None:
             self.client.core_control.require_operation()
-        session = manager.ensure()
+        session = manager.require_session()
         token = session.access_token if session else None
         refreshed = False
         future_attempt = 0
@@ -438,7 +450,7 @@ class ManagedFunctions:
         with self.client.session_manager.request():
             if self.client.core_control is not None:
                 self.client.core_control.require_operation()
-            self.client.session_manager.ensure()
+            self.client.session_manager.require_session()
             # No replay: an Edge write may have succeeded before a lost response.
             return self.client.raw.functions.invoke(*args, **kwargs)
 

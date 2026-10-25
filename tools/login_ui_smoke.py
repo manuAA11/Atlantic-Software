@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / 'GymSoft_Comercial_3.6.0'))
 from desktop_ui import configure_dark_styles, decorate_window
 from runtime_cloud import LoginDialog
 from common import runtime_cloud as access
+from common.session_ui import SessionStatus
 
 
 def settle(root):
@@ -102,6 +103,39 @@ def main():
             messages.showerror.assert_not_called();checks+=1
             cloud.sessions.logout.assert_not_called();checks+=1
             assert root.winfo_exists();checks+=1
+        # Revocation inside the open workspace: retry credentials inline and
+        # cancel the form without destroying the root or replaying an operation.
+        cloud.sessions.state='AUTH_REQUIRED'
+        status=SessionStatus(root,cloud)
+        forms=[]
+        def reauthentication_form(*args,**kwargs):
+            login=LoginDialog(*args,**kwargs);settle(root)
+            assert login.winfo_viewable() and root.winfo_viewable()
+            assert login.email.get()=='demo@example.invalid' and not login.password.get()
+            assert not login.mode_button.winfo_manager()
+            assert login.focus_get() is login.password_entry
+            if forms:
+                assert login.feedback.get()=='Correo o contraseña incorrectos.'
+            forms.append(login)
+            root.after(60,lambda:(login.password.set('SyntheticPass123'),login.accept()))
+            return login
+        with patch('runtime_cloud.LoginDialog',side_effect=reauthentication_form), \
+             patch('common.session_ui.recover_identity',side_effect=[ValueError('Invalid login credentials'),None]) as recover, \
+             patch('common.session_ui.run_io',side_effect=lambda parent,fn,**kw:fn()), \
+             patch('common.session_ui.messagebox') as messages:
+            status.recover()
+            assert len(forms)==2 and recover.call_count==2;checks+=1
+            messages.showerror.assert_not_called();checks+=1
+            assert root.winfo_exists() and root.winfo_viewable();checks+=1
+        def cancelled_form(*args,**kwargs):
+            login=LoginDialog(*args,**kwargs)
+            root.after(60,login.destroy)
+            return login
+        with patch('runtime_cloud.LoginDialog',side_effect=cancelled_form), \
+             patch('common.session_ui.recover_identity') as recover:
+            status.recover()
+            recover.assert_not_called();checks+=1
+            assert root.winfo_exists() and cloud.sessions.state=='AUTH_REQUIRED';checks+=1
         root.withdraw();hidden=LoginDialog(root);settle(root)
         assert hidden.winfo_viewable();checks+=1;hidden.destroy()
         assert not errors,errors;checks+=1

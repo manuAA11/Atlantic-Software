@@ -16,6 +16,13 @@ la rotación forzada de una sesión vigente al arrancar. El rechazo persistente
 PGRST303 del proveedor es una incidencia distinta; el acceso real no se declara
 recuperado con estas pruebas locales. [Alcance y verificación](SINCRONIZACION_SESIONES.md).
 
+**Continuidad y reincorporación:** se corrige el reinicio del trabajador tras
+una reincorporación rápida, la limpieza inmediata de conexiones al revocar y
+el bloqueo de operaciones sin sesión. La contraseña rechazada vuelve al
+formulario; Cancelar conserva la ventana abierta. Se añaden pruebas de red y
+reanudación con el SDK fijado y de recuperación en Tk. El servicio real y la
+aceptación final siguen pendientes. [Detalle](ESTABILIDAD_SESIONES.md).
+
 **Estado: código recuperado; creación Windows de siete programas y ocho instaladores aprobada. Instalación nueva, actualización y desinstalación x64 aprobadas; ZIP de configuración publicados y verificados. La aceptación final de integraciones, servidor y hardware sigue pendiente.** Este informe sustituye las afirmaciones de estado del informe histórico, que se conserva como evidencia de aquella ejecución.
 
 **Incidencia del relé USB comunicada el 14 de octubre:** botón de salida

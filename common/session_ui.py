@@ -77,13 +77,21 @@ class SessionStatus:
         try:
             if self.cloud.sessions.state in {'AUTH_REQUIRED', 'SIGNED_OUT'}:
                 from runtime_cloud import LoginDialog
-                dialog = LoginDialog(self.root, allow_signup=False)
-                dialog.email.set(self.cloud.email)
-                self.root.wait_window(dialog)
-                if not dialog.result:
-                    return
-                email, password = dialog.result
-                run_io(self.root, lambda: recover_identity(self.cloud, email, password), title='Recuperando sesión')
+                from common.runtime_cloud import _friendly_login_error
+                feedback = ''
+                while True:
+                    dialog = LoginDialog(self.root, allow_signup=False,
+                        initial_email=self.cloud.email, error_message=feedback)
+                    self.root.wait_window(dialog)
+                    if not dialog.result:
+                        return
+                    email, password = dialog.result
+                    try:
+                        run_io(self.root, lambda: recover_identity(self.cloud, email, password), title='Recuperando sesión')
+                    except Exception as error:
+                        feedback = _friendly_login_error(error)
+                    else:
+                        return
             else:
                 run_io(self.root, lambda: self.cloud.sessions.ensure(force=True), title='Recuperando conexión')
         except Exception as error:

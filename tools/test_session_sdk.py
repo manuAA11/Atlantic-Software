@@ -10,7 +10,7 @@ import unittest
 import httpx
 from supabase import ClientOptions, create_client
 from common.session_manager import (SessionManager, MemorySessionStore, ManagedClient,
-    WindowsSessionStore, SessionOffline)
+    WindowsSessionStore, SessionOffline, SessionUnavailable)
 
 
 def token(exp):
@@ -79,6 +79,29 @@ class SDKSessionTests(unittest.TestCase):
         self.assertEqual(second.session.refresh_token, 'initial-refresh')
         self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
 
+    def test_resume_after_expiry_and_network_cut_recovers_same_identity(self):
+        first, _ = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        expected_user = first.session.user.id
+        now = [self.exp + 100]
+        first.clock = first.monotonic = lambda: now[0]
+        first.last_tick = self.exp - 1000
+        self.offline = True
+        with self.assertRaises(SessionOffline):
+            first.tick()
+        self.assertEqual(first.state, 'OFFLINE')
+        self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
+        # A later resume clears the old backoff; the pinned SDK rotates once.
+        now[0] += 600
+        self.offline = False
+        recovered = first.tick()
+        self.assertEqual(recovered.user.id, expected_user)
+        self.assertEqual(recovered.refresh_token, 'rotated-refresh')
+        self.assertEqual(first.state, 'ONLINE')
+        self.assertEqual(self.store.load()['refresh_token'], 'rotated-refresh')
+        self.assertEqual(first.client.options.headers['Authorization'], 'Bearer '+recovered.access_token)
+        self.assertTrue(all(request.url.path.endswith('/token') for request in self.calls))
+
     def test_peer_rotation_updates_already_created_edge_client(self):
         first, second = self.setup_clients()
         first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
@@ -108,6 +131,23 @@ class SDKSessionTests(unittest.TestCase):
         self.assertIsNot(second.client.functions, previous)
         self.assertEqual(second.client.functions.headers['Authorization'], 'Bearer public-test-key')
         self.assertEqual(second.auth._headers['Authorization'], 'Bearer public-test-key')
+
+    def test_revoked_refresh_immediately_removes_cached_credentials(self):
+        first, _ = self.setup_clients()
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        previous = first.client.functions
+        def handler(request):
+            self.assertEqual(request.url.params.get('grant_type'), 'refresh_token')
+            return httpx.Response(400, json={'error_code': 'refresh_token_not_found',
+                'msg': 'Invalid Refresh Token: Refresh Token Not Found'})
+        self.transport.handler = handler
+        with self.assertRaises(SessionUnavailable):
+            first.ensure(force=True)
+        self.assertIsNone(self.store.load())
+        self.assertEqual(first.state, 'AUTH_REQUIRED')
+        self.assertIsNot(first.client.functions, previous)
+        self.assertEqual(first.client.functions.headers['Authorization'], 'Bearer public-test-key')
+        self.assertEqual(first.auth._headers['Authorization'], 'Bearer public-test-key')
 
     def test_valid_restored_session_reuses_token_without_rotation(self):
         first, second = self.setup_clients()
