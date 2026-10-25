@@ -41,21 +41,25 @@ La comprobación local con CPython 3.14.8/Linux x64 aprobó 318 pruebas de
 Comercial, 290 del perfil histórico x64 y 289 del perfil histórico x86
 (las tres ejecutadas en Linux x64). El conjunto adicional de sesiones, Core,
 actualizador y compatibilidad aprobó 60 pruebas, con una prueba DPAPI omitida
-por requerir Windows. El smoke Tk ampliado y estas revisiones de escritorio
-necesitan una ejecución Windows posterior al cambio; los runs anteriores no
-acreditan estas modificaciones adicionales.
+por requerir Windows. El run Windows 40146471973 del commit 356db844 aprobó el
+smoke Tk ampliado, SDK/DPAPI, ejecutable congelado y empaquetado de los tres
+perfiles. La nueva identidad 3.8.2 necesita su ejecución exacta antes de publicarse.
 
 ## Incidencia del proveedor y entrega
 
-El proveedor ZTATTUZ informa PostgREST 14.5 y rechaza tokens recién emitidos
-con PGRST303. Auth sí acepta renovaciones. Los cambios anteriores de escritorio
-no acreditan recuperación de ese servicio; véase SINCRONIZACION_SESIONES.md.
-La revisión de una actualización del servicio requiere el panel: el plugin
-conectado no expone esa operación. El acceso al panel encontró un CAPTCHA.
+Antes de actualizar, el proveedor ZTATTUZ informaba PostgREST 14.5 y rechazaba
+tokens recién emitidos con PGRST303. Auth sí aceptaba renovaciones. Los cambios
+del escritorio por sí solos no corregían el servicio; véase SINCRONIZACION_SESIONES.md.
+La actualización del servicio requiere el panel: el plugin conectado no expone
+esa operación. El acceso al panel ya se completó y el usuario autorizó la
+actualización administrada, que terminó con el proveedor saludable y PostgREST
+14.18. El acceso real informado por el usuario se confirma con renovaciones y
+consultas autenticadas exitosas en los registros. Véase
+[RECUPERACION_ACCESO_3.8.2.md](RECUPERACION_ACCESO_3.8.2.md).
 
-No se ha actualizado ni reiniciado el proyecto. No se cambian claves, políticas
-RLS, claims o validación de firmas. La comprobación de acceso real y la versión
-efectiva de PostgREST tras una actualización siguen pendientes. La publicación
+Los cambios del escritorio no reinician el proyecto ni cambian claves,
+políticas RLS, claims o validación de firmas. La comprobación posterior del
+servidor y los registros respalda la recuperación del acceso. La publicación
 3.8.1 existente es anterior a estas correcciones adicionales y no debe
 presentarse como un instalador que ya las contiene. Los criterios de
 release_readiness.json permanecen vigentes; no se certifica entrega final.

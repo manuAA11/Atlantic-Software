@@ -2,6 +2,15 @@
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
+**Candidato 3.8.2 de continuidad de sesión:** incorpora la sincronización de
+tokens y la reincorporación del código posterior a los instaladores 3.8.1.
+Se prepara con identidad nueva, notas por perfil y los criterios externos
+pendientes. La actualización administrada autorizada del proveedor ZTATTUZ
+terminó con estado saludable y PostgREST 14.18. El usuario confirmó acceso y
+los registros muestran renovaciones y consultas exitosas. La identidad 3.8.2
+necesita su validación Windows exacta; no se acredita entrega final.
+[Procedimiento y estado](RECUPERACION_ACCESO_3.8.2.md).
+
 **Corrección del acceso, 24 de octubre de 2026 (3.8.1):** los errores recuperables
 de sesión y contraseña regresan directamente al formulario, conservando el correo.
 Se elimina el cuadro Reintentar/Cancelar que podía restaurar otra vez la sesión
