@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Continuidad de sesión: sincroniza tokens renovados en todas las conexiones del SDK, conserva sesiones vigentes al arrancar y reactiva la renovación tras reincorporarse. Una revocación exige autenticarse sin cerrar la ventana; errores de contraseña vuelven al formulario. Se conservan los perfiles e identificadores de instalación. La verificación presencial de suspensión, red, Windows de 32 bits y lector/relé sigue pendiente; NO FINAL.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }
