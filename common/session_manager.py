@@ -158,6 +158,7 @@ class SessionManager:
         self.stop_event = threading.Event()
         self.worker = None
         self.persistence_error = False
+        self.explicitly_signed_out = False
         self.local = threading.local()
         self.requests = threading.Condition()
         self.active_requests = 0
@@ -211,6 +212,10 @@ class SessionManager:
     def _changed(self, event, session):
         # Invoked synchronously within a serialized auth operation. Never log tokens.
         if event in {'SIGNED_IN', 'TOKEN_REFRESHED'} and session:
+            if event == 'SIGNED_IN':
+                self.explicitly_signed_out = False
+            elif self.explicitly_signed_out:
+                return
             self.session = session
             self.state = 'ONLINE'
             self.retry_at = 0.
@@ -222,6 +227,7 @@ class SessionManager:
                 # Keep the newly rotated token in memory; never reload its old parent.
                 self.persistence_error = True
         elif event == 'SIGNED_OUT':
+            self.explicitly_signed_out = True
             self.session = None
             self.store.clear()
             self.state = 'SIGNED_OUT'
@@ -246,6 +252,11 @@ class SessionManager:
         self.client.postgrest.auth(token)
 
     def _load(self):
+        if self.explicitly_signed_out:
+            self.session = None
+            self.state = 'SIGNED_OUT'
+            self._bind_session(None)
+            return None
         from supabase_auth.types import Session
         if self.persistence_error and self.session:
             self.store.save(self.session.model_dump(mode='json'))
@@ -326,11 +337,17 @@ class SessionManager:
             try:
                 self.auth.sign_out({'scope': 'local'})
             finally:
+                self.explicitly_signed_out = True
                 self.session = None
-                self.store.clear()
-                self.state = 'SIGNED_OUT'
-                self.close()
-                self._bind_session(None)
+                self.persistence_error = False
+                try:
+                    self.store.clear()
+                finally:
+                    # Even a local file error must immediately stop refresh
+                    # and remove credentials from cached SDK transports.
+                    self.state = 'SIGNED_OUT'
+                    self.close()
+                    self._bind_session(None)
 
     def tick(self):
         now = self.clock()

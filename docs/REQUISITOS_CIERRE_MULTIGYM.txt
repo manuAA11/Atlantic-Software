@@ -419,3 +419,13 @@ CONTINUIDAD DE SESIÓN — 24 DE OCTUBRE DE 2026
   formulario; Cancelar conserva la ventana abierta sin autorizar operaciones.
 - Corregir la causa del rechazo de tokens del proveedor. Un reinicio o una
   prueba HTTP simulada no acredita solución permanente ni entrega final.
+
+RELÉ Y SALIDA EXPLÍCITA — 26 DE OCTUBRE DE 2026
+- Corregir la detección de relé en Windows de 32 bits sin retirar la puerta
+  ni modificar ON/OFF, la autorización, los bloqueos o la configuración actual.
+  Un COM guardado no debe presentarse como dispositivo conectado.
+- Botón rojo «Cerrar sesión» encima de Configuración en Administración y
+  Recepción. Retirar credenciales y volver al acceso; conservar el relé
+  configurado y no mantener visibles las pantallas de la cuenta anterior.
+- Verificar perfiles compartidos x86/x64 y conservar como pendiente la
+  comprobación física cuando sólo se haya probado un transporte simulado.

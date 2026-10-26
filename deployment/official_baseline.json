@@ -15,7 +15,7 @@
     },
     "door_access.py": {
       "normalized_ast_sha256": "22a7c072ea5450e63e9180e16adbe4a4230c58506cbfcf4792dfb1750d12509c",
-      "match": "same logic; read-only is_busy property added for updater"
+      "match": "Original actuation logic preserved; read-only is_busy property and separately tested relay_ports discovery adapter. The baseline test restores only the original enumeration adapter before checking the unchanged historical digest."
     }
   },
   "physical_scope": "Operator reports the installed x86 reader/relay works. Exact installed build identity and new-version physical acceptance remain unverified.",

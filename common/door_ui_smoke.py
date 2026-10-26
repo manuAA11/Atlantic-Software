@@ -46,6 +46,20 @@ def main():
                         assert_buttons_fit(win)
                         if root.door_admin:
                             assert not win.enabled.get()
+                            assert win.port.get() == win.port_label(port)
+                            assert RELAY_ON not in usb.frames
+                            # A cached COM4 must not look like a connected relay.
+                            win.port.set('COM4')
+                            win.after_cancel(win.job)
+                            win.responses.put(('ports', [dict(port='COM4', vid=None, pid=None)]))
+                            win.poll()
+                            assert not win.port.get() and 'COM4' in win.error.get()
+                            win.after_cancel(win.job)
+                            win.responses.put(('ports', [port]))
+                            win.poll()
+                            assert win.port.get() == win.port_label(port)
+                            assert not win.error.get() and RELAY_ON not in usb.frames
+                            checks += 5
                             win.enabled.set(True); win.port.set(win.port_label(port)); win.seconds.set('2')
                             with patch.object(door_ui.messagebox, 'showinfo') as confirmation:
                                 assert win.save(); confirmation.assert_called_once()

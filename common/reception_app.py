@@ -2325,6 +2325,7 @@ class ReceptionApp(tk.Tk):
         style.configure("Field.TLabel", background=COLORS["surface"], foreground="#CBD5E1", font=(FONT_FAMILY, 9, "bold"))
         style.configure("TButton", background=COLORS["surface_hover"], foreground=COLORS["text"], font=(FONT_FAMILY, 9, "bold"), padding=(14, 9), borderwidth=0)
         style.map("TButton", background=[("active", "#2B3D5B"), ("pressed", COLORS["sidebar_active"])])
+        style.configure("Danger.TButton", background=COLORS["danger_bg"], foreground=COLORS["danger"], padding=(12, 9))
         style.configure("Primary.TButton", background=COLORS["primary"], foreground="#04130D", font=(FONT_FAMILY, 9, "bold"), padding=(16, 10), borderwidth=0)
         style.map("Primary.TButton", background=[("active", COLORS["primary_dark"]), ("pressed", "#0B8F5C")])
         style.configure("Accent.TButton", background=COLORS["accent"], foreground="white", font=(FONT_FAMILY, 9, "bold"), padding=(16, 10), borderwidth=0)
@@ -2395,6 +2396,9 @@ class ReceptionApp(tk.Tk):
         self.page_types = {key: page_type for key, _icon, _label, page_type in nav}
 
         for key, icon, label, _page_type in nav:
+            if key == 'settings':
+                from session_ui import logout_button
+                self.logout_button = logout_button(nav_frame, self)
             button = SidebarButton(nav_frame, icon, label, lambda page_key=key: self.show_page(page_key))
             button.pack(fill="x", pady=2)
             self.nav_buttons[key] = button
@@ -2429,23 +2433,16 @@ class ReceptionApp(tk.Tk):
         process_realtime(self)
 
     def close_app(self) -> None:
-        if getattr(self, '_foreground_io', False):
-            self.bell()
-            return
-        if self.realtime_listener is not None:
-            self.realtime_listener.stop()
-
-        self.destroy()
+        from session_ui import close_workspace
+        close_workspace(self)
 
 
 def main() -> None:
     if "--diagnostico" in sys.argv:
         from diagnostico import main as diagnostic_main
         raise SystemExit(diagnostic_main())
-    app = ReceptionApp()
-
-    if app.ready:
-        app.mainloop()
+    from session_ui import run_application
+    run_application(ReceptionApp)
 
 
 if __name__ == "__main__":

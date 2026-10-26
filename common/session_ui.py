@@ -1,4 +1,5 @@
-"""Atlantic UI recovery strip; no recurring modal prompts and no write replay."""
+"""Atlantic UI session recovery and explicit sign-out, without write replay."""
+import tkinter as tk
 from tkinter import ttk
 from desktop_ui import messagebox, friendly_error
 from ui_tasks import run_io
@@ -9,6 +10,70 @@ LABELS = {
     'AUTH_REQUIRED': 'Inicia sesión de nuevo para continuar.',
     'SIGNED_OUT': 'Sesión cerrada.',
 }
+
+
+def logout_button(parent, root):
+    control = ttk.Button(parent, text='Cerrar sesión', style='Danger.TButton',
+                         command=lambda: root.session_status.sign_out())
+    control.pack(fill='x', pady=(4, 6))
+    return control
+
+
+def run_application(factory):
+    """Build a fresh workspace after logout; never reuse another user's pages."""
+    while True:
+        app = factory()
+        if app.ready:
+            app.mainloop()
+        if not getattr(app, '_return_to_login', False):
+            return
+
+
+def close_workspace(root):
+    if getattr(root, '_foreground_io', False):
+        root.bell()
+        return
+    listener = getattr(root, 'realtime_listener', None)
+    if listener is not None:
+        listener.stop()
+    # A fresh Tk/login follows explicit logout. Do not let callbacks from the
+    # destroyed workspace fire while the new interpreter is processing events.
+    for job in root.tk.splitlist(root.tk.call('after', 'info')):
+        root.tk.call('after', 'cancel', job)
+    root.destroy()
+
+
+def sign_out_session(sessions, before_signout=None):
+    """An offline server must not retain local credentials after explicit logout."""
+    with sessions.quiesce():
+        if before_signout is not None:
+            before_signout()
+        try:
+            sessions.logout()
+        except Exception:
+            # logout() clears local state in finally. Only continue if that
+            # removal really succeeded; a disk/permission error is not success.
+            if (sessions.state != 'SIGNED_OUT' or sessions.session is not None
+                    or sessions.store.load() is not None):
+                raise
+
+
+def logout_busy(root):
+    if getattr(root, '_foreground_io', False):
+        return True
+    door = getattr(root, 'door', None)
+    if door is not None and door.is_busy:
+        return True
+    service = getattr(getattr(getattr(root, 'biometric_access', None), 'native_reader', None), 'service', None)
+    if service is not None and (service.target is not None or service.pending is not None):
+        return True
+    for page in getattr(root, 'pages', {}).values():
+        pos = getattr(page, 'pos', None)
+        if pos is not None and (getattr(pos, 'pending', None) or getattr(pos, 'inventory_pending', None)
+                                or getattr(getattr(pos, 'cart', None), 'rows', {})):
+            return True
+    return any(isinstance(child, tk.Toplevel) and child.winfo_exists()
+               for child in root.winfo_children())
 
 
 def recover_identity(cloud, email, password):
@@ -97,6 +162,33 @@ class SessionStatus:
         except Exception as error:
             messagebox.showerror('Recuperación de sesión', friendly_error(error), parent=self.root)
         # The user refreshes the affected screen after recovery. No automatic writes.
+
+    def sign_out(self):
+        if getattr(self.root, '_signing_out', False):
+            return
+        if logout_busy(self.root):
+            messagebox.showinfo('Finaliza las operaciones',
+                'Finaliza las ventas, lecturas y formularios abiertos antes de cerrar sesión.', parent=self.root)
+            return
+        self.root._signing_out = True
+        was_ready = self.root.ready
+        self.root.ready = False
+        door = getattr(self.root, 'door', None)
+        stop_access = getattr(door, 'close', None)
+        try:
+            run_io(self.root, lambda: sign_out_session(self.cloud.sessions, stop_access), title='Cerrando sesión')
+        except Exception:
+            self.root._signing_out = False
+            self.root.ready = was_ready and self.cloud.sessions.state == 'ONLINE'
+            messagebox.showerror('No se pudo completar el cierre de sesión',
+                'No se pudo completar la limpieza de la sesión de este equipo. Contacta al soporte antes de volver a iniciar sesión.',
+                parent=self.root)
+            return
+        # Destroy the old workspace and its hardware/read workers. The entry
+        # point then opens a new credential form from the cleared session store.
+        self.root._return_to_login = True
+        self.root.withdraw()
+        self.root.close_app()
 
 
 def install(root, cloud):

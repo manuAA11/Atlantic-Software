@@ -148,10 +148,8 @@ class ConfigStore:
 
 
 def available_ports():
-    from serial.tools import list_ports
-    return [dict(port=p.device, description=p.description or 'Puerto USB',
-                 vid=p.vid, pid=p.pid, serial_number=p.serial_number or '', location=p.location or '')
-            for p in list_ports.comports()]
+    from common.relay_ports import available_ports as discover_ports
+    return discover_ports()
 
 
 def matches_port(config, item):

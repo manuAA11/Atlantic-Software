@@ -29,6 +29,9 @@ def main():
     # or opening a physical USB device.
     import serial
     from serial.tools import list_ports
+    from serial.tools import list_ports_windows
+    from common.relay_ports import available_ports
+    assert callable(available_ports) and list_ports_windows.SP_DEVINFO_DATA
     from door_access import RELAY_ON, RELAY_OFF
     assert len(RELAY_ON) == len(RELAY_OFF) == 4
     if args.owner_console:

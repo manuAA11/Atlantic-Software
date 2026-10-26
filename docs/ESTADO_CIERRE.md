@@ -363,3 +363,17 @@ son NO_FINAL y no activan el aviso remoto. Evidencia:
 Se corrigieron
 los valores de versión Inno y las instrucciones ausentes detectados por los dos
 runs previos. Guía y resultados en `docs/training`.
+
+## 3.8.3: relé USB y Cerrar sesión — 26 de octubre de 2026
+
+Se reproduce y corrige el descarte de puertos con VID/PID incompletos; la
+consulta nativa lee sólo dispositivos Windows presentes y mantiene los IDs
+CH340 ya admitidos. La selección COM antigua deja de parecer conectada.
+Administración y Recepción incorporan el botón rojo Cerrar sesión, limpieza
+local incluso sin red y retorno a un espacio nuevo de acceso. Se conservan
+configuración, instalación y lógica de actuación de puerta. Las regresiones locales aprobaron 318 tests en Comercial, 290 en ZTATTUZ x64
+y 289 en ZTATTUZ x86 sobre CPython de 64 bits en Linux. Los guards de puerta,
+sesión e instalación también aprobaron; las comprobaciones nativas de Windows
+se mantienen separadas. Windows y la comprobación física de Windows32/relé
+todavía están pendientes para esta versión; no es final.
+Detalle y alcance en `docs/RELE_CIERRE_SESION_3.8.3.md`.

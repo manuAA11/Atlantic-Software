@@ -132,6 +132,47 @@ class SDKSessionTests(unittest.TestCase):
         self.assertEqual(second.client.functions.headers['Authorization'], 'Bearer public-test-key')
         self.assertEqual(second.auth._headers['Authorization'], 'Bearer public-test-key')
 
+    def test_explicit_local_logout_then_real_sdk_signin_can_reenter(self):
+        from common.session_ui import sign_out_session
+        first, _ = self.setup_clients()
+        first.clock = lambda: self.exp-1000
+        credentials = {'email': 'synthetic@example.invalid', 'password': 'synthetic'}
+        first.operation('sign_in_with_password', credentials)
+        cached_edge = first.client.functions
+        previous = self.transport.handler
+        def handler(request):
+            if request.url.path.endswith('/logout'):
+                self.calls.append(request)
+                self.assertEqual(request.url.params.get('scope'), 'local')
+                return httpx.Response(204)
+            return previous(request)
+        self.transport.handler = handler
+        sign_out_session(first)
+        self.assertTrue(first.explicitly_signed_out)
+        self.assertIsNone(first.ensure())
+        self.assertIsNone(self.store.load())
+        self.assertIsNot(first.client.functions, cached_edge)
+        self.assertEqual(first.client.functions.headers['Authorization'], 'Bearer public-test-key')
+        first.operation('sign_in_with_password', credentials)
+        self.assertFalse(first.explicitly_signed_out)
+        self.assertEqual(first.ensure().user.email, credentials['email'])
+        self.assertEqual(self.store.load()['refresh_token'], 'initial-refresh')
+
+    def test_explicit_offline_logout_never_restores_copied_saved_credentials(self):
+        from common.session_ui import sign_out_session
+        first, _ = self.setup_clients()
+        first.clock = lambda: self.exp-1000
+        first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})
+        saved = self.store.load()
+        self.offline = True
+        sign_out_session(first)
+        self.assertIsNone(self.store.load())
+        # Even if another instance writes a session, this explicitly signed-out
+        # workspace must remain locked until the user authenticates again.
+        self.store.save(saved)
+        self.assertIsNone(first.ensure())
+        self.assertEqual(first.state, 'SIGNED_OUT')
+
     def test_revoked_refresh_immediately_removes_cached_credentials(self):
         first, _ = self.setup_clients()
         first.operation('sign_in_with_password', {'email': 'synthetic@example.invalid', 'password': 'synthetic'})

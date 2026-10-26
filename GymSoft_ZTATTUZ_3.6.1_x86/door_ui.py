@@ -10,6 +10,7 @@ import webbrowser
 
 from desktop_ui import Modal, messagebox, button, BG, TEXT, MUTED, UI_FONT
 from door_access import ConfigStore, DoorConfig, DoorController, DoorDatabase, available_ports
+from common.relay_ports import is_relay_port
 from product_config import PRODUCT_NAME
 
 DRIVER_URL = 'https://www.wch-ic.com/downloads/CH341SER_EXE.html'
@@ -113,13 +114,22 @@ class DoorDialog(Modal):
                 self.scan_pending = False
                 if self.root.door_admin: self.scan_button.state(['!disabled'])
                 if kind == 'ports':
-                    self.ports = [p for p in value if p.get('vid') == 0x1A86 and p.get('pid') in (0x7523, 0x5523)]
+                    self.ports = [p for p in value if is_relay_port(p)]
                     self.combo.configure(values=[self.port_label(p) for p in self.ports])
-                    current = next((p for p in self.ports if p['port'] == self.saved.port), None)
-                    if current and self.port.get() == self.saved.port:
+                    selected_port = self.port.get().split(' · ', 1)[0]
+                    current = next((p for p in self.ports if p['port'] == selected_port), None)
+                    if current:
                         self.port.set(self.port_label(current))
+                    elif len(self.ports) == 1:
+                        self.port.set(self.port_label(self.ports[0]))
+                    else:
+                        self.port.set('')
                     if not self.ports:
-                        self.error.set('No se encontró un CH340. Puedes cerrar esta ventana y conectarlo después.')
+                        names = ', '.join(p['port'] for p in value
+                            if isinstance(p.get('port'), str) and p['port'].startswith('COM'))
+                        detail = f' Windows muestra {names}, pero no confirma un CH340 compatible.' if names else ' Windows no informa ningún puerto USB compatible.'
+                        self.error.set('No se detectó el relé.' + detail +
+                            ' Revisa su conexión y el controlador CH340 de este equipo. El puerto guardado no confirma que esté conectado.')
                     else: self.error.set('')
                 else: self.error.set(value)
         except queue.Empty: pass

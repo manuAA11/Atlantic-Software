@@ -7800,13 +7800,8 @@ class GymSoftApp(tk.Tk):
         process_realtime(self)
 
     def close_app(self) -> None:
-        if getattr(self, '_foreground_io', False):
-            self.bell()
-            return
-        if self.realtime_listener is not None:
-            self.realtime_listener.stop()
-
-        self.destroy()
+        from session_ui import close_workspace
+        close_workspace(self)
 
 
 
@@ -8240,6 +8235,8 @@ class GymSoftApp(tk.Tk):
             pady=(0, 4),
         )
 
+        from session_ui import logout_button
+        self.logout_button = logout_button(settings_area, self)
         settings_button = SidebarButton(
             settings_area,
             "\uE713",
@@ -8373,10 +8370,8 @@ def main() -> None:
     if "--diagnostico" in sys.argv:
         from diagnostico import main as diagnostic_main
         raise SystemExit(diagnostic_main())
-    app = GymSoftApp()
-
-    if app.ready:
-        app.mainloop()
+    from session_ui import run_application
+    run_application(GymSoftApp)
 
 
 if __name__ == "__main__":
