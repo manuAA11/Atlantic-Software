@@ -1,0 +1,51 @@
+{
+  "version": "3.8.3",
+  "final": false,
+  "source_commit": "5f4eda366fa19b02635660aa39edeaa24843a46b",
+  "validation_run_id": 40421628845,
+  "publication_run_id": 40421628798,
+  "validation": "PASS",
+  "publication": "PASS",
+  "tag": "atlantic-gym-3.8.3-piloto",
+  "checks_per_profile": {
+    "guards": 158,
+    "login_ui": 106,
+    "logout_ui": 64,
+    "door_ui_simulated_usb": 93
+  },
+  "profile_regressions": {
+    "commercial_x64": 318,
+    "ztattuz_x64": 290,
+    "ztattuz_x86": 289
+  },
+  "downloads": [
+    {
+      "variant": "commercial",
+      "architecture": "windows-x64",
+      "file": "AtlanticGym_Actualizar_3.8.3_x64_proveedor2.exe",
+      "bytes": 95410411,
+      "sha256": "37ee6f553aebd9e68f7db639f858f1f0d8d375b004163594cd1d78b4f59b4109",
+      "download_verified": true,
+      "installation_status": "PASS"
+    },
+    {
+      "variant": "ztattuz",
+      "architecture": "windows-x64",
+      "file": "AtlanticGym_Actualizar_3.8.3_x64.exe",
+      "bytes": 177562252,
+      "sha256": "3140648b4f59c702039187e34b17776994458f39acd4772ee9bcd983e8745785",
+      "download_verified": true,
+      "installation_status": "PASS"
+    },
+    {
+      "variant": "ztattuz",
+      "architecture": "windows-x86",
+      "file": "AtlanticGym_Actualizar_3.8.3_x86.exe",
+      "bytes": 97875129,
+      "sha256": "ea59580745448126fe70fcf28b74fd850d65bd2a4a940b8d856a848005c3eef5",
+      "download_verified": true,
+      "installation_status": "NOT_RUN"
+    }
+  ],
+  "scope": "Actual Windows GUI and frozen executable; synthetic authentication/network/USB. x64 installer lifecycle PASS; x86 process on x64 host, native Windows32 installation NOT_RUN. Physical relay/reader and external pilots remain unverified."
+}

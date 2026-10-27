@@ -57,15 +57,21 @@ y la recuperación del selector sin transmitir. El digest histórico de lector,
 ON/OFF, tiempos y exclusión del puerto se mantiene: el test de baseline restaura
 sólo el adaptador antiguo de descubrimiento para verificar todo el resto.
 
-La validación automatizada Windows y sus instaladores se publicarán sólo si
-aprueban para el commit exacto. La publicación conserva NO FINAL y todos los
-gates. Faltan la prueba presencial en Windows32 con el relé afectado y la
-aceptación física de OFF, prueba confirmada y entrada autorizada. No se cambian
-servicios, datos o permisos de producción para simular esa comprobación.
+La validación Windows [40421628845](https://github.com/manuAA11/Atlantic-Software/actions/runs/40421628845)
+aprobó los tres perfiles del commit 5f4eda366fa19b02635660aa39edeaa24843a46b.
+Cada perfil aprobó 158 guards, 106 comprobaciones de login, 64 de Cerrar sesión,
+93 de puerta con USB simulado y su ejecutable congelado. Las regresiones por
+perfil aprobaron 318 tests en Comercial, 290 en ZTATTUZ x64 y 289 en ZTATTUZ x86.
+Los dos perfiles x64 aprobaron instalación, actualización y desinstalación en
+Windows desechable. El perfil x86 comprobó proceso y API nativa de 32 bits en
+un host x64; su instalación se mantiene NOT_RUN porque el MSI requiere Windows32.
 
-Resultado local: 897 regresiones de perfiles (318/290/289) y 158 guards
-con dos comprobaciones exclusivas de Windows omitidas en Linux. El SDK real
-con transporte HTTP simulado aprobó salir, retirar credenciales y volver a
-autenticarse. Los módulos de la nueva prueba de interfaz importan correctamente;
-la ejecución gráfica y la compilación Windows aún no se han realizado. No hay
-instaladores 3.8.3 publicados.
+La [publicación 3.8.3](https://github.com/manuAA11/Atlantic-Software/releases/tag/atlantic-gym-3.8.3-piloto)
+se completó en el run 40421628798. Se descargaron los tres paquetes mediante
+HTTPS y se verificaron sus tamaños y SHA256 contra el manifiesto del commit
+validado. Resumen reproducible en `evidence/relay-logout-3.8.3-validation.json`.
+
+La publicación conserva NO FINAL y todos los gates. Faltan la prueba presencial
+en Windows32 con el relé afectado y la aceptación física de OFF, prueba confirmada
+y entrada autorizada. Las pruebas sintéticas no acreditan el hardware del cliente.
+Los identificadores y registros operativos de distribución permanecen privados.

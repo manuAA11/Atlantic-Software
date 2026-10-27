@@ -371,9 +371,13 @@ consulta nativa lee sólo dispositivos Windows presentes y mantiene los IDs
 CH340 ya admitidos. La selección COM antigua deja de parecer conectada.
 Administración y Recepción incorporan el botón rojo Cerrar sesión, limpieza
 local incluso sin red y retorno a un espacio nuevo de acceso. Se conservan
-configuración, instalación y lógica de actuación de puerta. Las regresiones locales aprobaron 318 tests en Comercial, 290 en ZTATTUZ x64
-y 289 en ZTATTUZ x86 sobre CPython de 64 bits en Linux. Los guards de puerta,
-sesión e instalación también aprobaron; las comprobaciones nativas de Windows
-se mantienen separadas. Windows y la comprobación física de Windows32/relé
-todavía están pendientes para esta versión; no es final.
+configuración, instalación y lógica de actuación de puerta. Windows aprobó los
+tres perfiles en el run 40421628845, commit 5f4eda366fa19b02635660aa39edeaa24843a46b:
+158 guards por perfil, UI real de acceso y salida, ejecutables y regresiones
+318/290/289. Los perfiles x64 aprobaron instalación, actualización y desinstalación;
+x86 aprobó el proceso de 32 bits y conserva instalación NOT_RUN en el host x64.
+La publicación 3.8.3 terminó en 40421628798; los tres paquetes descargados
+coinciden con sus SHA256 y tamaños. La prueba física del relé en Windows32
+permanece pendiente y la publicación conserva NO FINAL. Evidencia pública:
+`evidence/relay-logout-3.8.3-validation.json`.
 Detalle y alcance en `docs/RELE_CIERRE_SESION_3.8.3.md`.
