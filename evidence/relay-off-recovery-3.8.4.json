@@ -1,0 +1,51 @@
+{
+  "version": "3.8.4",
+  "scope": "Linux source verification with synthetic USB only; no physical relay, native Windows32 installation or final acceptance.",
+  "observed_log": {
+    "lines": 3414,
+    "on_cycles_logged": 429,
+    "terminal_off_logged": 415,
+    "failed_terminal_off_cycles": 14,
+    "winerror_5_cycles": 13,
+    "timeout_cycles": 1,
+    "manual_test_failures": 2,
+    "root_cause": "NOT_ESTABLISHED"
+  },
+  "local_validation": {
+    "python": "CPython 3.14.8",
+    "host": "Linux x86_64",
+    "packaging_session_platform_guards": {
+      "status": "PASS",
+      "tests": 177,
+      "skipped_windows_specific": 2
+    },
+    "existing_door_tests": {
+      "status": "PASS",
+      "tests": 69
+    },
+    "new_recovery_tests": {
+      "status": "PASS",
+      "tests": 19,
+      "included_in_guards": true
+    },
+    "historical_hardware_digests": "UNCHANGED; official baseline guard PASS"
+  },
+  "windows_validation": {
+    "status": "PENDING",
+    "required_profiles": [
+      "Comercial x64",
+      "ZTATTUZ x64",
+      "ZTATTUZ x86"
+    ]
+  },
+  "physical_acceptance": {
+    "status": "PENDING",
+    "external_usb_driver_or_hardware_fault_not_ruled_out": true
+  },
+  "distribution": {
+    "channel": "beta",
+    "optional": true,
+    "final": false,
+    "status": "PENDING_VALIDATION_AND_PACKAGE_VERIFICATION"
+  }
+}

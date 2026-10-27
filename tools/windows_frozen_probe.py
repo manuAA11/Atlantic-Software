@@ -32,6 +32,9 @@ def main():
     from serial.tools import list_ports_windows
     from common.relay_ports import available_ports
     assert callable(available_ports) and list_ports_windows.SP_DEVINFO_DATA
+    from common.relay_recovery import RecoveringDoorController
+    from door_ui import DoorController as ConfiguredDoorController
+    assert ConfiguredDoorController is RecoveringDoorController
     from door_access import RELAY_ON, RELAY_OFF
     assert len(RELAY_ON) == len(RELAY_OFF) == 4
     if args.owner_console:
@@ -51,6 +54,7 @@ def main():
                   'tk': root.tk.call('info', 'patchlevel'), 'frozen': bool(getattr(sys, 'frozen', False)),
                   'checks': ['Frozen Admin and Reception module imports', 'Shared application imports; explicit optional owner-console check',
                              'Optional door and pySerial imports (no USB access)',
+                             'OFF-only recovery policy selected by the actual door UI (no USB access)',
                              'Tk and Atlantic dark styles', 'Role window icons', 'Pillow ImageTk',
                              'Supabase/realtime/httpx imports', 'Excel import', 'SSL certificates', 'Bogota timezone'],
                   'scope': 'Windows frozen component probe only. No account, hardware, installer or final release acceptance.'}

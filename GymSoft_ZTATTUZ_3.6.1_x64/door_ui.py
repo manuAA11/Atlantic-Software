@@ -9,8 +9,9 @@ from tkinter import ttk
 import webbrowser
 
 from desktop_ui import Modal, messagebox, button, BG, TEXT, MUTED, UI_FONT
-from door_access import ConfigStore, DoorConfig, DoorController, DoorDatabase, available_ports
+from door_access import ConfigStore, DoorConfig, DoorDatabase, available_ports
 from common.relay_ports import is_relay_port
+from common.relay_recovery import RecoveringDoorController as DoorController
 from product_config import PRODUCT_NAME
 
 DRIVER_URL = 'https://www.wch-ic.com/downloads/CH341SER_EXE.html'

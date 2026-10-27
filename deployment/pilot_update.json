@@ -1,8 +1,8 @@
 {
-  "version": "3.8.3",
-  "tag": "atlantic-gym-3.8.3-piloto",
+  "version": "3.8.4",
+  "tag": "atlantic-gym-3.8.4-piloto",
   "publish": true,
   "final": false,
-  "notes": "Detección del relé mediante identidad USB y dispositivos presentes de Windows; corrige la selección COM guardada. Botón rojo Cerrar sesión en Administración y Recepción, limpieza local de credenciales incluso sin red y retorno a un formulario nuevo. Conserva configuración y protocolo de puerta. Requiere comprobar el relé físico y la instalación en Windows32; NO FINAL.",
+  "notes": "Recuperación acotada del OFF final: comprueba cierre real e identidad USB y realiza una sola reconexión para enviar únicamente OFF. Conserva watchdog, exclusión entre aplicaciones, configuración y autorización. No reenvía aperturas, asistencias ni consumos. Fallos persistentes mantienen el bloqueo. Conserva las mejoras de sesión de 3.8.3. Requiere comprobación física y Windows32 nativo; actualización opcional NO FINAL.",
   "publication_attempt": 1
 }

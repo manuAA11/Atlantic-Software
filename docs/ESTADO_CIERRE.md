@@ -2,6 +2,16 @@
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
+**27 de octubre de 2026 · Candidato 3.8.4:** el registro completo confirma 14
+fallos de OFF final, incluidos dos durante prueba manual y cinco el día 27,
+en COM3/COM4. Se añade un único restablecimiento OFF con puerto nuevo después
+del cierre nativo real, comprobando identidad/configuración y conservando el
+bloqueo ante error persistente. No se repiten ON, asistencia, consumo ni RPC.
+El controlador histórico y su verificación permanecen intactos. Pruebas de la
+política, validación Windows/publicación exactas y comprobación física se
+registran por separado; no se declara resuelta la causa USB ni entrega final.
+[Comportamiento y límites](RECUPERACION_RELE_3.8.4.md).
+
 **Candidato 3.8.2 de continuidad de sesión:** incorpora la sincronización de
 tokens y la reincorporación del código posterior a los instaladores 3.8.1.
 Se prepara con identidad nueva, notas por perfil y los criterios externos

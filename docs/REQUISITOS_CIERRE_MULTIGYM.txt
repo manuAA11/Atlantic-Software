@@ -429,3 +429,13 @@ RELÉ Y SALIDA EXPLÍCITA — 26 DE OCTUBRE DE 2026
   configurado y no mantener visibles las pantallas de la cuenta anterior.
 - Verificar perfiles compartidos x86/x64 y conservar como pendiente la
   comprobación física cuando sólo se haya probado un transporte simulado.
+
+RECUPERACIÓN DEL RELÉ — 27 DE OCTUBRE DE 2026
+- El usuario pide un segundo chequeo ante el fallo del OFF final sin depender
+  de reiniciar el programa ni de cambiar USB como única solución.
+- Permitir una sola reconexión para restablecer OFF después del cierre nativo
+  real y de verificar la identidad/configuración. No reenviar ON ni escrituras
+  del servidor; mantener el bloqueo si la recuperación no termina bien.
+- Conservar código base del lector/relé, watchdog, bloqueo entre aplicaciones,
+  salida independiente y aceptación física pendiente. Distribuir sólo la
+  actualización desde la app, tras validación de los paquetes exactos.
