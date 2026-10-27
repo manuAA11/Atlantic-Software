@@ -7,9 +7,12 @@ fallos de OFF final, incluidos dos durante prueba manual y cinco el día 27,
 en COM3/COM4. Se añade un único restablecimiento OFF con puerto nuevo después
 del cierre nativo real, comprobando identidad/configuración y conservando el
 bloqueo ante error persistente. No se repiten ON, asistencia, consumo ni RPC.
-El controlador histórico y su verificación permanecen intactos. Pruebas de la
-política, validación Windows/publicación exactas y comprobación física se
-registran por separado; no se declara resuelta la causa USB ni entrega final.
+El controlador histórico y su verificación permanecen intactos. La ejecución
+Windows 40555019744 y publicación 40555019743 aprobaron los tres perfiles; se
+verificaron SHA256/tamaños descargando los paquetes y se registraron las dos
+arquitecturas como actualización opcional del gimnasio existente en Core, sin
+cambiar licencia, configuración o suscripción. La comprobación física y Windows32
+nativo siguen pendientes; no se declara resuelta la causa USB ni entrega final.
 [Comportamiento y límites](RECUPERACION_RELE_3.8.4.md).
 
 **Candidato 3.8.2 de continuidad de sesión:** incorpora la sincronización de

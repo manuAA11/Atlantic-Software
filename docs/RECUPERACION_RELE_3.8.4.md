@@ -69,3 +69,26 @@ La prueba presencial debe observar tanto la recuperación como el retorno real
 al reposo y la salida independiente según `PRUEBA_PUERTA_ZTATTUZ.md`. Si el
 fallo persiste, se conservan ambos errores para investigar Windows y el módulo;
 esta política no sustituye la resolución de un fallo físico o de controlador.
+
+## Resultado de publicación
+
+La ejecución Windows **40555019744** aprobó los tres perfiles del commit
+`509c9692b7096d2ed0da0a14757efafa97c7a921`. Cada proceso Windows aprobó 177
+guards, incluidas las 19 pruebas nuevas de recuperación; también aprobaron UI
+y componentes congelados. Las regresiones por perfil fueron 318 Comercial,
+290 ZTATTUZ x64 y 289 ZTATTUZ x86. Los dos perfiles x64 aprobaron instalación,
+actualización y desinstalación; Windows32 nativo sigue pendiente.
+
+La publicación **40555019743** generó el tag inmutable
+`atlantic-gym-3.8.4-piloto`. Se descargaron íntegramente los tres paquetes por
+TLS y se comprobaron SHA256/tamaño y el validador real del actualizador. Core
+ofrece únicamente los dos paquetes ZTATTUZ, x86/x64, al gimnasio ya autorizado,
+como OPTIONAL/beta. Una lectura independiente confirmó los filtros de entrega
+y la conservación de gimnasio, licencia, configuración, suscripción y 3.8.3.
+No se publicaron versiones globales ni se marcó aceptación del hardware.
+
+Desde Administración: cerrar Recepción y demás ventanas de Atlantic Gym,
+abrir **Sistema y avisos → Buscar actualizaciones → Actualizar**. La app
+verifica el archivo y respalda los datos locales antes de cerrar para aplicar
+la actualización. Tras instalar, comprobar el retorno físico a reposo y guardar
+el nuevo diagnóstico si aparece `relay_off_recovery_failed`.
