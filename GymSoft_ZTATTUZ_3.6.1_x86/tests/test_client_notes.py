@@ -16,6 +16,9 @@ class ClientNotesTests(unittest.TestCase):
         self.assertEqual([r['id'] for r in sort_expirations(rows)], [5, 2, 1, 3, 4])
         self.assertEqual([r['id'] for r in rows], [1, 2, 3, 4, 5])
         self.assertEqual(rows[0]['days_remaining'], 4)
+        distant = [{'id': 1, 'end_date': None, 'client_name': 'Ana'},
+                   {'id': 2, 'end_date': '9999-12-31', 'client_name': 'Zoe'}]
+        self.assertEqual([r['id'] for r in sort_expirations(distant)], [2, 1])
 
     def test_notices_are_plain_text_and_separate(self):
         self.assertEqual(note_sections({}), '')

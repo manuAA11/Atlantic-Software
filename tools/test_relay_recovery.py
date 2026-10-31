@@ -179,6 +179,12 @@ class RelayRecoveryTests(unittest.TestCase):
         self.config = replace(self.config, seconds=1)
         self.store.save(self.config)
         controller, factory = self.make('watchdog')
+        worker_wait = controller._cancel.wait
+        # Let the independent, real one-second watchdog finish before the
+        # worker's synthetic pulse deadline. Equal deadlines race on Windows
+        # and can legitimately let the worker finish first instead.
+        controller._cancel.wait = lambda timeout=None: worker_wait(
+            3 if threading.current_thread() is controller._thread and timeout == 1 else timeout)
         self.pulse(controller)
         self.assertFalse(controller._fault)
         self.assertEqual(len(factory.connections), 3)

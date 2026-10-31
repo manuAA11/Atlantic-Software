@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Notas y avisos generales por cliente y notas de la membresía vigente visibles en ficha e ingreso. Motivos de acceso y avisos de vencimiento calculados por el servidor. Listas de vencimientos ordenadas por fecha. Guardado con permisos del gimnasio y protección ante edición concurrente. Sin manejo de abonos, saldos ni cambios de autorización. Conserva sesión y relé de 3.8.4. Actualización beta opcional NO FINAL.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }

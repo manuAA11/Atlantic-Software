@@ -32,11 +32,13 @@ def sort_expirations(rows):
         raw = row.get('end_date') or row.get('membership_end')
         try:
             expiry = raw if type(raw) is date else date.fromisoformat(str(raw))
+            missing = False
         except (ValueError, TypeError):
             expiry = date.max
+            missing = True
         name = str(row.get('client_name') or row.get('name') or
                    f"{row.get('first_name', '')} {row.get('last_name', '')}").casefold()
-        return expiry, name, str(row.get('id') or row.get('client_id') or '')
+        return missing, expiry, name, str(row.get('id') or row.get('client_id') or '')
     return sorted(rows, key=key)
 
 

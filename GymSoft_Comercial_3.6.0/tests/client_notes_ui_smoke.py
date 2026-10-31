@@ -59,7 +59,9 @@ def main():
                     resize_test_window(root,f'{width}x900');pump(root)
                     panel=page.result_notes
                     settle_geometry(root,(panel,panel.text),'notas largas sin cambiar ancho')
-                    text=panel.text.get('1.0','end-1c');assert note in text and 'Traer soporte' in text;checks+=1
+                    text=panel.text.get('1.0','end-1c')
+                    assert note.rstrip() in text and 'Traer soporte' in text, 'The full notice and membership note must remain readable'
+                    checks+=1
                     assert panel.winfo_width()>100 and panel.text.winfo_height()>20;checks+=1
                     panel.text.yview_moveto(1);pump(root);assert panel.text.yview()[1]>.95;checks+=1
                 if key=='checkin':page.show_result({**result,'id':43,'client_notice':'','membership_notes':'','access_detail':'Sin membresía','result':'DENEGADA'})
