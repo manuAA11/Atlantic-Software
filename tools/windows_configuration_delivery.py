@@ -116,12 +116,12 @@ def validate_local_suite(edition, version, receipt):
                 'marketing_backend', 'recorrido_huellas', 'simulacion_gimnasio',
                 *constants['UI_TESTS']]
     stages = receipt.get('stages', [])
-    if (len(expected) != (41 if edition.name == 'GymSoft_Comercial_3.6.0' else 40) or receipt.get('status') != 'PASS' or receipt.get('scope') != 'all'
+    if (len(expected) != (43 if edition.name == 'GymSoft_Comercial_3.6.0' else 42) or receipt.get('status') != 'PASS' or receipt.get('scope') != 'all'
             or receipt.get('platform') != 'win32' or receipt.get('version') != version
             or [stage.get('name') for stage in stages] != expected
             or any(stage.get('status') != 'PASS' or stage.get('timed_out')
                    or stage.get('callback_failure') for stage in stages)):
-        raise RuntimeError('La entrega exige las 40/41 etapas completas aprobadas en Windows.')
+        raise RuntimeError('La entrega exige las 42/43 etapas completas aprobadas en Windows.')
     evidence = receipt.get('evidence', {})
     validation = edition / 'salida' / 'validacion'
     original = validation / 'resultado_pruebas_all.json'
@@ -287,7 +287,7 @@ def verify_delivery(path):
                 or not re.fullmatch(r'[0-9]+', manifest.get('github_run_id', ''))
                 or not re.fullmatch(r'[0-9]{8}T[0-9]{6}Z-[0-9]+', manifest.get('packaging_run_id', ''))
                 or local.get('status') != 'PASS' or local.get('scope') != 'all'
-                or local.get('platform') != 'win32' or local.get('stages') != (41 if edition == 'GymSoft_Comercial_3.6.0' else 40)
+                or local.get('platform') != 'win32' or local.get('stages') != (43 if edition == 'GymSoft_Comercial_3.6.0' else 42)
                 or installed.get('native_windows_architecture') != 'x64'
                 or 'NO FINAL' not in installed.get('scope', '')
                 or installed.get('status') != ('NOT_RUN' if bits == 'x86' else 'PASS')

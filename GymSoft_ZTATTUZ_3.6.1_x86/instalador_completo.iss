@@ -11,7 +11,7 @@
 #endif
 #define RuntimeBits 32
 #ifndef AppVersion
-#define AppVersion "3.8.4"
+#define AppVersion "3.8.5"
 #endif
 [Setup]
 AppId=ZTATTUZActualizadorCompleto

@@ -2,6 +2,14 @@
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
+**30 de octubre de 2026 · Candidato 3.8.5:** notas generales por cliente y notas
+de membresía visibles en Clientes y chequeo, motivos de acceso del servidor y
+listas del dashboard ordenadas por vencimiento. Sin abonos ni saldos. Los avisos
+no alteran permisos, consumo o importes. Guardado privado con aislamiento por
+gimnasio, roles y revisión esperada. Pruebas locales PGlite: 64 comprobaciones
+por proveedor; validación Windows y publicación pendientes en este commit.
+[Alcance y verificación](NOTAS_CLIENTES_3.8.5.md).
+
 **27 de octubre de 2026 · Candidato 3.8.4:** el registro completo confirma 14
 fallos de OFF final, incluidos dos durante prueba manual y cinco el día 27,
 en COM3/COM4. Se añade un único restablecimiento OFF con puerto nuevo después

@@ -34,6 +34,8 @@ from date_input import attach_date_mask
 from plan_forms import membership_form_values
 from plan_forms import plan_label
 from ticket_forms import CarryoverFields
+from common.client_notes import access_explanation, note_sections
+from common.client_notes_ui import NotesPanel, open_client_notes
 from biometric import BiometricAccessController, BiometricAccessControl
 from biometric import normalize_biometric_identifier
 from payment_revision import open_payment_manager  # GymSoft-PAGOS-2.0.1
@@ -799,7 +801,7 @@ class PaymentDialog(BaseDialog):
         ).grid(row=4, column=1, sticky="ew", pady=7)
 
         self.add_entry("Referencia", self.reference, 5)
-        self.add_entry("Notas", self.notes, 6)
+        self.add_entry("Nota (visible al ingresar)", self.notes, 6)
 
         self.ticket_fields = CarryoverFields(self.body, lambda: self.plan_by_label.get(self.plan.get()), self.start_date, today, self.sync_mode)
         self.ticket_fields.grid(row=7, column=0, columnspan=2, sticky="ew", pady=(12, 0))
@@ -1167,11 +1169,16 @@ class ClientsPage(BasePage):
 
         self.tree.grid(row=0, column=0, sticky="nsew")
         self.tree.bind("<Double-1>", lambda _event: self.edit_client())
+        self.note_preview = tk.StringVar(value='Selecciona un cliente para ver sus notas y avisos.')
+        self.tree.bind('<<TreeviewSelect>>', self.show_note_preview)
         actions = ttk.Frame(card, style="Card.TFrame")
         actions.grid(row=1, column=0, sticky="ew", pady=(14, 0))
         ttk.Button(actions, text="Editar cliente", command=self.edit_client).pack(side="left")
         ttk.Button(actions, text="Registrar pago", command=self.register_payment, style="Primary.TButton").pack(side="left", padx=(8, 0))
         ttk.Button(actions, text="Ver historial", command=self.show_history).pack(side="left", padx=(8, 0))
+        ttk.Button(actions, text='Notas y avisos', command=self.edit_notes).pack(side='left', padx=(8, 0))
+        ttk.Label(card, textvariable=self.note_preview, style='CardMuted.TLabel',
+                  wraplength=780).grid(row=2, column=0, sticky='ew', pady=(10, 0))
 
         birthday_card = ttk.Frame(
             self.birthdays_tab,
@@ -1281,6 +1288,7 @@ class ClientsPage(BasePage):
         self.load_view('clients', load, self._render_refresh, (term,))
 
     def _render_refresh(self, data):
+        previous = selected_id(self.tree)
         rows, birthday_rows, today = data
         self.clients = {int(row["id"]): row for row in rows}
         clear_tree(self.tree)
@@ -1310,6 +1318,23 @@ class ClientsPage(BasePage):
         self.tree.tag_configure("bad", foreground=COLORS["danger"])
 
         self.refresh_birthdays(birthday_rows, today)
+        if previous in self.clients:
+            self.tree.selection_set(str(previous))
+        self.show_note_preview()
+
+    def show_note_preview(self, _event=None):
+        context = self.clients.get(selected_id(self.tree), {})
+        text = note_sections(context) or 'Sin notas ni avisos registrados.' if context else 'Selecciona un cliente para ver sus notas y avisos.'
+        self.note_preview.set(text[:240] + ('… · Abre Notas y avisos para leer el texto completo.' if len(text) > 240 else ''))
+
+    def edit_notes(self):
+        client_id = selected_id(self.tree)
+        if client_id is None:
+            messagebox.showinfo('Selecciona un registro', 'Selecciona un cliente.', parent=self)
+            return
+        open_client_notes(self, self.db, client_id,
+                          self.clients.get(client_id, {}).get('client_name', 'Cliente'),
+                          BaseDialog, self.app.refresh_all)
 
     def refresh_birthdays(
         self,
@@ -1986,6 +2011,8 @@ class AccessPage(BasePage):
         self.status_label.pack(fill="x", pady=(8, 16))
         tk.Label(status_card, textvariable=self.status_detail, bg=COLORS["surface"], fg=COLORS["muted"], font=(FONT_FAMILY, 10), wraplength=340, justify="left", width=1, anchor="w").pack(fill="x")
         ttk.Button(status_card, text="Registrar entrada", command=self.register_entry, style="Primary.TButton").pack(anchor="w", pady=(24, 0))
+        self.result_notes = NotesPanel(status_card)
+        self.result_notes.pack(fill='both', expand=True, pady=(14, 0))
 
         history_card = ttk.Frame(self.history_tab, padding=14, style="Card.TFrame")
         history_card.pack(fill="both", expand=True)
@@ -2058,6 +2085,7 @@ class AccessPage(BasePage):
                 if rows
                 else "Busca por documento, nombre o identificador."
             )
+            self.result_notes.set_context({})
 
         for row in rows:
             remaining = row.get("entries_remaining")
@@ -2104,10 +2132,11 @@ class AccessPage(BasePage):
             fg=COLORS["success"] if status in ("AL DÍA", "ACTIVE") else COLORS["danger"],
         )
         self.status_detail.set(
-            f"Plan: {client.get('plan_name', 'Sin plan')}\n"
+            access_explanation(client) + '\n' + f"Plan: {client.get('plan_name', 'Sin plan')}\n"
             f"Vencimiento: {expiry_label(client, date_to_display)}\n"
             f"Entradas disponibles: {remaining_text}"
         )
+        self.result_notes.set_context(client)
 
     def register_entry(self) -> None:
         client_id = selected_id(self.clients_tree)
@@ -2150,7 +2179,8 @@ class AccessPage(BasePage):
             fg=COLORS["success"] if allowed else COLORS["danger"],
         )
 
-        self.status_detail.set(ticket_access_note(result) or str(result.get("status", "")))
+        self.status_detail.set(access_explanation(result, ticket_access_note(result)))
+        self.result_notes.set_context(result)
 
         if allowed and show_confirmation:
             messagebox.showinfo(
@@ -2189,6 +2219,7 @@ class AccessPage(BasePage):
             self.status_detail.set(
                 "Asocia el identificador del lector a la ficha del cliente."
             )
+            self.result_notes.set_context({})
             self.bell()
             return
 
@@ -2359,6 +2390,7 @@ class ReceptionApp(tk.Tk):
         page.status_label.configure(text="HUELLA NO IDENTIFICADA", fg=COLORS["danger"])
         page.status_name.set("No se encontró un cliente")
         page.status_detail.set("Asocia el código del lector a la ficha del cliente.")
+        page.result_notes.set_context({})
         self.bell()
 
     def build_shell(self) -> None:

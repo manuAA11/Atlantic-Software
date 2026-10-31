@@ -439,3 +439,10 @@ RECUPERACIÓN DEL RELÉ — 27 DE OCTUBRE DE 2026
 - Conservar código base del lector/relé, watchdog, bloqueo entre aplicaciones,
   salida independiente y aceptación física pendiente. Distribuir sólo la
   actualización desde la app, tras validación de los paquetes exactos.
+
+30/10/2026 · Avisos y notas (3.8.5):
+- Aviso general editable por cliente, persistente entre renovaciones, y nota propia al registrar membresía. Visibles en Clientes y resultado del ingreso.
+- Mostrar motivo de permitido/denegado y alerta de vencimiento próximo recibidos del servidor; la alerta no bloquea un ingreso permitido.
+- Ordenar todos los grupos de vencimientos del dashboard por fecha ascendente; no modificar métricas ni clasificaciones.
+- Sin abonos, saldos, deuda calculada ni reglas de bloqueo por notas.
+- Aislar notas internas por gimnasio/rol, impedir sobrescritura silenciosa entre equipos y conservarlas fuera de respuestas públicas de League/chat/marketing.

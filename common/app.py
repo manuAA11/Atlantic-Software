@@ -30,6 +30,8 @@ from date_input import attach_date_mask
 from plan_forms import membership_form_values
 from plan_forms import validate_plan, validate_months, plan_label, plan_duration
 from ticket_forms import CarryoverFields
+from common.client_notes import access_explanation, note_sections, sort_expirations
+from common.client_notes_ui import NotesPanel, open_client_notes
 from followup_ui import TicketDashboard, ContactList, open_client as open_followup_client
 from typing import Any, Callable
 
@@ -1052,7 +1054,7 @@ class MembershipDialog(BaseDialog):
         )
         self.method_control.grid(row=7, column=0, sticky="ew")
         self.reference_entry = self.reference_entry = self.add_entry("Referencia o comprobante", self.reference, 4)
-        self.add_entry("Notas", self.notes, 5)
+        self.add_entry("Nota de la membresía (visible en el chequeo)", self.notes, 5)
         self.ticket_fields = CarryoverFields(self.body, lambda: self.plan_by_label.get(self.plan.get()), self.start_date, today, self.sync_mode)
         self.ticket_fields.grid(row=12, column=0, sticky="ew", pady=(12, 0))
         self.add_buttons(self.save, 13)
@@ -2206,7 +2208,7 @@ class DashboardPage(BasePage):
                 parent=self,
             )
             return
-        people = self.expiration_groups.get(bucket, [])
+        people = sort_expirations(self.expiration_groups.get(bucket, []))
         window = BaseDialog(
             self,
             f"{title} · Estado de membresías",
@@ -4888,12 +4890,18 @@ class ClientsPage(BasePage):
         self.tree.tag_configure("expired", foreground=COLORS["danger"])
         self.tree.tag_configure("inactive", foreground=COLORS["muted"])
         self.tree.bind("<Double-1>", lambda _event: self.edit_client())
+        self.client_rows = {}
+        self.note_preview = tk.StringVar(value='Selecciona un cliente para ver sus notas y avisos.')
+        self.tree.bind('<<TreeviewSelect>>', self.show_note_preview)
+        ttk.Label(card, textvariable=self.note_preview, style='CardMuted.TLabel',
+                  wraplength=780).pack(fill='x', pady=(10, 0))
 
         actions = ttk.Frame(card, style="Card.TFrame")
         actions.pack(fill="x", pady=(12, 0))
         ttk.Button(actions, text="✎  Editar cliente", command=self.edit_client).pack(side="left")
         ttk.Button(actions, text="$  Registrar pago", command=self.add_membership, style="Primary.TButton").pack(side="left", padx=(8, 0))
         ttk.Button(actions, text="✎  Consultar y editar pagos", command=self.show_memberships).pack(side="left", padx=(8, 0))
+        ttk.Button(actions, text='Notas y avisos', command=self.edit_notes).pack(side='left', padx=(8, 0))
 
         bind_live_search(self, self.search, self.refresh)
 
@@ -4907,6 +4915,8 @@ class ClientsPage(BasePage):
         self.load_view("refresh", lambda: self.db.list_clients(term), self._render_refresh, (term,))
 
     def _render_refresh(self, rows):
+        previous = selected_id(self.tree)
+        self.client_rows = {int(row['id']): row for row in rows}
         clear_tree(self.tree)
         for client in rows:
             status = client["membership_status"]
@@ -4925,6 +4935,25 @@ class ClientsPage(BasePage):
                 ),
                 tags=(tag,),
             )
+
+        if previous in self.client_rows:
+            self.tree.selection_set(str(previous))
+        self.show_note_preview()
+
+    def show_note_preview(self, _event=None):
+        context = self.client_rows.get(selected_id(self.tree), {})
+        text = note_sections(context) or 'Sin notas ni avisos registrados.' if context else 'Selecciona un cliente para ver sus notas y avisos.'
+        self.note_preview.set(text[:240] + ('… · Abre Notas y avisos para leer el texto completo.' if len(text) > 240 else ''))
+
+    def edit_notes(self):
+        client_id = selected_id(self.tree)
+        if client_id is None:
+            messagebox.showinfo('Selecciona un registro', 'Selecciona un cliente.', parent=self)
+            return
+        client = self.client_rows.get(client_id, {})
+        open_client_notes(self, self.db, client_id, client.get('client_name') or
+                          f"{client.get('first_name', '')} {client.get('last_name', '')}".strip(),
+                          BaseDialog, self.app.refresh_all)
 
     def new_client(self) -> None:
         dialog = ClientDialog(self)
@@ -5059,7 +5088,7 @@ class ClientsPage(BasePage):
 
         birthdays.sort(key=lambda item: (item[1], item[0].get("first_name", "")))
         expiring.sort(key=lambda item: (item[1], item[0].get("first_name", "")))
-        expired.sort(key=lambda item: (-item[1], item[0].get("first_name", "")))
+        expired.sort(key=lambda item: (item[1], item[0].get("first_name", "")))
 
         window = BaseDialog(self, "Avisos de clientes", 980, 620)
         notebook = ttk.Notebook(window.body)
@@ -5950,6 +5979,8 @@ class CheckinPage(BasePage):
             style="CardMuted.TLabel", width=1, anchor="w", justify="left",
         )
         self.result_details.pack(fill="x", pady=(6, 14))
+        self.result_notes = NotesPanel(result)
+        self.result_notes.pack(fill='both', expand=True, pady=(0, 8))
         self.override_button = ttk.Button(
             result,
             text="Autorizar ingreso excepcional",
@@ -6077,6 +6108,9 @@ class CheckinPage(BasePage):
             self.result_details.configure(
                 text="Asocia el identificador del lector a la ficha del cliente."
             )
+            self.result_notes.set_context({})
+            self.last_denied_client = None
+            self.override_button.configure(state='disabled')
             self.bell()
             self.refresh_clients()
             return
@@ -6119,7 +6153,8 @@ class CheckinPage(BasePage):
                 f" de {result['entry_limit']}"
             )
 
-        self.result_details.configure(text=details + ("\n" + ticket_access_note(result) if ticket_access_note(result) else ""))
+        self.result_details.configure(text=access_explanation(result, ticket_access_note(result)) + '\n' + details)
+        self.result_notes.set_context(result)
     def override(self) -> None:
         if self.last_denied_client is None:
             return
@@ -8095,6 +8130,9 @@ class GymSoftApp(tk.Tk):
         page.badge.configure(text="HUELLA NO IDENTIFICADA", bg=COLORS["danger_bg"], fg=COLORS["danger"])
         page.result_name.configure(text="No se encontró un cliente")
         page.result_details.configure(text="Asocia el código del lector a la ficha del cliente.")
+        page.result_notes.set_context({})
+        page.last_denied_client = None
+        page.override_button.configure(state='disabled')
         self.bell()
 
     def build_shell(self) -> None:
