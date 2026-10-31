@@ -446,3 +446,5 @@ RECUPERACIÓN DEL RELÉ — 27 DE OCTUBRE DE 2026
 - Ordenar todos los grupos de vencimientos del dashboard por fecha ascendente; no modificar métricas ni clasificaciones.
 - Sin abonos, saldos, deuda calculada ni reglas de bloqueo por notas.
 - Aislar notas internas por gimnasio/rol, impedir sobrescritura silenciosa entre equipos y conservarlas fuera de respuestas públicas de League/chat/marketing.
+
+30/10/2026 · Entrega 3.8.5 opcional verificada: Windows 41150693184 y publicación 41150693251 PASS; tres paquetes descargados y verificados íntegramente. Core habilitó x86/x64 para el gimnasio autorizado, conservando licencia/configuración/suscripción. Gates externos y Windows32 nativo pendientes. Evidencia: evidence/notes-release-3.8.5.json.

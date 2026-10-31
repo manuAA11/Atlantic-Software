@@ -16,3 +16,13 @@ Verificación local: 64 comprobaciones PGlite por proveedor (ZTATTUZ/Comercial),
 Estado de entrega: candidato beta opcional, NO FINAL. Validación Windows, aplicación de la migración y publicación se documentan con sus resultados reales al completarse; los gates externos de `release_readiness.json` permanecen pendientes.
 
 Servidor: migración aplicada correctamente en los proveedores ZTATTUZ y Comercial. Comprobaciones posteriores: RLS activo, acceso directo de authenticated denegado, RPC anon denegado y RPC del personal habilitado. El hash del snapshot genérico de cada proveedor sigue idéntico. Al retirar sólo el envoltorio de presentación del registro, su definición conserva exactamente el hash anterior. Sin usuarios de prueba ni tokens impersonados en producción.
+
+## Publicación verificada
+
+La ejecución Windows **41150693184**, commit `15318a4653f5dc8ab25b4eadfe93e623fae32fdf`, aprobó Comercial x64, ZTATTUZ x64 y ZTATTUZ x86. Cada perfil aprobó 177 guards, 64 comprobaciones SQL de notas y 56 comprobaciones de UI de notas. Las regresiones Python fueron 322/294/293 respectivamente. Instalación, actualización y desinstalación x64 PASS; instalación Windows32 nativa NOT_RUN (el runner es x64). Se conservan los fallos iniciales de 41148446276 y sus correcciones de prueba en el historial.
+
+La publicación **41150693251** creó `atlantic-gym-3.8.5-piloto`, release **429627552**, opcional y prerelease. Se descargaron íntegramente los tres paquetes, verificando SHA256/tamaño con el actualizador real. Core ofrece los dos paquetes ZTATTUZ únicamente al gimnasio autorizado; selección real de metadatos y código del actualizador PASS en ambas arquitecturas. No se creó actualización global ni se modificó licencia, configuración o suscripción; se conservaron las dos entradas 3.8.4.
+
+Uso: Sistema y avisos → Buscar actualizaciones. Clientes y pagos → seleccionar persona → Notas y avisos. La nota general y la nota de la membresía se muestran por separado durante el chequeo. Sin abonos, saldos ni cambios de autorización por el texto.
+
+Evidencia: `evidence/notes-release-3.8.5.json`. Permanecen pendientes los gates externos, hardware físico y Windows32 nativo. Esta publicación no acredita una entrega final.

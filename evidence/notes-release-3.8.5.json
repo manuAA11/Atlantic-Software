@@ -1,0 +1,138 @@
+{
+  "version": "3.8.5",
+  "source_commit": "15318a4653f5dc8ab25b4eadfe93e623fae32fdf",
+  "final": false,
+  "status": "PUBLISHED_OPTIONAL",
+  "server": {
+    "migration": "client_staff_notes",
+    "canonical_sha256": "77c72a6cfa38693aee31d03d56b60654018aa7b360e67270e36fd6679fe4adf6",
+    "providers": [
+      "ZTATTUZ",
+      "Comercial"
+    ],
+    "rls_enabled": true,
+    "anonymous_rpc_denied": true,
+    "direct_authenticated_table_access": false,
+    "generic_member_snapshot_unchanged": true,
+    "registration_logic_unchanged_except_presentation": true
+  },
+  "local": {
+    "pglite_notes_checks_per_provider": 64,
+    "root_guards": 177,
+    "new_presentation_tests": 4
+  },
+  "windows": {
+    "run_id": 41150693184,
+    "publication_run_id": 41150693251,
+    "status": "PASS",
+    "profiles": [
+      {
+        "edition": "Comercial x64",
+        "job_id": 124386233366,
+        "root_guards": 177,
+        "python_tests": 322,
+        "notes_sql_checks": 64,
+        "notes_ui_checks": 56,
+        "installation": "PASS"
+      },
+      {
+        "edition": "ZTATTUZ x64",
+        "job_id": 124386233020,
+        "root_guards": 177,
+        "python_tests": 294,
+        "notes_sql_checks": 64,
+        "notes_ui_checks": 56,
+        "installation": "PASS"
+      },
+      {
+        "edition": "ZTATTUZ x86",
+        "job_id": 124386233384,
+        "root_guards": 177,
+        "python_tests": 293,
+        "notes_sql_checks": 64,
+        "notes_ui_checks": 56,
+        "installation": "NOT_RUN",
+        "reason": "Native Windows32 is not accredited by the x64 runner"
+      }
+    ]
+  },
+  "initial_failed_run": {
+    "run_id": 41148446276,
+    "reason": "Watchdog test raced identical deadlines; note UI assertion included a trimmed trailing space. Original failures retained in GitHub Actions."
+  },
+  "distribution": {
+    "channel": "beta",
+    "policy": "OPTIONAL",
+    "scope": "Existing authorized ZTATTUZ gym, x86 and x64; no global release",
+    "published": true,
+    "architectures": [
+      "windows-x86",
+      "windows-x64"
+    ],
+    "actual_core_selection": "PASS",
+    "gym_licence_configuration_subscription_unchanged": true,
+    "previous_3_8_4_records_preserved": 2
+  },
+  "limits": [
+    "Physical reader/relay acceptance remains pending",
+    "Native Windows32 installation remains pending",
+    "External release_readiness gates remain pending"
+  ],
+  "release": {
+    "id": 429627552,
+    "tag": "atlantic-gym-3.8.5-piloto",
+    "draft": false,
+    "prerelease": true
+  },
+  "download_verification": {
+    "status": "PASS",
+    "method": "Exact release manifest digest, full TLS downloads and production Updater.select/download/verify; no installer execution in Linux",
+    "packages": [
+      {
+        "file": "AtlanticGym_Actualizar_3.8.5_x64_proveedor2.exe",
+        "variant": "commercial",
+        "architecture": "windows-x64",
+        "bytes": 95557947,
+        "sha256": "a43b71d85640b87c6aaf9353f4f86ee9196b5c24937531e92202e1c69084c382",
+        "updater_verification": "PASS",
+        "installation": {
+          "status": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "report_sha256": "2219ca034925d86d467014460c5413d6d82664a46037151fc510090e687b8ee2"
+        }
+      },
+      {
+        "file": "AtlanticGym_Actualizar_3.8.5_x64.exe",
+        "variant": "ztattuz",
+        "architecture": "windows-x64",
+        "bytes": 177708827,
+        "sha256": "00c946532d81338f387c4552deacf62bc72d09ad15565649a8c3688dbb768c41",
+        "updater_verification": "PASS",
+        "installation": {
+          "status": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "report_sha256": "93c71a75329daddb01cf3056d9c02c1bead8378c943e98e9c40210ae48272752"
+        }
+      },
+      {
+        "file": "AtlanticGym_Actualizar_3.8.5_x86.exe",
+        "variant": "ztattuz",
+        "architecture": "windows-x86",
+        "bytes": 97929929,
+        "sha256": "cd208bccc09988698f918a293f63572879ac519c42a7bb248bb052adf6cf47f8",
+        "updater_verification": "PASS",
+        "installation": {
+          "status": "NOT_RUN",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+          "native_windows_architecture": "x64",
+          "report_sha256": "2b997d90d0806e3aba56e3b89b12bfa9027d0d55db289fd7b04a8eb4482850e9"
+        }
+      }
+    ]
+  }
+}

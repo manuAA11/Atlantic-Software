@@ -7,7 +7,10 @@ de membresía visibles en Clientes y chequeo, motivos de acceso del servidor y
 listas del dashboard ordenadas por vencimiento. Sin abonos ni saldos. Los avisos
 no alteran permisos, consumo o importes. Guardado privado con aislamiento por
 gimnasio, roles y revisión esperada. Pruebas locales PGlite: 64 comprobaciones
-por proveedor; validación Windows y publicación pendientes en este commit.
+por proveedor. Windows 41150693184 y publicación 41150693251 aprobaron los tres
+perfiles. Paquetes descargados y verificados; Core ofrece x86/x64 al gimnasio
+autorizado sin modificar licencia, configuración o suscripción. Entrega opcional
+NO FINAL; hardware físico, Windows32 nativo y gates externos pendientes.
 [Alcance y verificación](NOTAS_CLIENTES_3.8.5.md).
 
 **27 de octubre de 2026 · Candidato 3.8.4:** el registro completo confirma 14
