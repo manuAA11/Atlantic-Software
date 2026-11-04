@@ -28,6 +28,7 @@ export async function database({upgrade=true,daily=true,marketing=true,freezes=t
  if(features && freezes && marketing && daily && upgrade) {
   await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_PLANES_INTERNOS.sql'),'utf8'));
   await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_REANUDACION_MEMBRESIAS.sql'),'utf8'));
+  await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_TIQUETERA_COBRO.sql'),'utf8'));
   if(pos) await db.exec(fs.readFileSync(path.join(root,'ACTUALIZAR_TIENDA_POS.sql'),'utf8'));
  }
  return db;

@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Tiquetera ya iniciada permite registrar un cobro de cualquier valor no negativo o dejar cero, conservando las entradas utilizadas y el vencimiento. RPC aditiva con permisos del gimnasio e idempotencia. No cambia pagos históricos. Conserva las notas por cliente, sesión y relé de 3.8.5. Actualización beta opcional NO FINAL.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }
