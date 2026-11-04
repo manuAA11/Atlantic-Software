@@ -1,0 +1,132 @@
+{
+  "version": "3.8.6",
+  "source_commit": "99bbd97f5a70b5a01617582f4592474d3a881604",
+  "final": false,
+  "status": "PUBLISHED_OPTIONAL",
+  "server": {
+    "migration": "ticket_carryover_payment",
+    "canonical_sha256": "09a03cbc15e2a33a2185931ef936c44124fff2b1bb5dbc56ecca679a76f900b4",
+    "providers": [
+      "ZTATTUZ",
+      "Comercial"
+    ],
+    "legacy_rpc_unchanged": true,
+    "anonymous_execute_denied": true,
+    "historical_financial_rows_unchanged": true,
+    "security_advisors_baseline_unchanged": true
+  },
+  "local": {
+    "pglite_new_checks_per_profile": 25,
+    "complete_sql_stages": 50,
+    "form_tests_per_profile": 6,
+    "root_guards": 177,
+    "existing_skips": 2,
+    "gym_simulation_checks": {
+      "commercial": 111,
+      "ztattuz_x64": 103,
+      "ztattuz_x86": 103
+    },
+    "past_start_retained_payment_uses_server_time_single_audit": "PASS"
+  },
+  "windows": {
+    "run_id": 41748823238,
+    "publication_run_id": 41748823063,
+    "status": "PASS",
+    "profiles": [
+      {
+        "variant": "commercial",
+        "architecture": "windows-x64",
+        "root_guards": 177,
+        "python_tests": 322,
+        "ticket_payment_sql_checks": 25,
+        "ticket_ui_checks": 34,
+        "installation": {
+          "status": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "report_sha256": "901ded1a8cf6ac1cc51fea88b518f11edbf9758c6e006f46b2adabfc490dc265"
+        }
+      },
+      {
+        "variant": "ztattuz",
+        "architecture": "windows-x64",
+        "root_guards": 177,
+        "python_tests": 294,
+        "ticket_payment_sql_checks": 25,
+        "ticket_ui_checks": 34,
+        "installation": {
+          "status": "PASS",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": null,
+          "native_windows_architecture": "x64",
+          "report_sha256": "c601d80c712ad35b5300d3ee5c68bd3f21fe7e269d68acd703ea0d089c9a61ee"
+        }
+      },
+      {
+        "variant": "ztattuz",
+        "architecture": "windows-x86",
+        "root_guards": 177,
+        "python_tests": 293,
+        "ticket_payment_sql_checks": 25,
+        "ticket_ui_checks": 34,
+        "installation": {
+          "status": "NOT_RUN",
+          "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+          "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+          "native_windows_architecture": "x64",
+          "report_sha256": "4f73afdde63d6380a4fb7d86d53c55c1c9e77df9c53fb656f36deed6e7e20fb2"
+        }
+      }
+    ]
+  },
+  "initial_failed_run": {
+    "run_id": 41747117277,
+    "reason": "The integration database fixture omitted the additive RPC migration. All three loaders now apply it; full local data suites and gym journeys pass."
+  },
+  "limits": [
+    "Physical reader/relay acceptance remains pending",
+    "Native Windows32 installation remains pending",
+    "External release_readiness gates remain pending"
+  ],
+  "release": {
+    "id": 433396020,
+    "tag": "atlantic-gym-3.8.6-piloto",
+    "draft": false,
+    "prerelease": true
+  },
+  "download_verification": {
+    "status": "PASS",
+    "manifest_sha256": "b257a85906919c11e12a441cc93954b207b4a7b9648d80c25b97c4175ff01168",
+    "method": "Manifest and SHA256SUMS agree; full ZTATTUZ TLS downloads checked by production Updater.select/download/verify without executing installers in Linux.",
+    "packages": [
+      {
+        "variant": "ztattuz",
+        "architecture": "windows-x64",
+        "bytes": 177708879,
+        "sha256": "a97f2773ea004bdf3120664cd0b6c8678368dfaebfcee72f41cbf7eeef4246fa",
+        "verified": true
+      },
+      {
+        "variant": "ztattuz",
+        "architecture": "windows-x86",
+        "bytes": 97940443,
+        "sha256": "fc9bb1d05af90009b87d757cfe3340705541216492cfe92e9700663f978ba635",
+        "verified": true
+      }
+    ]
+  },
+  "distribution": {
+    "channel": "beta",
+    "policy": "OPTIONAL",
+    "published": true,
+    "scope": "Existing authorized ZTATTUZ gym only, no global release",
+    "architectures": [
+      "windows-x64",
+      "windows-x86"
+    ],
+    "server_release_filter_and_production_updater_selection": "PASS",
+    "gym_configuration_licence_subscription_unchanged": true,
+    "previous_3_8_5_records_preserved": 2
+  }
+}
