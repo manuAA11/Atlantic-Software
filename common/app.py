@@ -1074,7 +1074,7 @@ class MembershipDialog(BaseDialog):
         plan = self.plan_by_label.get(self.plan.get()) or {}
         internal = plan.get('plan_type') == 'INTERNAL'
         self.amount.set('0' if moved or internal else str(plan.get('price', 0)))
-        self.amount_entry.configure(state='disabled' if moved or internal else 'normal')
+        self.amount_entry.configure(state='disabled' if internal else 'normal')
         for widget in self._payment_controls:
             widget.grid_remove() if internal else widget.grid()
         # grid_slaves excludes removed fields; restore the original widgets explicitly.

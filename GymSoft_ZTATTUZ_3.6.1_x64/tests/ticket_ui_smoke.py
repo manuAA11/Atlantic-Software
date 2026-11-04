@@ -73,9 +73,13 @@ def main():
                 assert '13 de 20' in dialog.ticket_fields.preview.cget('text')
                 assert 'número 8' in dialog.ticket_fields.preview.cget('text')
                 assert dialog.amount.get() == '0'
+                assert str(dialog.amount_entry.cget('state')) == 'normal'
+                requested = 50000 if factor == 1 else 0
+                dialog.amount.set(str(requested))
                 dialog.geometry('700x520+0+0'); pump(root); assert_buttons_fit(dialog)
                 dialog.save()
                 assert dialog.result['initial_entries_used'] == 7 and dialog.result['carryover']
+                assert dialog.result['amount'] == requested
                 checked += 1
             rows = [{'client_id': 1, 'client_name': 'Ana Prueba', 'document': '123', 'phone': '+573001234567', 'email': 'ana@example.test', 'plan_name': plan['name'], 'entries_remaining': 13, 'entries_used': 7, 'end_date': '2026-10-31'}]
             db.ticket_followup.return_value = rows

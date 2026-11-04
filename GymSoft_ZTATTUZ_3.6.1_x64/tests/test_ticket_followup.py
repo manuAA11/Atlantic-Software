@@ -32,12 +32,13 @@ class TicketTests(unittest.TestCase):
         self.assertEqual([len(rows) for rows in groups.values()], [1, 5, 5, 5, 5, 29])
         self.assertEqual(len({r['client_id'] for rows in groups.values() for r in rows}), 50)
 
-    def test_transferred_balance_does_not_send_a_payment(self):
+    def test_transferred_ticket_sends_selected_payment(self):
         key = str(uuid4())
         rpc, params = membership_request('gym', 1, 2, '2026-09-01', 9999, 'Efectivo',
             carryover=True, initial_entries_used=12, request_id=key)
-        self.assertEqual(rpc, 'register_ticket_carryover')
-        self.assertNotIn('p_amount', params)
+        self.assertEqual(rpc, 'register_ticket_carryover_with_payment')
+        self.assertEqual(params['p_amount'], 9999)
+        self.assertEqual(params['p_payment_method'], 'Efectivo')
         self.assertEqual(params['p_request_id'], key)
         self.assertEqual(params['p_entries_used'], 12)
 

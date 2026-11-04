@@ -448,3 +448,8 @@ RECUPERACIÓN DEL RELÉ — 27 DE OCTUBRE DE 2026
 - Aislar notas internas por gimnasio/rol, impedir sobrescritura silenciosa entre equipos y conservarlas fuera de respuestas públicas de League/chat/marketing.
 
 30/10/2026 · Entrega 3.8.5 opcional verificada: Windows 41150693184 y publicación 41150693251 PASS; tres paquetes descargados y verificados íntegramente. Core habilitó x86/x64 para el gimnasio autorizado, conservando licencia/configuración/suscripción. Gates externos y Windows32 nativo pendientes. Evidencia: evidence/notes-release-3.8.5.json.
+
+
+## Tiqueteras iniciadas con cobro opcional — 3.8.6
+
+Candidato en pruebas: Valor pagado editable con tiquetera ya iniciada, cero por defecto, RPC aditiva register_ticket_carryover_with_payment. Se registra sólo el dinero recibido ahora sin alterar las entradas utilizadas. No calcula deuda ni abonos. Conserva RPC antigua sin cobro para instalaciones anteriores. Repetición exacta devuelve la misma membresía; cambios de monto, método, comprobante, nota o consumo con el mismo identificador se rechazan. Sin cambio de pagos históricos, sesión ni hardware. Pendiente de validación/publicación Windows antes de anunciar disponibilidad.

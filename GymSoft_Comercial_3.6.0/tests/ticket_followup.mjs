@@ -1,3 +1,4 @@
+await import('./ticket_carryover_payment.mjs');
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import path from 'node:path';

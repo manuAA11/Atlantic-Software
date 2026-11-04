@@ -17,7 +17,7 @@ class CarryoverFields(ttk.Frame):
         self.enabled = tk.BooleanVar(self, value=False)
         self.used = tk.StringVar(self, value='0')
         self.columnconfigure(0, weight=1)
-        ttk.Checkbutton(self, text='Tiquetera ya iniciada (sin nuevo cobro)',
+        ttk.Checkbutton(self, text='Tiquetera ya iniciada',
                         variable=self.enabled).grid(row=0, column=0, sticky='w')
         self.fields = ttk.Frame(self, style='Card.TFrame')
         self.fields.grid(row=1, column=0, sticky='ew', pady=(8, 0))
@@ -58,7 +58,7 @@ class CarryoverFields(ttk.Frame):
                 remaining = int(plan['entry_limit']) - used
                 text += f' Quedan {remaining} de {plan["entry_limit"]} entradas.'
                 text += f' El próximo ingreso será el número {used + 1}.' if remaining else ' El cupo está agotado.'
-                text += ' Este traslado no registra un nuevo cobro ni crea visitas anteriores.'
+                text += ' Indica el cobro recibido ahora en Valor pagado, o deja 0 si no hay cobro. No se crean visitas anteriores.'
             else:
                 text += ' Si hay otro plan pendiente, las fechas se desplazan al terminar ese plan.'
         except (ValueError, KeyError, TypeError):

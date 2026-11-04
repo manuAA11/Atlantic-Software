@@ -405,3 +405,8 @@ coinciden con sus SHA256 y tamaños. La prueba física del relé en Windows32
 permanece pendiente y la publicación conserva NO FINAL. Evidencia pública:
 `evidence/relay-logout-3.8.3-validation.json`.
 Detalle y alcance en `docs/RELE_CIERRE_SESION_3.8.3.md`.
+
+
+## Tiqueteras iniciadas con cobro opcional — 3.8.6
+
+Candidato en pruebas: Valor pagado editable con tiquetera ya iniciada, cero por defecto, RPC aditiva register_ticket_carryover_with_payment. Se registra sólo el dinero recibido ahora sin alterar las entradas utilizadas. No calcula deuda ni abonos. Conserva RPC antigua sin cobro para instalaciones anteriores. Repetición exacta devuelve la misma membresía; cambios de monto, método, comprobante, nota o consumo con el mismo identificador se rechazan. Sin cambio de pagos históricos, sesión ni hardware. Pendiente de validación/publicación Windows antes de anunciar disponibilidad.

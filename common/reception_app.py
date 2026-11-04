@@ -826,7 +826,7 @@ class PaymentDialog(BaseDialog):
         moved = self.ticket_fields.enabled.get()
         plan = self.plan_by_label.get(self.plan.get()) or {}
         self.amount.set('0' if moved else str(plan.get('price', 0)))
-        self.amount_entry.configure(state='disabled' if moved else 'normal')
+        self.amount_entry.configure(state='normal')
 
     def save(self) -> None:
         plan = self.plan_by_label.get(self.plan.get())

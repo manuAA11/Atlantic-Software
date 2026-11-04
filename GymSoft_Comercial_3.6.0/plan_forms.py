@@ -128,10 +128,17 @@ def membership_request(gym_id, client_id, plan_id, start_date, amount,
             used = int(str(initial_entries_used))
         except (ValueError, TypeError, AttributeError):
             raise ValueError('La solicitud de traslado no es válida. Abre de nuevo el formulario.') from None
-        return 'register_ticket_carryover', {
+        amount = parse_amount(amount)
+        if amount < 0:
+            raise ValueError('El cobro debe ser cero o un valor positivo.')
+        if amount > 0 and not payment_method.strip():
+            raise ValueError('Indica el método del cobro.')
+        return 'register_ticket_carryover_with_payment', {
             'p_gym_id': gym_id, 'p_client_id': int(client_id), 'p_plan_id': int(plan_id),
             'p_start': start_date, 'p_entries_used': used,
             'p_notes': notes.strip(), 'p_request_id': request_id,
+            'p_amount': amount, 'p_payment_method': payment_method.strip(),
+            'p_payment_reference': payment_reference.strip(),
         }
     if initial_entries_used:
         raise ValueError('Usa «Tiquetera ya iniciada» para trasladar entradas utilizadas.')
