@@ -72,9 +72,22 @@ def main():
                 pump(root)
                 assert '13 de 20' in dialog.ticket_fields.preview.cget('text')
                 assert 'número 8' in dialog.ticket_fields.preview.cget('text')
-                assert dialog.amount.get() == '0'
+                assert float(dialog.amount.get()) == plan['price']
                 assert str(dialog.amount_entry.cget('state')) == 'normal'
-                requested = 50000 if factor == 1 else 0
+                # Both directions preserve the plan price and any manual payment, including zero.
+                for payment in (plan['price'], 50000, 0):
+                    dialog.amount.set(str(payment))
+                    for enabled in (False, True, False, True):
+                        dialog.ticket_fields.enabled.set(enabled); pump(root)
+                        assert float(dialog.amount.get()) == payment
+                        assert str(dialog.amount_entry.cget('state')) == 'normal'
+                        checked += 1
+                # A new plan selection initializes its price again.
+                (dialog.sync_amount if hasattr(dialog, 'sync_amount') else dialog.sync_price)()
+                assert float(dialog.amount.get()) == plan['price']
+                assert dialog.ticket_fields.used.get() == '7'
+                checked += 1
+                requested = plan['price'] if factor == 1 else 0
                 dialog.amount.set(str(requested))
                 dialog.geometry('700x520+0+0'); pump(root); assert_buttons_fit(dialog)
                 dialog.save()

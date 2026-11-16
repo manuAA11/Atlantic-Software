@@ -1,8 +1,8 @@
 {
-  "version": "3.8.6",
-  "tag": "atlantic-gym-3.8.6-piloto",
+  "version": "3.8.7",
+  "tag": "atlantic-gym-3.8.7-piloto",
   "publish": true,
   "final": false,
-  "notes": "Tiquetera ya iniciada permite registrar un cobro de cualquier valor no negativo o dejar cero, conservando las entradas utilizadas y el vencimiento. RPC aditiva con permisos del gimnasio e idempotencia. No cambia pagos históricos. Conserva las notas por cliente, sesión y relé de 3.8.5. Actualización beta opcional NO FINAL.",
-  "publication_attempt": 2
+  "notes": "Tiquetera ya iniciada conserva el precio del plan seleccionado y los importes editados manualmente, incluido cero, en Administración y Recepción. Conserva entradas utilizadas, vencimiento y reintentos idempotentes. Sin cambios de servidor ni pagos históricos. Actualización beta opcional NO FINAL.",
+  "publication_attempt": 1
 }

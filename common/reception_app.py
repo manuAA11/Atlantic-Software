@@ -823,9 +823,7 @@ class PaymentDialog(BaseDialog):
         self.sync_mode()
 
     def sync_mode(self):
-        moved = self.ticket_fields.enabled.get()
-        plan = self.plan_by_label.get(self.plan.get()) or {}
-        self.amount.set('0' if moved else str(plan.get('price', 0)))
+        # Plan selection initializes the price; carryover mode preserves edits, including zero.
         self.amount_entry.configure(state='normal')
 
     def save(self) -> None:
