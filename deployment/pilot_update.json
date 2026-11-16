@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Tiquetera ya iniciada conserva el precio del plan seleccionado y los importes editados manualmente, incluido cero, en Administración y Recepción. Conserva entradas utilizadas, vencimiento y reintentos idempotentes. Sin cambios de servidor ni pagos históricos. Actualización beta opcional NO FINAL.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }
