@@ -1,8 +1,8 @@
 {
-  "version": "3.8.7",
-  "tag": "atlantic-gym-3.8.7-piloto",
+  "version": "3.8.8",
+  "tag": "atlantic-gym-3.8.8-piloto",
   "publish": true,
   "final": false,
-  "notes": "Tiquetera ya iniciada conserva el precio del plan seleccionado y los importes editados manualmente, incluido cero, en Administración y Recepción. Conserva entradas utilizadas, vencimiento y reintentos idempotentes. Sin cambios de servidor ni pagos históricos. Actualización beta opcional NO FINAL.",
-  "publication_attempt": 2
+  "notes": "Reintento de huella después de una captura incompleta: permite acomodar el dedo sin activar la espera reservada a muestras aceptadas. Conserva el bloqueo tras lectura válida, identificación, autorización, entradas y relé. Incluye la corrección de tiqueteras 3.8.7. Sin migraciones ni cambios de huellas guardadas. Beta opcional NO FINAL.",
+  "publication_attempt": 1
 }

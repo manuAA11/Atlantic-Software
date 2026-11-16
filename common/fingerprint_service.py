@@ -238,7 +238,11 @@ class FingerprintService:
                 except ReaderBusy as error:
                     self.status(str(error)); self.stop_event.wait(.2)
                 except BadScan as error:
-                    self.status(str(error)); self.release_at = time.monotonic(); record('capture_quality', error)
+                    self.status(str(error)); record('capture_quality', error)
+                    # A failed capture is not an accepted sample: allow the user
+                    # to adjust the finger and retry. Preserve a release wait
+                    # already established by an earlier successful capture.
+                    self.stop_event.wait(.12)
                 except Exception as error:
                     record('capture_or_enrollment', error)
                     if self.target is not None: self.end('failed', str(error))
