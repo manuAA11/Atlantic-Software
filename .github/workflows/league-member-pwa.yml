@@ -1,0 +1,25 @@
+name: League member PWA
+on:
+  push:
+    branches: [pruebas]
+    paths: ['league/web/**', 'league/member/**', 'league/backend/member-*.mjs', '.github/workflows/league-member-pwa.yml']
+  pull_request:
+    paths: ['league/web/**', 'league/member/**', 'league/backend/member-*.mjs', '.github/workflows/league-member-pwa.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: league/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: league/web/package-lock.json
+      - run: npm ci --workspaces=false
+      - run: npm test
+      - run: npm run build
