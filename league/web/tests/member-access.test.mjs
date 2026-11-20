@@ -13,7 +13,7 @@ function fixture({known=false,staff=false,blocked=false,exists=true}={}){
 test('document/document automatically prepares member identity and returns a session without email verification',async()=>{
  const f=fixture();const result=await f.handler(f.request());assert.equal(result.status,200);assert.equal(result.headers.get('Cache-Control'),'no-store');
  assert.deepEqual((await result.json()).data,{access_token:'test-access',refresh_token:'test-refresh'});
- const created=f.calls.find(x=>x[0]==='create')[1];assert.equal(created.email_confirm,true);assert.equal(created.app_metadata.atlantic_member_only,true);assert.ok(!created.email.includes('123456789'));assert.notEqual(created.password,'123456789');assert.equal(created.password.length,64);
+ const created=f.calls.find(x=>x[0]==='create')[1];assert.equal(created.email_confirm,true);assert.ok(created.email.split('@')[0].length<=64);assert.equal(created.app_metadata.atlantic_member_only,true);assert.ok(!created.email.includes('123456789'));assert.notEqual(created.password,'123456789');assert.equal(created.password.length,64);
  assert.deepEqual(f.calls.find(x=>x[0]==='activate'),['activate',gym,'1',user]);
 });
 test('repeated access reuses dedicated identity without creating duplicates',async()=>{

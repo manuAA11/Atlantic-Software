@@ -32,7 +32,7 @@ export function createMemberAccessHandler({auth,store,pepper,allowedOrigins=[]})
    const client=await store.resolve(input.gym_id,document);
    if(!client?.client_id)throw failure();
    const identity=hex(await digest('identity:'+input.gym_id+':'+client.client_id));
-   const email='member-'+identity+'@members.atlantic.invalid';
+   const email='member-'+identity.slice(0,48)+'@members.atlantic.invalid';
    const internalPassword=hex(await digest('auth-password:'+input.gym_id+':'+client.client_id));
    // The public document never becomes the password of a shared Gym/Core staff user.
    // Internal Auth credentials are unguessable and used only by this server.

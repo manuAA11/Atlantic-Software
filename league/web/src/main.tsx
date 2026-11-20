@@ -9,6 +9,7 @@ import {gymEventTime,canBookEvent} from './gymSchedule';
 import './style.css';
 import {Routines} from './Routines';
 import {MemberProfile} from './Profile';
+import {PwaEntry,usePwaUpdate} from './PwaEntry';
 
 const formatDate=(s?:string|null)=>{
  if(!s)return 'Por confirmar';
@@ -21,12 +22,12 @@ function Icon({name}:{name:string}){
 }
 function Card({children,className=''}:{children:React.ReactNode;className?:string}){return <section className={'card '+className}>{children}</section>;}
 function Empty({title,children}:{title:string;children:React.ReactNode}){return <Card><h2>{title}</h2><p>{children}</p></Card>;}
-function App(){
+function App({authOnly=false,installScreen}:{authOnly?:boolean;installScreen?:React.ReactNode}){
  const [session,setSession]=useState<Session|null>(null),[starting,setStarting]=useState(true),[snapshot,setSnapshot]=useState<Snapshot|null>(null),[gym,setGym]=useState('');
  const [member,setMember]=useState<Membership|null>(null),[events,setEvents]=useState<GymEvent[]>([]),[renewals,setRenewals]=useState<Renewal[]>([]),[notices,setNotices]=useState<Notice[]>([]);
  const [error,setError]=useState(''),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[pendingAction,setPendingAction]=useState(false),[fresh,setFresh]=useState(false),[extraError,setExtraError]=useState('');
  const [online,setOnline]=useState(navigator.onLine),[dark,setDark]=useState(()=>{try{return localStorage.getItem('atlantic-league-appearance')==='dark';}catch{return false;}});
- const [update,setUpdate]=useState<ServiceWorker|null>(null),epoch=useRef(0),gymRef=useRef(gym);gymRef.current=gym;
+ const {update,applyUpdate}=usePwaUpdate(),epoch=useRef(0),gymRef=useRef(gym);gymRef.current=gym;
  useEffect(()=>{document.documentElement.dataset.theme=dark?'dark':'light';document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#0b1423':'#f5f7fb');try{localStorage.setItem('atlantic-league-appearance',dark?'dark':'light');}catch{}},[dark]);
  useEffect(()=>{
   if(!supabase){setStarting(false);return;}
@@ -36,7 +37,7 @@ function App(){
   return()=>{live=false;data.subscription.unsubscribe();};
  },[]);
  const refresh=useCallback(async()=>{
-  if(!session)return;
+  if(!session||authOnly)return;
   const version=++epoch.current;setBusy(true);setError('');setExtraError('');setFresh(false);setMember(null);setEvents([]);setRenewals([]);setNotices([]);
   try{
    const next=await call<Snapshot>('snapshot');if(version!==epoch.current)return;setSnapshot(next);
@@ -48,19 +49,13 @@ function App(){
    if(memberEndpoint){try{const [r,n]=await Promise.all([call<Renewal[]>('renewals.list',{gym_id:id},true),call<Notice[]>('notifications.list',{gym_id:id},true)]);if(version===epoch.current){setRenewals(r);setNotices(n);}}catch(e){if(version===epoch.current)setExtraError(e instanceof Error?e.message:'No se pudieron actualizar tus solicitudes y avisos.');}}
   }catch(e){if(version===epoch.current)setError(e instanceof Error?e.message:'No se pudieron actualizar tus datos.');}
   finally{if(version===epoch.current)setBusy(false);}
- },[session?.user.id,gym]);
+ },[session?.user.id,gym,authOnly]);
  useEffect(()=>{void refresh();return()=>{epoch.current++;};},[refresh]);
  useEffect(()=>{
   const reconnect=()=>{setOnline(true);void refresh();},offline=()=>{setOnline(false);epoch.current++;setFresh(false);setBusy(false);setMember(null);setEvents([]);setNotices([]);setRenewals([]);},visible=()=>{if(document.visibilityState==='visible'&&navigator.onLine)void refresh();};
   window.addEventListener('online',reconnect);window.addEventListener('offline',offline);document.addEventListener('visibilitychange',visible);
   return()=>{window.removeEventListener('online',reconnect);window.removeEventListener('offline',offline);document.removeEventListener('visibilitychange',visible);};
  },[refresh]);
- useEffect(()=>{
-  if(!('serviceWorker' in navigator))return;
-  let alive=true;const changed=()=>location.reload();navigator.serviceWorker.addEventListener('controllerchange',changed);
-  void navigator.serviceWorker.register('/sw.js').then(reg=>{if(reg.waiting&&alive)setUpdate(reg.waiting);reg.addEventListener('updatefound',()=>{const worker=reg.installing;worker?.addEventListener('statechange',()=>{if(alive&&worker.state==='installed'&&navigator.serviceWorker.controller)setUpdate(worker);});});}).catch(()=>{});
-  return()=>{alive=false;navigator.serviceWorker.removeEventListener('controllerchange',changed);};
- },[]);
  const perform=async(action:string,data:Record<string,unknown>={},extended=false)=>{
   if(pendingAction)return;setPendingAction(true);setMessage('');setError('');
   try{await call(action,{...data,gym_id:gym},extended);setMessage(action==='renewals.create'?'Solicitud guardada. El gimnasio debe revisarla; tu membresía conserva su fecha actual.':action==='gym.reserve'?'Reserva confirmada.':action==='gym.cancel'?'Reserva cancelada.':'Cambio guardado.');await refresh();}
@@ -69,6 +64,7 @@ function App(){
  };
  if(starting)return <main className="login"><p role="status">Abriendo tu espacio…</p></main>;
  if(!session)return <Login error={error}/>;
+ if(authOnly)return <>{installScreen}</>;
  const links=snapshot?.links.filter(x=>x.status==='APPROVED')||[],gymName=links.find(x=>x.gym_id===gym)?.name||'Tu gimnasio';
  const activeRenewal=renewals.find(x=>x.status==='PENDING'||x.status==='REVIEW'),unread=notices.filter(x=>!x.read_at).length;
  const statusLabels:Record<string,string>={ACTIVE:'Activa',EXPIRED:'Vencida',FROZEN:'Congelada',SUSPENDED:'Suspendida',NO_PLAN:'Sin plan asignado',INACTIVE:'Sin acceso vigente',SCHEDULED:'Programada','SIN ENTRADAS':'Sin entradas'};
@@ -77,7 +73,7 @@ function App(){
  return <div className="app">
   <header><Link to="/" className="brand"><strong>ATLANTIC LEAGUE</strong><span>{gymName}</span></Link><Link to="/perfil" className="avatar" aria-label="Abrir mi perfil">{snapshot?.profile.alias.slice(0,2).toUpperCase()||'AL'}</Link></header>
   {!online&&<div className="banner" role="status">Sin conexión. Tus datos y operaciones necesitan internet.</div>}
-  {update&&<div className="banner">Hay una nueva versión. <button disabled={pendingAction} onClick={()=>update.postMessage({type:'ACTIVATE_UPDATE'})}>Actualizar</button></div>}
+  {update&&<div className="banner">Hay una nueva versión. <button disabled={pendingAction} onClick={applyUpdate}>Actualizar</button></div>}
   <main>
    {links.length>1&&<label className="gym-selector">Gimnasio<select disabled={pendingAction} value={gym} onChange={e=>{epoch.current++;setFresh(false);setMember(null);setEvents([]);setNotices([]);setRenewals([]);setGym(e.target.value);}}>{links.map(x=><option key={x.gym_id} value={x.gym_id}>{x.name}</option>)}</select></label>}
    {error&&<div className="alert" role="alert">{error}<button disabled={busy||!online} onClick={()=>void refresh()}>Volver a intentar</button></div>}
@@ -100,7 +96,7 @@ function App(){
     <Route path="/agenda" element={<Agenda events={events} member={member} disabled={!fresh||pendingAction||!online} perform={perform}/>}/>
     <Route path="/rutinas" element={<Routines key={gym} gym={gym}/>}/>
     <Route path="/notificaciones" element={<><div className="heading"><span className="eyebrow">AL DÍA</span><h1>Notificaciones</h1><p>Los avisos de tu gimnasio, en un solo lugar.</p></div>{!memberEndpoint?<Empty title="Avisos pendientes de conexión">El centro de notificaciones se habilitará cuando esté conectado el nuevo servicio del piloto.</Empty>:notices.length?notices.map(n=><Card key={n.id}><div className="row"><h2>{n.title}</h2>{!n.read_at&&<span className="badge good">Nuevo</span>}</div><p>{n.body}</p><span className="small">{formatDate(n.created_at)}</span><Link to={n.target}>Ver detalle</Link>{!n.read_at&&<button disabled={pendingAction||!online} onClick={()=>void perform('notifications.read',{id:n.id},true)}>Marcar como leído</button>}</Card>):<Empty title="Estás al día">Aquí aparecerán tus nuevos avisos.</Empty>}</>}/>
-    <Route path="/perfil" element={<><div className="heading"><span className="eyebrow">TU CUENTA</span><h1>Mi perfil</h1></div><MemberProfile key={gym} gym={gym}/><Card><h2>{snapshot?.profile.alias||'Socio'}</h2><p>{gymName}</p>{session.user.email&&!session.user.email.endsWith('@members.atlantic.invalid')&&<p>{session.user.email}</p>}<p>Los cambios en tus datos personales se solicitan al gimnasio.</p></Card><Card><h2>Preferencias</h2><label className="toggle">Modo oscuro<input type="checkbox" checked={dark} onChange={e=>setDark(e.target.checked)}/></label><PushSettings gym={gym} enabled={!!memberEndpoint&&fresh}/></Card><Card><h2>Instalar en tu celular</h2><p>En iPhone: abre Safari, pulsa Compartir y selecciona Añadir a pantalla de inicio. En Android: abre el menú de Chrome y pulsa Instalar aplicación.</p><p className="small">Las notificaciones en iPhone requieren abrir la app desde la pantalla de inicio.</p></Card><button disabled={pendingAction} onClick={()=>{void supabase?.auth.signOut({scope:'local'}).then(({error})=>{if(error)setError('No se pudo cerrar la sesión. Vuelve a intentarlo.');});}}>Cerrar sesión en este dispositivo</button><p className="copyright">© Atlantic Tech Software — All rights reserved. By Manuel Cuellar</p></>}/>
+    <Route path="/perfil" element={<><div className="heading"><span className="eyebrow">TU CUENTA</span><h1>Mi perfil</h1></div><MemberProfile key={gym} gym={gym}/><Card><h2>{snapshot?.profile.alias||'Socio'}</h2><p>{gymName}</p>{session.user.email&&!session.user.email.endsWith('@members.atlantic.invalid')&&<p>{session.user.email}</p>}<p>Los cambios en tus datos personales se solicitan al gimnasio.</p></Card><Card><h2>Preferencias</h2><label className="toggle">Modo oscuro<input type="checkbox" checked={dark} onChange={e=>setDark(e.target.checked)}/></label><PushSettings gym={gym} enabled={!!memberEndpoint&&fresh}/></Card><Card><h2>Instalar en tu celular</h2><p>Abre el menú de tu navegador y selecciona Instalar aplicación o Añadir a pantalla de inicio. Después abre Atlantic League desde el nuevo icono.</p><p className="small">Las notificaciones en iPhone requieren abrir la app desde la pantalla de inicio.</p></Card><button disabled={pendingAction} onClick={()=>{void supabase?.auth.signOut({scope:'local'}).then(({error})=>{if(error)setError('No se pudo cerrar la sesión. Vuelve a intentarlo.');});}}>Cerrar sesión en este dispositivo</button><p className="copyright">© Atlantic Tech Software — All rights reserved. By Manuel Cuellar</p></>}/>
     <Route path="*" element={<Empty title="Página no encontrada"><Link to="/">Volver a Inicio</Link></Empty>}/>
    </Routes>
    <button className="refresh" disabled={busy||pendingAction||!online} onClick={()=>void refresh()}><Icon name="refresh"/>Actualizar información</button>
@@ -133,4 +129,4 @@ function PushSettings({gym,enabled}:{gym:string;enabled:boolean}){
  }catch(e){setStatus(e instanceof Error?e.message:'No se pudo cambiar la preferencia.');}finally{setBusy(false);}}
  return <><h3>Notificaciones en tu celular</h3><p className="small">En iPhone, abre la app instalada desde tu pantalla de inicio. Los avisos internos siguen disponibles aunque no actives los push.</p><button disabled={!enabled||!key||!compatible||busy} onClick={()=>void change(true)}>Activar notificaciones</button><button disabled={!enabled||!compatible||busy} onClick={()=>void change(false)}>Desactivar en este dispositivo</button>{(!enabled||!key)&&<p className="small">El envío push todavía no está habilitado en este piloto.</p>}{status&&<p role="status">{status}</p>}</>;
 }
-createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><App/></BrowserRouter></React.StrictMode>);
+createRoot(document.getElementById('root')!).render(<React.StrictMode><BrowserRouter><PwaEntry>{(authOnly,screen)=><App authOnly={authOnly} installScreen={screen}/>}</PwaEntry></BrowserRouter></React.StrictMode>);

@@ -95,3 +95,26 @@ and identity mismatch rejection. These tests do not prove hosted Auth delivery o
 PostgreSQL concurrency. Initial login rendering was inspected in desktop Safari; the final
 document/password form still needs physical mobile acceptance. No production schema, hosted
 function or published site was changed.
+
+
+## Installation-first mobile entry
+
+See [INSTALLATION_QA.md](INSTALLATION_QA.md) for the new mobile welcome screen, standalone
+boundary, browser-specific guidance, essential-auth exemptions and verification matrix.
+The latest suite has 27 passing groups; the physical mobile acceptance column remains pending.
+The new installation entry is not published. Desktop web access stays available.
+
+## Hosted service evidence — 2026-11-19
+
+The member schema and isolated access/member/job functions were deployed for the existing
+ZTATTUZ owner pilot. Core directory authorization returned enabled for the current provider.
+The owner source check ran in a rolled-back transaction: the real account has no assigned plan
+and two routines; the calendar is empty. Empty membership dates are normalized to null by the
+League projection. No plan, payment or membership was created to fill that empty state.
+The job schedule is active every five minutes. No additional mobile identities were activated.
+Anonymous member access was rejected with 401 and a foreign origin with 403; all new tables
+have RLS enabled and no privileged member RPC is executable by anon. RLS-without-policy
+linter notices on the service-only tables are intentional: ordinary roles have no grants.
+Physical login/installation, hosted valid-user HTTP acceptance, and push delivery remain
+unverified. The latest internal email-length correction is staged in source and awaits the next
+access-function deployment; no extra production change was made for the installation gate.

@@ -136,6 +136,10 @@ test('local SQL: RLS isolation, duplicate renewal prevention, retries and unchan
   assert.equal((await jobs('claim')).length,0);
   await assert.rejects(access('activate',{client_id:'1',auth_user_id:bob}),/Identidad/);
   await db.exec('reset role');
+  await db.exec(`create or replace function private.membership_snapshot_json(uuid,bigint) returns jsonb language sql as $$select jsonb_build_object('membership_id','','plan_name','','allowed',false,'membership_type','COMMERCIAL','membership_start','','membership_end','','status','INACTIVE','frozen',false)$$;`);
+  await db.exec('set role service_role');
+  const noPlan=await rpc(mobile,gym,'membership.details');assert.equal(noPlan.status,'NO_PLAN');assert.equal(noPlan.remaining_days,null);assert.equal(noPlan.ends_at,null);assert.equal(noPlan.starts_at,null);
+  await db.exec('reset role');
   assert.deepEqual((await db.query('select ends_at::text,paid from public.memberships')).rows,source);
  }finally{await db.close();}
 });
