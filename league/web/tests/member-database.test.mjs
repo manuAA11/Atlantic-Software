@@ -65,6 +65,37 @@ test('local SQL: RLS isolation, duplicate renewal prevention, retries and unchan
   const secret=(await db.query("select public.league_member_settings('get') as data")).rows[0].data;assert.ok(secret.access_pepper.length>=64);
   const details=await rpc(alice,gym,'membership.details');
   assert.equal(details.plan_name,'QA Plan');assert.equal(details.status,'EXPIRED');assert.equal(details.remaining_days,0);assert.ok(!JSON.stringify(details).includes('NEVER_RETURN_ME'));
+  // Exercise the deployed upgrade twice as well as the clean schema. Neither read changes source rows.
+  await db.exec('reset role');
+  const ticketMigration=await readFile(new URL('../../member/sql/ticket-balance.sql',import.meta.url),'utf8');
+  await db.exec(ticketMigration);await db.exec(ticketMigration);
+  const monthly={membership_id:1,plan_name:'QA Plan',allowed:false,membership_type:'COMMERCIAL',membership_end:'2026-11-10',status:'EXPIRED',document:'NEVER_RETURN_ME'};
+  const fixtures=[
+   {entry_limit:12,entries_used:3,entries_remaining:9,allowed:true,status:'ACTIVE'},
+   {entry_limit:12,entries_used:12,entries_remaining:0,already_consumed_today:true,status:'SIN ENTRADAS'},
+   {entry_limit:12,entries_used:12,entries_remaining:0,already_consumed_today:true,allowed:true,status:'ACTIVE'},
+   {entry_limit:12,entries_used:0,entries_remaining:12,has_expiration:false,allowed:true,status:'ACTIVE'},
+   {entry_limit:12,entries_used:3,entries_remaining:9,frozen:true,status:'FROZEN'},
+   {entry_limit:null,entries_used:0,entries_remaining:null,allowed:true,status:'ACTIVE'},
+   {entry_limit:null,entries_used:null,entries_remaining:null,membership_id:null,status:'INACTIVE'}
+  ];
+  const snapshot=async value=>db.exec("create or replace function private.membership_snapshot_json(uuid,bigint) returns jsonb language sql as $$select '"+JSON.stringify(value).replaceAll("'","''")+"'::jsonb$$;");
+  for(const fixture of fixtures){
+   await snapshot({...monthly,...fixture});await db.exec('set role service_role');
+   const balance=await rpc(alice,gym,'membership.details');
+   for(const field of ['entry_limit','entries_used','entries_remaining'])assert.equal(balance[field],fixture[field]);
+   assert.equal(balance.already_consumed_today,fixture.already_consumed_today===true);
+   assert.equal(balance.active,fixture.allowed===true);
+   assert.equal(balance.status,fixture.frozen?'FROZEN':fixture.membership_id===null?'NO_PLAN':fixture.status);
+   assert.equal(balance.has_expiration,fixture.has_expiration!==false);
+   if(fixture.has_expiration===false)assert.equal(balance.ends_at,null);
+   assert.ok(!JSON.stringify(balance).includes('NEVER_RETURN_ME'));
+   assert.deepEqual(await rpc(alice,gym,'membership.details'),balance);
+   await assert.rejects(rpc(bob,gym,'membership.details'),/Vinculación/);
+   await db.exec('reset role');
+  }
+  await snapshot(monthly);await db.exec('set role service_role');
+
   const first=await rpc(alice,gym,'renewals.create',{request_key:key1,period_key:'2026-11-10'});
   const again=await rpc(alice,gym,'renewals.create',{request_key:key1,period_key:'2026-11-10'});
   const secondDevice=await rpc(alice,gym,'renewals.create',{request_key:key2,period_key:'2026-11-10'});

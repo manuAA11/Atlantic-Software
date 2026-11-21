@@ -27,7 +27,7 @@ const metadata=JSON.parse(manifest.text);assert.equal(metadata.display,'standalo
 const worker=await http(origin+'/sw.js');assert.equal(worker.status,200);assert.ok(worker.text.includes('atlantic-league-web-static-'));assert.ok(!worker.text.includes('__VERSION__'));assert.match(String(worker.headers['cache-control']),/no-cache/);
 assert.equal(worker.headers['service-worker-allowed'],'/');
 const script=root.text.match(/src="(\/assets\/[^"]+\.js)"/)?.[1];assert.ok(script);
-const bundle=await http(origin+script);assert.equal(bundle.status,200);assert.ok(bundle.text.includes('Instala Atlantic League en tu celular'));assert.ok(bundle.text.includes('/functions/v1/atlantic-league-member-access'));
+const bundle=await http(origin+script);assert.equal(bundle.status,200);assert.ok(bundle.text.includes('Instala Atlantic League en tu celular'));assert.ok(bundle.text.includes('/functions/v1/atlantic-league-member-access'));assert.ok(bundle.text.includes('Entradas disponibles'));assert.ok(bundle.text.includes('Entradas consumidas'));
 for(const icon of metadata.icons){const result=await http(new URL(icon.src,origin),{method:'HEAD'});assert.equal(result.status,200);assert.match(String(result.headers['content-type']),/image\/png/);}
 for(const path of ['/agenda','/rutinas','/auth/callback?code=smoke-placeholder','/auth/recovery','/invite?token=smoke-placeholder']){
  const result=await http(origin+path,{headers:{Accept:'text/html','Sec-Fetch-Mode':'navigate'}});assert.equal(result.status,200);assert.ok(result.text.includes('<title>Atlantic League</title>'));

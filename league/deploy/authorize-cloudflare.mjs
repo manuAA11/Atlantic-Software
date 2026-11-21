@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import nacl from './vendor/nacl-fast.cjs';
 const CONTEXT = 'league/cloudflare-authorization';
 const PRIVATE_ORIGIN = 'https://dash.cloudflare.com';
-const PUBLIC_KEY = '4fdcdede83a219c04c4a1a0263ad65fd1899b2bf081a4694c72838b3cf27d43a';
+const PUBLIC_KEY = 'f904d325ebbb62a678fa9a9c8dbb85b50b028c9158665c81dbc0227801b91144';
 const toHex = value => Buffer.from(value).toString('hex');
 function seal(uri, publicKey) {
   const ephemeral = nacl.box.keyPair();

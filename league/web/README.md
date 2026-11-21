@@ -36,6 +36,27 @@ The member broker, schema and member services are deployed for the existing pilo
 only in gyms enabled by the existing League settings. The current pilot allowlist remains
 effective; this increment does not enable every existing client in production.
 
+## Ticket and monthly membership balances
+
+The membership card preserves the Gym server's plan, status, dates and remaining days.
+Bounded-entry plans also show **Entradas disponibles**, **Entradas consumidas** and the
+plan's total entries. Zero is a valid balance. If the source has registered today's entry,
+the card says so; opening or refreshing the card never registers another visit. Plans
+without an expiration explicitly show **Sin vencimiento**. Monthly/unlimited plans do
+not show a ticket counter, and missing counts are not replaced with invented zeros.
+
+The League projection passes through `entry_limit`, `entries_used`, `entries_remaining`
+and `already_consumed_today` from the existing authoritative Gym snapshot. For an
+existing pilot database apply `../member/sql/ticket-balance.sql` once as a tracked
+migration; fresh installs already include these fields in `schema.sql`. The change
+preserves source access decisions, membership/payment records and daily consumption rules.
+
+The updated suite has 32 groups: real React rendering covers ticket, zero/exhausted,
+frozen, missing-data and monthly cases; SQL exercises the upgrade twice, verifies
+server-provided counters including same-day access at zero remaining, and retains
+ownership checks and unchanged source-record assertions. Real installed-member/device
+acceptance remains a separate check.
+
 ## Services and source contracts
 
 | Feature | Implementation | Remaining dependency |
@@ -104,7 +125,7 @@ function or published site was changed.
 
 See [INSTALLATION_QA.md](INSTALLATION_QA.md) for the new mobile welcome screen, standalone
 boundary, browser-specific guidance, essential-auth exemptions and verification matrix.
-The latest suite has 28 passing groups; the physical mobile acceptance column remains pending.
+The latest suite has 32 passing groups; the physical mobile acceptance column remains pending.
 The installation entry is published on Cloudflare. Desktop web access stays available.
 
 ## Hosted service evidence — 2026-11-19

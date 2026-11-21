@@ -74,6 +74,9 @@ begin
   'starts_at',nullif(s->>'membership_start',''),'ends_at',case when coalesce((s->>'has_expiration')::boolean,true) then nullif(s->>'membership_end','') else null end,
   'status',case when coalesce((s->>'frozen')::boolean,false) then 'FROZEN' when nullif(s->>'membership_id','') is null then 'NO_PLAN' else coalesce(s->>'status',s->>'membership_state','INACTIVE') end,
   'remaining_days',case when not coalesce((s->>'frozen')::boolean,false) and coalesce((s->>'has_expiration')::boolean,true) and nullif(s->>'membership_end','') is not null then greatest(0,nullif(s->>'membership_end','')::date-private.gym_local_date(p_gym)) else null end,
+  'has_expiration',coalesce((s->>'has_expiration')::boolean,true),
+  'entry_limit',s->'entry_limit','entries_used',s->'entries_used','entries_remaining',s->'entries_remaining',
+  'already_consumed_today',coalesce((s->>'already_consumed_today')::boolean,false),
   'renewable',coalesce(s->>'membership_type','COMMERCIAL')<>'INTERNAL');
 end $$;
 revoke all on function league_member_private.membership(uuid,uuid) from public,anon,authenticated;

@@ -5,6 +5,7 @@ import type {Session} from '@supabase/supabase-js';
 import {call,supabase,memberEndpoint,signInMember,accessEndpoint,accessGym} from './api';
 import type {Membership,Snapshot,GymEvent,Renewal,Notice} from './types';
 import {renewalLabels} from './types';
+import {MembershipBalance} from './MembershipBalance';
 import {gymEventTime,canBookEvent} from './gymSchedule';
 import './style.css';
 import {Routines} from './Routines';
@@ -84,7 +85,8 @@ function App({authOnly=false,installScreen}:{authOnly?:boolean;installScreen?:Re
    <Routes>
     <Route path="/" element={<>
      <div className="heading"><span className="eyebrow">TU ESPACIO</span><h1>Hola{snapshot?', '+snapshot.profile.alias.split(' ')[0]:''}</h1><p>Todo lo que necesitas para tu próxima visita.</p></div>
-     <Card className="membership"><div className="row"><span className="eyebrow">MI MEMBRESÍA</span>{member&&<span className={'badge '+(member.active?'good':'')}>{status}</span>}</div><h2>{member?.plan_name||'Mi plan'}</h2>{!member?.plan_name&&<p>El nombre del plan aún no está disponible en la conexión actual.</p>}<div className="dates"><div><span>Inicio</span><strong>{formatDate(member?.starts_at)}</strong></div><div><span>Vencimiento</span><strong>{formatDate(member?.ends_at)}</strong></div></div>{member?.remaining_days!=null&&<p>{member.remaining_days} días restantes, según tu gimnasio.</p>}
+     <Card className="membership"><div className="row"><span className="eyebrow">MI MEMBRESÍA</span>{member&&<span className={'badge '+(member.active?'good':'')}>{status}</span>}</div><h2>{member?.plan_name||'Mi plan'}</h2>{!member?.plan_name&&<p>El nombre del plan aún no está disponible en la conexión actual.</p>}<div className="dates"><div><span>Inicio</span><strong>{formatDate(member?.starts_at)}</strong></div><div><span>Vencimiento</span><strong>{member?.has_expiration===false?'Sin vencimiento':formatDate(member?.ends_at)}</strong></div></div>{member?.remaining_days!=null&&<p>{member.remaining_days} días restantes, según tu gimnasio.</p>}
+      <MembershipBalance member={member}/>
       <button className="primary" disabled={!fresh||!online||!memberEndpoint||busy||pendingAction||!!activeRenewal||!!extraError||member?.renewable===false} onClick={renew}>{member?.renewable===false?'Este plan no requiere renovación':activeRenewal?'Renovación '+renewalLabels[activeRenewal.status].toLowerCase():'Solicitar renovación'}</button>
       {!memberEndpoint&&<p className="small">Las solicitudes de renovación todavía no están habilitadas en este piloto.</p>}
       <p className="small">Tu gimnasio confirma el pago y la renovación.</p>
