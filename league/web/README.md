@@ -1,7 +1,9 @@
 # Atlantic League: member PWA
 
 Standalone React / TypeScript / Vite application. No Expo or React Native dependency.
-This is a tested development increment, not a completed or deployed MVP.
+Published at **https://atlantic-league.atlanticsoftware11.workers.dev/** for the existing owner pilot.
+The hosting link is public; the existing server-side pilot allowlist remains in force.
+See the current deployment evidence below; physical device and real-member acceptance are pending.
 
 ## Run locally
 
@@ -30,7 +32,7 @@ Internal Auth credentials use a private HMAC derivation; no raw document/passwor
 by the broker. Nevertheless, the requested public credential remains predictable: anyone
 knowing the member's document can sign in. Rate limits do not remove that limitation.
 
-The new broker and SQL are not deployed. New registrations become eligible automatically
+The member broker, schema and member services are deployed for the existing pilot. New registrations become eligible automatically
 only in gyms enabled by the existing League settings. The current pilot allowlist remains
 effective; this increment does not enable every existing client in production.
 
@@ -38,13 +40,13 @@ effective; this increment does not enable every existing client in production.
 
 | Feature | Implementation | Remaining dependency |
 | --- | --- | --- |
-| Existing-member access | `../backend/member-access.mjs`, dedicated Auth identity, durable attempt limit, automatic link | Apply/review QA SQL and deploy access function; configure public access gym/URL |
-| Membership | Existing gateway fallback; new sanitized server projection for plan/start/end/status/days | Deploy new member endpoint and validate source snapshot in QA |
-| Renewals | Persisted requests, cancellation, history, active-period uniqueness, retry handling | QA schema/function activation; administrative review integration |
+| Existing-member access | `../backend/member-access.mjs`, dedicated Auth identity, durable attempt limit, automatic link | Deployed; real-member HTTP login acceptance pending |
+| Membership | Existing gateway fallback; new sanitized server projection for plan/start/end/status/days | Deployed; owner source snapshot verified without modifying the source data |
+| Renewals | Persisted requests, cancellation, history, active-period uniqueness, retry handling | Schema/function deployed; administrative review integration and real-member acceptance pending |
 | Classes | Existing authorized calendar/reserve/cancel endpoints | Real account and concurrent PostgreSQL/Safari acceptance |
 | Events and history | Search/date filtering of existing upcoming calendar | Backend does not currently expose independent events or past reservations |
 | Routines | Original source files and routine contracts unchanged; integrated read-only member view | Current routine/source data preserved; physical mobile acceptance remains |
-| Notifications | Persisted renewal notices and read state | Source reconciliation implemented; hosted acceptance remains |
+| Notifications | Persisted renewal notices and read state | Reconciliation and jobs deployed; real-device acceptance remains |
 | Push | Opt-in subscription registration/removal, generic private lock-screen content | Dispatcher, VAPID bootstrap, invalid-subscription cleanup and private cron implemented; device acceptance remains |
 | Install/offline/update | Manifest, original icons, static-only cache, explicit update activation | Physical iPhone/Android installation and reopen acceptance |
 
@@ -52,8 +54,9 @@ No payment gateway, XP, ranking, feed or competition was added.
 
 ## QA backend setup
 
-Review `../member/sql/schema.sql`, followed by `../member/sql/access.sql`. These are SQL drafts,
-not applied migrations. Generate final migration files using the installed Supabase CLI after
+Review the source SQL in `../member/sql/schema.sql`, followed by `../member/sql/access.sql`.
+The existing pilot schema has already been applied; do not reapply SQL merely to publish the PWA.
+For other environments, generate and review migrations using the installed Supabase CLI after
 local validation; hosted changes require authorization. The current member adapter requires
 the shared Gym/League database; it does not assume remote providers share private tables.
 
@@ -101,8 +104,8 @@ function or published site was changed.
 
 See [INSTALLATION_QA.md](INSTALLATION_QA.md) for the new mobile welcome screen, standalone
 boundary, browser-specific guidance, essential-auth exemptions and verification matrix.
-The latest suite has 27 passing groups; the physical mobile acceptance column remains pending.
-The new installation entry is not published. Desktop web access stays available.
+The latest suite has 28 passing groups; the physical mobile acceptance column remains pending.
+The installation entry is published on Cloudflare. Desktop web access stays available.
 
 ## Hosted service evidence — 2026-11-19
 
@@ -116,5 +119,29 @@ Anonymous member access was rejected with 401 and a foreign origin with 403; all
 have RLS enabled and no privileged member RPC is executable by anon. RLS-without-policy
 linter notices on the service-only tables are intentional: ordinary roles have no grants.
 Physical login/installation, hosted valid-user HTTP acceptance, and push delivery remain
-unverified. The latest internal email-length correction is staged in source and awaits the next
-access-function deployment; no extra production change was made for the installation gate.
+unverified. The email-length correction was deployed in access-function v2. The Cloudflare origin was
+subsequently added in access-function v3 and member-function v2; existing origins and pilot
+authorization were preserved.
+
+
+## Cloudflare publication evidence — 2026-11-21
+
+- Public URL: https://atlantic-league.atlanticsoftware11.workers.dev/
+- Published source: `470d98c3a9a14ef424d8a8b17df559d105ea96c7` on `pruebas`.
+- Cloudflare Worker version: `ec0802ca-9ffc-477d-8c65-879b06fcd393`.
+- GitHub Actions: https://github.com/manuAA11/Atlantic-Software/actions/runs/44954143063 — successful validation, deployment, public checks and session logout.
+- All 28 Node test groups, TypeScript/Vite build, Wrangler package validation and encrypted authorization handoff self-test passed.
+- Live verification passed: League HTML/assets, standalone manifest, service-worker headers, SPA routes, auth/recovery/invitation route reachability, exact-origin CORS, foreign-origin rejection and anonymous member-request rejection.
+- An independent HTTPS request confirmed the root serves Atlantic League HTML rather than the previous placeholder. Both member services returned 204 with the exact Cloudflare origin on preflight.
+- Desktop visual review found the Cédula/Contraseña form and the instruction to enter the document in both fields; no registration or email-verification step was shown. That browser tool did not support mobile emulation.
+
+Publishing used official Wrangler device authorization for this session. Device verification
+links were encrypted for the deployment operator; OAuth credentials stayed on the ephemeral
+runner and Wrangler logout completed after publication. No API token was placed in this
+repository. A future device-authorized release needs a newly generated operator recipient
+public key; the previous one-session recipient private key must not be committed or reused.
+
+This publication does not establish physical iPhone/Android installation, real-member login,
+installed-session persistence, push delivery or provider recovery acceptance. Those checks
+remain pending as shown in [INSTALLATION_QA.md](INSTALLATION_QA.md). No additional clients,
+plans, memberships or routines were activated or changed by this hosting release.

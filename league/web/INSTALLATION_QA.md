@@ -34,13 +34,23 @@ a reload on initial service-worker activation or during recognized authenticatio
 | PWA updates | Static-only cache test; worker registration moved above gate; callback reload guard | Device update acceptance pending |
 | Auth/recovery/invitation links | Path, query, OAuth fragments and hash-route exemptions; auth-only render | Provider end-to-end acceptance pending |
 
-Twenty-seven automated test groups and TypeScript/Vite build pass. Thirteen groups cover the
+Twenty-eight automated test groups and TypeScript/Vite build pass. Thirteen groups cover the
 installation policy, browser-event controller and actual React rendering with simulated platform
-signals. These results are not physical iPhone/Android installation evidence. Browser automation
-is unavailable in this session; no browser was installed or substituted for that verification.
+signals. The added hosting-origin test preserves configured origins and pilot authorization.
+These results are not physical iPhone/Android installation evidence.
 
-This installation change is saved in `pruebas`; it has not been published to the live site.
-Publishing requires authorization under the requested restriction. Separately, the supported
-Site source helper could not reach the hosting Git remote because DNS resolution failed in
-the execution environment. That source/publishing connection must work before a supported
-publication can complete.
+## Published hosting verification — 2026-11-21
+
+The installation entry is live at https://atlantic-league.atlanticsoftware11.workers.dev/.
+The user explicitly authorized this publication. The release pipeline completed successfully:
+https://github.com/manuAA11/Atlantic-Software/actions/runs/44954143063.
+
+Public checks passed for application HTML/assets, standalone manifest, service-worker scope
+and cache headers, SPA navigation, reachable auth/recovery/invitation shells, exact-origin
+CORS, foreign-origin rejection and required member authentication. These route checks do not
+prove external provider recovery completion or a real member's installed session.
+
+Cloudflare Worker version: `ec0802ca-9ffc-477d-8c65-879b06fcd393`.
+Published source: `470d98c3a9a14ef424d8a8b17df559d105ea96c7`.
+The physical/device acceptance column above remains pending. Desktop Gym and routine rules
+were outside the change, and the existing owner pilot remains restricted by the backend.
