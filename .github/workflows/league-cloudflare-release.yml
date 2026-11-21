@@ -1,0 +1,39 @@
+name: League Cloudflare release
+on:
+  push:
+    branches: [pruebas]
+    paths: ['league/web/**', 'league/deploy/**', '.github/workflows/league-cloudflare-release.yml']
+permissions:
+  contents: read
+concurrency:
+  group: atlantic-league-production
+  cancel-in-progress: false
+jobs:
+  validate-and-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env: {"VITE_SUPABASE_URL":"https://srmquhwpawgipncmvfjf.supabase.co","VITE_SUPABASE_PUBLISHABLE_KEY":"sb_publishable_6pea5aziN8faNuVe2BK_Xg_Qc3c0i-b","VITE_LEAGUE_ENDPOINT":"https://srmquhwpawgipncmvfjf.supabase.co/functions/v1/atlantic-league","VITE_MEMBER_ENDPOINT":"https://srmquhwpawgipncmvfjf.supabase.co/functions/v1/atlantic-league-members","VITE_MEMBER_ACCESS_ENDPOINT":"https://srmquhwpawgipncmvfjf.supabase.co/functions/v1/atlantic-league-member-access","VITE_MEMBER_GYM_ID":"4b49f991-efbc-49ba-91a6-7be30e92262d"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22.18.0'
+          package-manager-cache: false
+      - run: npm --prefix league/web ci --workspaces=false
+      - run: npm --prefix league/web test
+      - run: npm --prefix league/web run build
+      - run: node --check league/deploy/verify-cloudflare.mjs
+      - run: node league/deploy/prepare-worker-assets.mjs
+      - name: Validate Cloudflare deployment package
+        run: npx --yes wrangler@4.136.3 deploy --dry-run --config league/deploy/wrangler.json
+      - name: Publish authorized League release
+        if: startsWith(github.event.head_commit.message, 'release(league):')
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.ATLANTIC_LEAGUE_CF_DEPLOY_TOKEN }}
+          accountId: f32d9f608df76d783ff0964d68a40b7e
+          wranglerVersion: '4.136.3'
+          command: deploy --config league/deploy/wrangler.json
+      - name: Verify public app and member service routing
+        if: startsWith(github.event.head_commit.message, 'release(league):')
+        run: node league/deploy/verify-cloudflare.mjs

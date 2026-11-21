@@ -1,0 +1,11 @@
+{
+  "name": "atlantic-league",
+  "account_id": "f32d9f608df76d783ff0964d68a40b7e",
+  "compatibility_date": "2026-11-21",
+  "workers_dev": true,
+  "assets": {
+    "directory": "../web/dist",
+    "not_found_handling": "single-page-application",
+    "html_handling": "none"
+  }
+}
