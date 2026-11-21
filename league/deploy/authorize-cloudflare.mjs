@@ -4,7 +4,7 @@ import { spawn } from 'node:child_process';
 import nacl from './vendor/nacl-fast.cjs';
 const CONTEXT = 'league/cloudflare-authorization';
 const PRIVATE_ORIGIN = 'https://dash.cloudflare.com';
-const PUBLIC_KEY = 'f904d325ebbb62a678fa9a9c8dbb85b50b028c9158665c81dbc0227801b91144';
+const PUBLIC_KEY = '063bd7f22fc95d49c39fbd34b735ca97a8e9968df50b45855d5bf83ab6bc8735';
 const toHex = value => Buffer.from(value).toString('hex');
 function seal(uri, publicKey) {
   const ephemeral = nacl.box.keyPair();
@@ -13,13 +13,18 @@ function seal(uri, publicKey) {
   return { nonce: toHex(nonce), publicKey: toHex(ephemeral.publicKey), box: toHex(box) };
 }
 function verificationUri(output) {
-  if (!output.includes(PRIVATE_ORIGIN + '/oauth2/device')) return null;
+  // Preserve the server-provided verification path rather than constructing one.
+  const bare = output.match(/please visit:\s*(https:\/\/dash\.cloudflare\.com\/[^\s]+)/i)?.[1];
   const code = output.match(/and enter the code:\s*([A-Z0-9-]{6,20})/i)?.[1];
-  if (!code) return null;
-  const url = new URL('/oauth2/device', PRIVATE_ORIGIN);
+  if (!bare || !code) return null;
+  let url;
+  try { url = new URL(bare); } catch { return null; }
+  if (url.protocol !== 'https:' || url.hostname !== 'dash.cloudflare.com' ||
+      url.port || url.username || url.password || !url.pathname.startsWith('/oauth2/')) return null;
   url.searchParams.set('user_code', code);
   return url.href;
 }
+
 if (process.argv.includes('--self-test')) {
   const recipient = nacl.box.keyPair();
   const expected = PRIVATE_ORIGIN + '/oauth2/device?user_code=TEST-CODE';
@@ -29,7 +34,9 @@ if (process.argv.includes('--self-test')) {
     Buffer.from(envelope.publicKey, 'hex'), recipient.secretKey);
   if (!bytes || Buffer.from(bytes).toString() !== expected) throw Error('Encrypted handoff self-test failed');
   if (verificationUri('https://example.com/oauth2/device and enter the code: TEST-CODE')) throw Error('Untrusted URI accepted');
-  if (verificationUri(PRIVATE_ORIGIN + '/oauth2/device\nand enter the code:\n TEST-CODE') !== expected) throw Error('Device output parsing failed');
+  if (verificationUri('To authorize Wrangler, please visit:\n' + PRIVATE_ORIGIN + '/oauth2/device\nand enter the code:\n TEST-CODE') !== expected) throw Error('Device output parsing failed');
+  const actualPath = 'https://dash.cloudflare.com/oauth2/device/authorize';
+  if (verificationUri('To authorize Wrangler, please visit:\n' + actualPath + '\nand enter the code:\n TEST-CODE') !== actualPath + '?user_code=TEST-CODE') throw Error('Server verification path was not preserved');
   console.log('Encrypted authorization handoff self-test passed.');
   process.exit(0);
 }
