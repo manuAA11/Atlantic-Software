@@ -23,6 +23,7 @@ jobs:
       - run: npm --prefix league/web test
       - run: npm --prefix league/web run build
       - run: node --check league/deploy/verify-cloudflare.mjs
+      - run: node --check league/deploy/cloudflare-static-entry.mjs
       - run: node league/deploy/prepare-worker-assets.mjs
       - name: Validate Cloudflare deployment package
         run: npx --yes wrangler@4.136.3 deploy --dry-run --config league/deploy/wrangler.json

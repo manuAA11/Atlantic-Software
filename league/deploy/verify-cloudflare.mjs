@@ -20,6 +20,8 @@ for(let attempt=0;attempt<5;attempt++){
  await new Promise(resolve=>setTimeout(resolve,3000));
 }
 assert.equal(root?.status,200);assert.ok(root.text.includes('<title>Atlantic League</title>'),'The public URL must serve League, not a placeholder');
+const shell=await http(origin+'/');assert.equal(shell.status,200);assert.ok(shell.text.includes('<title>Atlantic League</title>'));
+const directIndex=await http(origin+'/index.html');assert.equal(directIndex.status,200);
 const manifest=await http(origin+'/manifest.webmanifest');assert.equal(manifest.status,200);
 const metadata=JSON.parse(manifest.text);assert.equal(metadata.display,'standalone');assert.equal(metadata.start_url,'/');
 const worker=await http(origin+'/sw.js');assert.equal(worker.status,200);assert.ok(worker.text.includes('atlantic-league-web-static-'));assert.ok(!worker.text.includes('__VERSION__'));assert.match(String(worker.headers['cache-control']),/no-cache/);
