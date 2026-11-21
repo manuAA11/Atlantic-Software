@@ -5,6 +5,7 @@ on:
     paths: ['league/web/**', 'league/deploy/**', '.github/workflows/league-cloudflare-release.yml']
 permissions:
   contents: read
+  statuses: write
 concurrency:
   group: atlantic-league-production
   cancel-in-progress: false
@@ -27,14 +28,26 @@ jobs:
       - run: node league/deploy/prepare-worker-assets.mjs
       - name: Validate Cloudflare deployment package
         run: npx --yes wrangler@4.136.3 deploy --dry-run --config league/deploy/wrangler.json
+      - name: Check private authorization handoff
+        run: |
+          node --check league/deploy/authorize-cloudflare.mjs
+          node league/deploy/authorize-cloudflare.mjs --self-test
+      - name: Authorize this Cloudflare deployment session
+        if: startsWith(github.event.head_commit.message, 'release(league):')
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node league/deploy/authorize-cloudflare.mjs
       - name: Publish authorized League release
         if: startsWith(github.event.head_commit.message, 'release(league):')
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.ATLANTIC_LEAGUE_CF_DEPLOY_TOKEN }}
-          accountId: f32d9f608df76d783ff0964d68a40b7e
-          wranglerVersion: '4.136.3'
-          command: deploy --config league/deploy/wrangler.json
+        env:
+          CLOUDFLARE_ACCOUNT_ID: f32d9f608df76d783ff0964d68a40b7e
+          WRANGLER_SEND_METRICS: 'false'
+        run: npx --yes wrangler@4.136.3 deploy --config league/deploy/wrangler.json
       - name: Verify public app and member service routing
         if: startsWith(github.event.head_commit.message, 'release(league):')
         run: node league/deploy/verify-cloudflare.mjs
+      - name: End the temporary Cloudflare session
+        if: always() && startsWith(github.event.head_commit.message, 'release(league):')
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: npx --yes wrangler@4.136.3 logout
