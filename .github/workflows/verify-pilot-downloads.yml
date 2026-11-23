@@ -1,0 +1,29 @@
+name: Verify published pilot downloads
+on:
+  push:
+    branches: [pruebas]
+    paths: ['.github/workflows/verify-pilot-downloads.yml', 'tools/verify_pilot_downloads.py']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - run: python -m pip install httpx==0.28.1
+      - name: Verify full downloads using the validated production updater
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          python -m tools.verify_pilot_downloads --tag atlantic-gym-3.8.9-piloto --commit d8c3bc17f4658daff7a6a2c034db03b430431fcc --windows-run 45287062408 | tee verified-downloads.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-pilot-downloads-3.8.9
+          path: verified-downloads.json
