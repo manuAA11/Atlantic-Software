@@ -1,0 +1,106 @@
+{
+  "version": "3.8.9",
+  "final": false,
+  "source_commit": "d8c3bc17f4658daff7a6a2c034db03b430431fcc",
+  "status": "DESKTOP_OPTIONAL_PUBLISHED_MOBILE_DEPLOYMENT_PENDING_AUTH",
+  "release": {
+    "id": 456128016,
+    "tag": "atlantic-gym-3.8.9-piloto",
+    "url": "https://github.com/manuAA11/Atlantic-Software/releases/tag/atlantic-gym-3.8.9-piloto"
+  },
+  "checks": {
+    "local_pwa_sql_http_groups": 41,
+    "local_python_model_tests": 4,
+    "native_training_ui_checks_per_profile": 97,
+    "hosted_admin_event_member_read_archive_rollback": "PASS",
+    "hosted_nonstaff_member_event_write_denied": "PASS",
+    "hosted_member_whatsapp_projection": "PASS"
+  },
+  "runs": {
+    "initial_windows_failure": 45286300367,
+    "windows_success": 45287062408,
+    "isolated_league_success": 45287062246,
+    "publication_success": 45287062196,
+    "full_download_success": 45290919023,
+    "mobile_cloudflare_auth_failure": 45286300321
+  },
+  "downloads": [
+    {
+      "file": "AtlanticGym_Actualizar_3.8.9_x64_proveedor2.exe",
+      "variant": "commercial",
+      "architecture": "windows-x64",
+      "bytes": 95737463,
+      "sha256": "2354f206ffe321a032aa42b8b4ece6952bb990c47803cfe388f21cc770a5ae76",
+      "status": "PASS",
+      "installation": {
+        "status": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "report_sha256": "6ba2efbf71340bc67b661bf739bf907f4353cd883424e330299f09eab7494e92"
+      }
+    },
+    {
+      "file": "AtlanticGym_Actualizar_3.8.9_x64.exe",
+      "variant": "ztattuz",
+      "architecture": "windows-x64",
+      "bytes": 177885021,
+      "sha256": "3a131b4732eabd71c50e1760fb8256c05f5abf3be6e499ae6252357a76a5265b",
+      "status": "PASS",
+      "installation": {
+        "status": "PASS",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": null,
+        "native_windows_architecture": "x64",
+        "report_sha256": "b7bdc2686c42bb87998d77627876f862278c4c42a888a3dd94022e5e44cdbb18"
+      }
+    },
+    {
+      "file": "AtlanticGym_Actualizar_3.8.9_x86.exe",
+      "variant": "ztattuz",
+      "architecture": "windows-x86",
+      "bytes": 98096708,
+      "sha256": "e90c266f5d85867a9ea9f5b354293c90bdfe36f31d84de29cf4cc3b20aa3bcdd",
+      "status": "PASS",
+      "installation": {
+        "status": "NOT_RUN",
+        "scope": "Instalación técnica Windows en runner efímero; NO FINAL. No acredita cuentas, WhatsApp/Wompi reales, lector/relé físico, PostgreSQL concurrente ni aceptación de release_gate.",
+        "reason": "El MSI DigitalPersona x86 exige NOT VersionNT64. El runner Windows x64 no acredita instalación en Windows de 32 bits.",
+        "native_windows_architecture": "x64",
+        "report_sha256": "551e68adf39ddf20dd23ffb8c82cd1d0c10fe616df1172ac6245c33f03f8be01"
+      }
+    }
+  ],
+  "core": {
+    "published": true,
+    "gym_id": "4b49f991-efbc-49ba-91a6-7be30e92262d",
+    "channel": "beta",
+    "policy": "OPTIONAL",
+    "architectures": [
+      "windows-x86",
+      "windows-x64"
+    ],
+    "actual_hosted_snapshot_selection_rollback": "PASS",
+    "test_devices_remaining": 0,
+    "gym_license_configuration_subscription_unchanged": true,
+    "global_release": false
+  },
+  "member_rollout": {
+    "allow_all_clients": false,
+    "pilot_count": 1,
+    "new_identities_activated": false
+  },
+  "mobile": {
+    "source_and_build_ready": true,
+    "new_ui_deployed": false,
+    "blocker": "Saved Cloudflare sign-in expired; device authorization was not completed.",
+    "renewal_destination": "https://wa.me/573138585683"
+  },
+  "limits": [
+    "Physical reader/relay acceptance pending",
+    "Native Windows32 installation pending",
+    "Physical iPhone/Android and valid-member HTTP acceptance pending",
+    "New mobile UI deployment requires owner Cloudflare login",
+    "No general production rollout declared"
+  ]
+}

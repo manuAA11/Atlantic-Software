@@ -19,6 +19,19 @@ Incluye los cambios pendientes de archivo de rutinas/plantillas/ejercicios propi
 
 ## Publicación y límites
 
-El commit de entrega inicia la validación Windows de Comercial, ZTATTUZ x64 y ZTATTUZ x86; el publicador sólo ofrece la actualización opcional si aprueban los tres perfiles. El despliegue PWA usa la autorización temporal de Cloudflare y su verificación HTTPS. Registrar los resultados definitivos de esas ejecuciones al terminar; este documento no sustituye sus evidencias.
+- [Windows 45287062408](https://github.com/manuAA11/Atlantic-Software/actions/runs/45287062408): los tres perfiles aprobaron. Instalación, actualización y desinstalación x64 aprobadas en Windows efímero. x86 compilado y diagnosticado; instalación nativa Windows32 pendiente.
+- [Validación aislada 45287062246](https://github.com/manuAA11/Atlantic-Software/actions/runs/45287062246): aprobada, incluidos PostgreSQL concurrente, restauración de fixtures, compilación móvil y navegador.
+- [Publicación 45287062196](https://github.com/manuAA11/Atlantic-Software/actions/runs/45287062196): aprobada.
+- [Descargas completas 45290919023](https://github.com/manuAA11/Atlantic-Software/actions/runs/45290919023): los tres instaladores fueron descargados y comprobados con el actualizador de producción. Tamaños y SHA-256 coinciden con el manifiesto de compilación y los metadatos de GitHub. Esta comprobación no ejecuta instaladores.
+- [Descargar 3.8.9](https://github.com/manuAA11/Atlantic-Software/releases/tag/atlantic-gym-3.8.9-piloto): actualización opcional beta, NO FINAL.
+- Core ofrece las dos arquitecturas de ZTATTUZ al gimnasio existente, con canal beta y política OPTIONAL. El snapshot SQL alojado devolvió 3.8.9 para cada arquitectura en pruebas revertidas. No quedaron equipos de prueba. Licencia, configuración y suscripción se conservaron.
 
-No se habilitan nuevos socios ni se amplía la lista del piloto con esta migración. League sigue siendo opcional. Meta/Wompi no se activan. La aceptación del equipo instalado, Windows32 nativo, lector/relé y teléfonos físicos sigue pendiente.
+La primera ejecución Windows 45286300367 detectó una variable de estado del editor que ocultaba el método nativo de la ventana. Se corrigió en el commit `d8c3bc17f4658daff7a6a2c034db03b430431fcc`, que es la fuente exacta de los instaladores aprobados. Las evidencias originales del fallo se conservan.
+
+### Aplicación móvil: publicación pendiente
+
+El código de la PWA y sus 41 grupos de pruebas/compilación están aprobados, pero **la nueva interfaz móvil no se publicó**. La ejecución [Cloudflare 45286300321](https://github.com/manuAA11/Atlantic-Software/actions/runs/45286300321) terminó al no completarse el inicio de sesión temporal de Cloudflare. El perfil guardado llegó a la pantalla de acceso. Hace falta que el propietario vuelva a iniciar sesión y se complete una nueva autorización del despliegue.
+
+No se habilitaron nuevos socios ni se amplió la lista del piloto. League sigue siendo opcional. Meta/Wompi no se activaron. La aceptación del equipo instalado, Windows32 nativo, lector/relé y teléfonos físicos sigue pendiente. No se declara terminada la salida general a producción.
+
+Los resultados estructurados están en [evidence/league-delivery-3.8.9.json](../evidence/league-delivery-3.8.9.json).

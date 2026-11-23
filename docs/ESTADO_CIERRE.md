@@ -1,6 +1,6 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
-**23 de noviembre de 2026 · Candidato 3.8.9:** eventos administrados desde escritorio y sólo consultados en móvil, renovación desde el botón existente hacia WhatsApp, y archivo de rutinas/plantillas/ejercicios propios. Migración aplicada en ZTATTUZ y recorrido SQL alojado verificado en rollback; 41 grupos PWA y cuatro tests Python aprobados. La validación/publicación automática del commit debe completarse antes de ofrecer instaladores. Los gates externos y la aceptación física siguen pendientes. [Alcance](LEAGUE_ENTREGA_20261123.md).
+**23 de noviembre de 2026 · Actualización opcional 3.8.9 publicada:** eventos administrados desde escritorio y sólo consultados en móvil, renovación desde el botón existente hacia WhatsApp y archivo de rutinas/plantillas/ejercicios propios. Servidor ZTATTUZ migrado y verificado en rollback. Windows 45287062408 aprobó los tres perfiles; publicación 45287062196 y descargas completas con el actualizador 45290919023 aprobadas. Core ofrece x86/x64 al gimnasio existente. **La interfaz móvil nueva todavía no se publicó: Cloudflare exige iniciar sesión nuevamente.** El piloto y los límites de aceptación física se conservan; no se declara salida general a producción. [Alcance y resultados](LEAGUE_ENTREGA_20261123.md).
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
