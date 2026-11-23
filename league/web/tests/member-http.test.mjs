@@ -24,6 +24,12 @@ test('foreign origin, missing auth, secret key, foreign gym and unknown action c
 test('unconfirmed backend operations are not presented as successful',async()=>{
  const f=fixture({bridgeStatus:503});const res=await f.handler(f.request('renewals.create',{request_key:requestKey}));assert.equal(res.status,503);assert.equal(f.calls.length,0);
 });
+test('member HTTP access cannot create, edit, archive or restore gym events',async()=>{
+ for(const action of ['event.save','event.archive','event.restore','member.event.save','gym.event.save']){
+  const f=fixture();const response=await f.handler(f.request(action,{title:'Unauthorized event',id:requestKey}));
+  assert.equal(response.status,400);assert.equal(f.calls.length,0);
+ }
+});
 test('invalid or missing payloads and oversized streams are rejected',async()=>{
  const f=fixture();for(const body of ['null','[]','{',JSON.stringify({action:'renewals.list',data:'bad'})]){
   const res=await f.handler(new Request('https://api.example/members',{method:'POST',headers:{Authorization:'Bearer valid-user-session'},body}));assert.equal(res.status,400);

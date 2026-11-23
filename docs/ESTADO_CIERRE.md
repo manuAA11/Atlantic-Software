@@ -1,5 +1,7 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
+**23 de noviembre de 2026 · Candidato 3.8.9:** eventos administrados desde escritorio y sólo consultados en móvil, renovación desde el botón existente hacia WhatsApp, y archivo de rutinas/plantillas/ejercicios propios. Migración aplicada en ZTATTUZ y recorrido SQL alojado verificado en rollback; 41 grupos PWA y cuatro tests Python aprobados. La validación/publicación automática del commit debe completarse antes de ofrecer instaladores. Los gates externos y la aceptación física siguen pendientes. [Alcance](LEAGUE_ENTREGA_20261123.md).
+
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
 
 **30 de octubre de 2026 · Candidato 3.8.5:** notas generales por cliente y notas

@@ -77,6 +77,7 @@ begin
   'has_expiration',coalesce((s->>'has_expiration')::boolean,true),
   'entry_limit',s->'entry_limit','entries_used',s->'entries_used','entries_remaining',s->'entries_remaining',
   'already_consumed_today',coalesce((s->>'already_consumed_today')::boolean,false),
+  'renewal_whatsapp_url',(select nullif(to_jsonb(g)->>'renewal_whatsapp_url','') from public.league_gym_settings g where g.gym_id=p_gym),
   'renewable',coalesce(s->>'membership_type','COMMERCIAL')<>'INTERNAL');
 end $$;
 revoke all on function league_member_private.membership(uuid,uuid) from public,anon,authenticated;

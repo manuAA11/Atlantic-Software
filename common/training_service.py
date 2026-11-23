@@ -11,8 +11,10 @@ class TrainingDatabaseMixin:
             from product_config import load_config
             payload['source_ref'] = (urlsplit(load_config(validate=False).get('supabase_url', '')).hostname or '').split('.')[0]
         try:
-            result = self._execute(self.client.rpc('gym_training', {
-                'p_gym_id': self.gym_id, 'p_action': action, 'p_data': payload})).data
+            rpc = 'gym_member_admin' if action.startswith('member.') else 'gym_training'
+            operation = action.removeprefix('member.') if action.startswith('member.') else action
+            result = self._execute(self.client.rpc(rpc, {
+                'p_gym_id': self.gym_id, 'p_action': operation, 'p_data': payload})).data
         except Exception as error:
             if str(getattr(error, 'code', '')) in ('PGRST202', '42883'):
                 raise ValueError('Estas herramientas necesitan una actualización del servidor. Contacta a soporte; las funciones anteriores siguen disponibles.') from None
@@ -33,3 +35,4 @@ class PendingWrites:
 
     def complete(self):
         self.pending.clear()
+

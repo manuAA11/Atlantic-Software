@@ -354,7 +354,7 @@ class RoutinesWorkspace(AsyncPanel):
         text_field(tools,'Estado',self.state,0,1,['ACTIVA','HISTORIAL','TODAS'])
         self.tree=table(plans,[('name','Rutina',210),('client','Cliente',200),('trainer','Entrenador',180),('count','Ejercicios',70),('start','Inicio',100),('state','Estado',90)],8)
         actions=ttk.Frame(plans);actions.pack(fill='x',pady=8,before=self.tree.master)
-        for label,fn in [('Asignar rutina',self.assign),('Editar plan',self.edit),('Duplicar',self.duplicate),('Ver ejercicios',self.detail)]:ttk.Button(actions,text=label,command=fn,style='Primary.TButton' if label=='Asignar rutina' else 'TButton').pack(side='left',padx=3)
+        for label,fn in [('Asignar rutina',self.assign),('Editar plan',self.edit),('Duplicar',self.duplicate),('Ver ejercicios',self.detail),('Archivar',self.archive)]:ttk.Button(actions,text=label,command=fn,style='Primary.TButton' if label=='Asignar rutina' else 'TButton').pack(side='left',padx=3)
         self.pager=ttk.Label(plans);self.pager.pack(anchor='w')
         row=ttk.Frame(plans);row.pack(fill='x')
         ttk.Button(row,text='Anterior',command=lambda:self.page(-1)).pack(side='left');self.next_button=ttk.Button(row,text='Siguiente',command=lambda:self.page(1));self.next_button.pack(side='left',padx=5)
@@ -371,13 +371,24 @@ class RoutinesWorkspace(AsyncPanel):
         templates=ttk.Frame(tabs,padding=8,style='Card.TFrame');tabs.add(templates,text='Plantillas')
         self.template_tree=table(templates,[('name','Plantilla',260),('goal','Objetivo',280),('count','Ejercicios',90),('scope','Origen',100)],8)
         row=ttk.Frame(templates);row.pack(fill='x',pady=8)
-        for label,fn in [('Usar plantilla',self.from_template),('Editar o duplicar',self.edit_template),('Crear plantilla',self.new_template)]:ttk.Button(row,text=label,command=fn).pack(side='left',padx=3)
+        for label,fn in [('Usar plantilla',self.from_template),('Editar o duplicar',self.edit_template),('Crear plantilla',self.new_template),('Archivar',self.archive_template)]:ttk.Button(row,text=label,command=fn).pack(side='left',padx=3)
         clients=ClientPicker(tabs,db);tabs.add(clients,text='Clientes sin rutina');clients.unassigned.set(True);self.unassigned=clients
         ttk.Button(clients,text='Asignar a los seleccionados',command=self.assign_unassigned,style='Primary.TButton').pack(anchor='w',pady=8)
         for v in (self.query,self.state):v.trace_add('write',lambda *_:self.later('routines',self.search))
         for v in (self.catalog_query,self.catalog_group,self.catalog_equipment):v.trace_add('write',lambda *_:self.later('catalog_filter',self.render_catalog))
         ttk.Button(self,text='Actualizar',command=self.refresh).pack(anchor='w',pady=8)
         if autostart:self.after_idle(self.refresh)
+    @guarded
+    def archive(self):
+        row=self.selected(self.tree,self.rows)
+        if messagebox.askyesno('Archivar rutina','¿Quitar esta rutina de los planes activos? Se conservará su historial.',parent=self):
+            self.write('member.routine.archive',{'id':row['id']});self.refresh()
+    @guarded
+    def archive_template(self):
+        row=self.selected(self.template_tree,self.templates)
+        if not row.get('gym_id'):raise ValueError('Las plantillas compartidas no se eliminan. Puedes ocultar los ejemplos desde Contacto y entrega.')
+        if messagebox.askyesno('Archivar plantilla','¿Quitar esta plantilla de las disponibles? Las rutinas ya asignadas se conservarán.',parent=self):
+            self.write('member.template.archive',{'id':row['id']});self.refresh_templates()
     def search(self):self.offset=0;self.refresh_plans()
     def page(self,delta):self.offset=max(0,self.offset+delta*50);self.refresh_plans()
     def refresh(self):self.refresh_plans();self.refresh_catalog();self.refresh_templates();self.unassigned.refresh()
@@ -496,7 +507,7 @@ class ReservationEditor(Window):
 class ClassesWorkspace(AsyncPanel):
     def __init__(self,parent,db,autostart=True):
         super().__init__(parent,db);self.rows=[];self.reservation_rows=[];self.coaches={'Todos':None};self.offset=0;self.res_offset=0;self.selected_class=None
-        self.query=tk.StringVar();self.trainer=tk.StringVar(value='Todos');self.state=tk.StringVar(value='TODAS');self.date_from=tk.StringVar();self.date_to=tk.StringVar()
+        self.query=tk.StringVar();self.trainer=tk.StringVar(value='Todos');self.state=tk.StringVar(value='PROGRAMADA');self.date_from=tk.StringVar();self.date_to=tk.StringVar()
         self.res_query=tk.StringVar();self.res_state=tk.StringVar(value='TODAS');self.res_from=tk.StringVar();self.res_to=tk.StringVar();self.only_selected=tk.BooleanVar(value=False)
         self.calendar_date=None;self.calendar_counts={}
         tabs=ttk.Notebook(self);tabs.pack(fill='both',expand=True);self.tabs=tabs
@@ -517,6 +528,7 @@ class ClassesWorkspace(AsyncPanel):
         for label,fn in [('Programar clase',self.create),('Editar / reprogramar',self.edit),('Reservar cliente',self.reserve),('Ver participantes',self.participants)]:ttk.Button(actions,text=label,command=fn,style='Primary.TButton' if label=='Programar clase' else 'TButton').pack(side='left',padx=3)
         self.summary=ttk.Label(classes);self.summary.pack(anchor='w');row=ttk.Frame(classes);row.pack(fill='x')
         ttk.Button(row,text='Anterior',command=lambda:self.page(-1)).pack(side='left');self.next_button=ttk.Button(row,text='Siguiente',command=lambda:self.page(1));self.next_button.pack(side='left',padx=5)
+        ttk.Button(row,text='Cancelar clase seleccionada',command=self.cancel_class).pack(side='left',padx=5)
         reservations=ttk.Frame(tabs,padding=8,style='Card.TFrame');tabs.add(reservations,text='Reservas y asistencia')
         filters=ttk.Frame(reservations);filters.pack(fill='x');filters.columnconfigure((0,1),weight=1)
         text_field(filters,'Buscar cliente, documento o clase',self.res_query,0);text_field(filters,'Estado',self.res_state,0,1,['TODAS','RESERVADA','CANCELADA','ASISTIO'])
@@ -528,10 +540,23 @@ class ClassesWorkspace(AsyncPanel):
         for label,fn in [('Registrar asistencia',self.attend),('Cancelar reserva',self.cancel),('Ver historial',self.history)]:ttk.Button(row,text=label,command=fn).pack(side='left',padx=3)
         self.res_summary=ttk.Label(reservations);self.res_summary.pack(anchor='w');row=ttk.Frame(reservations);row.pack(fill='x')
         ttk.Button(row,text='Anterior',command=lambda:self.res_page(-1)).pack(side='left');self.res_next=ttk.Button(row,text='Siguiente',command=lambda:self.res_page(1));self.res_next.pack(side='left',padx=5)
+        self.events_page=MemberEventsWorkspace(tabs,db,autostart=autostart);tabs.add(self.events_page,text='Eventos del gimnasio')
         for v in (self.query,self.trainer,self.state,self.date_from,self.date_to):v.trace_add('write',lambda *_:self.later('classes',self.search))
         for v in (self.res_query,self.res_state,self.res_from,self.res_to):v.trace_add('write',lambda *_:self.later('reservations',self.res_search))
         ttk.Button(self,text='Actualizar',command=self.refresh).pack(anchor='w',pady=8)
+        ttk.Button(self,text='Contacto y entrega de la app',command=self.member_settings).pack(anchor='w',pady=(0,8))
         if autostart:self.after_idle(self.refresh)
+    @guarded
+    def member_settings(self):
+        window=MemberSettingsEditor(self);self.wait_window(window)
+        if window.result:self.refresh()
+    @guarded
+    def cancel_class(self):
+        row=self.require_class()
+        if not messagebox.askyesno('Cancelar clase','¿Cancelar esta clase y sus reservas pendientes? El historial se conservará.',parent=self):return
+        fields=('id','version','name','trainer_id','starts_at','duration_minutes','capacity','notes','conditions','requires_membership')
+        data={key:row.get(key) for key in fields};data['status']='CANCELADA'
+        self.write('class.save',data);self.refresh()
     def refresh(self):
         self.refresh_classes();self.refresh_reservations();self.load_view('trainers',lambda:self.db.training('trainers'),self.render_trainers)
     def render_trainers(self,rows):
@@ -670,3 +695,108 @@ class TrainingStaffEditor(Window):
         if not messagebox.askyesno('Permisos de entrenamiento',('¿Autorizar a ' if enabled else '¿Retirar la autorización a ')+row['name']+'?',parent=self):return
         self.write('coach.grant',dict(user_id=row['id'],enabled=enabled));row['coach']=enabled
         populate(self.tree,self.rows,lambda r:(r['name'],r['role'],'Autorizado' if r['coach'] or r['role']=='admin' else 'Sin autorización'))
+
+
+class MemberEventEditor(Window):
+    def __init__(self,parent,initial=None):
+        current=run_io(parent,lambda:parent.db.training('context'))
+        self.initial=initial or {}
+        super().__init__(parent,'Editar evento' if initial else 'Crear evento',760,620)
+        self.fields={};self.states={'Borrador':'DRAFT','Publicado':'PUBLISHED','Cancelado':'CANCELLED'}
+        when=display_timestamp(self.initial['starts_at'],timezone_for(self.db),seconds=False) if initial else current['today']+' 18:00'
+        defaults=[('title','Título',''),('starts_at','Fecha y hora del gimnasio (AAAA-MM-DD HH:MM)',when),('description','Descripción',''),
+            ('location','Lugar',''),('organizer','Organizador','')]
+        for i,(key,label,default) in enumerate(defaults):
+            value=when if key=='starts_at' else self.initial.get(key) or default
+            self.fields[key]=tk.StringVar(value=value);text_field(self.body,label,self.fields[key],i)
+        self.state=tk.StringVar(value=next((label for label,value in self.states.items() if value==self.initial.get('status')),'Publicado'))
+        text_field(self.body,'Estado',self.state,5,options=list(self.states))
+        ttk.Label(self.body,text='Los eventos publicados aparecen en la agenda móvil. Los borradores sólo los ve el personal autorizado.',style='CardMuted.TLabel',wraplength=620).grid(row=6,column=0,sticky='w',pady=10)
+        ttk.Button(self.footer,text='Guardar evento',style='Primary.TButton',command=self.save).pack(side='left')
+    @guarded
+    def save(self):
+        data={key:value.get().strip() for key,value in self.fields.items()}
+        data['starts_at']=local_wall_instant(data['starts_at'],timezone_for(self.db)).isoformat()
+        data['status']=self.states[self.state.get()]
+        if self.initial:data.update(id=self.initial['id'],version=self.initial['version'])
+        self.result=self.write('member.event.save',data);self.destroy()
+
+
+class MemberEventsWorkspace(AsyncPanel):
+    def __init__(self,parent,db,autostart=True):
+        super().__init__(parent,db);self.rows=[];self.offset=0
+        self.query=tk.StringVar();self.state=tk.StringVar(value='Todos');self.deleted=tk.BooleanVar()
+        filters=ttk.Frame(self);filters.pack(fill='x');filters.columnconfigure((0,1),weight=1)
+        text_field(filters,'Buscar evento',self.query,0);text_field(filters,'Estado',self.state,0,1,['Todos','Publicado','Borrador','Cancelado'])
+        ttk.Checkbutton(self,text='Mostrar eliminados para restaurar',variable=self.deleted,command=self.search).pack(anchor='w',pady=5)
+        self.tree=table(self,[('title','Evento',220),('date','Fecha y hora',170),('location','Lugar',160),('status','Estado',120)],10)
+        self.tree.bind('<Double-1>',lambda _:self.edit())
+        actions=ttk.Frame(self);actions.pack(fill='x',pady=8,before=self.tree.master)
+        for label,fn in [('Crear evento',self.create),('Editar',self.edit),('Eliminar',self.archive),('Restaurar',self.restore)]:
+            ttk.Button(actions,text=label,command=fn,style='Primary.TButton' if label=='Crear evento' else 'TButton').pack(side='left',padx=3)
+        pager=ttk.Frame(self);pager.pack(fill='x',pady=8)
+        ttk.Button(pager,text='Anterior',command=lambda:self.page(-1)).pack(side='left')
+        self.next_button=ttk.Button(pager,text='Siguiente',command=lambda:self.page(1));self.next_button.pack(side='left',padx=4)
+        self.summary=ttk.Label(pager);self.summary.pack(side='left',padx=8)
+        for value in (self.query,self.state):value.trace_add('write',lambda *_:self.later('events',self.search))
+        ttk.Button(self,text='Actualizar eventos',command=self.refresh).pack(anchor='w')
+        if autostart:self.after_idle(self.refresh)
+    def search(self):self.offset=0;self.refresh()
+    def page(self,delta):self.offset=max(0,self.offset+50*delta);self.refresh()
+    def refresh(self):
+        states={'Todos':None,'Publicado':'PUBLISHED','Borrador':'DRAFT','Cancelado':'CANCELLED'}
+        data={'query':self.query.get().strip(),'include_deleted':self.deleted.get(),'status':states[self.state.get()],'limit':50,'offset':self.offset}
+        self.load_view('member-events',lambda:self.db.training('member.events.list',data),self.render,tuple(data.values()))
+    def render(self,rows):
+        self.rows=rows
+        labels={'DRAFT':'Borrador','PUBLISHED':'Publicado','CANCELLED':'Cancelado'}
+        populate(self.tree,rows,lambda r:(r['title'],display_timestamp(r['starts_at'],timezone_for(self.db),seconds=False),r.get('location') or '', 'Eliminado' if r.get('deleted_at') else labels.get(r['status'],r['status'])))
+        self.next_button.configure(state='normal' if len(rows)==50 else 'disabled')
+        self.summary.configure(text=f'{len(rows)} eventos · Página {self.offset//50+1}' if rows else 'No hay eventos. Crea el primero para publicarlo en la app.')
+    def selected(self):
+        key=next(iter(self.tree.selection()),None)
+        row=next((r for r in self.rows if str(r['id'])==key),None)
+        if not row:raise ValueError('Selecciona un evento de la lista.')
+        return row
+    @guarded
+    def create(self):
+        window=MemberEventEditor(self);self.wait_window(window)
+        if window.result:self.refresh()
+    @guarded
+    def edit(self):
+        row=self.selected()
+        if row.get('deleted_at'):raise ValueError('Restaura el evento antes de editarlo.')
+        window=MemberEventEditor(self,row);self.wait_window(window)
+        if window.result:self.refresh()
+    @guarded
+    def archive(self):
+        row=self.selected()
+        if row.get('deleted_at'):raise ValueError('Este evento ya fue eliminado.')
+        if messagebox.askyesno('Eliminar evento','¿Quitar este evento de la app? Podrás restaurarlo desde Mostrar eliminados.',parent=self):
+            self.write('member.event.archive',{'id':row['id'],'version':row['version']});self.refresh()
+    @guarded
+    def restore(self):
+        row=self.selected()
+        if not row.get('deleted_at'):raise ValueError('Selecciona un evento eliminado.')
+        self.write('member.event.restore',{'id':row['id'],'version':row['version']});self.refresh()
+
+
+class MemberSettingsEditor(Window):
+    def __init__(self,parent):
+        settings=run_io(parent,lambda:parent.db.training('member.settings.get'))
+        super().__init__(parent,'Contacto y entrega de la app',740,460)
+        self.url=tk.StringVar(value=settings.get('renewal_whatsapp_url',''));self.examples=tk.BooleanVar(value=settings.get('show_shared_catalog',True))
+        text_field(self.body,'Enlace de WhatsApp para renovar',self.url,0)
+        ttk.Label(self.body,text='Chat: https://wa.me/indicativoynumero · Canal: https://whatsapp.com/channel/identificador',style='CardMuted.TLabel',wraplength=620).grid(row=1,column=0,sticky='w',pady=8)
+        self.example_toggle=ttk.Checkbutton(self.body,text='Mostrar biblioteca compartida de ejemplos',variable=self.examples)
+        self.example_toggle.grid(row=2,column=0,sticky='w',pady=8)
+        ttk.Label(self.body,text='Al ocultar los ejemplos, el gimnasio utiliza sus propios ejercicios y plantillas. No se borran los planes reales ni los datos de otros gimnasios.',style='CardMuted.TLabel',wraplength=620).grid(row=3,column=0,sticky='w',pady=8)
+        self.save_button=ttk.Button(self.footer,text='Guardar configuración',style='Primary.TButton',command=self.save);self.save_button.pack(side='left')
+        if settings.get('role')!='admin':
+            self.save_button.configure(state='disabled');self.example_toggle.configure(state='disabled')
+            ttk.Label(self.body,text='Sólo Administración puede cambiar esta configuración.',style='CardMuted.TLabel').grid(row=4,column=0,sticky='w')
+    @guarded
+    def save(self):
+        self.result=self.write('member.settings.save',{'renewal_whatsapp_url':self.url.get().strip(),'show_shared_catalog':self.examples.get()})
+        self.destroy()
+

@@ -60,6 +60,8 @@ test('local SQL: RLS isolation, duplicate renewal prevention, retries and unchan
   await db.exec(await readFile(new URL('../../member/sql/notifications.sql',import.meta.url),'utf8'));
   await db.exec(await readFile(new URL('../../member/sql/activity.sql',import.meta.url),'utf8'));
   await db.exec(await readFile(new URL('../../member/sql/settings.sql',import.meta.url),'utf8'));
+  await db.exec("alter table public.league_gym_settings add column renewal_whatsapp_url text default '';alter table public.league_gym_settings add column show_shared_catalog boolean default true;alter table public.league_member_events add column deleted_at timestamptz;");
+  const deliveryProjection=await readFile(new URL('../../member/sql/delivery-projections.sql',import.meta.url),'utf8');
   const rpc=async(actor,g,action,data={})=>(await db.query('select public.league_member_gateway($1,$2,$3,$4::jsonb) as data',[actor,g,action,JSON.stringify(data)])).rows[0].data;
   await db.exec('set role service_role');
   const secret=(await db.query("select public.league_member_settings('get') as data")).rows[0].data;assert.ok(secret.access_pepper.length>=64);
@@ -68,7 +70,7 @@ test('local SQL: RLS isolation, duplicate renewal prevention, retries and unchan
   // Exercise the deployed upgrade twice as well as the clean schema. Neither read changes source rows.
   await db.exec('reset role');
   const ticketMigration=await readFile(new URL('../../member/sql/ticket-balance.sql',import.meta.url),'utf8');
-  await db.exec(ticketMigration);await db.exec(ticketMigration);
+  await db.exec(ticketMigration);await db.exec(ticketMigration);await db.exec(deliveryProjection);await db.exec(deliveryProjection);
   const monthly={membership_id:1,plan_name:'QA Plan',allowed:false,membership_type:'COMMERCIAL',membership_end:'2026-11-10',status:'EXPIRED',document:'NEVER_RETURN_ME'};
   const fixtures=[
    {entry_limit:12,entries_used:3,entries_remaining:9,allowed:true,status:'ACTIVE'},
@@ -172,5 +174,26 @@ test('local SQL: RLS isolation, duplicate renewal prevention, retries and unchan
   const noPlan=await rpc(mobile,gym,'membership.details');assert.equal(noPlan.status,'NO_PLAN');assert.equal(noPlan.remaining_days,null);assert.equal(noPlan.ends_at,null);assert.equal(noPlan.starts_at,null);
   await db.exec('reset role');
   assert.deepEqual((await db.query('select ends_at::text,paid from public.memberships')).rows,source);
+  await db.query("update public.league_gym_settings set renewal_whatsapp_url='https://wa.me/15555550123',show_shared_catalog=false where gym_id=$1",[gym]);
+  await db.exec('set role service_role');
+  const contact=await rpc(mobile,gym,'membership.details');assert.equal(contact.renewal_whatsapp_url,'https://wa.me/15555550123');
+  assert.equal((await content('catalog')).length,0);
+  await db.exec('reset role');
+  await db.query("insert into public.league_exercise_catalog(id,name,muscle,equipment,instructions,gym_id) values($1,'Own gym exercise','','','',$2)",['20000000-0000-4000-8000-000000000006',gym]);
+  await db.query("insert into public.league_member_events(id,gym_id,title,starts_at,status) values($1,$2,'Published event',now()+interval '1 day','PUBLISHED')",['30000000-0000-4000-8000-000000000007',gym]);
+  await db.exec('set role service_role');
+  assert.equal((await content('catalog')).length,1);
+  assert.ok((await content('calendar')).some(event=>event.kind==='EVENT'&&event.name==='Published event'));
+  await db.exec('reset role');
+  await db.query("update public.league_member_events set status='DRAFT' where gym_id=$1",[gym]);
+  await db.exec('set role service_role');assert.ok(!(await content('calendar')).some(event=>event.kind==='EVENT'));
+  await db.exec('reset role');
+  await db.query("update public.league_member_events set status='CANCELLED' where gym_id=$1",[gym]);
+  await db.exec('set role service_role');assert.ok((await content('calendar')).some(event=>event.kind==='EVENT'&&event.status==='CANCELLED'));
+  await db.exec('reset role');
+  await db.query('update public.league_member_events set deleted_at=now() where gym_id=$1',[gym]);
+  await db.exec('set role service_role');assert.ok(!(await content('calendar')).some(event=>event.kind==='EVENT'));
+  await db.exec('reset role');
+
  }finally{await db.close();}
 });

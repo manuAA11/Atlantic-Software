@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/os.environ.get('ATLANTIC_TEST_EDITION','GymSoft_ZTATTUZ_3.6.1_x86')))
 sys.path.insert(0,str(ROOT))
 from common import atlantic_ui as kit
-from common.training_ui import RoutinesWorkspace, ClassesWorkspace, RoutineEditor, ClassEditor, ExerciseEditor, ReservationEditor
+from common.training_ui import RoutinesWorkspace, ClassesWorkspace, RoutineEditor, ClassEditor, ExerciseEditor, ReservationEditor, MemberEventEditor, MemberSettingsEditor
 from common.appearance import install
 from desktop_ui import configure_dark_styles
 from ui_performance import background_reads, modal_blocks_read
@@ -21,13 +21,21 @@ DATA=json.loads((ROOT/'training/seeds/examples.json').read_text())
 
 class DB:
     timezone='America/Bogota'
-    def __init__(self):self.calls=[];self.slow=False;self.in_read=False
+    def __init__(self):self.calls=[];self.slow=False;self.in_read=False;self.events=[];self.member_settings={'role':'admin','renewal_whatsapp_url':'https://wa.me/15555550123','show_shared_catalog':True}
     def _today(self):return date(2030,6,15)
     def list_trainers(self,active_only=False):return [{'id':1,'name':'Entrenador QA'}]
     def training(self,action,data=None):
         if self.slow and action=='routines':
             self.in_read=True;time.sleep(.25);self.in_read=False
         time.sleep(.015);data=data or {};self.calls.append((action,copy.deepcopy(data)))
+        if action=='member.settings.get':return copy.deepcopy(self.member_settings)
+        if action=='member.settings.save':
+            self.member_settings.update(data);return copy.deepcopy(self.member_settings)
+        if action=='member.events.list':return [copy.deepcopy(e) for e in self.events if data.get('include_deleted') or not e.get('deleted_at')]
+        if action=='member.event.save':
+            row=dict(data,id='event-qa-1',version=1,deleted_at=None);self.events=[row];return copy.deepcopy(row)
+        if action in ('member.event.archive','member.event.restore'):
+            row=self.events[0];row['deleted_at']='2030-06-15T12:00:00Z' if action.endswith('archive') else None;row['version']+=1;return copy.deepcopy(row)
         if action=='context':return {'role':'admin','today':'2030-06-15'}
         if action=='trainers':return self.list_trainers()
         if action=='catalog':return [dict(e,active=True,gym_id=None) for e in DATA['exercises']]
@@ -107,6 +115,19 @@ for factor in (1,1.25):
             editor.destroy();pump(root)
         workspace.destroy();pump(root)
         classes=ClassesWorkspace(host,db);classes.pack(fill='both',expand=True);pump(root,lambda:bool(classes.rows))
+        classes.tabs.select(2);pump(root)
+        events=classes.events_page
+        editor=MemberEventEditor(events);editor.fields['title'].set('Evento QA');editor.fields['description'].set('Actividad de prueba aislada');editor.save();pump(root)
+        events.refresh();pump(root,lambda:len(events.rows)==1)
+        assert events.rows[0]['title']=='Evento QA';assert events.rows[0]['starts_at'].endswith('-05:00');checks+=2
+        events.tree.selection_set('event-qa-1')
+        with patch('common.training_ui.messagebox.askyesno',return_value=True):events.archive()
+        pump(root,lambda:not events.rows);checks+=1
+        events.deleted.set(True);events.refresh();pump(root,lambda:len(events.rows)==1)
+        events.tree.selection_set('event-qa-1');events.restore();pump(root,lambda:bool(events.rows) and not events.rows[0].get('deleted_at'));checks+=1
+        contact=MemberSettingsEditor(classes);contact.url.set('https://wa.me/15555550124');contact.examples.set(False);contact.save();pump(root)
+        assert db.member_settings['renewal_whatsapp_url']=='https://wa.me/15555550124' and db.member_settings['show_shared_catalog'] is False;checks+=1
+        classes.tabs.select(0);pump(root)
         classes.tree.selection_set('1');classes.select_class();classes.toggle_calendar();pump(root)
         assert classes.calendar_visible and classes.calendar_days.winfo_children();checks+=1
         editor=ClassEditor(classes);editor.fields['name'].set('Recurrente QA');editor.fields['repeat_count'].set('4');editor.save();pump(root)
@@ -129,3 +150,4 @@ for factor in (1,1.25):
         root.destroy()
 kit.select_theme('dark')
 print(f'PASS {checks} real Tk workflow checks; 100/125%, light/dark, synthetic transport only.')
+

@@ -12,7 +12,7 @@ from tkinter import ttk
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/os.environ.get('ATLANTIC_TEST_EDITION','GymSoft_ZTATTUZ_3.6.1_x86')));sys.path.insert(0,str(ROOT))
 from common.training_service import TrainingDatabaseMixin
-from common.training_ui import RoutinesWorkspace,RoutineEditor,ClassEditor,ClassesWorkspace,ReservationEditor
+from common.training_ui import RoutinesWorkspace,RoutineEditor,ClassEditor,ClassesWorkspace,ReservationEditor,MemberEventEditor
 from common import atlantic_ui as kit
 from desktop_ui import configure_dark_styles
 from ui_tasks import UiDatabase
@@ -36,8 +36,9 @@ class Database(TrainingDatabaseMixin):
     def __init__(self,fixture):
         self.fixture=fixture;self.gym_id='d0000000-0000-4000-8000-000000000004';self.cloud=SimpleNamespace(timezone='America/Bogota');self.client=self
     def rpc(self,name,args):
-        assert name=='gym_training'
-        return SimpleNamespace(execute=lambda:SimpleNamespace(data=self.fixture.call('training',args['p_action'],args['p_data'])))
+        assert name in ('gym_training','gym_member_admin')
+        kind='member' if name=='gym_member_admin' else 'training'
+        return SimpleNamespace(execute=lambda:SimpleNamespace(data=self.fixture.call(kind,args['p_action'],args['p_data'])))
     def _execute(self,query):return query.execute()
 
 def pump(root,predicate=lambda:True):
@@ -79,6 +80,12 @@ try:
     # Mobile enrollment appears in the desktop list, reading the same records.
     fixture.call('league','reserve',{'class_id':actual['id']},client=2)
     assert len(fixture.call('training','reservations',{'class_id':actual['id']}))==2
+    classes.tabs.select(2);pump(root)
+    editor=MemberEventEditor(classes.events_page);editor.fields['title'].set('Evento desde Administración QA')
+    editor.fields['starts_at'].set(str(future)+' 19:00');editor.save();pump(root)
+    published=fixture.call('member','events.list')[0];assert published['title']=='Evento desde Administración QA'
+    fixture.call('member','event.archive',dict(id=published['id'],version=published['version'],request_id=__import__('uuid').uuid4().hex))
+    assert fixture.call('member','events.list')==[]
     classes.destroy();pump(root)
     from app import ClassesPage
     page=ClassesPage(host,SimpleNamespace(db=db));page.pack(fill='both',expand=True);page.refresh()

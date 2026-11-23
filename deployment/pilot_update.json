@@ -1,8 +1,8 @@
 {
-  "version": "3.8.8",
-  "tag": "atlantic-gym-3.8.8-piloto",
+  "version": "3.8.9",
+  "tag": "atlantic-gym-3.8.9-piloto",
   "publish": true,
   "final": false,
-  "notes": "Reintento de huella después de una captura incompleta: permite acomodar el dedo sin activar la espera reservada a muestras aceptadas. Conserva el bloqueo tras lectura válida, identificación, autorización, entradas y relé. Incluye la corrección de tiqueteras 3.8.7. Sin migraciones ni cambios de huellas guardadas. Beta opcional NO FINAL.",
+  "notes": "Eventos gestionados por Administración desde el computador y de sólo consulta para socios; renovación desde el mismo botón hacia WhatsApp. Incluye herramientas para archivar rutinas, plantillas y ejercicios propios. Conserva las correcciones de tiqueteras, lector y relé. Beta opcional; aceptación física y gates finales pendientes.",
   "publication_attempt": 1
 }

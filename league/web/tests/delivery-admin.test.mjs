@@ -1,0 +1,66 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
+import {PGlite} from '@electric-sql/pglite';
+import {setupTraining} from '../../tests/training-fixture.mjs';
+import {identity,ADMIN,ALICE,BOB,GYM,OTHER} from '../../tests/database-fixture.mjs';
+const migration=await readFile(new URL('../../member/sql/delivery-admin.sql',import.meta.url),'utf8');
+test('desktop event CRUD, clean catalogs, retry safety and role/tenant boundaries use the real SQL',async()=>{
+ const db=new PGlite();
+ try{
+  await setupTraining(db);await db.exec('reset role');
+  await db.exec('create table public.league_member_events(id uuid primary key default gen_random_uuid(),gym_id uuid,title text,description text,starts_at timestamptz,location text,organizer text,image_url text,status text,version int not null default 1,updated_at timestamptz default now());');
+  await db.exec(migration);await db.exec(migration);
+  await identity(db,ADMIN);
+  const admin=async(action,data={},gym=GYM)=>(await db.query('select public.gym_member_admin($1,$2,$3::jsonb) as data',[gym,action,JSON.stringify(data)])).rows[0].data;
+  const training=async(action,data={},gym=GYM)=>(await db.query('select public.gym_training($1,$2,$3::jsonb) as data',[gym,action,JSON.stringify(data)])).rows[0].data;
+  const write=(action,data={},gym=GYM)=>admin(action,{...data,request_id:randomUUID()},gym);
+  const twrite=(action,data={})=>training(action,{...data,request_id:randomUUID()});
+  assert.equal((await training('catalog')).length,44);assert.equal((await training('templates')).length,8);
+  const settings={renewal_whatsapp_url:'https://wa.me/15555550123',show_shared_catalog:false,request_id:randomUUID()};
+  assert.deepEqual(await admin('settings.save',settings),await admin('settings.save',settings));
+  assert.equal((await admin('settings.get')).renewal_whatsapp_url,settings.renewal_whatsapp_url);
+  assert.equal((await training('catalog')).length,0);assert.equal((await training('templates')).length,0);
+  await assert.rejects(admin('settings.save',{...settings,show_shared_catalog:true}),/otra operación/);
+  for(const url of ['javascript:alert(1)','https://wa.me.evil.example/15555550123','https://wa.me/15555550123?text=private'])
+   await assert.rejects(write('settings.save',{renewal_whatsapp_url:url}),/enlace oficial/);
+  const event={title:'Encuentro del gimnasio',description:'Actividad abierta',location:'Sala principal',organizer:'Entrenador',starts_at:new Date(Date.now()+86400000).toISOString(),status:'PUBLISHED',request_id:randomUUID()};
+  const first=await admin('event.save',event);assert.deepEqual(await admin('event.save',event),first);
+  assert.equal((await admin('events.list')).length,1);
+  const updated=await write('event.save',{...event,id:first.id,version:first.version,title:'Evento reprogramado'});
+  assert.equal(updated.version,2);await assert.rejects(write('event.save',{...event,id:first.id,version:first.version}),/cambió/);
+  await assert.rejects(write('event.save',{...event,starts_at:'2026-11-23 18:00'}),/zona horaria/);
+  const deleted=await write('event.archive',{id:updated.id,version:updated.version});
+  assert.ok(deleted.deleted_at);assert.equal((await admin('events.list')).length,0);assert.equal((await admin('events.list',{include_deleted:true})).length,1);
+  const restored=await write('event.restore',{id:deleted.id,version:deleted.version});assert.equal(restored.deleted_at,null);
+  assert.equal((await admin('events.list',{query:'reprogramado'})).length,1);
+  assert.equal((await admin('events.list',{offset:1,limit:1})).length,0);
+  await identity(db,BOB);await assert.rejects(admin('events.list'),/Permiso|autorizado|entrenador|acceso/i);
+  assert.equal((await training('catalog',{},OTHER)).length,44);
+  await assert.rejects(write('event.archive',{id:restored.id,version:restored.version},OTHER),/cambió/);
+  await identity(db,ALICE);await assert.rejects(admin('events.list'),/Permiso|autorizado|entrenador|acceso/i);
+  await identity(db,ADMIN);await twrite('coach.grant',{user_id:ALICE,enabled:true});
+  await identity(db,ALICE);assert.equal((await admin('settings.get')).role,'coach');
+  await assert.rejects(write('event.save',event),/Administración/);
+  await assert.rejects(write('event.archive',{id:restored.id,version:restored.version}),/Administración/);
+  await assert.rejects(write('event.restore',{id:restored.id,version:restored.version}),/Administración/);
+  await assert.rejects(write('settings.save',{renewal_whatsapp_url:'https://wa.me/15555550123'}),/Administración/);
+  await identity(db,ADMIN);
+  const exercise=await twrite('catalog.save',{name:'Ejercicio propio',muscle:'Pecho',equipment:'Banco',source_ref:'abcdefghijklmnopqrst'});
+  assert.equal((await training('catalog')).length,1);
+  const item={catalog_id:exercise.id,day:'Día 1',sets:3,reps:10,weight_kg:0,rest_seconds:90,notes:''};
+  const template=await twrite('template.save',{name:'Plantilla propia',exercises:[item]});assert.equal((await training('templates')).length,1);
+  const assigned=await twrite('routine.assign',{name:'Plan propio',clients:[1],exercises:[item]});const rid=assigned[0].routine_id;
+  await write('routine.archive',{id:rid});assert.equal((await training('routine.detail',{id:rid})).active,false);
+  assert.equal((await training('routine.detail',{id:rid})).exercises.length,1);
+  await write('template.archive',{id:template.id});assert.equal((await training('templates')).length,0);
+  await write('catalog.archive',{id:exercise.id});assert.equal((await training('catalog')).length,0);
+  assert.equal((await training('catalog',{include_inactive:true})).length,1);
+  await db.exec('reset role');
+  assert.equal((await db.query('select count(*)::int as count from public.classes')).rows[0].count,2);
+  const audit=(await db.query("select count(*)::int as count from league_source_private.training_audit where action='member.event.save'")).rows[0].count;
+  assert.equal(audit,2);
+ } finally{await db.close();}
+});
+
