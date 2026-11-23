@@ -4,5 +4,5 @@
   "publish": true,
   "final": false,
   "notes": "Eventos gestionados por Administración desde el computador y de sólo consulta para socios; renovación desde el mismo botón hacia WhatsApp. Incluye herramientas para archivar rutinas, plantillas y ejercicios propios. Conserva las correcciones de tiqueteras, lector y relé. Beta opcional; aceptación física y gates finales pendientes.",
-  "publication_attempt": 1
+  "publication_attempt": 2
 }

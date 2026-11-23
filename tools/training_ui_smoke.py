@@ -117,7 +117,7 @@ for factor in (1,1.25):
         classes=ClassesWorkspace(host,db);classes.pack(fill='both',expand=True);pump(root,lambda:bool(classes.rows))
         classes.tabs.select(2);pump(root)
         events=classes.events_page
-        editor=MemberEventEditor(events);editor.fields['title'].set('Evento QA');editor.fields['description'].set('Actividad de prueba aislada');editor.save();pump(root)
+        editor=MemberEventEditor(events);assert isinstance(editor.state(),str);editor.fields['title'].set('Evento QA');editor.fields['description'].set('Actividad de prueba aislada');editor.save();pump(root)
         events.refresh();pump(root,lambda:len(events.rows)==1)
         assert events.rows[0]['title']=='Evento QA';assert events.rows[0]['starts_at'].endswith('-05:00');checks+=2
         events.tree.selection_set('event-qa-1')

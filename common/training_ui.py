@@ -702,22 +702,22 @@ class MemberEventEditor(Window):
         current=run_io(parent,lambda:parent.db.training('context'))
         self.initial=initial or {}
         super().__init__(parent,'Editar evento' if initial else 'Crear evento',760,620)
-        self.fields={};self.states={'Borrador':'DRAFT','Publicado':'PUBLISHED','Cancelado':'CANCELLED'}
+        self.fields={};self.event_statuss={'Borrador':'DRAFT','Publicado':'PUBLISHED','Cancelado':'CANCELLED'}
         when=display_timestamp(self.initial['starts_at'],timezone_for(self.db),seconds=False) if initial else current['today']+' 18:00'
         defaults=[('title','Título',''),('starts_at','Fecha y hora del gimnasio (AAAA-MM-DD HH:MM)',when),('description','Descripción',''),
             ('location','Lugar',''),('organizer','Organizador','')]
         for i,(key,label,default) in enumerate(defaults):
             value=when if key=='starts_at' else self.initial.get(key) or default
             self.fields[key]=tk.StringVar(value=value);text_field(self.body,label,self.fields[key],i)
-        self.state=tk.StringVar(value=next((label for label,value in self.states.items() if value==self.initial.get('status')),'Publicado'))
-        text_field(self.body,'Estado',self.state,5,options=list(self.states))
+        self.event_status=tk.StringVar(value=next((label for label,value in self.event_statuss.items() if value==self.initial.get('status')),'Publicado'))
+        text_field(self.body,'Estado',self.event_status,5,options=list(self.event_statuss))
         ttk.Label(self.body,text='Los eventos publicados aparecen en la agenda móvil. Los borradores sólo los ve el personal autorizado.',style='CardMuted.TLabel',wraplength=620).grid(row=6,column=0,sticky='w',pady=10)
         ttk.Button(self.footer,text='Guardar evento',style='Primary.TButton',command=self.save).pack(side='left')
     @guarded
     def save(self):
         data={key:value.get().strip() for key,value in self.fields.items()}
         data['starts_at']=local_wall_instant(data['starts_at'],timezone_for(self.db)).isoformat()
-        data['status']=self.states[self.state.get()]
+        data['status']=self.event_statuss[self.event_status.get()]
         if self.initial:data.update(id=self.initial['id'],version=self.initial['version'])
         self.result=self.write('member.event.save',data);self.destroy()
 
@@ -725,9 +725,9 @@ class MemberEventEditor(Window):
 class MemberEventsWorkspace(AsyncPanel):
     def __init__(self,parent,db,autostart=True):
         super().__init__(parent,db);self.rows=[];self.offset=0
-        self.query=tk.StringVar();self.state=tk.StringVar(value='Todos');self.deleted=tk.BooleanVar()
+        self.query=tk.StringVar();self.event_status=tk.StringVar(value='Todos');self.deleted=tk.BooleanVar()
         filters=ttk.Frame(self);filters.pack(fill='x');filters.columnconfigure((0,1),weight=1)
-        text_field(filters,'Buscar evento',self.query,0);text_field(filters,'Estado',self.state,0,1,['Todos','Publicado','Borrador','Cancelado'])
+        text_field(filters,'Buscar evento',self.query,0);text_field(filters,'Estado',self.event_status,0,1,['Todos','Publicado','Borrador','Cancelado'])
         ttk.Checkbutton(self,text='Mostrar eliminados para restaurar',variable=self.deleted,command=self.search).pack(anchor='w',pady=5)
         self.tree=table(self,[('title','Evento',220),('date','Fecha y hora',170),('location','Lugar',160),('status','Estado',120)],10)
         self.tree.bind('<Double-1>',lambda _:self.edit())
@@ -738,14 +738,14 @@ class MemberEventsWorkspace(AsyncPanel):
         ttk.Button(pager,text='Anterior',command=lambda:self.page(-1)).pack(side='left')
         self.next_button=ttk.Button(pager,text='Siguiente',command=lambda:self.page(1));self.next_button.pack(side='left',padx=4)
         self.summary=ttk.Label(pager);self.summary.pack(side='left',padx=8)
-        for value in (self.query,self.state):value.trace_add('write',lambda *_:self.later('events',self.search))
+        for value in (self.query,self.event_status):value.trace_add('write',lambda *_:self.later('events',self.search))
         ttk.Button(self,text='Actualizar eventos',command=self.refresh).pack(anchor='w')
         if autostart:self.after_idle(self.refresh)
     def search(self):self.offset=0;self.refresh()
     def page(self,delta):self.offset=max(0,self.offset+50*delta);self.refresh()
     def refresh(self):
         states={'Todos':None,'Publicado':'PUBLISHED','Borrador':'DRAFT','Cancelado':'CANCELLED'}
-        data={'query':self.query.get().strip(),'include_deleted':self.deleted.get(),'status':states[self.state.get()],'limit':50,'offset':self.offset}
+        data={'query':self.query.get().strip(),'include_deleted':self.deleted.get(),'status':states[self.event_status.get()],'limit':50,'offset':self.offset}
         self.load_view('member-events',lambda:self.db.training('member.events.list',data),self.render,tuple(data.values()))
     def render(self,rows):
         self.rows=rows
