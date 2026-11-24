@@ -28,9 +28,13 @@ Incluye los cambios pendientes de archivo de rutinas/plantillas/ejercicios propi
 
 La primera ejecución Windows 45286300367 detectó una variable de estado del editor que ocultaba el método nativo de la ventana. Se corrigió en el commit `d8c3bc17f4658daff7a6a2c034db03b430431fcc`, que es la fuente exacta de los instaladores aprobados. Las evidencias originales del fallo se conservan.
 
-### Aplicación móvil: publicación pendiente
+### Aplicación móvil publicada
 
-El código de la PWA y sus 41 grupos de pruebas/compilación están aprobados, pero **la nueva interfaz móvil no se publicó**. La ejecución [Cloudflare 45286300321](https://github.com/manuAA11/Atlantic-Software/actions/runs/45286300321) terminó al no completarse el inicio de sesión temporal de Cloudflare. El perfil guardado llegó a la pantalla de acceso. Hace falta que el propietario vuelva a iniciar sesión y se complete una nueva autorización del despliegue.
+La nueva interfaz está publicada en [Atlantic League](https://atlantic-league.atlanticsoftware11.workers.dev). La ejecución [Cloudflare 45286300321, intento 2](https://github.com/manuAA11/Atlantic-Software/actions/runs/45286300321) aprobó la autorización, el despliegue y la comprobación HTTPS de recursos, rutas SPA, manifiesto, service worker, CORS y autenticación. Cloudflare asignó la versión `c781b2ac-61f4-4a97-b93d-f3eed5fe91ca`; la fuente exacta de la web es `09e454ba2e1870b6ee74e4e0991b7225e169c0de`. Los cambios posteriores del editor Tk no cambian esa web.
+
+Se abrió la aplicación publicada con la sesión existente del propietario: la consulta de membresía, agenda y dos rutinas asignadas cargaron correctamente. El enlace del botón correspondiente apuntó al WhatsApp configurado del gimnasio. La agenda muestra las actividades publicadas y no ofrece creación o edición de eventos al socio. Se activó la actualización del service worker y se comprobó la reapertura de la sesión en el mismo navegador. No se envió ningún mensaje, se registró un pago ni se creó o canceló una reserva/solicitud.
+
+La sesión temporal de Wrangler cerró correctamente después de la publicación. La comprobación del navegador es una aceptación alojada con la sesión existente; no sustituye las pruebas físicas de instalación, reapertura y push en iPhone/Android.
 
 No se habilitaron nuevos socios ni se amplió la lista del piloto. League sigue siendo opcional. Meta/Wompi no se activaron. La aceptación del equipo instalado, Windows32 nativo, lector/relé y teléfonos físicos sigue pendiente. No se declara terminada la salida general a producción.
 

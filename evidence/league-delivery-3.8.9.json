@@ -2,7 +2,7 @@
   "version": "3.8.9",
   "final": false,
   "source_commit": "d8c3bc17f4658daff7a6a2c034db03b430431fcc",
-  "status": "DESKTOP_OPTIONAL_PUBLISHED_MOBILE_DEPLOYMENT_PENDING_AUTH",
+  "status": "DESKTOP_OPTIONAL_AND_MOBILE_PUBLISHED",
   "release": {
     "id": 456128016,
     "tag": "atlantic-gym-3.8.9-piloto",
@@ -14,7 +14,8 @@
     "native_training_ui_checks_per_profile": 97,
     "hosted_admin_event_member_read_archive_rollback": "PASS",
     "hosted_nonstaff_member_event_write_denied": "PASS",
-    "hosted_member_whatsapp_projection": "PASS"
+    "hosted_member_whatsapp_projection": "PASS",
+    "authenticated_owner_browser_read_acceptance": "PASS"
   },
   "runs": {
     "initial_windows_failure": 45286300367,
@@ -22,7 +23,8 @@
     "isolated_league_success": 45287062246,
     "publication_success": 45287062196,
     "full_download_success": 45290919023,
-    "mobile_cloudflare_auth_failure": 45286300321
+    "mobile_cloudflare_auth_failure": 45286300321,
+    "mobile_cloudflare_success": 45286300321
   },
   "downloads": [
     {
@@ -92,15 +94,23 @@
   },
   "mobile": {
     "source_and_build_ready": true,
-    "new_ui_deployed": false,
-    "blocker": "Saved Cloudflare sign-in expired; device authorization was not completed.",
-    "renewal_destination": "https://wa.me/573138585683"
+    "new_ui_deployed": true,
+    "blocker": null,
+    "renewal_destination": "https://wa.me/573138585683",
+    "url": "https://atlantic-league.atlanticsoftware11.workers.dev",
+    "cloudflare_version_id": "c781b2ac-61f4-4a97-b93d-f3eed5fe91ca",
+    "frontend_source_commit": "09e454ba2e1870b6ee74e4e0991b7225e169c0de",
+    "workflow_attempt": 2,
+    "https_assets_spa_cors_and_auth_checks": "PASS",
+    "authenticated_owner_browser_membership_calendar_routines": "PASS",
+    "existing_browser_update_activation": "PASS",
+    "renewal_link_matches_gym_contact": true,
+    "temporary_wrangler_session_logout": "PASS"
   },
   "limits": [
     "Physical reader/relay acceptance pending",
     "Native Windows32 installation pending",
-    "Physical iPhone/Android and valid-member HTTP acceptance pending",
-    "New mobile UI deployment requires owner Cloudflare login",
-    "No general production rollout declared"
+    "No general production rollout declared",
+    "Physical iPhone/Android installation, reopen and push acceptance pending"
   ]
 }
