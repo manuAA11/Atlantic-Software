@@ -1,0 +1,37 @@
+name: Atlantic encrypted backup rehearsal
+on:
+  push:
+    branches: [optimization/supabase-20261126]
+    paths: ['.github/workflows/atlantic-encrypted-backup.yml', 'tools/atlantic_backup_runner.py']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: atlantic-encrypted-backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install authenticated encryption dependency
+        run: python -m pip install --user cryptography==50.0.0
+      - name: Prepare one-session encrypted credential handoff
+        run: python tools/atlantic_backup_runner.py request
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backup-request
+          path: ${{ runner.temp }}/atlantic-backup/request.json
+          retention-days: 1
+      - name: Export and rehearse in isolated PostgreSQL
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/atlantic_backup_runner.py backup
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atlantic-encrypted-backups
+          path: ${{ runner.temp }}/atlantic-backup/output/
+          retention-days: 7
+          if-no-files-found: ignore
