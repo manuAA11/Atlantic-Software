@@ -107,8 +107,9 @@ def env_and_mount(ref, config):
 def archive(ref, config, encryption_key):
     prefix = env_and_mount(ref, config)
     role = 'supabase_read_only_user'
+    private_stderr=(ROOT/ref/'keeper.stderr').open('wb')
     keeper = subprocess.Popen(prefix+['psql','-X','-qAt','-v','ON_ERROR_STOP=1'],
-                              stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL)
+                              stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=private_stderr)
     def query(sql):
         marker = '__ATLANTIC_END__'
         keeper.stdin.write((sql+"; SELECT '"+marker+"';\n").encode()); keeper.stdin.flush()
@@ -147,6 +148,7 @@ def archive(ref, config, encryption_key):
         if keeper.poll() is None:
             try:keeper.stdin.write(b'ROLLBACK;\n\\q\n');keeper.stdin.flush();keeper.wait(timeout=10)
             except (BrokenPipeError,subprocess.TimeoutExpired):keeper.kill()
+        private_stderr.close()
 
 
 def rehearse(ref, dump, meta):
@@ -209,6 +211,11 @@ if __name__=='__main__':
         elif sys.argv[1]=='backup':backup()
         else:raise RuntimeError('Unknown command')
     except Exception as error:
+        if RECOVERY_KEY is not None:
+            nonce=secrets.token_bytes(12)
+            details={'exception':type(error).__name__,'message':str(error),
+                     'private_diagnostics':{p.parent.name:p.read_text(errors='replace') for p in ROOT.glob('*/keeper.stderr')}}
+            (OUTPUT/'entrypoint-diagnostics.atlbak').write_bytes(MAGIC+nonce+AESGCM(RECOVERY_KEY).encrypt(nonce,json.dumps(details).encode(),MAGIC))
         # Do not leak dumps, passwords, SQL values or raw database exception messages.
         print('Backup operation stopped safely: '+type(error).__name__,file=sys.stderr)
         sys.exit(1)
