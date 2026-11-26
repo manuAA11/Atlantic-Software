@@ -2,6 +2,8 @@
 
 No desplegado. La reducción global de Egress 40–70% es un objetivo condicionado; actualmente no demostrada.
 
+Continuación: autorización de envío recibida, PR #2 publicado y validación de B1 aprobada en GitHub. C1 ahora dispone de SQL propuesto y rollback en proposals/, con cinco pruebas de comportamiento PGlite. Usuario confirmó que no tiene respaldo; SQL productivo y cambios críticos permanecen bloqueados. La propuesta conservadora no cambia intervalos ni reduce revalidaciones de acceso: con cualquier feature/regla activa o mensaje QUEUED/PROCESSING invoca el worker original. No requiere ni introduce clientes/API nuevos.
+
 | ID / problema | Evidencia y causa raíz | Solución / archivos | Impacto / complejidad / riesgo | Antes → después | Ahorro | Pruebas / dependencias / reversión |
 |---|---|---|---|---|---|---|
 | B1 lecturas simultáneas PWA | Routines montaje + refresh, StrictMode y eventos; sin coordinador de transporte. Duplicación real pendiente | read-flight.ts, api.ts; allowlist de cuatro lecturas no críticas, sólo en curso | Bajo a medio según concurrencia / baja / bajo | Fixture 20 transportes → 1; producción sin cambio | 95% solicitudes y payload en fixture idéntico; global desconocido | seis pruebas de comportamiento y build; sin BD. Revertir ambos archivos y test |

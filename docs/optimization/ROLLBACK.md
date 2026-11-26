@@ -2,6 +2,8 @@
 
 Base local: pruebas 347dbcbc95613816c7edd7c806a1884f63b975f4. Main independiente: 9c2d175adb32ebb4ae34624f2a578eacc35c4953. No hay commit/despliegue remoto de esta tarea ni migración aplicada.
 
+Actualización: B1 publicado en rama optimization/supabase-20261126, PR #2. El usuario confirmó ausencia de respaldo. C1 permanece bloqueado para producción. Propuesta y rollback de función en proposals/marketing-idle-gate*.sql, validados con cinco pruebas locales. No son respaldo de la base ni migración aplicada. Antes de aplicar, además del respaldo restaurado, comprobar en vivo owner/ACL y que el cron de congelaciones y su usuario siguen operativos.
+
 ## Estado de respaldo
 
 La documentación de Free no garantiza backups diarios/PITR de planes pagos. Directorios backups/recovery contienen material histórico; no se ha probado que restauren las BD actuales. Los snapshots aquí son metadata, no respaldo de clientes. Ninguna operación de riesgo está habilitada por su existencia.

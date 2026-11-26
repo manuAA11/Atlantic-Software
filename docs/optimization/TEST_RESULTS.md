@@ -2,6 +2,8 @@
 
 No desplegado. Estas pruebas no certifican recepción instalada, hardware, tráfico real ni aceptación integral.
 
+Continuación: validación GitHub Actions 45859830145 aprobada para B1. C1 tiene cinco casos adicionales PGlite aprobados directamente con node tests/marketing-idle-gate.test.mjs: veinte ticks vacíos sin HTTP/Vault/escrituras; cualquier feature o regla activa despierta worker; QUEUED futuro/PROCESSING vencido mantienen procesamiento; si falta o cambia el cron de congelaciones conserva invocación previa; contrato, ACL/search_path y rollback conservados. Es una propuesta SQL, sin aplicación en servidores.
+
 | Comprobación | Resultado | Alcance |
 |---|---|---|
 | node tests/read-flight.test.mjs | 6/6 PASS | Concurrencia 20→1, aislamiento sesión/claims/endpoint/gym/filtros, errores, frescura secuencial, escrituras, logout y vuelo antiguo |
