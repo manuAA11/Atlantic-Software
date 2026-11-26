@@ -15,7 +15,7 @@ async function fixture(){
  create table public.marketing_settings(whatsapp_enabled boolean,chatbot_enabled boolean,marketing_automation_enabled boolean,online_payments_enabled boolean);
  create table public.marketing_automations(enabled boolean,deleted_at timestamptz);
  create table public.marketing_messages(status text,scheduled_for timestamptz,claimed_at timestamptz);
- create table cron.job(jobname text,active boolean,schedule text,database text,command text);
+ create table cron.job(jobname text,active boolean,schedule text,database text,command text,username text default current_user);
  create table net.requests(url text,headers jsonb,body jsonb,timeout_milliseconds int);
  create function net.http_post(url text,headers jsonb,body jsonb,timeout_milliseconds int) returns bigint language plpgsql as $$
  begin insert into net.requests values(url,headers,body,timeout_milliseconds);return (select count(*) from net.requests);end$$;
@@ -23,7 +23,7 @@ async function fixture(){
  insert into private.marketing_platform values(true,'00000000-0000-0000-0000-000000000001');
  insert into vault.decrypted_secrets values('00000000-0000-0000-0000-000000000001','synthetic-scheduler-token');
  insert into public.marketing_settings values(false,false,false,false);
- insert into cron.job values('gymsoft-freeze-completion',true,'* * * * *',current_database(),'select private.freeze_complete_due()');
+ insert into cron.job values('gymsoft-freeze-completion',true,'* * * * *',current_database(),'select private.freeze_complete_due()',current_user);
  `);
  await db.exec(rollback);
  await db.exec('revoke all on function private.marketing_cron_tick() from public,anon,authenticated,service_role');
@@ -72,7 +72,7 @@ test('queued future messages and stale PROCESSING wake the original claims witho
 });
 test('missing, disabled, slower, wrong-database or changed freeze job fails open to the old worker',async()=>{
  const db=await fixture();try{
-  for(const change of ["active=false","schedule='*/5 * * * *'","database='other_database'","command='select changed_function()'"]){
+  for(const change of ["active=false","schedule='*/5 * * * *'","database='other_database'","command='select changed_function()'","username='other_role'"]){
    await db.exec('begin;update cron.job set '+change);assert.ok(await tick(db));await db.exec('rollback');
   }
   await db.exec("update cron.job set command='select private.freeze_complete_due();'");assert.equal(await tick(db),null);

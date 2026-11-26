@@ -26,7 +26,7 @@ BEGIN
    SELECT 1 FROM cron.job
    WHERE jobname = 'gymsoft-freeze-completion' AND active
      AND schedule = '* * * * *'
-     AND database = current_database()
+     AND database = current_database() AND username = current_user
      AND btrim(command) IN ('select private.freeze_complete_due()', 'select private.freeze_complete_due();')
  ) THEN
    RETURN NULL;
