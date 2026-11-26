@@ -1,0 +1,62 @@
+{
+  "origin": "https://atlantic-league.atlanticsoftware11.workers.dev",
+  "files": {
+    "/assets/index-BeyvP6vF.css": {
+      "bytes": 6931,
+      "sha256": "d27ae23e4973960981e8a755bd8a5140140c684f5e6dfff092c3c889e9b0d232"
+    },
+    "/assets/index-DPRvNjcy.js": {
+      "bytes": 524351,
+      "sha256": "38bafcbbda8482947edaa0b89a0e7f28a2e19173a1ea2121f9191c735db94dd8"
+    },
+    "/icons/icon-192.png": {
+      "bytes": 44341,
+      "sha256": "810de22f542fd94bd583d42b1965d37a2e761f4eecf3ebf0d4d31d25d0e9ab71"
+    },
+    "/icons/icon-512.png": {
+      "bytes": 273980,
+      "sha256": "5fefb7eb89de180b6ffdcbc9255ad54a572762b6ecb24fb8a1f666bb8a2bf62a"
+    },
+    "/index.html": {
+      "bytes": 814,
+      "sha256": "61218f57879fce13ce08dda5fdb71e866ae6a0cfc746ec114a6d1286983f7694"
+    },
+    "/manifest.webmanifest": {
+      "bytes": 359,
+      "sha256": "7b0b95cdb5eb52b338be88e5691126524cbd87449817d5516f2655e05e6ba9ce"
+    },
+    "/sw.js": {
+      "bytes": 2230,
+      "sha256": "db6f55b746605c6823859f5c90de3195455d9cb3a5289d146bb0708ce0b1a566"
+    }
+  },
+  "source_commit": "b11487ad8ed20637f3a55e8a145fc797050a3c71",
+  "baseline_rebuilt_matches_live": true,
+  "before_js_bytes": 524351,
+  "after_js_bytes": 524857,
+  "read_flight_tests_passed": 6,
+  "idle_gate_tests_passed": 5,
+  "web_tests_passed": 53,
+  "github_validation_runs": [
+    45860536150,
+    45860940706,
+    45860940610,
+    45860940879
+  ],
+  "production_database_changes": false,
+  "production_pwa_deployed": true,
+  "database_backup": "User confirmed none; SQL deployment blocked",
+  "cloudflare_authorization": "Explicit target approval, device login and logout completed",
+  "cloudflare_version": "ebcceb44-914d-4b8c-9fd6-fad2b8bfeb17",
+  "deployed_script": "/assets/index-Ct5z0QrF.js",
+  "deployed_js_sha256": "9123db47765e945f835ee592d7f84d0bfd00215efbde7a7d8f588a99fe62d433",
+  "deployed_sw_sha256": "63ea4ac6f29c751af1c151dbf6cecefd7dd98daec24d0bfd2d3c946901d13bee",
+  "verification": "HTML/JS/SW exact byte match; verify-cloudflare.mjs passed via inherited network proxy",
+  "marketing_gate_shadow_read_only": "would_skip_http=true in both projects at 16:42 UTC; no SQL deployed",
+  "physical_acceptance": "Not performed; no installed desktop/hardware changes",
+  "measured_production_egress_savings": null,
+  "followup_reviews_utc": [
+    "2026-11-27T16:46:00Z",
+    "2026-11-28T16:46:00Z"
+  ]
+}

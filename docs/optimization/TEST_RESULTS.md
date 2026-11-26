@@ -1,5 +1,6 @@
 # Validación · 2026-11-26
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 No desplegado. Estas pruebas no certifican recepción instalada, hardware, tráfico real ni aceptación integral.
 
 Continuación: validación GitHub Actions 45859830145 aprobada para B1. C1 tiene cinco casos adicionales PGlite aprobados directamente con node tests/marketing-idle-gate.test.mjs: veinte ticks vacíos sin HTTP/Vault/escrituras; cualquier feature o regla activa despierta worker; QUEUED futuro/PROCESSING vencido mantienen procesamiento; si falta o cambia el cron de congelaciones conserva invocación previa; contrato, ACL/search_path y rollback conservados. Es una propuesta SQL, sin aplicación en servidores.

@@ -1,5 +1,6 @@
 # Cambios · 2026-11-26
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 - Auditoría remota de sólo lectura en ambos proyectos, metadata y contadores preservados.
 - Inventario de repositorio main/pruebas y repositorio histórico; rama optimization/supabase-20261126 desde 347dbcbc95613816c7edd7c806a1884f63b975f4.
 - Documentación y snapshots agregados sin datos de clientes, credenciales ni plantillas.

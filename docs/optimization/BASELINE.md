@@ -1,5 +1,6 @@
 # Línea base · 2026-11-26
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 Captura BD 16:17:18–16:17:21 UTC, sin reset. Logs: 2026-11-25 16:00:00 a 2026-11-26 16:00:00 UTC. No sumar edge_logs con function_edge_logs como si fueran usuarios: son capas y tráfico interno entre servicios.
 
 | Métrica | Comercial | ZTATTUZ |

@@ -1,5 +1,6 @@
 # Auditoría Atlantic · 2026-11-26
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 Fase A de solo lectura completada para las fuentes accesibles. Auditoría integral aún abierta: Egress facturable, CPU/RAM, instalaciones y hardware requieren evidencia adicional. No hubo escrituras en Supabase, borrado, reinicio, despliegue ni reset de estadísticas. No se consultaron plantillas, secretos Vault ni datos personales. Capturas agregadas en `evidence/`.
 
 ## Correspondencia comprobada

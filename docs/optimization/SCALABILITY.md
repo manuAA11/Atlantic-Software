@@ -1,5 +1,6 @@
 # Modelo de crecimiento (no capacidad garantizada)
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 Supuestos ilustrativos: usuarios móviles activos mensuales totales U; 20 días/mes, dos sesiones/día, seis lecturas/sesión, 8.000 bytes comprimidos/lectura sin cache; optimizado cuatro lecturas/sesión de 5.000 bytes. No son tamaños medidos de producción. Son datos autenticados uncached. Base = U×20×2×6×8.000; alternativa = U×20×2×4×5.000, reducción hipotética 58,3% de este componente exclusivamente.
 
 | U totales | Lecturas base/mes | GB base | GB alternativa |

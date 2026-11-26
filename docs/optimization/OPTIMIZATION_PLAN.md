@@ -1,5 +1,6 @@
 # Plan priorizado y registro de decisiones
 
+**Estado actualizado:** la PWA B1 se publicó y verificó; SQL C1 y cambios críticos no desplegados. Ver [RELEASE_STATUS.md](RELEASE_STATUS.md) para fuente, versión, pruebas, reversión y revisiones posteriores.
 No desplegado. La reducción global de Egress 40–70% es un objetivo condicionado; actualmente no demostrada.
 
 Continuación: autorización de envío recibida, PR #2 publicado y validación de B1 aprobada en GitHub. C1 ahora dispone de SQL propuesto y rollback en proposals/, con cinco pruebas de comportamiento PGlite. Usuario confirmó que no tiene respaldo; SQL productivo y cambios críticos permanecen bloqueados. La propuesta conservadora no cambia intervalos ni reduce revalidaciones de acceso: con cualquier feature/regla activa o mensaje QUEUED/PROCESSING invoca el worker original. No requiere ni introduce clientes/API nuevos.
