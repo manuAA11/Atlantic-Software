@@ -1,0 +1,69 @@
+{
+  "functions": [
+    {
+      "id": "2ace26d9-0a8b-4f2c-af80-afac7a5ef32a",
+      "slug": "atlantic-league-member-access",
+      "name": "atlantic-league-member-access",
+      "status": "ACTIVE",
+      "version": 3,
+      "created_at": 1795132197884,
+      "updated_at": 1795283574951,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_srmquhwpawgipncmvfjf_2ace26d9-0a8b-4f2c-af80-afac7a5ef32a_3/source/backend/supabase/functions/atlantic-league-member-access/index.ts",
+      "ezbr_sha256": "bdffc9125baec903315c7f8879a32d609bce48fd37985013a2db3e0932ad8020"
+    },
+    {
+      "id": "2e324188-722a-4a32-82ff-7e7a0bcd8460",
+      "slug": "atlantic-league",
+      "name": "atlantic-league",
+      "status": "ACTIVE",
+      "version": 2,
+      "created_at": 1792802280103,
+      "updated_at": 1793566138708,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_srmquhwpawgipncmvfjf_2e324188-722a-4a32-82ff-7e7a0bcd8460_2/source/league/backend/supabase/functions/atlantic-league/index.ts",
+      "ezbr_sha256": "d308804aa96ee6581d5fb7db088ad599f76f717f1effba45151c662c5802047a"
+    },
+    {
+      "id": "bde327a1-7968-470c-a3fd-99906bae05d2",
+      "slug": "marketing",
+      "name": "marketing",
+      "status": "ACTIVE",
+      "version": 2,
+      "created_at": 1791460382141,
+      "updated_at": 1791484176699,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_srmquhwpawgipncmvfjf_bde327a1-7968-470c-a3fd-99906bae05d2_2/source/index.ts",
+      "ezbr_sha256": "34c5a3058a3ec9c4311209212e24da8f961ae66df204caac1c33993dfe9883c9"
+    },
+    {
+      "id": "06326e09-8127-43dc-8430-5716959f8ac8",
+      "slug": "atlantic-league-members",
+      "name": "atlantic-league-members",
+      "status": "ACTIVE",
+      "version": 2,
+      "created_at": 1795132195409,
+      "updated_at": 1795283581891,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_srmquhwpawgipncmvfjf_06326e09-8127-43dc-8430-5716959f8ac8_2/source/backend/supabase/functions/atlantic-league-members/index.ts",
+      "ezbr_sha256": "2d0fb67ef3b7e4c93f489dc2a956e3b159f49d35e0db9786d41bc092236e4178"
+    },
+    {
+      "id": "c0363a81-d391-4ebf-86c7-53b2b1a51be8",
+      "slug": "atlantic-league-member-jobs",
+      "name": "atlantic-league-member-jobs",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1795132199623,
+      "updated_at": 1795132199623,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_srmquhwpawgipncmvfjf_c0363a81-d391-4ebf-86c7-53b2b1a51be8_1/source/league/backend/supabase/functions/atlantic-league-member-jobs/index.ts",
+      "ezbr_sha256": "f395d2261b2280a931da606c7872fbd3760b5edcf26b9f3c48b8c60c4460e8c9"
+    }
+  ]
+}

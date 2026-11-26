@@ -1,5 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import {secureStorage} from './storage';
+import {createReadFlights} from './read-flight';
 const env=import.meta.env;
 function secureUrl(value:string|undefined){try{const u=new URL(value||'');return u.protocol==='https:'&&!u.username&&!u.password?u.href:null;}catch{return null;}}
 const url=secureUrl(env.VITE_SUPABASE_URL),key=env.VITE_SUPABASE_PUBLISHABLE_KEY||'';
@@ -9,6 +10,8 @@ export const accessEndpoint=secureUrl(env.VITE_MEMBER_ACCESS_ENDPOINT);
 export const accessGym=env.VITE_MEMBER_GYM_ID||'';
 export const routinesUrl=secureUrl(env.VITE_ROUTINES_URL);
 export const supabase=url&&key.startsWith('sb_publishable_')?createClient(url,key,{auth:{storage:secureStorage,storageKey:'atlantic-league-auth',flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
+const readFlights=createReadFlights();
+supabase?.auth.onAuthStateChange(()=>readFlights.clear());
 export async function signInMember(document:string,password:string){
  if(!supabase||!accessEndpoint||!accessGym)throw Error('El acceso del gimnasio todavía no está habilitado.');
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
@@ -25,6 +28,8 @@ export async function call<T>(action:string,data:Record<string,unknown>={},membe
  if(!navigator.onLine)throw Error('Sin conexión. Conéctate para consultar o confirmar cambios.');
  const {data:auth,error}=await supabase.auth.getSession();
  if(error||!auth.session)throw Error('Tu sesión necesita renovarse. Vuelve a entrar.');
+ // Token scopes include user, session and current claims. They stay in memory only.
+ return readFlights.run(JSON.stringify([endpoint,auth.session.access_token]),action,data,async()=>{
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
  try{
   const response=await fetch(endpoint,{method:'POST',cache:'no-store',headers:{'Content-Type':'application/json',Authorization:'Bearer '+auth.session.access_token},body:JSON.stringify({audience:'athlete',action,data}),signal:controller.signal});
@@ -33,4 +38,5 @@ export async function call<T>(action:string,data:Record<string,unknown>={},membe
   return body.data as T;
  }catch(error){if(error instanceof DOMException&&error.name==='AbortError')throw Error('La respuesta tardó demasiado. Actualiza para comprobar el resultado.');throw error;}
  finally{clearTimeout(timeout);}
+ });
 }
