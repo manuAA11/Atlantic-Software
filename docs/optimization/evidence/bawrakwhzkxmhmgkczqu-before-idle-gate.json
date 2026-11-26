@@ -1,0 +1,53 @@
+{
+  "acl": [
+    "postgres=X/postgres"
+  ],
+  "cron": [
+    {
+      "jobid": 1,
+      "active": true,
+      "command": "select private.marketing_cron_tick()",
+      "jobname": "gymsoft-marketing-minute",
+      "database": "postgres",
+      "schedule": "* * * * *",
+      "username": "postgres"
+    },
+    {
+      "jobid": 2,
+      "active": true,
+      "command": "select private.freeze_complete_due()",
+      "jobname": "gymsoft-freeze-completion",
+      "database": "postgres",
+      "schedule": "* * * * *",
+      "username": "postgres"
+    }
+  ],
+  "hash": "94a0b9b659ec24a92de06679be30792e",
+  "owner": "postgres",
+  "function": "CREATE OR REPLACE FUNCTION private.marketing_cron_tick()\n RETURNS bigint\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare endpoint text;token text;request_id bigint;begin\n select project_url into endpoint from private.marketing_scheduler_config where singleton;\n if endpoint is null then return null;end if;\n select v.decrypted_secret into token from vault.decrypted_secrets v\n join private.marketing_platform p on p.scheduler_secret_id=v.id where p.singleton;\n if token is null then raise exception 'Scheduler no configurado.';end if;\n select net.http_post(url:=endpoint||'/functions/v1/marketing/jobs',\n headers:=jsonb_build_object('Content-Type','application/json','x-marketing-scheduler',token),\n body:='{}'::jsonb,timeout_milliseconds:=55000) into request_id;\n update private.marketing_scheduler_config set last_requested_at=clock_timestamp(),last_request_id=request_id where singleton;\n return request_id;\nend$function$\n",
+  "settings": [
+    "search_path=\"\""
+  ],
+  "captured_at": "2026-11-26T16:51:23.914617+00:00",
+  "custom_schemas": [
+    "league_directory_private",
+    "extensions",
+    "vault",
+    "graphql_public",
+    "graphql",
+    "auth",
+    "storage",
+    "supabase_migrations",
+    "public",
+    "cron",
+    "net",
+    "realtime",
+    "private"
+  ],
+  "critical_counts": {
+    "clients": 5,
+    "freezes": 1,
+    "memberships": 8
+  },
+  "security_definer": true
+}
