@@ -24,7 +24,7 @@ REFS = ('bawrakwhzkxmhmgkczqu', 'srmquhwpawgipncmvfjf')
 MAGIC = b'ATLANTIC-BACKUP-v1\0'
 ROOT = Path(os.environ.get('RUNNER_TEMP', '/tmp')) / 'atlantic-backup'
 OUTPUT = ROOT / 'output'
-IMAGE = 'postgres:17'
+IMAGE = 'public.ecr.aws/docker/library/postgres:17'
 RESTORE_IMAGE = 'public.ecr.aws/supabase/postgres:17.12.0.002'
 RECOVERY_KEY = None
 
@@ -182,14 +182,16 @@ def rehearse(ref, dump, meta):
 def backup():
     global RECOVERY_KEY
     os.umask(0o077)
-    run(['docker','pull',IMAGE],timeout=240)
     payload=receive()
     key=base64.b64decode(payload['encryption_key'])
     RECOVERY_KEY=key
+    print('Encrypted handoff accepted; preparing PostgreSQL client.',flush=True)
+    run(['docker','pull',IMAGE],timeout=240)
     reports=[]
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         tasks=[pool.submit(archive,ref,payload['projects'][ref],key) for ref in REFS]
         backups=[task.result() for task in tasks]
+    print('Both encrypted exports completed; preparing isolated restore.',flush=True)
     # Credentials are no longer used; only authenticated ciphertext goes to artifacts.
     payload=None
     for path in ROOT.glob('*/pgpass'):path.unlink(missing_ok=True)
