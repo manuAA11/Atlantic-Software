@@ -151,12 +151,13 @@ def archive(ref, config, encryption_key):
         private_stderr.close()
 
 
-def rehearse(ref, dump, meta):
+def rehearse(ref, dump, meta, roles):
     name='atlantic-restore-'+ref
     password=secrets.token_hex(32)
     run(['docker','run','-d','--name',name,'--network','none','--env','POSTGRES_PASSWORD='+password,
          '--env','POSTGRES_USER=supabase_admin','--env','POSTGRES_DB=postgres',RESTORE_IMAGE,
-         'postgres','-c','cron.launch_active_jobs=off','-c','pg_net.worker_enabled=false'])
+         'postgres','-c','shared_preload_libraries=pg_stat_statements,pg_cron,pg_net',
+         '-c','cron.database_name=postgres','-c','cron.launch_active_jobs=off','-c','pg_net.worker_enabled=false'])
     try:
         admin=None
         for _ in range(60):
@@ -167,16 +168,21 @@ def rehearse(ref, dump, meta):
             if admin:break
             time.sleep(2)
         if not admin:raise RuntimeError('Isolated restore database unavailable')
-        # Restore to isolated infrastructure. Original ownership/ACL stay in the archive.
-        # Suppressing them only in rehearsal permits matching different local reserved-role bootstrap.
+        # Recreate missing role identities only inside the disconnected rehearsal.
+        # Existing platform bootstrap roles are never modified.
+        for role in roles:
+            role_name=role['rolname'];ident='"'+role_name.replace('"','""')+'"';literal="'"+role_name.replace("'","''")+"'"
+            sql='DO $role$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='+literal+') THEN CREATE ROLE '+ident+' NOLOGIN; END IF; END $role$;'
+            run(['docker','exec',name,'psql','-X','-v','ON_ERROR_STOP=1','-U',admin,'-d','postgres','-c',sql])
+        # Replay original object ownership and ACL, not just the row contents.
         run(['docker','exec','-i',name,'pg_restore','-U',admin,'-d','postgres','--clean','--if-exists',
-             '--no-owner','--no-privileges','--exit-on-error'],data=dump,timeout=360)
+             '--exit-on-error'],data=dump,timeout=360)
         for table,expected in meta['counts'].items():
             restored=int(run(['docker','exec',name,'psql','-X','-qAt','-U',admin,'-d','postgres','-c',
                               'SELECT count(*) FROM '+table]).strip())
             if restored!=expected:raise RuntimeError('Restored row count mismatch (table details withheld)')
         return {'restored_tables_checked':len(meta['counts']),'row_counts_match':True,
-                'restore_scope':'All archived tables restored; source ACL/owner preserved in archive but not replayed in this isolated rehearsal. Vault depends on original project keys; no platform service authentication/hardware acceptance claimed.'}
+                'restore_scope':'All archived tables, original object owners and ACL replayed. Vault depends on original project keys; no platform service authentication/hardware acceptance claimed.'}
     finally:
         subprocess.run(['docker','rm','-f',name],capture_output=True)
 
@@ -188,18 +194,35 @@ def backup():
     key=base64.b64decode(payload['encryption_key'])
     RECOVERY_KEY=key
     print('Encrypted handoff accepted; preparing PostgreSQL client.',flush=True)
-    run(['docker','pull',IMAGE],timeout=240)
     reports=[]
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
-        tasks=[pool.submit(archive,ref,payload['projects'][ref],key) for ref in REFS]
-        backups=[task.result() for task in tasks]
+    if payload.get('reuse_run_id'):
+        runid=str(payload['reuse_run_id'])
+        if not runid.isdigit():raise RuntimeError('Invalid encrypted archive source')
+        source=ROOT/'reused';source.mkdir(mode=0o700,exist_ok=True)
+        run(['gh','run','download',runid,'--repo',os.environ['GITHUB_REPOSITORY'],
+             '--name','atlantic-encrypted-backups','--dir',str(source)])
+        backups=[]
+        for ref in REFS:
+            encrypted=(source/(ref+'.atlbak')).read_bytes()
+            plain=AESGCM(key).decrypt(encrypted[len(MAGIC):len(MAGIC)+12],encrypted[len(MAGIC)+12:],MAGIC)
+            with zipfile.ZipFile(io.BytesIO(plain)) as z:
+                dump=z.read('database.dump');meta=json.loads(z.read('manifest.json'))
+            if meta['project']!=ref or hashlib.sha256(dump).hexdigest()!=meta['dump_sha256']:raise RuntimeError('Archive scope/integrity mismatch')
+            (OUTPUT/(ref+'.atlbak')).write_bytes(encrypted)
+            backups.append((ref,dump,meta,hashlib.sha256(encrypted).hexdigest()))
+    else:
+        run(['docker','pull',IMAGE],timeout=240)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+            tasks=[pool.submit(archive,ref,payload['projects'][ref],key) for ref in REFS]
+            backups=[task.result() for task in tasks]
     print('Both encrypted exports completed; preparing isolated restore.',flush=True)
     # Credentials are no longer used; only authenticated ciphertext goes to artifacts.
+    restore_roles=payload['restore_roles']
     payload=None
     for path in ROOT.glob('*/pgpass'):path.unlink(missing_ok=True)
     run(['docker','pull',RESTORE_IMAGE],timeout=360)
     for ref,dump,meta,encrypted_sha in backups:
-        check=rehearse(ref,dump,meta)
+        check=rehearse(ref,dump,meta,restore_roles[ref])
         reports.append({'project':ref,'ciphertext_sha256':encrypted_sha,'dump_bytes':len(dump),**check})
     (OUTPUT/'verification.json').write_text(json.dumps({'success':True,'projects':reports},indent=2))
     print('Encrypted exports and isolated restore rehearsals completed. No production writes performed.')
