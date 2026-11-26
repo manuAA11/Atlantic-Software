@@ -1,0 +1,3123 @@
+{
+  "detail": [
+    {
+      "snapshot": {
+        "top": [
+          {
+            "rows": 290378,
+            "calls": 290378,
+            "query": "select set_config('search_path', $1, true), set_config('role', $2, true), set_config('request.jwt.claims', $3, true), set_config('request.method', $4, true), set_config('request.path', $5, true), set_config('request.headers', $6, true), set_config('request.cookies', $7, true)",
+            "queryid": -7821780334453251000,
+            "mean_exec_time": 0.0950862719799694,
+            "total_exec_time": 27610.9614850001
+          },
+          {
+            "rows": 70078,
+            "calls": 174233,
+            "query": "WITH        rows AS (          SELECT ctid          FROM net._http_response          WHERE created < now() - $1          ORDER BY created          LIMIT $2        )        DELETE FROM net._http_response r        USING rows WHERE r.ctid = rows.ctid",
+            "queryid": -4445749616292720600,
+            "mean_exec_time": 0.409313038431297,
+            "total_exec_time": 71315.8386250004
+          },
+          {
+            "rows": 70438,
+            "calls": 174233,
+            "query": "WITH        rows AS (          SELECT id          FROM net.http_request_queue          ORDER BY id          LIMIT $1        )        DELETE FROM net.http_request_queue q        USING rows WHERE q.id = rows.id        RETURNING q.id, q.method, q.url, timeout_milliseconds, array(select key || $2 || value from jsonb_each_text(q.headers)), q.body",
+            "queryid": -7811607600834223000,
+            "mean_exec_time": 0.302353959381972,
+            "total_exec_time": 52680.037405
+          },
+          {
+            "rows": 140876,
+            "calls": 140876,
+            "query": "update cron.job_run_details set job_pid = $1, status = $2 where runid = $3",
+            "queryid": 165014983134160500,
+            "mean_exec_time": 0.0696417779820561,
+            "total_exec_time": 9810.85511500001
+          },
+          {
+            "rows": 140876,
+            "calls": 140876,
+            "query": "insert into cron.job_run_details (jobid, runid, database, username, command, status) values ($1,$2,$3,$4,$5,$6)",
+            "queryid": -8859115823603073000,
+            "mean_exec_time": 0.732840297055571,
+            "total_exec_time": 103239.609688002
+          },
+          {
+            "rows": 140876,
+            "calls": 140876,
+            "query": "update cron.job_run_details set status = $1, start_time = $2 where runid = $3",
+            "queryid": 1044193785984410000,
+            "mean_exec_time": 0.080511289197592,
+            "total_exec_time": 11342.108377
+          },
+          {
+            "rows": 140876,
+            "calls": 140876,
+            "query": "update cron.job_run_details set status = $1 where runid = $2",
+            "queryid": 4882804089568846000,
+            "mean_exec_time": 0.111889702284279,
+            "total_exec_time": 15762.5736989999
+          },
+          {
+            "rows": 140875,
+            "calls": 140875,
+            "query": "update cron.job_run_details set status = $1, return_message = $2, end_time = $3 where runid = $4",
+            "queryid": 4784508224241035000,
+            "mean_exec_time": 0.0702670659023962,
+            "total_exec_time": 9898.87290900006
+          },
+          {
+            "rows": 0,
+            "calls": 140005,
+            "query": "SET client_encoding = 'UTF8'",
+            "queryid": -8390746607827765000,
+            "mean_exec_time": 0.0244899060033571,
+            "total_exec_time": 3428.70929000006
+          },
+          {
+            "rows": 0,
+            "calls": 140005,
+            "query": "SET client_min_messages TO WARNING",
+            "queryid": 5947864457175217000,
+            "mean_exec_time": 0.0194770259347881,
+            "total_exec_time": 2726.88101600014
+          },
+          {
+            "rows": 0,
+            "calls": 139893,
+            "query": "BEGIN ISOLATION LEVEL READ COMMITTED READ WRITE",
+            "queryid": -499908250909300900,
+            "mean_exec_time": 0.0477173904984526,
+            "total_exec_time": 6675.32890899997
+          },
+          {
+            "rows": 0,
+            "calls": 139562,
+            "query": "COMMIT",
+            "queryid": -2835399305386019000,
+            "mean_exec_time": 0.00131346632321119,
+            "total_exec_time": 183.309986999994
+          },
+          {
+            "rows": 70438,
+            "calls": 70438,
+            "query": "insert into net._http_response(id, status_code, content, headers, content_type, timed_out, error_msg) values ($1, $2, $3, $4, $5, $6, $7)",
+            "queryid": -6636775045688054000,
+            "mean_exec_time": 0.499070846829836,
+            "total_exec_time": 35153.5523089998
+          },
+          {
+            "rows": 70436,
+            "calls": 70436,
+            "query": "select private.freeze_complete_due()",
+            "queryid": -7877648832455424000,
+            "mean_exec_time": 5.79451773942306,
+            "total_exec_time": 408142.651494005
+          },
+          {
+            "rows": 70436,
+            "calls": 70436,
+            "query": "select private.marketing_cron_tick()",
+            "queryid": 5327660276730710000,
+            "mean_exec_time": 14.6578668378102,
+            "total_exec_time": 1032441.50858801
+          },
+          {
+            "rows": 70413,
+            "calls": 70413,
+            "query": "WITH pgrst_source AS (SELECT pgrst_call.pgrst_scalar FROM (SELECT $1 AS json_data) pgrst_payload, LATERAL (SELECT \"p_token\" FROM json_to_record(pgrst_payload.json_data) AS _(\"p_token\" text) LIMIT $4) pgrst_body , LATERAL (SELECT \"public\".\"marketing_service_scheduler_authorized\"(\"p_token\" := pgrst_body.\"p_token\") pgrst_scalar) pgrst_call) SELECT $5::bigint AS total_result_set, $6 AS page_total, coalesce(json_agg(_postgrest_t.pgrst_scalar)->$7, $8) AS body, nullif(current_setting($9, $10), $11) AS response_headers, nullif(current_setting($12, $13), $14) AS response_status, $15 AS response_inserted FROM (SELECT \"marketing_service_scheduler_authorized\".* FROM \"pgrst_source\" AS \"marketing_service_scheduler_authorized\"   LIMIT $2 OFFSET $3) _postgrest_t",
+            "queryid": -1620665697060918000,
+            "mean_exec_time": 3.19951297915156,
+            "total_exec_time": 225287.307400997
+          },
+          {
+            "rows": 70410,
+            "calls": 70410,
+            "query": "WITH pgrst_source AS (SELECT pgrst_call.pgrst_scalar FROM (SELECT \"public\".\"membership_service_complete_freezes\"() pgrst_scalar) pgrst_call) SELECT $3::bigint AS total_result_set, $4 AS page_total, coalesce(json_agg(_postgrest_t.pgrst_scalar)->$5, $6) AS body, nullif(current_setting($7, $8), $9) AS response_headers, nullif(current_setting($10, $11), $12) AS response_status, $13 AS response_inserted FROM (SELECT \"membership_service_complete_freezes\".* FROM \"pgrst_source\" AS \"membership_service_complete_freezes\"   LIMIT $1 OFFSET $2) _postgrest_t",
+            "queryid": 7388744659275282000,
+            "mean_exec_time": 2.4925285573782,
+            "total_exec_time": 175498.935725002
+          },
+          {
+            "rows": 70409,
+            "calls": 70409,
+            "query": "WITH pgrst_source AS (SELECT pgrst_call.pgrst_scalar FROM (SELECT $1 AS json_data) pgrst_payload, LATERAL (SELECT \"p_limit\" FROM json_to_record(pgrst_payload.json_data) AS _(\"p_limit\" integer) LIMIT $4) pgrst_body , LATERAL (SELECT \"public\".\"marketing_service_claim\"(\"p_limit\" := pgrst_body.\"p_limit\") pgrst_scalar) pgrst_call) SELECT $5::bigint AS total_result_set, $6 AS page_total, coalesce(json_agg(_postgrest_t.pgrst_scalar)->$7, $8) AS body, nullif(current_setting($9, $10), $11) AS response_headers, nullif(current_setting($12, $13), $14) AS response_status, $15 AS response_inserted FROM (SELECT \"marketing_service_claim\".* FROM \"pgrst_source\" AS \"marketing_service_claim\"   LIMIT $2 OFFSET $3) _postgrest_t",
+            "queryid": -2516381234604367400,
+            "mean_exec_time": 4.22291882148589,
+            "total_exec_time": 297331.491302002
+          }
+        ],
+        "jobs": [
+          {
+            "jobid": 1,
+            "active": true,
+            "command": "select private.marketing_cron_tick()",
+            "jobname": "gymsoft-marketing-minute",
+            "schedule": "* * * * *"
+          },
+          {
+            "jobid": 2,
+            "active": true,
+            "command": "select private.freeze_complete_due()",
+            "jobname": "gymsoft-freeze-completion",
+            "schedule": "* * * * *"
+          }
+        ],
+        "bytes": 44608659,
+        "start": "2026-10-03T03:53:53.260867+00:00",
+        "capture": "2026-11-26T16:17:18.145411+00:00",
+        "dbstats": {
+          "deadlocks": 0,
+          "numbackends": 9,
+          "stats_reset": null
+        },
+        "functions": [
+          {
+            "args": "p_gym_id uuid, p_client_id bigint",
+            "nspname": "private",
+            "proname": "membership_snapshot_before_freezes"
+          },
+          {
+            "args": "p_gym_id uuid, p_action text, p_client_id bigint, p_template text, p_expected uuid",
+            "nspname": "private",
+            "proname": "gym_fingerprints"
+          },
+          {
+            "args": "p_gym_id uuid, p_action text, p_client_id bigint, p_template text, p_expected uuid",
+            "nspname": "public",
+            "proname": "gym_fingerprints"
+          },
+          {
+            "args": "p_gym_id uuid",
+            "nspname": "private",
+            "proname": "ticket_backup_before_freezes"
+          },
+          {
+            "args": "p_gym_id uuid, p_plan_id bigint",
+            "nspname": "public",
+            "proname": "membership_freeze_policy"
+          },
+          {
+            "args": "p_gym_id uuid, p_enabled boolean, p_duration_days integer, p_max_per_membership integer, p_plan_id bigint",
+            "nspname": "public",
+            "proname": "membership_save_freeze_policy"
+          },
+          {
+            "args": "p_gym_id uuid, p_client_id bigint",
+            "nspname": "public",
+            "proname": "membership_freeze_info"
+          },
+          {
+            "args": "p_gym_id uuid, p_freeze_id uuid, p_kind text, p_reason text",
+            "nspname": "private",
+            "proname": "freeze_close"
+          },
+          {
+            "args": "p_token text",
+            "nspname": "public",
+            "proname": "marketing_service_scheduler_authorized"
+          },
+          {
+            "args": "p_gym_id uuid, p_plan_id bigint",
+            "nspname": "private",
+            "proname": "freeze_policy"
+          },
+          {
+            "args": "",
+            "nspname": "private",
+            "proname": "freeze_checkin_guard"
+          },
+          {
+            "args": "",
+            "nspname": "private",
+            "proname": "freeze_checkin_audit"
+          },
+          {
+            "args": "",
+            "nspname": "public",
+            "proname": "membership_service_complete_freezes"
+          },
+          {
+            "args": "p_gym_id uuid, p_client_id bigint",
+            "nspname": "private",
+            "proname": "freeze_complete_due"
+          },
+          {
+            "args": "p_gym_id uuid, p_membership_id bigint, p_request_id uuid, p_reason text, p_override boolean",
+            "nspname": "public",
+            "proname": "membership_freeze"
+          },
+          {
+            "args": "p_gym_id uuid, p_freeze_id uuid, p_reason text",
+            "nspname": "public",
+            "proname": "membership_cancel_freeze"
+          },
+          {
+            "args": "",
+            "nspname": "private",
+            "proname": "owner_list_gyms_before_freezes"
+          },
+          {
+            "args": "",
+            "nspname": "private",
+            "proname": "restore_freeze_archive"
+          },
+          {
+            "args": "p_project_url text",
+            "nspname": "public",
+            "proname": "marketing_service_install_scheduler"
+          },
+          {
+            "args": "p_gym_id uuid, p_client_id bigint",
+            "nspname": "private",
+            "proname": "freeze_active"
+          },
+          {
+            "args": "p_freeze membership_freezes, p_at timestamp with time zone",
+            "nspname": "private",
+            "proname": "freeze_used_days"
+          },
+          {
+            "args": "p_freeze membership_freezes, p_at timestamp with time zone",
+            "nspname": "private",
+            "proname": "freeze_event_json"
+          },
+          {
+            "args": "p_gym_id uuid, p_client_id bigint",
+            "nspname": "private",
+            "proname": "freeze_invalidate_messages"
+          },
+          {
+            "args": "p_gym_id uuid, p_freeze_id uuid, p_expected_days integer, p_reason text",
+            "nspname": "public",
+            "proname": "membership_resume_freeze"
+          }
+        ],
+        "statement_reset": {
+          "dealloc": 0,
+          "stats_reset": "2026-10-03T03:53:31.868718+00:00"
+        }
+      }
+    }
+  ],
+  "baseline": [
+    {
+      "schemaname": "public",
+      "relname": "marketing_settings",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 140818,
+      "seq_tup_read": 140818,
+      "idx_scan": 16,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "marketing_messages",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 70417,
+      "seq_tup_read": 0,
+      "idx_scan": 16,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "clients",
+      "n_live_tup": 3,
+      "n_dead_tup": 2,
+      "seq_scan": 161,
+      "seq_tup_read": 757,
+      "idx_scan": 2,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "memberships",
+      "n_live_tup": 4,
+      "n_dead_tup": 8,
+      "seq_scan": 99,
+      "seq_tup_read": 653,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "ticket_daily_consumptions",
+      "n_live_tup": 3,
+      "n_dead_tup": 0,
+      "seq_scan": 67,
+      "seq_tup_read": 174,
+      "idx_scan": 3,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "gyms",
+      "n_live_tup": 1,
+      "n_dead_tup": 1,
+      "seq_scan": 30,
+      "seq_tup_read": 53,
+      "idx_scan": 18653,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "audit_logs",
+      "n_live_tup": 24,
+      "n_dead_tup": 3,
+      "seq_scan": 19,
+      "seq_tup_read": 629,
+      "idx_scan": 5,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "membership_freezes",
+      "n_live_tup": 1,
+      "n_dead_tup": 3,
+      "seq_scan": 14,
+      "seq_tup_read": 6,
+      "idx_scan": 140902,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "checkins",
+      "n_live_tup": 3,
+      "n_dead_tup": 0,
+      "seq_scan": 11,
+      "seq_tup_read": 104,
+      "idx_scan": 3,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "membership_freeze_policies",
+      "n_live_tup": 1,
+      "n_dead_tup": 1,
+      "seq_scan": 10,
+      "seq_tup_read": 7,
+      "idx_scan": 48,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "store_products",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 9,
+      "seq_tup_read": 13,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "payment_requests",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 8,
+      "seq_tup_read": 0,
+      "idx_scan": 4,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "store_orders",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 6,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "plans",
+      "n_live_tup": 1,
+      "n_dead_tup": 4,
+      "seq_scan": 6,
+      "seq_tup_read": 30,
+      "idx_scan": 84,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "store_sales",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 6,
+      "seq_tup_read": 0,
+      "idx_scan": 1,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "automation_runs",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 5,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "chatbot_link_requests",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 5,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "marketing_automations",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 4,
+      "seq_tup_read": 0,
+      "idx_scan": 8,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "payment_transactions",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 4,
+      "seq_tup_read": 0,
+      "idx_scan": 1,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "marketing_connections",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 3,
+      "seq_tup_read": 0,
+      "idx_scan": 70416,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "whatsapp_conversations",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 3,
+      "seq_tup_read": 0,
+      "idx_scan": 2,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "store_payments",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 2,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "whatsapp_templates",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 2,
+      "seq_tup_read": 0,
+      "idx_scan": 1,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "store_inventory_movements",
+      "n_live_tup": 1,
+      "n_dead_tup": 0,
+      "seq_scan": 2,
+      "seq_tup_read": 0,
+      "idx_scan": 1,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    },
+    {
+      "schemaname": "public",
+      "relname": "marketing_audit",
+      "n_live_tup": 0,
+      "n_dead_tup": 0,
+      "seq_scan": 2,
+      "seq_tup_read": 0,
+      "idx_scan": 0,
+      "last_autovacuum": null,
+      "last_autoanalyze": null
+    }
+  ],
+  "inventory": [
+    {
+      "inventory": {
+        "indexes": [
+          {
+            "indexdef": "CREATE UNIQUE INDEX clients_pkey ON public.clients USING btree (id)",
+            "indexname": "clients_pkey",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX clients_gym_id_document_key ON public.clients USING btree (gym_id, document)",
+            "indexname": "clients_gym_id_document_key",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX clients_gym_biometric_unique ON public.clients USING btree (gym_id, biometric_identifier) WHERE (biometric_identifier <> ''::text)",
+            "indexname": "clients_gym_biometric_unique",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE INDEX idx_clients_whatsapp_opt_in ON public.clients USING btree (gym_id, whatsapp_opt_in) WHERE (whatsapp_opt_in = true)",
+            "indexname": "idx_clients_whatsapp_opt_in",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX clients_gym_id_id_key ON public.clients USING btree (gym_id, id)",
+            "indexname": "clients_gym_id_id_key",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE INDEX clients_marketing_phone ON public.clients USING btree (gym_id, private.marketing_phone(phone))",
+            "indexname": "clients_marketing_phone",
+            "tablename": "clients"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX membership_freezes_pkey ON public.membership_freezes USING btree (id)",
+            "indexname": "membership_freezes_pkey",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX membership_freezes_gym_id_request_id_key ON public.membership_freezes USING btree (gym_id, request_id)",
+            "indexname": "membership_freezes_gym_id_request_id_key",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE INDEX freezes_member ON public.membership_freezes USING btree (gym_id, membership_id)",
+            "indexname": "freezes_member",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE INDEX freezes_client ON public.membership_freezes USING btree (gym_id, client_id, start_date, resume_date)",
+            "indexname": "freezes_client",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE INDEX freezes_due ON public.membership_freezes USING btree (ends_at) WHERE (status = ANY (ARRAY['ACTIVE'::text, 'SCHEDULED'::text]))",
+            "indexname": "freezes_due",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX freezes_one_live_client ON public.membership_freezes USING btree (gym_id, client_id) WHERE (status = ANY (ARRAY['ACTIVE'::text, 'SCHEDULED'::text]))",
+            "indexname": "freezes_one_live_client",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE INDEX membership_freezes_client_id_fkey_idx ON public.membership_freezes USING btree (client_id)",
+            "indexname": "membership_freezes_client_id_fkey_idx",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE INDEX membership_freezes_membership_id_fkey_idx ON public.membership_freezes USING btree (membership_id)",
+            "indexname": "membership_freezes_membership_id_fkey_idx",
+            "tablename": "membership_freezes"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX memberships_pkey ON public.memberships USING btree (id)",
+            "indexname": "memberships_pkey",
+            "tablename": "memberships"
+          },
+          {
+            "indexdef": "CREATE INDEX memberships_gym_id_client_id_end_date_idx ON public.memberships USING btree (gym_id, client_id, end_date DESC)",
+            "indexname": "memberships_gym_id_client_id_end_date_idx",
+            "tablename": "memberships"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX memberships_gym_id_id_key ON public.memberships USING btree (gym_id, id)",
+            "indexname": "memberships_gym_id_id_key",
+            "tablename": "memberships"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX membership_carryover_key ON public.memberships USING btree (gym_id, carryover_key) WHERE (carryover_key IS NOT NULL)",
+            "indexname": "membership_carryover_key",
+            "tablename": "memberships"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX internal_assignment_request ON public.memberships USING btree (gym_id, assignment_request_id) WHERE (assignment_request_id IS NOT NULL)",
+            "indexname": "internal_assignment_request",
+            "tablename": "memberships"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX ticket_daily_consumptions_pkey ON public.ticket_daily_consumptions USING btree (id)",
+            "indexname": "ticket_daily_consumptions_pkey",
+            "tablename": "ticket_daily_consumptions"
+          },
+          {
+            "indexdef": "CREATE UNIQUE INDEX ticket_daily_consumptions_gym_id_client_id_membership_id_lo_key ON public.ticket_daily_consumptions USING btree (gym_id, client_id, membership_id, local_date)",
+            "indexname": "ticket_daily_consumptions_gym_id_client_id_membership_id_lo_key",
+            "tablename": "ticket_daily_consumptions"
+          },
+          {
+            "indexdef": "CREATE INDEX daily_tickets_membership ON public.ticket_daily_consumptions USING btree (gym_id, membership_id)",
+            "indexname": "daily_tickets_membership",
+            "tablename": "ticket_daily_consumptions"
+          },
+          {
+            "indexdef": "CREATE INDEX daily_tickets_client ON public.ticket_daily_consumptions USING btree (client_id)",
+            "indexname": "daily_tickets_client",
+            "tablename": "ticket_daily_consumptions"
+          },
+          {
+            "indexdef": "CREATE INDEX daily_tickets_checkin ON public.ticket_daily_consumptions USING btree (checkin_id)",
+            "indexname": "daily_tickets_checkin",
+            "tablename": "ticket_daily_consumptions"
+          },
+          {
+            "indexdef": "CREATE INDEX ticket_daily_consumptions_membership_id_fkey_idx ON public.ticket_daily_consumptions USING btree (membership_id)",
+            "indexname": "ticket_daily_consumptions_membership_id_fkey_idx",
+            "tablename": "ticket_daily_consumptions"
+          }
+        ],
+        "storage": null,
+        "messages": [],
+        "realtime": [
+          {
+            "pubname": "supabase_realtime",
+            "tablename": "gym_events",
+            "schemaname": "public"
+          },
+          {
+            "pubname": "supabase_realtime",
+            "tablename": "marketing_settings",
+            "schemaname": "public"
+          },
+          {
+            "pubname": "supabase_realtime",
+            "tablename": "marketing_messages",
+            "schemaname": "public"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_13",
+            "schemaname": "realtime"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_14",
+            "schemaname": "realtime"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_15",
+            "schemaname": "realtime"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_16",
+            "schemaname": "realtime"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_17",
+            "schemaname": "realtime"
+          },
+          {
+            "pubname": "supabase_realtime_messages_publication",
+            "tablename": "messages_2026_10_18",
+            "schemaname": "realtime"
+          }
+        ],
+        "automations": 0
+      }
+    }
+  ],
+  "logs": {
+    "result": [
+      {
+        "events": 6339,
+        "source": "postgres_logs"
+      },
+      {
+        "events": 6183,
+        "source": "edge_logs"
+      },
+      {
+        "events": 1583,
+        "source": "function_logs"
+      },
+      {
+        "events": 1508,
+        "source": "function_edge_logs"
+      },
+      {
+        "events": 1351,
+        "source": "postgrest_logs"
+      },
+      {
+        "events": 72,
+        "source": "pgbouncer_logs"
+      },
+      {
+        "events": 21,
+        "source": "auth_logs"
+      }
+    ]
+  },
+  "traffic": {
+    "result": [
+      {
+        "declared_bytes": 2880,
+        "events": 1440,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/marketing_service_claim",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 1440
+      },
+      {
+        "declared_bytes": 1439,
+        "events": 1439,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/membership_service_complete_freezes",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 1439
+      },
+      {
+        "declared_bytes": 2876,
+        "events": 1438,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/marketing_service_jobs",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 1438
+      },
+      {
+        "declared_bytes": 5752,
+        "events": 1438,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/marketing_service_scheduler_authorized",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 1438
+      },
+      {
+        "declared_bytes": 63272,
+        "events": 1438,
+        "execution_p50_ms": 1488.5,
+        "execution_p95_ms": 3077.3,
+        "path": "/functions/v1/marketing/jobs",
+        "source": "function_edge_logs",
+        "status": "200",
+        "with_length": 1438
+      },
+      {
+        "declared_bytes": 0,
+        "events": 288,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/core_league_public_directory",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 0
+      },
+      {
+        "declared_bytes": 0,
+        "events": 70,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/core_client_snapshot",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 0
+      },
+      {
+        "declared_bytes": 351456,
+        "events": 70,
+        "execution_p50_ms": 826,
+        "execution_p95_ms": 1294.1,
+        "path": "/functions/v1/atlantic-core",
+        "source": "function_edge_logs",
+        "status": "200",
+        "with_length": 70
+      },
+      {
+        "declared_bytes": 0,
+        "events": 70,
+        "execution_p50_ms": 0,
+        "execution_p95_ms": 0,
+        "path": "/rest/v1/rpc/core_source_configuration",
+        "source": "edge_logs",
+        "status": "200",
+        "with_length": 0
+      }
+    ]
+  },
+  "errors": {
+    "result": []
+  },
+  "security": [
+    {
+      "name": "rls_enabled_no_policy",
+      "title": "RLS Enabled No Policy",
+      "level": "INFO",
+      "facing": "EXTERNAL",
+      "categories": [
+        "SECURITY"
+      ],
+      "description": "Detects cases where row level security (RLS) has been enabled on a table but no RLS policies have been created.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy",
+      "count": 35,
+      "findings": [
+        {
+          "detail": "Table \\`private.activation_invites\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "activation_invites",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.client_fingerprints\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "client_fingerprints",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.client_staff_notes\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "client_staff_notes",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_devices\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_devices",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_events\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_gyms\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_gyms",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_league_modules\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_league_modules",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_notification_reads\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_notification_reads",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_notifications\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_notifications",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_payments\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_payments",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_releases\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_releases",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_reminders\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_reminders",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_sources\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_sources",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.core_subscriptions\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "core_subscriptions",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.freeze_adjustment_context\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "freeze_adjustment_context",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.license_devices\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "license_devices",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.license_sessions\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "license_sessions",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_credentials\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_credentials",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_events\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_oauth_states\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_oauth_states",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_platform\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_platform",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_rate_limits\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_rate_limits",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_sandbox_clients\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_sandbox_clients",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_scheduler\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_scheduler",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_scheduler_config\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_scheduler_config",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.marketing_webhook_events\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "marketing_webhook_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.owner_events\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "owner_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.software_owners\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "software_owners",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.subscription_payments\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "subscription_payments",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.subscriptions\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "subscriptions",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`private.ticket_import_context\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "ticket_import_context",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`public.gym_store_settings\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "gym_store_settings",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`public.store_inventory_movements\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "store_inventory_movements",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`public.store_orders\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "store_orders",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Table \\`public.store_payments\\` has RLS enabled, but no policies exist",
+          "metadata": {
+            "name": "store_payments",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        }
+      ]
+    },
+    {
+      "name": "extension_in_public",
+      "title": "Extension in Public",
+      "level": "WARN",
+      "facing": "EXTERNAL",
+      "categories": [
+        "SECURITY"
+      ],
+      "description": "Detects extensions installed in the \\`public\\` schema.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0014_extension_in_public",
+      "count": 1,
+      "findings": [
+        {
+          "detail": "Extension \\`pg_net\\` is installed in the public schema. Move it to another schema.",
+          "metadata": {
+            "name": "pg_net",
+            "type": "extension",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        }
+      ]
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "title": "Signed-In Users Can Execute SECURITY DEFINER Function",
+      "level": "WARN",
+      "facing": "EXTERNAL",
+      "categories": [
+        "SECURITY"
+      ],
+      "description": "Detects `SECURITY DEFINER` functions that are callable by signed-in users. Revoke `EXECUTE`, switch the function to `SECURITY INVOKER`, or move it out of your exposed API schema if signed-in users should not call it.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable",
+      "count": 91,
+      "findings": [
+        {
+          "detail": "Function `public.add_membership_accumulating(p_gym_id uuid, p_client_id bigint, p_plan_id bigint, p_requested_start date, p_amount bigint, p_payment_method text, p_payment_reference text, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/add_membership_accumulating`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "add_membership_accumulating",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_plan_id bigint, p_requested_start date, p_amount bigint, p_payment_method text, p_payment_reference text, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_accounting_expenses(p_gym_id uuid, p_date_from date, p_date_to date)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_accounting_expenses`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_accounting_expenses",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_date_from date, p_date_to date",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_list_store_products(p_gym_id uuid, p_search text, p_include_inactive boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_list_store_products`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_list_store_products",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_search text, p_include_inactive boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_list_store_sales(p_gym_id uuid, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_list_store_sales`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_list_store_sales",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_replace_gym_from_excel(p_data jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_replace_gym_from_excel`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_replace_gym_from_excel",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_data jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_save_store_product(p_gym_id uuid, p_product_id bigint, p_name text, p_sku text, p_sale_price bigint, p_stock_quantity integer, p_low_stock_threshold integer, p_active boolean, p_image_data text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_save_store_product`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_save_store_product",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_product_id bigint, p_name text, p_sku text, p_sale_price bigint, p_stock_quantity integer, p_low_stock_threshold integer, p_active boolean, p_image_data text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_staff_clock(p_gym_id uuid, p_trainer_id bigint, p_action text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_staff_clock`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_staff_clock",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_trainer_id bigint, p_action text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_staff_dashboard(p_gym_id uuid, p_date_from date, p_date_to date)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_staff_dashboard`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_staff_dashboard",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_date_from date, p_date_to date",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.admin_store_finance(p_gym_id uuid, p_date_from date, p_date_to date)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/admin_store_finance`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "admin_store_finance",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_date_from date, p_date_to date",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.assign_internal_membership(p_gym_id uuid, p_client_id bigint, p_plan_id bigint, p_request_id uuid, p_start_date date, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/assign_internal_membership`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "assign_internal_membership",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_plan_id bigint, p_request_id uuid, p_start_date date, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.commercial_accept_invite(p_code text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/commercial_accept_invite`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "commercial_accept_invite",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_code text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.commercial_check_license(p_device_hash text, p_device_name text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/commercial_check_license`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "commercial_check_license",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_device_hash text, p_device_name text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.commercial_context()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/commercial_context`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "commercial_context",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.commercial_redeem_invite(p_code text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/commercial_redeem_invite`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "commercial_redeem_invite",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_code text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.core_owner(p_action text, p_data jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/core_owner`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "core_owner",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_action text, p_data jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.create_reception_invite()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/create_reception_invite`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "create_reception_invite",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.get_attendance_statistics(p_gym_id uuid, p_days integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/get_attendance_statistics`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "get_attendance_statistics",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_days integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.get_audit_logs(p_gym_id uuid, p_limit integer, p_action text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/get_audit_logs`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "get_audit_logs",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_limit integer, p_action text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.get_finance_dashboard(p_gym_id uuid, p_date_from date, p_date_to date)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/get_finance_dashboard`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "get_finance_dashboard",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_date_from date, p_date_to date",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gym_local_clock(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gym_local_clock`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gym_local_clock",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gymsoft_change_payment(p_gym_id uuid, p_membership_id bigint, p_expected_revision bigint, p_action text, p_reason text, p_amount bigint, p_payment_method text, p_payment_reference text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gymsoft_change_payment`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gymsoft_change_payment",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_membership_id bigint, p_expected_revision bigint, p_action text, p_reason text, p_amount bigint, p_payment_method text, p_payment_reference text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gymsoft_client_payments(p_gym_id uuid, p_client_id bigint, p_include_void boolean, p_offset integer, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gymsoft_client_payments`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gymsoft_client_payments",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_include_void boolean, p_offset integer, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gymsoft_now()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gymsoft_now`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gymsoft_now",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gymsoft_payment_history(p_gym_id uuid, p_membership_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gymsoft_payment_history`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gymsoft_payment_history",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_membership_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.gymsoft_today()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/gymsoft_today`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "gymsoft_today",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_access(p_gym_id uuid, p_reception boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_access`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_access",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_reception boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_activate_setup(p_gym_id uuid, p_rule_ids uuid[], p_chatbot boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_activate_setup`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_activate_setup",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_rule_ids uuid[], p_chatbot boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_automation_action(p_gym_id uuid, p_id uuid, p_action text, p_revision integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_automation_action`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_automation_action",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_id uuid, p_action text, p_revision integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_conversation_mode(p_gym_id uuid, p_id uuid, p_mode text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_conversation_mode`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_conversation_mode",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_id uuid, p_mode text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_create_test_client(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_create_test_client`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_create_test_client",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_disconnect(p_gym_id uuid, p_provider text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_disconnect`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_disconnect",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_provider text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_features(p_gym_id uuid, p_flags jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_features`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_features",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_flags jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_history(p_gym_id uuid, p_kind text, p_offset integer, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_history`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_history",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_kind text, p_offset integer, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_lookup_clients(p_gym_id uuid, p_search text, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_lookup_clients`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_lookup_clients",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_search text, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_reception_workspace(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_reception_workspace`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_reception_workspace",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_review_link(p_gym_id uuid, p_id uuid, p_client_id bigint, p_approved boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_review_link`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_review_link",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_id uuid, p_client_id bigint, p_approved boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_save_automation(p_gym_id uuid, p_data jsonb, p_id uuid, p_revision integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_save_automation`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_save_automation",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_data jsonb, p_id uuid, p_revision integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_save_template(p_gym_id uuid, p_data jsonb, p_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_save_template`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_save_template",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_data jsonb, p_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_set_consent(p_gym_id uuid, p_client_id bigint, p_enabled boolean, p_source text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_set_consent`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_set_consent",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_enabled boolean, p_source text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_summary(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_summary`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_summary",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.marketing_workspace(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/marketing_workspace`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "marketing_workspace",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_cancel_freeze(p_gym_id uuid, p_freeze_id uuid, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_cancel_freeze`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_cancel_freeze",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_freeze_id uuid, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_freeze(p_gym_id uuid, p_membership_id bigint, p_request_id uuid, p_reason text, p_override boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_freeze`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_freeze",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_membership_id bigint, p_request_id uuid, p_reason text, p_override boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_freeze_info(p_gym_id uuid, p_client_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_freeze_info`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_freeze_info",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_freeze_policy(p_gym_id uuid, p_plan_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_freeze_policy`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_freeze_policy",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_plan_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_population(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_population`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_population",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_resume_freeze(p_gym_id uuid, p_freeze_id uuid, p_expected_days integer, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_resume_freeze`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_resume_freeze",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_freeze_id uuid, p_expected_days integer, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_resume_preview(p_gym_id uuid, p_freeze_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_resume_preview`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_resume_preview",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_freeze_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.membership_save_freeze_policy(p_gym_id uuid, p_enabled boolean, p_duration_days integer, p_max_per_membership integer, p_plan_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/membership_save_freeze_policy`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "membership_save_freeze_policy",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_enabled boolean, p_duration_days integer, p_max_per_membership integer, p_plan_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_backup_gym(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_backup_gym`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_backup_gym",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_create_gym(p_name text, p_email text, p_monthly_price numeric, p_currency text, p_max_devices integer, p_trial_days integer, p_timezone text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_create_gym`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_create_gym",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_name text, p_email text, p_monthly_price numeric, p_currency text, p_max_devices integer, p_trial_days integer, p_timezone text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_grant_grace(p_gym_id uuid, p_days integer, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_grant_grace`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_grant_grace",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_days integer, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_gym_detail(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_gym_detail`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_gym_detail",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_invite_user(p_gym_id uuid, p_email text, p_role text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_invite_user`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_invite_user",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_email text, p_role text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_list_gyms()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_list_gyms`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_list_gyms",
+            "schema": "public",
+            "language": "sql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_marketing_status(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_marketing_status`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_marketing_status",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_renew(p_gym_id uuid, p_months integer, p_amount numeric, p_currency text, p_reference text, p_idempotency_key uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_renew`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_renew",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_months integer, p_amount numeric, p_currency text, p_reference text, p_idempotency_key uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_set_device(p_device_id uuid, p_blocked boolean, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_set_device`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_set_device",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_device_id uuid, p_blocked boolean, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_set_status(p_gym_id uuid, p_status text, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_set_status`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_set_status",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_status text, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_set_user(p_user_id uuid, p_enabled boolean, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_set_user`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_set_user",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_user_id uuid, p_enabled boolean, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.owner_update_contract(p_gym_id uuid, p_price numeric, p_currency text, p_max_devices integer, p_max_users integer, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/owner_update_contract`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "owner_update_contract",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_price numeric, p_currency text, p_max_devices integer, p_max_users integer, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_account_context()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_account_context`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_account_context",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_create_expense(p_gym_id uuid, p_expense_date date, p_category text, p_description text, p_vendor text, p_amount bigint, p_payment_method text, p_payment_reference text, p_receipt_reference text, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_create_expense`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_create_expense",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_expense_date date, p_category text, p_description text, p_vendor text, p_amount bigint, p_payment_method text, p_payment_reference text, p_receipt_reference text, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_find_client_by_biometric(p_gym_id uuid, p_biometric_identifier text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_find_client_by_biometric`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_find_client_by_biometric",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_biometric_identifier text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_list_checkins(p_gym_id uuid, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_list_checkins`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_list_checkins",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_list_clients(p_gym_id uuid, p_search text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_list_clients`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_list_clients",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_search text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_list_memberships(p_gym_id uuid, p_client_id bigint, p_limit integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_list_memberships`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_list_memberships",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_limit integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_list_store_products(p_gym_id uuid, p_search text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_list_store_products`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_list_store_products",
+            "schema": "public",
+            "language": "sql",
+            "arguments": "p_gym_id uuid, p_search text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_membership_snapshot(p_gym_id uuid, p_client_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_membership_snapshot`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_membership_snapshot",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_save_client(p_gym_id uuid, p_client_id bigint, p_document text, p_first_name text, p_last_name text, p_phone text, p_email text, p_birthdate date)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_save_client`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_save_client",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_document text, p_first_name text, p_last_name text, p_phone text, p_email text, p_birthdate date",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.reception_save_client(p_gym_id uuid, p_client_id bigint, p_document text, p_first_name text, p_last_name text, p_phone text, p_email text, p_birthdate date, p_biometric_identifier text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/reception_save_client`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "reception_save_client",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_document text, p_first_name text, p_last_name text, p_phone text, p_email text, p_birthdate date, p_biometric_identifier text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.redeem_reception_invite(p_code uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/redeem_reception_invite`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "redeem_reception_invite",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_code uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.register_store_sale(p_gym_id uuid, p_product_id bigint, p_quantity integer, p_payment_method text, p_payment_reference text, p_customer_name text, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/register_store_sale`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "register_store_sale",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_product_id bigint, p_quantity integer, p_payment_method text, p_payment_reference text, p_customer_name text, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.save_membership_plan(p_gym_id uuid, p_data jsonb, p_plan_id bigint, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/save_membership_plan`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "save_membership_plan",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_data jsonb, p_plan_id bigint, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.save_staff_client_note(p_gym_id uuid, p_client_id bigint, p_note text, p_expected_revision bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/save_staff_client_note`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "save_staff_client_note",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint, p_note text, p_expected_revision bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.set_internal_membership_active(p_gym_id uuid, p_membership_id bigint, p_active boolean, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/set_internal_membership_active`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "set_internal_membership_active",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_membership_id bigint, p_active boolean, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.staff_client_notes(p_gym_id uuid, p_client_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/staff_client_notes`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "staff_client_notes",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_client_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_backup(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_backup`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_backup",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_backup_settings(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_backup_settings`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_backup_settings",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_backup_table(p_gym_id uuid, p_table text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_backup_table`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_backup_table",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_table text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_checkout(p_gym_id uuid, p_request_id uuid, p_items jsonb, p_payment jsonb, p_client_id bigint, p_customer_name text, p_notes text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_checkout`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_checkout",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_request_id uuid, p_items jsonb, p_payment jsonb, p_client_id bigint, p_customer_name text, p_notes text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_configure(p_gym_id uuid, p_enabled boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_configure`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_configure",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_enabled boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_history(p_gym_id uuid, p_filters jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_history`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_history",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_filters jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_inventory(p_gym_id uuid, p_request_id uuid, p_product_id bigint, p_mode text, p_quantity integer, p_reason text, p_unit_cost bigint, p_expected_stock integer)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_inventory`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_inventory",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_request_id uuid, p_product_id bigint, p_mode text, p_quantity integer, p_reason text, p_unit_cost bigint, p_expected_stock integer",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_movements(p_gym_id uuid, p_product_id bigint)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_movements`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_movements",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_product_id bigint",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_products(p_gym_id uuid, p_search text, p_include_inactive boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_products`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_products",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_search text, p_include_inactive boolean",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_save_product(p_gym_id uuid, p_product_id bigint, p_data jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_save_product`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_save_product",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_product_id bigint, p_data jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_settings(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_settings`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_settings",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_stats(p_gym_id uuid, p_filters jsonb)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_stats`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_stats",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_filters jsonb",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.store_pos_void(p_gym_id uuid, p_order_id uuid, p_reason text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/store_pos_void`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "store_pos_void",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid, p_order_id uuid, p_reason text",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        },
+        {
+          "detail": "Function `public.ticket_backup_memberships(p_gym_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/ticket_backup_memberships`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+          "metadata": {
+            "name": "ticket_backup_memberships",
+            "schema": "public",
+            "language": "plpgsql",
+            "arguments": "p_gym_id uuid",
+            "security_definer": true
+          },
+          "observed_at": "2026-11-26T16:16:23.723Z"
+        }
+      ]
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "title": "Leaked Password Protection Disabled",
+      "level": "WARN",
+      "facing": "EXTERNAL",
+      "categories": [
+        "SECURITY"
+      ],
+      "description": "Leaked password protection is currently disabled.",
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection",
+      "count": 1,
+      "findings": [
+        {
+          "detail": "Supabase Auth prevents the use of compromised passwords by checking against HaveIBeenPwned.org. Enable this feature to enhance security.",
+          "metadata": {
+            "type": "auth",
+            "entity": "Auth"
+          }
+        }
+      ]
+    }
+  ],
+  "performance": [
+    {
+      "name": "unindexed_foreign_keys",
+      "title": "Unindexed foreign keys",
+      "level": "INFO",
+      "facing": "EXTERNAL",
+      "categories": [
+        "PERFORMANCE"
+      ],
+      "description": "Identifies foreign key constraints without a covering index, which can impact database performance.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys",
+      "count": 18,
+      "findings": [
+        {
+          "detail": "Table \\`private.activation_invites\\` has a foreign key \\`activation_invites_created_by_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "activation_invites",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "activation_invites_created_by_fkey",
+            "fkey_columns": [
+              7
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`private.activation_invites\\` has a foreign key \\`activation_invites_gym_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "activation_invites",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "activation_invites_gym_id_fkey",
+            "fkey_columns": [
+              2
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`private.license_sessions\\` has a foreign key \\`license_sessions_device_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "license_sessions",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "license_sessions_device_id_fkey",
+            "fkey_columns": [
+              4
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`private.license_sessions\\` has a foreign key \\`license_sessions_user_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "license_sessions",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "license_sessions_user_id_fkey",
+            "fkey_columns": [
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`private.owner_events\\` has a foreign key \\`owner_events_actor_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "owner_events",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "owner_events_actor_fkey",
+            "fkey_columns": [
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`private.subscription_payments\\` has a foreign key \\`subscription_payments_recorded_by_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "subscription_payments",
+            "type": "table",
+            "schema": "private",
+            "fkey_name": "subscription_payments_recorded_by_fkey",
+            "fkey_columns": [
+              10
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.classes\\` has a foreign key \\`classes_trainer_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "classes",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "classes_trainer_id_fkey",
+            "fkey_columns": [
+              2,
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.exercises\\` has a foreign key \\`exercises_routine_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "exercises",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "exercises_routine_id_fkey",
+            "fkey_columns": [
+              2,
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.membership_freeze_policies\\` has a foreign key \\`membership_freeze_policies_plan_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "membership_freeze_policies",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "membership_freeze_policies_plan_id_fkey",
+            "fkey_columns": [
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.memberships\\` has a foreign key \\`memberships_plan_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "memberships",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "memberships_plan_id_fkey",
+            "fkey_columns": [
+              2,
+              4
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.reservations\\` has a foreign key \\`reservations_client_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "reservations",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "reservations_client_id_fkey",
+            "fkey_columns": [
+              2,
+              4
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.routines\\` has a foreign key \\`routines_client_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "routines",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "routines_client_id_fkey",
+            "fkey_columns": [
+              2,
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.routines\\` has a foreign key \\`routines_trainer_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "routines",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "routines_trainer_id_fkey",
+            "fkey_columns": [
+              2,
+              4
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.staff_shifts\\` has a foreign key \\`staff_shifts_trainer_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "staff_shifts",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "staff_shifts_trainer_id_fkey",
+            "fkey_columns": [
+              2,
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.store_inventory_movements\\` has a foreign key \\`store_inventory_movements_order_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "store_inventory_movements",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "store_inventory_movements_order_id_fkey",
+            "fkey_columns": [
+              10
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.store_inventory_movements\\` has a foreign key \\`store_inventory_movements_product_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "store_inventory_movements",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "store_inventory_movements_product_id_fkey",
+            "fkey_columns": [
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.store_orders\\` has a foreign key \\`store_orders_client_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "store_orders",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "store_orders_client_id_fkey",
+            "fkey_columns": [
+              6
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.store_payments\\` has a foreign key \\`store_payments_gym_id_order_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+          "metadata": {
+            "name": "store_payments",
+            "type": "table",
+            "schema": "public",
+            "fkey_name": "store_payments_gym_id_order_id_fkey",
+            "fkey_columns": [
+              2,
+              3
+            ]
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        }
+      ]
+    },
+    {
+      "name": "auth_rls_initplan",
+      "title": "Auth RLS Initialization Plan",
+      "level": "WARN",
+      "facing": "EXTERNAL",
+      "categories": [
+        "PERFORMANCE"
+      ],
+      "description": "Detects if calls to \\`current_setting()\\` and \\`auth.<function>()\\` in RLS policies are being unnecessarily re-evaluated for each row",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0003_auth_rls_initplan",
+      "count": 2,
+      "findings": [
+        {
+          "detail": "Table \\`public.gym_users\\` has a row level security policy \\`user_self\\` that re-evaluates current_setting() or auth.<function>() for each row. This produces suboptimal query performance at scale. Resolve the issue by replacing \\`auth.<function>()\\` with \\`(select auth.<function>())\\`. See [docs](https://supabase.com/docs/guides/database/postgres/row-level-security#call-functions-with-select) for more info.",
+          "metadata": {
+            "name": "gym_users",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.gyms\\` has a row level security policy \\`gym_self\\` that re-evaluates current_setting() or auth.<function>() for each row. This produces suboptimal query performance at scale. Resolve the issue by replacing \\`auth.<function>()\\` with \\`(select auth.<function>())\\`. See [docs](https://supabase.com/docs/guides/database/postgres/row-level-security#call-functions-with-select) for more info.",
+          "metadata": {
+            "name": "gyms",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        }
+      ]
+    },
+    {
+      "name": "unused_index",
+      "title": "Unused Index",
+      "level": "INFO",
+      "facing": "EXTERNAL",
+      "categories": [
+        "PERFORMANCE"
+      ],
+      "description": "Detects if an index has never been used and may be a candidate for removal.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index",
+      "count": 54,
+      "findings": [
+        {
+          "detail": "Index \\`payment_transactions_request\\` on table \\`public.payment_transactions\\` has not been used",
+          "metadata": {
+            "name": "payment_transactions",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`chatbot_link_gym\\` on table \\`public.chatbot_link_requests\\` has not been used",
+          "metadata": {
+            "name": "chatbot_link_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_events_pending\\` on table \\`private.marketing_events\\` has not been used",
+          "metadata": {
+            "name": "marketing_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`automation_frequency\\` on table \\`public.automation_runs\\` has not been used",
+          "metadata": {
+            "name": "automation_runs",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`memberships_gym_id_client_id_end_date_idx\\` on table \\`public.memberships\\` has not been used",
+          "metadata": {
+            "name": "memberships",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`checkins_gym_id_client_id_checkin_at_idx\\` on table \\`public.checkins\\` has not been used",
+          "metadata": {
+            "name": "checkins",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`classes_gym_id_starts_at_idx\\` on table \\`public.classes\\` has not been used",
+          "metadata": {
+            "name": "classes",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_staff_invites_gym\\` on table \\`public.staff_invites\\` has not been used",
+          "metadata": {
+            "name": "staff_invites",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_checkins_gym_result_date\\` on table \\`public.checkins\\` has not been used",
+          "metadata": {
+            "name": "checkins",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_checkins_membership\\` on table \\`public.checkins\\` has not been used",
+          "metadata": {
+            "name": "checkins",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_staff_invites_code\\` on table \\`public.staff_invites\\` has not been used",
+          "metadata": {
+            "name": "staff_invites",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_gym_events_gym_date\\` on table \\`public.gym_events\\` has not been used",
+          "metadata": {
+            "name": "gym_events",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_delivery_lookup\\` on table \\`private.marketing_webhook_events\\` has not been used",
+          "metadata": {
+            "name": "marketing_webhook_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_products_gym_active_name\\` on table \\`public.store_products\\` has not been used",
+          "metadata": {
+            "name": "store_products",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_sales_gym_date\\` on table \\`public.store_sales\\` has not been used",
+          "metadata": {
+            "name": "store_sales",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_sales_gym_product\\` on table \\`public.store_sales\\` has not been used",
+          "metadata": {
+            "name": "store_sales",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`client_fingerprints_gym\\` on table \\`private.client_fingerprints\\` has not been used",
+          "metadata": {
+            "name": "client_fingerprints",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`audit_client_history\\` on table \\`public.audit_logs\\` has not been used",
+          "metadata": {
+            "name": "audit_logs",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`audit_client_name_snapshot\\` on table \\`public.audit_logs\\` has not been used",
+          "metadata": {
+            "name": "audit_logs",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_accounting_expenses_gym_date\\` on table \\`public.accounting_expenses\\` has not been used",
+          "metadata": {
+            "name": "accounting_expenses",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`daily_tickets_membership\\` on table \\`public.ticket_daily_consumptions\\` has not been used",
+          "metadata": {
+            "name": "ticket_daily_consumptions",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_staff_shifts_gym_date\\` on table \\`public.staff_shifts\\` has not been used",
+          "metadata": {
+            "name": "staff_shifts",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_staff_shifts_trainer_date\\` on table \\`public.staff_shifts\\` has not been used",
+          "metadata": {
+            "name": "staff_shifts",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`daily_tickets_client\\` on table \\`public.ticket_daily_consumptions\\` has not been used",
+          "metadata": {
+            "name": "ticket_daily_consumptions",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`daily_tickets_checkin\\` on table \\`public.ticket_daily_consumptions\\` has not been used",
+          "metadata": {
+            "name": "ticket_daily_consumptions",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_marketing_messages_pending\\` on table \\`public.marketing_messages\\` has not been used",
+          "metadata": {
+            "name": "marketing_messages",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`idx_clients_whatsapp_opt_in\\` on table \\`public.clients\\` has not been used",
+          "metadata": {
+            "name": "clients",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_audit_gym_date\\` on table \\`public.marketing_audit\\` has not been used",
+          "metadata": {
+            "name": "marketing_audit",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`license_sessions_gym_id_user_id_idx\\` on table \\`private.license_sessions\\` has not been used",
+          "metadata": {
+            "name": "license_sessions",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_rules_template\\` on table \\`public.marketing_automations\\` has not been used",
+          "metadata": {
+            "name": "marketing_automations",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`clients_marketing_phone\\` on table \\`public.clients\\` has not been used",
+          "metadata": {
+            "name": "clients",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`freezes_member\\` on table \\`public.membership_freezes\\` has not been used",
+          "metadata": {
+            "name": "membership_freezes",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`ticket_daily_consumptions_membership_id_fkey_idx\\` on table \\`public.ticket_daily_consumptions\\` has not been used",
+          "metadata": {
+            "name": "ticket_daily_consumptions",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`whatsapp_conversations_client_id_fkey_idx\\` on table \\`public.whatsapp_conversations\\` has not been used",
+          "metadata": {
+            "name": "whatsapp_conversations",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`chatbot_link_requests_client_id_fkey_idx\\` on table \\`public.chatbot_link_requests\\` has not been used",
+          "metadata": {
+            "name": "chatbot_link_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`chatbot_link_requests_conversation_id_fkey_idx\\` on table \\`public.chatbot_link_requests\\` has not been used",
+          "metadata": {
+            "name": "chatbot_link_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`automation_runs_automation_id_fkey_idx\\` on table \\`public.automation_runs\\` has not been used",
+          "metadata": {
+            "name": "automation_runs",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`automation_runs_client_id_fkey_idx\\` on table \\`public.automation_runs\\` has not been used",
+          "metadata": {
+            "name": "automation_runs",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_oauth_states_gym_id_fkey_idx\\` on table \\`private.marketing_oauth_states\\` has not been used",
+          "metadata": {
+            "name": "marketing_oauth_states",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_events_client_id_fkey_idx\\` on table \\`private.marketing_events\\` has not been used",
+          "metadata": {
+            "name": "marketing_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_sandbox_clients_client_id_fkey_idx\\` on table \\`private.marketing_sandbox_clients\\` has not been used",
+          "metadata": {
+            "name": "marketing_sandbox_clients",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`payment_requests_client_id_fkey_idx\\` on table \\`public.payment_requests\\` has not been used",
+          "metadata": {
+            "name": "payment_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`payment_requests_membership_id_fkey_idx\\` on table \\`public.payment_requests\\` has not been used",
+          "metadata": {
+            "name": "payment_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`payment_requests_plan_id_fkey_idx\\` on table \\`public.payment_requests\\` has not been used",
+          "metadata": {
+            "name": "payment_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`payment_requests_renewed_membership_id_fkey_idx\\` on table \\`public.payment_requests\\` has not been used",
+          "metadata": {
+            "name": "payment_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_messages_automation_id_fkey_idx\\` on table \\`public.marketing_messages\\` has not been used",
+          "metadata": {
+            "name": "marketing_messages",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_messages_conversation_id_fkey_idx\\` on table \\`public.marketing_messages\\` has not been used",
+          "metadata": {
+            "name": "marketing_messages",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`marketing_messages_payment_request_id_fkey_idx\\` on table \\`public.marketing_messages\\` has not been used",
+          "metadata": {
+            "name": "marketing_messages",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_products_gym_category\\` on table \\`public.store_products\\` has not been used",
+          "metadata": {
+            "name": "store_products",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_orders_gym_date\\` on table \\`public.store_orders\\` has not been used",
+          "metadata": {
+            "name": "store_orders",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_orders_gym_client\\` on table \\`public.store_orders\\` has not been used",
+          "metadata": {
+            "name": "store_orders",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`store_sales_order\\` on table \\`public.store_sales\\` has not been used",
+          "metadata": {
+            "name": "store_sales",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`core_events_gym_created\\` on table \\`private.core_events\\` has not been used",
+          "metadata": {
+            "name": "core_events",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Index \\`client_staff_notes_client_idx\\` on table \\`private.client_staff_notes\\` has not been used",
+          "metadata": {
+            "name": "client_staff_notes",
+            "type": "table",
+            "schema": "private"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        }
+      ]
+    },
+    {
+      "name": "multiple_permissive_policies",
+      "title": "Multiple Permissive Policies",
+      "level": "WARN",
+      "facing": "EXTERNAL",
+      "categories": [
+        "PERFORMANCE"
+      ],
+      "description": "Detects if multiple permissive row level security policies are present on a table for the same \\`role\\` and \\`action\\` (e.g. insert). Multiple permissive policies are suboptimal for performance as each policy must be executed for every relevant query.",
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0006_multiple_permissive_policies",
+      "count": 4,
+      "findings": [
+        {
+          "detail": "Table \\`public.chatbot_link_requests\\` has multiple permissive policies for role \\`authenticated\\` for action \\`SELECT\\`. Policies include \\`{marketing_admin_read,marketing_reception_read}\\`",
+          "metadata": {
+            "name": "chatbot_link_requests",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.gym_branding\\` has multiple permissive policies for role \\`authenticated\\` for action \\`SELECT\\`. Policies include \\`{branding_read,branding_write}\\`",
+          "metadata": {
+            "name": "gym_branding",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.plans\\` has multiple permissive policies for role \\`authenticated\\` for action \\`SELECT\\`. Policies include \\`{plans_admin_all,plans_staff_read}\\`",
+          "metadata": {
+            "name": "plans",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        },
+        {
+          "detail": "Table \\`public.whatsapp_conversations\\` has multiple permissive policies for role \\`authenticated\\` for action \\`SELECT\\`. Policies include \\`{marketing_admin_read,marketing_reception_read}\\`",
+          "metadata": {
+            "name": "whatsapp_conversations",
+            "type": "table",
+            "schema": "public"
+          },
+          "observed_at": "2026-11-26T16:16:25.287Z"
+        }
+      ]
+    }
+  ]
+}

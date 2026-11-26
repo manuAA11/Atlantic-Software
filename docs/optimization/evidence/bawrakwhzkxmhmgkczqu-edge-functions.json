@@ -1,0 +1,30 @@
+{
+  "functions": [
+    {
+      "id": "fdf21bf4-ddf0-4d6c-b075-6d94d644f086",
+      "slug": "atlantic-core",
+      "name": "atlantic-core",
+      "status": "ACTIVE",
+      "version": 1,
+      "created_at": 1792712463267,
+      "updated_at": 1792712463267,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_bawrakwhzkxmhmgkczqu_fdf21bf4-ddf0-4d6c-b075-6d94d644f086_1/source/backend/platform/index.ts",
+      "ezbr_sha256": "b5220c2f8c12aa9a8ecb68c02ebcfd4909fa1ff451518b72c0c15a20dced6a0a"
+    },
+    {
+      "id": "0375e265-4a47-44fe-b2a5-83aa4afed1b7",
+      "slug": "marketing",
+      "name": "marketing",
+      "status": "ACTIVE",
+      "version": 2,
+      "created_at": 1791459646273,
+      "updated_at": 1791484148483,
+      "verify_jwt": false,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_bawrakwhzkxmhmgkczqu_0375e265-4a47-44fe-b2a5-83aa4afed1b7_2/source/index.ts",
+      "ezbr_sha256": "532e63c5af32461d455fff6745217161581a8e250afdaba70ed9de9497e3084a"
+    }
+  ]
+}

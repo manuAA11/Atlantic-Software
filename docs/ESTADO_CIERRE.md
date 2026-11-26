@@ -1,5 +1,7 @@
 # Multi-Gym: cierre de recuperación, 8 de octubre de 2026
 
+**26 de noviembre de 2026 · Optimización Supabase en rama aislada:** auditoría de sólo lectura de Comercial y ZTATTUZ, baseline agregada, plan y rollback en [optimization/AUDIT.md](optimization/AUDIT.md). Deduplicación de lecturas no críticas preparada en la PWA, sin deploy ni cambio de BD/cron/escritorio. Egress facturado, respaldo restaurable, versiones instaladas y pruebas físicas pendientes; no se declara completada la optimización ni salida a producción.
+
 **23 de noviembre de 2026 · Actualización opcional 3.8.9 publicada:** eventos administrados desde escritorio y sólo consultados en móvil, renovación desde el botón existente hacia WhatsApp y archivo de rutinas/plantillas/ejercicios propios. Servidor ZTATTUZ migrado y verificado en rollback. Windows 45287062408 aprobó los tres perfiles; publicación 45287062196 y descargas completas con el actualizador 45290919023 aprobadas. Core ofrece x86/x64 al gimnasio existente. **La interfaz móvil ya está publicada:** Cloudflare 45286300321, intento 2, aprobó despliegue y comprobaciones HTTPS. La sesión existente del propietario cargó membresía, agenda y rutinas; se activó el service worker nuevo. El piloto y los límites de aceptación física se conservan; no se declara salida general a producción. [Alcance y resultados](LEAGUE_ENTREGA_20261123.md).
 
 Estado revisado el **14 de octubre de 2026**; la fecha del título identifica la recuperación y sus evidencias históricas.
