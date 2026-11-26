@@ -101,7 +101,7 @@ def env_and_mount(ref, config):
         'PGOPTIONS=-c default_transaction_read_only=on -c lock_timeout=5000 -c statement_timeout=180000'])+'\n')
     return ['docker','run','--rm','--network','host','--env-file',str(env),
             '--mount','type=bind,src='+str(passfile)+',dst=/run/pgpass,readonly',
-            '--mount','type=bind,src=/etc/ssl/certs/ca-certificates.crt,dst=/run/root-ca.pem,readonly', IMAGE]
+            '--mount','type=bind,src='+str(Path('tools/vendor/supabase-prod-ca.crt').resolve())+',dst=/run/root-ca.pem,readonly', IMAGE]
 
 
 def archive(ref, config, encryption_key):
