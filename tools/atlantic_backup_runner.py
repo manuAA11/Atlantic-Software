@@ -99,7 +99,7 @@ def env_and_mount(ref, config):
         'PGDATABASE=postgres','PGPASSFILE=/run/pgpass','PGSSLMODE=verify-full',
         'PGSSLROOTCERT=/run/root-ca.pem','PGCONNECT_TIMEOUT=20',
         'PGOPTIONS=-c default_transaction_read_only=on -c lock_timeout=5000 -c statement_timeout=180000'])+'\n')
-    return ['docker','run','--rm','--network','host','--env-file',str(env),
+    return ['docker','run','--rm','-i','--network','host','--env-file',str(env),
             '--mount','type=bind,src='+str(passfile)+',dst=/run/pgpass,readonly',
             '--mount','type=bind,src='+str(Path('tools/vendor/supabase-prod-ca.crt').resolve())+',dst=/run/root-ca.pem,readonly', IMAGE]
 
